@@ -1,0 +1,5 @@
+page {
+  position: relative;
+  min-height: 100vh;
+  background-color: #f8f8f8;
+}
