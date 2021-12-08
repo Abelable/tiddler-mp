@@ -15,9 +15,13 @@
 
 <swiper style="height: {{contentWrapHeightArr[activeMenuIdx]}}px;" current="{{activeMenuIdx}}" bindchange="swiperChange">
   <swiper-item>
-    <view class="content-wrap" style="padding-top: {{statusBarHeight + 100}}px;">关注</view>
+    <view class="content-wrap" style="padding-top: {{statusBarHeight + 102}}px;">关注</view>
   </swiper-item>
   <swiper-item>
-    <view class="content-wrap" style="padding-top: {{statusBarHeight + 100}}px;">发现</view>
+    <view class="content-wrap" style="padding-top: {{statusBarHeight + 102}}px;">
+      <strategy-item />
+      <strategy-item />
+      <strategy-item />
+    </view>
   </swiper-item>
 </swiper>

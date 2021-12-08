@@ -1,0 +1,20 @@
+<view class="strategy-item">
+  <view class="cover-wrap">
+    <image class="cover" mode="widthFix" src="/images/item_cover.jpeg" />
+    <view class="address-info">
+      <image class="address-icon" src="./images/address.png" />
+      <text class="address-detail">千岛湖绿城度假酒店千岛湖绿城度假酒店</text>
+    </view>
+  </view>
+  <view class="title">千岛湖3天骑车、皮划艇、游泳和吃吃吃，千岛湖3天骑车、皮划艇、游泳和吃吃吃，千岛湖3天骑车、皮划艇、游泳和吃吃吃</view>
+  <view class="info-wrap">
+    <view class="author-info">
+      <image class="avatar" src="/images/avatar.jpeg" />
+      <text class="name">花束情人花束情人花束情人花束情人花束情人花束情人花束情人</text>
+    </view>
+    <view class="praise-info">
+      <image class="praise-icon" src="./images/heart.png" />
+      <text>10w</text>
+    </view>
+  </view>
+</view>

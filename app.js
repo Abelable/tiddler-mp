@@ -1,6 +1,7 @@
 App({
   globalData: {
-    statusBarHeight: ''
+    statusBarHeight: '',
+    windowHeight: ''
   },
 
   onLaunch() {

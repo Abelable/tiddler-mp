@@ -72,3 +72,10 @@
   border-radius: 15px;
   background: #77a9fd;
 }
+
+.content-wrap {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 20rpx;
+}

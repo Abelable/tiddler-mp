@@ -1,5 +1,7 @@
 {
   "navigationStyle": "custom",
   "enablePullDownRefresh": true,
-  "usingComponents": {}
+  "usingComponents": {
+    "strategy-item": "./components/strategy-item/index"
+  }
 }
