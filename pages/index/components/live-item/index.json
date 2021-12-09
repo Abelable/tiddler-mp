@@ -1,6 +1,3 @@
 {
-  "component": true,
-  "componentGenerics": {
-    "list": true
-  }
+  "component": true
 }

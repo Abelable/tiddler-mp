@@ -70,7 +70,7 @@
   width: 48px;
   height: 26px;
   border-radius: 15px;
-  background: #77a9fd;
+  background: var(--theme-color);
 }
 
 .content-wrap {

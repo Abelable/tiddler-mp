@@ -2,8 +2,21 @@ page {
   position: relative;
   min-height: 100vh;
   background-color: #f8f8f8;
+  --theme-color: #77a9fd;
+  --theme-gradient-color: linear-gradient(90deg, #00cffc 0%, #0095fa 100%);
 }
 
 view, text, image, scroll-view, navigator, swiper, swiper-item {
   box-sizing: border-box;
+}
+
+.omit {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.omit.single-line {
+  -webkit-line-clamp: 1;
 }
