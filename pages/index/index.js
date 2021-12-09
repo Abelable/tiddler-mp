@@ -10,7 +10,9 @@ Page({
 
   onLoad() {
     this.scrollTopArr = [0, 0]
-    this.setContentWrapHeight()
+    setTimeout(() => {
+      this.setContentWrapHeight()
+    }, 1000)
   },
 
   switchMenu(e) {
