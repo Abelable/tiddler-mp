@@ -1,0 +1,21 @@
+<view class="note-item">
+  <view class="cover-wrap">
+    <image class="cover" mode="widthFix" src="/images/item_cover_2.jpg" />
+    <view class="title-wrap">
+      <view class="address">游记 · 千岛湖</view>
+      <view class="title">
+        <text class="title-content">拖家带口五天玩转杭州千岛湖乌镇拖家带口五天玩转杭州千岛湖乌镇拖家带口五天玩转杭州千岛湖乌镇</text>
+      </view>
+    </view>
+  </view>
+  <view class="info-wrap">
+    <view class="author-info">
+      <image class="avatar" src="/images/avatar.jpeg" />
+      <text class="name">funguy</text>
+    </view>
+    <view class="read-info">
+      <image class="read-icon" src="./images/eye.png" />
+      <text>10w</text>
+    </view>
+  </view>
+</view>
