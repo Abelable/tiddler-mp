@@ -75,4 +75,16 @@ Page({
   onPullDownRefresh() {
     wx.stopPullDownRefresh() 
   },
+
+  signIn() {
+    wx.navigateTo({
+      url: './subpages/sign-in/index'
+    })
+  },
+
+  search() {
+    wx.navigateTo({
+      url: './subpages/search/index'
+    })
+  }
 })

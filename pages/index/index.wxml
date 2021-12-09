@@ -5,7 +5,7 @@
       <view wx:for="{{['关注', '发现']}}" wx:key="index" class="menu-tab {{activeMenuIdx === index ? 'active' : ''}}" ontap="switchMenu" data-index="{{index}}">{{item}}</view>
     </view>
   </view>
-  <view class="search-bar {{navrBarActive ? 'active': ''}}">
+  <view class="search-bar {{navrBarActive ? 'active': ''}}" ontap="search">
     <view class="placeholder">搜索景点、酒店、攻略等</view>
     <view class="search-btn">
       <image style="width: 20px; height: 20px;" src="./images/search.png" />

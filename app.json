@@ -1,6 +1,12 @@
 {
   "pages":[
     "pages/index/index",
+    "pages/index/subpages/sign-in/index",
+    "pages/index/subpages/search/index",
+    "pages/index/subpages/strategy/index",
+    "pages/index/subpages/note/index",
+    "pages/index/subpages/live/index",
+    "pages/index/subpages/video/index",
     "pages/mall/index",
     "pages/mine/index"
   ],
