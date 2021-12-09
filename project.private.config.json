@@ -1,0 +1,23 @@
+{
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "商城",
+          "pathName": "pages/mall/index",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

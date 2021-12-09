@@ -1,4 +1,4 @@
-<view class="navigation-bar {{navrBarActive ? 'active': ''}}" style="padding-top: {{statusBarHeight}}px">
+<view class="nav-bar {{navrBarActive ? 'active': ''}}" style="padding-top: {{statusBarHeight}}px">
   <view class="menu-tabs-wrap">
     <image class="sign-tab" src="./images/sign.png" ontap="signIn" />
     <view class="menu-tabs">

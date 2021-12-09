@@ -1,6 +1,6 @@
 <view class="video-item">
   <view class="cover-wrap">
-    <image class="cover" mode="widthFix" src="/images/item_cover_3.jpg" />
+    <image class="cover" mode="widthFix" src="/images/item_cover_5.jpg" />
     <view class="video-symbol">
       <image class="video-icon" src="./images/play.png" />
     </view>

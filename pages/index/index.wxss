@@ -1,10 +1,10 @@
-.navigation-bar {
+.nav-bar {
   position: fixed;
   width: 100%;
   box-sizing: initial;
   z-index: 100;
 }
-.navigation-bar.active {
+.nav-bar.active {
   background: #fff;
 }
 

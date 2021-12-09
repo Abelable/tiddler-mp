@@ -1,1 +1,8 @@
-<view class="container">商城</view>
+<view class="nav-bar {{navrBarActive ? 'active': ''}}" style="padding-top: {{statusBarHeight}}px">
+  <view class="search-bar {{navrBarActive ? 'active': ''}}" ontap="search">
+    <image class="search-icon" src="./images/search.png" />
+    <text class="placeholder">搜索景点、酒店等</text>
+  </view>
+</view>
+
+<view class="container"></view>
