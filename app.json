@@ -8,6 +8,12 @@
     "pages/index/subpages/live/index",
     "pages/index/subpages/video/index",
     "pages/mall/index",
+    "pages/mall/subpages/search/index",
+    "pages/mall/subpages/ticket/index",
+    "pages/mall/subpages/tour/index",
+    "pages/mall/subpages/hotel/index",
+    "pages/mall/subpages/foot/index",
+    "pages/mall/subpages/goods/index",
     "pages/mine/index"
   ],
   "tabBar": {

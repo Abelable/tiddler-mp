@@ -7,14 +7,19 @@
     </view>
   </view>
   <view class="title omit">攻略千岛湖3天骑车、皮划艇、游泳和吃吃吃，千岛湖3天骑车、皮划艇、游泳和吃吃吃，千岛湖3天骑车、皮划艇、游泳和吃吃吃</view>
+  <view class="label-list">
+    <view class="label">体验慢生活</view>
+    <view class="label">纯玩0购物</view>
+  </view>
   <view class="info-wrap">
-    <view class="author-info">
-      <image class="avatar" src="/images/avatar.jpeg" />
-      <text class="name omit single-line">花束情人花束情人花束情人花束情人花束情人花束情人花束情人</text>
+    <view class="price">
+      <text style="margin-right: 4rpx; color: #ff5049;">¥</text>
+      <text style="color: #ff5049; font-size: 32rpx; font-weight: bold;">200</text>
+      <text style="margin-left: 2rpx;">起</text>
     </view>
-    <view class="praise-info">
-      <image class="praise-icon" src="./images/heart.png" />
-      <text>10w</text>
+    <view class="sales">
+      <text>已售</text>
+      <text style="font-weight: bold;">1799</text>
     </view>
   </view>
 </view>

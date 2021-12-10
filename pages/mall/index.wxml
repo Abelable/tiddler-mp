@@ -15,25 +15,9 @@
 </swiper>
 
 <view class="category-wrap">
-  <view class="category-item">
-    <image class="category-icon" src="./images/ticket.png" />
-    <view class="category-desc">景点门票</view>
-  </view>
-  <view class="category-item">
-    <image class="category-icon" src="./images/bus.png" />
-    <view class="category-desc">跟团游</view>
-  </view>
-  <view class="category-item">
-    <image class="category-icon" src="./images/hotel.png" />
-    <view class="category-desc">酒店民宿</view>
-  </view>
-  <view class="category-item">
-    <image class="category-icon" src="./images/foot.png" />
-    <view class="category-desc">餐饮美食</view>
-  </view>
-  <view class="category-item">
-    <image class="category-icon" src="./images/cart.png" />
-    <view class="category-desc">特色商品</view>
+  <view class="category-item" wx:for="{{categoryList}}" wx:key="index" ontap="navTo" data-index="{{index}}">
+    <image class="category-icon" src="{{item.icon}}" />
+    <view class="category-desc">{{item.name}}</view>
   </view>
 </view>
 

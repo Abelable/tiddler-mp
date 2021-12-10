@@ -40,36 +40,26 @@
   font-weight: bold;
 }
 
+.label-list {
+  display: flex;
+  margin-top: 10rpx;
+  padding: 0 10rpx;
+}
+.label {
+  margin-right: 10rpx;
+  color: #999;
+  font-size: 20rpx;
+  background: #f6f6f6;
+  padding: 2rpx 10rpx;
+  border-radius: 10rpx;
+}
+
 .info-wrap {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-top: 10rpx;
   padding: 0 10rpx;
-  color: #666;
+  color: #999;
   font-size: 22rpx;
-}
-.author-info {
-  display: flex;
-  align-items: center;
-  margin-right: 10rpx;
-  flex: 1;
-}
-.avatar {
-  margin-right: 8rpx;
-  width: 30rpx;
-  height: 30rpx;
-  border-radius: 50%;
-}
-.name {
-  flex: 1;
-}
-.praise-info {
-  display: flex;
-  align-items: center;
-}
-.praise-icon {
-  margin-right: 6rpx;
-  width: 26rpx;
-  height: 26rpx;
 }
