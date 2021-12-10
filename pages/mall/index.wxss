@@ -1,3 +1,7 @@
+page {
+  background: #fff;
+}
+
 .nav-bar {
   position: fixed;
   display: flex;
@@ -36,6 +40,40 @@
   font-size: 14px;
 }
 
-.container {
-  height: 200vh;
+.banner .wx-swiper-dot {
+  width: 8rpx;
+  height: 8rpx;
+  border-radius: 4rpx;
+  background: var(--theme-color);
+  opacity: 0.5;
+}
+.banner .wx-swiper-dot.wx-swiper-dot-active {
+  width: 24rpx;
+  opacity: 1;
+}
+
+.banner-item {
+  position: relative;
+}
+.banner-img {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+}
+
+.category-wrap {
+  display: flex;
+  justify-content: space-around;
+}
+.category-item {
+  text-align: center;
+}
+.category-icon {
+  width: 86rpx;
+  height: 86rpx;
+}
+.category-desc {
+  color: #666;
+  font-size: 20rpx;
 }

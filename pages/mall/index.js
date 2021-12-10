@@ -20,5 +20,12 @@ Page({
         })
       }
     }
-  }
+  },
+
+  onReachBottom() {
+  },
+  
+  onPullDownRefresh() {
+    wx.stopPullDownRefresh() 
+  },
 })
