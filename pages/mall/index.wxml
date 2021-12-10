@@ -36,3 +36,7 @@
     <view class="category-desc">特色商品</view>
   </view>
 </view>
+
+<view class="goods-list">
+  <goods-item />
+</view>

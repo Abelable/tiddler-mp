@@ -77,3 +77,10 @@ page {
   color: #666;
   font-size: 20rpx;
 }
+
+.goods-list {
+  margin-top: 30rpx;
+  padding: 20rpx;
+  border-radius: 32rpx 32rpx 0 0;
+  box-shadow: 0 -10px 20px -2px #f0f0f0;
+}

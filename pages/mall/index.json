@@ -2,5 +2,7 @@
   "navigationStyle": "custom",
   "enablePullDownRefresh": true,
   "backgroundColor": "#ffffff",
-  "usingComponents": {}
+  "usingComponents": {
+    "goods-item": "./components/goods-item/index"
+  }
 }
