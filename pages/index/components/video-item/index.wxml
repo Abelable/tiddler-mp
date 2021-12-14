@@ -1,6 +1,6 @@
 <view class="video-item">
   <view class="cover-wrap">
-    <image class="cover" mode="widthFix" src="/images/item_cover_5.jpg" />
+    <image class="cover" mode="widthFix" src="http://img.ubo.vip/youlian/temporary/item_cover_5.jpg" />
     <view class="video-symbol">
       <image class="video-icon" src="./images/play.png" />
     </view>
@@ -12,7 +12,7 @@
   <view class="title omit">千岛湖3天骑车、皮划艇、游泳和吃吃吃，千岛湖3天骑车、皮划艇、游泳和吃吃吃，千岛湖3天骑车、皮划艇、游泳和吃吃吃</view>
   <view class="info-wrap">
     <view class="author-info">
-      <image class="avatar" src="/images/avatar.jpeg" />
+      <image class="avatar" src="http://img.ubo.vip/youlian/temporary/avatar.jpeg" />
       <text class="name omit single-line">花束情人花束情人花束情人花束情人花束情人花束情人花束情人花束情人花束情人花束情人</text>
     </view>
     <view class="praise-info">

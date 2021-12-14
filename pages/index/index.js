@@ -5,7 +5,7 @@ Page({
     statusBarHeight,
     navrBarActive: false,
     contentWrapHeightArr: [windowHeight, windowHeight],
-    activeMenuIdx: 1,
+    curMenuIdx: 1,
   },
 
   onLoad() {
@@ -13,12 +13,6 @@ Page({
     setTimeout(() => {
       this.setContentWrapHeight()
     }, 1000)
-  },
-
-  switchMenu(e) {
-    this.setData({
-      activeMenuIdx: Number(e.currentTarget.dataset.index)
-    })
   },
 
   switchMenu(e) {
@@ -30,22 +24,22 @@ Page({
   },
 
   handleMenuChange(index) {
-    const { activeMenuIdx } = this.data
-    if (activeMenuIdx !== index) {
-      this.setData({ activeMenuIdx: index })
-      this.scrollTopArr[activeMenuIdx] = this.scrollTop || 0
+    const { curMenuIdx } = this.data
+    if (curMenuIdx !== index) {
+      this.setData({ curMenuIdx: index })
+      this.scrollTopArr[curMenuIdx] = this.scrollTop || 0
       wx.pageScrollTo({ scrollTop: this.scrollTopArr[index] || 0, duration: 0 })
     }
   },
 
   setContentWrapHeight() {
-    const { activeMenuIdx } = this.data
+    const { curMenuIdx } = this.data
     const query = wx.createSelectorQuery()
     query.selectAll('.content-wrap').boundingClientRect()
     query.exec(res => {
-      if (res[0][activeMenuIdx]) {
+      if (res[0][curMenuIdx]) {
         this.setData({ 
-          [`contentWrapHeightArr[${activeMenuIdx}]`]: res[0][activeMenuIdx].height 
+          [`contentWrapHeightArr[${curMenuIdx}]`]: res[0][curMenuIdx].height 
         })
       }
     })

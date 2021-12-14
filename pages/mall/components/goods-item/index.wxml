@@ -1,6 +1,6 @@
 <view class="goods-item">
   <view class="cover-wrap">
-    <image class="cover" mode="widthFix" src="/images/item_cover_4.jpg" />
+    <image class="cover" mode="widthFix" src="http://img.ubo.vip/youlian/temporary/item_cover_4.jpg" />
     <view class="address-info">
       <image class="address-icon" src="./images/address.png" />
       <text class="address-detail omit single-line">千岛湖绿城度假酒店千岛湖绿城度假酒店</text>

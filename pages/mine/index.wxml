@@ -1,2 +1,77 @@
-<!--index.wxml-->
-<view class="container">我的</view>
+<import src="/templates/empty-illus/index.wxml" />
+
+<view class="nav-bar" style="padding-top: {{statusBarHeight}}px; opacity: {{navBarVisible ? 100 : 0}};">
+  <image class="user-avatar" src="http://img.ubo.vip/youlian/temporary/avatar_2.png" />
+  <view class="user-name">小鱼儿用户</view>
+</view>
+
+<view class="container">
+  <image class="bg" src="./images/bg.jpg" />
+  <view class="content" style="margin-top: {{statusBarHeight + 100}}px;">
+    <view class="avatar-wrap">
+      <image class="avatar" src="http://img.ubo.vip/youlian/temporary/avatar_2.png" />
+      <view class="data-wrap">
+        <view class="data-item">
+          <view class="data-title">关注</view>
+          <view class="data">200</view>
+        </view>
+        <view class="data-item">
+          <view class="data-title">粉丝</view>
+          <view class="data">36</view>
+        </view>
+        <view class="data-item">
+          <view class="data-title">来访</view>
+          <view class="data">100</view>
+        </view>
+      </view>
+    </view>
+    <view class="name">小鱼儿用户</view>
+    <view class="introduce">来一段简短的自我介绍吧～</view>
+
+    <view class="function-wrap">
+      <view class="function-item">
+        <image class="function-icon" src="./images/order.png" />
+        <view class="function-desc">我的订单</view>
+      </view>
+      <view class="function-item">
+        <image class="function-icon" src="./images/collection.png" />
+        <view class="function-desc">我的收藏</view>
+      </view>
+      <view class="function-item">
+        <image class="function-icon" src="./images/track.png" />
+        <view class="function-desc">我的足迹</view>
+      </view>
+      <view class="function-item"></view>
+      <view class="function-item"></view>
+    </view>
+
+    <view class="works-wrap {{menuFixed ? 'fixed' : '' }}">
+      <view class="works-menu {{menuFixed ? 'fixed' : '' }}" style="top: {{menuFixed ? statusBarHeight + 44 : 0}}px;">
+        <view wx:for="{{['笔记', '视频', '直播', '游记']}}" wx:key="index" class="works-menu-item {{curMenuIdx === index ? 'active' : ''}}" ontap="switchMenu" data-index="{{index}}">{{item}}</view>
+        <view class="active-underline" style="left: {{curMenuIdx * 25}}vw;"></view>
+      </view>
+      <swiper style="height: {{worksListHeightArr[curMenuIdx]}}px;" current="{{curMenuIdx}}" bindchange="swiperChange">
+        <swiper-item>
+          <view class="works-list" wx:if="{{strategyList.length}}">
+          </view>
+          <template is="empty-illus" wx:else />
+        </swiper-item>
+        <swiper-item>
+          <view class="works-list" wx:if="{{videoList.length}}">
+          </view>
+          <template is="empty-illus" wx:else />
+        </swiper-item>
+        <swiper-item>
+          <view class="works-list" wx:if="{{liveList.length}}">
+          </view>
+          <template is="empty-illus" wx:else />
+        </swiper-item>
+        <swiper-item>
+          <view class="works-list" wx:if="{{noteList.length}}">
+          </view>
+          <template is="empty-illus" wx:else />
+        </swiper-item>
+      </swiper>
+    </view>
+  </view>
+</view>

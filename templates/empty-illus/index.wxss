@@ -1,0 +1,10 @@
+.empty-illus {
+  padding-top: 120rpx;
+  font-size: 22rpx;
+  color: #999;
+  text-align: center;
+}
+.empty-img {
+  width: 300rpx;
+  height: 300rpx;
+}

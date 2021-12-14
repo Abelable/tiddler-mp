@@ -1,6 +1,6 @@
 <view class="note-item">
   <view class="cover-wrap">
-    <image class="cover" mode="widthFix" src="/images/item_cover_2.jpg" />
+    <image class="cover" mode="widthFix" src="http://img.ubo.vip/youlian/temporary/item_cover_2.jpg" />
     <view class="title-wrap">
       <view class="address">游记 · 千岛湖</view>
       <view class="title">
@@ -10,7 +10,7 @@
   </view>
   <view class="info-wrap">
     <view class="author-info">
-      <image class="avatar" src="/images/avatar.jpeg" />
+      <image class="avatar" src="http://img.ubo.vip/youlian/temporary/avatar.jpeg" />
       <text class="name omit single-line">funguy</text>
     </view>
     <view class="read-info">

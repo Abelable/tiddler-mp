@@ -2,7 +2,7 @@
   <view class="menu-tabs-wrap">
     <image class="sign-tab" src="./images/sign.png" ontap="signIn" />
     <view class="menu-tabs">
-      <view wx:for="{{['关注', '发现']}}" wx:key="index" class="menu-tab {{activeMenuIdx === index ? 'active' : ''}}" ontap="switchMenu" data-index="{{index}}">{{item}}</view>
+      <view wx:for="{{['关注', '发现']}}" wx:key="index" class="menu-tab {{curMenuIdx === index ? 'active' : ''}}" ontap="switchMenu" data-index="{{index}}">{{item}}</view>
     </view>
   </view>
   <view class="search-bar {{navrBarActive ? 'active': ''}}" ontap="search">
@@ -13,7 +13,7 @@
   </view>
 </view>
 
-<swiper style="height: {{contentWrapHeightArr[activeMenuIdx]}}px;" current="{{activeMenuIdx}}" bindchange="swiperChange">
+<swiper style="height: {{contentWrapHeightArr[curMenuIdx]}}px;" current="{{curMenuIdx}}" bindchange="swiperChange">
   <swiper-item>
     <view class="content-wrap" style="padding-top: {{statusBarHeight + 102}}px;">关注</view>
   </swiper-item>

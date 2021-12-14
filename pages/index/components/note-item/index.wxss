@@ -25,7 +25,7 @@
   color: #fff;
   font-size: 20rpx;
   border-radius: 10rpx 10rpx 0 0;
-  background: var(--theme-gradient-color);
+  background: linear-gradient(90deg, #00cffc 0%, #0095fa 100%);
 }
 .title {
   padding: 10rpx;
