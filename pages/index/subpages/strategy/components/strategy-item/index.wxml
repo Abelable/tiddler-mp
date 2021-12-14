@@ -50,7 +50,7 @@
         <view class="btn-data">200</view>
       </view>
       <view class="btn-item">
-        <image class="btn-icon" src="./images/collection.png" />
+        <image class="btn-icon" src="./images/collection-active.png" />
         <view class="btn-data">200</view>
       </view>
     </view>
