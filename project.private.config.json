@@ -23,6 +23,12 @@
           "pathName": "pages/mine/index",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "攻略",
+          "pathName": "pages/index/subpages/strategy/index",
+          "query": "",
+          "scene": null
         }
       ]
     }

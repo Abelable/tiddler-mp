@@ -1,0 +1,58 @@
+<wxs module="STRING" src="/utils/filters/string.wxs" />
+
+<view class="strategy-item">
+  <view class="author-info-wrap">
+    <image class="author-avatar" src="http://img.ubo.vip/youlian/temporary/avatar_2.png" />
+    <view class="name-wrap">
+      <view class="author-name">小鱼儿用户</view>
+      <view class="time">2021-12-12</view>
+    </view>
+    <view class="follow-btn" ontap="follow">+ 关注</view>
+  </view>
+  
+  <swiper class="strategy-imgs small-dots" indicator-dots circular>
+    <swiper-item wx:for="{{imgs}}" wx:key="index">
+      <image class="strategy-img" src="{{item}}" ontap="previewImage" data-current="{{item}}" mode="aspectFill" lazy-load />
+    </swiper-item>
+  </swiper>
+  
+  <view class="content">
+    <text>{{contentFold ? STRING.slice(content, 50) : content}}</text>
+    <text wx:if="{{contentFold}}" style="color: #000; font-weight: bold;"> 展开</text>
+  </view>
+  
+  <view class="comment-wrap">
+    <view class="comment-list">
+      <view class="comment-item">
+        <view class="commentator-name">funguy：</view>
+        <view class="comment-content omit single-line">我也想去自驾～</view>
+      </view>
+      <view class="comment-item">
+        <view class="commentator-name">一朵花：</view>
+        <view class="comment-content omit single-line">不知道网上能不能买到差不多的</view>
+      </view>
+    </view>
+    <view class="explain">共5条评论</view>
+  </view>
+  
+  <view class="btn-wrap">
+    <view class="comment-btn">
+      <image class="user-avatar" src="/images/default-avatar.png" />
+      <view class="comment-btn-desc">添加评论...</view>
+    </view>
+    <view class="other-btns">
+      <view class="btn-item">
+        <image class="btn-icon" src="./images/share.png" />
+        <view class="btn-data">72</view>
+      </view>
+      <view class="btn-item">
+        <image class="btn-icon" src="./images/heart.png" />
+        <view class="btn-data">200</view>
+      </view>
+      <view class="btn-item">
+        <image class="btn-icon" src="./images/collection.png" />
+        <view class="btn-data">200</view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -9,7 +9,7 @@
   width: 100%;
   height: 44px;
   box-sizing: initial;
-  background: var(--theme-gradient-color);
+  background: var(--theme-color-gradient);
   z-index: 100;
   transition: opacity .6s ease;
 }

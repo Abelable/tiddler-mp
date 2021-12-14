@@ -40,18 +40,6 @@ page {
   font-size: 14px;
 }
 
-.banner .wx-swiper-dot {
-  width: 8rpx;
-  height: 8rpx;
-  border-radius: 4rpx;
-  background: var(--theme-color);
-  opacity: 0.5;
-}
-.banner .wx-swiper-dot.wx-swiper-dot-active {
-  width: 24rpx;
-  opacity: 1;
-}
-
 .banner-item {
   position: relative;
 }

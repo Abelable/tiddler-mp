@@ -5,7 +5,7 @@
   </view>
 </view>
 
-<swiper class="banner" style="height: calc({{statusBarHeight + 44}}px + 250rpx);" autoplay indicator-dots circular>
+<swiper class="banner custom-dots" style="height: calc({{statusBarHeight + 44}}px + 250rpx);" autoplay indicator-dots circular>
   <swiper-item class="banner-item">
     <image class="banner-img" mode="widthFix" src="http://img.ubo.vip/youlian/temporary/banner.png" />
   </swiper-item>

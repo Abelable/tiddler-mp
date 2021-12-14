@@ -11,5 +11,10 @@ Component({
   },
 
   methods: {
+    navTo() {
+      wx.navigateTo({
+        url: '/pages/index/subpages/strategy/index'
+      })
+    }
   }
 })

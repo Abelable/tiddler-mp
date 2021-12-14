@@ -1,1 +1,7 @@
-{}
+{
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTitleText": "攻略",
+  "usingComponents": {
+    "strategy-item": "./components/strategy-item/index"
+  }
+}

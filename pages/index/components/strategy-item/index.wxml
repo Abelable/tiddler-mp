@@ -1,4 +1,4 @@
-<view class="strategy-item">
+<view class="strategy-item" ontap="navTo">
   <view class="cover-wrap">
     <image class="cover" mode="widthFix" src="http://img.ubo.vip/youlian/temporary/item_cover.jpeg" />
     <view class="address-info">

@@ -1,0 +1,8 @@
+function slice(target, length, replaceString) {
+  replaceString = replaceString || '...';
+  return target.length > length ? target.slice(0, length) + replaceString : target;
+}
+
+module.exports = {
+  slice: slice
+}
