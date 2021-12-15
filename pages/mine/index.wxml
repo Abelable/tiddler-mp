@@ -7,7 +7,7 @@
 
 <view class="container">
   <image class="bg" src="./images/bg.jpg" />
-  <view class="content" style="margin-top: {{statusBarHeight + 100}}px;">
+  <view class="content">
     <view class="avatar-wrap">
       <image class="avatar" src="http://img.ubo.vip/youlian/temporary/avatar_2.png" />
       <view class="data-wrap">

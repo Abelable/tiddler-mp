@@ -46,7 +46,7 @@ Page({
     const query = wx.createSelectorQuery()
     query.select('.name').boundingClientRect()
     query.exec(res => {
-      this.navBarVisibleLimit = res[0].top
+      this.navBarVisibleLimit = res[0].bottom
     })
   },
 
