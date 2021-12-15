@@ -47,7 +47,7 @@
 
     <view class="works-wrap {{menuFixed ? 'fixed' : '' }}">
       <view class="works-menu {{menuFixed ? 'fixed' : '' }}" style="top: {{menuFixed ? statusBarHeight + 44 : 0}}px;">
-        <view wx:for="{{['笔记', '视频', '直播', '游记']}}" wx:key="index" class="works-menu-item {{curMenuIdx === index ? 'active' : ''}}" ontap="switchMenu" data-index="{{index}}">{{item}}</view>
+        <view wx:for="{{['攻略', '视频', '直播', '游记']}}" wx:key="index" class="works-menu-item {{curMenuIdx === index ? 'active' : ''}}" ontap="switchMenu" data-index="{{index}}">{{item}}</view>
         <view class="active-underline" style="left: {{curMenuIdx * 25}}vw;"></view>
       </view>
       <swiper style="height: {{worksListHeightArr[curMenuIdx]}}px;" current="{{curMenuIdx}}" bindchange="swiperChange">
