@@ -1,1 +1,35 @@
-<view>游记</view>
+<view class="nav-bar" style="padding-top: {{statusBarHeight}}px;">
+  <image class="back-icon" ontap="navBack" src="/images/back.png" />
+  <view class="avatar-wrap" ontap="navToUserCenter">
+    <image class="author-avatar" src="http://img.ubo.vip/youlian/temporary/avatar_2.png" />
+    <image class="follow-icon" wx:if="{{!follow}}" catchtap="follow" src="./images/follow.png" />
+  </view>
+  <view class="name-wrap" ontap="navToUserCenter">
+    <view class="author-name">小鱼儿用户</view>
+    <view class="time">2021-12-12</view>
+  </view>
+</view>
+
+<view class="container" style="padding-top: {{statusBarHeight + 44}}px">
+</view>
+
+<view class="bottom-bar">
+  <view class="comment-btn">
+    <image class="user-avatar" src="/images/default-avatar.png" />
+    <view class="comment-btn-desc">添加评论...</view>
+  </view>
+  <view class="other-btns">
+    <view class="btn-item">
+      <image class="btn-icon" src="/images/share.png" />
+      <view class="btn-data">72</view>
+    </view>
+    <view class="btn-item">
+      <image class="btn-icon" src="/images/heart.png" />
+      <view class="btn-data">200</view>
+    </view>
+    <view class="btn-item">
+      <image class="btn-icon" src="/images/collection-active.png" />
+      <view class="btn-data">200</view>
+    </view>
+  </view>
+</view>

@@ -42,15 +42,15 @@
     </view>
     <view class="other-btns">
       <view class="btn-item">
-        <image class="btn-icon" src="./images/share.png" />
+        <image class="btn-icon" src="/images/share.png" />
         <view class="btn-data">72</view>
       </view>
       <view class="btn-item">
-        <image class="btn-icon" src="./images/heart.png" />
+        <image class="btn-icon" src="/images/heart.png" />
         <view class="btn-data">200</view>
       </view>
       <view class="btn-item">
-        <image class="btn-icon" src="./images/collection-active.png" />
+        <image class="btn-icon" src="/images/collection-active.png" />
         <view class="btn-data">200</view>
       </view>
     </view>

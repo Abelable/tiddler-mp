@@ -14,7 +14,8 @@
     "pages/mall/subpages/hotel/index",
     "pages/mall/subpages/foot/index",
     "pages/mall/subpages/goods/index",
-    "pages/mine/index"
+    "pages/mine/index",
+    "pages/common/user-center/index"
   ],
   "tabBar": {
     "color": "#979797",

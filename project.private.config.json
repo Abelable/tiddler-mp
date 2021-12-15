@@ -29,6 +29,12 @@
           "pathName": "pages/index/subpages/strategy/index",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "游记",
+          "pathName": "pages/index/subpages/note/index",
+          "query": "",
+          "scene": null
         }
       ]
     }

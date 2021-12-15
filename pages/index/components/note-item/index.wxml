@@ -1,4 +1,4 @@
-<view class="note-item">
+<view class="note-item" ontap="navTo">
   <view class="cover-wrap">
     <image class="cover" mode="widthFix" src="http://img.ubo.vip/youlian/temporary/item_cover_2.jpg" />
     <view class="title-wrap">
