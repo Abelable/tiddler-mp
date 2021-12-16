@@ -1,0 +1,30 @@
+<view class="ticket-item">
+  <image class="cover" src="http://img.ubo.vip/youlian/temporary/item_cover_4.jpg" />
+  <view class="content">
+    <view class="title">大岷山万松林滑雪场</view>
+    <view class="labels">
+      <view class="label">杭州亲子滑雪好去处</view>
+      <view class="label">5千平方米的戏雪区</view>
+    </view>
+    <view class="score-wrap">
+      <image class="star" src="./images/star-active.png" />
+      <image class="star" src="./images/star-active.png" />
+      <image class="star" src="./images/star-active.png" />
+      <image class="star" src="./images/star-active.png" />
+      <image class="star" src="./images/star.png" />
+      <text class="score">4.2分</text>
+    </view>
+    <view class="position-wrap">
+      <image class="position-icon" src="./images/position.png" />
+      <text>杭州千岛湖，据您86km</text>
+    </view>
+    <view class="price-info">
+      <view class="sales">已售 13506</view>
+      <view class="price">
+        <text style="margin-right: 4rpx; color: #ff5049;">¥</text>
+        <text style="color: #ff5049; font-size: 32rpx; font-weight: bold;">200</text>
+        <text style="margin-left: 2rpx;">起</text>
+      </view>
+    </view>
+  </view>
+</view>

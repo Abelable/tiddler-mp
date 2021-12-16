@@ -1,19 +1,41 @@
 <view class="nav-bar" style="padding-top: {{statusBarHeight}}px;">
   <view class="search-bar-wrap">
-    <image class="back-icon" src="/images/back.png" />
+    <image class="back-icon" src="/images/back.png" ontap="navBack" />
     <view class="search-bar" ontap="search">
       <image class="search-icon" src="/images/search.png" />
       <text class="placeholder">搜索景点</text>
     </view>
   </view>
   <view class="search-filter">
-    <view class="filter-item" wx:for="{{['全部景点', '推荐排序']}}" wx:key="index">
-      <text>{{item}}</text>
-      <image class="filter-icon" src="/images/arrow.png" />
+    <view class="filter-item {{categoryOptionsDropdownVisible ? 'active' : ''}}" ontap="showCategoryOptionsDropdown">
+      <text>{{categoryOptions[curCategoryOptionIdx]}}</text>
+      <image class="filter-icon {{categoryOptionsDropdownVisible ? 'active' : ''}}" src="/images/arrow.png" />
+    </view>
+    <view class="filter-item {{sortOptionsDropdownVisible ? 'active' : ''}}" ontap="showSortOptionsDropdown">
+      <text>{{sortOptions[curSortOptionIdx]}}</text>
+      <image class="filter-icon {{sortOptionsDropdownVisible ? 'active' : ''}}" src="/images/arrow.png" />
     </view>
   </view>
 </view>
-<!-- 
-<view class="options-dropdown">
-  <view class="option-item" wx:for="{{['全部', '', '', '', '', '']}}"></view>
-</view> -->
+
+<view class="mask" wx:if="{{categoryOptionsDropdownVisible || sortOptionsDropdownVisible}}" ontap="hideDropdown"/>
+<view class="filter-options {{categoryOptionsDropdownVisible ? 'show' : ''}}" style="top: {{statusBarHeight + 88}}px;">
+  <view class="option" wx:for="{{categoryOptions}}" wx:key="index" ontap="selectCategoryOption" data-index="{{index}}">
+    <view class="option-name {{curCategoryOptionIdx === index ? 'active' : ''}}">{{item}}</view>
+    <image class="selected-icon" wx:if="{{curCategoryOptionIdx === index}}" src="/images/selected.png" />
+  </view>
+</view>
+<view class="filter-options {{sortOptionsDropdownVisible ? 'show' : ''}}" style="top: {{statusBarHeight + 88}}px;">
+  <view class="option" wx:for="{{sortOptions}}" wx:key="index" ontap="selectSortOption" data-index="{{index}}">
+    <view class="option-name {{curSortOptionIdx === index ? 'active' : ''}}">{{item}}</view>
+    <image class="selected-icon" wx:if="{{curSortOptionIdx === index}}" src="/images/selected.png" />
+  </view>
+</view>
+
+<view class="container" style="padding-top: {{statusBarHeight + 88}}px;">
+  <view class="ticket-list" >
+    <ticket-item class="i-ticket-item" />
+    <ticket-item class="i-ticket-item" />
+    <ticket-item class="i-ticket-item" />
+  </view>
+</view>

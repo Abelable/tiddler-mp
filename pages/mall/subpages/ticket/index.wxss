@@ -2,7 +2,7 @@
   position: fixed;
   width: 100%;
   background: #fff;
-  box-shadow: 0 10px 20px -2px #f0f0f0;
+  box-shadow: 0 2px 20px -2px #f0f0f0;
   box-sizing: initial;
   z-index: 100;
 }
@@ -58,4 +58,57 @@
   margin-left: 4px;
   width: 10px;
   height: 10px;
+  transform: rotate(0);
+  transition: transform .3s ease;
+}
+.filter-icon.active {
+  transform: rotate(180deg);
+  transition: transform .3s ease;
+}
+
+.mask {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 60;
+}
+.filter-options {
+  position: fixed;
+  width: 100%;
+  padding: 0 12px;
+  background: #fff;
+  transform: translateY(-100%);
+  transition: transform .3s ease;
+  z-index: 80;
+}
+.filter-options.show {
+  transform: translateY(0);
+  transition: transform .3s ease;
+}
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  border-bottom: 1px solid #f8f8f8;
+}
+.option:last-child {
+  border-bottom: none;
+}
+.option-name {
+  color: #333;
+  font-size: 13px;
+}
+.option-name.active {
+  font-weight: bold;
+}
+.selected-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.ticket-list {
+  padding: 0 28rpx;
+  background: #fff;
 }
