@@ -35,6 +35,12 @@
           "pathName": "pages/index/subpages/note/index",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "景点门票",
+          "pathName": "pages/mall/subpages/ticket/index",
+          "query": "",
+          "scene": null
         }
       ]
     }

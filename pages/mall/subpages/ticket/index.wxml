@@ -1,1 +1,19 @@
-<view>门票</view>
+<view class="nav-bar" style="padding-top: {{statusBarHeight}}px;">
+  <view class="search-bar-wrap">
+    <image class="back-icon" src="/images/back.png" />
+    <view class="search-bar" ontap="search">
+      <image class="search-icon" src="/images/search.png" />
+      <text class="placeholder">搜索景点</text>
+    </view>
+  </view>
+  <view class="search-filter">
+    <view class="filter-item" wx:for="{{['全部景点', '推荐排序']}}" wx:key="index">
+      <text>{{item}}</text>
+      <image class="filter-icon" src="/images/arrow.png" />
+    </view>
+  </view>
+</view>
+<!-- 
+<view class="options-dropdown">
+  <view class="option-item" wx:for="{{['全部', '', '', '', '', '']}}"></view>
+</view> -->
