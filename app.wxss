@@ -19,6 +19,7 @@ view, text, image, scroll-view, navigator, swiper, swiper-item {
 .num {
   font-family: 'din';
   font-weight: bold;
+  letter-spacing: -2rpx;
 }
 
 .omit {
