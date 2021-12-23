@@ -5,4 +5,4 @@ function slice(target, length, replaceString) {
 
 module.exports = {
   slice: slice
-}
+};

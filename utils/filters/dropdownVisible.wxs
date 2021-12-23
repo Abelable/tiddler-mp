@@ -1,0 +1,14 @@
+function visible(filterList) {
+  var visible = false;
+  for (var i = 0; i < filterList.length; i++) {
+    if (filterList[i].visible) {
+      visible = true;
+      break;
+    }
+  }
+  return visible
+}
+
+module.exports = {
+  visible: visible
+};

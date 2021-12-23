@@ -41,6 +41,12 @@
           "pathName": "pages/mall/subpages/ticket/index",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "跟团游",
+          "pathName": "pages/mall/subpages/tour/index",
+          "query": "",
+          "scene": null
         }
       ]
     }

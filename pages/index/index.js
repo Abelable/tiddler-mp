@@ -5,7 +5,7 @@ Page({
     statusBarHeight,
     navrBarActive: false,
     contentWrapHeightArr: [windowHeight, windowHeight],
-    curMenuIdx: 1,
+    curMenuIndex: 1,
   },
 
   onLoad() {
@@ -24,22 +24,22 @@ Page({
   },
 
   handleMenuChange(index) {
-    const { curMenuIdx } = this.data
-    if (curMenuIdx !== index) {
-      this.setData({ curMenuIdx: index })
-      this.scrollTopArr[curMenuIdx] = this.scrollTop || 0
+    const { curMenuIndex } = this.data
+    if (curMenuIndex !== index) {
+      this.setData({ curMenuIndex: index })
+      this.scrollTopArr[curMenuIndex] = this.scrollTop || 0
       wx.pageScrollTo({ scrollTop: this.scrollTopArr[index] || 0, duration: 0 })
     }
   },
 
   setContentWrapHeight() {
-    const { curMenuIdx } = this.data
+    const { curMenuIndex } = this.data
     const query = wx.createSelectorQuery()
     query.selectAll('.content-wrap').boundingClientRect()
     query.exec(res => {
-      if (res[0][curMenuIdx]) {
+      if (res[0][curMenuIndex]) {
         this.setData({ 
-          [`contentWrapHeightArr[${curMenuIdx}]`]: res[0][curMenuIdx].height 
+          [`contentWrapHeightArr[${curMenuIndex}]`]: res[0][curMenuIndex].height 
         })
       }
     })

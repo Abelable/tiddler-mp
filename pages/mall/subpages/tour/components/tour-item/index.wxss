@@ -1,4 +1,4 @@
-.ticket-item {
+.tour-item {
   display: flex;
   align-items: center;
   padding: 20rpx 0;
@@ -6,8 +6,8 @@
   border-bottom: 1px solid #f8f8f8;
 }
 .cover {
-  width: 220rpx;
-  height: 220rpx;
+  width: 180rpx;
+  height: 180rpx;
   border-radius: 12rpx;
 }
 
@@ -16,7 +16,7 @@
   flex-direction: column;
   margin-left: 20rpx;
   flex: 1;
-  height: 230rpx;
+  height: 190rpx;
 }
 .title {
   color: #333;
@@ -35,31 +35,10 @@
   padding: 2rpx 10rpx;
   border-radius: 10rpx;
 }
-.score-wrap {
-  display: flex;
-  align-items: center;
-  margin-top: 10rpx;
-}
-.star {
-  width: 26rpx;
-  height: 26rpx;
-}
-.score {
-  margin-left: 10rpx;
-  color: #666;
-  font-size: 20rpx;
-}
-.position-wrap {
-  display: flex;
-  align-items: center;
+.shop-name {
   margin-top: 10rpx;
   color: #666;
   font-size: 20rpx;
-}
-.position-icon {
-  margin-right: 6rpx;
-  width: 18rpx;
-  height: 18rpx;
 }
 .price-info {
   display: flex;

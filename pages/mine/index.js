@@ -3,7 +3,7 @@ const { statusBarHeight } = getApp().globalData
 Page({
   data: {
     statusBarHeight,
-    curMenuIdx: 0,
+    curMenuIndex: 0,
     navBarVisible: false,
     menuFixed: false,
     worksListHeightArr: [400, 400, 400, 400],
@@ -21,7 +21,7 @@ Page({
 
   switchMenu(e) {
     this.setData({
-      curMenuIdx: e.currentTarget.dataset.index
+      curMenuIndex: e.currentTarget.dataset.index
     })
   },
 
@@ -34,10 +34,10 @@ Page({
   },
 
   handleMenuChange(index) {
-    const { curMenuIdx } = this.data
-    if (curMenuIdx !== index) {
-      this.setData({ curMenuIdx: index })
-      this.scrollTopArr[curMenuIdx] = this.scrollTop || 0
+    const { curMenuIndex } = this.data
+    if (curMenuIndex !== index) {
+      this.setData({ curMenuIndex: index })
+      this.scrollTopArr[curMenuIndex] = this.scrollTop || 0
       wx.pageScrollTo({ scrollTop: this.scrollTopArr[index] || 0, duration: 0 })
     }
   },
