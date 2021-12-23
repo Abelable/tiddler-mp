@@ -1,1 +1,45 @@
-<view>酒店</view>
+<wxs module="DROPDOWN" src="/utils/filters/dropdownVisible.wxs" />
+
+<view class="nav-bar" style="padding-top: {{statusBarHeight}}px;">
+  <view class="search-bar-wrap">
+    <image class="back-icon" src="/images/back.png" ontap="navBack" />
+    <view class="search-bar">
+      <view class="calendar-bar" ontap="showCalendarPopup">
+        <view class="calendar-item">
+          <text style="color: #999;">住</text>
+          <text>{{startDate}}</text>
+        </view>
+        <view class="calendar-item">
+          <text style="color: #999;">离</text>
+          <text>{{endDate}}</text>
+        </view>
+      </view>
+      <image class="search-icon" src="/images/search.png" />
+      <text class="placeholder">搜索酒店/民宿</text>
+    </view>
+  </view>
+  <view class="search-filter">
+    <view wx:for="{{filterList}}" wx:key="index" class="filter-item {{item.visible ? 'active' : ''}}" ontap="showDropdown" data-index="{{index}}">
+      <text>{{(item.curIndex === 0 && item.title) ? item.title : item.options[item.curIndex]}}</text>
+      <image class="filter-icon {{item.visible ? 'active' : ''}}" src="/images/arrow.png" />
+    </view>
+  </view>
+</view>
+
+<view class="mask" wx:if="{{DROPDOWN.visible(filterList)}}" ontap="hideDropdown"/>
+<view wx:for="{{filterList}}" wx:key="index" class="filter-options {{item.visible ? 'show' : ''}}" style="top: {{statusBarHeight + 88}}px;">
+  <view class="option" wx:for="{{item.options}}" wx:key="index" wx:for-index="_index" wx:for-item="option" ontap="selectOption" data-filter-index="{{index}}" data-option-index="{{_index}}">
+    <view class="option-name {{item.curIndex === _index ? 'active' : ''}}">{{option}}</view>
+    <image class="selected-icon" wx:if="{{item.curIndex === _index}}" src="/images/selected.png" />
+  </view>
+</view>
+
+<view class="container" style="padding-top: {{statusBarHeight + 88}}px;">
+  <view class="hotel-list" >
+    <hotel-item />
+    <hotel-item />
+    <hotel-item />
+  </view>
+</view>
+
+<van-calendar type="range" color="#77a9fd" show="{{calendarPopupVisibel}}" bind:close="hideCalendarPopup" bind:confirm="setCalendar" />

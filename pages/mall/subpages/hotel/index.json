@@ -1,1 +1,7 @@
-{}
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "van-calendar": "@vant/weapp/calendar/index",
+    "hotel-item": "./components/hotel-item/index"
+  }
+}

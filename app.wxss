@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'din';
+  src: url("https://temp-static.oss-cn-hangzhou.aliyuncs.com/DIN-Medium-2.otf");
+}
+
 page {
   position: relative;
   min-height: 100vh;
@@ -9,6 +14,11 @@ page {
 
 view, text, image, scroll-view, navigator, swiper, swiper-item {
   box-sizing: border-box;
+}
+
+.num {
+  font-family: 'din';
+  font-weight: bold;
 }
 
 .omit {

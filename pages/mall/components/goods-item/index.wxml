@@ -14,7 +14,7 @@
   <view class="info-wrap">
     <view class="price">
       <text style="margin-right: 4rpx; color: #ff5049;">¥</text>
-      <text style="color: #ff5049; font-size: 32rpx; font-weight: bold;">200</text>
+      <text class="num" style="color: #ff5049; font-size: 32rpx;">200</text>
       <text style="margin-left: 2rpx;">起</text>
     </view>
     <view class="sales">
