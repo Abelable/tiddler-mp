@@ -63,3 +63,6 @@
   color: #999;
   font-size: 22rpx;
 }
+.price {
+  line-height: 1;
+}
