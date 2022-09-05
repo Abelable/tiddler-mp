@@ -5,7 +5,7 @@ Page({
     statusBarHeight,
     categoryList: [
       { name: '景点门票', icon: './images/ticket.png' },
-      { name: '跟团游', icon: './images/bus.png' },
+      { name: '跟团畅游', icon: './images/bus.png' },
       { name: '酒店民宿', icon: './images/hotel.png' },
       { name: '餐饮美食', icon: './images/foot.png' },
       { name: '特色商品', icon: './images/cart.png' },

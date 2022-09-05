@@ -37,7 +37,6 @@ view, text, image, scroll-view, navigator, swiper, swiper-item {
   width: 10rpx;
   height: 10rpx;
 }
-
 .custom-dots .wx-swiper-dot {
   width: 8rpx;
   height: 8rpx;

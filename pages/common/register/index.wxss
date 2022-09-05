@@ -1,0 +1,98 @@
+.login-wrap {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+}
+.bg {
+  position: absolute;
+  width: 100%;
+}
+.weixin-btn {
+  position: absolute;
+  left: 50%;
+  bottom: 372rpx;
+  width: 428rpx;
+  height: 76rpx;
+  transform: translateX(-50%);
+  border-radius: 38rpx;
+  color: #000;
+  font-size: 36rpx;
+  font-weight: 500;
+  text-align: center;
+  line-height: 76rpx;
+  background: linear-gradient(90deg,rgb(227,187,143) 0%,rgb(234,167,92) 100%);
+}
+.back-btn {
+  position: absolute;
+  left: 50%;
+  bottom: 260rpx;
+  width: 428rpx;
+  height: 76rpx;
+  transform: translateX(-50%);
+  border-radius: 38rpx;
+  color: #fff;
+  font-size: 36rpx;
+  font-weight: 500;
+  text-align: center;
+  line-height: 74rpx;
+  border: 1rpx solid #fff;
+}
+.login-info {
+  position: absolute;
+  bottom: 114rpx;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-size: 22rpx;
+  font-weight: 400;
+}
+
+.modal-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #3F3F3F;
+}
+.modal-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 570rpx;
+  height: 542rpx;
+  border-radius: 50rpx;
+  background: #1B1B1B;
+}
+.modal-title {
+  padding-top: 44rpx;
+  text-align: center;
+}
+.modal-content {
+  margin-top: 44rpx;
+  color: #fff;
+  font-weight: 500;
+  line-height: 22px;
+  text-align: center;
+  font-size: 28rpx;
+}
+.btn-confirm {
+  margin-top: 44rpx;
+  width: 428rpx;
+  height: 76rpx;
+  background: linear-gradient(90deg,rgba(227,187,143,1) 0%,rgba(234,167,92,1) 100%);
+  border-radius: 38rpx;
+  color: #fff;
+  font-size: 36rpx;
+  color: #1B1B1B;
+  line-height: 76rpx;
+}
+.modal-footer {
+  display: flex;
+  justify-content: center;
+}
+.modal-footer button {
+  text-align: center;
+}
