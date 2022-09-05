@@ -1,5 +1,8 @@
 <view class="login-wrap">
-  <image class="bg" mode="widthFix" src="https://img.ubo.vip/mp/login/first-step-bg.png" />
+  <image class="bg" mode="widthFix" src="./images/bg.jpeg" />
+  <view class="back-icon-wrap" style="top: {{statusBarHeight + 5}}px">
+    <i-back-icon />
+  </view>
   <button class="weixin-btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">立即登录</button>
   <view class="back-btn" ontap="back">暂不登录</view>
   <view class="login-info">

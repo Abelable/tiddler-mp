@@ -46,6 +46,13 @@
           "pathName": "pages/mall/subpages/hotel/index",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "注册",
+          "pathName": "pages/common/register/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

@@ -1,0 +1,3 @@
+<view class="back-icon" catchtap="navigateBack">
+  <image style="width: 20px; height: 20px;" src="./images/back.png" />
+</view>
