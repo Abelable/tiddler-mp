@@ -20,18 +20,18 @@
       <text style="color: #0095fa;" ontap="serviceAgreement">《用户服务协议》</text>
     </view>
   </view>
-</view>
 
-<view class="modal-mask" wx:if="{{showAuthModal}}" bindtap="hideModal" />
-<view class="modal-dialog" wx:if="{{showAuthModal}}">
-  <view class="modal-title">
-    <image style="width: 290rpx; height: 184rpx;" src="https://img.ubo.vip/mp/login/login-info.png" />
-  </view>
-  <view class="modal-content auth-dialog-content">
-    <view>申请获得您的公开信息</view>
-    <view>(包含头像，昵称等)</view>
-  </view>
-  <view class="modal-footer">
-    <button class="btn-confirm" bindtap="getUserProfile">确认授权</button>
+  <view class="modal-mask" wx:if="{{showAuthModal}}" bindtap="hideModal" />
+  <view class="modal-dialog" wx:if="{{showAuthModal}}">
+    <view class="modal-title">
+      <image style="width: 300rpx; height: 230rpx;" src="./images/discover.png" />
+    </view>
+    <view class="modal-content">
+      <view>申请获得您的公开信息</view>
+      <view>(包含头像，昵称等)</view>
+    </view>
+    <view class="modal-footer">
+      <button class="btn-confirm" bindtap="getUserProfile">确认授权</button>
+    </view>
   </view>
 </view>
