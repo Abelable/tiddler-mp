@@ -3,7 +3,8 @@ const { statusBarHeight } = getApp().globalData
 
 Page({
   data: {
-    statusBarHeight
+    statusBarHeight,
+    showAuthModal: true
   },
 
   async onLoad() {
