@@ -25,9 +25,9 @@ Page({
     this.register(avatarUrl, nickName, gender, this.mobile)
   },
 
-  async register(avatarUrl, nickName, gender, mobile) {
+  async register(avatar, nickname, gender, mobile) {
     const { code } = await registerService.wxLogin()
-    const token = await registerService.register(code, avatarUrl, nickName, gender, mobile)
+    const token = await registerService.register(code, avatar, nickname, gender, mobile)
     if (token) {
       wx.setStorageSync('token', token)
       wx.navigateBack()

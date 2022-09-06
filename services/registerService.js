@@ -5,8 +5,8 @@ class RegisterService extends BaseService {
     return await this.post({ url: `${this.baseUrl}/auth/wx_mp/user_mobile`, data: { code } })
   }
 
-  async register(code, avatarUrl, nickName, gender, mobile) {
-    return await this.post({ url: `${this.baseUrl}/auth/wx_mp/register`, data: { code, avatarUrl, nickName, gender, mobile } })
+  async register(code, avatar, nickname, gender, mobile) {
+    return await this.post({ url: `${this.baseUrl}/auth/wx_mp/register`, data: { code, avatar, nickname, gender, mobile } })
   }
 }
 
