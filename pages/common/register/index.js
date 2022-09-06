@@ -1,6 +1,8 @@
 import { WEBVIEW_BASE_URL } from '../../../config'
-const { statusBarHeight } = getApp().globalData
+import RegisterService from '../../../services/registerService'
 
+const { statusBarHeight } = getApp().globalData
+const registerService = new RegisterService()
 
 Page({
   data: {
@@ -8,32 +10,30 @@ Page({
     showAuthModal: false
   },
 
-  async onLoad() {
-    // const { code } = await loginService.wxLogin()
-    // this.code = code
-  },
-
   // 获取手机号
-  async getPhoneNumber(e) {
-    // const { encryptedData, iv } = e.detail
-    // const { openid, session_key, unionid } = await loginService.getSessionKey(this.code) || {}
-    // const { phoneNumber } = await loginService.getPhone(session_key, iv, encryptedData) || {}
-    // wx.setStorage({ key: "phone", data: phoneNumber })
-    // wx.setStorage({ key: "openid", data: openid })
-    // this.phoneNumber = phoneNumber
-    // this.unionid = unionid
-    // this.openid = openid
-    // this.setData({ showAuthModal: true })
+  async getMobile(e) {
+    const mobile = await registerService.getUserMobile(e.detail.code)
+    if (mobile) {
+      wx.setStorage({ key: "mobile", data: mobile })
+      this.mobile = mobile
+      this.setData({ showAuthModal: true })
+    }
   },
 
-  async getUserProfile() {
-    // const { userInfo } = await loginService.getUserProfile()
-    // const { avatarUrl, nickName, gender } = userInfo
-    // const { token, shop_id } = await loginService.login(this.phoneNumber, nickName, avatarUrl, gender, this.openid, this.unionid)
-    // wx.setStorageSync('token', token)
-    // wx.setStorage({ key: 'myShopid', data: shop_id || '' })
-    // await initUserData()
-    // customBack(true)
+  async getUserInfo() {
+    const { userInfo } = await registerService.getUserProfile()
+    const { avatarUrl, nickName, gender } = userInfo
+    this.register(avatarUrl, nickName, gender)
+  },
+
+  async register(avatarUrl, nickName, gender) {
+    const { code } = await registerService.wxLogin()
+    const token = await registerService.register(code, avatarUrl, nickName, gender, this.mobile)
+    if (token) {
+      wx.setStorageSync('token', token)
+      // await initUserData()
+      wx.wx.navigateBack()
+    }
   },
 
   // 查看服务协议

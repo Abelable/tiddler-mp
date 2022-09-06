@@ -1,10 +1,10 @@
 <view class="nav-bar" style="padding-top: {{statusBarHeight}}px;">
-  <image class="back-icon" ontap="navBack" src="/images/back.png" />
-  <view class="avatar-wrap" ontap="navToUserCenter">
+  <image class="back-icon" bindtap="navBack" src="/images/back.png" />
+  <view class="avatar-wrap" bindtap="navToUserCenter">
     <image class="author-avatar" src="http://img.ubo.vip/youlian/temporary/avatar_2.png" />
     <image class="follow-icon" wx:if="{{!follow}}" catchtap="follow" src="./images/follow.png" />
   </view>
-  <view class="name-wrap" ontap="navToUserCenter">
+  <view class="name-wrap" bindtap="navToUserCenter">
     <view class="author-name">小鱼儿用户</view>
     <view class="time">2021-12-12</view>
   </view>

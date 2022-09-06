@@ -1,12 +1,12 @@
 import BaseService from './baseService'
 
 class RegisterService extends BaseService {
-  async checkIsExpired() {
-    return await this.get({ url: `${this.baseUrl}/api/v4/anchor/isExpired`, loadingTitle: '' })
+  async getUserMobile(code) {
+    return await this.post({ url: `${this.baseUrl}/auth/wx_mp/user_mobile`, data: { code } })
   }
 
-  async getMsgCenterInfo() {
-    return await this.post({ url: `${this.baseUrl}chat/message-center/msg-count`, loadingTitle: '' })
+  async register(code, avatarUrl, nickName, gender, mobile) {
+    return await this.post({ url: `${this.baseUrl}/auth/wx_mp/register`, data: { code, avatarUrl, nickName, gender, mobile } })
   }
 }
 

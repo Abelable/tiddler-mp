@@ -7,12 +7,12 @@
       <view class="author-name">小鱼儿用户</view>
       <view class="time">2021-12-12</view>
     </view>
-    <view class="follow-btn" ontap="follow">+ 关注</view>
+    <view class="follow-btn" bindtap="follow">+ 关注</view>
   </view>
   
   <swiper class="strategy-imgs small-dots" indicator-dots circular>
     <swiper-item wx:for="{{imgs}}" wx:key="index">
-      <image class="strategy-img" src="{{item}}" ontap="previewImage" data-current="{{item}}" mode="aspectFill" lazy-load />
+      <image class="strategy-img" src="{{item}}" bindtap="previewImage" data-current="{{item}}" mode="aspectFill" lazy-load />
     </swiper-item>
   </swiper>
   
