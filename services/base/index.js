@@ -36,28 +36,13 @@ class Base {
       return
     }
     if ([200, 201, 204].includes(res.statusCode)) {
-      if (res.data.code === 1001 || res.data.code === 200) {
+      if (res.errno === 0) {
         if (success) success(res)
         else return res.data.data
-      } else if ([4040, 0].includes(res.data.code)) {
-        fail ? fail(res) : wx.showModal({
-          title: '提示',
-          content: '账号异常，请重新登录',
-          showCancel: true,
-          cancelText: '暂不登录',
-          cancelColor: '#999999',
-          confirmText: '立即登录',
-          confirmColor: '#B87900',
-          success: (result) => {
-            if (result.confirm) {
-              wx.navigateTo({ url: '/pages/subpages/common/login/index' })
-            }
-          }
-        })     
       } else {
-        fail ? fail(res) : wx.showToast({ title: res.data.message, icon: 'none' })
+        fail ? fail(res) : wx.showToast({ title: res.errmsg, icon: 'none' })
       }
-    } else wx.showToast({ title: res.errMsg, icon: 'none' })
+    } else wx.showToast({ title: res.errmsg, icon: 'none' })
   }
 
   getSetting() {
