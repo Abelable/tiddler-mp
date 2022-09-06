@@ -1,3 +1,4 @@
+import { WEBVIEW_BASE_URL } from '../../../config'
 const { statusBarHeight } = getApp().globalData
 
 
@@ -37,7 +38,7 @@ Page({
 
   // 查看服务协议
   serviceAgreement() {
-    wx.navigateTo({ url: `/pages/subpages/common/webview/index?url=${webviewBaseUrl}/wap/&code=user_protocol&token=1` })
+    wx.navigateTo({ url: `/pages/common/webview/index?url=${WEBVIEW_BASE_URL}/agreements/user_service` })
   },
 
   // 关闭弹窗

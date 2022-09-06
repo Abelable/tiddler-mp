@@ -16,7 +16,8 @@
     "pages/mall/subpages/goods/index",
     "pages/mine/index",
     "pages/common/register/index",
-    "pages/common/user-center/index"
+    "pages/common/user-center/index",
+    "pages/common/webview/index"
   ],
   "tabBar": {
     "color": "#979797",
