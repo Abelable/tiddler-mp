@@ -1,16 +1,7 @@
 import Base from './base/index'
-import { store } from '../store/index'
 import { tmplId } from '../config'
 
 class BaseService extends Base {
-  async checkIdentify() {
-    const { is_can_buy_invite_package } = await this.get({ url: `${this.baseUrl}/api/v4/invitePackage/isCanBuyInvitePackage` })
-    const { identity } = await this.getMineInfo()
-    let { is_expired } = await this.checkIsExpired()
-    store.setsettlePageVisible(!!is_can_buy_invite_package)
-    store.setUserInfo({...store.userInfo, isAnchor: identity != 1 && !is_expired })
-  }
-
   async getMineInfo() {
     return await this.get({ url: `${this.baseUrl}/api/v4/user/profile` })
   }
@@ -27,28 +18,9 @@ class BaseService extends Base {
     return await this.post({ url: `${this.baseUrl}chat/message-center/msg-list`, data: { branch, page, read_time } })
   }
 
-  async getCartCount() {
-    const { cart_number } = await this.get({ url: `${this.baseUrl}/api/v4/cart/cartNum` })
-    store.updateCartCount(Number(cart_number))
-  }
-
-  async addCart(goods_id, spec, num, rec_type = 10) {
-    await this.post({ 
-      url: `${this.baseUrl}/api/v4/cart/add`,
-      data: { goods_id, spec, num, rec_type },
-      success() {
-        rec_type !== 10 && store.updateCartCount(store.cartCount + num)
-      }
-    })
-  }
 
   async updateCartGoods({ recId, count, spec = '' }) {
     return await this.post({ url: `${this.baseUrl}/api/v4/cart/update`, data: { rec_id: recId, num: count, spec } })
-  }
-
-  async updateUserInfo(userName, userAvatar) {
-    store.setUserInfo({ ...store.userInfo, userName, userAvatar })
-    return await this.post({ url: `${this.baseUrl}/api/v4/user/update`, data: { nick_name: userName, user_picture: userAvatar } })
   }
 
   async getTimAccount() {
@@ -115,13 +87,6 @@ class BaseService extends Base {
 
   async prepay(order_sn) {
     return await this.post({ url: `${this.baseUrl}/api/v4/payment/wxapp_change_app_payment`, data: { order_sn, openid: wx.getStorageSync("openid"), pay_code: "wxpay", platform: "MP-WEIXIN", pay_appid_type: 1 } })
-  }
-
-  /**
-   * 记录用户在观看直播的过程中添加购物车的次数
-   */
-  async recordUserAddCart(room_id, group_id) {
-    await this.post({ url: `${this.baseUrl}lv/goods/live-product-add-car`, data: { room_id, group_id, nick_name: store.userInfo.userName } })
   }
 
   /**
