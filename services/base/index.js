@@ -21,10 +21,11 @@ class Base {
   }
 
   async request({ url, data, method = 'GET' }) {
+    const token = wx.getStorageSync('token')
     return api.request({ url, method, data,
       header: { 
         "content-type": method === 'GET' ? "application/json" : 'application/x-www-form-urlencoded',
-        "Authorization": wx.getStorageSync('token') ? `Bearer ${wx.getStorageSync('token')}` : ''
+        "Authorization": token ? `Bearer ${token}` : ''
       }
     }).then(res => [res, null]).catch(err => [null, err])
   }
