@@ -39,19 +39,20 @@ const linkTo = (type, param, title) => {
  * @param {boolean} needInitPrePageData 返回前一个页面之前是否需要初始化前一个页面的数据（约定方法名为initData）
  */
 const customBack = (needInitPrePageData = false) => {
+  const loginPageRoute = 'pages/common/register/index'
+  const minePageRoute = 'pages/mine/index'
+
   const pagesLength = getCurrentPages().length
   const curPage = getCurrentPages()[pagesLength - 1]
   const curPageRoute = curPage.route
   const prePage = getCurrentPages()[pagesLength - 2]
   const prePageRoute = prePage ? prePage.route : ''
 
-  const loginPageRoute = 'pages/subpages/common/login/index'
-  const newsPageRoute = 'pages/tab-bar-pages/news/index'
-
   if (needInitPrePageData && typeof(prePage.initData) === 'function') prePage.initData()
 
-  if (pagesLength === 1 || (curPageRoute === loginPageRoute && prePageRoute === newsPageRoute)) wx.switchTab({ url: '/pages/tab-bar-pages/index/index' })
-  else wx.navigateBack()
+  if (pagesLength === 1 || (curPageRoute === loginPageRoute && prePageRoute === minePageRoute)) {
+    wx.switchTab({ url: '/pages/index/index' })
+  } else wx.navigateBack()
 }
 
 export {

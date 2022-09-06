@@ -1,3 +1,5 @@
+import checkLogin from '../../utils/checkLogin'
+
 const { statusBarHeight } = getApp().globalData
 
 Page({
@@ -17,6 +19,10 @@ Page({
     this.setNavBarVisibleLimit()
     this.setMenuFixedLimit()
     this.scrollTopArr = [0, 0, 0, 0]
+  },
+
+  onShow() {
+    checkLogin()
   },
 
   switchMenu(e) {
