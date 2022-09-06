@@ -10,7 +10,6 @@ Page({
     showAuthModal: false
   },
 
-  // 获取手机号
   async getMobile(e) {
     const mobile = await registerService.getUserMobile(e.detail.code)
     if (mobile) {
@@ -23,31 +22,23 @@ Page({
   async getUserInfo() {
     const { userInfo } = await registerService.getUserProfile()
     const { avatarUrl, nickName, gender } = userInfo
-    this.register(avatarUrl, nickName, gender)
+    this.register(avatarUrl, nickName, gender, this.mobile)
   },
 
-  async register(avatarUrl, nickName, gender) {
+  async register(avatarUrl, nickName, gender, mobile) {
     const { code } = await registerService.wxLogin()
-    const token = await registerService.register(code, avatarUrl, nickName, gender, this.mobile)
+    const token = await registerService.register(code, avatarUrl, nickName, gender, mobile)
     if (token) {
       wx.setStorageSync('token', token)
-      // await initUserData()
-      wx.wx.navigateBack()
+      wx.navigateBack()
     }
   },
 
-  // 查看服务协议
   serviceAgreement() {
     wx.navigateTo({ url: `/pages/common/webview/index?url=${WEBVIEW_BASE_URL}/agreements/user_service` })
   },
 
-  // 关闭弹窗
   hideModal() {
     this.setData({ showAuthModal: false })
   },
-
-  back() {
-    customBack()
-  },
-
 })
