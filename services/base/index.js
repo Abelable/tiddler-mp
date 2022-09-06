@@ -36,13 +36,13 @@ class Base {
       return
     }
     if ([200, 201, 204].includes(res.statusCode)) {
-      if (res.errno === 0) {
+      if (res.data.errno === 0) {
         if (success) success(res)
         else return res.data.data
       } else {
-        fail ? fail(res) : wx.showToast({ title: res.errmsg, icon: 'none' })
+        fail ? fail(res) : wx.showToast({ title: res.data.errmsg, icon: 'none' })
       }
-    } else wx.showToast({ title: res.errmsg, icon: 'none' })
+    } else wx.showToast({ title: res.data.errmsg, icon: 'none' })
   }
 
   getSetting() {
