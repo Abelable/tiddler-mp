@@ -21,11 +21,11 @@ Page({
 
   async getUserInfo() {
     const { userInfo } = await registerService.getUserProfile()
-    const { avatarUrl, nickName, gender } = userInfo
-    this.register(avatarUrl, nickName, gender)
+    this.register(userInfo)
   },
 
-  async register(avatar, nickname, gender) {
+  async register(userInfo) {
+    const { avatarUrl: avatar, nickName: nickname, gender } = userInfo
     const { code } = await registerService.wxLogin()
     const token = await registerService.register(code, avatar, nickname, gender, this.mobile)
     if (token) {
