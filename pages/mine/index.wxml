@@ -1,15 +1,15 @@
 <import src="/templates/empty-illus/index.wxml" />
 
 <view class="nav-bar" style="padding-top: {{statusBarHeight}}px; opacity: {{navBarVisible ? 100 : 0}};">
-  <image class="user-avatar" src="http://img.ubo.vip/youlian/temporary/avatar_2.png" />
-  <view class="user-name">小鱼儿用户</view>
+  <image class="user-avatar" src="{{userInfo.avatar}}" />
+  <view class="user-name">{{userInfo.nickname}}</view>
 </view>
 
 <view class="container">
   <image class="bg" src="./images/bg.jpg" />
   <view class="content">
     <view class="avatar-wrap">
-      <image class="avatar" src="http://img.ubo.vip/youlian/temporary/avatar_2.png" />
+      <image class="avatar" src="{{userInfo.avatar}}" />
       <view class="data-wrap">
         <view class="data-item">
           <view class="data-title">关注</view>
@@ -25,7 +25,7 @@
         </view>
       </view>
     </view>
-    <view class="name">小鱼儿用户</view>
+    <view class="name">{{userInfo.nickname}}</view>
     <view class="introduce">来一段简短的自我介绍吧～</view>
 
     <view class="function-wrap">

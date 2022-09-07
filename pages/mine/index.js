@@ -5,6 +5,7 @@ const { statusBarHeight } = getApp().globalData
 Page({
   data: {
     statusBarHeight,
+    userInfo: {},
     curMenuIndex: 0,
     navBarVisible: false,
     menuFixed: false,
@@ -16,6 +17,12 @@ Page({
   },
 
   onLoad() {
+    if (wx.getStorageSync('token')) {
+      this.setData({
+        userInfo: JSON.parse(wx.getStorageSync('userInfo'))
+      })
+    }
+
     this.setNavBarVisibleLimit()
     this.setMenuFixedLimit()
     this.scrollTopArr = [0, 0, 0, 0]
