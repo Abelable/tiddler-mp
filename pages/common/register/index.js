@@ -22,13 +22,14 @@ Page({
   async getUserInfo() {
     const { userInfo } = await registerService.getUserProfile()
     const { avatarUrl, nickName, gender } = userInfo
-    this.register(avatarUrl, nickName, gender, this.mobile)
+    this.register(avatarUrl, nickName, gender)
   },
 
-  async register(avatar, nickname, gender, mobile) {
+  async register(avatar, nickname, gender) {
     const { code } = await registerService.wxLogin()
-    const token = await registerService.register(code, avatar, nickname, gender, mobile)
+    const token = await registerService.register(code, avatar, nickname, gender, this.mobile)
     if (token) {
+      wx.setStorage({ key: "userInfo", data: { avatar, nickname, gender, mobile: this.mobile } })
       wx.setStorageSync('token', token)
       wx.navigateBack()
     }
