@@ -7,42 +7,51 @@ class Base {
   }
 
   async get({ url, data, success, fail, loadingTitle }) {
-    loadingTitle && wx.showLoading({ title: loadingTitle })
-    const [res, err] = await this.request({ url, data }) || []
-    loadingTitle && wx.hideLoading()
-    return this.processRes({ res, err, success, fail })
+    const client = () => this.request({ url, data, loadingTitle })
+    return await this.handleResult(client, success, fail)
   }
 
   async post({ url, data, success, fail, loadingTitle }) {
-    loadingTitle && wx.showLoading({ title: loadingTitle })
-    const [res, err] = await this.request({ url, data, method: 'POST' }) || []
-    loadingTitle && wx.hideLoading()
-    return this.processRes({ res, err, success, fail })
+    const client = () => this.request({ url, data, method: 'POST', loadingTitle })
+    return await this.handleResult(client, success, fail)
   }
 
-  async request({ url, data, method = 'GET' }) {
+  async request({ url, data, method = 'GET', loadingTitle }) {
+    loadingTitle && wx.showLoading({ title: loadingTitle })
     const token = wx.getStorageSync('token')
     return api.request({ url, method, data,
       header: { 
-        "content-type": method === 'GET' ? "application/json" : 'application/x-www-form-urlencoded',
+        "content-type": method === 'GET' ? 'application/json' : 'application/x-www-form-urlencoded',
         "Authorization": token ? `Bearer ${token}` : ''
       }
-    }).then(res => [res, null]).catch(err => [null, err])
+    }).then(res => [res, null]).catch(err => [null, err]).finally(() => { loadingTitle && wx.hideLoading() })
   }
 
-  processRes({ res, err, success, fail }) {
+  async handleResult(client, success, fail) {
+    const [res, err] = await client() || []
+    // 网络异常
     if (err) {
-      wx.showToast({ title: err, icon: 'none' })
+      wx.showToast({ title: '断网啦～', icon: 'none' })
       return
     }
-    if ([200, 201, 204].includes(res.statusCode)) {
-      if (res.data.errno === 0) {
-        if (success) success(res)
-        else return res.data.data
-      } else {
-        fail ? fail(res) : wx.showToast({ title: res.data.errmsg, icon: 'none' })
-      }
-    } else wx.showToast({ title: res.data.errmsg, icon: 'none' })
+    // 服务器异常
+    if (![200, 201, 204].includes(res.statusCode)) {
+      wx.showToast({ title: '服务器开小差啦～', icon: 'none' })
+      return
+    }
+    // token失效
+    if (res.data.errno === 401) {
+      await this.login()
+      return await this.handleResult(client, success, fail)
+    }
+    // 其他异常
+    if (res.data.errno !== 0) {
+      if (fail) fail(res)
+      else wx.showToast({ title: res.data.errmsg, icon: 'none' })
+      return
+    }
+    if (success) success(res)
+    else return res.data.data
   }
 
   getSetting() {
