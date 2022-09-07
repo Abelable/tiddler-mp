@@ -1,15 +1,31 @@
+import BaseService from './services/baseService'
+
+const baseService = new BaseService()
+
 App({
   globalData: {
     statusBarHeight: '',
     windowHeight: ''
   },
 
-  onLaunch() {
+  async onLaunch() {
     this.setSystemInfo()
+    if (!wx.getStorageSync('token')) {
+      await this.login()
+    }
   },
 
   onShow() {
     this.update()
+  },
+
+  async login() {
+    const { code } = await baseService.wxLogin()
+    const res = await baseService.login(code)
+    if (res) {
+      wx.setStorage({ key: "userInfo", data: JSON.stringify(res.userInfo) })
+      wx.setStorageSync('token', res.token)
+    }
   },
 
   setSystemInfo() {
