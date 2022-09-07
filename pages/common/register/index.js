@@ -13,7 +13,6 @@ Page({
   async getMobile(e) {
     const mobile = await registerService.getUserMobile(e.detail.code)
     if (mobile) {
-      wx.setStorage({ key: "mobile", data: mobile })
       this.mobile = mobile
       this.setData({ showAuthModal: true })
     }
@@ -29,7 +28,7 @@ Page({
     const { code } = await registerService.wxLogin()
     const token = await registerService.register(code, avatar, nickname, gender, this.mobile)
     if (token) {
-      wx.setStorage({ key: "userInfo", data: { avatar, nickname, gender, mobile: this.mobile } })
+      wx.setStorage({ key: "userInfo", data: JSON.stringify({ avatar, nickname, gender, mobile: this.mobile }) })
       wx.setStorageSync('token', token)
       wx.navigateBack()
     }
