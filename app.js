@@ -11,7 +11,7 @@ App({
   async onLaunch() {
     this.setSystemInfo()
     if (!wx.getStorageSync('token')) {
-      await baseService.login(code)
+      await baseService.login()
     }
   },
 

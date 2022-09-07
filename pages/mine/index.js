@@ -7,7 +7,7 @@ const { statusBarHeight } = getApp().globalData
 Page({
   data: {
     statusBarHeight,
-    userInfo: {},
+    userInfo: null,
     curMenuIndex: 0,
     navBarVisible: false,
     menuFixed: false,
@@ -26,7 +26,7 @@ Page({
 
   onShow() {
     checkLogin(() => {
-      this.setUserInfo()
+      !this.data.userInfo && this.setUserInfo()
     })
   },
 
