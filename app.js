@@ -21,10 +21,9 @@ App({
 
   async login() {
     const { code } = await baseService.wxLogin()
-    const res = await baseService.login(code)
-    if (res) {
-      wx.setStorage({ key: "userInfo", data: JSON.stringify(res.userInfo) })
-      wx.setStorageSync('token', res.token)
+    const token = await baseService.login(code)
+    if (token) {
+      wx.setStorageSync('token', token)
     }
   },
 

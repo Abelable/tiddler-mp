@@ -57,6 +57,7 @@
   height: 180rpx;
   border-radius: 50%;
   border: 10rpx solid #f8f8f8;
+  background: #f8f8f8;
 }
 .data-wrap {
   display: flex;

@@ -1,5 +1,7 @@
 import checkLogin from '../../utils/checkLogin'
+import BaseService from '../../services/baseService'
 
+const baseService = new BaseService()
 const { statusBarHeight } = getApp().globalData
 
 Page({
@@ -17,19 +19,20 @@ Page({
   },
 
   onLoad() {
-    if (wx.getStorageSync('token')) {
-      this.setData({
-        userInfo: JSON.parse(wx.getStorageSync('userInfo'))
-      })
-    }
-
     this.setNavBarVisibleLimit()
     this.setMenuFixedLimit()
     this.scrollTopArr = [0, 0, 0, 0]
   },
 
   onShow() {
-    checkLogin()
+    checkLogin(() => {
+      this.setUserInfo()
+    })
+  },
+
+  async setUserInfo() {
+    const userInfo = await baseService.getUserInfo()
+    userInfo && this.setData({ userInfo })
   },
 
   switchMenu(e) {
