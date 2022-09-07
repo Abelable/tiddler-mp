@@ -11,20 +11,12 @@ App({
   async onLaunch() {
     this.setSystemInfo()
     if (!wx.getStorageSync('token')) {
-      await this.login()
+      await baseService.login(code)
     }
   },
 
   onShow() {
     this.update()
-  },
-
-  async login() {
-    const { code } = await baseService.wxLogin()
-    const token = await baseService.login(code)
-    if (token) {
-      wx.setStorageSync('token', token)
-    }
   },
 
   setSystemInfo() {
