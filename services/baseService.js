@@ -9,6 +9,13 @@ class BaseService extends Base {
     }
   }
 
+  async refreshToken() {
+    const token = await this.get({ url: `${this.baseUrl}/auth/token_refresh` })
+    if (token) {
+      wx.setStorageSync('token', token)
+    }
+  }
+
   async getUserInfo() {
     return await this.get({ url: `${this.baseUrl}/user_info`, loadingTitle: '加载中...' })
   }

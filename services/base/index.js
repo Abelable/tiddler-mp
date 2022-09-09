@@ -27,29 +27,44 @@ class Base {
     }).then(res => [res, null]).catch(err => [null, err]).finally(() => { loadingTitle && wx.hideLoading() })
   }
 
-  async handleResult(client, success, fail) {
+  async handleResult(client, success, fail, relogin = false) {
     const [res, err] = await client() || []
-    // 网络异常
+
+    // 设备异常：没有网络或其他情况
     if (err) {
-      wx.showToast({ title: '断网啦～', icon: 'none' })
+      wx.showToast({ title: JSON.stringify(err), icon: 'none' })
       return
     }
-    // 服务器异常
-    if (![200, 201, 204].includes(res.statusCode)) {
-      wx.showToast({ title: '服务器开小差啦～', icon: 'none' })
-      return
-    }
-    // token失效
-    if (res.data.errno === 401) {
+
+    // 未授权，需要重新登录：没有携带token，或者token无效
+    if (res.statusCode === 401) {
+      if (relogin) {
+        wx.showToast({ title: '登录异常，请联系客服，或尝试重新安装小程序', icon: 'none' })
+        return
+      }
       await this.login()
+      return await this.handleResult(client, success, fail, true)
+    }
+
+    // 禁止访问：token过期，可通过刷新token继续访问
+    if (res.statusCode === 403) {
+      await this.refreshToken()
       return await this.handleResult(client, success, fail)
     }
-    // 其他异常
-    if (res.data.errno !== 0) {
-      if (fail) fail(res)
-      else wx.showToast({ title: res.data.errmsg, icon: 'none' })
+
+    // 服务器异常
+    if (![200, 201, 204].includes(res.statusCode)) {
+      wx.showToast({ title: res.data.message, icon: 'none' })
       return
     }
+    
+    // 其他异常
+    if (res.data.code !== 0) {
+      if (fail) fail(res)
+      else wx.showToast({ title: res.data.message, icon: 'none' })
+      return
+    }
+
     if (success) success(res)
     else return res.data.data
   }
