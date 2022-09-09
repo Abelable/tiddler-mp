@@ -10,7 +10,7 @@ class BaseService extends Base {
   }
 
   async getUserInfo() {
-    return await this.get({ url: `${this.baseUrl}/auth/user_info`, loadingTitle: '加载中...' })
+    return await this.get({ url: `${this.baseUrl}/user_info`, loadingTitle: '加载中...' })
   }
 }
 
