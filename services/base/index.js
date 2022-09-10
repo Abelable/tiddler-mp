@@ -51,7 +51,7 @@ class Base {
       //       所以修改登录逻辑，如果不存在token，依旧执行缓存token的操作，只是存一个空值。
       //       假设这个情况成立，则这里的报错就包含两种情况：1.代码写的不严谨，确实有漏洞，需要排除 2.被黑客攻击
       if (!wx.getStorageSync('token')) {
-        wx.showToast({ title: '隐藏这么深的bug都被你发现啦，赶紧联系客服吧～', icon: 'none' })
+        wx.showToast({ title: '用户不存在', icon: 'none' })
         return
       }
       await this.login()
