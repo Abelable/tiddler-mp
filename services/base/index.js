@@ -35,16 +35,6 @@ class Base {
       return
     }
 
-    if ([200, 201, 204].includes(res.statusCode)) {
-      if (res.data.code === 0) {
-        if (success) success(res.data)
-        else return res.data.data
-      } else {
-        fail ? fail(res) : wx.showToast({ title: res.data.message, icon: 'none' })
-      }
-      return
-    }
-
     // 未授权：token过期，可通过刷新token继续访问
     if (res.statusCode === 401) { 
       await this.refreshToken()
@@ -53,17 +43,26 @@ class Base {
 
     // 禁止访问：没有携带token，或者token无效
     if (res.statusCode === 403) { 
-      // if (relogin) {
-      //   wx.showToast({ title: '登录异常，请联系客服，或尝试重新安装小程序', icon: 'none' })
-      //   return
-      // }
+      // 对于没有携带token访问鉴权接口的情况，直接作为bug处理
+      if (!wx.getStorageSync('token')) {
+        wx.showToast({ title: '隐藏这么深的bug都被你发现啦，赶紧联系客服吧～', icon: 'none' })
+        return
+      }
       await this.login()
       return await this.handleResult(client, success, fail)
     }
 
-    // 剩余非404的情况，弹出错误提示
-    if (res.statusCode !== 404) { 
+    // 剩余错误情况，弹出错误提示
+    if (![200, 201, 204].includes(res.statusCode)) {
       wx.showToast({ title: res.data.message, icon: 'none' })
+      return
+    }
+
+    if (res.data.code === 0) {
+      if (success) success(res.data)
+      else return res.data.data
+    } else {
+      fail ? fail(res) : wx.showToast({ title: res.data.message, icon: 'none' })
     }
   }
 
