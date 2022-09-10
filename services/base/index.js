@@ -35,42 +35,36 @@ class Base {
       return
     }
 
-    switch (res.statusCode) {
-      case 200:
-      case 201:
-      case 204:
-        if (res.data.code === 0) {
-          if (success) success(res)
-          else return res.data.data
-        } else {
-          if (fail) fail(res)
-          else wx.showToast({ title: res.data.message, icon: 'none' })
-        }
-        break
-
-      // 未授权：token过期，可通过刷新token继续访问
-      case 401:
-        await this.refreshToken()
-        return await this.handleResult(client, success, fail)
-      
-      // 禁止访问：没有携带token，或者token无效
-      case 403:
-        await this.login()
-        return await this.handleResult(client, success, fail)
-
-      // 用户不存在，不作处理
-      case 404:
-        break;
-
-      default:
-        wx.showToast({ title: res.data.message, icon: 'none' })
-        break;
+    if ([200, 201, 204].includes(res.statusCode)) {
+      if (res.data.code === 0) {
+        if (success) success(res.data)
+        else return res.data.data
+      } else {
+        fail ? fail(res) : wx.showToast({ title: res.data.message, icon: 'none' })
+      }
+      return
     }
 
-    // if (relogin) {
-    //   wx.showToast({ title: '登录异常，请联系客服，或尝试重新安装小程序', icon: 'none' })
-    //   return
-    // }
+    // 未授权：token过期，可通过刷新token继续访问
+    if (res.statusCode === 401) { 
+      await this.refreshToken()
+      return await this.handleResult(client, success, fail)
+    } 
+
+    // 禁止访问：没有携带token，或者token无效
+    if (res.statusCode === 403) { 
+      // if (relogin) {
+      //   wx.showToast({ title: '登录异常，请联系客服，或尝试重新安装小程序', icon: 'none' })
+      //   return
+      // }
+      await this.login()
+      return await this.handleResult(client, success, fail)
+    }
+
+    // 剩余非404的情况，弹出错误提示
+    if (res.statusCode !== 404) { 
+      wx.showToast({ title: res.data.message, icon: 'none' })
+    }
   }
 
   getSetting() {
