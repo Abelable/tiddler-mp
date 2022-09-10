@@ -27,7 +27,7 @@ class Base {
     }).then(res => [res, null]).catch(err => [null, err]).finally(() => { loadingTitle && wx.hideLoading() })
   }
 
-  async handleResult(client, success, fail, relogin = false) {
+  async handleResult(client, success, fail) {
     const [res, err] = await client() || []
 
     // 设备异常：没有网络或其他情况
@@ -36,19 +36,20 @@ class Base {
       return
     }
 
-    // 未授权，需要重新登录：没有携带token，或者token无效
+    // 未授权：token过期，可通过刷新token继续访问
     if (res.statusCode === 401) {
-      if (relogin) {
-        wx.showToast({ title: '登录异常，请联系客服，或尝试重新安装小程序', icon: 'none' })
-        return
-      }
-      await this.login()
-      return await this.handleResult(client, success, fail, true)
+      await this.refreshToken()
+      return await this.handleResult(client, success, fail)
+      
     }
 
-    // 禁止访问：token过期，可通过刷新token继续访问
+    // 禁止访问：没有携带token，或者token无效
     if (res.statusCode === 403) {
-      await this.refreshToken()
+      // if (relogin) {
+      //   wx.showToast({ title: '登录异常，请联系客服，或尝试重新安装小程序', icon: 'none' })
+      //   return
+      // }
+      await this.login()
       return await this.handleResult(client, success, fail)
     }
 
