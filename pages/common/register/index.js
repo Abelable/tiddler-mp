@@ -40,4 +40,8 @@ Page({
   hideModal() {
     this.setData({ showAuthModal: false })
   },
+
+  navToHome() {
+    wx.switchTab({ url: '/pages/index/index' })
+  }
 })

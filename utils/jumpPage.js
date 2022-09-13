@@ -39,7 +39,7 @@ const linkTo = (type, param, title) => {
  * @param {boolean} needInitPrePageData 返回前一个页面之前是否需要初始化前一个页面的数据（约定方法名为initData）
  */
 const customBack = (needInitPrePageData = false) => {
-  const loginPageRoute = 'pages/common/register/index'
+  const registerPageRoute = 'pages/common/register/index'
   const minePageRoute = 'pages/mine/index'
 
   const pagesLength = getCurrentPages().length
@@ -50,7 +50,7 @@ const customBack = (needInitPrePageData = false) => {
 
   if (needInitPrePageData && typeof(prePage.initData) === 'function') prePage.initData()
 
-  if (pagesLength === 1 || (curPageRoute === loginPageRoute && prePageRoute === minePageRoute)) {
+  if (pagesLength === 1 || (curPageRoute === registerPageRoute && prePageRoute === minePageRoute)) {
     wx.switchTab({ url: '/pages/index/index' })
   } else wx.navigateBack()
 }

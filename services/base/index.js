@@ -1,4 +1,5 @@
 import { API_BASE_URL, VERSION } from '../../config'
+import Log from '../../utils/log'
 import api from './api'
 
 class Base {
@@ -8,12 +9,12 @@ class Base {
 
   async get({ url, data, success, fail, loadingTitle }) {
     const client = () => this.request({ url, data, loadingTitle })
-    return await this.handleResult(client, success, fail)
+    return await this.handleResult(url, client, success, fail)
   }
 
   async post({ url, data, success, fail, loadingTitle }) {
     const client = () => this.request({ url, data, method: 'POST', loadingTitle })
-    return await this.handleResult(client, success, fail)
+    return await this.handleResult(url, client, success, fail)
   }
 
   async request({ url, data, method = 'GET', loadingTitle }) {
@@ -27,7 +28,7 @@ class Base {
     }).then(res => [res, null]).catch(err => [null, err]).finally(() => { loadingTitle && wx.hideLoading() })
   }
 
-  async handleResult(client, success, fail) {
+  async handleResult(url, client, success, fail) {
     const [res, err] = await client() || []
 
     if (err) {
@@ -38,7 +39,7 @@ class Base {
     // 未授权：token过期，可通过刷新token继续访问
     if (res.statusCode === 401) { 
       await this.refreshToken()
-      return await this.handleResult(client, success, fail)
+      return await this.handleResult(url, client, success, fail)
     } 
 
     // 禁止访问: 没有携带token，或者token无效
@@ -51,20 +52,13 @@ class Base {
       //       所以修改登录逻辑，如果不存在token，依旧执行缓存token的操作，只是存一个空值。
       //       假设这个情况成立，则这里的报错就包含两种情况：1.代码写的不严谨，确实有漏洞，需要排查 2.被黑客攻击
       if (!wx.getStorageSync('token')) {
-        wx.showModal({
-          title: '提示',
-          content: '账号异常，请重新登录',
-          showCancel: true,
-          cancelText: '暂不登录',
-          confirmText: '立即登录',
-          success: (result) => {
-            if(result.confirm){
-              wx.navigateTo({ url: '/pages/common/register/index' })
-            } else {
-              wx.switchTab({ url: '/pages/index/index' })
-            }
-          }
-        });
+        Log.error({
+          url,
+          statusCode: res.statusCode,
+          message: '未携带token访问鉴权接口',
+          page: getCurrentPages()[getCurrentPages().length - 1]
+        })
+        wx.navigateTo({ url: '/pages/common/register/index' })
         return
       }
       await this.login()
@@ -73,6 +67,12 @@ class Base {
 
     // 剩余错误情况，弹出错误提示
     if (![200, 201, 204].includes(res.statusCode)) {
+      Log.error({
+        url,
+        statusCode: res.statusCode,
+        message: res.data.message,
+        page: getCurrentPages()[getCurrentPages().length - 1]
+      })
       wx.showToast({ title: res.data.message, icon: 'none' })
       return
     }
