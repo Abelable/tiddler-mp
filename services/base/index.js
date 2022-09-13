@@ -1,4 +1,3 @@
-import dayjs from 'dayjs'
 import { API_BASE_URL, VERSION } from '../../config'
 import Log from '../../utils/log'
 import api from './api'
@@ -57,8 +56,6 @@ class Base {
           url,
           statusCode: res.statusCode,
           message: res.data.message,
-          page: getCurrentPages()[getCurrentPages().length - 1].route,
-          time: dayjs().format('YYYY-MM-DD HH:mm:ss')
         })
         wx.navigateTo({ url: '/pages/common/register/index' })
         return
@@ -72,9 +69,7 @@ class Base {
       Log.error({
         url,
         statusCode: res.statusCode,
-        message: res.data.message,
-        page: getCurrentPages()[getCurrentPages().length - 1].route,
-        time: dayjs().format('YYYY-MM-DD HH:mm:ss')
+        message: res.data.message
       })
       wx.showToast({ title: res.data.message, icon: 'none' })
       return
