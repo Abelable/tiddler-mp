@@ -54,6 +54,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "商品",
+          "pathName": "pages/mall/subpages/goods/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

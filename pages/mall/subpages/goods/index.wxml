@@ -1,1 +1,30 @@
-<view>商品</view>
+<view class="nav-bar" style="padding-top: {{statusBarHeight}}px;">
+  <view class="search-bar-wrap">
+    <image class="back-icon" src="/images/back.png" bindtap="navBack" />
+    <view class="search-bar" bindtap="search">
+      <image class="search-icon" src="/images/search.png" />
+      <text class="placeholder">搜索商品</text>
+    </view>
+    <image class="cart-icon" src="./images/cart.png" bindtap="navBack" />
+  </view>
+  <scroll-view 
+    class="category-tabs" 
+    scroll-left="{{tabScroll}}"
+    scroll-x
+    enable-flex
+    scroll-with-animation
+  >
+    <view 
+      wx:for="{{['推荐', '水果生鲜', '食品饮料', '居家日用', '母婴玩具', '数码电器', '服饰箱包', '美妆个护', '宠物生活']}}" 
+      wx:key="index" 
+      class="category-tab {{activeTabIdx === index ? 'active' : ''}}" 
+      bindtap="selectCate" 
+      data-idx="{{index}}"
+      >{{item}}</view>
+  </scroll-view>
+</view>
+
+
+<view class="goods-list" style="padding-top: {{statusBarHeight + 100}}px">
+  <goods-item />
+</view>
