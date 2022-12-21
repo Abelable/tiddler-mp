@@ -38,8 +38,8 @@
 }
 .cart-icon {
   margin-left: 8px;
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
 }
 
 .category-tabs {
@@ -55,14 +55,14 @@
   color: #999;
   font-size: 14px;
   line-height: 44px;
-  transition: .2s ease;
+  transition: .1s ease;
 }
 .category-tab.active {
   position: relative;
   color: #111;
   font-size: 16px;
   font-weight: 600;
-  transition: .2s ease;
+  transition: .1s ease;
 }
 .category-tab.active::before {
   position: absolute;
