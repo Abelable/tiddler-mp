@@ -61,6 +61,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "支付",
+          "pathName": "pages/common/pay/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

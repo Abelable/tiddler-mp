@@ -17,6 +17,10 @@ class BaseService extends Base {
   async getUserInfo() {
     return await this.get({ url: `${this.baseUrl}/user_info`, loadingTitle: '加载中...' })
   }
+
+  async payMerchantOrder() {
+    return await this.post({ url: `${this.baseUrl}/shop/merchant/pay_deposit`, data: { orderId: 1 }})
+  }
 }
 
 export default BaseService
