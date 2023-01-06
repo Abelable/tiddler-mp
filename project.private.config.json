@@ -68,6 +68,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "商家入驻",
+          "pathName": "pages/common/webview/index",
+          "query": "url=https://h5.youboi.com/tiddler/webview/index.html#/merchant/settle_in",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }
