@@ -1,1 +1,2 @@
-<view>支付</view>
+<image class="bg" mode="aspectFill" src="./images/pay_bg.png" />
+<view class="btn">返回</view>
