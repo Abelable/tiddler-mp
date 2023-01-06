@@ -1,23 +1,19 @@
-import BaseService from '../../../services/baseService'
-
-const baseService = new BaseService()
-
 Page({
   data: {
-    url: ''
   },
 
-  async onLoad(options) {
-    const res = await baseService.payMerchantOrder()
+  async onLoad({ pay_params }) {
+    const payParmas = JSON.parse(encodeURIComponent(pay_params));
+    console.log('payParmas', payParmas)
     wx.requestPayment({
-      ...res,
+      ...payParmas,
       success: () => {
         
       },
       fail: () => {
         
       },
-      complete: res => {
+      complete: () => {
         
       }
     })
