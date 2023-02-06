@@ -11,7 +11,7 @@ Component({
     },
     color: {
       type: String,
-      value: '#ff5049'
+      value: '#EE0D23'
     },
     symbol: {
       type: String,

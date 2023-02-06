@@ -1,13 +1,20 @@
 <view class="goods-item">
-  <view class="cover-wrap">
-    <image class="cover" mode="widthFix" src="{{item.image}}" />
-  </view>
-  <view class="title omit">{{item.name}}</view>
-  <view class="info-wrap">
-    <price-unit price="{{item.price}}" />
-    <view class="sales">
-      <text>已售</text>
-      <text style="font-weight: bold;">{{ item.salesVolume }}</text>
+  <image class="cover" mode="widthFix" src="{{item.image}}" lazy-load />
+  <view class="content">
+    <view class="title omit">{{item.name}}</view>
+    <view class="info-wrap row between">
+      <view class="row baseline">
+        <price-unit price="{{item.price}}" />
+        <view class="market-price">¥{{item.marketPrice}}</view>
+      </view>
+      <view class="sales-volume">
+        <text>已售</text>
+        <text style="font-weight: bold;">{{ item.salesVolume }}</text>
+      </view>
+    </view>
+    <view class="shop-info row" wx:if="{{item.shopInfo}}">
+      <image class="shop-avatar" src="{{item.shopInfo.avatar}}" lazy-load />
+      <view class="shop-name omit single-line">{{item.shopInfo.name}}</view>
     </view>
   </view>
 </view>

@@ -60,7 +60,7 @@
   justify-content: space-between;
   margin-top: 10rpx;
   padding: 0 10rpx;
-  color: #999;
+  color: #888;
   font-size: 22rpx;
 }
 .price {

@@ -15,6 +15,17 @@ view, text, image, scroll-view, navigator, swiper, swiper-item {
   font-weight: bold;
 }
 
+.row {
+  display: flex;
+  align-items: center;
+}
+.row.between {
+  justify-content: space-between;
+}
+.row.baseline {
+  align-items: baseline;
+}
+
 .omit {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -23,6 +34,7 @@ view, text, image, scroll-view, navigator, swiper, swiper-item {
   -webkit-box-orient: vertical;
 }
 .omit.single-line {
+  line-height: 1;
   -webkit-line-clamp: 1;
 }
 
