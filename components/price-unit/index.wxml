@@ -1,0 +1,5 @@
+<view class="price-unit" style="color: {{color}}">
+  <text>{{symbol}}</text>
+  <text class="integer-part">{{integerPart}}</text>
+  <text wx:if="{{floatPart}}">.{{floatPart}}</text>
+</view>

@@ -1,7 +1,7 @@
 <view class="login-wrap">
   <image class="bg" mode="widthFix" src="./images/bg.jpeg" />
   <view class="back-icon-wrap" style="top: {{statusBarHeight + 5}}px">
-    <i-back-icon custom bind:navigateBack="navToHome" />
+    <back-icon custom bind:navigateBack="navToHome" />
   </view>
 
   <view class="content-wrap" style="margin-top: {{statusBarHeight + 100}}px">

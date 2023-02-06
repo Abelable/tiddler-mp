@@ -15,16 +15,16 @@
     scroll-with-animation
   >
     <view 
-      wx:for="{{['推荐', '水果生鲜', '食品饮料', '居家日用', '母婴玩具', '数码电器', '服饰箱包', '美妆个护', '宠物生活']}}" 
+      wx:for="{{categoryOptions}}" 
       wx:key="index" 
       class="category-tab {{activeTabIdx === index ? 'active' : ''}}" 
       bindtap="selectCate" 
       data-idx="{{index}}"
-      >{{item}}</view>
+      >{{item.name}}</view>
   </scroll-view>
 </view>
 
 
-<view class="goods-list" style="padding-top: {{statusBarHeight + 100}}px">
-  <goods-item />
+<view class="goods-list-wrap" style="padding-top: {{statusBarHeight + 100}}px">
+  <fall-flow list="{{goodsList}}" generic:item="goods-item" />
 </view>

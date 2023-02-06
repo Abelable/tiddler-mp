@@ -1,18 +1,13 @@
 <view class="goods-item">
   <view class="cover-wrap">
-    <image class="cover" mode="widthFix" src="http://img.ubo.vip/youlian/temporary/item_cover_4.jpg" />
+    <image class="cover" mode="widthFix" src="{{item.image}}" />
   </view>
-  <view class="title omit">攻略千岛湖3天骑车、皮划艇、游泳和吃吃吃，千岛湖3天骑车、皮划艇、游泳和吃吃吃，千岛湖3天骑车、皮划艇、游泳和吃吃吃</view>
+  <view class="title omit">{{item.name}}</view>
   <view class="info-wrap">
-    <view class="price">
-      <text style="margin-right: 4rpx; color: #ff5049;">¥</text>
-      <text class="num" style="color: #ff5049; font-size: 32rpx;">200</text>
-      <text class="num" style="color: #ff5049; font-size: 32rpx;">.</text>
-      <text class="num" style="color: #ff5049; font-size: 24rpx;">00</text>
-    </view>
+    <price-unit price="{{item.price}}" />
     <view class="sales">
       <text>已售</text>
-      <text style="font-weight: bold;">1799</text>
+      <text style="font-weight: bold;">{{ item.salesVolume }}</text>
     </view>
   </view>
 </view>
