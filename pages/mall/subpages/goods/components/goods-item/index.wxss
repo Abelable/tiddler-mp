@@ -1,5 +1,5 @@
 .goods-item {
-  margin-bottom: 30rpx;
+  margin-bottom: 10rpx;
   width: 350rpx;
   background: #fff;
   border-radius: 18rpx;

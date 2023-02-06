@@ -1,0 +1,4 @@
+<view class="empty">
+  <image class="illus" src="./images/empty.png" />
+  <view>{{desc}}</view>
+</view>

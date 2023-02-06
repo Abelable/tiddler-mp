@@ -10,7 +10,8 @@ Page({
     categoryOptions: [],
     activeTabIdx: 0,
     tabScroll: 0,
-    goodsList: []
+    goodsList: [],
+    finished: false
   },
 
   async onLoad() {
@@ -38,12 +39,23 @@ Page({
   },
 
   async setGoodsList(init = false) {
-    if (init) this.page = 0
+    const limit = 10
+    if (init) {
+      this.page = 0
+      this.setData({
+        finished: false
+      })
+    }
     const { categoryOptions, activeTabIdx, goodsList } = this.data
-    const list = await goodsService.getGoodsList(categoryOptions[activeTabIdx].id, ++this.page) || []
+    const list = await goodsService.getGoodsList(categoryOptions[activeTabIdx].id, ++this.page, limit) || []
     this.setData({
       goodsList: init ? list : [...goodsList, ...list]
     })
+    if (list.length < limit) {
+      this.setData({
+        finished: true
+      })
+    }
   },
 
   onReachBottom() {
