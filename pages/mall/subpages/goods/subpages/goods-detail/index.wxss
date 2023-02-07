@@ -206,33 +206,6 @@
 }
 
 /* 商品详情 */
-.goods-detail-spec {
-  margin-bottom: 16rpx;
-  padding: 24rpx;
-  background-color: #fff;
-}
-.detail-spec-title {
-  padding-bottom: 20rpx;
-  font-size: 30rpx;
-  font-weight: 500;
-  color: #333;
-  border-bottom: 2rpx solid #939393;
-}
-.detail-spec-list {
-  display: flex;
-  margin-top: 20rpx;
-  font-size: 28rpx;
-}
-.spec-list-label {
-  margin-right: 40rpx;
-  width: 120rpx;
-  color: #666;
-  text-align: right;
-}
-.spec-list-detail {
-  flex: 1;
-  color: #333;
-}
 .goods-detail {
   padding: 24rpx;
   font-size: 0;
@@ -252,51 +225,35 @@
   text-align: center;
 }
 
-
 /*底部工具栏*/
 .bottom-bar {
   position: fixed;
   left: 0;
   bottom: 0;
+  padding: 12rpx 0 calc(10rpx + env(safe-area-inset-bottom));
   width: 100%;
-}
-.sold-tips {
-  height: 175rpx;
-  color: #fff;
-  font-size: 48rpx;
-  font-weight: 600;
-  line-height: 175rpx;
-  text-align: center;
-  background: #999;
-}
-.bottom-bar-main {
-  display: flex;
-  align-items: center;
-  padding: 12rpx 24rpx;
-  padding-bottom: calc(10rpx + env(safe-area-inset-bottom));
-  background-color: #fff;
-  box-sizing: initial;
+  background: #fff;
   box-shadow: 0 -2rpx 2rpx 0 rgba(0,0,0,0.05);
 }
-.bottom-bar-icon-wrap {
-  display: flex;
-  justify-content: space-between;
-  margin-right: 24rpx;
+.shortcut-wrap {
   flex: 1;
 }
-.bottom-bar-icon {
+.shortcut {
   position: relative;
-  text-align: center;
-  font-size: 20rpx;
-  font-weight: 500;
+  flex: 1;
   color: #666;
+  font-size: 20rpx;
+  text-align: center;
   line-height: 1;
 }
-.cart-goods-count {
+.shortcut-icon {
+  width: 50rpx;
+  height: 50rpx;
+}
+.cart-count {
   position: absolute;
-  top: 0;
-  right: 0;
-  transform: translateX(-50%);
+  top: -6rpx;
+  right: 6rpx;
   padding: 0 10rpx;
   height: 30rpx;
   color: #fff;
@@ -304,64 +261,34 @@
   line-height: 30rpx;
   border-radius: 15rpx;
   background: #FE4019;
+  transform: scale(0.68);
 }
 
-.buy-btn {
+.btns {
   display: flex;
+  margin-right: 24rpx;
+  margin-left: 12rpx;
   width: 456rpx;
   height: 80rpx;
   border-radius: 40rpx;
   overflow: hidden;
 }
-.add-shopcart-btn, .buy-now-btn {
+.add-cart-btn, .buy-btn {
   flex: 1;
   font-size: 28rpx;
   font-weight: 500;
   line-height: 80rpx;
   text-align: center;
 }
-.add-shopcart-btn {
+.add-cart-btn {
   color: #fff;
   background: #1986F8;
 }
-.buy-now-btn {
+.buy-btn {
   color: #fff;
   background: #161F4E;
 }
-.btn-status-is-anchor, .btn-count-down {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 12rpx;
-  line-height: 1.2;
-}
-.commission {
-  color: #B5732D;
-  font-size: 20rpx;
-}
-.add-shopcart-btn.invalid, .add-library-btn.invalid, .buy-now-btn.invalid {
+.add-cart-btn.invalid, .buy-btn.invalid {
   color: #fff;
   background: #ccc;
-}
-
-.spike-buy-btn {
-  position: relative;
-  margin: 0 24rpx;
-  width: 486rpx;
-  height: 88rpx;
-  color: #fff;
-  font-size: 32rpx;
-  font-weight: 600;
-  text-align: center;
-  line-height: 88rpx;
-  background: #E42D00;
-  border-radius: 8rpx;
-  overflow: hidden;
-}
-.spike-buy-btn.invalid {
-  background: #ccc;
-}
-.btn-inner {
-  width: 100%;
-  height: 100%;
 }

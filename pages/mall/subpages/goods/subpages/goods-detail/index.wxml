@@ -90,27 +90,25 @@
 </view>
 
 <!-- 底部工具栏 -->
-<view class="bottom-bar">
-  <view class="bottom-bar-main">
-    <view class="bottom-bar-icon-wrap">
-      <view class="bottom-bar-icon">
-        <image style="width: 50rpx; height: 50rpx;" src="./images/customer-icon.png"/>
-        <view>客服</view>
-      </view>
-      <navigator class="bottom-bar-icon" url="/pages/subpages/mall/cart/index" hover-class="none">
-        <image style="width: 50rpx; height: 50rpx;" src="./images/cart-icon.png"/>
-        <view>购物车</view>
-        <view class="cart-goods-count" wx:if="{{cartCount}}">{{cartCount}}</view>
-      </navigator>
-      <view class="bottom-bar-icon" ontap="showShareModal">
-        <image style="width: 50rpx; height: 50rpx" src="./images/share-icon.png"/>
-        <view>分享</view>
-      </view>
+<view class="bottom-bar row">
+  <view class="shortcut-wrap row">
+    <view class="shortcut">
+      <image class="shortcut-icon" src="./images/customer-icon.png"/>
+      <view>客服</view>
     </view>
-    <view class="buy-btn">
-      <view class="add-shopcart-btn {{!goodsInfo.stock ? 'invalid' : ''}}" data-action-type="1" bindtap='showSpecModal'>加入购物车</view>
-      <view class="buy-now-btn {{!goodsInfo.stock ? 'invalid' : ''}}" data-action-type="2" bindtap='showSpecModal'>立即购买</view>
+    <view class="shortcut" ontap="showShareModal">
+      <image class="shortcut-icon" src="./images/share-icon.png"/>
+      <view>分享</view>
     </view>
+    <navigator class="shortcut" url="/pages/subpages/mall/cart/index" hover-class="none">
+      <image class="shortcut-icon" src="./images/cart-icon.png"/>
+      <view>购物车</view>
+      <view class="cart-count" wx:if="{{cartCount}}">{{cartCount}}</view>
+    </navigator>
+  </view>
+  <view class="btns">
+    <view class="add-cart-btn {{!goodsInfo.stock ? 'invalid' : ''}}" data-action-type="1" bindtap='showSpecModal'>加入购物车</view>
+    <view class="buy-btn {{!goodsInfo.stock ? 'invalid' : ''}}" data-action-type="2" bindtap='showSpecModal'>立即购买</view>
   </view>
 </view>
 
