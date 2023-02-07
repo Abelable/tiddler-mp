@@ -3,7 +3,7 @@
   "navigationBarTextStyle": "white",
   "usingComponents": {
     "price-unit": "/components/price-unit/index",
-    "i-goods-showcase": "./components/i-goods-showcase/index",
+    "shop-showcase": "./components/shop-showcase/index",
     "fall-flow": "/components/fall-flow/index",
     "goods-item": "/components/goods-item/index",
     "i-mask": "/components/i-mask/index",

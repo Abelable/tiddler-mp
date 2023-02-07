@@ -352,58 +352,7 @@ image {
 
 
 /* 店铺信息 */
-.shop-info-wrap {
-  margin: 18rpx 24rpx;
-  padding: 24rpx;
-  border-radius: 12rpx;
-  background: #fff;
-}
-.flagship-title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.flagship-name {
-  display: flex;
-  align-items: center;
-  color: #333;
-  font-size: 28rpx;
-  font-weight: 600;
-}
-.flagship-pic-wrap {
-  position: relative;
-  margin-right: 16rpx;
-  width: 68rpx;
-  height: 68rpx;
-}
-.flagship-pic {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background-image: url('https://img.ubo.vip/mp/default-ubo-icon.png');
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-}
-.firm-icon {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 30rpx;
-  height: 30rpx;
-}
-.goFlagship {
-  display: flex;
-  align-items: center;
-}
-.goFlagship-tip {
-  margin: 5rpx;
-  color: #999;
-  font-size: 28rpx;
-}
-.goods-list-wrap {
-  margin-top: 24rpx;
-  white-space: nowrap;
-}
+
 
 /* 精选素材 */
 .material-wrap {

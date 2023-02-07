@@ -19,16 +19,22 @@
   <!-- 轮播 -->
   <view class="banner-wrap">
     <swiper style="height:750rpx;" circular bindchange="bannerChange">
-      <swiper-item class="banner-video" wx:if="{{goodsInfo.video}}">
+      <swiper-item wx:if="{{goodsInfo.video}}">
         <video style="width:100%; height:100%;" src="{{goodsInfo.video}}" />
       </swiper-item>
-      <swiper-item wx:for="{{goodsInfo.imageList}}" wx:key="index" bindtap="previewImage" data-current="{{item}}" data-urls="{{goodsInfo.imageList}}">
-        <image src="{{item}}" style="width:100%; height:100%;" mode='aspectFill' />
+      <swiper-item 
+        wx:for="{{goodsInfo.imageList}}" 
+        wx:key="index" 
+        bindtap="previewImage" 
+        data-current="{{item}}" 
+        data-urls="{{goodsInfo.imageList}}"
+      >
+        <image style="width:100%; height:100%;" src="{{item}}" mode='aspectFill' lazy-load />
       </swiper-item>
     </swiper>
-    <view class="banner-dots" wx:if="{{goodsInfo.imageList.length}}">
+    <view class="banner-dots">
       <text class="cur-dot">{{curDot}}</text>
-      <text> / {{goodsInfo.imageList.length}}</text>
+      <text> / {{goodsInfo.imageList.length + (goodsInfo.video ? 1 : 0)}}</text>
     </view>
   </view>
 
@@ -59,25 +65,7 @@
   </view>
 
   <!-- 店铺信息 -->
-  <view class="shop-info-wrap" wx:if="{{goodsInfo.shopInfo}}">
-    <view class="flagship-title" >
-      <view class="flagship-name">
-        <view class="flagship-pic-wrap">
-          <image class="flagship-pic" src="{{goodsInfo.shopInfo.avatar}}"/>
-          <image class="firm-icon" wx:if="{{goodsInfo.shopInfo.type === 2}}" src="https://img.ubo.vip/mp/selection/goods-detail/firm-icon.png" />
-        </view>
-        <view>{{goodsInfo.shopInfo.name}}</view>
-        <image style="width: 48rpx; height: 48rpx;" wx:if="{{goodsInfo.shopInfo.type === 2}}" src="./images/shop-icon.png"/>
-      </view>
-      <view class="goFlagship" ontap="goShop">
-        <view class="goFlagship-tip">进入店铺</view>
-        <image style="width: 16rpx; height: 16rpx;" src="https://img.ubo.vip/mp/selection/goods-detail/to-icon.png" />
-      </view>
-    </view>
-    <scroll-view scroll-x class="goods-list-wrap">
-      <i-goods-showcase data="{{goodsInfo.shopInfo.recommendGoodsList}}" />
-    </scroll-view>
-  </view>
+  <shop-showcase wx:if="{{goodsInfo.shopInfo}}" shopInfo="{{goodsInfo.shopInfo}}" />
 
   <!-- 商品详情 -->
   <view class="goods-detail-line" />
