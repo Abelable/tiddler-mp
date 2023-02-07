@@ -80,6 +80,7 @@
   </view>
 
   <!-- 商品详情 -->
+  <view class="goods-detail-line" />
   <template is="i-split-line" wx:if="{{goodsInfo.detailImageList.length}}" data="{{desc: '宝贝详情'}}"/>
   <view class="goods-detail" wx:if="{{goodsInfo.detailImageList.length}}">
     <image 

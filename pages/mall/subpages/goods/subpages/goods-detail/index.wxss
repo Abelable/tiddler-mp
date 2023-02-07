@@ -30,11 +30,9 @@ image {
   height: 32px;
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.3);
-  border: 0.5px solid rgba(255,255,255,0.3);
 }
 .back-icon.show {
   background: none;
-  border: 0.5px solid transparent;
 }
 .menu-wrap {
   position: absolute;

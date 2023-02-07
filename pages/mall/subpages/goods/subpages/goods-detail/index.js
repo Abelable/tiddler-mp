@@ -13,7 +13,6 @@ Page({
     // 导航栏相关
     showNavBar: false, // 导航栏显隐
     detailActive: false, // 导航栏'详情'激活状态
-    detailTop: '', // 商品详情部分距离顶部的距离
     // 轮播图相关
     curDot: 1,
     bannerHeight: '',
@@ -74,31 +73,27 @@ Page({
     query.select('.goods-detail-line').boundingClientRect()
     query.exec(res => {
       if (res[0] !== null) {
-        this.setData({
-          detailTop: res[0].top
-        })
+        this.detailTop = res[0].top
       }
     })
   },
 
   // 监听滚动
   onPageScroll(e) {
-    let { bannerHeight, detailTop } = this.data
+    const { bannerHeight, showNavBar, detailActive } = this.data
 
     // 控制导航栏显隐
-    this.setData({
-      showNavBar: e.scrollTop >= bannerHeight
-    })
+    if (e.scrollTop >= bannerHeight) {
+      if (!showNavBar) this.setData({ showNavBar: true })
+    } else {
+      if (showNavBar) this.setData({ showNavBar: false })
+    }
 
     // 控制导航栏tab的状态切换
-    if (detailTop) {
-      this.setData({
-        detailActive: e.scrollTop >= detailTop - navBarHeight
-      })
-    } else if (!detailTop && detailTop) {
-      this.setData({
-        detailActive: e.scrollTop >= detailTop - navBarHeight
-      })
+    if (e.scrollTop >= this.detailTop - navBarHeight) {
+      if (!detailActive) this.setData({ detailActive: true })
+    } else {
+      if (detailActive) this.setData({ detailActive: false })
     }
   },
 
@@ -112,7 +107,7 @@ Page({
   // 滚动到详情部分
   scrollToDetail() {
     wx.pageScrollTo({
-      scrollTop: this.data.detailTop - navBarHeight * 0.9
+      scrollTop: this.detailTop - navBarHeight * 0.9
     })
   },
 
@@ -130,13 +125,11 @@ Page({
 
   // 客服
   contact() {
-    // if (supplierInfo) {
-    //   let supplierName = supplierInfo ? supplierInfo.supplier_name : '官方客服';
-    //   let supplierImg = supplierInfo ? supplierInfo.supplier_img : 'https://img.ubo.vip/mp/default-ubo-icon.png';
-    //   wx.navigateTo({
-    //     url: `/pages/subpages/news/chat/index?friendId=${chatId}&friendName=${supplierName}&friendAvatarUrl=${supplierImg}&goodsId=${goodsId}`
-    //   })
-    // }
+    if (this.data.goodsInfo.shopInfo) {
+      const { id, name, avatar } = this.data.goodsInfo.shopInfo.keeperInfo
+      const url = `/pages/subpages/news/chat/index?userId=${id}&name=${name}&avatar=${avatar}&goodsId=${this.goodsId}`
+      wx.navigateTo({ url })
+    }
   },
 
   // 页面跳转
