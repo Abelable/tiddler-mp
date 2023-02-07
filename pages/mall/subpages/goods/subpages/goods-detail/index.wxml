@@ -116,8 +116,17 @@
 <i-mask wx:if="{{showMask}}" ontap="hideModal" opcity="{{posterModalVisible ? 0.6 : 0.3}}"/>
 
 <!-- 商品规格选择弹窗 -->
-<i-spec-modal show="{{showSpecModal}}" actionType="{{actionType}}" goodsId="{{goodsId}}" goodsPic="{{goodsPic}}" basePrice="{{shopPrice}}" totalStock="{{stock}}" mainInfo="{{specData}}" isOnSale="{{isOnSale}}" limitTips="{{limitTips}}" limitBuyNum="{{limitBuyNum}}" limitStartBuyNum="{{limitStartBuyNum}}" inviteCode="{{inviteCode}}" freeSampleId="{{freeSampleId}}" bind:setSpecTips="setSpecTips" bind:hideSpecModal="hideSpecModal" />
-
+<spec-popup
+  show="{{showSpecModal}}"
+  actionType="{{actionType}}"
+  goodsId="{{goodsId}}"
+  goodsPic="{{goodsPic}}"
+  basePrice="{{shopPrice}}" 
+  totalStock="{{stock}}"
+  mainInfo="{{specData}}"
+  bind:setSpecTips="setSpecTips"
+  bind:hideSpecModal="hideSpecModal"
+/>
 <!-- 分享 -->
 <i-share-modal show="{{shareModalVisible}}" bind:showPosterModal="showPosterModal" />
 <i-poster-modal wx:if="{{posterModalVisible}}" goodsPosterInfo="{{posterInfo}}" bind:hidePosterModal="hideModal"/>

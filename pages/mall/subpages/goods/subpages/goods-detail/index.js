@@ -147,11 +147,14 @@ Page({
 
   // 显示规格弹窗
   showSpecModal(e) {
-    const { stock, isOnSale } = this.data
-    if (stock && isOnSale) {
+    if (this.data.goodsInfo.stock) {
+      // this.setData({
+      //   showSpecModal: true,
+      //   showMask: true,
+      //   actionType: e.currentTarget.dataset.actionType
+      // })
       this.setData({
         showSpecModal: true,
-        showMask: true,
         actionType: e.currentTarget.dataset.actionType
       })
     }
