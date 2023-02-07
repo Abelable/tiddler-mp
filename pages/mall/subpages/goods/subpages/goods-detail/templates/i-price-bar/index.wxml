@@ -1,0 +1,73 @@
+<import src="../i-progress-bar/index.wxml"/>
+
+<template name="i-price-bar">
+  <view class="nomal-bar" wx:if="{{goodsType === 0}}">
+    <view class="nomal-bar-price">
+      <view class="nomal-bar-shop-price">
+        <text>￥</text>
+        <text style="font-size: 48rpx;">{{splitedShopPrice.int}}</text>
+        <text>.{{splitedShopPrice.float}}</text>
+      </view>
+      <view class="nomal-bar-market-price">原价￥{{marketPrice}}</view>
+    </view>
+    <view class="nomal-bar-sale-amount">{{salesVolume}}件已买</view>
+  </view>
+
+  <view class="sale-bar" wx:if="{{goodsType === 1}}">
+    <view class="sale-bar-price">
+      <view class="sale-bar-shop-price">
+        <text>￥</text>
+        <text style="font-size: 48rpx;">{{splitedShopPrice.int}}</text>
+        <text>.{{splitedShopPrice.float}}</text>
+      </view>
+      <view class="sale-bar-market-price">原价￥{{marketPrice}}</view>
+    </view>
+    <view class="sale-bar-sale-slogan">
+      <image style="width: 204rpx; height: 50rpx;" src="https://img.ubo.vip/mp/selection/goods-detail/sale-slogan.png" />
+    </view>
+    <template is="progress-bar" data="{{progressInfo}}"/>
+  </view>
+
+  <view class="promotion-bar" wx:if="{{goodsType === 2}}">
+    <view class="promotion-bar-price">
+      <view class="promotion-bar-shop-price">
+        <text>￥</text>
+        <text style="font-size: 48rpx;">{{splitedShopPrice.int}}</text>
+        <text>.{{splitedShopPrice.float}}</text>
+      </view>
+      <view class="promotion-bar-market-price">原价￥{{marketPrice}}</view>
+    </view>
+    <view class="promotion-bar-stock">库存{{stock}}件</view>
+    <view class="promotion-bar-count-down-wrap">
+      <view class="promotion-bar-tips">距离结束仅剩</view>
+      <view class="promotion-bar-count-down">
+        <view class="promotion-bar-time">{{countDown.hour}}</view>
+        <view style="margin: 5rpx;">:</view>
+        <view class="promotion-bar-time">{{countDown.minute}}</view>
+        <view style="margin: 5rpx;">:</view>
+        <view class="promotion-bar-time">{{countDown.second}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="spike-bar" wx:if="{{goodsType === 6}}">
+    <view class="spike-bar-price-wrap">
+      <view class="spike-bar-pirce">
+        <text class="spike-bar-shop-pirce">
+          <text>￥</text>
+          <text style="font-size: 56rpx;">{{splitedShopPrice.int}}</text>
+          <text>.{{splitedShopPrice.float}}</text>
+        </text>
+        <text class="spike-bar-market-pirce">￥{{marketPrice}}</text>
+      </view>
+      <view class="spike-bar-desc">{{unStart ? '限量：' + spikeInfo.sec_limit || spikeInfo.all_order_number + '件' : '已抢购：' + spikeInfo.all_order_number + '件'}}</view>
+    </view>
+    <view class="spike-bar-count-down-wrap">
+      <view class="spike-bar-tips">限时秒杀</view>
+      <view class="spike-bar-count-down">
+        <text wx:if="{{unStart}}">即将开抢 </text>
+        <text>{{countDown.hour}}:{{countDown.minute}}:{{countDown.second}}</text>
+      </view>
+    </view>
+  </view>
+</template>

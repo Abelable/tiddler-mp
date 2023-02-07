@@ -1,0 +1,156 @@
+<wxs module="STRING" src="/utils/filters/string.wxs" />
+<wxs module="TIME" src="/utils/filters/time.wxs" />
+
+<import src="/templates/i-split-line/index.wxml"/>
+<import src="./templates/i-price-bar/index.wxml"/>
+
+<!-- 顶部导航 -->
+<view class="nav-bar {{showNavBar ? 'show' : ''}}" style="padding-top: {{statusBarHeight}}px">
+  <back-icon />
+  <view class="menu-wrap {{showNavBar ? 'show' : ''}}">
+    <view class="menu-tips {{!detailActive ? 'show' : ''}}" ontap="scrollToTop">宝贝</view>
+    <view class="menu-split">|</view>
+    <view class="menu-tips {{detailActive ? 'show' : ''}}" ontap="scrollToDetail">详情</view>
+  </view>
+</view>
+
+<view class="wrap {{showMask ? 'fixed' : ''}}">
+  <!-- 轮播 -->
+  <view class="banner-wrap">
+    <swiper style="height:750rpx;" circular bindchange="bannerChange">
+      <swiper-item wx:if="{{bannerVideo.video_cover_url}}" class="banner-video" bindtap="playVideo" data-url="{{bannerVideo.video_url}}">
+        <image src="{{bannerVideo.video_cover_url}}" style="width:100%;height:100%;" mode='aspectFill'></image>
+        <image class="play-btn" src="https://img.ubo.vip/mp/play-btn.png" hover-class='hover-effect'></image>
+      </swiper-item>
+      <swiper-item wx:for="{{banner}}" wx:key="img_id" data-current="{{item.thumb_url}}" data-urls="{{bannerImgs}}" bindtap="previewImage">
+        <image src="{{item.thumb_url}}" style="width:100%; height:100%;" mode='aspectFill'></image>
+      </swiper-item>
+    </swiper>
+    <view class="banner-dots" wx:if="{{bannerNum}}">
+      <text class="cur-dot">{{curDot}}</text>
+      <text> / {{bannerNum}}</text>
+    </view>
+  </view>
+
+  <!-- 商品基本信息 -->
+  <view class="shop-info-wrap" wx:if="{{supplierInfo}}">
+    <view class="flagship-title" >
+      <view class="flagship-name">
+        <view class="flagship-pic-wrap">
+          <image class="flagship-pic" src="{{supplierInfo.supplier_img}}"/>
+          <image class="firm-icon" wx:if="{{supplierInfo.is_enterprise}}" src="https://img.ubo.vip/mp/selection/goods-detail/firm-icon.png" />
+        </view>
+        <view>{{supplierInfo.supplier_name}}</view>
+        <image style="width: 48rpx; height: 48rpx;" src="./images/shop-icon.png"/>
+      </view>
+      <view class="goFlagship" ontap="goShop">
+        <view class="goFlagship-tip">进入店铺</view>
+        <image style="width: 16rpx; height: 16rpx;" src="https://img.ubo.vip/mp/selection/goods-detail/to-icon.png" />
+      </view>
+    </view>
+    <scroll-view scroll-x class="goods-list-wrap">
+      <i-goods-showcase data="{{supplierInfo.top_goods}}" />
+    </scroll-view>
+  </view>
+
+  <!-- 规格选择 -->
+  <view class="list-spec" wx:if="{{goodsType !== 6}}">
+    <view>规格</view>
+    <view class="choose-btn" data-action-type="0" bindtap='showSpecModal'>
+      <view class="choose-btn-tip">{{specTips ? '已选：' + STRING.slice(specTips, 20) : '请选择'}}</view>
+      <image style="width: 16rpx; height: 16rpx;" src="https://img.ubo.vip/mp/selection/goods-detail/to-icon.png" />
+    </view>
+  </view>
+
+  <!-- 店铺信息 -->
+  <view class="shop-info-wrap" wx:if="{{supplierInfo}}">
+    <view class="flagship-title" >
+      <view class="flagship-name">
+        <view class="flagship-pic-wrap">
+          <image class="flagship-pic" src="{{supplierInfo.supplier_img}}"/>
+          <image class="firm-icon" wx:if="{{supplierInfo.is_enterprise}}" src="https://img.ubo.vip/mp/selection/goods-detail/firm-icon.png" />
+        </view>
+        <view>{{supplierInfo.supplier_name}}</view>
+        <image style="width: 48rpx; height: 48rpx;" src="./images/shop-icon.png"/>
+      </view>
+      <view class="goFlagship" ontap="goShop">
+        <view class="goFlagship-tip">进入店铺</view>
+        <image style="width: 16rpx; height: 16rpx;" src="https://img.ubo.vip/mp/selection/goods-detail/to-icon.png" />
+      </view>
+    </view>
+    <scroll-view scroll-x class="goods-list-wrap">
+      <i-goods-showcase data="{{supplierInfo.top_goods}}" />
+    </scroll-view>
+  </view>
+
+  <!-- 商品详情 -->
+  <template is="i-split-line" wx:if="{{goodsDetailImgs.length}}" data="{{desc: '宝贝详情'}}"/>
+  <view class="goods-detail-spec" wx:if="{{goodsDetailSpec.length}}">
+    <view class="detail-spec-title">产品规格</view>
+    <view class="detail-spec-list" wx:for="{{goodsDetailSpec}}" wx:key="index">
+      <view class="spec-list-label">{{item.label}}</view>
+      <view class="spec-list-detail">{{item.price}}</view>
+    </view>
+  </view>
+  <view class="goods-detail" wx:if="{{goodsDetailImgs.length}}">
+    <image wx:for="{{goodsDetailImgs}}" wx:key="index" style="width: 100%" mode="widthFix" src="{{item}}" lazy-load="{{true}}" data-current="{{item}}" data-urls="{{goodsDetailImgs}}" bindtap="previewImage" />
+  </view>
+
+  <!-- 商品推荐 -->
+  <view class="recommend-goods-wrap" wx:if="{{recommendGoods.length}}">
+    <template is="i-split-line" data="{{desc: '为您推荐'}}"/>
+    <i-fall-flow lists="{{recommendGoods}}" generic:list="i-goods-list-flow" />
+  </view>
+
+  <!-- nomore -->
+  <view class="nomore-tip">到底啦~</view>
+</view>
+
+<!-- 底部工具栏 -->
+<view class="bottom-bar">
+  <view class="bottom-bar-main">
+    <view class="bottom-bar-icon">
+      <image style="width: 64rpx; height: 64rpx;" src="./images/customer-icon.png"/>
+      <view>客服</view>
+    </view>
+    <navigator class="bottom-bar-icon" url="/pages/subpages/mall/cart/index" hover-class="none">
+      <image style="width: 64rpx; height: 64rpx;" src="./images/cart-icon.png"/>
+      <view>购物车</view>
+      <view class="cart-goods-count" wx:if="{{cartCount}}">{{cartCount}}</view>
+    </navigator>
+    <view class="bottom-bar-icon" ontap="showShareModal">
+      <image style="width: 64rpx; height: 64rpx" src="./images/share-icon.png"/>
+      <view>分享</view>
+    </view>
+    <view class="buy-btn" wx:if="{{goodsType !== 6}}">
+      <view class="add-shopcart-btn {{!isOnSale || !stock ? 'invalid' : ''}}" wx:if="{{!anchorType}}" data-action-type="1" bindtap='showSpecModal'>加入购物车</view>
+      <view class="add-library-btn {{!isOnSale || !stock ? 'invalid' : ''}}" wx:if="{{anchorType}}" bindtap='addLibrary'>{{isOnshelf ? '选品已添加' : '加入选品库'}}</view>
+      <view class="buy-now-btn {{!isOnSale || !stock ? 'invalid' : ''}}" data-action-type="2" bindtap='showSpecModal'>
+        <text wx:if="{{!unStart && !anchorType}}">立即购买</text>
+        <view class="btn-status-is-anchor" wx:if="{{!unStart && anchorType}}" data-action-type="0" catchtap='showSpecModal'>
+          <view>省钱购</view>
+          <view class="commission">省{{commission}}</view>
+        </view>
+        <view class="btn-count-down" wx:if="{{unStart}}">
+          <view style="font-size: 24rpx;">距开始剩</view>
+          <view>{{countDown.hour}}:{{countDown.minute}}:{{countDown.second}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="spike-buy-btn {{unStart && spikeInfo.is_remind ? 'invalid' : ''}}" wx:if="{{goodsType === 6}}">
+      <view class="btn-inner" wx:if="{{unStart && !spikeInfo.is_remind}}" bindtap='subscribeSpikeNotice'>提前3分钟提醒</view> 
+      <view class="btn-inner" wx:if="{{unStart && spikeInfo.is_remind}}">已设置开抢提醒</view>
+      <view class="btn-inner" wx:if="{{!unStart}}" bindtap='buySpike'>立即抢购</view>
+    </view>
+  </view>
+</view>
+
+<!-- 遮罩 -->
+<i-mask wx:if="{{showMask}}" ontap="hideModal" opcity="{{posterModalVisible ? 0.6 : 0.3}}"/>
+
+<!-- 商品规格选择弹窗 -->
+<i-spec-modal show="{{showSpecModal}}" actionType="{{actionType}}" goodsId="{{goodsId}}" goodsPic="{{goodsPic}}" basePrice="{{shopPrice}}" totalStock="{{stock}}" mainInfo="{{specData}}" isOnSale="{{isOnSale}}" limitTips="{{limitTips}}" limitBuyNum="{{limitBuyNum}}" limitStartBuyNum="{{limitStartBuyNum}}" inviteCode="{{inviteCode}}" freeSampleId="{{freeSampleId}}" bind:setSpecTips="setSpecTips" bind:hideSpecModal="hideSpecModal" />
+
+<!-- 分享 -->
+<i-share-modal show="{{shareModalVisible}}" bind:showPosterModal="showPosterModal" />
+<i-poster-modal wx:if="{{posterModalVisible}}" goodsPosterInfo="{{posterInfo}}" bind:hidePosterModal="hideModal"/>

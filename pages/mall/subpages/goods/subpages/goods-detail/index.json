@@ -1,0 +1,11 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "back-icon": "./components/back-icon/index",
+    "i-goods-showcase": "./components/i-goods-showcase/index",
+    "i-mask": "/components/i-mask/index",
+    "i-spec-modal": "/components/i-spec-modal/index",
+    "i-share-modal": "/components/i-share-modal/index",
+    "i-poster-modal": "/components/i-poster-modal/index"
+  }
+}

@@ -1,0 +1,63 @@
+.goods-list {
+  display: inline-block;
+  margin-right: 18rpx;
+  vertical-align: top;
+  width: 206rpx;
+  height: 350rpx;
+  border-radius: 0rpx;
+}
+.goods-list-inner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.goods-pic {
+  position: relative;
+  width: 206rpx;
+  height: 206rpx;
+  border-radius: 8rpx;
+}
+.active-tip {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 64rpx;
+  height: 32rpx;
+  color: #B5732D;
+  font-size: 20rpx;
+  font-weight: 500;
+  line-height: 32rpx;
+  text-align: center;
+  border-radius: 0 8rpx 0 8rpx;
+  background: linear-gradient(270deg, #FFD699 0%, #FFE5BD 100%);
+}
+.goods-title {
+  line-height: 32rpx;
+  font-size: 24rpx;
+  color: #333333;
+  font-weight: 500;
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.goods-price-wrap {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.goods-price-shop {
+  color: #D0132B;
+  font-size: 20rpx;
+  font-weight: 600;
+}
+.price-shop-int {
+  font-size: 32rpx;
+}
+.commission {
+  color: #E2B259;
+  font-size: 20rpx;
+}
