@@ -15,10 +15,6 @@ Page({
     detailActive: false, // 导航栏'详情'激活状态
     detailTop: '', // 商品详情部分距离顶部的距离
     // 轮播图相关
-    bannerVideo: '',
-    banner: [],
-    bannerImgs: [],
-    bannerNum: '',
     curDot: 1,
     bannerHeight: '',
     // 规格相关
@@ -133,18 +129,10 @@ Page({
 
   // 图片预览
   previewImage(e) {
-    let { current, urls } = e.currentTarget.dataset
     wx.previewImage({
-      current: current,
-      urls: urls,
+      current: e.currentTarget.dataset.current,
+      urls: this.data.goodsInfo.imageList,
     })
-  },
-
-  // 播放视频
-  playVideo(e) {
-    // wx.navigateTo({
-    //   url: `/pages/subpages/common/video/index?url=${e.currentTarget.dataset.url}`,
-    // })
   },
 
   // 客服

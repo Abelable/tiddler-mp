@@ -18,12 +18,11 @@
   <!-- 轮播 -->
   <view class="banner-wrap">
     <swiper style="height:750rpx;" circular bindchange="bannerChange">
-      <swiper-item wx:if="{{bannerVideo.video_cover_url}}" class="banner-video" bindtap="playVideo" data-url="{{bannerVideo.video_url}}">
-        <image src="{{bannerVideo.video_cover_url}}" style="width:100%;height:100%;" mode='aspectFill'></image>
-        <image class="play-btn" src="https://img.ubo.vip/mp/play-btn.png" hover-class='hover-effect'></image>
+      <swiper-item class="banner-video" wx:if="{{goodsInfo.video}}">
+        <video style="width:100%; height:100%;" src="{{goodsInfo.video}}" />
       </swiper-item>
-      <swiper-item wx:for="{{banner}}" wx:key="img_id" data-current="{{item.thumb_url}}" data-urls="{{bannerImgs}}" bindtap="previewImage">
-        <image src="{{item.thumb_url}}" style="width:100%; height:100%;" mode='aspectFill'></image>
+      <swiper-item wx:for="{{goodsInfo.imageList}}" wx:key="index" bindtap="previewImage" data-current="{{item}}">
+        <image src="{{item}}" style="width:100%; height:100%;" mode='aspectFill' />
       </swiper-item>
     </swiper>
     <view class="banner-dots" wx:if="{{bannerNum}}">

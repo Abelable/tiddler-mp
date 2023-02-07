@@ -3,7 +3,7 @@ Component({
     price: {
       type: Number,
       observer(val) {
-        const arr =  `${val.toFixed(2)}`.split('.')
+        const arr = `${val.toFixed(2)}`.split('.')
         const integerPart = arr[0]
         const floatPart = arr[1] === '00' ? '' : arr[1]
         this.setData({ integerPart, floatPart })
