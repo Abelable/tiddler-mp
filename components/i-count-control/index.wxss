@@ -1,0 +1,23 @@
+.count-control {
+  display: flex;
+  align-items: center;
+  height: 64rpx;
+  border-radius: 32rpx;
+  border: 2rpx solid rgb(242,242,242)
+}
+.reduce-btn, .add-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 68rpx;
+  height: 64rpx;
+}
+.count-view {
+  max-width: 200rpx;
+  height: 64rpx;
+  text-align: center;
+  color: #333;
+  font-size: 30rpx;
+  font-weight: 500;
+  background-color: #F2F2F2;
+}

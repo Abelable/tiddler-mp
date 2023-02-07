@@ -1,0 +1,88 @@
+function transform(timeStamp) {
+  return {
+    year: format(getDate(timeStamp * 1000).getFullYear()),
+    month: format(getDate(timeStamp * 1000).getMonth() + 1),
+    date: format(getDate(timeStamp * 1000).getDate()),
+    day: format(getDate(timeStamp * 1000).getDay()),
+    hours: format(getDate(timeStamp * 1000).getHours()),
+    minutes: format(getDate(timeStamp * 1000).getMinutes()),
+    seconds: format(getDate(timeStamp * 1000).getSeconds())
+  };
+}
+
+function format(time) {
+  time = time.toString();
+  return time[1] ? time : '0' + time;
+}
+
+function countDown(timeStamp, noDays) {
+  var days = format(Math.floor(timeStamp / (24 * 60 * 60))),
+      hours = noDays ? format(Math.floor(timeStamp / (60 * 60))) : format(Math.floor(timeStamp % (24 * 60 * 60) / (60 * 60))),
+      minutes = format(Math.floor(timeStamp % (60 * 60) / 60)),
+      seconds = format(Math.floor(timeStamp % 60))
+  return {
+    days: days < 0 ? '00' : days,
+    hours: hours < 0 ? '00' : hours,
+    minutes: minutes < 0 ? '00' : minutes,
+    seconds: seconds < 0 ? '00' : seconds
+  };
+}
+
+function getDateDiff(dateTimeStamp) {
+  var result;
+  var minute = 1000 * 60;
+  var hour = minute * 60;
+  var day = hour * 24;
+  var halfamonth = day * 15;
+  var month = day * 30;
+  var now = getDate().getTime();
+  var diffValue = now - dateTimeStamp * 1000;
+  if (diffValue < 0) {
+    return;
+  }
+  var monthC = diffValue / month;
+  var weekC = diffValue / (7 * day);
+  var dayC = diffValue / day;
+  var hourC = diffValue / hour;
+  var minC = diffValue / minute;
+  if (monthC >= 1) {
+    if (monthC <= 12)
+      result = "" + parseInt(monthC) + "月前";
+    else {
+      result = "" + parseInt(monthC / 12) + "年前";
+    }
+  }
+  else if (weekC >= 1) {
+    result = "" + parseInt(weekC) + "周前";
+  }
+  else if (dayC >= 1) {
+    if (dayC < 2) {
+      result = "昨天";
+    } else {
+      result = "" + parseInt(dayC) + "天前";
+    }
+  }
+  else if (hourC >= 1) {
+    result = "" + parseInt(hourC) + "小时前";
+  }
+  else if (minC >= 1) {
+    result = "" + parseInt(minC) + "分钟前";
+  } else {
+    result = "刚刚";
+  }
+  return result;
+}
+
+function getTimeDiff(dateTimeStamp) {
+  var now = getDate().getTime();
+  var diffValue = now - dateTimeStamp * 1000;
+  return diffValue;
+}
+
+module.exports = {
+  transform: transform,
+  countDown: countDown,
+  format: format,
+  getDateDiff: getDateDiff,
+  getTimeDiff: getTimeDiff
+}

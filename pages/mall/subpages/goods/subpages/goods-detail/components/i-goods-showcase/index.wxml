@@ -1,16 +1,17 @@
-<navigator class="goods-list" wx:for="{{data}}" wx:key="index" url="/pages/subpages/mall/goods-detail/index?id={{item.goods_id}}" hover-class="none">
+<navigator 
+  class="goods-list" 
+  wx:for="{{data}}" 
+  wx:key="index" 
+  url="/pages/mall/subpages/goods/subpages/goods-detail/index?id={{item.id}}" 
+  hover-class="none"
+>
   <view class="goods-list-inner">
-    <image class="goods-pic" src="{{item.original_img + '?x-oss-process=image/resize,w_100'}}" lazy-load>
-      <view class="active-tip">{{item.active_info}}</view>
-    </image>
-    <view class="goods-title">{{item.goods_name}}</view>
-    <view class="goods-price-wrap">
-      <view class="goods-price-shop">
-        <text>￥</text>
-        <text class="price-shop-int">{{item.shop_price.int}}</text>
-        <text wx:if="{{item.shop_price.float != 0}}">.{{item.shop_price.float}}</text>
+    <image class="goods-pic" src="{{item.image}}" lazy-load />
+    <view class="content">
+      <view class="goods-title">{{item.name}}</view>
+      <view class="goods-price-wrap">
+        <price-unit price="{{item.price}}" />
       </view>
-      <view class="commission" wx:if="{{item.split_money != 0}}">赚¥{{item.split_money}}</view>
     </view>
   </view>
 </navigator>

@@ -140,16 +140,27 @@ image {
   background: #fff;
   overflow: hidden;
 }
+
 .nomal-bar {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   padding: 24rpx 24rpx 0;
+  font-size: 28rpx;
+}
+.nomal-bar-price {
+  display: flex;
+  align-items: baseline;
+}
+.nomal-bar-market-price {
+  margin-left: 16rpx;
+  color: #999;
+  text-decoration: line-through;
 }
 .nomal-bar-sale-amount {
-  font-size: 28rpx;
   color: #999;
 }
+
 .bonus-bar {
   display: flex;
   align-items: center;
@@ -421,8 +432,8 @@ image {
 .flagship-pic-wrap {
   position: relative;
   margin-right: 16rpx;
-  width: 88rpx;
-  height: 88rpx;
+  width: 68rpx;
+  height: 68rpx;
 }
 .flagship-pic {
   width: 100%;
@@ -447,7 +458,6 @@ image {
   margin: 5rpx;
   color: #999;
   font-size: 28rpx;
-  font-weight: 500;
 }
 .goods-list-wrap {
   margin-top: 24rpx;

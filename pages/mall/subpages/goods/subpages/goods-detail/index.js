@@ -91,18 +91,13 @@ Page({
     })
 
     // 控制导航栏tab的状态切换
-    if (materialTop && detailTop) {
-      this.setData({
-        materialActive: e.scrollTop >= materialTop - navBarHeight && e.scrollTop < detailTop - navBarHeight,
-        detailActive: e.scrollTop >= detailTop - navBarHeight
-      })
-    } else if (!materialTop && detailTop) {
+    if (detailTop) {
       this.setData({
         detailActive: e.scrollTop >= detailTop - navBarHeight
       })
-    } else if (materialTop && !detailTop) {
+    } else if (!detailTop && detailTop) {
       this.setData({
-        materialActive: e.scrollTop >= materialTop - navBarHeight
+        detailActive: e.scrollTop >= detailTop - navBarHeight
       })
     }
   },

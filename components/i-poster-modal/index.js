@@ -1,6 +1,6 @@
 import { storeBindingsBehavior } from 'mobx-miniprogram-bindings'
 import { store } from '../../store/index'
-import BaseService from '../../service/baseService'
+import BaseService from '../../services/baseService'
 let baseService = new BaseService()
 
 Component({

@@ -14,7 +14,7 @@ class GoodsService extends BaseService {
     return list
   }
 
-  async getGoodsDetail(id) {
+  async getGoodsInfo(id) {
     return await this.get({
       url: `${this.baseUrl}/goods/detail`,
       data: { id },

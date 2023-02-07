@@ -1,5 +1,5 @@
 import checkLogin from '../../utils/checkLogin'
-import BaseService from '../../service/baseService'
+import BaseService from '../../services/baseService'
 let baseService = new BaseService()
 
 Component({

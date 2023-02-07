@@ -37,7 +37,7 @@
         <price-unit price="{{goodsInfo.price}}" fontSize="28rpx" integerPartFontSize="48rpx" />
         <view class="nomal-bar-market-price">原价￥{{goodsInfo.marketPrice}}</view>
       </view>
-      <view class="nomal-bar-sale-amount">{{goodsInfo.salesVolume}}件已买</view>
+      <view class="nomal-bar-sale-amount">已售{{goodsInfo.salesVolume}}</view>
     </view>
     <view class="goods-name-wrap">
       <view class="goods-name">
@@ -65,7 +65,7 @@
           <image class="firm-icon" wx:if="{{goodsInfo.shopInfo.type === 2}}" src="https://img.ubo.vip/mp/selection/goods-detail/firm-icon.png" />
         </view>
         <view>{{goodsInfo.shopInfo.name}}</view>
-        <image style="width: 48rpx; height: 48rpx;" src="./images/shop-icon.png"/>
+        <image style="width: 48rpx; height: 48rpx;" wx:if="{{goodsInfo.shopInfo.type === 2}}" src="./images/shop-icon.png"/>
       </view>
       <view class="goFlagship" ontap="goShop">
         <view class="goFlagship-tip">进入店铺</view>
@@ -94,13 +94,13 @@
   </view>
 
   <!-- 商品推荐 -->
-  <view class="recommend-goods-wrap" wx:if="{{recommendGoods.length}}">
+  <view class="recommend-goods-wrap" wx:if="{{goodsInfo.recommendGoodsList.length}}">
     <template is="i-split-line" data="{{desc: '为您推荐'}}"/>
     <fall-flow list="{{goodsInfo.recommendGoodsList}}" generic:item="goods-item" />
   </view>
 
   <!-- nomore -->
-  <view class="nomore-tip">到底啦~</view>
+  <view class="nomore-tip">～没有更多了～</view>
 </view>
 
 <!-- 底部工具栏 -->
