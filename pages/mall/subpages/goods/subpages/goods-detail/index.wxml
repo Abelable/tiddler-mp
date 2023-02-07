@@ -38,18 +38,16 @@
 
   <!-- 商品基本信息 -->
   <view class="goods-info-wrap">
-    <view class="nomal-bar">
-      <view class="nomal-bar-price">
+    <view class="row between">
+      <view class="row baseline">
         <price-unit price="{{goodsInfo.price}}" fontSize="28rpx" integerPartFontSize="48rpx" />
-        <view class="nomal-bar-market-price">￥{{goodsInfo.marketPrice}}</view>
+        <view class="market-price">￥{{goodsInfo.marketPrice}}</view>
       </view>
-      <view class="nomal-bar-sale-amount">已售{{goodsInfo.salesVolume}}</view>
+      <view class="sale-volume">已售{{goodsInfo.salesVolume}}</view>
     </view>
-    <view class="goods-name-wrap">
-      <view class="goods-name">
-        <text class="goods-tag" wx:if="{{!goodsInfo.shopInfo}}">自营</text>
-        <text>{{goodsInfo.name}}</text>
-      </view>
+    <view class="goods-name omit">
+      <text class="goods-tag" wx:if="{{!goodsInfo.shopInfo}}">自营</text>
+      <text>{{goodsInfo.name}}</text>
     </view>
   </view>
 

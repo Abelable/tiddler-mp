@@ -150,42 +150,23 @@
   background: #fff;
   overflow: hidden;
 }
-
-.nomal-bar {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  font-size: 28rpx;
-}
-.nomal-bar-price {
-  display: flex;
-  align-items: baseline;
-}
-.nomal-bar-market-price {
+.market-price {
   margin-left: 16rpx;
   color: #bbb;
+  font-size: 28rpx;
   text-decoration: line-through;
 }
-.nomal-bar-sale-amount {
+.sale-volume {
   color: #999;
+  font-size: 28rpx;
 }
 
-.goods-name-wrap {
-  display: flex;
-  margin-top: 10rpx;
-}
 .goods-name {
   margin-top: 8rpx;
-  flex: 1;
-  line-height: 40rpx;
+  color: #333;
   font-size: 30rpx;
-  color: #333333;
+  line-height: 40rpx;
   font-weight: 600;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
 }
 .goods-tag {
   vertical-align: top;
