@@ -4,6 +4,7 @@
   "usingComponents": {
     "price-unit": "/components/price-unit/index",
     "shop-showcase": "./components/shop-showcase/index",
+    "split-line": "/components/split-line/index",
     "fall-flow": "/components/fall-flow/index",
     "goods-item": "/components/goods-item/index",
     "i-mask": "/components/i-mask/index",

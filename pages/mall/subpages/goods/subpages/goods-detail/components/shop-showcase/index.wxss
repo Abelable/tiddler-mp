@@ -28,7 +28,7 @@
   height: 30rpx;
 }
 .name {
-  margin: 0 12rpx;
+  margin: 0 18rpx;
   flex: 1;
   color: #333;
   font-size: 28rpx;

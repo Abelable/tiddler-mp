@@ -1,8 +1,6 @@
 <wxs module="STRING" src="/utils/filters/string.wxs" />
 <wxs module="TIME" src="/utils/filters/time.wxs" />
 
-<import src="/templates/i-split-line/index.wxml"/>
-
 <!-- 顶部导航 -->
 <view class="nav-bar {{showNavBar ? 'show' : ''}}" style="padding-top: {{statusBarHeight}}px">
   <view class="back-icon {{showNavBar ? 'show' : ''}}" bindtap="navigateBack">
@@ -59,7 +57,7 @@
   <view class="list-spec">
     <view>规格</view>
     <view class="choose-btn" data-action-type="0" bindtap='showSpecModal'>
-      <view class="choose-btn-tip">{{specTips ? '已选：' + STRING.slice(specTips, 20) : '请选择'}}</view>
+      <view>{{specTips ? '已选：' + STRING.slice(specTips, 20) : '请选择'}}</view>
       <image style="width: 16rpx; height: 16rpx;" src="https://img.ubo.vip/mp/selection/goods-detail/to-icon.png" />
     </view>
   </view>
@@ -68,8 +66,7 @@
   <shop-showcase wx:if="{{goodsInfo.shopInfo}}" shopInfo="{{goodsInfo.shopInfo}}" />
 
   <!-- 商品详情 -->
-  <view class="goods-detail-line" />
-  <template is="i-split-line" wx:if="{{goodsInfo.detailImageList.length}}" data="{{desc: '宝贝详情'}}"/>
+  <split-line class="goods-detail-line" wx:if="{{goodsInfo.detailImageList.length}}" desc="宝贝详情" />
   <view class="goods-detail" wx:if="{{goodsInfo.detailImageList.length}}">
     <image 
       style="width: 100%"
@@ -86,7 +83,7 @@
 
   <!-- 商品推荐 -->
   <view class="recommend-goods-wrap" wx:if="{{goodsInfo.recommendGoodsList.length}}">
-    <template is="i-split-line" data="{{desc: '为您推荐'}}"/>
+    <split-line desc="为您推荐" />
     <fall-flow list="{{goodsInfo.recommendGoodsList}}" generic:item="goods-item" />
   </view>
 
