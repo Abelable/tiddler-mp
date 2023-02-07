@@ -42,7 +42,7 @@
   position: relative;
   margin-top: 260rpx;
   border-radius: 30rpx 30rpx 0 0;
-  background: #f8f8f8;
+  background: #f5f6f8;
 }
 .avatar-wrap {
   position: absolute;
@@ -56,8 +56,8 @@
   width: 180rpx;
   height: 180rpx;
   border-radius: 50%;
-  border: 10rpx solid #f8f8f8;
-  background: #f8f8f8;
+  border: 10rpx solid #f5f6f8;
+  background: #f5f6f8;
 }
 .data-wrap {
   display: flex;

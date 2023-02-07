@@ -200,6 +200,10 @@ Page({
     })
   }, 
 
+  navigateBack() {
+    wx.navigateBack()
+  },
+
   onUnload() {
     this.storeBindings.destroyStoreBindings()
   },

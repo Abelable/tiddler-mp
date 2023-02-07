@@ -3,7 +3,7 @@
   align-items: center;
   padding: 20rpx 0;
   font-size: 0;
-  border-bottom: 1px solid #f8f8f8;
+  border-bottom: 1px solid #f5f6f8;
 }
 .cover {
   width: 220rpx;

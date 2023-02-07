@@ -5,7 +5,9 @@
 
 <!-- 顶部导航 -->
 <view class="nav-bar {{showNavBar ? 'show' : ''}}" style="padding-top: {{statusBarHeight}}px">
-  <back-icon />
+  <view class="back-icon {{showNavBar ? 'show' : ''}}" bindtap="navigateBack">
+    <image style="width: 20px; height: 20px;" src="https://img.ubo.vip/mp/i-back-icon/back-icon.png" />
+  </view>
   <view class="menu-wrap {{showNavBar ? 'show' : ''}}">
     <view class="menu-tips {{!detailActive ? 'show' : ''}}" ontap="scrollToTop">宝贝</view>
     <view class="menu-split">|</view>
@@ -35,7 +37,7 @@
     <view class="nomal-bar">
       <view class="nomal-bar-price">
         <price-unit price="{{goodsInfo.price}}" fontSize="28rpx" integerPartFontSize="48rpx" />
-        <view class="nomal-bar-market-price">原价￥{{goodsInfo.marketPrice}}</view>
+        <view class="nomal-bar-market-price">￥{{goodsInfo.marketPrice}}</view>
       </view>
       <view class="nomal-bar-sale-amount">已售{{goodsInfo.salesVolume}}</view>
     </view>
@@ -106,18 +108,20 @@
 <!-- 底部工具栏 -->
 <view class="bottom-bar">
   <view class="bottom-bar-main">
-    <view class="bottom-bar-icon">
-      <image style="width: 64rpx; height: 64rpx;" src="./images/customer-icon.png"/>
-      <view>客服</view>
-    </view>
-    <navigator class="bottom-bar-icon" url="/pages/subpages/mall/cart/index" hover-class="none">
-      <image style="width: 64rpx; height: 64rpx;" src="./images/cart-icon.png"/>
-      <view>购物车</view>
-      <view class="cart-goods-count" wx:if="{{cartCount}}">{{cartCount}}</view>
-    </navigator>
-    <view class="bottom-bar-icon" ontap="showShareModal">
-      <image style="width: 64rpx; height: 64rpx" src="./images/share-icon.png"/>
-      <view>分享</view>
+    <view class="bottom-bar-icon-wrap">
+      <view class="bottom-bar-icon">
+        <image style="width: 50rpx; height: 50rpx;" src="./images/customer-icon.png"/>
+        <view>客服</view>
+      </view>
+      <navigator class="bottom-bar-icon" url="/pages/subpages/mall/cart/index" hover-class="none">
+        <image style="width: 50rpx; height: 50rpx;" src="./images/cart-icon.png"/>
+        <view>购物车</view>
+        <view class="cart-goods-count" wx:if="{{cartCount}}">{{cartCount}}</view>
+      </navigator>
+      <view class="bottom-bar-icon" ontap="showShareModal">
+        <image style="width: 50rpx; height: 50rpx" src="./images/share-icon.png"/>
+        <view>分享</view>
+      </view>
     </view>
     <view class="buy-btn">
       <view class="add-shopcart-btn {{!goodsInfo.stock ? 'invalid' : ''}}" data-action-type="1" bindtap='showSpecModal'>加入购物车</view>

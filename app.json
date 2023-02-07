@@ -51,7 +51,7 @@
     "backgroundTextStyle":"dark",
     "navigationBarBackgroundColor": "#edeff0",
     "navigationBarTextStyle":"black",
-    "backgroundColor": "#f8f8f8"
+    "backgroundColor": "#f5f6f8"
   },
   "sitemapLocation": "sitemap.json"
 }

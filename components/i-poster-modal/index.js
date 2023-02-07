@@ -43,7 +43,7 @@ Component({
       let { cover, title, avatar, name, status, qrCode } = roomPosterInfo
       const ctx = wx.createCanvasContext("poster", this)
 
-      this.roundRect(ctx, 0, 0, 310, 480, 12, '', null, '#f8f8f8')
+      this.roundRect(ctx, 0, 0, 310, 480, 12, '', null, '#f5f6f8')
       this.roundRect(ctx, 0, 0, 310, 310, [8, 8, 0, 0], cover)
 
       let statusArr = [{ color: '#D07A00', desc: '预告' }, { color: '#00D011', desc: '直播中' }, { color: '#5562F9', desc: '回放' }]
@@ -82,7 +82,7 @@ Component({
       let { cover, title, avatar, name, qrCode } = videoPosterInfo
       const ctx = wx.createCanvasContext("poster", this)
 
-      this.roundRect(ctx, 0, 0, 310, 480, 12, '', null, '#f8f8f8')
+      this.roundRect(ctx, 0, 0, 310, 480, 12, '', null, '#f5f6f8')
       this.roundRect(ctx, 0, 0, 310, 310, [8, 8, 0, 0], cover)
 
       this.roundRect(ctx, 0, 310, 310, 118)
@@ -114,7 +114,7 @@ Component({
       let { goodsPic, shopPrice, goodsName, qrCode } = goodsPosterInfo
       const ctx = wx.createCanvasContext("poster", this)
 
-      this.roundRect(ctx, 0, 0, 310, 480, 12, '', null, '#f8f8f8')
+      this.roundRect(ctx, 0, 0, 310, 480, 12, '', null, '#f5f6f8')
       this.roundRect(ctx, 0, 0, 310, 310, [8, 8, 0, 0], goodsPic)
       
       this.roundRect(ctx, 0, 310, 310, 118)

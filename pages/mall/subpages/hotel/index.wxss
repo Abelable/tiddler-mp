@@ -51,7 +51,7 @@
 .search-filter {
   display: flex;
   padding: 0 20px;
-  border-top: 1px solid #f8f8f8;
+  border-top: 1px solid #f5f6f8;
 }
 .filter-item {
   display: flex;
@@ -102,7 +102,7 @@
   align-items: center;
   justify-content: space-between;
   height: 50px;
-  border-bottom: 1px solid #f8f8f8;
+  border-bottom: 1px solid #f5f6f8;
 }
 .option:last-child {
   border-bottom: none;
