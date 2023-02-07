@@ -1,3 +1,0 @@
-<view class="back-icon" catchtap="navigateBack">
-  <image style="width: 20px; height: 20px;" src="https://img.ubo.vip/mp/i-back-icon/back-icon.png" />
-</view>
