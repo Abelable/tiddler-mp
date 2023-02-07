@@ -2,7 +2,10 @@
   "navigationStyle": "custom",
   "usingComponents": {
     "back-icon": "./components/back-icon/index",
+    "price-unit": "/components/price-unit/index",
     "i-goods-showcase": "./components/i-goods-showcase/index",
+    "fall-flow": "/components/fall-flow/index",
+    "goods-item": "/components/goods-item/index",
     "i-mask": "/components/i-mask/index",
     "i-spec-modal": "/components/i-spec-modal/index",
     "i-share-modal": "/components/i-share-modal/index",

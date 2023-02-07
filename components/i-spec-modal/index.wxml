@@ -1,0 +1,40 @@
+<!-- 商品规格选择弹窗 -->
+<view class="spec-modal {{show ? 'show' : ''}}">
+  <view class="spec-selection">
+    <view class="close-btn-wrap" ontap="hideModal">
+      <image style="width: 46rpx; height: 46rpx;" src="https://img.ubo.vip/mp/close-icon.png" />
+    </view>
+    <view class="selectedGoods-info-wrap">
+      <image style="width: 200rpx; height: 200rpx;" mode="aspectFill" src="{{specPic || goodsPic}}" />
+      <view class="selectedGoods-info">
+        <view class="selectedGoods-name" wx:if="{{goodsName}}">{{goodsName}}</view>
+        <view class="selectedGoods-price">￥{{specPrice || basePrice}}</view>
+        <view class="selectedGoods-stock">库存{{specStock !== '' ? specStock : totalStock}}</view>
+        <view>请选择规格</view>
+      </view>
+    </view>
+    <scroll-view class="selection-mian" scroll-y>
+      <view class="spec-list" wx:for="{{mainInfo.specification}}" wx:key="index" wx:for-index="specListIndex">
+        <view class="dividing-line">
+          <view class="dividing-line-title">{{item.name}}</view>
+        </view>
+        <view class="spec-tips {{specIdArr[specListIndex] === tips.id ? 'selected' : ''}}" wx:for="{{item.values}}" wx:key="index" wx:for-item="tips" ontap="selectSpec" data-spec-list-index="{{specListIndex}}" data-spec-id="{{tips.id}}" data-spec-name="{{tips.label}}" data-spec-pic="{{tips.goods_attr_thumb}}" data-spec-price="{{tips.price}}">{{tips.label}}</view>
+      </view>
+      <view class="spec-list" wx:if="{{actionType === 0 || actionType === 1 || actionType === 2}}">
+        <view class="dividing-line">
+          <view class="dividing-line-title">数量</view>
+        </view>
+        <view class="count-control-wrap">
+          <view class="limit-tips"></view>
+          <i-count-control bind:add="add" bind:reduce="reduce" bind:editCount="editCount" count="{{count}}" />
+        </view>
+      </view>
+    </scroll-view>
+    <view wx:if="{{actionType === 0}}" class="btns-wrap" >
+      <view class="spec-btn addCart" ontap="addToShopcart">加入购物车</view>
+      <view class="spec-btn directBuy" ontap="buyNow">立即购买</view>
+    </view>
+    <view wx:if="{{actionType === 1 || actionType === 2 || actionType === 3}}" class="finish-btn {{actionType === 3 ? 'in-cart' : ''}}" ontap="finish">完成</view>
+    <view wx:if="{{actionType === 4}}" class="apply-btn" ontap="finish">报名支付</view>
+  </view>
+</view>

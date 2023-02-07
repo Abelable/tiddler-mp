@@ -1,7 +1,0 @@
-.price-unit {
-  font-size: 24rpx;
-}
-.integer-part {
-  font-size: 32rpx;
-  font-weight: 600;
-}

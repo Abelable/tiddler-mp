@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "i-count-control": "/components/i-count-control/index"
+  }
+}

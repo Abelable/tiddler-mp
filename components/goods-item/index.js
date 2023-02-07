@@ -7,9 +7,17 @@ Component({
     item: Object
   },
 
-  data: {
-  },
-
   methods: {
+    navToGoodsDetail() {
+      wx.navigateTo({
+        url: `/pages/mall/subpages/goods/subpages/goods-detail/index?id=${this.properties.item.id}`
+      })
+    },
+
+    navToShop() {
+      wx.navigateTo({
+        url: `/pages/mall/subpages/goods/subpages/shop/index?id=${this.properties.item.shopInfo.id}`
+      })
+    },
   }
 })

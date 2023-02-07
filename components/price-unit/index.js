@@ -13,6 +13,14 @@ Component({
       type: String,
       value: '#EE0D23'
     },
+    fontSize: {
+      type: String,
+      value: '24rpx'
+    },
+    integerPartFontSize: {
+      type: String,
+      value: '32rpx'
+    }, 
     symbol: {
       type: String,
       value: '¥'

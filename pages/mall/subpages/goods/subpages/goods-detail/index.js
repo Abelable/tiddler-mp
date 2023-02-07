@@ -129,10 +129,8 @@ Page({
 
   // 图片预览
   previewImage(e) {
-    wx.previewImage({
-      current: e.currentTarget.dataset.current,
-      urls: this.data.goodsInfo.imageList,
-    })
+    const { current, urls } =  e.currentTarget.dataset
+    wx.previewImage({ current, urls })
   },
 
   // 客服

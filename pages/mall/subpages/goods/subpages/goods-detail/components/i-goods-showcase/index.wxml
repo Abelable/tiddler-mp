@@ -1,6 +1,6 @@
 <navigator class="goods-list" wx:for="{{data}}" wx:key="index" url="/pages/subpages/mall/goods-detail/index?id={{item.goods_id}}" hover-class="none">
   <view class="goods-list-inner">
-    <image class="goods-pic" src="{{item.original_img + '?x-oss-process=image/resize,w_100'}}" lazy-load="{{true}}">
+    <image class="goods-pic" src="{{item.original_img + '?x-oss-process=image/resize,w_100'}}" lazy-load>
       <view class="active-tip">{{item.active_info}}</view>
     </image>
     <view class="goods-title">{{item.goods_name}}</view>
