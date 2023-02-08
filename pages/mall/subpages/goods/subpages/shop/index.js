@@ -23,8 +23,8 @@ Page({
     const decodedQ = q ? decodeURIComponent(q) : ''
     this.shopId = id || decodedScene.split('-')[0] || getQueryString(decodedQ, 'id')
 
-    // this.setShopInfo()
-    // this.setGoodsList(true)
+    this.setShopInfo()
+    this.setGoodsList(true)
   },
 
   async setShopInfo() {

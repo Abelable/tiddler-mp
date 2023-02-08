@@ -78,7 +78,7 @@
 }
 
 .goods-list-wrap {
-  padding: 20rpx;
+  padding: 24rpx;
 }
 
 .no-more-tips {

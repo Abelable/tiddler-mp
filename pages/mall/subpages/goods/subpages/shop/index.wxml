@@ -13,11 +13,17 @@
     <image class="enterprise-label" wx:if="{{shopInfo.type === 2}}" src="https://img.ubo.vip/mp/selection/goods-detail/firm-icon.png" />
   </view>
   <view class="info">
-    <view class="shop-name">{{shopInfo.name}}</view>
-    <view class="authentication">{{shopInfo.type === 2 ? '企业店铺' : '个人店铺'}}</view>
+    <view class="shop-name omit single-line">{{shopInfo.name}}</view>
+    <view class="authentication row">{{shopInfo.type === 2 ? '企业店铺' : '个人店铺'}}</view>
   </view>
   <view class="share-btn" bindtap="showShareModal">
     <image class="share-icon" src="./images/share-icon.png"/>
     <view>分享</view>
   </view>
+</view>
+
+<view class="goods-list-wrap">
+  <fall-flow list="{{goodsList}}" generic:item="goods-item" />
+  <empty-illus wx:if="{{finished && !goodsList.length}}" desc="暂无列表" />
+  <view class="no-more-tips" wx:if="{{finished && goodsList.length}}">～没有更多了～</view>
 </view>

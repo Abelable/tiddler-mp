@@ -21,6 +21,22 @@ class GoodsService extends BaseService {
       loadingTitle: '加载中...'
     })
   }
+
+  async getShopInfo(id) {
+    return await this.get({
+      url: `${this.baseUrl}/shop/info`,
+      data: { id },
+    })
+  }
+
+  async getShopGoodsList(shopId, page, limit = 10) {
+    const { list = [] } = await this.get({ 
+      url: `${this.baseUrl}/shop/goods_list`, 
+      data: { shopId, page, limit },
+      loadingTitle: '加载中...'
+    }) || {}
+    return list
+  }
 }
 
 export default GoodsService
