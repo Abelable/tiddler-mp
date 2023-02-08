@@ -1,3 +1,23 @@
-<view class="nav-bar">
-  
+<nav-bar wx:if="{{navBarVisible}}" title="{{shopInfo.name}}" />
+
+<view class="cover-wrap">
+  <view class="back-icon-wrap row" style="top: {{statusBarHeight}}px;">
+    <back-icon />
+  </view>
+  <image class="cover" mode="widthFix" src="{{shopInfo.cover || '/images/bg.jpg'}}" />
+</view>
+
+<view class="shop-info-wrap row">
+  <view class="avatar-wrap">
+    <image class="shop-avatar" src="{{shopInfo.avatar}}" />
+    <image class="enterprise-label" wx:if="{{shopInfo.type === 2}}" src="https://img.ubo.vip/mp/selection/goods-detail/firm-icon.png" />
+  </view>
+  <view class="info">
+    <view class="shop-name">{{shopInfo.name}}</view>
+    <view class="authentication">{{shopInfo.type === 2 ? '企业店铺' : '个人店铺'}}</view>
+  </view>
+  <view class="share-btn" bindtap="showShareModal">
+    <image class="share-icon" src="./images/share-icon.png"/>
+    <view>分享</view>
+  </view>
 </view>

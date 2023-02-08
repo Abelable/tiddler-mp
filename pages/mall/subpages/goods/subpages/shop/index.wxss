@@ -1,0 +1,14 @@
+.cover-wrap {
+  position: relative;
+  height: 180rpx;
+  font-size: 0;
+  overflow: hidden;
+}
+.cover {
+  width: 100%;
+}
+.back-icon-wrap {
+  position: absolute;
+  left: 8px;
+  height: 44px;
+}

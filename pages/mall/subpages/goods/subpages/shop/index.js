@@ -7,6 +7,7 @@ const { statusBarHeight } = getApp().globalData
 Page({
   data: {
     statusBarHeight,
+    navBarVisible: false,
     shopInfo: null,
     goodsList: [],
     finished: false
@@ -22,12 +23,12 @@ Page({
     const decodedQ = q ? decodeURIComponent(q) : ''
     this.shopId = id || decodedScene.split('-')[0] || getQueryString(decodedQ, 'id')
 
-    this.setGoodsInfo()
-    this.setGoodsList(true)
+    // this.setShopInfo()
+    // this.setGoodsList(true)
   },
 
-  async setGoodsInfo() {
-    const shopInfo = await goodsService.getGoodsInfo(this.shopId)
+  async setShopInfo() {
+    const shopInfo = await goodsService.getShopInfo(this.shopId)
     this.setData({ shopInfo })
   },
 
@@ -53,6 +54,17 @@ Page({
   onPullDownRefresh() {
     this.setGoodsList(true)
     wx.stopPullDownRefresh() 
+  },
+
+  onPageScroll(e) {
+    const { navBarVisible } = this.data
+
+    // 控制导航栏显隐
+    if (e.scrollTop >= 200) {
+      if (!navBarVisible) this.setData({ navBarVisible: true })
+    } else {
+      if (navBarVisible) this.setData({ navBarVisible: false })
+    }
   },
 
   // 分享

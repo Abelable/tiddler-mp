@@ -1,0 +1,7 @@
+<view class="nav-bar row" style="padding-top: {{statusBarHeight}}px;">
+  <view style="flex: 1;">
+    <back-icon />
+  </view>
+  <view class="title">{{title}}</view>
+  <view style="flex: 1;"></view>
+</view>

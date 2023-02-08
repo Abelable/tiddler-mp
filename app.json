@@ -15,6 +15,7 @@
     "pages/mall/subpages/foot/index",
     "pages/mall/subpages/goods/index",
     "pages/mall/subpages/goods/subpages/goods-detail/index",
+    "pages/mall/subpages/goods/subpages/shop/index",
     "pages/mine/index",
     "pages/common/register/index",
     "pages/common/user-center/index",
