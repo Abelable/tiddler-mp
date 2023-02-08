@@ -1,5 +1,5 @@
 .goods-item {
-  margin-bottom: 10rpx;
+  margin-bottom: 12rpx;
   width: 345rpx;
   font-size: 0;
   background: #fff;

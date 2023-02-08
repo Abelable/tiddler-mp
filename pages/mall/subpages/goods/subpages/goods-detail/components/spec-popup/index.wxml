@@ -1,10 +1,14 @@
 <van-popup show="{{show}}" round position="bottom" bind:close="hide">
   <view class="spec-selection">
-    <view class="selectedGoods-info-wrap">
-      <image style="width: 200rpx; height: 200rpx;" mode="aspectFill" src="{{selectedSkuIndex !== -1 ? (goodsInfo.skuList[selectedSkuIndex].image || goodsInfo.defaultSpecImage) : goodsInfo.defaultSpecImage}}" />
-      <view class="selectedGoods-info">
+    <view class="spec-info-wrap">
+      <image
+        class="spec-image" 
+        mode="aspectFill" 
+        src="{{selectedSkuIndex !== -1 ? (goodsInfo.skuList[selectedSkuIndex].image || goodsInfo.defaultSpecImage) : goodsInfo.defaultSpecImage}}"
+      />
+      <view class="spec-info">
         <price-unit price="{{selectedSkuIndex !== -1 ? goodsInfo.skuList[selectedSkuIndex].price : (goodsInfo.price || 0)}}" />
-        <view class="selectedGoods-stock">库存{{selectedSkuIndex !== -1 ? goodsInfo.skuList[selectedSkuIndex].stock : goodsInfo.stock}}</view>
+        <view class="spec-stock">库存{{selectedSkuIndex !== -1 ? goodsInfo.skuList[selectedSkuIndex].stock : goodsInfo.stock}}</view>
         <view class="omit single-line">{{ selecteSpecDesc ? '已选：' + selecteSpecDesc : '请选择规格'}}</view>
       </view>
     </view>
