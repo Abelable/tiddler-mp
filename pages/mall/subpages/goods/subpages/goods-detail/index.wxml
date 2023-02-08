@@ -1,3 +1,5 @@
+<page-meta page-style="{{ specPopupVisible ? 'overflow: hidden;' : '' }}" />
+
 <wxs module="STRING" src="/utils/filters/string.wxs" />
 <wxs module="TIME" src="/utils/filters/time.wxs" />
 
@@ -13,7 +15,7 @@
   </view>
 </view>
 
-<view class="wrap {{showMask ? 'fixed' : ''}}">
+<view class="wrap">
   <!-- 轮播 -->
   <view class="banner-wrap">
     <swiper style="height:750rpx;" circular bindchange="bannerChange">
@@ -52,11 +54,13 @@
   </view>
 
   <!-- 规格选择 -->
-  <view class="list-spec">
-    <view>规格</view>
-    <view class="choose-btn" data-action-type="0" bindtap='showSpecModal'>
-      <view>{{specTips ? '已选：' + STRING.slice(specTips, 20) : '请选择'}}</view>
-      <image style="width: 16rpx; height: 16rpx;" src="https://img.ubo.vip/mp/selection/goods-detail/to-icon.png" />
+  <view class="list-spec row">
+    <view class="list-spec-title">规格</view>
+    <view class="choose-btn" bindtap="showSpecPopup" data-mode="0">
+      <view class="choose-btn-desc omit single-line">
+        {{selectedSpecDesc || '请选择'}}
+      </view>
+      <image class="choose-btn-icon" src="https://img.ubo.vip/mp/selection/goods-detail/to-icon.png" />
     </view>
   </view>
 
@@ -107,8 +111,8 @@
     </navigator>
   </view>
   <view class="btns">
-    <view class="add-cart-btn {{!goodsInfo.stock ? 'invalid' : ''}}" data-action-type="1" bindtap='showSpecModal'>加入购物车</view>
-    <view class="buy-btn {{!goodsInfo.stock ? 'invalid' : ''}}" data-action-type="2" bindtap='showSpecModal'>立即购买</view>
+    <view class="add-cart-btn {{!goodsInfo.stock ? 'invalid' : ''}}" bindtap="showSpecPopup" data-mode="1">加入购物车</view>
+    <view class="buy-btn {{!goodsInfo.stock ? 'invalid' : ''}}" bindtap="showSpecPopup" data-mode="2">立即购买</view>
   </view>
 </view>
 
@@ -117,7 +121,7 @@
 
 <!-- 商品规格选择弹窗 -->
 <spec-popup
-  show="{{showSpecModal}}"
+  show="{{specPopupVisible}}"
   actionType="{{actionType}}"
   goodsId="{{goodsId}}"
   goodsPic="{{goodsPic}}"
@@ -125,7 +129,7 @@
   totalStock="{{stock}}"
   mainInfo="{{specData}}"
   bind:setSpecTips="setSpecTips"
-  bind:hideSpecModal="hideSpecModal"
+  bind:hideSpecModal="hideSpecPopup"
 />
 <!-- 分享 -->
 <i-share-modal show="{{shareModalVisible}}" bind:showPosterModal="showPosterModal" />

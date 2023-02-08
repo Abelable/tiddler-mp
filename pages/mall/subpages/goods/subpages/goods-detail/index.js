@@ -15,11 +15,10 @@ Page({
     detailActive: false, // 导航栏'详情'激活状态
     // 轮播图相关
     curDot: 1,
-    bannerHeight: '',
     // 规格相关
-    specData: '', // 商品规格数据
+    selectedSpecDesc: '',
     specTips: '',
-    showSpecModal: false,
+    specPopupVisible: false,
     actionType: '', // 点击'完成'按钮的行为状态：0-关闭弹窗 1-加购物车 2-直接购买
     shareModalVisible: false,
     posterInfo: null, // 分享海报
@@ -28,7 +27,7 @@ Page({
     goodsInfo: {}
   },
 
-  onLoad({ id, scene, q }) {
+  async onLoad({ id, scene, q }) {
     this.storeBindings = createStoreBindings(this, {
       store,
       fields: ['cartCount'],
@@ -43,11 +42,8 @@ Page({
     const decodedQ = q ? decodeURIComponent(q) : ''
     this.goodsId = id || decodedScene.split('-')[0] || getQueryString(decodedQ, 'id')
 
+    await this.setGoodsInfo()
     this.getBannerHeight()
-
-    setTimeout(() => { 
-      this.setGoodsInfo() 
-    }, 500)
   },
 
   async setGoodsInfo() {
@@ -61,9 +57,7 @@ Page({
     const query = wx.createSelectorQuery()
     query.select('.banner-wrap').boundingClientRect()
     query.exec(res => {
-      this.setData({
-        bannerHeight: res[0].height
-      })
+      this.bannerHeight = res[0].height
     })
   },
 
@@ -80,10 +74,10 @@ Page({
 
   // 监听滚动
   onPageScroll(e) {
-    const { bannerHeight, showNavBar, detailActive } = this.data
+    const { showNavBar, detailActive } = this.data
 
     // 控制导航栏显隐
-    if (e.scrollTop >= bannerHeight) {
+    if (e.scrollTop >= this.bannerHeight) {
       if (!showNavBar) this.setData({ showNavBar: true })
     } else {
       if (showNavBar) this.setData({ showNavBar: false })
@@ -132,39 +126,28 @@ Page({
     }
   },
 
-  // 页面跳转
-  goShop() {
-    wx.navigateTo({ url: `./subpages/shop/index?id=${this.data.supplierInfo.supplier_id}` })
-  },
-
   // 通过遮罩关闭弹窗
   hideModal() {
-    this.data.showSpecModal && this.setData({ showSpecModal: false })
     this.data.shareModalVisible && this.setData({ shareModalVisible: false })
     this.data.posterModalVisible && this.setData({ posterModalVisible: false })
     this.data.showMask && this.setData({ showMask: false })
   },
 
   // 显示规格弹窗
-  showSpecModal(e) {
+  showSpecPopup(e) {
     if (this.data.goodsInfo.stock) {
-      // this.setData({
-      //   showSpecModal: true,
-      //   showMask: true,
-      //   actionType: e.currentTarget.dataset.actionType
-      // })
+      const { actionType } = e.currentTarget.dataset
       this.setData({
-        showSpecModal: true,
-        actionType: e.currentTarget.dataset.actionType
+        specPopupVisible: true,
+        actionType
       })
     }
   },
 
   // 关闭规格弹窗
-  hideSpecModal() {
+  hideSpecPopup() {
     this.setData({
-      showSpecModal: false,
-      showMask: false
+      specPopupVisible: false
     })
   },
 

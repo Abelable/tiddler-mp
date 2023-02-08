@@ -184,11 +184,8 @@ Component({
 
     // 购买前核对
     check() {
-      let { mainInfo, specIdArr, specStock, isOnSale, limitTips, limitBuyNum, limitStartBuyNum, count } = this.data
+      let { mainInfo, specIdArr } = this.data
       let showToastTitle = ''
-      if (isOnSale == 0) { // 判断商品是否下架
-        showToastTitle = '该商品已下架'
-      } 
       if (!showToastTitle && mainInfo.specification.length) { // 判断规格选择是否有遗漏
         let unselectedIndex = specIdArr.findIndex(item => item === undefined)
         if (unselectedIndex !== -1) {
@@ -197,12 +194,7 @@ Component({
           showToastTitle = `请选择${mainInfo.specification[specIdArr.length].name}`
         }
       }
-      if (!showToastTitle && specStock === 0) { // 判断是否有库存
-        showToastTitle = '该商品暂时没有存货'
-      } 
-      if (!showToastTitle && limitTips && (limitBuyNum && count > limitBuyNum) || (limitStartBuyNum && count < limitStartBuyNum)) { // 判断是否符合限购条件
-        showToastTitle = limitTips
-      } 
+      
       showToastTitle && wx.showToast({
         title: showToastTitle,
         icon: "none",

@@ -1,14 +1,11 @@
 <van-popup
   show="{{ show }}"
   round
+  closeable
   position="bottom"
-  custom-style="height: 20%"
   bind:close="onClose"
 >
   <view class="spec-selection">
-    <view class="close-btn-wrap" ontap="hideModal">
-      <image style="width: 46rpx; height: 46rpx;" src="https://img.ubo.vip/mp/close-icon.png" />
-    </view>
     <view class="selectedGoods-info-wrap">
       <image style="width: 200rpx; height: 200rpx;" mode="aspectFill" src="{{specPic || goodsPic}}" />
       <view class="selectedGoods-info">
