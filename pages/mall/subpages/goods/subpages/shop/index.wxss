@@ -62,8 +62,8 @@
   line-height: 1;
 }
 .share-icon {
-  width: 60rpx;
-  height: 60rpx;
+  width: 50rpx;
+  height: 50rpx;
 }
 
 .goods-list-wrap {
