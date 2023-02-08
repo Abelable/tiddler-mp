@@ -1,6 +1,6 @@
 .goods-item {
-  margin-bottom: 12rpx;
-  width: 345rpx;
+  margin-bottom: 10rpx;
+  width: 350rpx;
   font-size: 0;
   background: #fff;
   border-radius: 18rpx;

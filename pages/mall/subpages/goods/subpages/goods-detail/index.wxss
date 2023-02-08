@@ -200,7 +200,7 @@
 
 /* 商品推荐 */
 .recommend-goods-wrap {
-  padding: 0 24rpx;
+  padding: 0 20rpx;
 }
 
 /* nomore */
