@@ -19,12 +19,12 @@ Page({
     selectedSpecDesc: '',
     specTips: '',
     specPopupVisible: false,
-    actionType: '', // 点击'完成'按钮的行为状态：0-关闭弹窗 1-加购物车 2-直接购买
+    actionMode: 0,
     shareModalVisible: false,
     posterInfo: null, // 分享海报
     posterModalVisible: false, // 海报弹窗
     shareDesc: '',
-    goodsInfo: {}
+    goodsInfo: null
   },
 
   async onLoad({ id, scene, q }) {
@@ -136,18 +136,17 @@ Page({
   // 显示规格弹窗
   showSpecPopup(e) {
     if (this.data.goodsInfo.stock) {
-      const { actionType } = e.currentTarget.dataset
-      this.setData({
-        specPopupVisible: true,
-        actionType
-      })
+      this.setData({ specPopupVisible: true })
+      const { mode: actionMode } = e.currentTarget.dataset
+      if (actionMode) this.setData({ actionMode })
     }
   },
 
   // 关闭规格弹窗
-  hideSpecPopup() {
+  hideSpecPopup(e) {
     this.setData({
-      specPopupVisible: false
+      specPopupVisible: false,
+      selecteSpecDesc: e.detail
     })
   },
 

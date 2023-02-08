@@ -4,120 +4,65 @@ import BaseService from '../../../../../../../../services/baseService'
 const baseService = new BaseService()
 
 Component({
+  options: {
+    addGlobalClass: true
+  },
+  
   properties: {
-    show: {
-      type: Boolean,
-      value: false
-    },
-    goodsId: {
-      type: String,
-      observer: 'resetData'
-    },
-    actionType: {
+    show: Boolean,
+    mode: {
       type: Number,
       value: 0
     },
-    isOnSale: {
-      type: Number,
-      value: 1
+    goodsInfo: {
+      type: Object,
+      observer(info) {
+        if (info && info.specList.length) {
+          const specList = info.specList.map((item) => ({
+            ...item, 
+            options: item.options.map((_item, _index) => ({
+              name: _item,
+              selected: _index === 0
+            }))
+          }))
+          this.setData({ specList })
+        }
+      }
     },
-    limitTips: {
-      type: String,
-      value: ''
-    },
-    limitBuyNum: {
-      type: Number,
-      value: 0
-    },
-    limitStartBuyNum: {
-      type: Number,
-      value: 0
-    },
-    count: {
-      type: Number,
-      value: 1
-    },
-    recId: String,
-    goodsName: String,
-    goodsPic: String,
-    basePrice: String,
-    totalStock: String,
-    mainInfo: Object,
-    roomId: String,
-    groupId: String,
-    inviteCode: String,
-    freeSampleId: String
   },
 
   data: {
-    // 商品规格相关
-    specIdArr: [],
-    specPic: '',
-    specPrice: '',
-    specStock: '',
+    specList: [],
+    selecteSpecDesc: '',
+    selectedSkuIndex: -1,
     count: 1
+  },
+
+  observers: {
+    'specList': function (list) {
+      if (list.length) {
+        const selecteSpecDesc = list.map(item => item.options.find(_item => _item.selected).name).join()
+        const selectedSkuIndex = this.data.goodsInfo.skuList.findIndex(item => item.name === selecteSpecDesc)
+        this.setData({ selecteSpecDesc, selectedSkuIndex })
+      } 
+    }
   },
   
   methods: {
-    // 重置数据
-    resetData(newVal, oldVal) {
-      if (newVal !== oldVal) {
-        this.setData({
-          specIdArr: [],
-          specPic: '',
-          specPrice: '',
-          specStock: ''
-        })
-        this.specNameArr = []
-        this.unitSpecPriceArr = []
-        this.specPrice = 0
-      }
-    },
-
     // 选择规格
     selectSpec(e) {
-      let { specIdArr, basePrice, mainInfo, count, actionType } = this.data
-      let { specListIndex, specId, specName, specPic, specPrice: unitSpecPrice } = e.currentTarget.dataset
-
-      // 拼接已选规格
-      this.specNameArr[specListIndex] = specName
-      this.triggerEvent('setSpecTips', this.specNameArr.join(''))
-
-      // 计算价格
-      if (this.unitSpecPriceArr.length) {
-        if (this.unitSpecPriceArr[specListIndex]) {
-          this.specPrice = this.specPrice - this.unitSpecPriceArr[specListIndex] + Number(unitSpecPrice)
-        } else {
-          this.specPrice = this.specPrice + Number(unitSpecPrice)
-        }
-      } else {
-        this.specPrice = Number(basePrice) + Number(unitSpecPrice)
-      }
-      this.unitSpecPriceArr[specListIndex] = Number(unitSpecPrice)
-
-      specIdArr[specListIndex] = specId
-
-      // 取库存
-      if (actionType === 3) {
-        const selectedSpec = specIdArr.join('|')
-        const { product_number: specStock = '' } = mainInfo.attr_num.find(item => item.goods_attr === selectedSpec) || {}
-        specStock && count > specStock && this.setData({ count: specStock })
-        this.setData({ specStock })
-      } else {
-        const selectedSpec = this.specNameArr.join('')
-        const specStock = mainInfo.attr_num[selectedSpec] ? Number(mainInfo.attr_num[selectedSpec]) : ''
-        specStock && count > specStock && this.setData({ count: specStock })
-        this.setData({ specStock })
-      }      
-
-      this.setData({
-        specIdArr,
-        specPic,
-        specPrice: parseFloat(this.specPrice).toFixed(2)
-      })
+      const { index, optionIndex } = e.currentTarget.dataset
+      const specList = this.data.specList.map((item, specIndex) => index === specIndex ? ({
+        ...item, 
+        options: item.options.map((_item, _index) => ({
+          ..._item,
+          selected: _index === optionIndex
+        }))
+      }) : item)
+      this.setData({ specList })
     },
 
-    countChange(count) {
+    countChange({ detail: count }) {
       this.setData({ count })
     },
 
@@ -203,9 +148,8 @@ Component({
       return !showToastTitle
     },
 
-    // 关闭弹窗
-    onClose() {
-      this.triggerEvent('hideSpecModal')
+    hide() {
+      this.triggerEvent('hide', this.data.selecteSpecDesc)
     }
   }
 })

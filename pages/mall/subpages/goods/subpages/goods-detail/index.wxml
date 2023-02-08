@@ -9,9 +9,9 @@
     <image style="width: 20px; height: 20px;" src="https://img.ubo.vip/mp/i-back-icon/back-icon.png" />
   </view>
   <view class="menu-wrap {{showNavBar ? 'show' : ''}}">
-    <view class="menu-tips {{!detailActive ? 'show' : ''}}" ontap="scrollToTop">宝贝</view>
+    <view class="menu-tips {{!detailActive ? 'show' : ''}}" bindtap="scrollToTop">宝贝</view>
     <view class="menu-split">|</view>
-    <view class="menu-tips {{detailActive ? 'show' : ''}}" ontap="scrollToDetail">详情</view>
+    <view class="menu-tips {{detailActive ? 'show' : ''}}" bindtap="scrollToDetail">详情</view>
   </view>
 </view>
 
@@ -56,9 +56,9 @@
   <!-- 规格选择 -->
   <view class="list-spec row">
     <view class="list-spec-title">规格</view>
-    <view class="choose-btn" bindtap="showSpecPopup" data-mode="0">
+    <view class="choose-btn" bindtap="showSpecPopup">
       <view class="choose-btn-desc omit single-line">
-        {{selectedSpecDesc || '请选择'}}
+        {{selecteSpecDesc || '请选择'}}
       </view>
       <image class="choose-btn-icon" src="https://img.ubo.vip/mp/selection/goods-detail/to-icon.png" />
     </view>
@@ -100,7 +100,7 @@
       <image class="shortcut-icon" src="./images/customer-icon.png"/>
       <view>客服</view>
     </view>
-    <view class="shortcut" ontap="showShareModal">
+    <view class="shortcut" bindtap="showShareModal">
       <image class="shortcut-icon" src="./images/share-icon.png"/>
       <view>分享</view>
     </view>
@@ -111,25 +111,20 @@
     </navigator>
   </view>
   <view class="btns">
-    <view class="add-cart-btn {{!goodsInfo.stock ? 'invalid' : ''}}" bindtap="showSpecPopup" data-mode="1">加入购物车</view>
-    <view class="buy-btn {{!goodsInfo.stock ? 'invalid' : ''}}" bindtap="showSpecPopup" data-mode="2">立即购买</view>
+    <button class="add-cart-btn {{!goodsInfo.stock ? 'invalid' : ''}}" bindtap="showSpecPopup" data-mode="{{1}}">加入购物车</button>
+    <button class="buy-btn {{!goodsInfo.stock ? 'invalid' : ''}}" bindtap="showSpecPopup" data-mode="{{2}}">立即购买</button>
   </view>
 </view>
 
 <!-- 遮罩 -->
-<i-mask wx:if="{{showMask}}" ontap="hideModal" opcity="{{posterModalVisible ? 0.6 : 0.3}}"/>
+<i-mask wx:if="{{showMask}}" bindtap="hideModal" opcity="{{posterModalVisible ? 0.6 : 0.3}}"/>
 
 <!-- 商品规格选择弹窗 -->
 <spec-popup
   show="{{specPopupVisible}}"
-  actionType="{{actionType}}"
-  goodsId="{{goodsId}}"
-  goodsPic="{{goodsPic}}"
-  basePrice="{{shopPrice}}" 
-  totalStock="{{stock}}"
-  mainInfo="{{specData}}"
-  bind:setSpecTips="setSpecTips"
-  bind:hideSpecModal="hideSpecPopup"
+  mode="{{actionMode}}"
+  goodsInfo="{{goodsInfo}}"
+  bind:hide="hideSpecPopup"
 />
 <!-- 分享 -->
 <i-share-modal show="{{shareModalVisible}}" bind:showPosterModal="showPosterModal" />

@@ -1,0 +1,4 @@
+<view class="mask {{show ? 'show' : ''}}" catchtap="hide" />
+<view class="popup {{show ? 'show' : ''}}" catchtap="catchtap">
+  <slot />
+</view>

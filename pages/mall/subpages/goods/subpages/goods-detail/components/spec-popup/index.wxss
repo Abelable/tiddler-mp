@@ -1,20 +1,18 @@
 .spec-selection {
   display: flex;
   flex-direction: column;
-  padding: 30rpx;
-  width: 100%;
+  padding: 24rpx;
   height: 900rpx;
   background-color: #fff;
   border-radius: 16rpx 16rpx 0 0;
 }
 .selectedGoods-info-wrap {
-  margin-bottom: 20rpx;
   display: flex;
+  margin-bottom: 20rpx;
   height: 200rpx;
 }
 .selectedGoods-info {
-  padding-left: 28rpx;
-  padding-right: 46rpx;
+  padding-left: 24rpx;
   flex: 1;
   height: 200rpx;
   display: flex;
@@ -39,6 +37,7 @@
   font-size: 34rpx;
 }
 .selectedGoods-stock {
+  margin: 8rpx 0;
   color: #999;
 }
 
@@ -52,8 +51,8 @@
 .dividing-line {
   position: relative;
   margin-bottom: 30rpx;
-  height: 2rpx;
-  background-color: #D9D9D9;
+  height: 1rpx;
+  background-color: #dbdbdb;
 }
 .dividing-line-title {
   position: absolute;
@@ -83,59 +82,25 @@
   border: 1px solid #E1C7AA;
   background-color: rgb(254, 244, 245);
 }
-.btns-wrap {
-  margin-top: 20rpx;
-  display: flex;
-  justify-content: space-between;
-}
-.spec-btn {
-  width: 300rpx;
-  height: 68rpx;
-  text-align: center;
-  font-size: 32rpx;
-  font-weight: 500;
-  line-height: 64rpx;
-  border-radius: 44rpx;
-  border: 2rpx solid #ECC498;
-}
-.spec-btn.addCart {
-  color: #ECC498;
-}
-.spec-btn.directBuy {
-  color: #000;
-  background: linear-gradient(2deg,rgba(234,171,99,1) 0%,rgba(236,196,152,1) 100%);
-}
+
 .count-control-wrap {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: flex-end;
 }
 
-.finish-btn {
-  margin: 0 auto;
-  margin-top: 30rpx;
+.btns-wrap {
+  margin-top: 24rpx;
+}
+.add-cart-btn, .buy-btn {
+  flex: 1;
   height: 80rpx;
-  width: 680rpx;
-  background: #000;
-  border-radius: 40rpx;
   color: #fff;
-  font-size: 32rpx;
-  font-weight: 500;
-  text-align: center;
-  line-height: 80rpx;
+  font-size: 28rpx;
+  border-radius: 40rpx;
 }
-.finish-btn.in-cart {
-  background: #FD0B0A;
+.add-cart-btn {
+  background: #1986F8;
 }
-.apply-btn {
-  margin: 0 auto;
-  width: 702rpx;
-  height: 80rpx;
-  color: #0F131A;
-  font-size: 32rpx;
-  font-weight: 600;
-  line-height: 80rpx;
-  text-align: center;
-  background: linear-gradient(270deg, #FFD699 0%, #FFE5BD 100%);
-  border-radius: 12rpx;
+.buy-btn {
+  background: #161F4E;
 }

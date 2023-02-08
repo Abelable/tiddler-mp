@@ -274,17 +274,13 @@
 }
 .add-cart-btn, .buy-btn {
   flex: 1;
+  color: #fff;
   font-size: 28rpx;
-  font-weight: 500;
-  line-height: 80rpx;
-  text-align: center;
 }
 .add-cart-btn {
-  color: #fff;
   background: #1986F8;
 }
 .buy-btn {
-  color: #fff;
   background: #161F4E;
 }
 .add-cart-btn.invalid, .buy-btn.invalid {

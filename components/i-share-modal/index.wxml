@@ -8,7 +8,7 @@
       </view>
       <view>发给朋友</view>
     </button>
-    <view class="share-modal-btn" ontap="showPosterModal">
+    <view class="share-modal-btn" bindtap="showPosterModal">
       <view class="share-modal-btn-icon">
         <image style="width: 52rpx; height: 52rpx" src="https://img.ubo.vip/mp/i-share-modal/poster-icon.png" />
       </view>
