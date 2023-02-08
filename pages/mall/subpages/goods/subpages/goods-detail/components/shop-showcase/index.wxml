@@ -5,7 +5,7 @@
       <image class="enterprise-label" wx:if="{{shopInfo.type === 2}}" src="https://img.ubo.vip/mp/selection/goods-detail/firm-icon.png" />
     </view>
     <view class="name omit single-line">{{shopInfo.name}}</view>
-    <view class="more-btn row">
+    <view class="more-btn row" bindtap="navToShop">
       <text>进入店铺</text>
       <image class="more-icon" src="https://img.ubo.vip/mp/selection/goods-detail/to-icon.png" />
     </view>
