@@ -5,9 +5,7 @@
 
 <!-- 顶部导航 -->
 <view class="nav-bar {{showNavBar ? 'show' : ''}}" style="padding-top: {{statusBarHeight}}px">
-  <view class="back-icon {{showNavBar ? 'show' : ''}}" bindtap="navigateBack">
-    <image style="width: 20px; height: 20px;" src="https://img.ubo.vip/mp/i-back-icon/back-icon.png" />
-  </view>
+  <back-icon />
   <view class="menu-wrap {{showNavBar ? 'show' : ''}}">
     <view class="menu-tips {{!detailActive ? 'show' : ''}}" bindtap="scrollToTop">宝贝</view>
     <view class="menu-split">|</view>
@@ -42,7 +40,7 @@
   <view class="goods-info-wrap">
     <view class="row between">
       <view class="row baseline">
-        <price-unit price="{{goodsInfo.price}}" fontSize="28rpx" integerPartFontSize="48rpx" />
+        <price-unit price="{{goodsInfo.price || 0}}" fontSize="28rpx" integerPartFontSize="48rpx" />
         <view class="market-price">￥{{goodsInfo.marketPrice}}</view>
       </view>
       <view class="sale-volume">已售{{goodsInfo.salesVolume}}</view>

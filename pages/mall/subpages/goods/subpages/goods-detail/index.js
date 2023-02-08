@@ -176,10 +176,6 @@ Page({
     this.setData({
       posterModalVisible: false
     })
-  }, 
-
-  navigateBack() {
-    wx.navigateBack()
   },
 
   onUnload() {
@@ -189,12 +185,12 @@ Page({
   // 分享
   onShareAppMessage() {
     const { id, name: title, image: imageUrl } = this.data.goodsInfo
-    const path = `/pages/mall/subpages/goods/subpages/goods-detailindex?id=${id}`
+    const path = `/pages/mall/subpages/goods/subpages/goods-detail/index?id=${id}`
     return { title, imageUrl, path }
   },
 
   onShareTimeline() {
-    const { id, name, image: imageUrl } = this.data
+    const { id, name, image: imageUrl } = this.data.goodsInfo
     const title = `小鱼游商品：${name}`
     const query = `id=${id}`
     return { query, title, imageUrl }

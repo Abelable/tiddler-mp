@@ -15,19 +15,6 @@
   background: #161F4E;
   box-shadow: 0 2rpx 2rpx rgba(0,0,0,0.05);
 }
-.back-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-right: 2px;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.3);
-}
-.back-icon.show {
-  background: none;
-}
 .menu-wrap {
   position: absolute;
   left: 50%;
