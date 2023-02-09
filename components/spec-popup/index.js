@@ -67,7 +67,7 @@ Component({
     },
 
     // 加入购物车
-    addToShopcart() {
+    addCart() {
       checkLogin(async () => {
         const { goodsInfo, selectedSkuIndex, count } = this.data
         const cartNumber = await baseService.addCart(goodsInfo.id, selectedSkuIndex, count)
