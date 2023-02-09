@@ -146,10 +146,10 @@ Page({
 
   // 关闭规格弹窗
   hideSpecPopup(e) {
-    this.setData({
-      specPopupVisible: false,
-      selecteSpecDesc: e.detail
-    })
+    const { selecteSkuName, cartNumber } = e.detail
+    console.log('cartNumber', cartNumber)
+    this.setData({ specPopupVisible: false })
+    if (selecteSkuName) this.setData({ selecteSkuName })
   },
 
   async setPosterInfo() {

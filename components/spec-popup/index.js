@@ -1,5 +1,5 @@
-import { checkLogin } from '../../../../../../../../utils/index'
-import BaseService from '../../../../../../../../services/baseService'
+import { checkLogin } from '../../utils/index'
+import BaseService from '../../services/baseService'
 
 const baseService = new BaseService()
 
@@ -69,13 +69,9 @@ Component({
     // 加入购物车
     addToShopcart() {
       checkLogin(async () => {
-        if (this.check()) {
-          let { roomId, groupId, goodsId, count, specIdArr } = this.data
-          await baseService.addCart(goodsId, specIdArr, count, 0)
-          roomId && baseService.recordUserAddCart(roomId, groupId)
-          this.triggerEvent('hideSpecModal')
-          wx.showToast({ title: '添加成功', icon: "success" })
-        }
+        const { goodsInfo, selectedSkuIndex, count } = this.data
+        const cartNumber = await baseService.addCart(goodsInfo.id, selectedSkuIndex, count)
+        this.triggerEvent('hide', { cartNumber })
       })
     },
 
@@ -149,7 +145,8 @@ Component({
     },
 
     hide() {
-      this.triggerEvent('hide', this.data.selecteSkuName)
+      const { selecteSkuName } = this.data
+      this.triggerEvent('hide', { selecteSkuName })
     }
   }
 })
