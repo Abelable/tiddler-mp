@@ -15,51 +15,60 @@
 </view>
 
 <view class="wrap" style="padding-top: {{statusBarHeight + 44}}px;">
-  <view class="cart-list" wx:for="{{cartList}}" wx:key="index">
-    <view class="cart-list-header">
-      <checkbox checked="{{item.checked}}" data-index="{{index}}" ontap="toggleCartChecked"/>
-      <view class="shop-info" wx:if="{{item.shopInfo}}" ontap="navToShop" data-id="{{item.shopInfo.id}}">
-        <image class="shop-img" src="{{item.shopInfo.avatar}}" />
-        <view>{{item.shopInfo.name}}</view>
-        <image style="width: 20rpx; height: 20rpx;" src="https://img.ubo.vip/mp/to-icon.png" />
+  <view class="cart-list-wrap">
+    <view class="cart-list" wx:for="{{cartList}}" wx:key="index">
+      <view class="cart-list-header">
+        <checkbox checked="{{item.checked}}" data-index="{{index}}" ontap="toggleCartChecked"/>
+        <view class="shop-info" wx:if="{{item.shopInfo}}" ontap="navToShop" data-id="{{item.shopInfo.id}}">
+          <image class="shop-img" src="{{item.shopInfo.avatar}}" />
+          <view>{{item.shopInfo.name}}</view>
+          <image style="width: 20rpx; height: 20rpx;" src="https://img.ubo.vip/mp/to-icon.png" />
+        </view>
+        <view class="shop-info" wx:if="{{!item.shopInfo}}">官方自营</view>
       </view>
-      <view class="shop-info" wx:if="{{!item.shopInfo}}">官方自营</view>
-    </view>
-    <view class="goods-list-wrap">
-      <view wx:for="{{item.goodsList}}" wx:key="index" wx:for-index="_index" wx:for-item="_item">
-        <van-swipe-cell bind:close="deleteGoods" right-width="{{ 65 }}">
-          <view class="goods-list row">
-            <checkbox checked="{{_item.is_checked_goods}}" disabled="{{_item.status !== 1}}" ontap="toggleGoodsChecked" data-cart-index="{{index}}" data-goods-index="{{_index}}"/>
-            <image class="goods-img" mode="aspectFill" src="{{_item.goodsImage}}" data-id="{{_item.id}}" ontap="showGoodsDetail"/>
-            <view class="goods-content">
-              <view class="goods-name {{_item.status !== 1 ? 'invalid' : ''}}">{{_item.goodsName}}</view>
-              <block wx:if="{{_item.status === 1}}">
-                <view class="goods-sku-wrap" wx:if="{{_item.selectedSkuName}}" bindtap="editSpec" data-info="{{_item}}">
-                  <text class="goods-sku">{{_item.selectedSkuName}}</text>
-                  <image class="sku-edit-icon" src="https://img.ubo.vip/mp/to-icon.png" />
-                </view>
-                <view class="goods-price-wrap">
-                  <view class="goods-price">
-                    <view class="price-shop">
-                      <text>¥</text>
-                      <text style="font-size: 36rpx;">{{_item.price}}</text>
-                    </view>
-                    <view class="price-market">¥{{_item.marketPrice}}</view>
+      <view class="goods-list-wrap">
+        <view wx:for="{{item.goodsList}}" wx:key="index" wx:for-index="_index" wx:for-item="_item">
+          <van-swipe-cell bind:close="deleteGoods" right-width="{{ 65 }}">
+            <view class="goods-list row">
+              <checkbox checked="{{_item.is_checked_goods}}" disabled="{{_item.status !== 1}}" ontap="toggleGoodsChecked" data-cart-index="{{index}}" data-goods-index="{{_index}}"/>
+              <image class="goods-img" mode="aspectFill" src="{{_item.goodsImage}}" data-id="{{_item.id}}" ontap="showGoodsDetail"/>
+              <view class="goods-content">
+                <view class="goods-name {{_item.status !== 1 ? 'invalid' : ''}}">{{_item.goodsName}}</view>
+                <block wx:if="{{_item.status === 1}}">
+                  <view class="goods-sku-wrap" wx:if="{{_item.selectedSkuName}}" bindtap="editSpec" data-info="{{_item}}">
+                    <text class="goods-sku">{{_item.selectedSkuName}}</text>
+                    <image class="sku-edit-icon" src="https://img.ubo.vip/mp/to-icon.png" />
                   </view>
-                  <van-stepper value="{{ _item.number }}" bind:change="countChange" data-cart-index="{{index}}" data-goods-index="{{_index}}" integer max="{{_item.stock}}" />
+                  <view class="goods-price-wrap">
+                    <view class="goods-price">
+                      <view class="price-shop">
+                        <text>¥</text>
+                        <text style="font-size: 36rpx;">{{_item.price}}</text>
+                      </view>
+                      <view class="price-market">¥{{_item.marketPrice}}</view>
+                    </view>
+                    <van-stepper value="{{ _item.number }}" bind:change="countChange" data-cart-index="{{index}}" data-goods-index="{{_index}}" integer max="{{_item.stock}}" />
+                  </view>
+                </block>
+                <view class="invalid-tips-wrap" wx:if="{{_item.status !== 1}}">
+                  <view class="invalid-tips">请重新选择规格</view>
+                  <view class="reset-spec-btn" ontap="editSpec" data-info="{{_item}}">重选</view>
                 </view>
-              </block>
-              <view class="invalid-tips-wrap" wx:if="{{_item.status !== 1}}">
-                <view class="invalid-tips">请重新选择规格</view>
-                <view class="reset-spec-btn" ontap="editSpec" data-info="{{_item}}">重选</view>
               </view>
             </view>
-          </view>
-          <view slot="right">删除</view>
-        </van-swipe-cell>
+            <view slot="right">删除</view>
+          </van-swipe-cell>
+        </view>
       </view>
     </view>
   </view>
+
+  <view class="recommend-goods-wrap" wx:if="{{recommendGoodsList.length}}">
+    <split-line desc="猜您喜欢" />
+    <fall-flow list="{{recommendGoodsList}}" generic:item="goods-item" />
+  </view>
+
+  <view class="nomore-tip" wx:if="{{recommendGoodsList.length}}">～没有更多了～</view>
 </view>
 
 <view class="bottom-bar" wx:if="{{cartList.length}}">
