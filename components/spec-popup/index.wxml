@@ -35,7 +35,7 @@
           <view class="dividing-line-title">数量</view>
         </view>
         <view class="count-control-wrap">
-          <van-stepper bind:change="countChange" integer max="{{selectedSkuIndex !== -1 ? goodsInfo.skuList[selectedSkuIndex].stock : goodsInfo.stock}}" />
+          <van-stepper value="{{ count }}" bind:change="countChange" integer max="{{selectedSkuIndex !== -1 ? goodsInfo.skuList[selectedSkuIndex].stock : goodsInfo.stock}}" />
         </view>
       </view>
     </scroll-view>

@@ -5,7 +5,7 @@
       <image class="search-icon" src="/images/search.png" />
       <text class="placeholder">搜索商品</text>
     </view>
-    <image class="cart-icon" src="./images/cart.png" bindtap="navBack" />
+    <image class="cart-icon" src="./images/cart.png" bindtap="navToCart" />
   </view>
   <scroll-view 
     class="category-tabs" 

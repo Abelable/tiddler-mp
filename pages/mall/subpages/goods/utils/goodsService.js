@@ -37,6 +37,13 @@ class GoodsService extends BaseService {
     }) || {}
     return list
   }
+
+  async getCartList() {
+    return await this.get({
+      url: `${this.baseUrl}/cart/list`,
+      loadingTitle: "加载中..."
+    })
+  }
 }
 
 export default GoodsService

@@ -67,6 +67,12 @@ Page({
     wx.stopPullDownRefresh() 
   },
 
+  navToCart() {
+    wx.navigateTo({
+      url: './subpages/cart/index'
+    })
+  },
+
   navBack() {
     wx.navigateBack({
       delta: 1
