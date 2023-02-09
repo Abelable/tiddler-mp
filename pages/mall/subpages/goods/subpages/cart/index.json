@@ -7,6 +7,7 @@
     "spec-popup": "/components/spec-popup/index",
     "split-line": "/components/split-line/index",
     "fall-flow": "/components/fall-flow/index",
-    "goods-item": "/components/goods-item/index"
+    "goods-item": "/components/goods-item/index",
+    "price-unit": "/components/price-unit/index"
   }
 }
