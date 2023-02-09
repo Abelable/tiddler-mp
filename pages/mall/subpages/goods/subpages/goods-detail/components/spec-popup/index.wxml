@@ -9,7 +9,7 @@
       <view class="spec-info">
         <price-unit price="{{selectedSkuIndex !== -1 ? goodsInfo.skuList[selectedSkuIndex].price : (goodsInfo.price || 0)}}" />
         <view class="spec-stock">库存{{selectedSkuIndex !== -1 ? goodsInfo.skuList[selectedSkuIndex].stock : goodsInfo.stock}}</view>
-        <view class="omit single-line">{{ selecteSpecDesc ? '已选：' + selecteSpecDesc : '请选择规格'}}</view>
+        <view class="omit single-line">{{ selecteSkuName ? '已选：' + selecteSkuName : '请选择规格'}}</view>
       </view>
     </view>
     <scroll-view class="selection-mian" scroll-y>
@@ -35,7 +35,7 @@
           <view class="dividing-line-title">数量</view>
         </view>
         <view class="count-control-wrap">
-          <van-stepper bind:change="countChange" integer />
+          <van-stepper bind:change="countChange" integer max="{{selectedSkuIndex !== -1 ? goodsInfo.skuList[selectedSkuIndex].stock : goodsInfo.stock}}" />
         </view>
       </view>
     </scroll-view>

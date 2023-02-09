@@ -33,7 +33,7 @@ Component({
 
   data: {
     specList: [],
-    selecteSpecDesc: '',
+    selecteSkuName: '',
     selectedSkuIndex: -1,
     count: 1
   },
@@ -41,9 +41,9 @@ Component({
   observers: {
     'specList': function (list) {
       if (list.length) {
-        const selecteSpecDesc = list.map(item => item.options.find(_item => _item.selected).name).join()
-        const selectedSkuIndex = this.data.goodsInfo.skuList.findIndex(item => item.name === selecteSpecDesc)
-        this.setData({ selecteSpecDesc, selectedSkuIndex })
+        const selecteSkuName = list.map(item => item.options.find(_item => _item.selected).name).join()
+        const selectedSkuIndex = this.data.goodsInfo.skuList.findIndex(item => item.name === selecteSkuName)
+        this.setData({ selecteSkuName, selectedSkuIndex })
       } 
     }
   },
@@ -149,7 +149,7 @@ Component({
     },
 
     hide() {
-      this.triggerEvent('hide', this.data.selecteSpecDesc)
+      this.triggerEvent('hide', this.data.selecteSkuName)
     }
   }
 })
