@@ -1,4 +1,5 @@
 import checkLogin from '../../../../../../utils/checkLogin'
+import { customBack } from '../../../../../../utils/jumpPage'
 import { store } from '../../../../../../store/index'
 import GoodsService from '../../utils/goodsService'
 
@@ -283,6 +284,10 @@ Page({
   finishEdit() {
     this.setCartList()
     this.hideSpecModal()
+  },
+
+  navBack() {
+    customBack()
   },
 
   hideSpecModal() {

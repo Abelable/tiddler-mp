@@ -1,7 +1,12 @@
-<view class="navigation-bar" style="padding-top: {{statusBarHeight}}px;">
-  <back-icon />
-  <view class="edit-icon" wx:if="{{cartList.length}}" ontap="toggleDeleteBtnVision">{{deleteBtnVision ? '完成' : '管理'}}</view>
+<view class="navigation-bar row" style="padding-top: {{statusBarHeight}}px;">
+  <view style="flex: 1;">
+    <view class="nav-bar-btn row">
+      <image class="nav-back-icon" bindtap="navBack" src="https://img.ubo.vip/mp/i-back-icon/back-icon.png" />
+      <view class="edit-btn" wx:if="{{cartList.length}}" bindtap="toggleDeleteBtnVision">{{deleteBtnVision ? '完成' : '管理'}}</view>
+    </view>
+  </view>
   <view class="navigation-title">购物车</view>
+  <view style="flex: 1;"></view>
 </view>
 
 <view class="empty-illus" style="margin-top: {{statusBarHeight + 260}}px;" wx:if="{{!cartList.length}}">
@@ -13,11 +18,12 @@
   <view class="cart-list" wx:for="{{cartList}}" wx:key="index">
     <view class="cart-list-header">
       <checkbox checked="{{item.checked}}" data-index="{{index}}" ontap="toggleCartChecked"/>
-      <view class="shop-info" ontap="navToShop" data-id="{{item.shopInfo.id}}">
+      <view class="shop-info" wx:if="{{item.shopInfo}}" ontap="navToShop" data-id="{{item.shopInfo.id}}">
         <image class="shop-img" src="{{item.shopInfo.avatar}}" />
         <view>{{item.shopInfo.name}}</view>
         <image style="width: 20rpx; height: 20rpx;" src="https://img.ubo.vip/mp/to-icon.png" />
       </view>
+      <view class="shop-info" wx:if="{{!item.shopInfo}}">官方自营</view>
     </view>
     <view class="goods-list-wrap">
       <view wx:for="{{item.goodsList}}" wx:key="index" wx:for-index="_index" wx:for-item="_item">
