@@ -222,6 +222,13 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   border-radius: 23rpx;
   border: 2rpx solid #FD0807;
 }
+.swipe-cell-delete-btn {
+  width: 65px;
+  height: 100%;
+  color: #fff;
+  font-size: 32rpx;
+  background: #FD0807;
+}
 
 .recommend-goods-wrap {
   margin-top: 40rpx;

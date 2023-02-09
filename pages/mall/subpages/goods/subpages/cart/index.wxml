@@ -53,7 +53,7 @@
                 </view>
               </view>
             </view>
-            <view slot="right">删除</view>
+            <button class="swipe-cell-delete-btn" slot="right">删除</button>
           </van-swipe-cell>
         </view>
       </view>
