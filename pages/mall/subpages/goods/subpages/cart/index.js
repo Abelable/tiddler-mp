@@ -29,7 +29,6 @@ Page({
 
   async setCartList() {
     const { cartList, recommendGoodsList } = await goodsService.getCartList() || {}
-    console.log('recommendGoodsList', recommendGoodsList)
     this.setData({ cartList, recommendGoodsList }, () => {
       this.acount()
     })

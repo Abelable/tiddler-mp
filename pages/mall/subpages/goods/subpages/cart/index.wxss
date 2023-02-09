@@ -93,7 +93,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
 }
 .cart-list {
   margin-top: 24rpx;
-  padding: 32rpx 0;
+  padding-top: 24rpx;
   overflow: hidden;
   background: #fff;
   border-radius: 12rpx;
@@ -199,8 +199,8 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
 }
 .price-market {
   margin-left: 10rpx;
-  color: #999;
-  font-weight: 400;
+  color: #bbb;
+  font-size: 22rpx;
   text-decoration: line-through;
 }
 .invalid-tips-wrap {
@@ -227,7 +227,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   width: 65px;
   height: 100%;
   color: #fff;
-  font-size: 32rpx;
+  font-size: 28rpx;
   background: #FD0807;
 }
 
