@@ -36,21 +36,24 @@
   font-weight: 600;
 }
 
-checkbox {
+.checkbox {
   margin-left: 18rpx;
   width: 50rpx;
   transform: scale(0.8);
 }
-checkbox .wx-checkbox-input {
+.checkbox .wx-checkbox-input {
   width: 40rpx;
   height: 40rpx;
   border-radius: 50%;
 }
-checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+.checkbox .wx-checkbox-input.wx-checkbox-input-checked {
   border: none;
   background: #1986F8;
 }
-checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
+.checkbox.danger .wx-checkbox-input.wx-checkbox-input-checked {
+  background: #FD0B0A;
+}
+.checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   border-radius: 50%;
   width: 40rpx;
   height: 40rpx;
@@ -286,7 +289,11 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   font-weight: 500;
   border-radius: 40rpx;
 }
-.submit.active, .delete-btn.active {
+.submit.active {
   color: #fff;
   background: #1986F8;
+}
+.delete-btn.active {
+  color: #fff;
+  background: #FD0B0A;
 }
