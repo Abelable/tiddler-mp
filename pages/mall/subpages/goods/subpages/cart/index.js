@@ -100,7 +100,104 @@ Page({
     }
   },
 
-  async acount() {
+  async countChange(e) {
+    const { cartIndex, goodsIndex } = e.currentTarget.dataset
+    const { id, goodsId, selectedSkuIndex } = this.data.cartList[cartIndex].goodsList[goodsIndex]
+    goodsService.editCart(id, goodsId, selectedSkuIndex, e.detail, () => {
+      this.setData({ 
+        [`cartList[${cartIndex}].goodsList[${goodsIndex}].number`]: e.detail
+      }, () => {
+        this.acount()
+      })
+    })
+  },
+
+  deleteGoodsList() {
+    this.data.selectedCount && wx.showModal({
+      title: '提示',
+      content: '确定删除这些商品吗？',
+      showCancel: true,
+      success: res => {
+        if (res.confirm) {
+          goodsService.deleteCartList(this.selectedCartIdArr, () => {
+            this.setCartList()
+          })
+          this.acount()
+        }
+      }
+    })
+  },
+
+  async deleteGoods(e) {
+    const { id, cartIndex, goodsIndex } = e.currentTarget.dataset
+    const { position, instance } = e.detail
+    if (position === 'right') {
+      wx.showModal({
+        title: '提示',
+        content: '确定删除该商品吗？',
+        showCancel: true,
+        success: async res => {
+          if (res.confirm) {
+            goodsService.deleteCartList(
+              [id], 
+              () => {
+                const goodsList = this.data.cartList[cartIndex].goodsList
+                goodsList.splice(goodsIndex, 1)
+                if (goodsList.length) {
+                  this.setData({
+                    [`cartList[${cartIndex}].goodsList`]: goodsList
+                  })
+                } else {
+                  const cartList = this.data.cartList
+                  cartList.splice(cartIndex, 1)
+                  this.setData({ cartList })
+                }
+                instance.close()
+                this.acount()
+              }
+            )
+          } else {
+            instance.close()
+          }
+        }
+      })
+    }
+  },
+
+  async showSpecPopup(e) {
+    const { info: cartInfo, cartIndex, goodsIndex } = e.currentTarget.dataset
+    const goodsInfo = await goodsService.getGoodsInfo(cartInfo.goodsId)
+    this.setData({
+      cartInfo,
+      goodsInfo,
+      specPopupVisible: true
+    })
+    this.editingCartIndex = cartIndex
+    this.editingGoodsIndex = goodsIndex
+  },
+
+  hideSpecPopup(e) {
+    const cartInfo = this.data.cartList[this.editingCartIndex].goodsList[this.editingGoodsIndex]
+    this.setData({ 
+      [`cartList[${this.editingCartIndex}].goodsList[${this.editingGoodsIndex}]`]: {
+        ...cartInfo,
+        ...e.detail.cartInfo
+      },
+      specPopupVisible: false
+    }, () => {
+      this.acount()
+    })
+  },
+
+  toggleDeleteBtnVisible() {
+    this.setData({
+      deleteBtnVisible: !this.data.deleteBtnVisible
+    }, () => {
+      this.acount()
+    })
+  },
+
+  acount() {
     this.totalCount = 0
     let selectedCount = 0
     let totalPrice = 0
@@ -139,97 +236,6 @@ Page({
         isSelectAll: selectedCount && selectedCount === this.totalCount
       })
     }
-  },
-
-  async countChange(e) {
-    const { cartIndex, goodsIndex } = e.currentTarget.dataset
-    const { id, goodsId, selectedSkuIndex } = this.data.cartList[cartIndex].goodsList[goodsIndex]
-    goodsService.editCart(id, goodsId, selectedSkuIndex, e.detail, () => {
-      this.setData({ 
-        [`cartList[${cartIndex}].goodsList[${goodsIndex}].number`]: e.detail
-      })
-    })
-  },
-
-  deleteGoodsList() {
-    this.data.selectedCount && wx.showModal({
-      title: '提示',
-      content: '确定删除这些商品吗？',
-      showCancel: true,
-      success: res => {
-        if (res.confirm) {
-          goodsService.deleteCartList(this.selectedCartIdArr, () => {
-            this.setCartList()
-          })
-        }
-      }
-    })
-  },
-
-  async deleteGoods(e) {
-    const { id, cartIndex, goodsIndex } = e.currentTarget.dataset
-    const { position, instance } = e.detail
-    if (position === 'right') {
-      wx.showModal({
-        title: '提示',
-        content: '确定删除该商品吗？',
-        showCancel: true,
-        success: async res => {
-          if (res.confirm) {
-            goodsService.deleteCartList(
-              [id], 
-              () => {
-                const goodsList = this.data.cartList[cartIndex].goodsList
-                goodsList.splice(goodsIndex, 1)
-                if (goodsList.length) {
-                  this.setData({
-                    [`cartList[${cartIndex}].goodsList`]: goodsList
-                  })
-                } else {
-                  const cartList = this.data.cartList
-                  cartList.splice(cartIndex, 1)
-                  this.setData({ cartList })
-                }
-                instance.close()
-              }
-            )
-          } else {
-            instance.close()
-          }
-        }
-      })
-    }
-  },
-
-  async showSpecPopup(e) {
-    const { info: cartInfo, cartIndex, goodsIndex } = e.currentTarget.dataset
-    const goodsInfo = await goodsService.getGoodsInfo(cartInfo.goodsId)
-    this.setData({
-      cartInfo,
-      goodsInfo,
-      specPopupVisible: true
-    })
-    this.editingCartIndex = cartIndex
-    this.editingGoodsIndex = goodsIndex
-  },
-
-  hideSpecPopup(e) {
-    const cartInfo = this.data.cartList[this.editingCartIndex].goodsList[this.editingGoodsIndex]
-    this.setData({ 
-      [`cartList[${this.editingCartIndex}].goodsList[${this.editingGoodsIndex}]`]: {
-        ...cartInfo,
-        ...e.detail.cartInfo
-      },
-      specPopupVisible: false
-    })
-  },
-
-  toggleDeleteBtnVisible() {
-    this.setData({
-      deleteBtnVisible: !this.data.deleteBtnVisible
-    }, () => {
-      this.acount()
-    })
   },
 
   submit(){
