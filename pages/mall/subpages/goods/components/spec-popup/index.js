@@ -70,10 +70,10 @@ Component({
         this.setData({ selectedSkuName, selectedSkuIndex })
       } 
     },
-    'selectedSkuIndex, count': function(index, count) {
+    'selectedSkuIndex': function(index) {
       const { goodsInfo } = this.properties
       this.setData({
-        btnActive: index !== -1 ? count <= goodsInfo.skuList[index].stock : count <= goodsInfo.stock
+        btnActive: index !== -1 ? goodsInfo.skuList[index].stock !== 0 : goodsInfo.stock !== 0
       })
     }
   },
