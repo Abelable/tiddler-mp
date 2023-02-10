@@ -1,6 +1,5 @@
 import checkLogin from '../../../../../../utils/checkLogin'
 import { customBack } from '../../../../../../utils/jumpPage'
-import { store } from '../../../../../../store/index'
 import GoodsService from '../../utils/goodsService'
 
 const goodsService = new GoodsService()
@@ -253,19 +252,23 @@ Page({
   },
 
   submit(){
-    this.data.selectedCount && wx.navigateTo({ url: `/pages/subpages/mall/goods-detail/subpages/order-check/index?cartId=${this.selectedRecIdArr.join()}` })
+    if (this.data.selectedCount) {
+      wx.navigateTo({ 
+        url: `/pages/subpages/mall/goods-detail/subpages/order-check/index?cartId=${this.selectedRecIdArr.join()}` 
+      })
+    }
   },
 
   navToShop(e) {
-    const { id } = e.currentTarget.dataset
-    if (id == 16) wx.switchTab({ url: '/pages/tab-bar-pages/mall/index'})
-    else wx.navigateTo({
-      url: `/pages/subpages/mall/goods-detail/subpages/shop/index?id=${id}`
+    wx.navigateTo({ 
+      url: `/pages/mall/subpages/goods/subpages/shop/index?id=${e.currentTarget.dataset.id}`
     })
   },
 
   showGoodsDetail(e){
-    wx.navigateTo({ url: `/pages/subpages/mall/goods-detail/index?id=${e.currentTarget.dataset.id}` })
+    wx.navigateTo({ 
+      url: `/pages/mall/subpages/goods/subpages/goods-detail/index?id=${e.currentTarget.dataset.id}`
+    })
   },
 
   finishEdit() {
