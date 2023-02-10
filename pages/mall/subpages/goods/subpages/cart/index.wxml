@@ -9,8 +9,6 @@
   <view style="flex: 1;"></view>
 </view>
 
-
-
 <view class="wrap" style="padding-top: {{statusBarHeight + 44}}px;">
   <view class="cart-list-wrap" wx:if="{{cartList.length}}">
     <view class="cart-list" wx:for="{{cartList}}" wx:key="index">
