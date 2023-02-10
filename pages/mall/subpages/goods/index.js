@@ -1,7 +1,6 @@
 const { statusBarHeight } = getApp().globalData
 
-import checkLogin from '../../../../utils/checkLogin'
-import { customBack } from '../../../../utils/jumpPage'
+import { checkLogin, customBack } from '../../../../utils/index'
 import GoodsService from './utils/goodsService'
 
 const goodsService = new GoodsService()

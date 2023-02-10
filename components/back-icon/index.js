@@ -1,4 +1,4 @@
-import { customBack } from '../../utils/jumpPage'
+import { customBack } from '../../utils/index'
 
 Component({ 
   properties: {

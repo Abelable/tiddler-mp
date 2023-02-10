@@ -1,4 +1,4 @@
-import checkLogin from '../../utils/checkLogin'
+import { checkLogin } from '../../utils/index'
 import BaseService from '../../services/baseService'
 
 const baseService = new BaseService()

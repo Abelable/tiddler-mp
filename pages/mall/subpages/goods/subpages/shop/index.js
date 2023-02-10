@@ -1,4 +1,4 @@
-import { getQueryString, checkLogin } from '../../../../../../utils/index'
+import { getQueryString } from '../../../../../../utils/index'
 import GoodsService from '../../utils/goodsService'
 
 const goodsService = new GoodsService()

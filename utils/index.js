@@ -6,12 +6,12 @@ export const debounce = (fn, delay = 200) => {
   }
 }
 
-export const checkLogin = (success, domore) => {
+export const checkLogin = (success, domore = true) => {
   if (wx.getStorageSync('token')) {
     success && success()
   } else {
     if (typeof(domore) === 'boolean') {
-      domore && goLogin()
+      domore && wx.navigateTo({ url: '/pages/common/register/index' })
     } else domore()
   }
 }
@@ -45,30 +45,23 @@ export const getQueryString = (url, name) => {
   return r
 }
 
-export const customBack = (studioId) => {
+/**
+ * 自定义返回
+ * @param {boolean} needInitPrePageData 返回前一个页面之前是否需要初始化前一个页面的数据（约定方法名为initData）
+ */
+export const customBack = (needInitPrePageData = false) => {
+  const registerPageRoute = 'pages/common/register/index'
+  const minePageRoute = 'pages/mine/index'
+
   const pagesLength = getCurrentPages().length
+  const curPage = getCurrentPages()[pagesLength - 1]
+  const curPageRoute = curPage.route
   const prePage = getCurrentPages()[pagesLength - 2]
   const prePageRoute = prePage ? prePage.route : ''
-  if (pagesLength === 1 || prePageRoute === 'pages/subpages/home/create-live/index' || prePageRoute === 'pages/tab-bar-pages/mine/index') {
-    studioId && wx.setStorageSync('shareStudioId', studioId)
-    wx.switchTab({ url: '/pages/tab-bar-pages/home/index' })
-  } else wx.navigateBack()
-}
 
-let isLogin = false
-export const goLogin = () => {
-  if (isLogin) return
-  isLogin = true
-  setTimeout(() => {
-    isLogin = false
-  }, 2000)
-  const pages = getCurrentPages()
-  for (let i = 0; i < pages.length; i++) {
-    if (pages[i].__route__ === 'pages/subpages/common/login/index') {
-      return
-    }
-  }
-  wx.navigateTo({
-    url: '/pages/subpages/common/login/index'
-  })
+  if (needInitPrePageData && typeof(prePage.initData) === 'function') prePage.initData()
+
+  if (pagesLength === 1 || (curPageRoute === registerPageRoute && prePageRoute === minePageRoute)) {
+    wx.switchTab({ url: '/pages/index/index' })
+  } else wx.navigateBack()
 }

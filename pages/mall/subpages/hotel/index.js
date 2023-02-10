@@ -1,5 +1,3 @@
-import { formatDateUnit } from '../../../../utils/util'
-
 const { statusBarHeight } = getApp().globalData
 
 Page({
@@ -95,7 +93,9 @@ Page({
 
   formatDate(date) {
     date = date ? new Date(date) : new Date()
-    return `${formatDateUnit(date.getMonth() + 1)}-${formatDateUnit(date.getDate())}`
+    const month = `${date.getMonth() + 1}`.padStart(2, '0')
+    const day = `${date.getDate()}`.padStart(2, '0')
+    return `${month}-${day}`
   },
 
   navBack() {

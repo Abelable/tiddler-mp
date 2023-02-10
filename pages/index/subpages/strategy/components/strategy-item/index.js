@@ -1,3 +1,5 @@
+import { checkLogin } from '../../../../../../utils/index'
+
 Component({
   options: {
     addGlobalClass: true
