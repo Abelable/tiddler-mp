@@ -252,8 +252,12 @@ Page({
   },
 
   hideSpecPopup(e) {
+    const cartInfo = this.data.cartList[this.editingCartIndex].goodsList[this.editingGoodsIndex]
     this.setData({ 
-      [`cartList[${this.editingCartIndex}].goodsList[${this.editingGoodsIndex}]`]: e.detail.cartInfo,
+      [`cartList[${this.editingCartIndex}].goodsList[${this.editingGoodsIndex}]`]: {
+        ...cartInfo,
+        ...e.detail.cartInfo
+      },
       specPopupVisible: false
     })
   },
