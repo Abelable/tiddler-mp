@@ -109,7 +109,7 @@ Component({
 
     async editSpec() {
       const { cartInfo, selectedSkuIndex, count } = this.data
-      const newCartInfo = goodsService.editCart(cartInfo.id, cartInfo.goodsId, selectedSkuIndex, count)
+      const newCartInfo = await goodsService.editCart(cartInfo.id, cartInfo.goodsId, selectedSkuIndex, count)
       newCartInfo && this.triggerEvent('hide', { cartInfo: newCartInfo })
     },
 
