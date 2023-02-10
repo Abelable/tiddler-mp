@@ -1,5 +1,3 @@
-import { createStoreBindings } from 'mobx-miniprogram-bindings'
-import { store } from '../../../../../../store/index'
 import { getQueryString, checkLogin } from '../../../../../../utils/index'
 import GoodsService from '../../utils/goodsService'
 
@@ -15,24 +13,19 @@ Page({
     detailActive: false, // 导航栏'详情'激活状态
     // 轮播图相关
     curDot: 1,
+    goodsInfo: null,
+    cartGoodsNumber: 0,
     // 规格相关
     selectedSpecDesc: '',
-    specTips: '',
     specPopupVisible: false,
     actionMode: 0,
     shareModalVisible: false,
     posterInfo: null, // 分享海报
     posterModalVisible: false, // 海报弹窗
     shareDesc: '',
-    goodsInfo: null
   },
 
   async onLoad({ id, scene, q }) {
-    this.storeBindings = createStoreBindings(this, {
-      store,
-      fields: ['cartCount'],
-    })
-
     wx.showShareMenu({
       withShareTicket:true,
       menus:['shareAppMessage','shareTimeline']
@@ -178,10 +171,6 @@ Page({
     this.setData({
       posterModalVisible: false
     })
-  },
-
-  onUnload() {
-    this.storeBindings.destroyStoreBindings()
   },
 
   // 分享

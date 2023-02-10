@@ -105,7 +105,7 @@
     <navigator class="shortcut" url="/pages/subpages/mall/cart/index" hover-class="none">
       <image class="shortcut-icon" src="./images/cart-icon.png"/>
       <view>购物车</view>
-      <view class="cart-count" wx:if="{{cartCount}}">{{cartCount}}</view>
+      <view class="cart-count" wx:if="{{cartGoodsNumber}}">{{cartGoodsNumber}}</view>
     </navigator>
   </view>
   <view class="btns">

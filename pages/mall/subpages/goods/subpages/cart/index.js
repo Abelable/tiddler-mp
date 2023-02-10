@@ -147,18 +147,7 @@ Page({
         totalPrice: 100,
         isSelectAll: selectedCount && selectedCount === this.totalCount
       })
-      // store.updateCartCount(this.totalCount)
     }
-  },
-
-  add(e) {
-    let { cartIndex, goodsIndex, recId, stock } = e.currentTarget.dataset
-    this.countControl(cartIndex, goodsIndex, recId, stock, 'add')
-  },
-
-  reduce(e) {
-    let { cartIndex, goodsIndex, recId, stock } = e.currentTarget.dataset
-    this.countControl(cartIndex, goodsIndex, recId, stock, 'reduce')
   },
 
   editCount(e) {
@@ -206,7 +195,6 @@ Page({
         selectedCount,
         [`cartList[${cartIndex}].goods[${goodsIndex}].goods_number`]: count
       })
-      store.updateCartCount(this.totalCount)
     }
   },
 

@@ -38,6 +38,10 @@ class GoodsService extends BaseService {
     return list
   }
 
+  async getCartGoodsNumber() {
+    return await this.get({ url: `${this.baseUrl}/cart/goods_number` })
+  }
+
   async getCartList() {
     return await this.get({
       url: `${this.baseUrl}/cart/list`,
