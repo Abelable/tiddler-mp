@@ -1,7 +1,10 @@
 <view class="goods-item" bindtap="navToGoodsDetail">
   <image class="cover" mode="widthFix" src="{{item.image}}" lazy-load />
   <view class="content">
-    <view class="title omit">{{item.name}}</view>
+    <view class="title omit">
+      <text class="goods-tag" wx:if="{{!item.shopInfo}}">自营</text>
+      {{item.name}}
+    </view>
     <view class="info-wrap row between">
       <view class="row baseline">
         <price-unit price="{{item.price || 0}}" />
