@@ -141,52 +141,14 @@ Page({
     }
   },
 
-  editCount(e) {
-    let { cartIndex, goodsIndex, recId, stock } = e.currentTarget.dataset
-    this.countControl(cartIndex, goodsIndex, recId, stock, e.detail)
-  },
-
-  async countControl(cartIndex, goodsIndex, recId, stock, mode) {
-    let count = this.data.cartList[cartIndex].goodsList[goodsIndex].goods_number
-    let continueFlag = true
-    switch (mode) {
-      case 'add':
-        if (count < stock) {
-          ++count
-          ++this.totalCount
-        } else {
-          wx.showToast({ title: '数量大于库存', icon: 'none' })
-          continueFlag = false
-        }
-        break;
-      case 'reduce':
-        if (count > 1 && this.totalCount > 1) {
-          --count
-          --this.totalCount
-        } else continueFlag = false
-        break
-      default:
-        if (+mode > 0 && +mode < stock) {
-          count = +mode
-          this.totalCount = this.totalCount - count + mode
-        } else {
-          continueFlag = false
-          wx.showToast({ title: '数量大于库存，请重新输入', icon: 'none' })
-          this.setData({
-            [`cartList[${cartIndex}].goodsList[${goodsIndex}].goods_number`]: count
-          })
-        }
-        
-        break
-    }
-    if (continueFlag) {
-      let { goods_amount_formated: totalPrice, cart_number: selectedCount } = await goodsService.updateCartGoods({ recId, count })
+  async countChange(e) {
+    const { cartIndex, goodsIndex } = e.currentTarget.dataset
+    const { id, goodsId, selectedSkuIndex } = this.data.cartList[cartIndex].goodsList[goodsIndex]
+    goodsService.editCart(id, goodsId, selectedSkuIndex, e.detail, () => {
       this.setData({ 
-        totalPrice: totalPrice.slice(1), 
-        selectedCount,
-        [`cartList[${cartIndex}].goodsList[${goodsIndex}].goods_number`]: count
+        [`cartList[${cartIndex}].goodsList[${goodsIndex}].number`]: e.detail
       })
-    }
+    })
   },
 
   deleteGoodsList() {
@@ -293,4 +255,6 @@ Page({
   navBack() {
     customBack()
   },
+
+  catchtap() {}
 })
