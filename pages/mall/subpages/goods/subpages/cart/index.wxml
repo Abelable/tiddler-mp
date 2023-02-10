@@ -24,13 +24,13 @@
       <view class="goods-list-wrap">
         <view wx:for="{{item.goodsList}}" wx:key="index" wx:for-index="_index" wx:for-item="_item">
           <van-swipe-cell bind:close="deleteGoods" data-id="{{_item.id}}" data-cart-index="{{index}}" data-goods-index="{{_index}}" async-close right-width="{{ 65 }}">
-            <view class="goods-list row">
+            <view class="goods-list row" bindtap="showGoodsDetail" data-id="{{_item.goodsId}}">
               <checkbox checked="{{_item.checked}}" disabled="{{_item.status !== 1}}" bindtap="toggleGoodsChecked" data-cart-index="{{index}}" data-goods-index="{{_index}}"/>
-              <image class="goods-img" src="{{_item.goodsImage}}" bindtap="showGoodsDetail" data-id="{{_item.goodsId}}" mode="aspectFill" lazy-load  />
+              <image class="goods-img" src="{{_item.goodsImage}}" mode="aspectFill" lazy-load  />
               <view class="goods-content">
                 <view class="goods-name {{_item.status !== 1 ? 'invalid' : ''}}">{{_item.goodsName}}</view>
                 <block wx:if="{{_item.status === 1}}">
-                  <view class="goods-sku-wrap" wx:if="{{_item.selectedSkuName}}" bindtap="editSpec" data-info="{{_item}}">
+                  <view class="goods-sku-wrap" wx:if="{{_item.selectedSkuName}}" catchtap="editSpec" data-info="{{_item}}">
                     <text class="goods-sku">已选：{{_item.selectedSkuName}}</text>
                     <image class="sku-edit-icon" src="https://img.ubo.vip/mp/to-icon.png" />
                   </view>
@@ -42,7 +42,7 @@
                     <van-stepper value="{{ _item.number }}" bind:change="countChange" data-cart-index="{{index}}" data-goods-index="{{_index}}" integer max="{{_item.stock}}" />
                   </view>
                 </block>
-                <view class="invalid-tips-wrap" wx:if="{{_item.status !== 1}}">
+                <view class="invalid-tips-wrap" wx:if="{{_item.status === 2}}">
                   <view class="invalid-tips">请重新选择规格</view>
                   <view class="reset-spec-btn" bindtap="editSpec" data-info="{{_item}}">重选</view>
                 </view>
@@ -86,4 +86,4 @@
   <button class="delete-btn {{selectedCount ? 'active' : ''}}" wx:if="{{deleteBtnVisible}}" bindtap="deleteGoodsList">删除</button>
 </view>
 
-<spec-popup show="{{specPopupVisible}}" mode="{{3}}" goodsInfo="{{goodsInfo}}" bind:hide="finishEdit" />
+<spec-popup show="{{specPopupVisible}}" mode="{{3}}" goodsInfo="{{goodsInfo}}" cartInfo="{{cartInfo}}" bind:hide="finishEdit" />

@@ -9,26 +9,49 @@ Component({
   },
   
   properties: {
-    show: Boolean,
+    show: {
+      type: Boolean,
+      observer(truthy) {
+        if (truthy) {
+          const { goodsInfo, cartInfo } = this.properties
+          if (goodsInfo.specList.length) {
+            if (cartInfo) {
+              const { selectedSkuName, selectedSkuIndex, number } = cartInfo
+              const { name, stock } = goodsInfo.skuList[selectedSkuIndex]
+              if (selectedSkuName !== '' && selectedSkuIndex !== -1 && name === selectedSkuName) {
+                const specList = goodsInfo.specList.map((item) => ({
+                  ...item, 
+                  options: item.options.map((_item) => ({
+                    name: _item,
+                    selected: selectedSkuName.includes(_item)
+                  }))
+                }))
+                this.setData({ 
+                  specList,
+                  count: number > stock ? stock : number
+                }) 
+                return
+              }
+            }
+
+            const specList = goodsInfo.specList.map((item) => ({
+              ...item, 
+              options: item.options.map((_item, _index) => ({
+                name: _item,
+                selected: _index === 0
+              }))
+            }))
+            this.setData({ specList })
+          }
+        }
+      }
+    },
     mode: {
       type: Number,
       value: 0
     },
-    goodsInfo: {
-      type: Object,
-      observer(info) {
-        if (info && info.specList.length) {
-          const specList = info.specList.map((item) => ({
-            ...item, 
-            options: item.options.map((_item, _index) => ({
-              name: _item,
-              selected: _index === 0
-            }))
-          }))
-          this.setData({ specList })
-        }
-      }
-    },
+    goodsInfo: Object,
+    cartInfo: Object,
     cartId: {
       type: Number,
       value: 0
@@ -45,6 +68,8 @@ Component({
 
   data: {
     specList: [],
+    selectedSkuName: '',
+    selectedSkuIndex: -1,
     count: 1
   },
 

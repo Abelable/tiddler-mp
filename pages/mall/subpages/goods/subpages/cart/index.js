@@ -13,9 +13,9 @@ Page({
     totalPrice: 0,
     selectedCount: 0,
     deleteBtnVisible: false,
-    specPopupVisible: false,
     goodsInfo: null,
-    selectedSkuIndex: -1 
+    cartInfo: null,
+    specPopupVisible: false,
   },
 
   onShow() {
@@ -246,10 +246,11 @@ Page({
   },
 
   async editSpec(e) {
-    const { goods_id: id, id: recId, goods_name: name, goods_thumb: img, product_number: stock, goods_number: count } = e.currentTarget.dataset.info
-    const { attr_goods_info: mainInfo, shop_price: basePrice } = await goodsService.getGoodsSpec(id)
+    const cartInfo = e.currentTarget.dataset.info
+    const goodsInfo = await goodsService.getGoodsInfo(cartInfo.goodsId)
     this.setData({
-      specInfo: { id, recId, name, img, basePrice, stock, count, mainInfo },
+      cartInfo,
+      goodsInfo,
       specPopupVisible: true
     })
   },
