@@ -10,7 +10,7 @@ Page({
     cartList: [],
     recommendGoodsList: [],
     isSelectAll: false,
-    totalPrice: "0.00",
+    totalPrice: 0,
     selectedCount: 0,
     deleteBtnVisible: false,
     specPopupVisible: false,
@@ -64,7 +64,7 @@ Page({
     let goodsCheckStatus = cartList[cartIndex].goodsList[goodsIndex].checked
     cartList[cartIndex].goodsList[goodsIndex].checked = !goodsCheckStatus
     let unCheckedIndex = cartList[cartIndex].goodsList.findIndex(item => {
-      if (deleteBtnVisible || (!deleteBtnVisible && item.product_number)) return item.checked === false
+      if (deleteBtnVisible || (!deleteBtnVisible && item.status === 1)) return item.checked === false
     })
     cartList[cartIndex].checked = unCheckedIndex === -1
     this.setData({ cartList }, () => {

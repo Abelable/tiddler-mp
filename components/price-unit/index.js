@@ -28,7 +28,7 @@ Component({
   },
 
   data: {
-    integerPart: '',
+    integerPart: '0',
     floatPart: ''
   },
 })
