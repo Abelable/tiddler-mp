@@ -9,7 +9,7 @@
       <view class="spec-info">
         <price-unit price="{{selectedSkuIndex !== -1 ? goodsInfo.skuList[selectedSkuIndex].price : (goodsInfo.price || 0)}}" />
         <view class="spec-stock">库存{{selectedSkuIndex !== -1 ? goodsInfo.skuList[selectedSkuIndex].stock : goodsInfo.stock}}</view>
-        <view class="omit single-line">{{ selecteSkuName ? '已选：' + selecteSkuName : '请选择规格'}}</view>
+        <view class="omit single-line">{{ selectedSkuName ? '已选：' + selectedSkuName : '请选择规格'}}</view>
       </view>
     </view>
     <scroll-view class="selection-mian" scroll-y>

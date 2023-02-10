@@ -2,7 +2,7 @@
   <view style="flex: 1;">
     <view class="nav-bar-btn row">
       <image class="nav-back-icon" bindtap="navBack" src="https://img.ubo.vip/mp/i-back-icon/back-icon.png" />
-      <view class="edit-btn" wx:if="{{cartList.length}}" bindtap="toggleDeleteBtnVision">{{deleteBtnVision ? '完成' : '管理'}}</view>
+      <view class="edit-btn" wx:if="{{cartList.length}}" bindtap="toggleDeleteBtnVisible">{{deleteBtnVisible ? '完成' : '管理'}}</view>
     </view>
   </view>
   <view class="navigation-title">购物车</view>
@@ -73,7 +73,7 @@
     <checkbox checked="{{isSelectAll}}" />
     <view>全选</view>
   </view>
-  <view class="bar-main" wx:if="{{!deleteBtnVision}}">
+  <view class="bar-main" wx:if="{{!deleteBtnVisible}}">
     <view class="total-price">
       <text style="color: #333; font-weight: 400;">合计：</text>
       <text>¥</text>
@@ -84,7 +84,7 @@
       <text wx:if="{{selectedCount}}">({{selectedCount}})</text>
     </button>
   </view>
-  <button class="delete-btn {{selectedCount ? 'active' : ''}}" wx:if="{{deleteBtnVision}}" bindtap="deleteGoodsList">删除</button>
+  <button class="delete-btn {{selectedCount ? 'active' : ''}}" wx:if="{{deleteBtnVisible}}" bindtap="deleteGoodsList">删除</button>
 </view>
 
-<spec-popup show="{{specModalVisible}}" mode="{{3}}" goodsInfo="{{goodsInfo}}" bind:hide="finishEdit" />
+<spec-popup show="{{specPopupVisible}}" mode="{{3}}" goodsInfo="{{goodsInfo}}" bind:hide="finishEdit" />

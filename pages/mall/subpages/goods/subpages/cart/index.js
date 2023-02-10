@@ -12,9 +12,10 @@ Page({
     isSelectAll: false,
     totalPrice: "0.00",
     selectedCount: 0,
-    deleteBtnVision: false,
-    specModalVisible: false,
-    specInfo: null
+    deleteBtnVisible: false,
+    specPopupVisible: false,
+    goodsInfo: null,
+    selectedSkuIndex: -1 
   },
 
   onShow() {
@@ -41,11 +42,11 @@ Page({
    */
   async toggleCartChecked(e) {
     const { index } = e.currentTarget.dataset
-    let { cartList, deleteBtnVision } = this.data
+    let { cartList, deleteBtnVisible } = this.data
     let checkStatus = cartList[index].checked
     cartList[index].checked = !checkStatus
     cartList[index].goodsList.map(item => {
-      if (deleteBtnVision || (!deleteBtnVision && item.status === 1)) {
+      if (deleteBtnVisible || (!deleteBtnVisible && item.status === 1)) {
         item.checked = !checkStatus
       }
     })
@@ -59,11 +60,11 @@ Page({
    */
   async toggleGoodsChecked(e) {
     const { cartIndex, goodsIndex } = e.currentTarget.dataset
-    let { cartList, deleteBtnVision } = this.data
-    let goodsCheckStatus = cartList[cartIndex].goods[goodsIndex].checked
-    cartList[cartIndex].goods[goodsIndex].checked = !goodsCheckStatus
+    let { cartList, deleteBtnVisible } = this.data
+    let goodsCheckStatus = cartList[cartIndex].goodsList[goodsIndex].checked
+    cartList[cartIndex].goodsList[goodsIndex].checked = !goodsCheckStatus
     let unCheckedIndex = cartList[cartIndex].goodsList.findIndex(item => {
-      if (deleteBtnVision || (!deleteBtnVision && item.product_number)) return item.checked === false
+      if (deleteBtnVisible || (!deleteBtnVisible && item.product_number)) return item.checked === false
     })
     cartList[cartIndex].checked = unCheckedIndex === -1
     this.setData({ cartList }, () => {
@@ -75,25 +76,22 @@ Page({
    * 切换全选状态
    */
   toggleAllChecked(){
-    let { cartList, invalidGoodsList, isSelectAll, deleteBtnVision } = this.data
-    if (deleteBtnVision) {
+    let { cartList, isSelectAll, deleteBtnVisible } = this.data
+    if (deleteBtnVisible) {
       cartList.map(item => {
         item.checked = !isSelectAll
         item.goodsList.map(_item => {
           _item.checked = !isSelectAll
         })
       })
-      invalidGoodsList.map(item => {
-        item.is_checked = !isSelectAll
-      })
-      this.setData({ cartList, invalidGoodsList }, () => {
+      this.setData({ cartList }, () => {
         this.acount()
       })
     } else {
       cartList.map(item => {
         item.checked = !isSelectAll
         item.goodsList.map(_item => {
-          if (_item.product_number) _item.checked = !isSelectAll
+          if (_item.status === 1) _item.checked = !isSelectAll
         })
       })
       this.setData({ cartList }, () => {
@@ -105,15 +103,15 @@ Page({
   async acount() {
     this.totalCount = 0
     let selectedCount = 0
-    this.selectedRecIdArr = []
+    this.selectedCartIdArr = []
 
-    const { cartList, deleteBtnVision } = this.data
+    const { cartList, deleteBtnVisible } = this.data
 
-    if (deleteBtnVision) {
+    if (deleteBtnVisible) {
       cartList.forEach(item => {
         item.goodsList.forEach(_item => {
           if (_item.checked) {
-            this.selectedRecIdArr.push(_item.rec_id)
+            this.selectedCartIdArr.push(_item.id)
             selectedCount += _item.number
           }
           this.totalCount += _item.number
@@ -127,14 +125,14 @@ Page({
       cartList.forEach(item => {
         item.goodsList.forEach(_item => {
           if (_item.status === 1 && _item.checked) {
-            this.selectedRecIdArr.push(_item.rec_id)
+            this.selectedCartIdArr.push(_item.id)
             selectedCount += _item.number
           }
           this.totalCount += _item.number
         })
       })
   
-      // const { goods_amount_formated: totalPrice } = await goodsService.getCartAmount(this.selectedRecIdArr.join()) || {}
+      // const { goods_amount_formated: totalPrice } = await goodsService.getCartAmount(this.selectedCartIdArr.join()) || {}
   
       this.setData({ 
         selectedCount, 
@@ -150,7 +148,7 @@ Page({
   },
 
   async countControl(cartIndex, goodsIndex, recId, stock, mode) {
-    let count = this.data.cartList[cartIndex].goods[goodsIndex].goods_number
+    let count = this.data.cartList[cartIndex].goodsList[goodsIndex].goods_number
     let continueFlag = true
     switch (mode) {
       case 'add':
@@ -176,7 +174,7 @@ Page({
           continueFlag = false
           wx.showToast({ title: '数量大于库存，请重新输入', icon: 'none' })
           this.setData({
-            [`cartList[${cartIndex}].goods[${goodsIndex}].goods_number`]: count
+            [`cartList[${cartIndex}].goodsList[${goodsIndex}].goods_number`]: count
           })
         }
         
@@ -187,7 +185,7 @@ Page({
       this.setData({ 
         totalPrice: totalPrice.slice(1), 
         selectedCount,
-        [`cartList[${cartIndex}].goods[${goodsIndex}].goods_number`]: count
+        [`cartList[${cartIndex}].goodsList[${goodsIndex}].goods_number`]: count
       })
     }
   },
@@ -195,12 +193,12 @@ Page({
   deleteGoodsList() {
     this.data.selectedCount && wx.showModal({
       title: '提示',
-      content: '确定删除商品吗？',
+      content: '确定删除这些商品吗？',
       showCancel: true,
       success: async res => {
         if (res.confirm) {
-          await goodsService.deleteCartList(this.selectedRecIdArr)
-          // this.setCartList()
+          await goodsService.deleteCartList(this.selectedCartIdArr)
+          this.setCartList()
         }
       }
     })
@@ -246,38 +244,20 @@ Page({
         }
       })
     }
-    
-  },
-
-  async emptyInvalidGoods() {
-    const recIdArr = this.data.invalidGoodsList.map(item => item.rec_id)
-    await goodsService.deleteCartList(recIdArr.join())
-    this.setData({
-      invalidGoodsList: []
-    })
-  },
-
-  async deleteInvalidGoods(e) {
-    const { idx, listId } = e.detail
-    await goodsService.deleteCartList(listId)
-    let { invalidGoodsList } = this.data
-    invalidGoodsList.splice(idx, 1)
-    this.setData({ invalidGoodsList })
-    e.detail.close() 
   },
 
   async editSpec(e) {
-    const { goods_id: id, rec_id: recId, goods_name: name, goods_thumb: img, product_number: stock, goods_number: count } = e.currentTarget.dataset.info
+    const { goods_id: id, id: recId, goods_name: name, goods_thumb: img, product_number: stock, goods_number: count } = e.currentTarget.dataset.info
     const { attr_goods_info: mainInfo, shop_price: basePrice } = await goodsService.getGoodsSpec(id)
     this.setData({
       specInfo: { id, recId, name, img, basePrice, stock, count, mainInfo },
-      specModalVisible: true
+      specPopupVisible: true
     })
   },
 
-  toggleDeleteBtnVision() {
+  toggleDeleteBtnVisible() {
     this.setData({
-      deleteBtnVision: !this.data.deleteBtnVision
+      deleteBtnVisible: !this.data.deleteBtnVisible
     }, () => {
       this.acount()
     })
@@ -286,7 +266,7 @@ Page({
   submit(){
     if (this.data.selectedCount) {
       wx.navigateTo({ 
-        url: `/pages/subpages/mall/goods-detail/subpages/order-check/index?cartId=${this.selectedRecIdArr.join()}` 
+        url: `/pages/subpages/mall/goods-detail/subpages/order-check/index?cartId=${this.selectedCartIdArr.join()}` 
       })
     }
   },
@@ -304,7 +284,6 @@ Page({
   },
 
   finishEdit() {
-    this.setCartList()
     this.hideSpecModal()
   },
 
@@ -313,6 +292,6 @@ Page({
   },
 
   hideSpecModal() {
-    this.setData({ specModalVisible: false })
+    this.setData({ specPopupVisible: false })
   }
 })

@@ -29,21 +29,31 @@ Component({
         }
       }
     },
+    cartId: {
+      type: Number,
+      value: 0
+    },
+    selectedSkuName: {
+      type: String,
+      value: ''
+    },
+    selectedSkuIndex: {
+      type: Number,
+      value: -1
+    }
   },
 
   data: {
     specList: [],
-    selecteSkuName: '',
-    selectedSkuIndex: -1,
     count: 1
   },
 
   observers: {
     'specList': function (list) {
       if (list.length) {
-        const selecteSkuName = list.map(item => item.options.find(_item => _item.selected).name).join()
-        const selectedSkuIndex = this.data.goodsInfo.skuList.findIndex(item => item.name === selecteSkuName)
-        this.setData({ selecteSkuName, selectedSkuIndex })
+        const selectedSkuName = list.map(item => item.options.find(_item => _item.selected).name).join()
+        const selectedSkuIndex = this.data.goodsInfo.skuList.findIndex(item => item.name === selectedSkuName)
+        this.setData({ selectedSkuName, selectedSkuIndex })
       } 
     }
   },
@@ -96,33 +106,6 @@ Component({
       })
     },
 
-    payforFreeSample() {
-      checkLogin(() => {
-        if (this.check()) {
-          let { roomId, goodsId, count, specIdArr, inviteCode, freeSampleId } = this.data
-          wx.navigateTo({ url: `/pages/subpages/mall/goods-detail/subpages/order-check/index?goods_id=${goodsId}&count=${count}&sku=${specIdArr}&roomId=${roomId}&invite_code=${inviteCode}&freeSampleId=${freeSampleId}` })
-          this.triggerEvent('hideSpecModal')
-        }
-      })
-    },
-
-    finish() {
-      switch (this.properties.actionType) {
-        case 1:
-          this.addToShopcart()
-          break
-        case 2:
-          this.buyNow()
-          break
-        case 3:
-          this.editCartSpec()
-          break
-        case 4:
-          this.payforFreeSample()
-          break
-      }
-    },
-
     // 购买前核对
     check() {
       let { mainInfo, specIdArr } = this.data
@@ -145,8 +128,8 @@ Component({
     },
 
     hide() {
-      const { selecteSkuName } = this.data
-      this.triggerEvent('hide', { selecteSkuName })
+      const { selectedSkuName } = this.data
+      this.triggerEvent('hide', { selectedSkuName })
     }
   }
 })
