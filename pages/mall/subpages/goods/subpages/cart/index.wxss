@@ -145,6 +145,9 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   height: 184rpx;
   border-radius: 16rpx;
 }
+.goods-img.invalid {
+  opacity: 0.6;
+}
 .goods-content {
   display: flex;
   flex-direction: column;
@@ -164,7 +167,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   -webkit-box-orient: vertical;
 }
 .goods-name.invalid {
-  color: #999;
+  opacity: 0.6;
 }
 .goods-sku-wrap {
   display: flex;
@@ -209,6 +212,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
 .invalid-tips-wrap {
   display: flex;
   align-items: center;
+  height: 50rpx;
 }
 .invalid-tips {
   flex: 1;
