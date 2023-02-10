@@ -12,7 +12,7 @@
 <view class="wrap" style="padding-top: {{statusBarHeight + 44}}px;">
   <view class="cart-list-wrap" wx:if="{{cartList.length}}">
     <view class="cart-list" wx:for="{{cartList}}" wx:key="index">
-      <view class="cart-list-header">
+      <view class="cart-list-header row">
         <checkbox class="checkbox {{deleteBtnVisible ? 'danger' : ''}}" checked="{{item.checked}}" data-index="{{index}}" bindtap="toggleCartChecked"/>
         <view class="shop-info" wx:if="{{item.shopInfo}}" bindtap="navToShop" data-id="{{item.shopInfo.id}}">
           <image class="shop-img" src="{{item.shopInfo.avatar}}" lazy-load />

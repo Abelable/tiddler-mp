@@ -105,16 +105,10 @@
   border-radius: 12rpx;
 }
 .cart-list-header {
-  display: flex;
-  align-items: center;
+  height: 40rpx;
   color: #333;
   font-size: 28rpx;
   font-weight: 500;
-}
-.cart-list-header.invalid {
-  padding-left: 69rpx;
-  padding-right: 32rpx;
-  justify-content: space-between;
 }
 .shop-info {
   display: flex;
