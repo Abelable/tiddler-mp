@@ -1,5 +1,6 @@
 const { statusBarHeight } = getApp().globalData
 
+import { customBack } from '../../../../utils/jumpPage'
 import GoodsService from './utils/goodsService'
 
 const goodsService = new GoodsService()
@@ -7,6 +8,7 @@ const goodsService = new GoodsService()
 Page({
   data: {
     statusBarHeight,
+    cartGoodsNumber: 0,
     categoryOptions: [],
     activeTabIdx: 0,
     tabScroll: 0,
@@ -17,6 +19,15 @@ Page({
   async onLoad() {
     await this.setCategoryOptions()
     this.setGoodsList(true)
+  },
+
+  onShow() {
+    this.setCartGoodsNumber()
+  },
+
+  async setCartGoodsNumber() {
+    const cartGoodsNumber = await goodsService.getCartGoodsNumber();
+    this.setData({ cartGoodsNumber })
   },
 
   async setCategoryOptions() {
@@ -66,16 +77,8 @@ Page({
     this.setGoodsList(true)
     wx.stopPullDownRefresh() 
   },
-
-  navToCart() {
-    wx.navigateTo({
-      url: './subpages/cart/index'
-    })
-  },
-
+  
   navBack() {
-    wx.navigateBack({
-      delta: 1
-    })
+    customBack()
   }
 })
