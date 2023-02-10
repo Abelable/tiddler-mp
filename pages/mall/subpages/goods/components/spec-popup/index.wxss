@@ -85,13 +85,14 @@
   color: #fff;
   font-size: 28rpx;
   border-radius: 40rpx;
+  background: #e6e6e6;
 }
-.add-cart-btn {
+.add-cart-btn.active {
   background: #1986F8;
 }
-.buy-btn {
+.buy-btn.active {
   background: #161F4E;
 }
-.edit-btn {
+.edit-btn.active {
   background: #212121;
 }

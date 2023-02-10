@@ -58,7 +58,8 @@ Component({
     specList: [],
     selectedSkuName: '',
     selectedSkuIndex: -1,
-    count: 1
+    count: 1,
+    btnActive: false
   },
 
   observers: {
@@ -68,6 +69,12 @@ Component({
         const selectedSkuIndex = this.data.goodsInfo.skuList.findIndex(item => item.name === selectedSkuName)
         this.setData({ selectedSkuName, selectedSkuIndex })
       } 
+    },
+    'selectedSkuIndex, count': function(index, count) {
+      const { goodsInfo } = this.properties
+      this.setData({
+        btnActive: index !== -1 ? count <= goodsInfo.skuList[index].stock : count <= goodsInfo.stock
+      })
     }
   },
   
@@ -91,26 +98,32 @@ Component({
 
     // 加入购物车
     addCart() {
-      checkLogin(async () => {
-        const { goodsInfo, selectedSkuIndex, count } = this.data
-        const cartGoodsNumber = await goodsService.addCart(goodsInfo.id, selectedSkuIndex, count)
-        cartGoodsNumber && this.triggerEvent('hide', { cartGoodsNumber })
-      })
+      if (this.data.btnActive) {
+        checkLogin(async () => {
+          const { goodsInfo, selectedSkuIndex, count } = this.data
+          const cartGoodsNumber = await goodsService.addCart(goodsInfo.id, selectedSkuIndex, count)
+          cartGoodsNumber && this.triggerEvent('hide', { cartGoodsNumber })
+        })
+      }
     },
 
     // 立即购买
     buyNow() {
-      checkLogin(() => {
-        let { roomId, goodsId, count, specIdArr, inviteCode } = this.data
-        wx.navigateTo({ url: `/pages/subpages/mall/goods-detail/subpages/order-check/index?goods_id=${goodsId}&count=${count}&sku=${specIdArr}&roomId=${roomId}&invite_code=${inviteCode}` })
-        this.triggerEvent('hide')
-      })
+      if (this.data.btnActive) {
+        checkLogin(() => {
+          let { roomId, goodsId, count, specIdArr, inviteCode } = this.data
+          wx.navigateTo({ url: `/pages/subpages/mall/goods-detail/subpages/order-check/index?goods_id=${goodsId}&count=${count}&sku=${specIdArr}&roomId=${roomId}&invite_code=${inviteCode}` })
+          this.triggerEvent('hide')
+        })
+      }
     },
 
     async editSpec() {
-      const { cartInfo, selectedSkuIndex, count } = this.data
-      const newCartInfo = await goodsService.editCart(cartInfo.id, cartInfo.goodsId, selectedSkuIndex, count)
-      newCartInfo && this.triggerEvent('hide', { cartInfo: newCartInfo })
+      if (this.data.btnActive) {
+        const { cartInfo, selectedSkuIndex, count } = this.data
+        const newCartInfo = await goodsService.editCart(cartInfo.id, cartInfo.goodsId, selectedSkuIndex, count)
+        newCartInfo && this.triggerEvent('hide', { cartInfo: newCartInfo })
+      }
     },
 
     hide() {

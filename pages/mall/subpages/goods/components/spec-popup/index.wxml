@@ -41,27 +41,27 @@
     </scroll-view>
     <view class="btns-wrap row">
       <button 
-        class="add-cart-btn" 
+        class="add-cart-btn {{btnActive ? 'active' : '' }}" 
         style="margin-right: {{mode === 0 ? '12rpx' :  '0'}};"
         wx:if="{{mode === 0 || mode === 1}}" 
         bindtap="addCart"
       >
-        加入购物车
+        {{btnActive ? '加入购物车' : '库存不足'}}
       </button>
       <button 
-        class="buy-btn" 
+        class="buy-btn {{btnActive ? 'active' : '' }}" 
         style="margin-left: {{mode === 0 ? '12rpx' :  '0'}};"
         wx:if="{{mode === 0 || mode === 2}}" 
         bindtap="buyNow"
       >
-        立即购买
+        {{btnActive ? '立即购买' : '库存不足'}}
       </button>
       <button 
-        class="edit-btn" 
+        class="edit-btn {{btnActive ? 'active' : '' }}" 
         wx:if="{{mode === 3}}" 
         bindtap="editSpec"
       >
-        完成
+        {{btnActive ? '完成' : '库存不足'}}
       </button>
     </view>
   </view>
