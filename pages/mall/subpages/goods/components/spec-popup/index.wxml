@@ -43,7 +43,7 @@
       <button 
         class="add-cart-btn" 
         style="margin-right: {{mode === 0 ? '12rpx' :  '0'}};"
-        wx:if="{{mode !== 2}}" 
+        wx:if="{{mode === 0 || mode === 1}}" 
         bindtap="addCart"
       >
         加入购物车
@@ -51,10 +51,17 @@
       <button 
         class="buy-btn" 
         style="margin-left: {{mode === 0 ? '12rpx' :  '0'}};"
-        wx:if="{{mode !== 1}}" 
+        wx:if="{{mode === 0 || mode === 2}}" 
         bindtap="buyNow"
       >
         立即购买
+      </button>
+      <button 
+        class="edit-btn" 
+        wx:if="{{mode === 3}}" 
+        bindtap="editSpec"
+      >
+        完成
       </button>
     </view>
   </view>

@@ -52,23 +52,23 @@ class GoodsService extends BaseService {
   async addCart(goodsId, selectedSkuIndex, number) {
     return await this.post({
       url: `${this.baseUrl}/cart/add`,
-      data: { goodsId, selectedSkuIndex, number }
+      data: { goodsId, selectedSkuIndex, number },
     })
   }
 
-  async editCart(id, goodsId, selectedSkuIndex, number) {
+  async editCart(id, goodsId, selectedSkuIndex, number, success) {
     return await this.post({
       url: `${this.baseUrl}/cart/edit`,
-      data: { id, goodsId, selectedSkuIndex, number }
+      data: { id, goodsId, selectedSkuIndex, number },
+      success,
     })
   }
 
-  async deleteCartList(ids, success, fail) {
+  async deleteCartList(ids, success) {
     return await this.post({
       url: `${this.baseUrl}/cart/delete`,
       data: { ids },
       success,
-      fail
     })
   }
 }

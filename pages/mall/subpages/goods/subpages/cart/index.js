@@ -194,10 +194,11 @@ Page({
       title: '提示',
       content: '确定删除这些商品吗？',
       showCancel: true,
-      success: async res => {
+      success: res => {
         if (res.confirm) {
-          await goodsService.deleteCartList(this.selectedCartIdArr)
-          this.setCartList()
+          goodsService.deleteCartList(this.selectedCartIdArr, () => {
+            this.setCartList()
+          })
         }
       }
     })
@@ -228,13 +229,6 @@ Page({
                   this.setData({ cartList })
                 }
                 instance.close()
-              },
-              () => {
-                wx.showToast({
-                  title: '删除失败',
-                  icon: 'none',
-                })
-                instance.close()
               }
             )
           } else {
@@ -245,13 +239,29 @@ Page({
     }
   },
 
-  async editSpec(e) {
-    const cartInfo = e.currentTarget.dataset.info
+  async showSpecPopup(e) {
+    const { info: cartInfo, cartIndex, goodsIndex } = e.currentTarget.dataset
     const goodsInfo = await goodsService.getGoodsInfo(cartInfo.goodsId)
     this.setData({
       cartInfo,
       goodsInfo,
       specPopupVisible: true
+    })
+    this.editingCartIndex = cartIndex
+    this.editingGoodsIndex = goodsIndex
+  },
+
+  hideSpecPopup(e) {
+    const { selectedSkuName, selectedSkuIndex, count } = e.detail
+    const goods = this.data.cartList[this.editingCartIndex].goodsList[this.editingGoodsIndex]
+    this.setData({ 
+      [`cartList[${this.editingCartIndex}].goodsList[${this.editingGoodsIndex}]`]: {
+        ...goods,
+        selectedSkuName,
+        selectedSkuIndex,
+        count
+      },
+      specPopupVisible: false
     })
   },
 
@@ -283,15 +293,7 @@ Page({
     })
   },
 
-  finishEdit() {
-    this.hideSpecModal()
-  },
-
   navBack() {
     customBack()
   },
-
-  hideSpecModal() {
-    this.setData({ specPopupVisible: false })
-  }
 })

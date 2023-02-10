@@ -52,18 +52,6 @@ Component({
     },
     goodsInfo: Object,
     cartInfo: Object,
-    cartId: {
-      type: Number,
-      value: 0
-    },
-    selectedSkuName: {
-      type: String,
-      value: ''
-    },
-    selectedSkuIndex: {
-      type: Number,
-      value: -1
-    }
   },
 
   data: {
@@ -113,43 +101,20 @@ Component({
     // 立即购买
     buyNow() {
       checkLogin(() => {
-        if (this.check()) {
-          let { roomId, goodsId, count, specIdArr, inviteCode } = this.data
-          wx.navigateTo({ url: `/pages/subpages/mall/goods-detail/subpages/order-check/index?goods_id=${goodsId}&count=${count}&sku=${specIdArr}&roomId=${roomId}&invite_code=${inviteCode}` })
-          this.triggerEvent('hideSpecModal')
-        }
+        let { roomId, goodsId, count, specIdArr, inviteCode } = this.data
+        wx.navigateTo({ url: `/pages/subpages/mall/goods-detail/subpages/order-check/index?goods_id=${goodsId}&count=${count}&sku=${specIdArr}&roomId=${roomId}&invite_code=${inviteCode}` })
+        this.triggerEvent('hide')
       })
     },
 
-    editCartSpec() {
-      checkLogin(async () => {
-        if (this.check()) {
-          const { recId, specIdArr, count } = this.data
-          await goodsService.updateCartGoods({ recId, spec: specIdArr.join(), count })
-          this.triggerEvent('hideSpecModal')
+    editSpec() {
+      const { cartInfo, selectedSkuName, selectedSkuIndex, count } = this.data
+      goodsService.editCart(
+        cartInfo.id, cartInfo.goodsId, selectedSkuIndex, count,
+        () => {
+          this.triggerEvent('hide', { selectedSkuName, selectedSkuIndex, count })
         }
-      })
-    },
-
-    // 购买前核对
-    check() {
-      let { mainInfo, specIdArr } = this.data
-      let showToastTitle = ''
-      if (!showToastTitle && mainInfo.specification.length) { // 判断规格选择是否有遗漏
-        let unselectedIndex = specIdArr.findIndex(item => item === undefined)
-        if (unselectedIndex !== -1) {
-          showToastTitle = `请选择${mainInfo.specification[unselectedIndex].name}`
-        } else if (specIdArr.length < mainInfo.specification.length) {
-          showToastTitle = `请选择${mainInfo.specification[specIdArr.length].name}`
-        }
-      }
-      
-      showToastTitle && wx.showToast({
-        title: showToastTitle,
-        icon: "none",
-        duration: 1500
-      })
-      return !showToastTitle
+      )
     },
 
     hide() {
