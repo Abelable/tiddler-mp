@@ -1,4 +1,5 @@
-import { getQueryString, checkLogin } from '../../../../../../utils/index'
+import { getQueryString } from '../../../../../../utils/index'
+import checkLogin from '../../../../../../utils/checkLogin'
 import GoodsService from '../../utils/goodsService'
 
 const goodsService = new GoodsService()
@@ -40,7 +41,9 @@ Page({
   },
 
   onShow() {
-    this.setCartGoodsNumber()
+    checkLogin(() => {
+      this.setCartGoodsNumber()
+    }, false)
   },
 
   async setGoodsInfo() {

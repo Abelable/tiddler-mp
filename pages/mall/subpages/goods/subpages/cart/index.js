@@ -18,16 +18,20 @@ Page({
     specInfo: null
   },
 
-  onLoad() {
-    checkLogin(this.initData)
-  },
-
-  initData() {
-    this.setCartList()
+  onShow() {
+    checkLogin(this.setCartList)
   },
 
   async setCartList() {
-    const { cartList, recommendGoodsList } = await goodsService.getCartList() || {}
+    const { cartList: list, recommendGoodsList } = await goodsService.getCartList() || {}
+    const cartList = list.map(item => ({
+      ...item,
+      selected: false,
+      goodsList: item.goodsList.map(_item => ({
+        ..._item, 
+        selected: false
+      }))
+    }))
     this.setData({ cartList, recommendGoodsList }, () => {
       this.acount()
     })

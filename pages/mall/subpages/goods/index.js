@@ -1,5 +1,6 @@
 const { statusBarHeight } = getApp().globalData
 
+import checkLogin from '../../../../utils/checkLogin'
 import { customBack } from '../../../../utils/jumpPage'
 import GoodsService from './utils/goodsService'
 
@@ -22,7 +23,9 @@ Page({
   },
 
   onShow() {
-    this.setCartGoodsNumber()
+    checkLogin(() => {
+      this.setCartGoodsNumber()
+    }, false)
   },
 
   async setCartGoodsNumber() {

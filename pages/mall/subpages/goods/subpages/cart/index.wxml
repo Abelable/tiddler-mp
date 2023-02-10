@@ -12,11 +12,7 @@
 
 
 <view class="wrap" style="padding-top: {{statusBarHeight + 44}}px;">
-  <view class="empty-illus" wx:if="{{!cartList.length}}">
-    <view class="empty-desc">还没有宝贝哦，快去挑选喜欢的宝贝吧～</view>
-    <navigator class="visit-btn" url="/pages/mall/subpages/goods/index" hover-class="navigator-hover">去逛逛</navigator>
-  </view>
-  <view class="cart-list-wrap">
+  <view class="cart-list-wrap" wx:if="{{cartList.length}}">
     <view class="cart-list" wx:for="{{cartList}}" wx:key="index">
       <view class="cart-list-header">
         <checkbox checked="{{item.checked}}" data-index="{{index}}" bindtap="toggleCartChecked"/>
@@ -59,6 +55,11 @@
         </view>
       </view>
     </view>
+  </view>
+
+  <view class="empty-illus" wx:if="{{!cartList.length}}">
+    <view class="empty-desc">还没有宝贝哦，快去挑选喜欢的宝贝吧～</view>
+    <navigator class="visit-btn" url="/pages/mall/subpages/goods/index" hover-class="navigator-hover">去逛逛</navigator>
   </view>
 
   <view class="recommend-goods-wrap" wx:if="{{recommendGoodsList.length}}">

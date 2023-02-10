@@ -55,6 +55,20 @@ class GoodsService extends BaseService {
       data: { goodsId, selectedSkuIndex, number }
     })
   }
+
+  async editCart(id, goodsId, selectedSkuIndex, number) {
+    return await this.post({
+      url: `${this.baseUrl}/cart/edit`,
+      data: { id, goodsId, selectedSkuIndex, number }
+    })
+  }
+
+  async deleteCartList(ids) {
+    return await this.post({
+      url: `${this.baseUrl}/cart/delete`,
+      data: { ids }
+    })
+  }
 }
 
 export default GoodsService
