@@ -70,8 +70,8 @@ Component({
     addCart() {
       checkLogin(async () => {
         const { goodsInfo, selectedSkuIndex, count } = this.data
-        const cartNumber = await goodsService.addCart(goodsInfo.id, selectedSkuIndex, count)
-        this.triggerEvent('hide', { cartNumber })
+        const cartGoodsNumber = await goodsService.addCart(goodsInfo.id, selectedSkuIndex, count)
+        this.triggerEvent('hide', { cartGoodsNumber })
       })
     },
 
