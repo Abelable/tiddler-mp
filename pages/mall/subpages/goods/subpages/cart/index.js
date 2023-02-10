@@ -252,15 +252,8 @@ Page({
   },
 
   hideSpecPopup(e) {
-    const { selectedSkuName, selectedSkuIndex, count } = e.detail
-    const goods = this.data.cartList[this.editingCartIndex].goodsList[this.editingGoodsIndex]
     this.setData({ 
-      [`cartList[${this.editingCartIndex}].goodsList[${this.editingGoodsIndex}]`]: {
-        ...goods,
-        selectedSkuName,
-        selectedSkuIndex,
-        count
-      },
+      [`cartList[${this.editingCartIndex}].goodsList[${this.editingGoodsIndex}]`]: e.detail.cartInfo,
       specPopupVisible: false
     })
   },

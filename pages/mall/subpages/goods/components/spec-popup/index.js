@@ -94,7 +94,7 @@ Component({
       checkLogin(async () => {
         const { goodsInfo, selectedSkuIndex, count } = this.data
         const cartGoodsNumber = await goodsService.addCart(goodsInfo.id, selectedSkuIndex, count)
-        this.triggerEvent('hide', { cartGoodsNumber })
+        cartGoodsNumber && this.triggerEvent('hide', { cartGoodsNumber })
       })
     },
 
@@ -107,14 +107,10 @@ Component({
       })
     },
 
-    editSpec() {
-      const { cartInfo, selectedSkuName, selectedSkuIndex, count } = this.data
-      goodsService.editCart(
-        cartInfo.id, cartInfo.goodsId, selectedSkuIndex, count,
-        () => {
-          this.triggerEvent('hide', { selectedSkuName, selectedSkuIndex, count })
-        }
-      )
+    async editSpec() {
+      const { cartInfo, selectedSkuIndex, count } = this.data
+      const newCartInfo = goodsService.editCart(cartInfo.id, cartInfo.goodsId, selectedSkuIndex, count)
+      newCartInfo && this.triggerEvent('hide', { cartInfo: newCartInfo })
     },
 
     hide() {

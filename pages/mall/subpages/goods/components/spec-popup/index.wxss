@@ -79,7 +79,7 @@
 .btns-wrap {
   margin-top: 24rpx;
 }
-.add-cart-btn, .buy-btn {
+.add-cart-btn, .buy-btn, .edit-btn {
   flex: 1;
   height: 80rpx;
   color: #fff;
@@ -91,4 +91,7 @@
 }
 .buy-btn {
   background: #161F4E;
+}
+.edit-btn {
+  background: #212121;
 }

@@ -56,11 +56,10 @@ class GoodsService extends BaseService {
     })
   }
 
-  async editCart(id, goodsId, selectedSkuIndex, number, success) {
+  async editCart(id, goodsId, selectedSkuIndex, number) {
     return await this.post({
       url: `${this.baseUrl}/cart/edit`,
       data: { id, goodsId, selectedSkuIndex, number },
-      success,
     })
   }
 
