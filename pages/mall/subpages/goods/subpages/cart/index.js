@@ -25,10 +25,10 @@ Page({
     const { cartList: list, recommendGoodsList } = await goodsService.getCartList() || {}
     const cartList = list.map(item => ({
       ...item,
-      selected: false,
+      checked: false,
       goodsList: item.goodsList.map(_item => ({
         ..._item, 
-        selected: false
+        checked: false
       }))
     }))
     this.setData({ cartList, recommendGoodsList }, () => {
@@ -44,8 +44,10 @@ Page({
     let { cartList, deleteBtnVision } = this.data
     let checkStatus = cartList[index].checked
     cartList[index].checked = !checkStatus
-    cartList[index].goods.map(item => {
-      if (deleteBtnVision || (!deleteBtnVision && item.product_number)) item.is_checked_goods = !checkStatus
+    cartList[index].goodsList.map(item => {
+      if (deleteBtnVision || (!deleteBtnVision && item.status === 1)) {
+        item.checked = !checkStatus
+      }
     })
     this.setData({ cartList }, () => {
       this.acount()
@@ -58,10 +60,10 @@ Page({
   async toggleGoodsChecked(e) {
     const { cartIndex, goodsIndex } = e.currentTarget.dataset
     let { cartList, deleteBtnVision } = this.data
-    let goodsCheckStatus = cartList[cartIndex].goods[goodsIndex].is_checked_goods
-    cartList[cartIndex].goods[goodsIndex].is_checked_goods = !goodsCheckStatus
-    let unCheckedIndex = cartList[cartIndex].goods.findIndex(item => {
-      if (deleteBtnVision || (!deleteBtnVision && item.product_number)) return item.is_checked_goods === false
+    let goodsCheckStatus = cartList[cartIndex].goods[goodsIndex].checked
+    cartList[cartIndex].goods[goodsIndex].checked = !goodsCheckStatus
+    let unCheckedIndex = cartList[cartIndex].goodsList.findIndex(item => {
+      if (deleteBtnVision || (!deleteBtnVision && item.product_number)) return item.checked === false
     })
     cartList[cartIndex].checked = unCheckedIndex === -1
     this.setData({ cartList }, () => {
@@ -77,8 +79,8 @@ Page({
     if (deleteBtnVision) {
       cartList.map(item => {
         item.checked = !isSelectAll
-        item.goods.map(_item => {
-          _item.is_checked_goods = !isSelectAll
+        item.goodsList.map(_item => {
+          _item.checked = !isSelectAll
         })
       })
       invalidGoodsList.map(item => {
@@ -90,24 +92,14 @@ Page({
     } else {
       cartList.map(item => {
         item.checked = !isSelectAll
-        item.goods.map(_item => {
-          if (_item.product_number) _item.is_checked_goods = !isSelectAll
+        item.goodsList.map(_item => {
+          if (_item.product_number) _item.checked = !isSelectAll
         })
       })
       this.setData({ cartList }, () => {
         this.acount()
       })
     }
-  },
-
-  toggleInvalidGoodsChecked(e) {
-    const { index } = e.currentTarget.dataset
-    const status = this.data.invalidGoodsList[index].is_checked
-    this.setData({
-      [`invalidGoodsList[${index}].is_checked`]: !status
-    }, () => {
-      this.acount()
-    })
   },
 
   async acount() {
@@ -120,7 +112,7 @@ Page({
     if (deleteBtnVision) {
       cartList.forEach(item => {
         item.goodsList.forEach(_item => {
-          if (_item.is_checked_goods) {
+          if (_item.checked) {
             this.selectedRecIdArr.push(_item.rec_id)
             selectedCount += _item.number
           }
@@ -134,7 +126,7 @@ Page({
     } else {
       cartList.forEach(item => {
         item.goodsList.forEach(_item => {
-          if (_item.status === 1 && _item.is_checked_goods) {
+          if (_item.status === 1 && _item.checked) {
             this.selectedRecIdArr.push(_item.rec_id)
             selectedCount += _item.number
           }
