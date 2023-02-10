@@ -103,6 +103,7 @@ Page({
   async acount() {
     this.totalCount = 0
     let selectedCount = 0
+    let totalPrice = 0
     this.selectedCartIdArr = []
 
     const { cartList, deleteBtnVisible } = this.data
@@ -127,16 +128,14 @@ Page({
           if (_item.status === 1 && _item.checked) {
             this.selectedCartIdArr.push(_item.id)
             selectedCount += _item.number
+            totalPrice += _item.number * _item.price
           }
           this.totalCount += _item.number
         })
       })
-  
-      // const { goods_amount_formated: totalPrice } = await goodsService.getCartAmount(this.selectedCartIdArr.join()) || {}
-  
       this.setData({ 
         selectedCount, 
-        totalPrice: 100,
+        totalPrice,
         isSelectAll: selectedCount && selectedCount === this.totalCount
       })
     }

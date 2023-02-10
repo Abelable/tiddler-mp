@@ -262,16 +262,15 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
 .select-all {
   display: flex;
   align-items: center;
-  font-size: 24rpx;
+  font-size: 26rpx;
 }
 .bar-main {
   display: flex;
   align-items: center;
 }
 .total-price {
-  font-size: 24rpx;
-  color: #FD0B0A;
-  font-weight: 600;
+  color: #333;
+  font-size: 26rpx;
 }
 .submit, .delete-btn {
   margin: 10rpx 20rpx;

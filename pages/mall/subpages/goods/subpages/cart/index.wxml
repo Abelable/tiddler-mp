@@ -74,10 +74,9 @@
     <view>全选</view>
   </view>
   <view class="bar-main" wx:if="{{!deleteBtnVisible}}">
-    <view class="total-price">
-      <text style="color: #333; font-weight: 400;">合计：</text>
-      <text>¥</text>
-      <text style="font-size: 36rpx;">{{totalPrice}}</text>
+    <view class="total-price row baseline">
+      <text>合计：</text>
+      <price-unit price="{{totalPrice}}" fontSize="26rpx" integerPartFontSize="36rpx" />
     </view>
     <button class="submit {{selectedCount ? 'active' : ''}}" bindtap="submit">
       <text>结算</text>
