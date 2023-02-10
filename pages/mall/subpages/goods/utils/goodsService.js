@@ -44,6 +44,13 @@ class GoodsService extends BaseService {
       loadingTitle: "加载中..."
     })
   }
+
+  async addCart(goodsId, selectedSkuIndex, number) {
+    return await this.post({
+      url: `${this.baseUrl}/cart/add`,
+      data: { goodsId, selectedSkuIndex, number }
+    })
+  }
 }
 
 export default GoodsService

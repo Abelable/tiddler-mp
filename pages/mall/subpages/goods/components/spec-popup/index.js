@@ -1,7 +1,7 @@
-import { checkLogin } from '../../utils/index'
-import BaseService from '../../services/baseService'
+import { checkLogin } from '../../../../../../utils/index'
+import GoodsService from '../../utils/goodsService'
 
-const baseService = new BaseService()
+const goodsService = new GoodsService()
 
 Component({
   options: {
@@ -70,7 +70,7 @@ Component({
     addCart() {
       checkLogin(async () => {
         const { goodsInfo, selectedSkuIndex, count } = this.data
-        const cartNumber = await baseService.addCart(goodsInfo.id, selectedSkuIndex, count)
+        const cartNumber = await goodsService.addCart(goodsInfo.id, selectedSkuIndex, count)
         this.triggerEvent('hide', { cartNumber })
       })
     },
@@ -90,7 +90,7 @@ Component({
       checkLogin(async () => {
         if (this.check()) {
           const { recId, specIdArr, count } = this.data
-          await baseService.updateCartGoods({ recId, spec: specIdArr.join(), count })
+          await goodsService.updateCartGoods({ recId, spec: specIdArr.join(), count })
           this.triggerEvent('hideSpecModal')
         }
       })

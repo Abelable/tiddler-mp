@@ -17,13 +17,6 @@ class BaseService extends Base {
   async getUserInfo() {
     return await this.get({ url: `${this.baseUrl}/user_info`, loadingTitle: '加载中...' })
   }
-
-  async addCart(goodsId, selectedSkuIndex, number) {
-    return await this.post({
-      url: `${this.baseUrl}/cart/add`,
-      data: { goodsId, selectedSkuIndex, number }
-    })
-  }
 }
 
 export default BaseService
