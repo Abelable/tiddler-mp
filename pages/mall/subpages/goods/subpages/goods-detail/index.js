@@ -39,11 +39,20 @@ Page({
     this.getBannerHeight()
   },
 
+  onShow() {
+    this.setCartGoodsNumber()
+  },
+
   async setGoodsInfo() {
     const goodsInfo = await goodsService.getGoodsInfo(this.goodsId)
     this.setData({ goodsInfo }, () => {
       this.getDetailTop()
     })
+  },
+
+  async setCartGoodsNumber() {
+    const cartGoodsNumber = await goodsService.getCartGoodsNumber();
+    this.setData({ cartGoodsNumber })
   },
 
   getBannerHeight() {

@@ -247,7 +247,7 @@
   line-height: 30rpx;
   border-radius: 15rpx;
   background: #FE4019;
-  transform: scale(0.68);
+  transform: scale(0.8);
 }
 
 .btns {
