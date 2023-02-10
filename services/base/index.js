@@ -22,7 +22,6 @@ class Base {
     const token = wx.getStorageSync('token')
     return api.request({ url, method, data,
       header: { 
-        "content-type": method === 'GET' ? 'application/json' : 'application/x-www-form-urlencoded',
         "Authorization": token ? `Bearer ${token}` : ''
       }
     }).then(res => [res, null]).catch(err => [null, err]).finally(() => { loadingTitle && wx.hideLoading() })

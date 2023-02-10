@@ -199,17 +199,54 @@ Page({
       showCancel: true,
       success: async res => {
         if (res.confirm) {
-          await goodsService.deleteCartList(this.selectedRecIdArr.join())
-          this.setCartList()
+          await goodsService.deleteCartList(this.selectedRecIdArr)
+          // this.setCartList()
         }
       }
     })
   },
 
   async deleteGoods(e) {
-    await goodsService.deleteCartList(e.detail.listId)
-    this.setCartList()
-    e.detail.close() 
+    const { id, cartIndex, goodsIndex } = e.currentTarget.dataset
+    const { position, instance } = e.detail
+    if (position === 'right') {
+      wx.showModal({
+        title: '提示',
+        content: '确定删除该商品吗？',
+        showCancel: true,
+        success: async res => {
+          if (res.confirm) {
+            goodsService.deleteCartList(
+              [id], 
+              () => {
+                const goodsList = this.data.cartList[cartIndex].goodsList
+                goodsList.splice(goodsIndex, 1)
+                if (goodsList.length) {
+                  this.setData({
+                    [`cartList[${cartIndex}].goodsList`]: goodsList
+                  })
+                } else {
+                  const cartList = this.data.cartList
+                  cartList.splice(cartIndex, 1)
+                  this.setData({ cartList })
+                }
+                instance.close()
+              },
+              () => {
+                wx.showToast({
+                  title: '删除失败',
+                  icon: 'none',
+                })
+                instance.close()
+              }
+            )
+          } else {
+            instance.close()
+          }
+        }
+      })
+    }
+    
   },
 
   async emptyInvalidGoods() {

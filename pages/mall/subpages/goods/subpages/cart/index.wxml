@@ -25,10 +25,10 @@
       </view>
       <view class="goods-list-wrap">
         <view wx:for="{{item.goodsList}}" wx:key="index" wx:for-index="_index" wx:for-item="_item">
-          <van-swipe-cell bind:close="deleteGoods" right-width="{{ 65 }}">
+          <van-swipe-cell bind:close="deleteGoods" data-id="{{_item.id}}" data-cart-index="{{index}}" data-goods-index="{{_index}}" async-close right-width="{{ 65 }}">
             <view class="goods-list row">
               <checkbox checked="{{_item.checked}}" disabled="{{_item.status !== 1}}" bindtap="toggleGoodsChecked" data-cart-index="{{index}}" data-goods-index="{{_index}}"/>
-              <image class="goods-img" src="{{_item.goodsImage}}" bindtap="showGoodsDetail" data-id="{{_item.id}}" mode="aspectFill" lazy-load  />
+              <image class="goods-img" src="{{_item.goodsImage}}" bindtap="showGoodsDetail" data-id="{{_item.goodsId}}" mode="aspectFill" lazy-load  />
               <view class="goods-content">
                 <view class="goods-name {{_item.status !== 1 ? 'invalid' : ''}}">{{_item.goodsName}}</view>
                 <block wx:if="{{_item.status === 1}}">

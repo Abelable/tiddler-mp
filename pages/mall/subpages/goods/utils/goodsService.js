@@ -63,10 +63,12 @@ class GoodsService extends BaseService {
     })
   }
 
-  async deleteCartList(ids) {
+  async deleteCartList(ids, success, fail) {
     return await this.post({
       url: `${this.baseUrl}/cart/delete`,
-      data: { ids }
+      data: { ids },
+      success,
+      fail
     })
   }
 }
