@@ -7,7 +7,7 @@ const { statusBarHeight } = getApp().globalData
 Page({
   data: {
     statusBarHeight,
-    historyKeywordsList: ['牙刷', '卫衣', '短袖'],
+    historyKeywordsList: [],
     curSortIndex: 0,
     sortOptions: [
       { text: '综合排序', value: 0 },
@@ -25,6 +25,11 @@ Page({
 
   onLoad() {
     this.setCategoryOptions()
+    if (wx.getStorageSync('historyKeywordsList')) {
+      this.setData({
+        historyKeywordsList: JSON.parse(wx.getStorageSync('historyKeywordsList'))
+      })
+    }
   },
 
   async setCategoryOptions() {
@@ -41,6 +46,36 @@ Page({
       keywords: e.detail.value,
     })
   }, 500),
+
+  cancelSearch() {
+    this.setData({ keywords: '' })
+    if (this.data.isSearching) {
+      this.setData({ isSearching: false })
+    }
+  },
+
+  selectKeywords(e) {
+    const { keywords } = e.currentTarget.dataset
+    this.setData({ 
+      keywords,
+      isSearching: true
+    })
+    this.setGoodsList(true)
+  },
+
+  search() {
+    const { keywords, isSearching, historyKeywordsList } = this.data
+    if (!keywords) {
+      return
+    }
+    this.setData({
+      historyKeywordsList: Array.from(new Set([...historyKeywordsList, keywords]))
+    })
+    if (!isSearching) {
+      this.setData({ isSearching: true })
+    }
+    setGoodsList(true)
+  },
 
   async setGoodsList(init = false) {
     const limit = 10
@@ -92,7 +127,29 @@ Page({
     wx.stopPullDownRefresh() 
   },
 
+  clearHistoryKeywords() {
+    wx.showModal({
+      content: '确定清空搜索记录吗？',
+      showCancel: true,
+      success: (result) => {
+        if (result.confirm) {
+          this.setData({
+            historyKeywordsList: []
+          })
+          wx.removeStorage({ key: 'historyKeywordsList' })
+        }
+      }
+    })
+  },
+
   navBack() {
     customBack()
   },
+
+  onUnload() {
+    wx.setStorage({
+      key: 'historyKeywordsList',
+      data: JSON.stringify(this.data.historyKeywordsList)
+    })
+  }
 })
