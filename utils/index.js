@@ -65,3 +65,14 @@ export const customBack = (needInitPrePageData = false) => {
     wx.switchTab({ url: '/pages/index/index' })
   } else wx.navigateBack()
 }
+
+
+export const isVoid = (value) => (value === undefined || value === null || value === "")
+
+export const cleanObject = (object) => {
+  const result = { ...object }
+  Object.keys(result).forEach((key) => {
+    if (isVoid(result[key])) delete result[key]
+  })
+  return result
+};

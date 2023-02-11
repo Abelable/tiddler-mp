@@ -60,7 +60,11 @@ Page({
       })
     }
     const { categoryOptions, activeTabIdx, goodsList } = this.data
-    const list = await goodsService.getGoodsList(categoryOptions[activeTabIdx].id, ++this.page, limit) || []
+    const list = await goodsService.getGoodsList({
+      categoryId: categoryOptions[activeTabIdx].id,
+      page: ++this.page,
+      limit
+    }) || []
     this.setData({
       goodsList: init ? list : [...goodsList, ...list]
     })
@@ -82,5 +86,11 @@ Page({
   
   navBack() {
     customBack()
+  },
+
+  search() {
+    wx.navigateTo({
+      url: './subpages/search/index'
+    })
   }
 })

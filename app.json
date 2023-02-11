@@ -17,6 +17,7 @@
     "pages/mall/subpages/goods/subpages/goods-detail/index",
     "pages/mall/subpages/goods/subpages/shop/index",
     "pages/mall/subpages/goods/subpages/cart/index",
+    "pages/mall/subpages/goods/subpages/search/index",
     "pages/mine/index",
     "pages/common/register/index",
     "pages/common/user-center/index",

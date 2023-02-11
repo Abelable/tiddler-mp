@@ -1,0 +1,45 @@
+<view class="header" style="padding-top: {{statusBarHeight}}px">
+  <view class="search-bar row">
+    <view class="back-wrap row">
+      <image class="back-icon" src="https://img.ubo.vip/mp/search/back.png" bindtap="navBack" />
+    </view>
+    <view class="search-content row">
+      <image class="search-icon" src="https://img.ubo.vip/mp/index/search/index-search.png" />
+      <input class="search-input"
+        value="{{keywords}}" bindinput="setKeywords" bindconfirm="search" 
+        placeholder="请输入商品名称" type="text" confirm-type="search" 
+      />
+      <view class="cancel-btn" wx:if="{{keywords != ''}}" bindtap="cancelSearch">
+        <image class="cancel-icon" src="https://img.ubo.vip/mp/search/clear-search.png" />
+      </view>
+      <button class="search-btn" bindtap="search">搜索</button>
+    </view>
+  </view>
+
+  <van-dropdown-menu wx:if="{{isSearching}}" active-color="#1989fa">
+    <van-dropdown-item value="{{ curSortIndex }}" options="{{ sortOptions }}" />
+    <van-dropdown-item value="{{ curCategoryId }}" options="{{ categoryOptions }}" />
+  </van-dropdown-menu>
+</view>
+
+<view class="history-keywords-wrap" wx:if="{{!isSearching}}" style="padding-top: {{statusBarHeight + 65}}px">
+  <view class="title row between" wx:if="{{historyKeywordsList.length}}">
+    <view>搜索记录</view>
+    <image class="delete-icon" src="https://img.ubo.vip/mp/selection/search/del-history.png" bindtap="clearHistoryKeywords" />
+  </view>
+  <view class="keywords-list">
+    <view 
+      class="keywords" 
+      wx:for="{{historyKeywordsList}}" wx:key="index" 
+      bindtap="keywordSelect" data-keywords="{{item}}"
+    >
+      {{item}}
+    </view>
+  </view>
+</view>
+
+<view class="goods-list-wrap" wx:if="{{isSearching}}" style="padding-top: {{statusBarHeight + 104}}px">
+  <fall-flow wx:if="{{goodsList}}" list="{{goodsList}}" generic:item="goods-item" />
+  <empty-illus wx:if="{{finished && !goodsList.length}}" desc="暂无商品列表" />
+  <view class="no-more-tips" wx:if="{{finished && goodsList.length}}">～没有更多了～</view>
+</view>
