@@ -10,10 +10,10 @@ Page({
     historyKeywordsList: [],
     curSortIndex: 0,
     sortOptions: [
-      { text: '综合排序', value: 0 },
-      { text: '销量排序', value: 1 },
-      { text: '价格降序', value: 2 },
-      { text: '价格升序', value: 3 },
+      { icon: '', text: '综合排序', value: 0 },
+      { icon: '', text: '销量排序', value: 1 },
+      { icon: '', text: '价格降序', value: 2 },
+      { icon: '', text: '价格升序', value: 3 },
     ],
     curCategoryId: 0,
     categoryOptions: [],
@@ -35,8 +35,8 @@ Page({
   async setCategoryOptions() {
     const options = await goodsService.getGoodsCategoryOptions()
     const categoryOptions = [
-      { text: '全部分类', value: 0 }, 
-      ...options.map(item => ({ text: item.name, value: item.id }))
+      { icon: '', text: '全部分类', value: 0 }, 
+      ...options.map(item => ({ icon: '', text: item.name, value: item.id }))
     ]
     this.setData({ categoryOptions })
   },
@@ -48,7 +48,11 @@ Page({
   }, 500),
 
   cancelSearch() {
-    this.setData({ keywords: '' })
+    this.setData({ 
+      keywords: '',
+      curSortIndex: 0,
+      curCategoryId: 0,
+    })
     if (this.data.isSearching) {
       this.setData({ isSearching: false })
     }
@@ -63,6 +67,20 @@ Page({
     this.setGoodsList(true)
   },
 
+  setSortIndex(e) {
+    this.setData({
+      curSortIndex: e.detail
+    })
+    this.search()
+  },
+
+  setCategoryId(e) {
+    this.setData({
+      curCategoryId: e.detail
+    })
+    this.search()
+  },
+
   search() {
     const { keywords, isSearching, historyKeywordsList } = this.data
     if (!keywords) {
@@ -74,7 +92,7 @@ Page({
     if (!isSearching) {
       this.setData({ isSearching: true })
     }
-    setGoodsList(true)
+    this.setGoodsList(true)
   },
 
   async setGoodsList(init = false) {
@@ -129,7 +147,7 @@ Page({
 
   clearHistoryKeywords() {
     wx.showModal({
-      content: '确定清空搜索记录吗？',
+      content: '确定清空历史搜索记录吗？',
       showCancel: true,
       success: (result) => {
         if (result.confirm) {
