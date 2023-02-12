@@ -19,10 +19,10 @@ Page({
   },
 
   onShow() {
-    checkLogin(this.setCartList)
+    checkLogin(this.init)
   },
 
-  async setCartList() {
+  async init() {
     const { cartList: list, recommendGoodsList } = await goodsService.getCartList() || {}
     const cartList = list.map(item => ({
       ...item,
@@ -32,9 +32,7 @@ Page({
         checked: false
       }))
     }))
-    this.setData({ cartList, recommendGoodsList }, () => {
-      this.acount()
-    })
+    this.setData({ cartList, recommendGoodsList })
   },
 
   /**
@@ -120,9 +118,8 @@ Page({
       success: res => {
         if (res.confirm) {
           goodsService.deleteCartList(this.selectedCartIdArr, () => {
-            this.setCartList()
+            this.init()
           })
-          this.acount()
         }
       }
     })
@@ -151,9 +148,12 @@ Page({
                   const cartList = this.data.cartList
                   cartList.splice(cartIndex, 1)
                   this.setData({ cartList })
+                  if (!cartList.length) {
+                    this.init()
+                  }
                 }
-                instance.close()
                 this.acount()
+                instance.close()
               }
             )
           } else {
@@ -192,8 +192,6 @@ Page({
   toggleDeleteBtnVisible() {
     this.setData({
       deleteBtnVisible: !this.data.deleteBtnVisible
-    }, () => {
-      this.acount()
     })
   },
 
