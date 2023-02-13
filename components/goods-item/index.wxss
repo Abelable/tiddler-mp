@@ -62,13 +62,3 @@
   color: #333;
   font-size: 22rpx;
 }
-
-.link {
-  color: #333;
-  font-size: 20rpx;
-  font-weight: bold;
-}
-.link-icon {
-  width: 22rpx;
-  height: 22rpx;
-}
