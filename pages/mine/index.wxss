@@ -98,15 +98,17 @@
 
 .function-wrap {
   display: flex;
-  margin-top: 40rpx;
+  flex-wrap: wrap;
+  margin: 40rpx 0 8rpx;
 }
 .function-item {
-  flex: 1;
+  margin-bottom: 32rpx;
+  width: 20%;
   text-align: center;
 }
 .function-icon {
-  width: 50rpx;
-  height: 50rpx;
+  width: 60rpx;
+  height: 60rpx;
 }
 .function-desc {
   margin-top: 6rpx;
@@ -115,7 +117,6 @@
 }
 
 .works-wrap {
-  margin-top: 40rpx;
   background: #fff;
   box-shadow: 0 -10px 20px -2px #f0f0f0;
 }
