@@ -1,5 +1,5 @@
 .address-list {
-  margin: 24rpx 24rpx calc(204rpx + env(safe-area-inset-bottom));
+  margin: 24rpx 24rpx calc(24rpx + env(safe-area-inset-bottom));
   border-radius: 24rpx;
   background: #fff;
 }
@@ -44,9 +44,9 @@
 .add-btn {
   position: fixed;
   left: 50%;
-  bottom: calc(100rpx + env(safe-area-inset-bottom));
+  bottom: calc(24rpx + env(safe-area-inset-bottom));
   transform: translateX(-50%);
-  width: 580rpx;
+  width: 712rpx;
   height: 80rpx;
   color: #fff;
   font-size: 28rpx;

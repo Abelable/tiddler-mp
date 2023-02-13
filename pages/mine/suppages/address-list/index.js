@@ -1,6 +1,6 @@
-
 import AddressService from './utils/addressService'
-let addressService = new AddressService
+
+const addressService = new AddressService
 
 Page({
   data: {
@@ -8,43 +8,47 @@ Page({
   },
 
   onShow() {
-    this.getAddressList()
+    this.setAddressList()
   },
 
-  async getAddressList() {
-    this.setData({
-      addressList: await addressService.getAddressList()
-    })
-  },
-
-  chooseAddress(e) {
-    let addressId = e.currentTarget.dataset.id
-    let addressInfo = e.currentTarget.dataset
-    let pages = getCurrentPages()
-    let prevPage = pages[pages.length - 2]
-    if (prevPage.route === 'pages/subpages/mall/goods-detail/subpages/order-check/index') {
-      prevPage.setData({ addressId, addressInfo })
-      wx.navigateBack()
-    } else {
-      wx.navigateTo({ url: `./add-address/index?id=${addressId}`})
-    }
+  async setAddressList() {
+    const addressList = await addressService.getAddressList() || []
+    this.setData({ addressList })
   },
 
   editAddress(e) {
-    wx.navigateTo({ url: `./add-address/index?id=${e.currentTarget.dataset.addressId}`})
+    wx.navigateTo({ 
+      url: `./subpages/edit/index?id=${e.currentTarget.dataset.id}`
+    })
   },
   
   // 显示新建收货地址
   addAddress() {
-    wx.navigateTo({ url: './add-address/index'})
+    wx.navigateTo({ url: './subpages/add/index'})
   },
 
   deleteAddress(e) {
-    let { listId, idx } = e.detail
-    let addressList = this.data.addressList
-    addressList.splice(idx, 1)
-    this.setData({ addressList })
-    addressService.deleteAddress(listId)
-    e.detail.close()
+    const { id, index } = e.currentTarget.dataset
+    const { position, instance } = e.detail
+    if (position === 'right') {
+      wx.showModal({
+        title: '提示',
+        content: '确定删除该收货地址吗？',
+        showCancel: true,
+        success: async res => {
+          if (res.confirm) {
+            addressService.deleteAddress(id,
+              () => {
+                const addressList = this.data.addressList.splice(index, 1)
+                this.setData({ addressList })
+                instance.close()
+              }
+            )
+          } else {
+            instance.close()
+          }
+        }
+      })
+    }
   }
 })

@@ -2,7 +2,7 @@ import BaseService from '../../../../../services/baseService'
 
 class AddressService extends BaseService {
   async getAddressList() {
-    return await this.get({ url: `${this.mmsUrl}/api/v4/address` })
+    return await this.get({ url: `${this.baseUrl}/address/list` })
   }
 
   async addWxAddress(userName, telNumber, provinceName, cityName, countyName, detailInfo, country = 1) {
@@ -25,8 +25,12 @@ class AddressService extends BaseService {
     await this.post({ url: `${this.mmsUrl}/api/v4/address/update`, data: { address_id, consignee, country, province, city, district, address, mobile, default: isDefault } })
   }
 
-  async deleteAddress(address_id) {
-    await this.post({ url: `${this.mmsUrl}/api/v4/address/destroy`, data: { address_id } })
+  async deleteAddress(id, success) {
+    await this.post({
+      url: `${this.baseUrl}/api/v4/address/destroy`,
+      data: { id }, 
+      success
+    })
   }
 
   async recognizePic(img) {

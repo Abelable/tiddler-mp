@@ -33,10 +33,10 @@
         <image class="function-icon" src="./images/order.png" />
         <view class="function-desc">我的订单</view>
       </view>
-      <view class="function-item">
+      <navigator class="function-item" url="./suppages/address-list/index" hover-class="none">
         <image class="function-icon" src="./images/address.png" />
         <view class="function-desc">收货地址</view>
-      </view>
+      </navigator>
       <view class="function-item">
         <image class="function-icon" src="./images/collect.png" />
         <view class="function-desc">我的收藏</view>
