@@ -29,6 +29,7 @@
     <view class="introduce">来一段简短的自我介绍吧～</view>
 
     <view class="function-wrap">
+      
       <view class="function-item">
         <image class="function-icon" src="./images/order.png" />
         <view class="function-desc">我的订单</view>
@@ -37,6 +38,14 @@
         <image class="function-icon" src="./images/address.png" />
         <view class="function-desc">收货地址</view>
       </navigator>
+      <view class="function-item" wx:if="{{userInfo.shopId}}">
+        <image class="function-icon" src="./images/shop.png" />
+        <view class="function-desc">我的店铺</view>
+      </view>
+      <view class="function-item">
+        <image class="function-icon" src="./images/wallet.png" />
+        <view class="function-desc">我的钱包</view>
+      </view>
       <view class="function-item">
         <image class="function-icon" src="./images/collect.png" />
         <view class="function-desc">我的收藏</view>
@@ -44,14 +53,6 @@
       <view class="function-item">
         <image class="function-icon" src="./images/track.png" />
         <view class="function-desc">我的足迹</view>
-      </view>
-      <view class="function-item">
-        <image class="function-icon" src="./images/wallet.png" />
-        <view class="function-desc">我的钱包</view>
-      </view>
-      <view class="function-item">
-        <image class="function-icon" src="./images/shop.png" />
-        <view class="function-desc">我的店铺</view>
       </view>
     </view>
 
