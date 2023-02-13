@@ -19,7 +19,7 @@ class AddressService extends BaseService {
 
   async addAddress(name, mobile, regionCodeList, regionDesc, addressDetail, isDefault, success) {
     await this.post({ 
-      url: `${this.mmsUrl}/api/v4/address/store`, 
+      url: `${this.baseUrl}/address/add`, 
       data: { name, mobile, regionCodeList, regionDesc, addressDetail, isDefault },
       success
     })

@@ -4,68 +4,55 @@ const addressService = new AddressService()
 
 Page({
   data: {
-    name: '',
-    mobile: '',
-    regionCodeList: [],
-    addressDetail: '',
-    isDefault: 0
+    regionDesc: ''
   },
 
-  showRegionPicker() {
-    this.setData({
-      regionPickerVisible: true
-    })
+  setName(e) {
+    this.name = e.detail.value
   },
 
-  hideRegionPicker() {
-    this.setData({
-      regionPickerVisible: false
-    })
+  setMobile(e) {
+    this.mobile = e.detail.value
   },
 
-  confirm(e) {
-    let { regionArr, regionIdArr } = e.detail
-    this.setData({ regionArr })
-    this.regionIdArr = regionIdArr
-    this.hideRegionPicker()
+  selectRegion(e) {
+    const { code, value } = e.detail
+    this.regionCodeList = code
+    const regionDesc = Array.from(new Set(value)).join(' ')
+    this.setData({ regionDesc })
   },
 
-  textInput(e) {
-    this.setData({
-      text: e.detail.value
-    })
+  setAddressDetail(e) {
+    this.addressDetail = e.detail.value
   },
 
-  // 设置为默认地址
-  switchChange(e) {
-    this.setData({
-      isDefault: e.detail.value ? 1 : 0
-    })
+  toggleDefaultValue(e) {
+    this.isDefault = e.detail.value ? 1 : 0
   },
 
-  deleteAddress() {
-    addressService.deleteAddress(this.data.addressId)
-    wx.navigateBack()
-  },
-
-  // 新建、修改收货地址
   save() {
-    const { name, mobile, regionCodeList, addressDetail, isDefault } = this.data
-    if (!name) {
+    if (!this.name) {
       wx.showToast({ 
         title: '请输入姓名', 
         icon: 'none' 
       })
       return
     }
-    if (!mobile || !/^1[345789][0-9]{9}$/.test(mobile)) {
+    if (!this.mobile || !/^1[345789][0-9]{9}$/.test(this.mobile)) {
       wx.showToast({ 
         title: '请输入正确手机号', 
         icon: 'none' 
       })
       return
     }
-    if (!addressDetail) {
+    if (!this.regionCodeList) {
+      wx.showToast({ 
+        title: '请选择地区', 
+        icon: 'none' 
+      })
+      return
+    }
+    if (!this.addressDetail) {
       wx.showToast({ 
         title: '请输入详细地址', 
         icon: 'none' 
@@ -73,8 +60,16 @@ Page({
       return
     }
 
-    addressService.addAddress(name, mobile, regionCodeList, this.regionDesc, addressDetail, isDefault, () => {
-      wx.navigateBack()
-    })
+    addressService.addAddress(
+      this.name, 
+      this.mobile, 
+      JSON.stringify(this.regionCodeList), 
+      this.data.regionDesc, 
+      this.addressDetail, 
+      this.isDefault,
+      () => {
+        wx.navigateBack()
+      }
+    )
   }
 })

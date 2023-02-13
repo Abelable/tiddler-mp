@@ -1,23 +1,26 @@
+<wxs module="STRING" src="/utils/filters/string.wxs" />
+
 <view class="address-list" wx:if="{{addressList.length}}">
-  <van-swipe-cell 
-    wx:for="{{addressList}}" wx:key="index" 
-    bind:close="deleteAddress" data-id="{{item.id}}" data-index="{{index}}"
-    async-close right-width="{{ 65 }}"
-  >
-    <view class="address row">
-      <van-icon name="location-o" />
-      <view class="content">
-        <view class="row">
-          <text class="user-name">{{item.name}}</text>
-          <text>{{item.mobile}}</text>
-          <text class="default-icon" wx:if="{{item.isDefault}}">默认</text>
+  <view class="address" class="address" wx:for="{{addressList}}" wx:key="index">
+    <van-swipe-cell 
+      bind:close="deleteAddress" data-id="{{item.id}}" data-index="{{index}}"
+      async-close right-width="{{ 65 }}"
+    >
+      <view class="inner row" catchtap="editAddress" data-id="{{item.id}}">
+        <van-icon name="location-o" />
+        <view class="content">
+          <view class="row">
+            <text class="user-name">{{item.name}}</text>
+            <text>{{item.mobile}}</text>
+            <text class="default-icon" wx:if="{{item.isDefault}}">默认</text>
+          </view>
+          <view class="address-detail">{{item.regionDesc + ' ' + item.addressDetail}}</view>
         </view>
-        <view class="address-detail">{{item.regionDesc + item.detail}}</view>
+        <van-icon name="edit" />
       </view>
-      <van-icon name="edit" catchtap="editAddress" data-id="{{item.id}}" />
-    </view>
-    <button class="swipe-cell-delete-btn" slot="right">删除</button>
-  </van-swipe-cell>
+      <button class="swipe-cell-delete-btn" slot="right">删除</button>
+    </van-swipe-cell>
+  </view>
 </view>
 
 <empty-illus wx:if="{{!addressList.length}}" desc="暂无地址列表" />

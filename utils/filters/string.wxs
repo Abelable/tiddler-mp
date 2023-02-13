@@ -3,6 +3,11 @@ function slice(target, length, replaceString) {
   return target.length > length ? target.slice(0, length) + replaceString : target;
 }
 
+function trim(string) {
+  return string.split(' ').join('');
+}
+
 module.exports = {
-  slice: slice
+  slice: slice,
+  trim: trim
 };
