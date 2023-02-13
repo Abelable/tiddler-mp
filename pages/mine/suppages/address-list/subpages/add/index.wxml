@@ -30,7 +30,6 @@
   </view>
 </view>
 
-
 <view class="btns-wrap">
   <button class="save-btn" bindtap="save">保存</button>  
 </view>

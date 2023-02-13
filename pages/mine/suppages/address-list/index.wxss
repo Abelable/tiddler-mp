@@ -23,12 +23,13 @@
   font-weight: bold;
 }
 .default-icon {
-  margin-left: 36rpx;
-  padding: 2rpx 6rpx;
-  color: #161F4E;
+  margin-left: 24rpx;
+  padding: 6rpx 8rpx;
+  color: #1986F8;
   font-size: 20rpx;
+  line-height: 1;
   border-radius: 8rpx;
-  border: 2rpx solid #161F4E;
+  border: 2rpx solid #1986F8;
 }
 .address-detail {
   margin-top: 16rpx;

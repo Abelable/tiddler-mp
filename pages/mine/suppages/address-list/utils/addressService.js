@@ -31,7 +31,7 @@ class AddressService extends BaseService {
 
   async deleteAddress(id, success) {
     await this.post({
-      url: `${this.baseUrl}/api/v4/address/destroy`,
+      url: `${this.baseUrl}/address/delete`,
       data: { id }, 
       success
     })

@@ -39,7 +39,8 @@ Page({
           if (res.confirm) {
             addressService.deleteAddress(id,
               () => {
-                const addressList = this.data.addressList.splice(index, 1)
+                const addressList = this.data.addressList
+                addressList.splice(index, 1)
                 this.setData({ addressList })
                 instance.close()
               }
