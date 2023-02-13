@@ -1,5 +1,9 @@
 {
   "pages":[
+    "pages/common/register/index",
+    "pages/common/user-center/index",
+    "pages/common/webview/index",
+    "pages/common/pay/index",
     "pages/index/index",
     "pages/index/subpages/sign-in/index",
     "pages/index/subpages/search/index",
@@ -19,10 +23,9 @@
     "pages/mall/subpages/goods/subpages/cart/index",
     "pages/mall/subpages/goods/subpages/search/index",
     "pages/mine/index",
-    "pages/common/register/index",
-    "pages/common/user-center/index",
-    "pages/common/webview/index",
-    "pages/common/pay/index"
+    "pages/mine/suppages/address-list/index",
+    "pages/mine/suppages/address-list/subpages/add",
+    "pages/mine/suppages/address-list/subpages/edit"
   ],
   "tabBar": {
     "color": "#979797",

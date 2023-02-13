@@ -1,0 +1,30 @@
+<form bindsubmit="save">
+  <view class="address-info-wrap">
+    <view class="info-list">
+      <label class="title">收货人: </label>
+      <input class="content" name="consignee" maxlength="8" value="{{consignee}}" placeholder="收货人姓名"  placeholder-style="color: #999;"/>
+    </view>
+    <view class="info-list">
+      <label class="title">手机号: </label>
+      <input class="content" name="mobile" type="number" value="{{mobile}}" placeholder="请输入手机号" placeholder-style="color: #999;"/>
+    </view>
+    <view class="info-list" bindtap="showRegionPicker">
+      <label class="title">市 / 区: </label>
+      <text class="content {{regionArr.length ? '' : 'placeholder'}}">{{regionArr.length ? (regionArr[0] + ' ' + regionArr[1] + ' ' + regionArr[2]) : '请选择地区' }}</text>
+    </view>
+    <view class="info-list">
+      <label class="title">详细地址: </label>
+      <input class="content" name="address_detail" value="{{addressDetail}}" placeholder='如街道，楼层、门牌号' placeholder-style="color: #999;"/>
+    </view>
+  </view>
+
+  <view class="address-default">
+    <label class="title">设为默认</label>
+    <switch style="transform: scale(0.8)" bindchange="switchChange" color="#F7CC9C" checked="{{isDefault}}" />
+  </view>
+
+  <view class="btns-wrap">
+    <view class="delete-btn" bindtap="deleteAddress">删除</view>
+    <button class="save-btn" formType="submit">保存</button>  
+  </view>
+</form>
