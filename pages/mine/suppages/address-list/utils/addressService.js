@@ -17,8 +17,12 @@ class AddressService extends BaseService {
     return await this.post({ url: `${this.mmsUrl}/api/v4/address/show`, data: { address_id }})
   }
 
-  async addAddress(consignee, province, city, district, address, mobile, isDefault, country = 1) {
-    await this.post({ url: `${this.mmsUrl}/api/v4/address/store`, data: { consignee, country, province, city, district, address, mobile, default: isDefault } })
+  async addAddress(name, mobile, regionCodeList, regionDesc, addressDetail, isDefault, success) {
+    await this.post({ 
+      url: `${this.mmsUrl}/api/v4/address/store`, 
+      data: { name, mobile, regionCodeList, regionDesc, addressDetail, isDefault },
+      success
+    })
   }
 
   async editAddress(address_id, consignee, province, city, district, address, mobile, isDefault, country = 1) {
