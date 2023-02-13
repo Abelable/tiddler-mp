@@ -5,16 +5,12 @@ class AddressService extends BaseService {
     return await this.get({ url: `${this.baseUrl}/address/list` })
   }
 
-  async addWxAddress(userName, telNumber, provinceName, cityName, countyName, detailInfo, country = 1) {
-    await this.post({ url: `${this.mmsUrl}/api/v4/address/wximport`, data: { userName, telNumber, provinceName, cityName, countyName, detailInfo, country } })
-  }
-
-  async getRegion(region = 1, level = 1, platform = 1) {
-    return await this.get({ url: `${this.mmsUrl}/api/v4/misc/region`, data: { region, level, platform } })
-  }
-
-  async getAddress(address_id) {
-    return await this.post({ url: `${this.mmsUrl}/api/v4/address/show`, data: { address_id }})
+  async getAddressInfo(id) {
+    return await this.get({ 
+      url: `${this.baseUrl}/address/detail`, 
+      data: { id },
+      loadingTitle: '加载中...'
+    })
   }
 
   async addAddress(name, mobile, regionCodeList, regionDesc, addressDetail, isDefault, success) {
@@ -25,8 +21,12 @@ class AddressService extends BaseService {
     })
   }
 
-  async editAddress(address_id, consignee, province, city, district, address, mobile, isDefault, country = 1) {
-    await this.post({ url: `${this.mmsUrl}/api/v4/address/update`, data: { address_id, consignee, country, province, city, district, address, mobile, default: isDefault } })
+  async editAddress(addressInfo, success) {
+    await this.post({ 
+      url: `${this.baseUrl}/address/edit`, 
+      data: addressInfo,
+      success
+    })
   }
 
   async deleteAddress(id, success) {
@@ -35,14 +35,6 @@ class AddressService extends BaseService {
       data: { id }, 
       success
     })
-  }
-
-  async recognizePic(img) {
-    return await this.post({ url: `${this.mmsUrl}/api/v4/address/ocr`, data: { img } })
-  }
-
-  async recognizeText(address) {
-    return await this.post({ url: `${this.mmsUrl}/api/v4/address/resolve`, data: { address } })
   }
 }
 

@@ -47,7 +47,7 @@ Page({
     }
     if (!this.regionCodeList) {
       wx.showToast({ 
-        title: '请选择地区', 
+        title: '请选择省市区', 
         icon: 'none' 
       })
       return

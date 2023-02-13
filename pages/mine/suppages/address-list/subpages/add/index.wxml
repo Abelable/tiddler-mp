@@ -8,13 +8,13 @@
     <input class="content" bindinput="setMobile" type="number" placeholder="请输入手机号" placeholder-style="color: #999;"/>
   </view>
   <view class="info-list row">
-    <label class="title">地区: </label>
+    <label class="title">省市区: </label>
     <picker 
       class="content {{regionDesc ? '' : 'placeholder'}}" 
       bindchange="selectRegion" 
       mode="region"
     >
-      {{regionDesc || '请选择地区'}}
+      {{regionDesc || '请选择省市区'}}
     </picker>
   </view>
   <view class="info-list row">
@@ -30,6 +30,4 @@
   </view>
 </view>
 
-<view class="btns-wrap">
-  <button class="save-btn" bindtap="save">保存</button>  
-</view>
+<button class="save-btn" bindtap="save">保存</button>  

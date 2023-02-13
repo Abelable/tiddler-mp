@@ -55,5 +55,5 @@
   color: #fff;
   font-size: 28rpx;
   border-radius: 40rpx;
-  background: #212121;
+  background: #161F4E;
 }
