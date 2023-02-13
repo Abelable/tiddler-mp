@@ -1,14 +1,10 @@
-<view class="container" wx:if="{{!addressList.length}}">
+<view class="address-list" wx:if="{{addressList.length}}">
   <van-swipe-cell 
     wx:for="{{addressList}}" wx:key="index" 
     bind:close="deleteAddress" data-id="{{item.id}}" data-index="{{index}}"
     async-close right-width="{{ 65 }}"
   >
-    <view
-      class="address-list row"
-      bindtap="chooseAddress" 
-      data-id="{{item.id}}" 
-    >
+    <view class="address row">
       <van-icon name="location-o" />
       <view class="content">
         <view class="row">

@@ -35,7 +35,7 @@
       </view>
       <view class="function-item">
         <image class="function-icon" src="./images/address.png" />
-        <view class="function-desc">我的地址</view>
+        <view class="function-desc">收货地址</view>
       </view>
       <view class="function-item">
         <image class="function-icon" src="./images/collect.png" />
