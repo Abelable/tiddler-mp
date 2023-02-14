@@ -1,0 +1,57 @@
+<view class="content-wrap">
+  <view class="list-wrap list" bindtap="chooseAddress">
+    <image style="width: 42rpx; height: 42rpx;" src="https://img.ubo.vip/mp/selection/goods-detail/order-check/address-icon.png" />
+    <view class="consignee">
+      <view class="person-info" wx:if="{{preOrderInfo.addressInfo}}">
+        <text style="margin-right: 20rpx;">{{preOrderInfo.addressInfo.name}}</text>
+        <text>{{preOrderInfo.addressInfo.mobile}}</text>
+      </view>
+      <view class="address-info" wx:if="{{preOrderInfo.addressInfo}}">{{preOrderInfo.addressInfo.regionDesc + ' ' + preOrderInfo.addressInfo.addressDetail}}</view>
+      <view wx:if="{{!preOrderInfo.addressInfo}}">请选择合适的寄件地址</view>
+    </view>
+    <image style="width:32rpx;height:32rpx;" src="https://img.ubo.vip/mp/selection/goods-detail/order-check/to-icon.png" />
+  </view>
+
+  <view 
+    class="list-wrap" style="padding-bottom: 10rpx;" 
+    wx:for="{{preOrderInfo.addressInfo.goodsLists}}" wx:key="index"
+  >
+    <view class="order-header">
+      <image class="shop-icon" wx:if="{{item.shopInfo}}" src="{{item.shopInfo.avatar}}" />
+      <view>{{item.shopInfo ? item.shopInfo.name : '官方自营'}}</view>
+    </view>
+    <view class="goods-list" wx:for="{{item.goodsList}}" wx:key="index" wx:for-item="goods">
+      <view style="display: flex">
+        <view>
+          <image class="goods-cover" src="{{goods.image}}" mode="aspectFill" />
+        </view>
+        <view class="goods-info">
+          <view>{{goods.name}}</view>
+          <view class="goods-price-wrap">
+            <price-unit price="{{goods.price}}" />
+            <view class="count-wrap">
+              <text>x</text>
+              <text class="count">{{goods.number}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="account-item" style="padding-top: 16rpx;">
+      <text>运费</text>
+      <text class="account-amount" wx:if="{{preOrderInfo.freightPrice}}">¥{{preOrderInfo.freightPrice}}</text>
+    </view>
+    <view class="account-item">
+      <text>合计</text>
+      <text class="account-amount">¥{{preOrderInfo.totalPrice}}</text>
+    </view>
+  </view>
+</view>
+
+<view class="bottom-bar">
+  <view class="total-price-wrap">
+    <text>您需要支付：</text>
+    <price-unit price="{{goods.totalPrice}}" fontSize="26rpx" integerPartFontSize="36rpx" />
+  </view>
+  <view class="submit" bindtap="submit">提交订单</view>
+</view>

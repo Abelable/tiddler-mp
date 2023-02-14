@@ -18,6 +18,7 @@
     "pages/mall/subpages/goods/subpages/shop/index",
     "pages/mall/subpages/goods/subpages/cart/index",
     "pages/mall/subpages/goods/subpages/search/index",
+    "pages/mall/subpages/goods/subpages/order-check/index",
     "pages/mine/index",
     "pages/mine/suppages/address-list/index",
     "pages/mine/suppages/address-list/subpages/add/index",

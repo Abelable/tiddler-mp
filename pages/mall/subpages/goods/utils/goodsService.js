@@ -72,6 +72,13 @@ class GoodsService extends BaseService {
       success,
     })
   }
+
+  async getPreOrderInfo(cartIds, addressId) {
+    return await this.get({
+      url: `${this.baseUrl}/order/pre_order_info`,
+      data: cleanObject({ cartIds, addressId }),
+    })
+  }
 }
 
 export default GoodsService
