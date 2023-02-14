@@ -50,6 +50,13 @@ class GoodsService extends BaseService {
     })
   }
 
+  async fastAddCart(goodsId, selectedSkuIndex, number) {
+    return await this.post({
+      url: `${this.baseUrl}/cart/fast_add`,
+      data: { goodsId, selectedSkuIndex, number },
+    })
+  }
+
   async addCart(goodsId, selectedSkuIndex, number) {
     return await this.post({
       url: `${this.baseUrl}/cart/add`,

@@ -78,6 +78,7 @@
   margin-right: 20rpx;
   width: 32rpx;
   height: 32rpx;
+  border-radius: 50%;
 }
 .goods-list {
   padding: 20rpx 0;

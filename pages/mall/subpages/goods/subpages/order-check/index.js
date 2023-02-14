@@ -10,7 +10,8 @@ Page({
   },
 
   onLoad({ cartIds }) {
-    this.cartIds = JSON.parse(cartIds)
+    this.cartIds = cartIds
+    this.setPreOrderInfo()
   },
 
   async setPreOrderInfo() {

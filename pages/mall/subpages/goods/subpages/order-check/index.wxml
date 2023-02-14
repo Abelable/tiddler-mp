@@ -14,7 +14,7 @@
 
   <view 
     class="list-wrap" style="padding-bottom: 10rpx;" 
-    wx:for="{{preOrderInfo.addressInfo.goodsLists}}" wx:key="index"
+    wx:for="{{preOrderInfo.goodsLists}}" wx:key="index"
   >
     <view class="order-header">
       <image class="shop-icon" wx:if="{{item.shopInfo}}" src="{{item.shopInfo.avatar}}" />
@@ -23,10 +23,10 @@
     <view class="goods-list" wx:for="{{item.goodsList}}" wx:key="index" wx:for-item="goods">
       <view style="display: flex">
         <view>
-          <image class="goods-cover" src="{{goods.image}}" mode="aspectFill" />
+          <image class="goods-cover" src="{{goods.goodsImage}}" mode="aspectFill" />
         </view>
         <view class="goods-info">
-          <view>{{goods.name}}</view>
+          <view>{{goods.goodsName}}</view>
           <view class="goods-price-wrap">
             <price-unit price="{{goods.price}}" />
             <view class="count-wrap">
@@ -37,9 +37,9 @@
         </view>
       </view>
     </view>
-    <view class="account-item" style="padding-top: 16rpx;">
+    <view class="account-item" style="padding-top: 16rpx;"  wx:if="{{preOrderInfo.freightPrice}}">
       <text>运费</text>
-      <text class="account-amount" wx:if="{{preOrderInfo.freightPrice}}">¥{{preOrderInfo.freightPrice}}</text>
+      <text class="account-amount">¥{{preOrderInfo.freightPrice}}</text>
     </view>
     <view class="account-item">
       <text>合计</text>
@@ -51,7 +51,7 @@
 <view class="bottom-bar">
   <view class="total-price-wrap">
     <text>您需要支付：</text>
-    <price-unit price="{{goods.totalPrice}}" fontSize="26rpx" integerPartFontSize="36rpx" />
+    <price-unit price="{{preOrderInfo.totalPrice}}" fontSize="26rpx" integerPartFontSize="36rpx" />
   </view>
   <view class="submit" bindtap="submit">提交订单</view>
 </view>

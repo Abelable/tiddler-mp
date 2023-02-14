@@ -110,10 +110,12 @@ Component({
     // 立即购买
     buyNow() {
       if (this.data.btnActive) {
-        checkLogin(() => {
-          let { roomId, goodsId, count, specIdArr, inviteCode } = this.data
-          wx.navigateTo({ url: `/pages/subpages/mall/goods-detail/subpages/order-check/index?goods_id=${goodsId}&count=${count}&sku=${specIdArr}&roomId=${roomId}&invite_code=${inviteCode}` })
-          this.triggerEvent('hide')
+        checkLogin(async () => {
+          const { goodsInfo, selectedSkuIndex, count } = this.data
+          const cartId = await goodsService.fastAddCart(goodsInfo.id, selectedSkuIndex, count)
+          const cartIds = JSON.stringify([cartId])
+          const url = `/pages/mall/subpages/goods/subpages/order-check/index?cartIds=${cartIds}`
+          wx.navigateTo({ url })
         })
       }
     },
