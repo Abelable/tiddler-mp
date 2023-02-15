@@ -41,7 +41,7 @@
     <view class="list row between">
       <view class="list-title">
         <text>商品总价</text>
-        <text class="list-tips"> 共2件宝贝</text>
+        <text class="list-tips"> 共{{preOrderInfo.totalNumber}}件宝贝</text>
       </view>
       <price-unit price="{{preOrderInfo.totalPrice || 0}}" color="#333" />
     </view>
@@ -55,16 +55,16 @@
       <view class="list-title">
         <text>合计</text>
       </view>
-      <price-unit price="{{preOrderInfo.totalPrice || 0}}" color="#333" />
+      <price-unit price="{{preOrderInfo.paymentAmount || 0}}" color="#333" />
     </view>
   </view>
 </view>
 
 <view class="bottom-bar row">
   <view class="total-price-wrap row baseline">
-    <text class="count-desc">共2件</text>
+    <text class="count-desc">共{{preOrderInfo.totalNumber}}件</text>
     <text>合计：</text>
-    <price-unit price="{{preOrderInfo.totalPrice}}" fontSize="28rpx" integerPartFontSize="42rpx" />
+    <price-unit price="{{preOrderInfo.paymentAmount || 0}}" fontSize="28rpx" integerPartFontSize="42rpx" />
   </view>
   <button class="submit-btn {{preOrderInfo.addressInfo ? 'active' : ''}}" bindtap="submit">提交订单</button>
 </view>
