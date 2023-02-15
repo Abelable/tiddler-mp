@@ -1,5 +1,5 @@
 <view class="price-unit" style="color: {{color}}; font-size: {{fontSize}};">
   <text>{{symbol}}</text>
-  <text style="font-size: {{integerPartFontSize}}; font-weight: bold;">{{integerPart}}</text>
+  <text style="font-size: {{integerFontSize}}; font-weight: bold;">{{integerPart}}</text>
   <text wx:if="{{floatPart}}">.{{floatPart}}</text>
 </view>

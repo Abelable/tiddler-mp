@@ -64,7 +64,7 @@
   <view class="total-price-wrap row baseline">
     <text class="count-desc">共{{preOrderInfo.totalNumber}}件</text>
     <text>合计：</text>
-    <price-unit price="{{preOrderInfo.paymentAmount || 0}}" fontSize="28rpx" integerPartFontSize="42rpx" />
+    <price-unit price="{{preOrderInfo.paymentAmount || 0}}" fontSize="28rpx" integerFontSize="42rpx" />
   </view>
   <button class="submit-btn {{preOrderInfo.addressInfo ? 'active' : ''}}" bindtap="submit">提交订单</button>
 </view>

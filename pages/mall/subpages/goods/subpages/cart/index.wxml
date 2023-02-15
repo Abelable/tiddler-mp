@@ -76,7 +76,7 @@
   <view class="bar-main" wx:if="{{!deleteBtnVisible}}">
     <view class="total-price row baseline">
       <text>合计：</text>
-      <price-unit price="{{totalPrice}}" fontSize="26rpx" integerPartFontSize="36rpx" />
+      <price-unit price="{{totalPrice}}" fontSize="26rpx" integerFontSize="36rpx" />
     </view>
     <button class="submit {{selectedCount ? 'active' : ''}}" bindtap="submit">
       <text>结算</text>

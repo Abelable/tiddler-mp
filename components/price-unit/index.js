@@ -17,7 +17,7 @@ Component({
       type: String,
       value: '24rpx'
     },
-    integerPartFontSize: {
+    integerFontSize: {
       type: String,
       value: '32rpx'
     }, 
