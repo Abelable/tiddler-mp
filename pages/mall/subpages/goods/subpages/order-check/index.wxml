@@ -1,5 +1,5 @@
 <view class="container">
-  <view class="card row" bindtap="chooseAddress">
+  <view class="card row" bindtap="showAddressSelectPopup">
     <image class="address-icon" src="https://img.ubo.vip/mp/selection/goods-detail/order-check/address-icon.png" />
     <view class="consignee">
       <view class="person-info" wx:if="{{preOrderInfo.addressInfo}}">
@@ -68,3 +68,5 @@
   </view>
   <button class="submit-btn {{preOrderInfo.addressInfo ? 'active' : ''}}" bindtap="submit">提交订单</button>
 </view>
+
+<address-select-popup addressId="{{preOrderInfo.addressInfo.id}}" show="{{addressSelectPopupVisible}}" bind:hide="hideAddressSelectPopup" />

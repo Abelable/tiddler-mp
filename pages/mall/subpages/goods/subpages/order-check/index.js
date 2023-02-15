@@ -7,6 +7,7 @@ Page({
   data: {
     statusBarHeight,
     preOrderInfo: null,
+    addressSelectPopupVisible: false
   },
 
   onLoad({ cartIds }) {
@@ -17,6 +18,22 @@ Page({
   async setPreOrderInfo() {
     const preOrderInfo = await goodsService.getPreOrderInfo(this.cartIds, this.addressId)
     this.setData({ preOrderInfo })
+  },
+
+  showAddressSelectPopup() {
+    this.setData({
+      addressSelectPopupVisible: true
+    })
+  },
+
+  hideAddressSelectPopup(e) {
+    this.setData({
+      addressSelectPopupVisible: false
+    })
+    if (e.detail) {
+      this.addressId = e.detail
+      this.setPreOrderInfo()
+    }
   },
 
   // 提交订单

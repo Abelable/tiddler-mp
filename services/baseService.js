@@ -17,6 +17,10 @@ class BaseService extends Base {
   async getUserInfo() {
     return await this.get({ url: `${this.baseUrl}/user_info`, loadingTitle: '加载中...' })
   }
+
+  async getAddressList() {
+    return await this.get({ url: `${this.baseUrl}/address/list` })
+  }
 }
 
 export default BaseService

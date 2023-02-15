@@ -1,10 +1,6 @@
 import BaseService from '../../../../../services/baseService'
 
 class AddressService extends BaseService {
-  async getAddressList() {
-    return await this.get({ url: `${this.baseUrl}/address/list` })
-  }
-
   async getAddressInfo(id) {
     return await this.get({ 
       url: `${this.baseUrl}/address/detail`, 
