@@ -55,7 +55,7 @@
   color: #333;
   font-size: 26rpx;
 }
-radio {
+.radio {
   transform: scale(0.8);
 }
 

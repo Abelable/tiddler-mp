@@ -69,4 +69,4 @@
   <button class="submit-btn {{preOrderInfo.addressInfo ? 'active' : ''}}" bindtap="submit">提交订单</button>
 </view>
 
-<address-select-popup addressId="{{preOrderInfo.addressInfo.id}}" show="{{addressSelectPopupVisible}}" bind:hide="hideAddressSelectPopup" />
+<address-select-popup addressId="{{preOrderInfo.addressInfo.id || 0}}" show="{{addressSelectPopupVisible}}" bind:hide="hideAddressSelectPopup" />

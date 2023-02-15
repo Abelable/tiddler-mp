@@ -19,7 +19,7 @@
             </view>
             <view class="address-detail">{{item.regionDesc + ' ' + item.addressDetail}}</view>
           </view>
-          <radio value="{{index}}" checked="{{ selectedIndex === index }}" color="#161F4E" />
+          <radio class="radio" value="{{index}}" checked="{{ selectedIndex === index }}" color="#161F4E" />
         </view>
       </radio-group>
     </scroll-view>
