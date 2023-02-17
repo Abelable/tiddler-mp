@@ -81,9 +81,17 @@ class GoodsService extends BaseService {
   }
 
   async getPreOrderInfo(cartIds, addressId) {
-    return await this.get({
+    return await this.post({
       url: `${this.baseUrl}/order/pre_order_info`,
       data: cleanObject({ cartIds, addressId }),
+    })
+  }
+
+  async submitOrder(cartIds, addressId) {
+    return await this.post({
+      url: `${this.baseUrl}/order/submit`,
+      data: { addressId, cartIds },
+      loadingTitle: '订单提交中...'
     })
   }
 }

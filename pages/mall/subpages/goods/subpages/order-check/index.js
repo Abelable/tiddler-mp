@@ -11,7 +11,7 @@ Page({
   },
 
   onLoad({ cartIds }) {
-    this.cartIds = cartIds
+    this.cartIds = JSON.parse(cartIds) 
     this.setPreOrderInfo()
   },
 
@@ -37,8 +37,13 @@ Page({
   },
 
   // 提交订单
-  async checkout() {
-
+  async submit() {
+    const addressId = this.data.preOrderInfo.addressInfo.id
+    if (!addressId) {
+      return
+    }
+    const orderIds = await goodsService.submitOrder(this.cartIds, addressId)
+    console.log(orderIds);
   },
 
   async prePay(orderSn) {
