@@ -52,7 +52,6 @@ button::after {
   -webkit-box-orient: vertical;
 }
 .omit.single-line {
-  line-height: 1;
   -webkit-line-clamp: 1;
 }
 

@@ -58,10 +58,10 @@
   height: 40rpx;
   border-radius: 50%;
 }
-.goods-list {
+.goods-item {
   margin-bottom: 24rpx;
 }
-.goods-list:last-child {
+.goods-item:last-child {
   margin-bottom: 0;
 }
 .goods-img {
@@ -106,7 +106,6 @@
   font-size: 28rpx;
   font-weight: 500;
 }
-
 
 .list {
   margin-top: 24rpx;

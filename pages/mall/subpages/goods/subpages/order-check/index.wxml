@@ -20,7 +20,7 @@
       <image class="shop-icon" wx:if="{{item.shopInfo}}" src="{{item.shopInfo.avatar}}" />
       <view>{{item.shopInfo ? item.shopInfo.name : '官方自营'}}</view>
     </view>
-    <view class="goods-list row" wx:for="{{item.goodsList}}" wx:key="index" wx:for-item="goods">
+    <view class="goods-item row" wx:for="{{item.goodsList}}" wx:key="index" wx:for-item="goods">
       <image class="goods-img" src="{{goods.goodsImage}}" mode="aspectFill" lazy-load />
       <view class="goods-content">
         <view class="goods-name omit">{{goods.goodsName}}</view>
