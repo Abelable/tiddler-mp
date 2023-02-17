@@ -14,7 +14,7 @@ Component({
   methods: {
     async pay(e) {
       const id = e.currentTarget.dataset.id
-      const params = await orderService.prepay(id)
+      const params = await orderService.getPayParams([id])
       wx.requestPayment({ ...params,
         success: () => {
 
