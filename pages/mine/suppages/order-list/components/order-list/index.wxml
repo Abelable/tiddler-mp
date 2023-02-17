@@ -1,8 +1,8 @@
-<wxs module="ORDER" src="../../utils/item.wxs" />
+<wxs module="ORDER" src="../../utils/order.wxs" />
 
 <view class="order-list">
   <view class="order-item" wx:for="{{list}}" wx:key="index">
-    <view class="header">
+    <view class="header row between">
       <view class="shop-info row" wx:if="{{item.shopId}}" catchtap="navToShop" data-id="{{item.shopId}}">
         <image class="shop-avatar" wx:if="{{item.shopAvatar}}" src="{{item.shopAvatar}}" />
         <view class="shop-name omit single-line">{{item.shopName}}</view>
@@ -16,7 +16,7 @@
     </view>
     <view class="list-footer">
       <view class="total-info row baseline">
-        <text>{{ORDER.paymentDesc(item.status)}}</text>
+        <view>{{ORDER.paymentDesc(item.status)}}：</view>
         <price-unit price="{{item.paymentAmount}}" color="#333" fontSize="26rpx" integerFontSize="36rpx" />
       </view>
       <view class="btn-wrap">

@@ -6,22 +6,29 @@
   align-items: center;
   width: 100%;
   height: 40px;
-  background: #ffffff;
-  box-shadow: 0 2rpx 2rpx 0 rgba(0,0,0,0.05);
+  background: #fff;
+  border-top: 1px solid #f5f6f8;
 }
 .menu-item {
   flex: 1;
   text-align: center;
-  font-size: 15px;
-  color: #666666;
+  font-size: 14px;
+  color: #666;
 }
 .menu-item.selected {
-  font-size: 17px;
+  font-size: 15px;
+  color: #333;
   font-weight: 600;
-  color: #000000;
 }
 
 .content {
   margin-top: 40px;
   padding: 24rpx;
+}
+
+.no-more-tips {
+  margin-top: 36rpx;
+  color: #999;
+  font-size: 24rpx;
+  text-align: center;
 }

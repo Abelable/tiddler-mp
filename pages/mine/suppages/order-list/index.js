@@ -1,56 +1,45 @@
 import OrderService from './utils/orderService'
 
 const orderService = new OrderService()
-const menuList = [
-  { name: '全部', status: 0 }, 
-  { name: '待付款', status: 1 }, 
-  { name: '待发货', status: 2 }, 
-  { name: '待收货', status: 3 }, 
-  { name: '待评价', status: 4 }, 
-  { name: '退款/售后', status: 5 }
-]
 
 Page({
   data: {
-    menuList,
+    menuList: [
+      { name: '全部', status: 0 }, 
+      { name: '待付款', status: 1 }, 
+      { name: '待发货', status: 2 }, 
+      { name: '待收货', status: 3 }, 
+      { name: '待评价', status: 4 }, 
+      { name: '售后', status: 5 }
+    ],
     curMenuIndex: 0,
-    orderLists: [],
+    orderList: [],
+    finished: false,
   },
 
-  async onLoad({ status }) {
+  async onLoad({ status = '0' }) {
+    const curMenuIndex = this.data.menuList.findIndex(item => (item.status === Number(status)))
+    this.setData({ curMenuIndex })
+    this.setOrderList(true)
+  },
 
+  selectMenu(e) {
+    const { index: curMenuIndex } = e.currentTarget.dataset
+    this.setData({ curMenuIndex })
+    this.setOrderList(true)
+  },
+
+  async setOrderList(init = false) {
+    const limit = 10
+    const { menuList, curMenuIndex, orderList } = this.data
+    if (init) this.page = 0
+    const list = await orderService.getOrderList(menuList[curMenuIndex].status, ++this.page, limit)
     this.setData({
-      curMenuIndex: menuList.findIndex(val => val.status == order_status)
+      orderList: init ? list : [...orderList, ...list],
     })
-    this.pages = [] 
-
-    if (mobile && (!wx.getStorageSync('token') || (wx.getStorageSync('token') && wx.getStorageSync('phone') != mobile))) {
-      await this.autoLogin(mobile, nickname, avatar)
+    if (list.length < limit) {
+      this.setData({ finished: true })
     }
-    
-    checkLogin(this.initData)
-  },
-
-  onShow() {
-    if (this.data.curMenuIndex == 4) this.initData()
-  },
-
-  initData() {
-    if (this.initDataTimeout) clearTimeout(this.initDataTimeout)
-    this.initDataTimeout = setTimeout(() => {
-      this.setOrderList(true)
-    })
-  },
-
-  async autoLogin(mobile, nickname, avatar) {
-    const { code } = await orderService.wxLogin()
-    const { openid, unionid } = await orderService.getSessionKey(code) || {}
-    const { token, shop_id } = await orderService.login(mobile, nickname, avatar, 0, openid, unionid)
-    wx.setStorageSync('token', token)
-    wx.setStorage({ key: "phone", data: mobile })
-    wx.setStorage({ key: "openid", data: openid })
-    wx.setStorage({ key: 'myShopid', data: shop_id || '' })
-    initUserData()
   },
 
   onPullDownRefresh() {
@@ -59,37 +48,6 @@ Page({
   },
 
   onReachBottom() {
-    this.setData({ isHideLoadMore: false })
     this.setOrderList()
   },
-
-  selectMenu(e) {
-    let status = e.target.dataset.orderStatus
-    let index = menuList.findIndex(val => val.status == status)
-    this.setData({ curMenuIndex: index })
-    let order = this.data.orderLists[index]
-    if (!order || !order.length) this.setOrderList(status)
-  },
-
-  async setOrderList(refresh = false) {
-    const { curMenuIndex, orderLists, isHideLoadMore } = this.data
-    const { status } = menuList[curMenuIndex]
-    const index = menuList.findIndex(val => val.status == status)
-    if (refresh || !this.pages[index]) {
-      this.pages[index] = 0
-      orderLists[index] = []
-    }
-    let { list = [] } = await orderService.getOrderList(status, ++this.pages[index]) || {}
-    this.setData({
-      [`orderLists[${index}]`]: refresh ? list : [...orderLists[index], ...list],
-    })
-    !isHideLoadMore && this.setData({ isHideLoadMore: true })
-  },
-
-  finishPay() {
-    this.setOrderList(true)
-    this.setData({ curMenuIndex: 2 }, () => {
-      this.setOrderList(true)
-    })
-  }
 })

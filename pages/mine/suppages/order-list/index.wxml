@@ -1,9 +1,13 @@
 <view class="menu">
-  <view class="menu-item {{selectedTab === index ? 'selected' : ''}}" wx:for="{{menu}}" wx:key="index" data-order-status="{{item.status}}" bindtap="selectMenu">{{item.name}}</view>
+  <view 
+    class="menu-item {{curMenuIndex === index ? 'selected' : ''}}" 
+    wx:for="{{menuList}}" wx:key="index" 
+    bindtap="selectMenu" data-index="{{index}}"
+  >{{item.name}}</view>
 </view>
 
 <view class="content">
-  <i-order-list wx:for="{{orderList[selectedTab]}}" wx:key="index" order="{{item}}" bind:handleOrder="setOrderList" bind:finishPay="finishPay" />
+  <order-list list="{{orderList}}" />
+  <empty-illus wx:if="{{finished && !orderList.length}}" desc="暂无订单列表" />
+  <view class="no-more-tips" wx:if="{{finished && orderList.length}}">～没有更多了～</view>
 </view>
-
-<i-load-more isHideLoadMore="{{isHideLoadMore}}" />

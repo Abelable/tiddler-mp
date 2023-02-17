@@ -1,4 +1,4 @@
-.order-list {
+.order-item {
   margin-bottom: 20rpx;
   padding: 20rpx 30rpx;
   background-color: #fff;
@@ -10,7 +10,7 @@
   align-items: center;
   font-size: 28rpx;
 }
-.shop-icon {
+.shop-avatar {
   margin-right: 16rpx;
   width: 40rpx;
   height: 40rpx;
@@ -19,10 +19,12 @@
 .shop-name {
   flex: 1;
   color: #333;
+  font-size: 28rpx;
   font-weight: 500;
 }
 .order-status {
-  color: #000000;
+  color: #161F4E;
+  font-size: 28rpx;
 }
 
 .list-content {
@@ -30,21 +32,15 @@
 }
 
 .total-info {
-  font-size: 24rpx;
+  justify-content: flex-end;
   color: #333;
-  text-align: right;
+  font-size: 24rpx;
+  font-weight: 550;
 }
 .total-fee {
+  color: #333;
   font-size: 30rpx;
   font-weight: 500;
-  color: #000000;
-}
-.pending-tips {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  color: #B87900;
-  font-size: 24rpx;
 }
 .horn-icon {
   margin-right: 10rpx;
@@ -68,8 +64,8 @@
   border: 1rpx solid #D8D8D8;
 }
 .btn.warn {
-  color: #B87900;
-  border: 1rpx solid #B87900;
+  color: #161F4E;
+  border: 1rpx solid #161F4E;
 }
 .btn:last-child {
   margin-right: 0;

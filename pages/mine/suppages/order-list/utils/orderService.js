@@ -1,8 +1,13 @@
 import BaseService from '../../../../../services/baseService'
 
 class OrderService extends BaseService {
-  async getOrderList(status, page, size = 10) {
-    return await this.post({ url: `${this.mmsUrl}/api/v4/order/list`, data: { status, page, size, type: 'type' } })
+  async getOrderList(status, page, limit = 10) {
+    const { list = [] } = await this.get({ 
+      url: `${this.baseUrl}/order/list`, 
+      data: { status, page, limit },
+      loadingTitle: '加载中...'
+    }) || {}
+    return list
   }
 
   async confirmOrder(order_id) {
