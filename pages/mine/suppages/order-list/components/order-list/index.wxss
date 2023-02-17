@@ -11,9 +11,10 @@
   font-size: 28rpx;
 }
 .shop-icon {
-  margin-right: 15rpx;
-  width: 32rpx;
-  height: 32rpx;
+  margin-right: 16rpx;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
 }
 .shop-name {
   flex: 1;
