@@ -1,0 +1,7 @@
+<view class="goods-list">
+  <view class="good-info">
+    <image class="img" src="{{item.goods_thumb}}" />
+    <view class="title">{{item.goods_name}}</view>
+  </view>
+  <textarea class="comment-area" value="{{item.comment || ''}}" bindinput="onCommentInput" placeholder="说说哪里好，鼓励一下我吧～"></textarea>
+</view>

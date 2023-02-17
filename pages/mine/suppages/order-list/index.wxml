@@ -1,0 +1,9 @@
+<view class="menu">
+  <view class="menu-item {{selectedTab === index ? 'selected' : ''}}" wx:for="{{menu}}" wx:key="index" data-order-status="{{item.status}}" ontap="selectMenu">{{item.name}}</view>
+</view>
+
+<view class="content">
+  <i-order-list wx:for="{{orderList[selectedTab]}}" wx:key="index" order="{{item}}" bind:handleOrder="setOrderList" bind:finishPay="finishPay" />
+</view>
+
+<i-load-more isHideLoadMore="{{isHideLoadMore}}" />

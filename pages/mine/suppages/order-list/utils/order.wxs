@@ -1,0 +1,9 @@
+function status(code, shippingId, needComment) {
+  var commentStatus = needComment ? '待评价' : '已评价'
+  var statusArr = shippingId ? ['未付款', '待收货', '已取消', '售后中', commentStatus, '待发货'] : ['未付款', '待发货', '已取消', '售后中', commentStatus, '待发货'];
+  return statusArr[code - 1];
+}
+
+module.exports = {
+  status: status
+}

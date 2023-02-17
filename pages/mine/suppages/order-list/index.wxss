@@ -1,0 +1,27 @@
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  background: #ffffff;
+  box-shadow: 0 2rpx 2rpx 0 rgba(0,0,0,0.05);
+}
+.menu-item {
+  flex: 1;
+  text-align: center;
+  font-size: 15px;
+  color: #666666;
+}
+.menu-item.selected {
+  font-size: 17px;
+  font-weight: 600;
+  color: #000000;
+}
+
+.content {
+  margin-top: 40px;
+  padding: 24rpx;
+}

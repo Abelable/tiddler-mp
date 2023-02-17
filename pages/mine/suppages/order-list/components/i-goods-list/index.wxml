@@ -1,0 +1,17 @@
+<view class="goods-list" wx:for="{{data}}" wx:key="index" ontap="showGoodsDetail" data-id="{{item.goods_id}}">
+  <image class="goods-pic" src="{{item.goods_thumb}}" />
+  <view class="goods-info">
+    <view class="goods-title">{{item.goods_name}}</view>
+    <view class="goods-attr-wrap">
+      <view class="goods-attr">{{item.goods_attr}}</view>
+      <view>x{{item.goods_number}}</view>
+    </view>
+    <view class="goods-price-wrap">
+      <view class="goods-price">
+        <view class="shop-price">{{item.goods_price}}</view>
+        <view class="market-price" wx:if="{{item.market_price}}">￥{{item.market_price}}</view>
+      </view>
+      <view wx:if="{{(item.goods_cause == 1 || item.goods_cause == 2) && orderStatus != 5}}" class="status {{isDetail ? 'btn' : 'tip'}} {{item.goods_cause == 2 ? 'refunding' : ''}}" catchtap="toRefund" data-order-id="{{orderId}}" data-rec-id="{{item.rec_id}}" data-ret-id="{{item.ret_id}}" data-cause="{{item.goods_cause}}">{{item.goods_cause == 2 ? '查看售后' : '申请售后'}}</view>
+    </view>
+  </view>
+</view>

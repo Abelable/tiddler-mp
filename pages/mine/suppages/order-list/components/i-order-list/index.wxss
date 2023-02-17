@@ -1,0 +1,75 @@
+.order-list {
+  margin-bottom: 20rpx;
+  padding: 20rpx 30rpx;
+  background-color: #fff;
+  border-radius: 16rpx;
+}
+
+.list-header {
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+}
+.shop-icon {
+  margin-right: 15rpx;
+  width: 32rpx;
+  height: 32rpx;
+}
+.shop-name {
+  flex: 1;
+  color: #333;
+  font-weight: 500;
+}
+.order-status {
+  color: #000000;
+}
+
+.list-content {
+  margin: 10rpx 0;
+}
+
+.total-info {
+  font-size: 24rpx;
+  color: #333;
+  text-align: right;
+}
+.total-fee {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #000000;
+}
+.pending-tips {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: #B87900;
+  font-size: 24rpx;
+}
+.horn-icon {
+  margin-right: 10rpx;
+  width: 30rpx;
+  height: 30rpx;
+}
+.btn-wrap {
+  margin-top: 10rpx;
+  display: flex;
+  justify-content: flex-end;
+}
+.btn {
+  margin-right: 16rpx;
+  width: 160rpx;
+  height: 56rpx;
+  line-height: 54rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #666;
+  border-radius: 28rpx;
+  border: 1rpx solid #D8D8D8;
+}
+.btn.warn {
+  color: #B87900;
+  border: 1rpx solid #B87900;
+}
+.btn:last-child {
+  margin-right: 0;
+}
