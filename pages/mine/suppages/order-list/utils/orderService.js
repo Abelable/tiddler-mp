@@ -1,4 +1,4 @@
-import BaseService from '../../../../../service/baseService'
+import BaseService from '../../../../../services/baseService'
 
 class OrderService extends BaseService {
   async getOrderList(status, page, size = 10) {

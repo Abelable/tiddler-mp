@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "发表评论",
-  "usingComponents": {
-    "i-goods-list": "./components/i-goods-list/index"
-  }
-}

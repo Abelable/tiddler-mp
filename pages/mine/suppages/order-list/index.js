@@ -1,28 +1,26 @@
-import checkLogin from '../../../../utils/checkLogin'
 import OrderService from './utils/orderService'
 
 const orderService = new OrderService()
-const menu = [
+const menuList = [
   { name: '全部', status: 0 }, 
   { name: '待付款', status: 1 }, 
   { name: '待发货', status: 2 }, 
   { name: '待收货', status: 3 }, 
   { name: '待评价', status: 4 }, 
-  { name: '退款/售后', status: 4 }
+  { name: '退款/售后', status: 5 }
 ]
 
 Page({
   data: {
-    menu,
-    selectedTab: 0,
-    orderList: [],
+    menuList,
+    curMenuIndex: 0,
+    orderLists: [],
   },
 
-  async onLoad(options) {
-    const { order_status = 0 , mobile, nickname, avatar } = options || {}
+  async onLoad({ status }) {
 
     this.setData({
-      selectedTab: menu.findIndex(val => val.status == order_status)
+      curMenuIndex: menuList.findIndex(val => val.status == order_status)
     })
     this.pages = [] 
 
@@ -34,7 +32,7 @@ Page({
   },
 
   onShow() {
-    if (this.data.selectedTab == 4) this.initData()
+    if (this.data.curMenuIndex == 4) this.initData()
   },
 
   initData() {
@@ -67,30 +65,30 @@ Page({
 
   selectMenu(e) {
     let status = e.target.dataset.orderStatus
-    let index = menu.findIndex(val => val.status == status)
-    this.setData({ selectedTab: index })
-    let order = this.data.orderList[index]
+    let index = menuList.findIndex(val => val.status == status)
+    this.setData({ curMenuIndex: index })
+    let order = this.data.orderLists[index]
     if (!order || !order.length) this.setOrderList(status)
   },
 
   async setOrderList(refresh = false) {
-    const { selectedTab, orderList, isHideLoadMore } = this.data
-    const { status } = menu[selectedTab]
-    const index = menu.findIndex(val => val.status == status)
+    const { curMenuIndex, orderLists, isHideLoadMore } = this.data
+    const { status } = menuList[curMenuIndex]
+    const index = menuList.findIndex(val => val.status == status)
     if (refresh || !this.pages[index]) {
       this.pages[index] = 0
-      orderList[index] = []
+      orderLists[index] = []
     }
     let { list = [] } = await orderService.getOrderList(status, ++this.pages[index]) || {}
     this.setData({
-      [`orderList[${index}]`]: refresh ? list : [...orderList[index], ...list],
+      [`orderLists[${index}]`]: refresh ? list : [...orderLists[index], ...list],
     })
     !isHideLoadMore && this.setData({ isHideLoadMore: true })
   },
 
   finishPay() {
     this.setOrderList(true)
-    this.setData({ selectedTab: 2 }, () => {
+    this.setData({ curMenuIndex: 2 }, () => {
       this.setOrderList(true)
     })
   }

@@ -1,9 +1,0 @@
-<view class="count-control" catchtap="preventBubble">
-  <view class="reduce-btn" catchtap="reduce">
-    <image style="width: 32rpx; height: 32rpx;" src="{{count > 1 ? 'https://img.ubo.vip/mp/i-count-control/reduce-active.png' : 'https://img.ubo.vip/mp/i-count-control/reduce.png'}}"/>
-  </view>
-  <input class="count-view" style="width: {{inputWidth}}rpx;" type="number" value="{{count}}" bindblur="editCount" bindinput="bindInput" />
-  <view class="add-btn" catchtap="add">
-    <image style="width: 32rpx; height: 32rpx;" src="https://img.ubo.vip/mp/i-count-control/add.png" />
-  </view>
-</view>

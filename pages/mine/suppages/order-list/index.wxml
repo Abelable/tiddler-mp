@@ -1,5 +1,5 @@
 <view class="menu">
-  <view class="menu-item {{selectedTab === index ? 'selected' : ''}}" wx:for="{{menu}}" wx:key="index" data-order-status="{{item.status}}" ontap="selectMenu">{{item.name}}</view>
+  <view class="menu-item {{selectedTab === index ? 'selected' : ''}}" wx:for="{{menu}}" wx:key="index" data-order-status="{{item.status}}" bindtap="selectMenu">{{item.name}}</view>
 </view>
 
 <view class="content">
