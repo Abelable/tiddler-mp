@@ -43,28 +43,22 @@ Page({
       return
     }
     const orderIds = await goodsService.submitOrder(this.cartIds, addressId)
-    console.log(orderIds);
+    this.pay(orderIds)
   },
 
-  async prePay(orderSn) {
-    let res = await orderCheckService.prepay(orderSn)
-    await this.pay(JSON.parse(res), orderSn)
-  },
-
-  async pay(payParams, orderSn) {
-    let { timeStamp, ...rest } = payParams
-    wx.requestPayment({ ...rest,
-      timeStamp: String(timeStamp),
+  async pay(orderIds) {
+    const payParams = await goodsService.getPayParams(orderIds)
+    wx.requestPayment({
+      ...payParams,
       success: () => {
-        this.data.roomId && this.userBuyNowCount(orderSn)
         wx.navigateTo({ 
-          url: '/pages/subpages/mine/order/index?status=5'
-        });
+          url: '/pages/mine/suppages/order-list/index?status=2'
+        })
       },
       fail: () => {
         wx.navigateTo({ 
-          url: '/pages/subpages/mine/order/index?status=1'
-        });
+          url: '/pages/mine/suppages/order-list/index?status=1'
+        })
       }
     })
   },

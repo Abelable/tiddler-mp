@@ -21,6 +21,13 @@ class BaseService extends Base {
   async getAddressList() {
     return await this.get({ url: `${this.baseUrl}/address/list` })
   }
+
+  async getPayParams(orderIds) {
+    return await this.post({
+      url: `${this.baseUrl}/order/pay_params`,
+      data: { orderIds }
+    })
+  }
 }
 
 export default BaseService

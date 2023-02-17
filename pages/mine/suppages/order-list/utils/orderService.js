@@ -30,13 +30,10 @@ class OrderService extends BaseService {
     })
   }
 
-  async cancelOrder(order_id) {
+  async cancelOrder(id) {
     await this.post({ 
-      url: `${this.mmsUrl}/api/v4/order/cancel`, 
-      data: { order_id },
-      success() {
-        wx.showToast({ title: '取消成功', icon: 'none' })
-      }
+      url: `${this.baseUrl}/order/cancel`, 
+      data: { id }
     })
   }
 
