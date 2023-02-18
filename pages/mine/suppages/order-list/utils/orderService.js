@@ -10,6 +10,14 @@ class OrderService extends BaseService {
     return list
   }
 
+  async getOrderDetail(id) {
+    return await this.get({
+      url: `${this.baseUrl}/order/detail`,
+      data: { id },
+      loadingTitle: '加载中...'
+    })
+  }
+
   async confirmOrder(id, success) {
     await this.post({ 
       url: `${this.baseUrl}/order/confirm`, 

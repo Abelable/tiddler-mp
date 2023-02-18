@@ -1,1 +1,127 @@
-/* pages/mine/suppages/order-list/subpages/detail/index.wxss */
+.content {
+  padding-bottom: calc(100rpx + env(safe-area-inset-bottom));
+}
+.order-status-wrap {
+  position: relative;
+}
+.order-status {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 50rpx;
+  height: 168rpx;
+  color: #fff;
+  font-size: 30rpx;
+}
+.info-wrap {
+  margin: 20rpx;
+  padding: 30rpx;
+  background-color: #fff;
+  border-radius: 20rpx;
+}
+.person-info {
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+}
+.person-name {
+  margin: 0 20rpx;
+}
+.address-info {
+  margin-left: 58rpx;
+  font-size: 28rpx;
+  line-height: 1.2;
+  color: #999;
+}
+.shipping-info {
+  display: flex;
+  align-items: center;
+  margin-top: 30rpx;
+  padding-top: 20rpx;
+  height: 120rpx;
+  border-top: 1rpx solid #f0f0f0;
+}
+.shipping-tips {
+  margin-left: 20rpx;
+  flex: 1;
+  font-size: 28rpx;
+  color: #B87900;
+}
+.price-detail-wrap {
+  border-top: 1px solid #f0f0f0;
+}
+.price-detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60rpx;
+  color: #666;
+  font-size: 24rpx;
+}
+.price-detail.total {
+  height: 70rpx;
+  color: #B87900;
+  font-size: 24rpx;
+}
+.total-tips {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.info-wrap-title {
+  font-size: 26rpx;
+  color: #333;
+  font-weight: 500;
+}
+.customer-note {
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  color: #666;
+}
+
+.order-creation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60rpx;
+  color: #666;
+  font-size: 24rpx;
+}
+
+.chat-icon {
+  padding: 0;
+  position: fixed;
+  right: 45rpx;
+  bottom: 45rpx;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  box-shadow: 0 0 6rpx #333333;
+}
+
+.bottom-bar {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: flex-end;
+  padding: 16rpx 40rpx calc(16rpx + env(safe-area-inset-bottom));
+  width: 100%;
+  background: #fff;
+}
+.bottom-bar-btn {
+  margin-left: 40rpx;
+  padding: 0 30rpx;
+  width: fit-content;
+  height: 66rpx;
+  color: #CD9753;
+  font-size: 28rpx;
+  line-height: 64rpx;
+  border-radius: 33rpx;
+  border: 1rpx solid #CD9753;
+}

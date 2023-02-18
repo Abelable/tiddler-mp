@@ -1,66 +1,112 @@
-// pages/mine/suppages/order-list/subpages/detail/index.js
+import OrderService from '../../utils/orderService'
+
+const orderService = new OrderService()
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    orderInfo: null
+  },
+  
+  onLoad({ id }) {
+    this.orderId = id
+    this.setOrderInfo()
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
+  async setOrderInfo() {
+    const orderInfo = await orderService.getOrderDetail(this.orderId)
+    this.setData({ orderInfo })
 
+    const titleEnums = {
+      101: '等待买家付款',
+      102: '交易关闭',
+      103: '交易关闭',
+      104: '交易关闭',
+      201: '等待卖家发货',
+      202: '退款申请中',
+      203: '退款成功',
+      301: '待收货',
+      401: '交易成功',
+      402: '交易成功',
+    }
+    wx.setNavigationBarTitle({
+      title: titleEnums[orderInfo.status],
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
+  copyOrderSn() {
+    wx.setClipboardData({
+      data: this.data.orderInfo.orderSn, 
+      success: () => {
+        wx.showToast({ title: '复制成功', icon: 'none' })
+      }
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
+  async payOrder() {
+    const params = await orderService.getPayParams(this.orderId)
+    wx.requestPayment({ ...params,
+      success: () => {
+        this.setData({
+          ['orderInfo.status']: 201
+        })
+      }
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
+  refundOrder() {
+    orderService.refundOrder(this.orderId, () => {
+      this.setData({
+        ['orderInfo.status']: 202
+      })
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
+  confirmOrder() {
+    orderService.confirmOrder(this.orderId, () => {
+      this.setData({
+        ['orderInfo.status']: 401
+      })
+    })
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
+  deleteOrder() {
+    orderService.deleteOrder(this.orderId, () => {
+      wx.navigateBack()
+    })
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
+  cancelOrder() {
+    orderService.cancelOrder(this.orderId, () => {
+      this.setData({
+        ['orderInfo.status']: 102
+      })
+    })
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
+  afterSale(e) {
+    const id = e.currentTarget.dataset.id
+    const url = `/pages/mine/suppages/order-list/subpages/detail/index?id=${id}`
+    wx.navigateTo({ url })
+  },
 
-  }
+  navToShipping(e) {
+    const id = e.currentTarget.dataset.id
+    const url = `/pages/mine/suppages/order-list/subpages/shipping/index?id=${id}`
+    wx.navigateTo({ url })
+  },
+
+  navToComment(e) {
+    const id = e.currentTarget.dataset.id
+    const url = `/pages/mine/suppages/order-list/subpages/comment/index?id=${id}`
+    wx.navigateTo({ url })
+  },
+
+  contact() {
+  },
+
+  navToShop(e) {
+    const { id } = e.currentTarget.dataset
+    const url = `/pages/mall/subpages/goods/subpages/shop/index?id=${id}`
+    wx.navigateTo({ url })
+  },
 })

@@ -22,7 +22,7 @@ Component({
       })
     },
 
-    refundOrder() {
+    refundOrder(e) {
       const { id, index } = e.currentTarget.dataset
       orderService.refundOrder(id, () => {
         this.triggerEvent('update', { type: 'refund', index })
@@ -58,7 +58,7 @@ Component({
   
     navToDetail(e) {
       const id = e.currentTarget.dataset.id
-      const url = `/pages/mine/suppages/order-list/subpages/detail/index?id=${id}`
+      const url = `/pages/mine/suppages/order-list/subpages/order-detail/index?id=${id}`
       wx.navigateTo({ url })
     },
   
