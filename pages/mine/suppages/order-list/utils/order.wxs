@@ -7,7 +7,7 @@ function statusDesc(status) {
   } else if (status === 201) {
     desc = '等待卖家发货';
   } else if (status === 202) {
-    desc = '退款中';
+    desc = '退款申请中';
   } else if (status === 203) {
     desc = '退款成功';
   } else if (status === 301) {

@@ -51,7 +51,9 @@ Component({
     },
 
     afterSale(e) {
-
+      const id = e.currentTarget.dataset.id
+      const url = `/pages/mine/suppages/order-list/subpages/detail/index?id=${id}`
+      wx.navigateTo({ url })
     },
   
     navToDetail(e) {
