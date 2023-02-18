@@ -8,64 +8,50 @@ Component({
   },
 
   properties: {
-    status: Number,
     list: Array
   },
   
   methods: {
-    async pay(e) {
-      const { status, list } = this.properties
+    async payOrder(e) {
       const { id, index } = e.currentTarget.dataset
       const params = await orderService.getPayParams([id])
       wx.requestPayment({ ...params,
         success: () => {
-          if (status === 0) {
-            this.setData({
-              [`list[${index}].status`]: 201
-            })
-          } else {
-            list.splice(index, 1)
-            this.setData({ list })
-          }
+          this.triggerEvent('update', { type: 'pay', index })
         }
       })
     },
 
-    refund() {},
+    refundOrder() {
+      const { id, index } = e.currentTarget.dataset
+      orderService.refundOrder(id, () => {
+        this.triggerEvent('update', { type: 'refund', index })
+      })
+    },
 
     confirmOrder(e) {
-      const { status, list } = this.properties
       const { id, index } = e.currentTarget.dataset
       orderService.confirmOrder(id, () => {
-        if (status === 0) {
-          this.setData({
-            [`list[${index}].status`]: 401
-          })
-        } else {
-          list.splice(index, 1)
-          this.setData({ list })
-        }
+        this.triggerEvent('update', { type: 'confirm', index })
       })
     },
 
     deleteOrder(e) {
-      const id = e.currentTarget.dataset.id
-      orderService.deleteOrder(id)
+      const { id, index } = e.currentTarget.dataset
+      orderService.deleteOrder(id, () => {
+        this.triggerEvent('update', { type: 'delete', index })
+      })
     },
 
     cancelOrder(e) {
-      const { status, list } = this.properties
       const { id, index } = e.currentTarget.dataset
       orderService.cancelOrder(id, () => {
-        if (status === 0) {
-          this.setData({
-            [`list[${index}].status`]: 102
-          })
-        } else {
-          list.splice(index, 1)
-          this.setData({ list })
-        }
+        this.triggerEvent('update', { type: 'cancel', index })
       })
+    },
+
+    afterSale(e) {
+
     },
   
     navToDetail(e) {
@@ -83,6 +69,12 @@ Component({
     navToComment(e) {
       const id = e.currentTarget.dataset.id
       const url = `/pages/mine/suppages/order-list/subpages/comment/index?id=${id}`
+      wx.navigateTo({ url })
+    },
+
+    navToShop(e) {
+      const { id } = e.currentTarget.dataset
+      const url = `/pages/mall/subpages/goods/subpages/shop/index?id=${id}`
       wx.navigateTo({ url })
     },
   }

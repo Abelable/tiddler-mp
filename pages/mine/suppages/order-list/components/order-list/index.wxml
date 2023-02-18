@@ -44,18 +44,23 @@
         <button 
           class="btn warn" 
           wx:if="{{item.status === 101}}" 
-          bindtap="pay" data-id="{{item.id}}" data-index="{{index}}"
+          bindtap="payOrder" data-id="{{item.id}}" data-index="{{index}}"
         >继续付款</button>
         <button 
           class="btn warn" 
           wx:if="{{item.status === 202}}"
-          bindtap="refund" data-id="{{item.id}}" data-index="{{index}}"
+          bindtap="refundOrder" data-id="{{item.id}}" data-index="{{index}}"
         >申请退款</button>
+        <button 
+          class="btn" 
+          wx:if="{{item.status === 401 || item.status === 402}}"
+          bindtap="afterSale" data-id="{{item.id}}"
+        >申请售后</button>
         <button 
           class="btn warn" 
           wx:if="{{item.status === 401 || item.status === 402}}" 
           bindtap="navToComment" data-id="{{item.id}}"
-        >去评价</button>
+        >评价</button>
       </view>
     </view>
   </view>

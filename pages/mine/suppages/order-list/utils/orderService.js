@@ -26,21 +26,29 @@ class OrderService extends BaseService {
     })
   }
 
+  async refundOrder(id, success) {
+    await this.post({ 
+      url: `${this.baseUrl}/order/refund`, 
+      data: { id },
+      success
+    })
+  }
+
   async deleteOrder(id, success) {
     await this.post({ 
-      url: `${this.mmsUrl}/order/delete`, 
+      url: `${this.baseUrl}/order/delete`, 
       data: { id },
       success
     })
   }
 
   async getShippingTracker(order_id) {
-    return await this.get({ url: `${this.mmsUrl}/api/v4/order/tracker-order-id`, data: { order_id } })
+    return await this.get({ url: `${this.baseUrl}/order/tracker-order-id`, data: { order_id } })
   }
 
   async publishComment(order_id, comment_type, commentLists, success) {
     return await this.post({ 
-      url: `${this.mmsUrl}/api/v4/order/comment`, 
+      url: `${this.baseUrl}/order/comment`, 
       data: { order_id, comment_type, json_data: JSON.stringify(commentLists) }, 
       success, 
       loadingTitle: '发布中...' 

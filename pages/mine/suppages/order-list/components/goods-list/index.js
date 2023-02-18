@@ -8,12 +8,10 @@ Component({
   },
   
   methods: {
-    showGoodsDetail(e) {
-      this.properties.isDetail && wx.navigateTo({ url: `/pages/subpages/mall/goods-detail/index?id=${e.currentTarget.dataset.id}` })
+    navToGoodsDetail(e) {
+      const { id } = e.currentTarget.dataset
+      const url = `/pages/mall/subpages/goods/subpages/goods-detail/index?id=${id}`
+      wx.navigateTo({ url })
     },
-
-    toRefund(e) {
-      
-    }
   }
 })
