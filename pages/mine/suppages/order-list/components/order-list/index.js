@@ -8,23 +8,44 @@ Component({
   },
 
   properties: {
+    status: Number,
     list: Array
   },
   
   methods: {
     async pay(e) {
-      const id = e.currentTarget.dataset.id
+      const { status, list } = this.properties
+      const { id, index } = e.currentTarget.dataset
       const params = await orderService.getPayParams([id])
       wx.requestPayment({ ...params,
         success: () => {
-
+          if (status === 0) {
+            this.setData({
+              [`list[${index}].status`]: 201
+            })
+          } else {
+            list.splice(index, 1)
+            this.setData({ list })
+          }
         }
       })
     },
 
+    refund() {},
+
     confirmOrder(e) {
-      const id = e.currentTarget.dataset.id
-      orderService.confirmOrder(id)
+      const { status, list } = this.properties
+      const { id, index } = e.currentTarget.dataset
+      orderService.confirmOrder(id, () => {
+        if (status === 0) {
+          this.setData({
+            [`list[${index}].status`]: 401
+          })
+        } else {
+          list.splice(index, 1)
+          this.setData({ list })
+        }
+      })
     },
 
     deleteOrder(e) {
@@ -33,8 +54,18 @@ Component({
     },
 
     cancelOrder(e) {
-      const id = e.currentTarget.dataset.id
-      orderService.cancelOrder(id)
+      const { status, list } = this.properties
+      const { id, index } = e.currentTarget.dataset
+      orderService.cancelOrder(id, () => {
+        if (status === 0) {
+          this.setData({
+            [`list[${index}].status`]: 102
+          })
+        } else {
+          list.splice(index, 1)
+          this.setData({ list })
+        }
+      })
     },
   
     navToDetail(e) {

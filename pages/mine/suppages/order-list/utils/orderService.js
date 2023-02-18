@@ -10,30 +10,27 @@ class OrderService extends BaseService {
     return list
   }
 
-  async confirmOrder(order_id) {
+  async confirmOrder(id, success) {
     await this.post({ 
-      url: `${this.mmsUrl}/api/v4/order/confirm`, 
-      data: { order_id },
-      success() {
-        wx.showToast({ title: '操作成功', icon: 'none' })
-      }
+      url: `${this.baseUrl}/order/confirm`, 
+      data: { id },
+      success
     })
   }
 
-  async deleteOrder(order_id) {
-    await this.post({ 
-      url: `${this.mmsUrl}/api/v4/order/delete`, 
-      data: { order_id },
-      success() {
-        wx.showToast({ title: '删除成功', icon: 'none' })
-      }
-    })
-  }
-
-  async cancelOrder(id) {
+  async cancelOrder(id, success) {
     await this.post({ 
       url: `${this.baseUrl}/order/cancel`, 
-      data: { id }
+      data: { id },
+      success
+    })
+  }
+
+  async deleteOrder(id, success) {
+    await this.post({ 
+      url: `${this.mmsUrl}/order/delete`, 
+      data: { id },
+      success
     })
   }
 
@@ -42,7 +39,12 @@ class OrderService extends BaseService {
   }
 
   async publishComment(order_id, comment_type, commentLists, success) {
-    return await this.post({ url: `${this.mmsUrl}/api/v4/order/comment`, data: { order_id, comment_type, json_data: JSON.stringify(commentLists) }, success, loadingTitle: '发布中...' })
+    return await this.post({ 
+      url: `${this.mmsUrl}/api/v4/order/comment`, 
+      data: { order_id, comment_type, json_data: JSON.stringify(commentLists) }, 
+      success, 
+      loadingTitle: '发布中...' 
+    })
   }
 }
 
