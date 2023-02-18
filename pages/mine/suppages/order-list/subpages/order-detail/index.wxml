@@ -3,12 +3,6 @@
 
 <view class="content">
   <view class="info-wrap">
-    <view class="person-info">
-      <image style="width: 40rpx; height: 40rpx;" src="https://img.ubo.vip/mp/mine/order-detail/user-info-icon.png" />
-      <view class="person-name">{{orderInfo.consignee}}</view>
-      <view class="person-phone">{{orderInfo.mobile}}</view>
-    </view>
-    <view class="address-info">{{orderInfo.address}}</view>
     <view class="shipping-info" wx:if="{{orderInfo.order_status_to == 2 && orderInfo.invoice_no}}" bindtap="showShippingDetail">
       <image style="width: 38rpx; height: 38rpx;" src="https://img.ubo.vip/mp/mine/order-detail/shipping-icon.png" />
       <view class="shipping-tips">{{orderInfo.shipping_status}}</view>
@@ -40,14 +34,10 @@
       </view>
     </view>
   </view>
-  <view class="info-wrap" wx:if="{{orderInfo.postscript}}">
-    <view class="info-wrap-title">订单备注:</view>
-    <view class="customer-note">{{orderInfo.postscript}}</view>
-  </view>
   <view class="info-wrap">
     <view class="order-creation">
       <text>订单编号：{{orderInfo.order_sn}}</text>
-      <text style="font-size: 28rpx; color: #B87900" ontap="copyOrderNumber">复制</text>
+      <text style="font-size: 28rpx; color: #B87900" bindtap="copyOrderNumber">复制</text>
     </view>
     <view class="order-creation">
       <text>创建时间：{{orderInfo.add_time}}</text>
@@ -59,7 +49,46 @@
 </view>
 
 <view class="bottom-bar">
-  <view class="bottom-bar-btn" ontap="contact">联系客服</view>
-  <view class="bottom-bar-btn" wx:if="{{orderInfo.order_status_to == 5 && orderInfo.is_comment == 0 && orderInfo.is_allow_comment}}" ontap="navToComment">去评价</view>
+  <button class="btn warn" bindtap="contact">联系客服</button>
+  <button 
+    class="btn" 
+    wx:if="{{orderInfo.status === 301}}" 
+    bindtap="navToShipping" data-id="{{orderInfo.id}}"
+  >查看物流</button>
+  <button 
+    class="btn" 
+    wx:if="{{orderInfo.status === 102 || orderInfo.status === 103 || orderInfo.status === 104 || orderInfo.status === 401 || orderInfo.status === 402}}" 
+    bindtap="deleteOrder" data-id="{{orderInfo.id}}" data-index="{{index}}"
+  >删除订单</button>
+  <button 
+    class="btn" 
+    wx:if="{{orderInfo.status === 101}}" 
+    bindtap="cancelOrder" data-id="{{orderInfo.id}}" data-index="{{index}}"
+  >取消订单</button>
+  <button 
+    class="btn warn" 
+    wx:if="{{orderInfo.status === 301}}" 
+    bindtap="confirmOrder" data-id="{{orderInfo.id}}" data-index="{{index}}"
+  >确认收货</button>
+  <button 
+    class="btn warn" 
+    wx:if="{{orderInfo.status === 101}}" 
+    bindtap="payOrder" data-id="{{orderInfo.id}}" data-index="{{index}}"
+  >继续付款</button>
+  <button 
+    class="btn warn" 
+    wx:if="{{orderInfo.status === 202}}"
+    bindtap="refundOrder" data-id="{{orderInfo.id}}" data-index="{{index}}"
+  >申请退款</button>
+  <button 
+    class="btn" 
+    wx:if="{{orderInfo.status === 401 || orderInfo.status === 402}}"
+    bindtap="afterSale" data-id="{{orderInfo.id}}"
+  >申请售后</button>
+  <button 
+    class="btn warn" 
+    wx:if="{{orderInfo.status === 401 || orderInfo.status === 402}}" 
+    bindtap="navToComment" data-id="{{orderInfo.id}}"
+  >评价</button>
 </view>
   
