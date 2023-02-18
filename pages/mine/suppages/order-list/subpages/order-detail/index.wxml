@@ -1,16 +1,9 @@
 <wxs module="TIME" src="/utils/filters/time.wxs" />
 <wxs module="ORDER" src="../../utils/order.wxs" />
 
-<view class="content">
-  <!-- <view class="info-wrap">
-    <view class="shipping-info" wx:if="{{orderInfo.order_status_to == 2 && orderInfo.invoice_no}}" bindtap="showShippingDetail">
-      <image style="width: 38rpx; height: 38rpx;" src="https://img.ubo.vip/mp/mine/order-detail/shipping-icon.png" />
-      <view class="shipping-tips">{{orderInfo.shipping_status}}</view>
-      <image style="width: 30rpx; height: 30rpx;" src="https://img.ubo.vip/mp/to-icon.png" />
-    </view>
-  </view> -->
-  <view class="info-wrap">
-    <view class="list-header row between">
+<view class="container">
+  <view class="card">
+    <view class="card-header row">
       <view class="shop-info row" wx:if="{{orderInfo.shopId}}" catchtap="navToShop" data-id="{{orderInfo.shopId}}">
         <image class="shop-avatar" wx:if="{{orderInfo.shopAvatar}}" src="{{orderInfo.shopAvatar}}" />
         <view class="shop-name omit single-line">{{orderInfo.shopName}}</view>
@@ -18,40 +11,53 @@
       </view>
       <view class="shop-name omit single-line" wx:if="{{!orderInfo.shopId}}">官方自营</view>
     </view>
-    <view class="goods-list-wrap">
-      <goods-list list="{{orderInfo.goodsList}}" />
+    <goods-list list="{{orderInfo.goodsList}}" />
+    <view class="list row between">
+      <view class="title">商品总价</view>
+      <price-unit price="{{orderInfo.goodsPrice}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />
     </view>
-    <view class="price-detail-wrap">
-      <view class="price-detail">
-        <text>商品合计</text>
-        <text>{{orderInfo.goods_amount_formated}}</text>
+    <view class="list row between">
+      <view class="title">运费</view>
+      <price-unit price="{{orderInfo.freightPrice}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />
+    </view>
+    <view class="list row between">
+      <view class="title">{{ORDER.paymentDesc(orderInfo.status)}}</view>
+      <price-unit price="{{orderInfo.paymentAmount}}" fontSize="26rpx" integerFontSize="34rpx" />
+    </view>
+    <view class="more-info-wrap">
+      <view class="list row top">
+        <view class="title">收货信息：</view>
+        <view class="content">{{orderInfo.consignee}}，{{orderInfo.mobile}}，{{orderInfo.address}}</view>
       </view>
-      <view class="price-detail">
-        <text>运费</text>
-        <text>+{{orderInfo.shipping_fee_formated}}</text>
+      <view class="list row between">
+        <view class="title">订单编号：</view>
+        <view>
+          <text>{{orderInfo.orderSn}}</text>
+          <text>｜</text>
+          <text style="color: #333" bindtap="copyOrderNumber">复制</text>
+        </view>
       </view>
-      <view class="price-detail total">
-        <text class="total-tips">{{orderInfo.order_status_to == 1 || orderInfo.order_status_to == 3 ? '应付金额' : '实付金额'}}</text>
-        <text>{{orderInfo.order_status_to == 1 || orderInfo.order_status_to == 3 ? orderInfo.order_amount_formated : orderInfo.money_paid_formated}}</text>
+      <view class="list row between">
+        <view class="title">创建时间：</view>
+        <text>{{TIME.transform(orderInfo.createdAt, 'YYYY-MM-DD hh:mm:ss')}}</text>
       </view>
-    </view>
-    <view class="more-info">
-      <view class="order-creation">
-      <text>订单编号：{{orderInfo.order_sn}}</text>
-      <text style="font-size: 28rpx; color: #B87900" bindtap="copyOrderNumber">复制</text>
-    </view>
-    <view class="order-creation">
-      <text>创建时间：{{orderInfo.add_time}}</text>
-    </view>
-    <view class="order-creation" wx:if="{{orderInfo.pay_time}}">
-      <text>支付时间：{{orderInfo.pay_time}}</text>
-    </view>
+      <view class="list row between" wx:if="{{orderInfo.payTime}}">
+        <view class="title">付款时间：</view>
+        <text>{{TIME.transform(orderInfo.payTime, 'YYYY-MM-DD hh:mm:ss')}}</text>
+      </view>
+      <view class="list row between" wx:if="{{orderInfo.shipTime}}">
+        <view class="title">发货时间：</view>
+        <text>{{TIME.transform(orderInfo.shipTime, 'YYYY-MM-DD hh:mm:ss')}}</text>
+      </view>
+      <view class="list row between" wx:if="{{orderInfo.confirmTime}}">
+        <view class="title">成交时间：</view>
+        <text>{{TIME.transform(orderInfo.confirmTime, 'YYYY-MM-DD hh:mm:ss')}}</text>
+      </view>
     </view>
   </view>
 </view>
 
 <view class="bottom-bar">
-  <button class="btn warn" bindtap="contact">联系客服</button>
   <button 
     class="btn" 
     wx:if="{{orderInfo.status === 301}}" 
@@ -92,5 +98,6 @@
     wx:if="{{orderInfo.status === 401 || orderInfo.status === 402}}" 
     bindtap="navToComment" data-id="{{orderInfo.id}}"
   >评价</button>
+  <button class="btn warn" bindtap="contact">{{orderInfo.shopId ? '联系卖家' : '联系客服'}}</button>
 </view>
   

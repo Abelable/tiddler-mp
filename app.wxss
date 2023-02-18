@@ -43,6 +43,9 @@ button::after {
 .row.baseline {
   align-items: baseline;
 }
+.row.top {
+  align-items: flex-start;
+}
 
 .omit {
   overflow: hidden;
