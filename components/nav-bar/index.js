@@ -6,10 +6,17 @@ Component({
   },
   
   properties: {
-    title: String
+    custom: Boolean,
+    title: String,
   },
 
   data: {
     statusBarHeight
+  },
+
+  methods: {
+    navigateBack() {
+      this.triggerEvent('navigateBack')
+    },
   }
 })

@@ -1,9 +1,11 @@
 import OrderService from './utils/orderService'
 
 const orderService = new OrderService()
+const { statusBarHeight } = getApp().globalData
 
 Page({
   data: {
+    statusBarHeight,
     menuList: [
       { name: '全部', status: 0 }, 
       { name: '待付款', status: 1 }, 
@@ -71,5 +73,11 @@ Page({
         [`orderList[${index}].status`]: statusEmuns[type]
       })
     }
-  }
+  },
+
+  navigateBack() {
+    wx.switchTab({
+      url: '/pages/mine/index'
+    })
+  },
 })

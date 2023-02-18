@@ -1,16 +1,18 @@
-.nav-bar {
+.nav-bar-wrap {
   position: fixed;
   top: 0;
   left: 0;
-  padding: 0 8px;
-  width: calc(100vw - 16px);
-  height: 44px;
+  width: 100%;
   background: #fff;
-  box-sizing: initial;
 }
-
+.nav-bar {
+  padding: 0 8px;
+  height: 44px;
+}
 .title {
+  flex: 1;
   color: #333;
   font-size: 16px;
   font-weight: 550;
+  text-align: center;
 }
