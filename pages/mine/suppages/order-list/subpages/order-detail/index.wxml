@@ -11,7 +11,7 @@
       </view>
       <view class="shop-name omit single-line" wx:if="{{!orderInfo.shopId}}">官方自营</view>
     </view>
-    <goods-list list="{{orderInfo.goodsList}}" />
+    <goods-list list="{{orderInfo.goodsList}}" status="{{orderInfo.status}}" />
     <view class="list row between">
       <view class="title">商品总价</view>
       <price-unit price="{{orderInfo.goodsPrice}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />

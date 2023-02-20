@@ -52,11 +52,6 @@
           catchtap="refundOrder" data-id="{{item.id}}" data-index="{{index}}"
         >申请退款</button>
         <button 
-          class="btn" 
-          wx:if="{{item.status === 401 || item.status === 402}}"
-          catchtap="afterSale" data-id="{{item.id}}"
-        >申请售后</button>
-        <button 
           class="btn warn" 
           wx:if="{{item.status === 401 || item.status === 402}}" 
           catchtap="navToComment" data-id="{{item.id}}"

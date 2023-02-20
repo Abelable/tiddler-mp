@@ -4,20 +4,6 @@ Component({
   },
 
   properties: {
-    list: Array,
-    canShowDetail: {
-      type: Boolean,
-      value: true
-    }
+    list: Array
   },
-  
-  methods: {
-    navToGoodsDetail(e) {
-      if (this.properties.canShowDetail) {
-        const { id } = e.currentTarget.dataset
-        const url = `/pages/mall/subpages/goods/subpages/goods-detail/index?id=${id}`
-        wx.navigateTo({ url })
-      }
-    },
-  }
 })
