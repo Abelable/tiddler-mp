@@ -1,5 +1,5 @@
 .container {
-  padding: 24rpx 24rpx calc(100rpx + env(safe-area-inset-bottom));
+  padding: 24rpx 24rpx calc(112rpx + env(safe-area-inset-bottom));
 }
 
 .card {

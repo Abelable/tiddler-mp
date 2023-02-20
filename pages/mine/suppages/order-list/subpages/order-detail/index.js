@@ -83,12 +83,6 @@ Page({
     })
   },
 
-  afterSale(e) {
-    const id = e.currentTarget.dataset.id
-    const url = `/pages/mine/suppages/order-list/subpages/detail/index?id=${id}`
-    wx.navigateTo({ url })
-  },
-
   navToShipping(e) {
     const id = e.currentTarget.dataset.id
     const url = `/pages/mine/suppages/order-list/subpages/shipping/index?id=${id}`

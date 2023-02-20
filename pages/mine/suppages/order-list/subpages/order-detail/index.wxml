@@ -89,11 +89,6 @@
     bindtap="refundOrder" data-id="{{orderInfo.id}}" data-index="{{index}}"
   >申请退款</button>
   <button 
-    class="btn" 
-    wx:if="{{orderInfo.status === 401 || orderInfo.status === 402}}"
-    bindtap="afterSale" data-id="{{orderInfo.id}}"
-  >申请售后</button>
-  <button 
     class="btn warn" 
     wx:if="{{orderInfo.status === 401 || orderInfo.status === 402}}" 
     bindtap="navToComment" data-id="{{orderInfo.id}}"
