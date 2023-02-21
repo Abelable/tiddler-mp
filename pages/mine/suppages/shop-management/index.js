@@ -6,7 +6,7 @@ const { statusBarHeight } = getApp().globalData
 Page({
   data: {
     statusBarHeight,
-    shopInfo: null,
+    menuFixed: false,
     menuList: [
       { name: '全部', status: 0 }, 
       { name: '待付款', status: 1 }, 
@@ -15,8 +15,13 @@ Page({
       { name: '售后', status: 5 }
     ],
     curMenuIndex: 0,
+    shopInfo: null,
     orderList: [],
     finished: false,
+  },
+
+  onLoad() {
+    this.setMenuTop()
   },
   
   async onShow() {
@@ -24,6 +29,16 @@ Page({
       await this.setShopInfo()
     }
     this.setOrderList(true)
+  },
+
+  setMenuTop() {
+    const query = wx.createSelectorQuery()
+    query.select('.menu-wrap').boundingClientRect()
+    query.exec(res => {
+      if (res[0] !== null) {
+        this.menuTop = res[0].top - statusBarHeight - 44
+      }
+    })
   },
 
   async setShopInfo() {
@@ -62,5 +77,14 @@ Page({
 
   onReachBottom() {
     this.setOrderList()
+  },
+
+  onPageScroll(e) {
+    const { menuFixed } = this.data
+    if (e.scrollTop >= this.menuTop) {
+      if (!menuFixed) this.setData({ menuFixed: true })
+    } else {
+      if (menuFixed) this.setData({ menuFixed: false })
+    }
   },
 })
