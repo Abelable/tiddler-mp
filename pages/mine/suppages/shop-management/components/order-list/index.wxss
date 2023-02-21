@@ -13,7 +13,7 @@
   font-weight: 500;
 }
 .order-status {
-  color: #161F4E;
+  color: #3979BE;
 }
 
 .list-content {
@@ -39,13 +39,13 @@
   line-height: 54rpx;
   text-align: center;
   font-size: 28rpx;
-  color: #666;
+  color: #3979BE;
   border-radius: 28rpx;
-  border: 1rpx solid #D8D8D8;
+  border: 1rpx solid #3979BE;
 }
-.btn.warn {
-  color: #161F4E;
-  border: 1rpx solid #161F4E;
+.btn.active {
+  color: #fff;
+  background: #3979BE;
 }
 .btn:last-child {
   margin-right: 0;

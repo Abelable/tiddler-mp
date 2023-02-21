@@ -9,11 +9,11 @@
 <view class="header" style="padding-top: {{statusBarHeight + 56}}px">
   <view class="shop-info-wrap row">
     <view class="avatar-wrap">
-      <image class="shop-avatar" src="{{shopInfo.avatar || 'https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJHuQw54zRia20KzofiaQzxDYlx68Gz3P7MN46KYP7nxibOG6Oo8OKn2vWq9iaoENE0EFziaFMju0ZdmuA/132'}}" />
+      <image class="shop-avatar" src="{{shopInfo.avatar}}" />
       <image class="enterprise-label" wx:if="{{shopInfo.type === 2}}" src="https://img.ubo.vip/mp/selection/goods-detail/firm-icon.png" />
     </view>
     <view class="info">
-      <view class="shop-name omit single-line">{{shopInfo.name || '一一小店'}}</view>
+      <view class="shop-name omit single-line">{{shopInfo.name}}</view>
       <view class="authentication row">{{shopInfo.type === 2 ? '企业店铺' : '个人店铺'}}</view>
     </view>
   </view>

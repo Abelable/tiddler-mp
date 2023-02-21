@@ -1,4 +1,4 @@
-.menu {
+.menu-wrap {
   display: flex;
   align-items: center;
   width: 100%;
@@ -8,14 +8,26 @@
 }
 .menu-item {
   flex: 1;
-  text-align: center;
-  font-size: 14px;
+  height: 40px;
   color: #666;
+  font-size: 14px;
 }
 .menu-item.selected {
+  position: relative;
+  color: #3979BE;
   font-size: 15px;
-  color: #333;
-  font-weight: 600;
+  font-weight: bold;
+}
+.menu-item.selected::after {
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 15px;
+  height: 3px;
+  content: '';
+  border-radius: 1.5px;
+  background: #3979BE;
 }
 
 .content {

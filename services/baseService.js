@@ -1,3 +1,4 @@
+import { cleanObject } from '../utils/index'
 import Base from './base/index'
 
 class BaseService extends Base {
@@ -27,6 +28,15 @@ class BaseService extends Base {
       url: `${this.baseUrl}/order/pay_params`,
       data: { orderIds }
     })
+  }
+
+  async getOrderList({ shopId, status, page, limit = 10 }) {
+    const { list = [] } = await this.get({ 
+      url: `${this.baseUrl}/order/list`, 
+      data: cleanObject({ status, page, limit, shopId }),
+      loadingTitle: '加载中...'
+    }) || {}
+    return list
   }
 }
 

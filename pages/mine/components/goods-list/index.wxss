@@ -39,7 +39,7 @@
 }
 .count-wrap {
   font-size: 24rpx;
-  color: #666;
+  color: #3979BE;
 }
 .count {
   margin-left: 5rpx;

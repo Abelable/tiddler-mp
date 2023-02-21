@@ -14,12 +14,5 @@
         </view>
       </view>
     </view>
-    <view class="btn-wrap">
-      <button 
-        class="btn" 
-        wx:if="{{status === 401 || status === 402}}"
-        catchtap="afterSale" data-id="{{item.id}}"
-      >申请售后</button>
-    </view>
   </view>
 </view>

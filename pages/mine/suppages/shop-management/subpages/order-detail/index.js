@@ -1,6 +1,6 @@
-import OrderService from '../../utils/orderService'
+import ShopService from '../../utils/shopService'
 
-const orderService = new OrderService()
+const shopService = new ShopService()
 
 Page({
   data: {
@@ -13,7 +13,7 @@ Page({
   },
 
   async setOrderInfo() {
-    const orderInfo = await orderService.getOrderDetail(this.orderId)
+    const orderInfo = await shopService.getOrderDetail(this.orderId)
     this.setData({ orderInfo })
 
     const titleEnums = {
@@ -43,7 +43,7 @@ Page({
   },
 
   async payOrder() {
-    const params = await orderService.getPayParams(this.orderId)
+    const params = await shopService.getPayParams(this.orderId)
     wx.requestPayment({ ...params,
       success: () => {
         this.setData({
@@ -54,7 +54,7 @@ Page({
   },
 
   refundOrder() {
-    orderService.refundOrder(this.orderId, () => {
+    shopService.refundOrder(this.orderId, () => {
       this.setData({
         ['orderInfo.status']: 202
       })
@@ -62,7 +62,7 @@ Page({
   },
 
   confirmOrder() {
-    orderService.confirmOrder(this.orderId, () => {
+    shopService.confirmOrder(this.orderId, () => {
       this.setData({
         ['orderInfo.status']: 401
       })
@@ -70,13 +70,13 @@ Page({
   },
 
   deleteOrder() {
-    orderService.deleteOrder(this.orderId, () => {
+    shopService.deleteOrder(this.orderId, () => {
       wx.navigateBack()
     })
   },
 
   cancelOrder() {
-    orderService.cancelOrder(this.orderId, () => {
+    shopService.cancelOrder(this.orderId, () => {
       this.setData({
         ['orderInfo.status']: 102
       })

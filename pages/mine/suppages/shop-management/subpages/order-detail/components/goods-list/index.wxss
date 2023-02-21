@@ -39,35 +39,10 @@
 }
 .count-wrap {
   font-size: 24rpx;
-  color: #666;
+  color: #3979BE;
 }
 .count {
   margin-left: 5rpx;
   font-size: 28rpx;
   font-weight: 500;
-}
-
-.btn-wrap {
-  margin-top: 24rpx;
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-}
-.btn {
-  margin-right: 16rpx;
-  width: 160rpx;
-  height: 56rpx;
-  line-height: 54rpx;
-  text-align: center;
-  font-size: 28rpx;
-  color: #666;
-  border-radius: 28rpx;
-  border: 1rpx solid #D8D8D8;
-}
-.btn.warn {
-  color: #161F4E;
-  border: 1rpx solid #161F4E;
-}
-.btn:last-child {
-  margin-right: 0;
 }

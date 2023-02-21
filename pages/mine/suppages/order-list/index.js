@@ -38,7 +38,7 @@ Page({
     const limit = 10
     const { menuList, curMenuIndex, orderList } = this.data
     if (init) this.page = 0
-    const list = await orderService.getOrderList(menuList[curMenuIndex].status, ++this.page, limit)
+    const list = await orderService.getOrderList({ status: menuList[curMenuIndex].status, page: ++this.page, limit })
     this.setData({
       orderList: init ? list : [...orderList, ...list],
     })

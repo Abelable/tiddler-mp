@@ -1,4 +1,4 @@
-<wxs module="ORDER" src="../../utils/order.wxs" />
+<wxs module="ORDER" src="../../../../utils/order.wxs" />
 
 <view class="order-list">
   <view class="order-item" wx:for="{{list}}" wx:key="index" catchtap="navToDetail" data-id="{{item.id}}">
@@ -25,7 +25,7 @@
         >取消订单</button>
         <button class="btn" catchtap="navToDetail" data-id="{{item.id}}">查看详情</button>
         <button 
-          class="btn warn" 
+          class="btn active" 
           wx:if="{{item.status === 201}}"
           catchtap="deliverOrder" data-id="{{item.id}}" data-index="{{index}}"
         >去发货</button>

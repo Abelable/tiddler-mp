@@ -1,7 +1,7 @@
 <nav-bar title="我的订单" custom="{{true}}" bind:navigateBack="navigateBack">
-  <view class="menu">
+  <view class="menu-wrap">
     <view 
-      class="menu-item {{curMenuIndex === index ? 'selected' : ''}}" 
+      class="menu-item {{curMenuIndex === index ? 'selected' : ''}} row center" 
       wx:for="{{menuList}}" wx:key="index" 
       bindtap="selectMenu" data-index="{{index}}"
     >{{item.name}}</view>

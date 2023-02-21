@@ -1,11 +1,12 @@
-import BaseService from '../../../../services/baseService'
+import ShopService from './utils/shopService'
 
-const baseService = new BaseService()
+const shopService = new ShopService()
 const { statusBarHeight } = getApp().globalData
 
 Page({
   data: {
     statusBarHeight,
+    shopInfo: null,
     menuList: [
       { name: '全部', status: 0 }, 
       { name: '待付款', status: 1 }, 
@@ -17,13 +18,17 @@ Page({
     orderList: [],
     finished: false,
   },
-
-  onLoad() {
-    
+  
+  async onShow() {
+    if (!this.data.shopInfo) {
+      await this.setShopInfo()
+    }
+    this.setOrderList(true)
   },
 
-  onShow() {
-    this.setOrderList(true)
+  async setShopInfo() {
+    const shopInfo = await shopService.getShopInfo()
+    this.setData({ shopInfo })
   },
 
   selectMenu(e) {
@@ -34,9 +39,14 @@ Page({
 
   async setOrderList(init = false) {
     const limit = 10
-    const { menuList, curMenuIndex, orderList } = this.data
+    const { shopInfo, menuList, curMenuIndex, orderList } = this.data
     if (init) this.page = 0
-    const list = await orderService.getOrderList(menuList[curMenuIndex].status, ++this.page, limit)
+    const list = await shopService.getOrderList({ 
+      shopId: shopInfo.id, 
+      status: menuList[curMenuIndex].status, 
+      page:  ++this.page, 
+      limit
+    })
     this.setData({
       orderList: init ? list : [...orderList, ...list],
     })
