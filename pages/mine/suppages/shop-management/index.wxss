@@ -11,7 +11,7 @@
 }
 
 .header {
-  padding: 0 32rpx 40rpx;
+  padding: 32rpx;
   background: #22242C;
 }
 .search-bar {
@@ -185,7 +185,6 @@
   height: 40px;
   background: #fff;
   border-top: 1px solid #f5f6f8;
-  box-shadow: 0 2px 20px -2px #f0f0f0;
 }
 .menu-wrap.fixed {
   position: fixed;
