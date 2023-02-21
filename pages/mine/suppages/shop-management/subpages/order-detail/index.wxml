@@ -3,12 +3,6 @@
 
 <view class="container">
   <view class="card">
-    <view class="card-header row">
-      <view class="contact-btn row" catchtap="contact">
-        <view>联系买家</view>
-        <image style="width: 20rpx; height: 20rpx;" src="https://img.ubo.vip/mp/to-icon.png" />
-      </view>
-    </view>
     <goods-list list="{{orderInfo.goodsList}}" status="{{orderInfo.status}}" />
     <view class="list row between">
       <view class="title">商品总价</view>
@@ -75,5 +69,6 @@
     wx:if="{{item.status === 201}}"
     catchtap="deliverOrder" data-id="{{item.id}}" data-index="{{index}}"
   >去发货</button>
+  <button class="btn active" bindtap="contact">联系买家</button>
 </view>
   
