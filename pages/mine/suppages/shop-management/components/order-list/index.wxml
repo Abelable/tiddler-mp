@@ -1,0 +1,35 @@
+<wxs module="ORDER" src="../../utils/order.wxs" />
+
+<view class="order-list">
+  <view class="order-item" wx:for="{{list}}" wx:key="index" catchtap="navToDetail" data-id="{{item.id}}">
+    <view class="list-header row between">
+      <view class="contact-btn row" catchtap="contactBuyer">
+        <view>联系买家</view>
+        <image style="width: 20rpx; height: 20rpx;" src="https://img.ubo.vip/mp/to-icon.png" />
+      </view>
+      <view class="order-status">{{ORDER.statusDesc(item.status)}}</view>
+    </view>
+    <view class="list-content">
+      <goods-list list="{{item.goodsList}}" />
+    </view>
+    <view class="list-footer">
+      <view class="total-info row baseline">
+        <view>{{ORDER.paymentDesc(item.status)}}：</view>
+        <price-unit price="{{item.paymentAmount}}" color="#333" fontSize="26rpx" integerFontSize="36rpx" />
+      </view>
+      <view class="btn-wrap">
+        <button
+          class="btn" 
+          wx:if="{{item.status === 101}}" 
+          catchtap="cancelOrder" data-id="{{item.id}}" data-index="{{index}}"
+        >取消订单</button>
+        <button class="btn" catchtap="navToDetail" data-id="{{item.id}}">查看详情</button>
+        <button 
+          class="btn warn" 
+          wx:if="{{item.status === 201}}"
+          catchtap="deliverOrder" data-id="{{item.id}}" data-index="{{index}}"
+        >去发货</button>
+      </view>
+    </view>
+  </view>
+</view>

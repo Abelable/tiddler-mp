@@ -9,3 +9,7 @@
   background: rgba(0, 0, 0, 0.3);
   border: 0.5px solid rgba(255,255,255,0.3);
 }
+.back-icon.no-border {
+  border: none;
+  background: transparent;
+}

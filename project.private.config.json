@@ -75,6 +75,13 @@
           "query": "url=https://h5.youboi.com/tiddler/webview/index.html#/merchant/settle_in",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "店铺管理",
+          "pathName": "pages/mine/suppages/shop-management/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

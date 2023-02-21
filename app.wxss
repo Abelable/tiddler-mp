@@ -20,6 +20,7 @@ button {
   line-height: 1;
   border: 0;
   border-radius: 0;
+  background: none;
 }
 button::after {
   content: '';
@@ -36,6 +37,9 @@ button::after {
 .row {
   display: flex;
   align-items: center;
+}
+.row.center {
+  justify-content: center;
 }
 .row.between {
   justify-content: space-between;

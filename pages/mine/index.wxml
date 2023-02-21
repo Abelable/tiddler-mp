@@ -37,10 +37,10 @@
         <image class="function-icon" src="./images/address.png" />
         <view class="function-desc">收货地址</view>
       </navigator>
-      <view class="function-item" wx:if="{{userInfo.shopId}}">
+      <navigator class="function-item" wx:if="{{userInfo.shopId}}" url="./suppages/shop-management/index" hover-class="none">
         <image class="function-icon" src="./images/shop.png" />
         <view class="function-desc">我的店铺</view>
-      </view>
+      </navigator>
       <view class="function-item">
         <image class="function-icon" src="./images/wallet.png" />
         <view class="function-desc">我的钱包</view>
