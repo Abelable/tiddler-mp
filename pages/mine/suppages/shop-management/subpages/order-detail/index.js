@@ -42,6 +42,16 @@ Page({
     })
   },
 
+  copyAddress() {
+    const { consignee, mobile, address } = this.data.orderInfo
+    wx.setClipboardData({
+      data: `${consignee}，${mobile}，${address}`, 
+      success: () => {
+        wx.showToast({ title: '复制成功', icon: 'none' })
+      }
+    })
+  },
+
   deliverOrder() {
     shopService.deliverOrder(id, () => {
       this.setData({

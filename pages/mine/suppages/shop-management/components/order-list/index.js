@@ -38,6 +38,24 @@ Component({
       wx.navigateTo({ url })
     },
 
-    contact() {}
+    contact() {},
+
+    copyOrderSn(e) {
+      wx.setClipboardData({
+        data: e.currentTarget.dataset.sn, 
+        success: () => {
+          wx.showToast({ title: '复制成功', icon: 'none' })
+        }
+      })
+    },
+    
+    copyAddress(e) {
+      wx.setClipboardData({
+        data: e.currentTarget.dataset.address, 
+        success: () => {
+          wx.showToast({ title: '复制成功', icon: 'none' })
+        }
+      })
+    },
   }
 })
