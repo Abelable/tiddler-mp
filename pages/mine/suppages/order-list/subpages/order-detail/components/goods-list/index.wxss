@@ -59,7 +59,7 @@
   height: 56rpx;
   line-height: 54rpx;
   text-align: center;
-  font-size: 28rpx;
+  font-size: 26rpx;
   color: #3979BE;
   border-radius: 28rpx;
   border: 1rpx solid #3979BE;
