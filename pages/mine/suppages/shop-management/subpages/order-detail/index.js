@@ -42,36 +42,11 @@ Page({
     })
   },
 
-  async payOrder() {
-    const params = await shopService.getPayParams(this.orderId)
-    wx.requestPayment({ ...params,
-      success: () => {
-        this.setData({
-          ['orderInfo.status']: 201
-        })
-      }
-    })
-  },
-
-  refundOrder() {
-    shopService.refundOrder(this.orderId, () => {
+  deliverOrder() {
+    shopService.deliverOrder(id, () => {
       this.setData({
-        ['orderInfo.status']: 202
+        ['orderInfo.status']: 301
       })
-    })
-  },
-
-  confirmOrder() {
-    shopService.confirmOrder(this.orderId, () => {
-      this.setData({
-        ['orderInfo.status']: 401
-      })
-    })
-  },
-
-  deleteOrder() {
-    shopService.deleteOrder(this.orderId, () => {
-      wx.navigateBack()
     })
   },
 
@@ -89,18 +64,6 @@ Page({
     wx.navigateTo({ url })
   },
 
-  navToComment(e) {
-    const id = e.currentTarget.dataset.id
-    const url = `/pages/mine/suppages/order-list/subpages/comment/index?id=${id}`
-    wx.navigateTo({ url })
-  },
-
   contact() {
-  },
-
-  navToShop(e) {
-    const { id } = e.currentTarget.dataset
-    const url = `/pages/mall/subpages/goods/subpages/shop/index?id=${id}`
-    wx.navigateTo({ url })
   },
 })

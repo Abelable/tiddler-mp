@@ -38,6 +38,6 @@ Component({
       wx.navigateTo({ url })
     },
 
-    contactBuyer() {}
+    contact() {}
   }
 })
