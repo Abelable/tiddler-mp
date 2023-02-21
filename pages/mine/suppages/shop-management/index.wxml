@@ -1,7 +1,7 @@
 <view class="nav-bar row" style="padding-top: {{statusBarHeight}}px">
   <back-icon noBorder />
   <view class="search-bar row between" bindtap="search">
-    <text class="placeholder">搜索订单</text>
+    <text class="placeholder">点击搜索订单</text>
     <image class="search-icon" src="/images/search.png" />
   </view>
 </view>
