@@ -20,7 +20,7 @@
       <view class="list row top">
         <view class="title">收货信息：</view>
         <view class="content">{{orderInfo.consignee}}，{{orderInfo.mobile}}，{{orderInfo.address}}</view>
-        <view class="copy-btn" wx:if="{{item.status === 201}}">
+        <view class="copy-btn">
           <text>｜</text>
           <text style="color: #3979BE" bindtap="copyAddress">复制</text>
         </view>
