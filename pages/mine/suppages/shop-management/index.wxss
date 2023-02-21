@@ -61,7 +61,7 @@
   font-weight: 550;
 }
 .authentication {
-  margin-top: 12rpx;
+  margin-top: 8rpx;
   padding: 0 16rpx;
   height: 32rpx;
   width: fit-content;
