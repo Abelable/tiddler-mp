@@ -26,13 +26,13 @@
   color: #333;
   font-size: 68rpx;
   font-weight: bolder;
-  font-family: Verdana;
+  /* font-family: Verdana; */
 }
 .sub-title {
   color: #666;
   font-size: 34rpx;
   font-weight: bold;
-  font-family: Verdana;
+  /* font-family: Verdana; */
 }
 .tips {
   margin-top: 0.6rem;
