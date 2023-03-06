@@ -12,16 +12,16 @@
       <image class="avatar" src="{{userInfo.avatar}}" />
       <view class="data-wrap">
         <view class="data-item">
+          <view class="data-title">获赞</view>
+          <view class="data">100</view>
+        </view>
+        <view class="data-item">
           <view class="data-title">关注</view>
           <view class="data">200</view>
         </view>
         <view class="data-item">
           <view class="data-title">粉丝</view>
           <view class="data">36</view>
-        </view>
-        <view class="data-item">
-          <view class="data-title">来访</view>
-          <view class="data">100</view>
         </view>
       </view>
     </view>
@@ -37,27 +37,19 @@
         <image class="function-icon" src="./images/address.png" />
         <view class="function-desc">收货地址</view>
       </navigator>
+      <view class="function-item">
+        <image class="function-icon" src="./images/live.png" />
+        <view class="function-desc">我的直播</view>
+      </view>
       <navigator class="function-item" wx:if="{{userInfo.shopId}}" url="./suppages/shop-management/index" hover-class="none">
         <image class="function-icon" src="./images/shop.png" />
         <view class="function-desc">我的店铺</view>
       </navigator>
-      <view class="function-item">
-        <image class="function-icon" src="./images/wallet.png" />
-        <view class="function-desc">我的钱包</view>
-      </view>
-      <view class="function-item">
-        <image class="function-icon" src="./images/collect.png" />
-        <view class="function-desc">我的收藏</view>
-      </view>
-      <view class="function-item">
-        <image class="function-icon" src="./images/track.png" />
-        <view class="function-desc">我的足迹</view>
-      </view>
     </view>
 
     <view class="works-wrap {{menuFixed ? 'fixed' : '' }}">
       <view class="works-menu {{menuFixed ? 'fixed' : '' }}" style="top: {{menuFixed ? statusBarHeight + 44 : 0}}px;">
-        <view wx:for="{{['攻略', '视频', '直播', '游记']}}" wx:key="index" class="works-menu-item {{curMenuIndex === index ? 'active' : ''}}" bindtap="switchMenu" data-index="{{index}}">{{item}}</view>
+        <view wx:for="{{['视频', '攻略', '收藏', '点赞']}}" wx:key="index" class="works-menu-item {{curMenuIndex === index ? 'active' : ''}}" bindtap="switchMenu" data-index="{{index}}">{{item}}</view>
         <view class="active-underline" style="left: {{curMenuIndex * 25}}vw;"></view>
       </view>
       <swiper style="height: {{worksListHeightArr[curMenuIndex]}}px;" current="{{curMenuIndex}}" bindchange="swiperChange">
