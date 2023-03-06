@@ -30,6 +30,7 @@
     "pages/mine/suppages/shop-management/index",
     "pages/mine/suppages/shop-management/subpages/order-detail/index",
     "pages/mine/suppages/shop-management/subpages/shipping/index",
+    "pages/mine/suppages/live-management/index",
     "pages/common/register/index",
     "pages/common/user-center/index",
     "pages/common/webview/index",

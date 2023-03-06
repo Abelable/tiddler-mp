@@ -82,6 +82,30 @@ class Base {
     }
   }
 
+  async uploadFile(filePath) {
+    const ossConfig = await this.getOssConfig()
+
+    const fileName = `${filePath.replace('http://tmp/', '')}`
+    const formData = {
+      key: `${ossConfig.dir}${fileName}`,
+      "success_action_status": "200",
+      "x-oss-object-acl": "public-read",
+      "x-oss-meta-fullname": fileName,
+      OSSAccessKeyId: ossConfig.accessId,
+      policy: ossConfig.policy,
+      signature: ossConfig.signature
+    }
+
+    const res = await api.uploadFile({ url: ossConfig.host, filePath, name: 'file', formData })
+    if (res.statusCode === 200) {
+      return `${ossConfig.host}/${ossConfig.dir}${fileName}`
+    } else {
+      this.getOssInfo()
+      wx.showToast({ title: '资源上传失败, 请重试', icon: 'none' })
+      return ''
+    }
+  }
+
   getSetting() {
     return api.getSetting()
   }

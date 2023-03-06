@@ -23,6 +23,28 @@ class BaseService extends Base {
     return await this.get({ url: `${this.baseUrl}/address/list` })
   }
 
+  async getOssConfig() {
+    if (wx.getStorageSync('ossConfig')) {
+      const ossConfig = JSON.parse(wx.getStorageSync('ossConfig'))
+      if (new Date().getTime() < ossConfig.expire * 1000) {
+        return ossConfig
+      }
+    }
+    const ossConfig = await this.get({ url: `${this.baseUrl}/oss_config` })
+    wx.setStorage({
+      key: 'ossConfig',
+      data: JSON.stringify(ossConfig)
+    })
+    return ossConfig
+  }
+
+  async getQrCode(scene, page) {
+    return await this.post({ 
+      url: `${this.baseUrl}/oss_config`, 
+      data: { scene, page } 
+    })
+  }
+
   async getPayParams(orderIds) {
     return await this.post({
       url: `${this.baseUrl}/order/pay_params`,
