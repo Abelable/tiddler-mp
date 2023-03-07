@@ -1,3 +1,4 @@
+import { store } from '../store/index'
 import { cleanObject } from '../utils/index'
 import Base from './base/index'
 
@@ -16,7 +17,13 @@ class BaseService extends Base {
   }
 
   async getUserInfo() {
-    return await this.get({ url: `${this.baseUrl}/user_info`, loadingTitle: '加载中...' })
+    const userInfo = await this.get({ url: `${this.baseUrl}/user_info`, loadingTitle: '加载中...' })
+    store.setUserInfo(userInfo)
+    return userInfo
+  }
+
+  async getUserRoomInfo() {
+    return await this.get({ url: `${this.baseUrl}/media/live/user_room` })
   }
 
   async getAddressList() {

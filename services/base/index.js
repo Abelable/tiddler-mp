@@ -110,8 +110,10 @@ class Base {
     return api.getSetting()
   }
 
-  chooseImage(count) {
-    return api.chooseImage({count})
+  chooseImage(count, fail) {
+    return api.chooseImage({ count }).catch(err => {
+      fail && fail(err)
+    })
   }
 
   async getLocation() {

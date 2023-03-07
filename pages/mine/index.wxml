@@ -37,10 +37,10 @@
         <image class="function-icon" src="./images/address.png" />
         <view class="function-desc">收货地址</view>
       </navigator>
-      <navigator class="function-item" url="./suppages/live-management/index" hover-class="none">
+      <view class="function-item" bindtap="navToLive">
         <image class="function-icon" src="./images/live.png" />
         <view class="function-desc">我的直播</view>
-      </navigator>
+      </view>
       <navigator class="function-item" wx:if="{{userInfo.shopId}}" url="./suppages/shop-management/index" hover-class="none">
         <image class="function-icon" src="./images/shop.png" />
         <view class="function-desc">我的店铺</view>

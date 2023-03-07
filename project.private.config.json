@@ -82,6 +82,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "创建直播",
+          "pathName": "pages/mine/suppages/live-management/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

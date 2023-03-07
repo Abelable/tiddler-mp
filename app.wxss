@@ -30,6 +30,26 @@ button::after {
   background-color: transparent;
 }
 
+switch {
+  zoom: 0.8;
+}
+
+.small-dots .wx-swiper-dot {
+  width: 10rpx;
+  height: 10rpx;
+}
+.custom-dots .wx-swiper-dot {
+  width: 8rpx;
+  height: 8rpx;
+  border-radius: 4rpx;
+  background: var(--theme-color);
+  opacity: 0.5;
+}
+.custom-dots .wx-swiper-dot.wx-swiper-dot-active {
+  width: 24rpx;
+  opacity: 1;
+}
+
 .num {
   font-weight: bold;
 }
@@ -60,20 +80,4 @@ button::after {
 }
 .omit.single-line {
   -webkit-line-clamp: 1;
-}
-
-.small-dots .wx-swiper-dot {
-  width: 10rpx;
-  height: 10rpx;
-}
-.custom-dots .wx-swiper-dot {
-  width: 8rpx;
-  height: 8rpx;
-  border-radius: 4rpx;
-  background: var(--theme-color);
-  opacity: 0.5;
-}
-.custom-dots .wx-swiper-dot.wx-swiper-dot-active {
-  width: 24rpx;
-  opacity: 1;
 }

@@ -1,3 +1,5 @@
+import { createStoreBindings } from 'mobx-miniprogram-bindings'
+import { store } from '../../store/index'
 import { checkLogin } from '../../utils/index'
 import BaseService from '../../services/baseService'
 
@@ -7,18 +9,20 @@ const { statusBarHeight } = getApp().globalData
 Page({
   data: {
     statusBarHeight,
-    userInfo: null,
     curMenuIndex: 0,
     navBarVisible: false,
     menuFixed: false,
     worksListHeightArr: [400, 400, 400, 400],
-    strategyList: [],
     videoList: [],
-    liveList: [],
     noteList: [],
   },
 
   onLoad() {
+    this.storeBindings = createStoreBindings(this, {
+      store,
+      fields: ['userInfo'],
+    })
+
     this.setNavBarVisibleLimit()
     this.setMenuFixedLimit()
     this.scrollTopArr = [0, 0, 0, 0]
@@ -26,13 +30,8 @@ Page({
 
   onShow() {
     checkLogin(() => {
-      !this.data.userInfo && this.setUserInfo()
+      !store.userInfo && baseService.getUserInfo()
     })
-  },
-
-  async setUserInfo() {
-    const userInfo = await baseService.getUserInfo()
-    userInfo && this.setData({ userInfo })
   },
 
   switchMenu(e) {
@@ -104,4 +103,15 @@ Page({
 
     this.scrollTop = e.scrollTop
   },
+
+  async navToLive() {
+    const roomInfo = await baseService.getUserRoomInfo()
+    if (!roomInfo) {
+      wx.navigateTo({
+        url: './suppages/live-management/create-live/index'
+      })
+    } else {
+
+    }
+  }
 })
