@@ -44,10 +44,10 @@ Page({
             wx.showToast({
               title: '删除成功',
               icon: 'none',
-              complete: () => {
-                this.navBack()
-              }
             })
+            setTimeout(() => {
+              this.navBack()
+            }, 2000)
           })
         }
       }

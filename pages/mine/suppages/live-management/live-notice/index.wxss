@@ -101,14 +101,8 @@
 .delete-btn, .start-btn {
   width: 340rpx;
   height: 80rpx;
+  color: #fff;
   font-size: 28rpx;
   border-radius: 40rpx;
-}
-.delete-btn {
-  color: #f68686;
-  border: 1rpx solid #f68686;
-}
-.start-btn {
-  color: #fff;
   border: 1rpx solid #fff;
 }
