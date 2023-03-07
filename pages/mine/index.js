@@ -111,7 +111,9 @@ Page({
         url: './suppages/live-management/create-live/index'
       })
     } else {
-
+      const { status, direction } = roomInfo
+      const url = status === 3 ? './suppages/live-management/live-notice/index' : ''
+      wx.navigateTo({ url })
     }
   }
 })

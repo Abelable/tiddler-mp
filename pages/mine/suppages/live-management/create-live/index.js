@@ -27,9 +27,9 @@ Page({
   async uploadCover() {
     if (!this.data.uploadCoverLoading) {
       this.setData({ uploadCoverLoading: true })
-      const { tempFilePaths } = await baseService.chooseImage(1) || {}
+      const { tempFilePaths } = await liveService.chooseImage(1) || {}
       if (tempFilePaths) {
-        const cover = await baseService.uploadFile(tempFilePaths[0])
+        const cover = await liveService.uploadFile(tempFilePaths[0])
         this.setData({ cover })
       }
       this.setData({ uploadCoverLoading: false })
@@ -39,9 +39,9 @@ Page({
   async uploadShareCover() {
     if (!this.data.uploadShareCoverLoading) {
       this.setData({ uploadShareCoverLoading: true })
-      const { tempFilePaths } = await baseService.chooseImage(1) || {}
+      const { tempFilePaths } = await liveService.chooseImage(1) || {}
       if (tempFilePaths) {
-        const shareCover = await baseService.uploadFile(tempFilePaths[0])
+        const shareCover = await liveService.uploadFile(tempFilePaths[0])
         this.setData({ shareCover })
       }
       this.setData({ uploadShareCoverLoading: false })
@@ -70,7 +70,7 @@ Page({
 
   setNoticeTime(e) {
     const { date, dateString } = e.detail
-    this.noticeTime = Date.parse(date)
+    this.noticeTime = `${Date.parse(date)}`
     this.setData({
       noticeTimeString: dateString.slice(0, -3)
     })

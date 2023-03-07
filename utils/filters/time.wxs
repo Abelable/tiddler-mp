@@ -5,7 +5,7 @@ function format(time) {
 
 function transform(timeStamp, statement) {
   if (timeStamp) {
-    timeStamp = timeStamp.toString().length === 10 ? timeStamp * 1000 : timeStamp
+    timeStamp = timeStamp * 1
     var year = getDate(timeStamp).getFullYear()
     var month = format(getDate(timeStamp).getMonth() + 1)
     var day = format(getDate(timeStamp).getDate())
