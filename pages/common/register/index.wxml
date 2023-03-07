@@ -11,7 +11,7 @@
       <view>旅途的意义也许不在于目的地，​</view>
       <view>而是沿途的风景​</view>
     </view>
-    <button class="register-btn" open-type="getPhoneNumber" bindgetphonenumber="getMobile">
+    <button class="register-btn" open-type="getPhoneNumber" bindgetphonenumber="getMobile" hover-class="none">
       <view>开启旅途</view>
       <image class="arrow" src="./images/arrow.png" />
     </button>

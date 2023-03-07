@@ -1,7 +1,7 @@
 <wxs module="TIME" src="/utils/filters/time.wxs" />
 
 <view class="container">
-  <image class="bg" src="{{roomInfo.cover}}" />
+  <image class="bg" src="{{roomInfo.cover}}" mode="aspectFill" />
 
   <view class="nav-bar row" style="margin-top: {{statusBarHeight}}px;">
     <view class="nav-bar-btn row between">
@@ -23,7 +23,7 @@
   </view>
 
   <view class="btn-wrap row between">
-    <button class="delete-btn" bindtap="deleteLive">删除预告</button>
-    <button class="start-btn" bindtap="startLive">开始直播</button>
+    <button class="delete-btn" bindtap="deleteLive" hover-class="none">删除预告</button>
+    <button class="start-btn" bindtap="startLive" hover-class="none">开始直播</button>
   </view>
 </view>

@@ -48,7 +48,7 @@
                 </view>
               </view>
             </view>
-            <button class="swipe-cell-delete-btn" slot="right">删除</button>
+            <button class="swipe-cell-delete-btn" slot="right" hover-class="none">删除</button>
           </van-swipe-cell>
         </view>
       </view>
@@ -78,12 +78,12 @@
       <text>合计：</text>
       <price-unit price="{{totalPrice}}" fontSize="26rpx" integerFontSize="36rpx" />
     </view>
-    <button class="submit {{selectedCount ? 'active' : ''}}" bindtap="submit">
+    <button class="submit {{selectedCount ? 'active' : ''}}" bindtap="submit" hover-class="none">
       <text>结算</text>
       <text wx:if="{{selectedCount}}">({{selectedCount}})</text>
     </button>
   </view>
-  <button class="delete-btn {{selectedCount ? 'active' : ''}}" wx:if="{{deleteBtnVisible}}" bindtap="deleteGoodsList">删除</button>
+  <button class="delete-btn {{selectedCount ? 'active' : ''}}" wx:if="{{deleteBtnVisible}}" bindtap="deleteGoodsList" hover-class="none">删除</button>
 </view>
 
 <spec-popup show="{{specPopupVisible}}" mode="{{3}}" goodsInfo="{{goodsInfo}}" cartInfo="{{cartInfo}}" bind:hide="hideSpecPopup" />

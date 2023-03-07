@@ -45,6 +45,7 @@
         style="margin-right: {{mode === 0 ? '12rpx' :  '0'}};"
         wx:if="{{mode === 0 || mode === 1}}" 
         bindtap="addCart"
+        hover-class="none"
       >
         {{btnActive ? '加入购物车' : '库存不足'}}
       </button>
@@ -53,6 +54,7 @@
         style="margin-left: {{mode === 0 ? '12rpx' :  '0'}};"
         wx:if="{{mode === 0 || mode === 2}}" 
         bindtap="buyNow"
+        hover-class="none"
       >
         {{btnActive ? '立即购买' : '库存不足'}}
       </button>
@@ -60,6 +62,7 @@
         class="edit-btn {{btnActive ? 'active' : '' }}" 
         wx:if="{{mode === 3}}" 
         bindtap="editSpec"
+        hover-class="none"
       >
         {{btnActive ? '完成' : '库存不足'}}
       </button>
