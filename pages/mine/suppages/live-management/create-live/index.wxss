@@ -97,9 +97,9 @@
   transform: translateX(-50%);
   bottom: calc(24rpx + env(safe-area-inset-bottom));
   width: calc(100% - 48rpx);
-  height: 90rpx;
+  height: 88rpx;
   color: #fff;
   font-size: 32rpx;
-  border-radius: 45rpx;
+  border-radius: 44rpx;
   background: #161F4E;
 }

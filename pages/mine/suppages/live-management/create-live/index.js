@@ -1,6 +1,5 @@
 import { createStoreBindings } from 'mobx-miniprogram-bindings'
 import { store } from '../../../../../store/index'
-import { debounce } from '../../../../../utils/index'
 import LiveService from '../utils/liveService'
 
 const liveService = new LiveService()
@@ -49,11 +48,9 @@ Page({
     }
   },
 
-  setTitle: debounce(function(e) {
-    this.setData({
-      title: e.detail.value
-    })
-  }, 500),
+  setTitle(e) {
+    this.title = e.detail.value
+  },
 
   selectDirection(e) {
     this.setData({
@@ -99,11 +96,9 @@ Page({
       return
     }
 
-    const id = await liveService.createLive(this.title, cover, shareCover, direction, pickedGoodsIds, this.noticeTime)
-
-    if (id) {
-      const url = isNotice ? `../live-notice/index?id=${id}` : `../live-push/index?id=${id}`
+    liveService.createLive(this.title, cover, shareCover, direction, pickedGoodsIds, this.noticeTime, () => {
+      const url = isNotice ? `../live-notice/index` : `../live-push/index`
       wx.navigateTo({ url })
-    }
+    })
   },
 })

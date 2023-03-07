@@ -32,6 +32,8 @@
     "pages/mine/suppages/shop-management/subpages/shipping/index",
     "pages/mine/suppages/live-management/create-live/index",
     "pages/mine/suppages/live-management/live-notice/index",
+    "pages/mine/suppages/live-management/live-push/index",
+    "pages/mine/suppages/live-management/live-push-horizontal/index",
     "pages/common/register/index",
     "pages/common/user-center/index",
     "pages/common/webview/index",
