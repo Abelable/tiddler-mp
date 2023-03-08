@@ -22,6 +22,10 @@ class BaseService extends Base {
     return userInfo
   }
 
+  async getTimLoginInfo() {
+    return await this.get({ url: `${this.baseUrl}/tim_login_info` })
+  }
+
   async getUserRoomInfo() {
     return await this.get({ url: `${this.baseUrl}/media/live/user_room` })
   }

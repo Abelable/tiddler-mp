@@ -119,17 +119,12 @@ class Base {
   async getLocation() {
     return api.getLocation()
   }  
-  
-  getUserInfo() {
-    return api.getUserInfo()
-  }
 
   getUserProfile() {
     return api.getUserProfile({ desc: '用于完善会员资料' })
   }
 
   getImageInfo(src) {
-    src = src ? src.replace('http:', 'https:') : ''
     return api.getImageInfo({ src })
   }
 

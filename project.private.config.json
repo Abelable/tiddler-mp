@@ -89,13 +89,6 @@
           "query": "",
           "launchMode": "default",
           "scene": null
-        },
-        {
-          "name": "直播预告",
-          "pathName": "pages/mine/suppages/live-management/live-notice/index",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
         }
       ]
     }

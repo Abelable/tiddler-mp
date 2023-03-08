@@ -29,9 +29,9 @@ Page({
   },
 
   onShow() {
-    checkLogin(() => {
-      !store.userInfo && baseService.getUserInfo()
-    })
+    // checkLogin(() => {
+    //   !store.userInfo && baseService.getUserInfo()
+    // })
   },
 
   switchMenu(e) {

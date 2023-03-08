@@ -19,6 +19,13 @@ App({
     this.update()
   },
 
+  async init() {
+    const { id: userId } = await baseService.getUserInfo()
+    const { sdkAppId, userSig } = await baseService.getTimLoginInfo()
+    
+
+  },
+
   setSystemInfo() {
     wx.getSystemInfo({
       success: res => {
