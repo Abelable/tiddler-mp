@@ -1,11 +1,14 @@
 import BaseService from './services/baseService'
+import { checkLogin } from './utils/index'
+import tim from './utils/tim/index'
 
 const baseService = new BaseService()
 
 App({
   globalData: {
     statusBarHeight: '',
-    windowHeight: ''
+    windowHeight: '',
+    liveCustomMsg: null,
   },
 
   async onLaunch() {
@@ -13,6 +16,7 @@ App({
     if (!wx.getStorageSync('token')) {
       await baseService.login()
     }
+    checkLogin(this.init, false)
   },
 
   onShow() {
@@ -22,8 +26,7 @@ App({
   async init() {
     const { id: userId } = await baseService.getUserInfo()
     const { sdkAppId, userSig } = await baseService.getTimLoginInfo()
-    
-
+    tim.init(Number(sdkAppId), String(userId), userSig)
   },
 
   setSystemInfo() {
@@ -64,5 +67,20 @@ App({
         content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
       })
     }
+  },
+
+  // 监听直播间自定义消息
+  onLiveCustomMsgReceive(handler) {
+    Object.defineProperty(this.globalData, 'liveCustomMsg', {
+      configurable: true,
+      enumerable: true,
+      set: (value) => {
+        this.value = value
+        handler(value)
+      },
+      get: () => {
+        return this.value
+      }
+    })
   }
 })

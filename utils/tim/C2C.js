@@ -2,7 +2,7 @@ import TIM from 'tim-wx-sdk'
 import { store } from '../../store/index'
 import { emojiMap, emojiUrl } from './emojiMap'
 
-const onConversationListUpdate = ({ data = [] }) => {
+export const onConversationListUpdate = ({ data = [] }) => {
   let unreadMsgCount = 0
   const contactList = data.map(({ type, userProfile, lastMessage, unreadCount }) => {
     if (type === TIM.TYPES.CONV_C2C) {
