@@ -10,7 +10,7 @@ Component({
 
   storeBindings: {
     store,
-    fields: ['fullScreen', 'devicePosition', 'remoteMirror', 'localMirror', 'beautyValue', 'whitenessValue', 'visualFilterValue', 'soundFilterValue', 'muted', 'definitionIndex', 'studioInfo', 'lampVisible']
+    fields: ['devicePosition', 'remoteMirror', 'localMirror', 'beautyValue', 'whitenessValue', 'visualFilterValue', 'soundFilterValue', 'muted', 'definitionIndex', 'studioInfo', 'lampVisible']
   },
 
   properties: {
@@ -29,24 +29,14 @@ Component({
   },
 
   observers: {
-    'mode': function(val) {
-      if (val) {
-        this.ctx = (val == 1 && store.studioInfo.type_name === '创建者') ? wx.createLivePusherContext('live-pusher', this) : wx.createLivePlayerContext('live-player', this)
-      }
-    },
     'start': function(truthy) {
       if (truthy) {
-        this.properties.mode == 1 ? this.ctx.start() : this.ctx.play()
+        this.ctx.start()
       }
     },
     'stop': function(truthy) {
       if (truthy) {
-        this.properties.mode == 1 && this.ctx.stop()
-      }
-    },
-    'fullScreen': function(truthy) {
-      if (this.properties.mode != 1 && this.ctx) {
-        truthy ? this.ctx.requestFullScreen({ direction: 90 }) : this.ctx.exitFullScreen()
+        this.ctx.stop()
       }
     },
     'devicePosition': function() {
@@ -54,6 +44,12 @@ Component({
     },
     'lampVisible': function() {
       this.ctx && this.ctx.toggleTorch()
+    }
+  },
+
+  lifetimes: {
+    attached() {
+      this.ctx = wx.createLivePusherContext('live-pusher', this)
     }
   },
 

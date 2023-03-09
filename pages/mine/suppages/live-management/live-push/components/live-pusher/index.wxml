@@ -1,5 +1,4 @@
 <live-pusher 
-  wx:if="{{mode === 1 && studioInfo.type_name === '创建者'}}"
   id="live-pusher"
   class="ctx"
   url="{{src}}"
@@ -19,18 +18,5 @@
 >
   <slot name="inside" />
 </live-pusher>
-
-<live-player 
-  wx:if="{{(mode === 1 && studioInfo.type_name !== '创建者') || mode === 2}}"
-  id="live-player"
-  class="ctx {{direction == 1 ? 'horizontal' : ''}}"
-  style="top: {{direction == 1 ? ('calc(260rpx + ' + statusBarHeight + 'px)') : 0}};"
-  src="{{src}}" 
-  autoplay 
-  object-fit="{{fullScreen ? 'contain' : 'fillCrop'}}" 
-  picture-in-picture-mode="{{smallScreenMode}}"
->
-  <slot name="inside" />
-</live-player>
 
 <slot name="outside" />
