@@ -1,0 +1,31 @@
+<view class="input-wrap" style="bottom: {{containerBottom}}px;" catchtap="catchtap">
+  <view class="phrase-wrap" wx:if="{{phraseList.length}}">
+    <view class="label">常用语：</view>
+    <scroll-view class="phrase-list" scroll-x>
+      <view class="phrase" wx:for="{{phraseList}}" wx:key="index" catchtap="sendPhrase" data-phrase="{{item.content}}">{{item.content}}</view>
+    </scroll-view>
+  </view>
+  
+  <view class="input-main">
+    <input 
+      class="input" 
+      placeholder-style="color: #cdcdcd;" 
+      value="{{defaultValue}}"
+      bindfocus="setContainerBottom" 
+      bindinput='bindInput' 
+      bindconfirm="filterMsg" 
+      bindblur="setFocus"
+      bindkeyboardheightchange="setFocus"
+      focus="{{focus}}"
+      placeholder="说点什么~" 
+      type="text" 
+      confirm-type="send"
+      hold-keyboard
+      confirm-hold
+      always-embed
+      adjust-position="{{false}}" 
+      cursor-spacing='9' 
+      />
+    <view class="send-btn" catchtap="filterMsg">发送</view>
+  </view>
+</view>

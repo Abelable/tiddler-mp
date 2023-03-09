@@ -1,0 +1,146 @@
+<wxs module="NUM" src="/utils/filters/num.wxs" />
+
+<i-pusher src="{{mode == 1 ? roomInfo.push_stream_url : roomInfo.url}}" mode="{{mode}}" direction="{{direction}}" start="{{start}}" stop="{{stop}}">
+  <view 
+    class="inner {{(mode == 2 && !startCountdown && !start) ? 'show-bg' : '' }}" 
+    slot="{{(mode == 2 && direction == 1 && !fullScreen) ? 'outside' : 'inside'}}" 
+    bindtap="dbTap"
+  >
+    <i-animation wx:if="{{start}}" />
+    <i-praise 
+      class="i-praise {{(fullScreen || (mode == 1 && direction == 1)) ? 'full-screen' : ''}}" 
+      wx:if="{{start}}"
+      count="{{praiseCount}}" 
+      manual="{{manualPraise}}" 
+    />
+    
+    <view class="header" style="padding: {{(mode == 1 && direction == 1) ? 0 : (fullScreen ? 8 : statusBarHeight)}}px {{(fullScreen || (mode == 1 && direction == 1)) ? 30 : 8}}px 0;">
+      <view class="nav-bar">
+        <i-back-icon wx:if="{{!fullScreen}}" custom bind:navigateBack="showQuitModal"/>
+        <i-anchor-capsule roomInfo="{{roomInfo}}" />
+        <view class="exit-full-screen-icon" wx:if="{{fullScreen}}">
+          <image style="width: 32px; height: 32px;" catchtap="exitFullScreen" src="https://img.ubo.vip/mp/index/room/exit-fullscreen-icon.png" />
+        </view>
+      </view>
+      <view class="header-layer">
+        <view class="user-count-capsule" wx:if="{{start}}" catchtap="showUsersManagementPopup">
+          <image class="users-icon" src="/images/live/user.png" />
+          <view class="user-count">{{audienceCount}}</view>
+        </view>
+        <view class="rolling-capsule-wrap" wx:if="{{start && subtitleContent}}">
+          <i-rolling-capsule subtitleContent="{{subtitleContent}}" catchtap="toggleAdVisible" />
+        </view>
+        <view class="ad-content-wrap" wx:if="{{adVisible}}">
+          <image class="ad-content-title" src="/images/live/ad-title.png" />
+          <view class="ad-content">{{subtitleContent}}</view>
+        </view>
+      </view>
+      
+      <view class="header-layer">
+        <view wx:if="{{!recommendGood}}"></view>
+        <view class="recommend-goods" wx:if="{{recommendGood && start}}">
+          <view class="recommend-goods-title">热门推荐</view>
+          <image class="recommend-goods-pic" src="{{recommendGood.goods_img}}" />
+        </view>
+        <i-traffic-panel 
+          wx:if="{{studioInfo.is_flux == 1 && trafficPanelVisible}}"  
+          studioId="{{roomInfo.studio_id}}"
+          bind:recharge="showTrafficRechargePopup"
+          bind:hide="toggleTrafficPanelVisible"
+        />
+      </view>
+    </view>
+    
+    <view class="full-screen-btn" style="top: {{'calc(710rpx + ' + statusBarHeight + 'px)'}};" wx:if="{{mode == 2 && direction == 1 && !fullScreen && start}}" catchtap="setFullScreen" >
+      <image class="full-screen-icon" src="/images/live/full-screen-icon.png" />
+      <view class="full-screen-desc">全屏观看</view>
+    </view>
+
+    <view class="shortcut-btns {{(fullScreen || (mode == 1 && direction == 1)) ? 'full-screen' : ''}}" >
+      <image class="shortcut-btn" catchtap="reverseCamera" src="/images/live/camera.png" />
+      <view class="shortcut-btn-two" catchtap="toggleLampVisible">
+        <image class="shortcut-btn-two-icon" src="/images/live/light.png" />
+      </view>
+      <!-- <image class="shortcut-btn" wx:if="{{start}}" catchtap="refresh" src="/images/live/refresh.png" /> -->
+      <image class="shortcut-btn" wx:if="{{start}}" catchtap="showAssistantCommentsPopup" src="/images/live/short.png" />
+      <image class="shortcut-btn" wx:if="{{start}}" catchtap="showUsersManagementPopup" src="/images/live/users.png" />
+      <image class="shortcut-btn" wx:if="{{start}}" catchtap="showIncreaseUsersPopup" src="/images/live/add-user-icon.png" />
+      <image class="shortcut-btn" wx:if="{{start && animationList.length}}" catchtap="showAnimation" src="/images/live/animation.png" />
+    </view>
+
+    <view class="countdown" wx:if="{{startCountdown && !start}}">{{countdown}}</view>
+
+    <view class="footer {{(fullScreen || (mode == 1 && direction == 1)) ? 'full-screen' : ''}}">
+      <view class="audience-action-tips {{audienceActionTips.type}} {{showAudienceActionTips ? 'show' : ''}}" wx:if="{{start}}">
+        <text class="robot-icon" wx:if="{{audienceActionTips.isRobot == 1}}">虚</text>
+        <text>{{audienceActionTips.message}}</text>
+      </view>
+      <i-comment wx:if="{{start}}" fullScreen="{{fullScreen ? '1' : '0'}}" isAnchor />
+      <i-phrase wx:if="{{start && anchorPhraseList.length}}" roomInfo="{{roomInfo}}" phraseList="{{anchorPhraseList}}" />
+      <view class="start-btn-wrap" wx:if="{{!start && !startCountdown}}">
+        <view class="start-live btn" bindtap="startCountdown">{{mode == 1 ? '开始直播' : '开始OBS推流'}}</view>
+        <view class="test-obs-label" wx:if="{{mode == 2}}" bindtap="checkOBS">
+          <text>OBS推流检测</text>
+          <image class="right-arrow" src="https://img.ubo.vip/mp/sass/live-push/right-gold-arrow.png" />
+        </view>
+      </view>
+      <view class="btns-wrap">
+        <view class="input-btn-wrap">
+          <view class="input-btn" wx:if="{{start}}" catchtap="showInput">说点什么......</view>
+        </view>
+        <view class="btns">
+          <image class="live-btn" wx:if="{{start}}" catchtap="showGoodsShelvesPopup" src="/images/live/cart.png" />
+          <image class="live-btn" wx:if="{{start}}" catchtap="showMoreFeaturesPopup" src="https://img.ubo.vip/mp/sass/live-push/more.png" />
+          <image class="live-btn" catchtap="showShareModal" src="https://img.ubo.vip/mp/sass/live-push/share.png" />
+          <view class="room-btn" wx:if="{{start}}" catchtap="praise">
+            <view class="praise-icon" hover-class="hover" hover-stop-propagation="false">
+              <image style="width: 35px; height: 35px;" src="https://img.ubo.vip/mp/sass/live-push/praise.png" />
+            </view>
+            <view class="praise-count" wx:if="{{praiseCount}}">{{NUM.over(praiseCount, 100000)}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <image class="praise-heart" style="{{item.style}}" wx:for="{{praiseHeartArr}}" wx:key="index" src="{{item.url}}" />
+  </view>
+</i-pusher>
+
+<i-share-popup wx:if="{{shareModalVisible}}" roomId="{{roomInfo.id}}" bind:showPosterModal="showPosterModal" bind:hide="hideModal" />
+<i-users-management-popup wx:if="{{usersManagementPopupVisible}}" roomInfo="{{roomInfo}}" bind:at="atUser" bind:hide="hideModal" />
+<i-assistant-comments-popup wx:if="{{assistantCommentsPopupVisible}}" roomInfo="{{roomInfo}}" bind:hide="hideModal" />
+<i-increase-users-popup wx:if="{{increaseUsersPopupVisible}}" roomInfo="{{roomInfo}}" bind:hide="hideModal" />
+<i-features-popup 
+  wx:if="{{moreFeaturesPopupVisible}}"
+  roomInfo="{{roomInfo}}"
+  trafficPanelVisible="{{trafficPanelVisible}}"
+  bind:showAdPopup="showAdPopup" 
+  bind:showNoticePopup="showPushNotificationPopup" 
+  bind:showSubscribePopup="showStartRemindPopup" 
+  bind:showCommonWordsPopup="showCommonWordsPopup" 
+  bind:showBeautyPopup="showBeautyPopup"
+  bind:showDetailPopup="showLiveDetailPopup"
+  bind:showAssistantPopup="showAssistantCommentsPopup"
+  bind:showFilePopup="showFilePopup"
+  bind:hide="hideModal"
+  bind:toggleTrafficPanelVisible="toggleTrafficPanelVisible"
+/>
+<i-common-words-popup wx:if="{{commonWordsPopupVisible}}" studioId="{{roomInfo.studio_id}}" bind:hide="hideModal" />
+<i-ad-popup wx:if="{{adPopupVisible}}" roomInfo="{{roomInfo}}" bind:hide="hideModal" />
+<i-push-notification-popup wx:if="{{pushNotificationPopupVisible}}" roomId="{{roomInfo.id}}" bind:hide="hideModal" />
+<i-start-remind-popup wx:if="{{startRemindPopupVisible}}" groupId="{{roomInfo.group_id}}" bind:hide="hideModal" />
+<i-beauty-popup wx:if="{{beautyPopupVisible}}" bind:hide="hideModal" />
+<i-live-detail-popup wx:if="{{liveDetailPopupVisible}}" roomId="{{roomInfo.id}}" bind:hide="hideModal" />
+<i-goods-shelves-popup wx:if="{{goodsShelvesPopupVisible}}" roomInfo="{{roomInfo}}" bind:hide="hideModal" bind:getRecommendGood="getRecommendGood" />
+<i-file-display-popup wx:if="{{filePopupVisible}}" roomInfo="{{roomInfo}}" bind:hide="hideModal" />
+<i-traffic-recharge-popup wx:if="{{trafficRechargePopupVisible}}" studioId="{{roomInfo.studio_id}}" bind:hide="hideModal" />
+
+<i-mask 
+  wx:if="{{inputVisible || quitModalVisible || posterModalVisible}}" 
+  filter="{{posterModalVisible}}"
+  opcity="{{inputVisible ? 0 : 0.3}}"
+  catchtap="hideModal"
+/>
+<i-input wx:if="{{inputVisible}}" roomInfo="{{roomInfo}}" isLivePush defaultValue="{{inputDefaultValue}}" bind:hide="hideInputModal" />
+<i-quit-modal wx:if="{{quitModalVisible}}" bind:pause="pauseRoom" bind:stop="quitRoom" />
+<i-poster-modal wx:if="{{posterModalVisible}}" roomPosterInfo="{{roomPosterInfo}}" bind:hidePosterModal="hideModal" />

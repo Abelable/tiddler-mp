@@ -1,0 +1,19 @@
+{
+  "component": true,
+  "usingComponents": {
+    "back-icon": "/components/back-icon-white/index",
+    "i-share-popup": "/components/i-share-modal/index",
+    "i-poster-modal": "/components/i-poster-modal/index",
+    "live-pusher": "./components/live-pusher/index",
+    "i-anchor-capsule": "/components/live/i-anchor-capsule/index",
+    "i-comment": "/components/live/i-comment/index",
+    "i-praise": "/components/live/i-praise/index",
+    "i-input": "/components/live/i-input//index",
+    "i-mask": "/components/i-mask/index",
+    "quit-confirm-modal": "./components/quit-confirm-modal/index",
+    "more-features-popup": "./components/more-features-popup/index",
+    "subscribe-remind-popup": "./components/subscribe-remind-popup/index",
+    "beauty-popup": "./components/beauty-popup/index",
+    "goods-shelves-popup": "./components/goods-shelves-popup/index"
+  }
+}

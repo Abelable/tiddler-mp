@@ -1,0 +1,33 @@
+<wxs module="STRING" src="/utils/filters/string.wxs" />
+
+<scroll-view 
+  class="comment {{fullScreen == '1' ? 'full': ''}}" 
+  scroll-y 
+  enable-passive
+  scroll-with-animation
+  enhanced
+  show-scrollbar="{{false}}"
+  scroll-top="{{scrollTop}}" 
+  bind:touchstart="onTouchStart" 
+  bind:touchend="onTouchEnd"
+  bindscrolltoupper="showMore"
+  >
+  <view class="msg-lists">
+    <view class="msg-list" wx:if="{{index >= (liveMsgList.length - 10 * multiple)}}" wx:for="{{liveMsgList}}" wx:key="index">
+      <image class="avatar" wx:if="{{item.head_img}}" src="{{item.head_img}}" />
+      <text 
+        class="tag {{item.type_name === '创建者' ? 'anchor' : item.type_name === '直播助手' ? 'live-assistant' : 'assistant'}}"
+        wx:if="{{isAnchor && item.type_name}}"
+      >{{item.type_name}}</text>
+      <text 
+        class="tag" 
+        style="color: {{tag.font_color}}; background: {{tag.bg_color}};" 
+        wx:for="{{isAnchor ? item.tag : []}}" 
+        wx:key="index" 
+        wx:for-item="tag"
+      >{{tag.tag_name}}</text>
+      <text class="msg-user-name" wx:if="{{item.nick_name}}">{{(!isAnchor && anonymoused) ? STRING.formatName(item.nick_name) : item.nick_name}}</text>
+      <text class="message-content">{{item.message}}</text>
+    </view>
+  </view>
+</scroll-view>

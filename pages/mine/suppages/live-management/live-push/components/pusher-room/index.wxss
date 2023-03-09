@@ -1,0 +1,415 @@
+.capsule {
+  display: flex;
+  align-items: center;
+  height: 32px;
+  border-radius: 16px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 0.5px solid rgba(255, 255, 255, 0.3);
+}
+
+.inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.cover-layer.show-bg {
+  background-image: url('https://img.ubo.vip/mp/sass/live-push/bg.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.cover-layer.show-bg::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  content: 'OBS直播未开始';
+}
+
+.header {
+  position: absolute;
+  width: 100%;
+}
+.nav-bar {
+  display: flex;
+  align-items: center;
+  height: 44px;
+  position:relative;
+  z-index:1;
+}
+
+.room-id-wrap {
+  margin-left: 8px;
+  width: 63px;
+  color: #fff;
+  font-size: 9px;
+  line-height: 15px;
+  text-align: center;
+  border-radius: 4px;
+  border: 0.5px solid rgba(255, 255, 255, 0.3);
+  overflow: hidden;
+}
+.logo {
+  height: 15px;
+  background: rgba(0, 0, 0, 0.3);
+}
+.room-id {
+  height: 15px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.header-layer {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 11px;
+}
+
+.user-count-capsule {
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  width: fit-content;
+  height: 22px;
+  background: rgba(0,0,0,0.3);
+  border-radius: 11px;
+  border: 0.5px solid rgba(255, 255, 255, 0.3);
+}
+.users-icon {
+  width: 14px;
+  height: 14px;
+}
+.user-count {
+  margin-left: 2px;
+  color: #fff;
+  font-size: 12px;
+        
+}
+
+.rolling-capsule-wrap {
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+  overflow: inherit;
+}
+.ad-content-wrap {
+  position: absolute;
+  right: 0;
+  bottom: -84px;
+  padding: 15px;
+  width: calc(100vw - 16px);
+  background: #FFFFFF;
+  border-radius: 10px;
+  z-index: 100;
+}
+.ad-content-wrap::before {
+  position: absolute;
+  right: 20px;
+  top: -14px;
+  content: "";
+  width: 0;
+  height: 0;
+  border: 8px solid transparent;
+  border-bottom-color: #fff; 
+}
+.ad-content-title {
+  width: 46px;
+  height: 16px;
+}
+.ad-content {
+  margin-top: 6px;
+  color: #333;
+  font-size: 12px;
+}
+
+.recommend-goods {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 62px;
+  height: 82px;
+  background-image: url('https://img.ubo.vip/youbo_plus/live/recommend-goods-bg.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.recommend-goods-title {
+  margin-top: 1px;
+  color: #FFE5BD;
+  font-size: 10px;
+  line-height: 15px;
+}
+.recommend-goods-pic {
+  margin-top: 6px;
+  width: 57px;
+  height: 57px;
+  border-radius: 9px;
+}
+
+.exit-full-screen-icon {
+  display: flex;
+  justify-content: flex-end;
+  flex: 1;
+}
+
+.countdown {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  color: #FFE5BD;
+  font-size: 60px;
+  font-weight: bold;
+  border: 7px solid #FFE5BD;
+  border-radius: 50%;
+}
+
+.shortcut-btns {
+  position: absolute;
+  right: 12px;
+  bottom: 50%;
+  transform: translateY(50%);
+  z-index: 100;
+}
+.shortcut-btns.full-screen {
+  right: 30px;
+}
+.shortcut-btn {
+  display: block;
+  margin-top: 8px;
+  width: 35px; 
+  height: 35px;
+}
+.shortcut-btn:first-child {
+  margin-top: 0;
+}
+.shortcut-btn-two {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8px;
+  width: 35px; 
+  height: 35px;
+  font-size: 0;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+}
+.shortcut-btn-two-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.full-screen-btn {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  height: 30px;
+  border-radius: 15px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 0.5px solid rgba(255,255,255,0.3);
+  z-index: 1;
+}
+.full-screen-icon {
+  width: 18px;
+  height: 18px;
+}
+.full-screen-desc {
+  margin-left: 4px;
+  color: #fff;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  padding: 0 12px env(safe-area-inset-bottom);
+  width: 100%;
+}
+.footer.full-screen {
+  padding: 0 30px 8px;
+}
+
+.start-live {
+  margin: 0 auto;
+  width: 274px;
+  height: 55px;
+  color: var(--black);
+  font-size: 21px;
+  font-weight: bold;
+  background: var(--gradient-gold);
+  border-radius: 27.5px;
+}
+
+.btns-wrap {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0 6px;
+}
+.btns {
+  display: flex;
+}
+.input-btn-wrap {
+  position: relative;
+  flex: 1;
+}
+.input-btn {
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  width: 100%;
+  height: 35px;
+  color: #fff;
+  font-size: 13px;
+  border-radius: 18px;
+  background: rgba(0, 0, 0, 0.3);
+}
+.live-btn {
+  margin-left: 8px;
+  width: 35px; 
+  height: 35px;
+}
+
+.room-btn {
+  position: relative;
+  margin-left: 8px;
+  width: 35px;
+  height: 35px;
+  overflow: initial;
+}
+.praise-icon.hover {
+  animation: scaleDraw 1s ease-in-out; 
+}
+@keyframes scaleDraw{
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(0.9);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(0.9);
+  }
+}
+.praise-count {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0 5px;
+  font-size: 9px;
+  color: #F94950;
+  height: 14px;
+  line-height: 14px;
+  border-radius: 7px;
+  background: #fff;
+  white-space: nowrap;
+}
+
+.i-praise {
+  position: absolute;
+  right: 0;
+  bottom: calc(56.5px + env(safe-area-inset-bottom));
+}
+.i-praise.full-screen {
+  right: 20px;
+  bottom: 63px;
+}
+
+.test-obs-label {
+  display: flex;
+  align-items: center;
+  margin: 20px auto 0;
+  width: fit-content;
+  color: var(--gold);
+  font-size: 16px;
+}
+.right-arrow {
+  margin-left: 2px;
+  width: 10px;
+  height: 18px;
+}
+
+/* 用户加入购物车，关注，下单 */
+.audience-action-tips {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2.5px;
+  padding: 0 8px;
+  font-size: 13px;
+  width: fit-content;
+  height: 22px;
+  border-radius: 4px;
+  color: #fff;
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: .3s linear;
+}
+.audience-action-tips.coming {
+  background: rgba(11,157,59,0.6);
+}
+.audience-action-tips.follow {
+  background: rgba(251,28,28,0.6);
+}
+.audience-action-tips.buy {
+  background: rgba(114,0,251,0.6);
+}
+.audience-action-tips.cart {
+  background: rgba(255,168,41,0.6);
+}
+.audience-action-tips.share {
+  background: rgba(19,47,199,0.6);
+}
+.audience-action-tips.packet {
+  background: rgba(251,85,28,0.6);
+}
+.audience-action-tips.show {
+  opacity: 1;
+  transform: translateX(0);
+  transition: .3s linear;
+}
+.robot-icon {
+  display: inline-block;
+  margin-right: 4px;
+  padding: 0 5px;
+  height: 18px;
+  color: #fff;
+  font-size: 11px;
+  line-height: 18px;
+  background: #BA9243;
+  border-radius: 3px;
+}
+
+.praise-heart {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  opacity: 0;
+}
+@keyframes float {
+  0% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.8) translateY(-60px);
+    opacity: 0;
+  }
+}
