@@ -5,60 +5,44 @@
     class="inner {{roomInfo.direction === 2 ? 'horizontal' : ''}}"
     style="top: {{roomInfo.direction === 2 ? 8 : statusBarHeight}}px;"
   >
-    <view class="praise-animation-wrap">
-      <praise-animation wx:if="{{start}}" count="{{praiseCount}}" manual="{{manualPraise}}" />
-    </view>
-    
-    <view 
-      class="header" 
-      style="{{
-        roomInfo.direction === 2 
-          ? 'padding: 8px 30px 0;' 
-          : 'padding: ' + statusBarHeight + 'px 8px 0;'
-      }}"
-    >
-      <view class="nav-bar">
+    <view class="header">
+      <view class="nav-bar row">
         <i-back-icon custom bind:navigateBack="showQuitModal"/>
         <i-anchor-capsule roomInfo="{{roomInfo}}" />
       </view>
-      <view class="header-layer">
-        <view class="user-count-capsule" wx:if="{{start}}" catchtap="showUsersManagementPopup">
-          <image class="users-icon" src="/images/live/user.png" />
-          <view class="user-count">{{audienceCount}}</view>
-        </view>
-      </view>
-      
-      <view class="header-layer">
-        <view class="recommend-goods" wx:if="{{recommendGood && start}}">
-          <view class="recommend-goods-title">热门推荐</view>
-          <image class="recommend-goods-pic" src="{{recommendGood.goods_img}}" />
-        </view>
+      <view class="recommend-goods row" wx:if="{{recommendGood}}">
+        <view class="recommend-goods-title">热门推荐</view>
+        <image class="recommend-goods-pic" src="{{recommendGood.goods_img}}" />
       </view>
     </view>
 
     <count-down wx:if="{{countdownVisible && !start}}" />
 
-    <view class="footer {{roomInfo.direction === 2 ? 'horizontal' : ''}}">
-      <view class="audience-action-tips {{audienceActionTips.type}} {{showAudienceActionTips ? 'show' : ''}}">{{audienceActionTips.message}}</view>
+    <view class="footer">
+      <view 
+        class="audience-action-tips {{audienceActionTips.type}} {{showAudienceActionTips ? 'show' : ''}}"
+      >
+        {{audienceActionTips.message}}
+      </view>
+
       <i-comment wx:if="{{start}}" fullScreen="{{fullScreen ? '1' : '0'}}" isAnchor />
 
-      <view class="start-btn-wrap" wx:if="{{!start && !countdownVisible}}">
-        <view class="start-live btn" bindtap="countdownVisible">开始直播</view>
-      </view>
+      <button class="start-btn" wx:if="{{!start && !countdownVisible}}" bindtap="countdownVisible" hover-class="none">开始直播</button>
       
-      <view class="btns-wrap">
-        <view class="input-btn-wrap">
-          <view class="input-btn" wx:if="{{start}}" catchtap="showInput">说点什么......</view>
-        </view>
-        <view class="btns">
-          <image class="live-btn" catchtap="showGoodsShelvesPopup" src="/images/live/cart.png" />
-          <image class="live-btn" catchtap="showMoreFeaturesPopup" src="https://img.ubo.vip/mp/sass/live-push/more.png" />
-          <image class="live-btn" catchtap="showShareModal" src="https://img.ubo.vip/mp/sass/live-push/share.png" />
-          <view class="room-btn" wx:if="{{start}}" catchtap="praise">
-            <view class="praise-icon" hover-class="hover" hover-stop-propagation="false">
+      <view class="btns-wrap row">
+        <view class="input-btn" wx:if="{{start}}" catchtap="showInput">说点什么......</view>
+        <view class="row">
+          <image class="feature-btn" catchtap="showGoodsShelvesPopup" src="/images/live/cart.png" />
+          <image class="feature-btn" catchtap="showMoreFeaturesPopup" src="https://img.ubo.vip/mp/sass/live-push/more.png" />
+          <image class="feature-btn" catchtap="showShareModal" src="https://img.ubo.vip/mp/sass/live-push/share.png" />
+          <view class="feature-btn" wx:if="{{start}}">
+            <view class="praise-icon" catchtap="praise" hover-class="hover" hover-stop-propagation="false">
               <image style="width: 35px; height: 35px;" src="https://img.ubo.vip/mp/sass/live-push/praise.png" />
             </view>
             <view class="praise-count" wx:if="{{praiseCount}}">{{NUM.over(praiseCount, 100000)}}</view>
+            <view class="praise-animation-wrap">
+              <praise-animation count="{{praiseCount}}" manual="{{manualPraise}}" />
+            </view>
           </view>
         </view>
       </view>

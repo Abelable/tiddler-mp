@@ -15,11 +15,7 @@
   width: 100%;
 }
 .nav-bar {
-  display: flex;
-  align-items: center;
   height: 44px;
-  position:relative;
-  z-index:1;
 }
 
 .header-layer {
@@ -29,31 +25,9 @@
   margin-top: 11px;
 }
 
-.user-count-capsule {
-  display: flex;
-  align-items: center;
-  padding: 0 8px;
-  width: fit-content;
-  height: 22px;
-  background: rgba(0,0,0,0.3);
-  border-radius: 11px;
-  border: 0.5px solid rgba(255, 255, 255, 0.3);
-}
-.users-icon {
-  width: 14px;
-  height: 14px;
-}
-.user-count {
-  margin-left: 2px;
-  color: #fff;
-  font-size: 12px;
-        
-}
-
 .recommend-goods {
-  display: flex;
   flex-direction: column;
-  align-items: center;
+  margin-top: 11px;
   width: 62px;
   height: 82px;
   background-image: url('https://img.ubo.vip/youbo_plus/live/recommend-goods-bg.png');
@@ -73,76 +47,13 @@
   border-radius: 9px;
 }
 
-.shortcut-btns {
-  position: absolute;
-  right: 12px;
-  bottom: 50%;
-  transform: translateY(50%);
-  z-index: 100;
-}
-.shortcut-btns.horizontal {
-  right: 30px;
-}
-.shortcut-btn {
-  display: block;
-  margin-top: 8px;
-  width: 35px; 
-  height: 35px;
-}
-.shortcut-btn:first-child {
-  margin-top: 0;
-}
-.shortcut-btn-two {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 8px;
-  width: 35px; 
-  height: 35px;
-  font-size: 0;
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 50%;
-}
-.shortcut-btn-two-icon {
-  width: 24px;
-  height: 24px;
-}
-
-.horizontal-btn {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  padding: 0 8px;
-  height: 30px;
-  border-radius: 15px;
-  background-color: rgba(0, 0, 0, 0.3);
-  border: 0.5px solid rgba(255,255,255,0.3);
-  z-index: 1;
-}
-.horizontal-icon {
-  width: 18px;
-  height: 18px;
-}
-.horizontal-desc {
-  margin-left: 4px;
-  color: #fff;
-  font-size: 12px;
-  line-height: 1;
-}
-
 .footer {
   position: absolute;
   bottom: 0;
-  padding: 0 12px env(safe-area-inset-bottom);
   width: 100%;
 }
-.footer.horizontal {
-  padding: 0 30px 8px;
-}
 
-.start-live {
+.start-btn {
   margin: 0 auto;
   width: 274px;
   height: 55px;
@@ -154,35 +65,20 @@
 }
 
 .btns-wrap {
-  display: flex;
-  justify-content: space-between;
-  margin: 20px 0 6px;
-}
-.btns {
-  display: flex;
-}
-.input-btn-wrap {
-  position: relative;
-  flex: 1;
+  margin-top: 20px;
 }
 .input-btn {
   display: flex;
   align-items: center;
   padding-left: 10px;
-  width: 100%;
+  flex: 1;
   height: 35px;
   color: #fff;
   font-size: 13px;
   border-radius: 18px;
   background: rgba(0, 0, 0, 0.3);
 }
-.live-btn {
-  margin-left: 8px;
-  width: 35px; 
-  height: 35px;
-}
-
-.room-btn {
+.feature-btn {
   position: relative;
   margin-left: 8px;
   width: 35px;
@@ -224,21 +120,7 @@
 .praise-animation-wrap {
   position: absolute;
   right: 0;
-  bottom: 56.5px;
-}
-
-.test-obs-label {
-  display: flex;
-  align-items: center;
-  margin: 20px auto 0;
-  width: fit-content;
-  color: var(--gold);
-  font-size: 16px;
-}
-.right-arrow {
-  margin-left: 2px;
-  width: 10px;
-  height: 18px;
+  top: -104px;
 }
 
 /* 用户加入购物车，关注，下单 */
@@ -275,34 +157,4 @@
   opacity: 1;
   transform: translateX(0);
   transition: .3s linear;
-}
-.robot-icon {
-  display: inline-block;
-  margin-right: 4px;
-  padding: 0 5px;
-  height: 18px;
-  color: #fff;
-  font-size: 11px;
-  line-height: 18px;
-  background: #BA9243;
-  border-radius: 3px;
-}
-
-.praise-heart {
-  position: absolute;
-  width: 80px;
-  height: 80px;
-  opacity: 0;
-}
-@keyframes float {
-  0% {
-    opacity: 1;
-  }
-  30% {
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1.8) translateY(-60px);
-    opacity: 0;
-  }
 }
