@@ -1,10 +1,10 @@
 <i-popup bind:hide="hide">
   <scroll-view class="features-popup" scroll-y>
-    <view class="title">直播功能</view>
+    <view class="title">更多功能</view>
     <view class="list">
-      <view class="item" wx:for="{{featureList}}" wx:key="index" catchtap="click" data-type="{{item.icon}}">
-        <image class="more-icon" src="https://img.ubo.vip/youbo_plus/live_features_popup/{{item.icon}}.png" />
-        <view class="more-desc">{{item.name}}</view>
+      <view class="item" catchtap="click" data-type="beauty">
+        <image class="more-icon" src="https://img.ubo.vip/youbo_plus/live_features_popup/beauty.png" />
+        <view class="more-desc">美颜</view>
       </view>
       <view class="item" catchtap="click" data-type="reverse">
         <image class="more-icon" src="https://img.ubo.vip/youbo_plus/live_features_popup/{{devicePosition !== 'front' ? 'reversed' : 'reverse'}}.png" />
@@ -18,26 +18,9 @@
         <image class="more-icon" src="https://img.ubo.vip/youbo_plus/live_features_popup/{{muted ? 'muted' : 'mute'}}.png" />
         <view class="more-desc">{{muted ? '取消静音' : '静音'}}</view>
       </view>
-    </view>
-    <view class="title">其他功能</view>
-    <view class="list">
-      <view class="item" wx:for="{{otherFeatureList}}" wx:key="index" catchtap="click" data-type="{{item.icon}}">
-        <image class="more-icon" src="https://img.ubo.vip/youbo_plus/live_features_popup/{{item.icon}}.png" />
-        <view class="more-desc">{{item.name}}</view>
-      </view>
-      <view class="item" catchtap="click" data-type="anonymous">
-        <image class="more-icon" src="https://img.ubo.vip/youbo_plus/live_features_popup/{{anonymoused ? 'anonymoused' : 'anonymous'}}.png" />
-        <view class="more-desc">{{anonymoused ? '取消匿名' : '匿名模式'}}</view>
-      </view>
-      <view class="item" catchtap="click" data-type="file">
-        <div class="more-icon">
-          <image style="width: 20px; height: 20px;" src="/images/live/file-ppt.png" />
-        </div>
-        <view class="more-desc">ppt</view>
-      </view>
-      <view class="item" wx:if="{{studioInfo.is_flux == 1}}"   catchtap="click" data-type="traffic">
-        <image class="more-icon" src="/images/live/traffic{{trafficPanelVisible ? '' : '-close'}}.png" />
-        <view class="more-desc">流量统计</view>
+      <view class="item" catchtap="click" data-type="subscribe">
+        <image class="more-icon" src="https://img.ubo.vip/youbo_plus/live_features_popup/subscribe.png" />
+        <view class="more-desc">提醒订阅</view>
       </view>
     </view>
   </scroll-view>

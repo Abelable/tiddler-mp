@@ -1,34 +1,9 @@
-.capsule {
-  display: flex;
-  align-items: center;
-  height: 32px;
-  border-radius: 16px;
-  background-color: rgba(0, 0, 0, 0.3);
-  border: 0.5px solid rgba(255, 255, 255, 0.3);
-}
-
 .inner {
   position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-}
-
-.cover-layer.show-bg {
-  background-image: url('https://img.ubo.vip/mp/sass/live-push/bg.png');
-  background-size: 100%;
-  background-repeat: no-repeat;
-}
-.cover-layer.show-bg::after {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #fff;
-  font-size: 24px;
-  font-weight: bold;
-  content: 'OBS直播未开始';
 }
 
 .header {
@@ -41,26 +16,6 @@
   height: 44px;
   position:relative;
   z-index:1;
-}
-
-.room-id-wrap {
-  margin-left: 8px;
-  width: 63px;
-  color: #fff;
-  font-size: 9px;
-  line-height: 15px;
-  text-align: center;
-  border-radius: 4px;
-  border: 0.5px solid rgba(255, 255, 255, 0.3);
-  overflow: hidden;
-}
-.logo {
-  height: 15px;
-  background: rgba(0, 0, 0, 0.3);
-}
-.room-id {
-  height: 15px;
-  background: rgba(0, 0, 0, 0.2);
 }
 
 .header-layer {
@@ -91,42 +46,6 @@
         
 }
 
-.rolling-capsule-wrap {
-  position: relative;
-  width: fit-content;
-  height: fit-content;
-  overflow: inherit;
-}
-.ad-content-wrap {
-  position: absolute;
-  right: 0;
-  bottom: -84px;
-  padding: 15px;
-  width: calc(100vw - 16px);
-  background: #FFFFFF;
-  border-radius: 10px;
-  z-index: 100;
-}
-.ad-content-wrap::before {
-  position: absolute;
-  right: 20px;
-  top: -14px;
-  content: "";
-  width: 0;
-  height: 0;
-  border: 8px solid transparent;
-  border-bottom-color: #fff; 
-}
-.ad-content-title {
-  width: 46px;
-  height: 16px;
-}
-.ad-content {
-  margin-top: 6px;
-  color: #333;
-  font-size: 12px;
-}
-
 .recommend-goods {
   display: flex;
   flex-direction: column;
@@ -148,29 +67,6 @@
   width: 57px;
   height: 57px;
   border-radius: 9px;
-}
-
-.exit-full-screen-icon {
-  display: flex;
-  justify-content: flex-end;
-  flex: 1;
-}
-
-.countdown {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100px;
-  height: 100px;
-  color: #FFE5BD;
-  font-size: 60px;
-  font-weight: bold;
-  border: 7px solid #FFE5BD;
-  border-radius: 50%;
 }
 
 .shortcut-btns {

@@ -83,3 +83,5 @@
 </view>
 
 <button class="create-btn" bindtap="startLive">{{isNotice ? '创建预告' : '开始直播'}}</button>
+
+<count-down wx:if="{{countDownVisible}}" />

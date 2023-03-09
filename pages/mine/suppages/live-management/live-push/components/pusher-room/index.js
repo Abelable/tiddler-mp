@@ -27,8 +27,7 @@ Component({
 
   data: {
     statusBarHeight,
-    startCountdown: false,
-    countdown: 5,
+    countdownVisible: false,
     start: false,
     stop: false,
     anchorPhraseList: [],
@@ -104,30 +103,18 @@ Component({
     attached() {
       getApp().onLiveCustomMsgReceive(this.handleCustomMsg.bind(this))
     },
-
-    detached() {
-      if (this.countdownInterval) clearInterval(this.countdownInterval)
-    }
   },
 
   methods: {
     startCountdown() {
       this.setData({
-        startCountdown: true
+        countdownVisible: true
       })
-      this.countdownInterval = setInterval(() => {
-        if (this.data.countdown > 1) {
-          this.setData({
-            countdown: this.data.countdown - 1
-          })
-        } else {
-          clearInterval(this.countdownInterval)
-          this.setData({
-            startCountdown: false
-          })
-          this.startLive()
-        }
-      }, 1000)
+      setTimeout(() => {
+        this.setData({
+          countdownVisible: false
+        })
+      }, 5000);
     },
 
     async startLive() {
