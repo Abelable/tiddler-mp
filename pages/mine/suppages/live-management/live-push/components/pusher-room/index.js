@@ -32,34 +32,19 @@ Component({
     countdownVisible: false,
     start: false,
     stop: false,
-    anchorPhraseList: [],
     liveEnd: false, // 直播结束
     manualPraise: false, // 是否是手动点赞
     audienceActionTips: "", // 观众行为（进直播间、下单...）
     showAudienceActionTips: false, // 控制观众行为弹幕的显示隐藏
-    praiseHeartArr: [], // 双击爱心
-    roomPosterInfo: null,
     inputVisible: false,
-    inputDefaultValue: "",
     shareModalVisible: false,
     posterModalVisible: false,
     moreFeaturesPopupVisible: false,
-    adPopupVisible: false,
     beautyPopupVisible: false,
-    liveDetailPopupVisible: false,
-    usersManagementPopupVisible: false,
-    assistantCommentsPopupVisible: false,
-    increaseUsersPopupVisible: false,
-    pushNotificationPopupVisible: false,
     startRemindPopupVisible: false,
-    commonWordsPopupVisible: false,
     quitModalVisible: false,
-    adVisible: false,
     goodsShelvesPopupVisible: false,
-    filePopupVisible: false,
     recommendGood: null,
-    trafficPanelVisible: true,
-    trafficRechargePopupVisible: false,
   },
 
   observers: {
@@ -104,7 +89,7 @@ Component({
       // 所以每次onshow时，重新加群
       setTimeout(() => {
         if (this.properties.roomInfo) {
-          tim.joinGroup(this.properties.roomInfo.group_id);
+          tim.joinGroup(this.properties.roomInfo.groupId);
         }
       }, 2000);
     },
@@ -129,19 +114,10 @@ Component({
     },
 
     async startLive() {
-      const { id, group_id, status } = this.properties.roomInfo;
+      const { id, groupId, status } = this.properties.roomInfo;
       this.setData({ start: true });
-      liveService.getMsgHistory(id);
-      // 主播未开播的场景，退出后台（进行海报分享等操作）时间过长之后，发送消息会报未加群的错误，所以主播都让他加群
-      tim.joinGroup(group_id);
-      if (status == 4) {
-        await liveService.restartPushRoom(id);
-      }
+      tim.joinGroup(groupId);
       liveService.startLivePush(id);
-    },
-
-    refresh() {
-      tim.joinGroup(this.properties.roomInfo.group_id);
     },
 
     async setAnchorPhraseList() {
@@ -153,7 +129,7 @@ Component({
     showAnimation() {
       if (store.animationIndex === -1) {
         store.setAnimationIndex(0);
-        tim.sendLiveCustomMsg(this.properties.roomInfo.group_id, {
+        tim.sendLiveCustomMsg(this.properties.roomInfo.groupId, {
           type: "animation",
           index: 0,
         });
