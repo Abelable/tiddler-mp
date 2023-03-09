@@ -1,21 +1,17 @@
 <wxs module="NUM" src="/utils/filters/num.wxs" />
 
-<i-pusher src="{{mode == 1 ? roomInfo.push_stream_url : roomInfo.url}}" mode="{{mode}}" direction="{{direction}}" start="{{start}}" stop="{{stop}}">
-  <view 
-    class="inner" 
-    slot="{{(mode == 2 && direction == 1 && !fullScreen) ? 'outside' : 'inside'}}" 
-    bindtap="dbTap"
-  >
+<i-pusher src="{{roomInfo.pushUrl}}" start="{{start}}" stop="{{stop}}">
+  <view class="inner">
     <i-praise 
-      class="i-praise {{(fullScreen || (mode == 1 && direction == 1)) ? 'full-screen' : ''}}" 
+      class="i-praise {{direction === 2 ? 'full-screen' : ''}}" 
       wx:if="{{start}}"
       count="{{praiseCount}}" 
       manual="{{manualPraise}}" 
     />
     
-    <view class="header" style="padding: {{(mode == 1 && direction == 1) ? 0 : (fullScreen ? 8 : statusBarHeight)}}px {{(fullScreen || (mode == 1 && direction == 1)) ? 30 : 8}}px 0;">
+    <view class="header" style="padding: {{direction === 2 ? 8 : statusBarHeight}}px {{direction === 2 ? 30 : 8}}px 0;">
       <view class="nav-bar">
-        <i-back-icon wx:if="{{!fullScreen}}" custom bind:navigateBack="showQuitModal"/>
+        <i-back-icon custom bind:navigateBack="showQuitModal"/>
         <i-anchor-capsule roomInfo="{{roomInfo}}" />
       </view>
       <view class="header-layer">
@@ -35,15 +31,14 @@
 
     <count-down wx:if="{{countdownVisible && !start}}" />
 
-    <view class="footer {{(fullScreen || (mode == 1 && direction == 1)) ? 'full-screen' : ''}}">
-      <view class="audience-action-tips {{audienceActionTips.type}} {{showAudienceActionTips ? 'show' : ''}}" wx:if="{{start}}">
-        <text class="robot-icon" wx:if="{{audienceActionTips.isRobot == 1}}">虚</text>
-        <text>{{audienceActionTips.message}}</text>
-      </view>
+    <view class="footer {{direction === 2 ? 'full-screen' : ''}}">
+      <view class="audience-action-tips {{audienceActionTips.type}} {{showAudienceActionTips ? 'show' : ''}}">{{audienceActionTips.message}}</view>
       <i-comment wx:if="{{start}}" fullScreen="{{fullScreen ? '1' : '0'}}" isAnchor />
+
       <view class="start-btn-wrap" wx:if="{{!start && !countdownVisible}}">
         <view class="start-live btn" bindtap="countdownVisible">开始直播</view>
       </view>
+      
       <view class="btns-wrap">
         <view class="input-btn-wrap">
           <view class="input-btn" wx:if="{{start}}" catchtap="showInput">说点什么......</view>

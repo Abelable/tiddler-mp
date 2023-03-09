@@ -2,10 +2,6 @@ import { storeBindingsBehavior } from 'mobx-miniprogram-bindings'
 import { store } from '../../../../../../../store/index'
 
 Component({
-  options: {
-    multipleSlots: true 
-  },
-
   behaviors: [storeBindingsBehavior],
 
   storeBindings: {
@@ -14,8 +10,6 @@ Component({
   },
 
   properties: {
-    mode: Number,
-    direction: Number,
     src: String,
     start: Boolean,
     stop: Boolean

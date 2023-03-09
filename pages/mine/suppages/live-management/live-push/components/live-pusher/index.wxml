@@ -16,7 +16,5 @@
   min-bitrate="400"
   autopush
 >
-  <slot name="inside" />
+  <slot />
 </live-pusher>
-
-<slot name="outside" />
