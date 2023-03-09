@@ -1,10 +1,10 @@
-import { createStoreBindings } from 'mobx-miniprogram-bindings'
-import { store } from '../../store/index'
-import { checkLogin } from '../../utils/index'
-import BaseService from '../../services/baseService'
+import { createStoreBindings } from "mobx-miniprogram-bindings";
+import { store } from "../../store/index";
+import { checkLogin } from "../../utils/index";
+import BaseService from "../../services/baseService";
 
-const baseService = new BaseService()
-const { statusBarHeight } = getApp().globalData
+const baseService = new BaseService();
+const { statusBarHeight } = getApp().globalData;
 
 Page({
   data: {
@@ -20,12 +20,12 @@ Page({
   onLoad() {
     this.storeBindings = createStoreBindings(this, {
       store,
-      fields: ['userInfo'],
-    })
+      fields: ["userInfo"],
+    });
 
-    this.setNavBarVisibleLimit()
-    this.setMenuFixedLimit()
-    this.scrollTopArr = [0, 0, 0, 0]
+    this.setNavBarVisibleLimit();
+    this.setMenuFixedLimit();
+    this.scrollTopArr = [0, 0, 0, 0];
   },
 
   onShow() {
@@ -36,84 +36,95 @@ Page({
 
   switchMenu(e) {
     this.setData({
-      curMenuIndex: e.currentTarget.dataset.index
-    })
+      curMenuIndex: e.currentTarget.dataset.index,
+    });
   },
 
   switchMenu(e) {
-    this.handleMenuChange(Number(e.currentTarget.dataset.index))
+    this.handleMenuChange(Number(e.currentTarget.dataset.index));
   },
 
   swiperChange(e) {
-    this.handleMenuChange(Number(e.detail.current))
+    this.handleMenuChange(Number(e.detail.current));
   },
 
   handleMenuChange(index) {
-    const { curMenuIndex } = this.data
+    const { curMenuIndex } = this.data;
     if (curMenuIndex !== index) {
-      this.setData({ curMenuIndex: index })
-      this.scrollTopArr[curMenuIndex] = this.scrollTop || 0
-      wx.pageScrollTo({ scrollTop: this.scrollTopArr[index] || 0, duration: 0 })
+      this.setData({ curMenuIndex: index });
+      this.scrollTopArr[curMenuIndex] = this.scrollTop || 0;
+      wx.pageScrollTo({
+        scrollTop: this.scrollTopArr[index] || 0,
+        duration: 0,
+      });
     }
   },
 
   setNavBarVisibleLimit() {
-    const query = wx.createSelectorQuery()
-    query.select('.name').boundingClientRect()
-    query.exec(res => {
-      this.navBarVisibleLimit = res[0].bottom
-    })
+    const query = wx.createSelectorQuery();
+    query.select(".name").boundingClientRect();
+    query.exec((res) => {
+      this.navBarVisibleLimit = res[0].bottom;
+    });
   },
 
   setMenuFixedLimit() {
-    const query = wx.createSelectorQuery()
-    query.select('.works-menu').boundingClientRect()
-    query.exec(res => {
-      this.menuFixedLimit = res[0].top - statusBarHeight - 44
-    })
+    const query = wx.createSelectorQuery();
+    query.select(".works-menu").boundingClientRect();
+    query.exec((res) => {
+      this.menuFixedLimit = res[0].top - statusBarHeight - 44;
+    });
   },
 
-  onReachBottom() {
-  },
-  
+  onReachBottom() {},
+
   onPullDownRefresh() {
-    wx.stopPullDownRefresh() 
+    wx.stopPullDownRefresh();
   },
 
   onPageScroll(e) {
     if (e.scrollTop >= this.navBarVisibleLimit) {
-      !this.data.navBarVisible && this.setData({
-        navBarVisible: true
-      })
+      !this.data.navBarVisible &&
+        this.setData({
+          navBarVisible: true,
+        });
     } else {
-      this.data.navBarVisible && this.setData({
-        navBarVisible: false
-      })
+      this.data.navBarVisible &&
+        this.setData({
+          navBarVisible: false,
+        });
     }
 
     if (e.scrollTop >= this.menuFixedLimit) {
-      !this.data.menuFixed && this.setData({
-        menuFixed: true
-      })
+      !this.data.menuFixed &&
+        this.setData({
+          menuFixed: true,
+        });
     } else {
-      this.data.menuFixed && this.setData({
-        menuFixed: false
-      })
+      this.data.menuFixed &&
+        this.setData({
+          menuFixed: false,
+        });
     }
 
-    this.scrollTop = e.scrollTop
+    this.scrollTop = e.scrollTop;
   },
 
   async navToLive() {
-    const roomInfo = await baseService.getUserRoomInfo()
-    if (!roomInfo) {
+    const statusInfo = await baseService.getRoomStatus();
+    if (!statusInfo) {
       wx.navigateTo({
-        url: './suppages/live-management/create-live/index'
-      })
+        url: "./suppages/live-management/create-live/index",
+      });
     } else {
-      const { status, direction } = roomInfo
-      const url = status === 3 ? './suppages/live-management/live-notice/index' : ''
-      wx.navigateTo({ url })
+      const { status, direction } = statusInfo;
+      const url =
+        status === 3
+          ? "./suppages/live-management/live-notice/index"
+          : `./suppages/live-management/live-push/${
+              direction === 1 ? "vertical" : "horizontal"
+            }-screen/index`;
+      wx.navigateTo({ url });
     }
-  }
-})
+  },
+});

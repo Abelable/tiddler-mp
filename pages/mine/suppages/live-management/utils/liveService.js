@@ -11,7 +11,7 @@ class LiveService extends BaseService {
 
   async getNoticeRoomInfo() {
     return await this.get({
-      url: `${this.baseUrl}/media/live/user_notice_room`, 
+      url: `${this.baseUrl}/media/live/notice_room`, 
       loadingTitle: '加载中...'
     })
   }
