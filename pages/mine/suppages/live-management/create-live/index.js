@@ -89,7 +89,7 @@ Page({
   },
 
   async startLive() {
-    const { cover, shareCover, direction, pickedGoodsIds, isNotice } = this.data
+    const { cover, shareCover, curResolutionIdx, direction, pickedGoodsIds, isNotice } = this.data
 
     if (!cover) {
       wx.showToast({ title: '请上传列表封面', icon: 'none' })
@@ -108,7 +108,7 @@ Page({
       return
     }
 
-    liveService.createLive(this.title, cover, shareCover, direction, pickedGoodsIds, this.noticeTime, () => {
+    liveService.createLive(this.title, cover, shareCover, curResolutionIdx + 1, direction, pickedGoodsIds, this.noticeTime, () => {
       const url = isNotice ? `../live-notice/index` : `../live-push/index`
       wx.navigateTo({ url })
     })
