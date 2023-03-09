@@ -36,6 +36,12 @@ class LiveService extends BaseService {
       url: `${this.baseUrl}/media/live/start`,
     });
   }
+
+  async stopLive() {
+    return await this.post({
+      url: `${this.baseUrl}/media/live/stop`,
+    });
+  }
 }
 
 export default LiveService;

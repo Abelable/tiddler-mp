@@ -15,11 +15,7 @@ Component({
 
   storeBindings: {
     store,
-    fields: [
-      "praiseCount",
-      "audienceCount",
-      "devicePosition",
-    ],
+    fields: ["praiseCount", "audienceCount", "devicePosition"],
     actions: ["toggleLampVisible"],
   },
 
@@ -51,47 +47,21 @@ Component({
     roomInfo: function (info) {
       if (info) {
         const {
-          media_format,
           status,
-          show_subtitle,
-          subtitle,
-          resolution_type,
-          watch_num,
-          like_num,
-          live_demo,
+          viewersNumber, 
+          praiseNumber
         } = info;
 
-        if (media_format == 2 && status == 1) {
+        if (status === 1) {
           this.startLive();
+          store.setAudienceCount(viewersNumber);
+          store.setPraiseCount(praiseNumber);
+          // 聊天消息
         }
 
-        if (live_demo && live_demo.id) store.setFileInfo(live_demo);
-        // 公告
-        store.setSubtitleVisible(show_subtitle == 1);
-        if (subtitle) store.setSubtitleContent(subtitle);
-
-        if (resolution_type != 2) {
-          store.setDefinitionIndex(resolution_type - 1);
-        }
-        store.setAudienceCount(Number(watch_num));
-        store.setPraiseCount(Number(like_num));
-
-        !this.data.roomPosterInfo && this.setPosterInfo();
-        !this.data.anchorPhraseList.length && this.setAnchorPhraseList();
-        !this.data.recommendGood && this.getRecommendGood();
+        store.setDefinitionIndex(resolution - 1);
+        // !this.data.recommendGood && this.getRecommendGood();
       }
-    },
-  },
-
-  pageLifetimes: {
-    show() {
-      // 小程序退出后台时间过长，就会报未加群聊的错误，
-      // 所以每次onshow时，重新加群
-      setTimeout(() => {
-        if (this.properties.roomInfo) {
-          tim.joinGroup(this.properties.roomInfo.groupId);
-        }
-      }, 2000);
     },
   },
 
@@ -114,26 +84,10 @@ Component({
     },
 
     async startLive() {
-      const { id, groupId, status } = this.properties.roomInfo;
-      this.setData({ start: true });
+      const { status, groupId } = this.properties.roomInfo;
+      status !== 1 && liveService.startLive();
       tim.joinGroup(groupId);
-      liveService.startLivePush(id);
-    },
-
-    async setAnchorPhraseList() {
-      const { list: anchorPhraseList = [] } =
-        (await liveService.getPhraseList(store.studioInfo.id, 1)) || {};
-      this.setData({ anchorPhraseList });
-    },
-
-    showAnimation() {
-      if (store.animationIndex === -1) {
-        store.setAnimationIndex(0);
-        tim.sendLiveCustomMsg(this.properties.roomInfo.groupId, {
-          type: "animation",
-          index: 0,
-        });
-      }
+      this.setData({ start: true });
     },
 
     reverseCamera() {
@@ -148,15 +102,6 @@ Component({
       this.setData({
         inputVisible: true,
       });
-      if (this.data.fullScreen) this.exitFullScreen();
-    },
-
-    atUser(e) {
-      this.setData({
-        usersManagementPopupVisible: false,
-        inputVisible: true,
-        inputDefaultValue: `@${e.detail.name} `,
-      });
     },
 
     hideInputModal() {
@@ -168,60 +113,10 @@ Component({
       this.hideModal();
     },
 
-    showAdPopup() {
-      this.setData({
-        moreFeaturesPopupVisible: false,
-        adPopupVisible: true,
-      });
-      if (this.data.fullScreen) this.exitFullScreen();
-    },
-
-    toggleAdVisible() {
-      this.setData({
-        adVisible: !this.data.adVisible,
-      });
-    },
-
-    showUsersManagementPopup() {
-      this.setData({
-        usersManagementPopupVisible: true,
-      });
-      if (this.data.fullScreen) this.exitFullScreen();
-    },
-
-    showAssistantCommentsPopup() {
-      this.setData({
-        moreFeaturesPopupVisible: false,
-        assistantCommentsPopupVisible: true,
-      });
-      if (this.data.fullScreen) this.exitFullScreen();
-    },
-
-    showIncreaseUsersPopup() {
-      this.setData({
-        increaseUsersPopupVisible: true,
-      });
-      if (this.data.fullScreen) this.exitFullScreen();
-    },
-
-    showPushNotificationPopup() {
-      this.setData({
-        moreFeaturesPopupVisible: false,
-        pushNotificationPopupVisible: true,
-      });
-    },
-
     showStartRemindPopup() {
       this.setData({
         moreFeaturesPopupVisible: false,
         startRemindPopupVisible: true,
-      });
-    },
-
-    showCommonWordsPopup() {
-      this.setData({
-        moreFeaturesPopupVisible: false,
-        commonWordsPopupVisible: true,
       });
     },
 
@@ -239,25 +134,6 @@ Component({
       });
     },
 
-    async setPosterInfo() {
-      const { id, cover, title, studio_id, studio_title, studio_head_img } =
-        this.properties.roomInfo;
-      const { qrcode_url, share_url } =
-        (await liveService.getShopSharePosterInfo(studio_id, 3, id)) || {};
-
-      this.setData({
-        roomPosterInfo: {
-          cover,
-          title,
-          avatar: studio_head_img,
-          name: studio_title,
-          qrCode: qrcode_url,
-          status: 1,
-        },
-      });
-      store.setLiveRoomShareCover(share_url);
-    },
-
     showMoreFeaturesPopup() {
       this.setData({
         moreFeaturesPopupVisible: true,
@@ -272,25 +148,11 @@ Component({
       });
     },
 
-    showLiveDetailPopup() {
-      this.setData({
-        moreFeaturesPopupVisible: false,
-        liveDetailPopupVisible: true,
-      });
-    },
-
     showGoodsShelvesPopup() {
       this.setData({
         goodsShelvesPopupVisible: true,
       });
       if (this.data.fullScreen) this.exitFullScreen();
-    },
-
-    showFilePopup() {
-      this.setData({
-        moreFeaturesPopupVisible: false,
-        filePopupVisible: true,
-      });
     },
 
     showTrafficRechargePopup() {
@@ -306,105 +168,40 @@ Component({
         posterModalVisible,
         moreFeaturesPopupVisible,
         beautyPopupVisible,
-        liveDetailPopupVisible,
-        adPopupVisible,
-        usersManagementPopupVisible,
-        assistantCommentsPopupVisible,
-        increaseUsersPopupVisible,
-        pushNotificationPopupVisible,
         startRemindPopupVisible,
-        commonWordsPopupVisible,
-        adVisible,
         quitModalVisible,
         goodsShelvesPopupVisible,
-        filePopupVisible,
-        trafficRechargePopupVisible,
       } = this.data;
       if (inputVisible) this.setData({ inputVisible: false });
       if (shareModalVisible) this.setData({ shareModalVisible: false });
       if (posterModalVisible) this.setData({ posterModalVisible: false });
       if (moreFeaturesPopupVisible)
         this.setData({ moreFeaturesPopupVisible: false });
-      if (adPopupVisible) this.setData({ adPopupVisible: false });
       if (beautyPopupVisible) this.setData({ beautyPopupVisible: false });
-      if (liveDetailPopupVisible)
-        this.setData({ liveDetailPopupVisible: false });
-      if (usersManagementPopupVisible)
-        this.setData({ usersManagementPopupVisible: false });
-      if (assistantCommentsPopupVisible)
-        this.setData({ assistantCommentsPopupVisible: false });
-      if (increaseUsersPopupVisible)
-        this.setData({ increaseUsersPopupVisible: false });
-      if (pushNotificationPopupVisible)
-        this.setData({ pushNotificationPopupVisible: false });
       if (startRemindPopupVisible)
         this.setData({ startRemindPopupVisible: false });
-      if (commonWordsPopupVisible) {
-        this.setAnchorPhraseList();
-        this.setData({ commonWordsPopupVisible: false });
-      }
-      if (adVisible) this.setData({ adVisible: false });
       if (quitModalVisible) this.setData({ quitModalVisible: false });
-      if (filePopupVisible) this.setData({ filePopupVisible: false });
       if (goodsShelvesPopupVisible)
         this.setData({ goodsShelvesPopupVisible: false });
-      if (trafficRechargePopupVisible)
-        this.setData({ trafficRechargePopupVisible: false });
     },
 
-    checkOBS() {
-      wx.navigateTo({
-        url: `/pages/subpages/home/live-push/subpages/check-obs/index?url=${this.data.roomInfo.url}`,
+    confirmStopLive() {
+      wx.showModal({
+        content: "确定结束直播吗？",
+        showCancel: true,
+        success: (result) => {
+          if (result.confirm) {
+            this.setData({ stop: true });
+            store.resetRoomData();
+            store.setAudienceCount(0);
+            store.setPraiseCount(0);
+            liveService.stopLive();
+            wx.switchTab({
+              url: "/pages/tab-bar-pages/home/index",
+            });
+          }
+        },
       });
-    },
-
-    showQuitModal() {
-      if (this.data.start) this.setData({ quitModalVisible: true });
-      else
-        wx.switchTab({
-          url: "/pages/tab-bar-pages/home/index",
-        });
-    },
-
-    pauseRoom() {
-      this.setData(
-        {
-          stop: true,
-          quitModalVisible: false,
-        },
-        () => {
-          store.resetRoomData();
-          store.setSubtitleContent("");
-          store.setUserFixed(false);
-          store.setVestInfo(null);
-          wx.switchTab({
-            url: "/pages/tab-bar-pages/home/index",
-          });
-          liveService.pausePushRoom(this.properties.roomInfo.id);
-        }
-      );
-    },
-
-    quitRoom() {
-      const { id } = this.properties.roomInfo || {};
-      this.setData(
-        {
-          stop: true,
-          quitModalVisible: false,
-        },
-        () => {
-          wx.switchTab({
-            url: "/pages/tab-bar-pages/home/index",
-          });
-          store.resetRoomData();
-          store.setSubtitleContent("");
-          store.setAudienceCount(0);
-          store.setPraiseCount(0);
-          store.setUserFixed(false);
-          store.setVestInfo(null);
-          liveService.closePushRoom(id);
-        }
-      );
     },
 
     // 点赞
@@ -519,12 +316,6 @@ Component({
           recommendGood: list[0],
         });
       }
-    },
-
-    toggleTrafficPanelVisible() {
-      this.setData({
-        trafficPanelVisible: !this.data.trafficPanelVisible,
-      });
     },
   },
 });

@@ -10,7 +10,6 @@
     "praise-animation": "/components/live/praise-animation/index",
     "i-input": "/components/live/i-input//index",
     "i-mask": "/components/i-mask/index",
-    "quit-confirm-modal": "../quit-confirm-modal/index",
     "more-features-popup": "../more-features-popup/index",
     "subscribe-remind-popup": "../subscribe-remind-popup/index",
     "beauty-popup": "../beauty-popup/index",

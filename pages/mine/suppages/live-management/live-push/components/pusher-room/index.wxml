@@ -7,7 +7,7 @@
   >
     <view class="header">
       <view class="nav-bar row">
-        <i-back-icon custom bind:navigateBack="showQuitModal"/>
+        <back-icon custom bind:navigateBack="confirmStopLive"/>
         <i-anchor-capsule roomInfo="{{roomInfo}}" />
       </view>
       <view class="recommend-goods row" wx:if="{{recommendGood}}">
