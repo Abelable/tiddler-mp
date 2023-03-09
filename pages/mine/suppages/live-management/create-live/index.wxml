@@ -47,6 +47,9 @@
         <image class="arrow" src="https://img.ubo.vip/mp/sass/mine/gray-arrow.png" />
       </view>
     </view>
+  </view>
+
+  <view class="card" style="padding-top: 0; padding-bottom: 0;">
     <view class="list row between">
       <view class="list-title row">创建预告</view>
       <switch class="list-switch" color="#0095fa" bindchange="toggleIsNotice" />
