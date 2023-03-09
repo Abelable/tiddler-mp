@@ -1,3 +1,10 @@
 {
-  "navigationStyle": "custom"
+  "disableScroll": true,
+  "disableSwipeBack": true,
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "white",
+  "pageOrientation": "landscape",
+  "usingComponents": {
+    "pusher-room": "../components/pusher-room/index"
+  }
 }

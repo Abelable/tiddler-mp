@@ -1,1 +1,1 @@
-  
+<pusher-room roomInfo="{{roomInfo}}" direction="1" />
