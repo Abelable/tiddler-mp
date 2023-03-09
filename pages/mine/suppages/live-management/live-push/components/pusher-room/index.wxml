@@ -32,7 +32,7 @@
       <view class="btns-wrap row">
         <view class="input-btn" wx:if="{{start}}" catchtap="showInput">说点什么......</view>
         <view class="row">
-          <image class="feature-btn" catchtap="showGoodsShelvesPopup" src="/images/live/cart.png" />
+          <image class="feature-btn" catchtap="showGoodsShelvesPopup" src="./images/cart.png" />
           <image class="feature-btn" catchtap="showMoreFeaturesPopup" src="https://img.ubo.vip/mp/sass/live-push/more.png" />
           <image class="feature-btn" catchtap="showShareModal" src="https://img.ubo.vip/mp/sass/live-push/share.png" />
           <view class="feature-btn" wx:if="{{start}}">

@@ -46,8 +46,13 @@ Component({
   observers: {
     roomInfo: function (info) {
       if (info) {
-        const { status, viewersNumber, praiseNumber, historyChatMsgList } =
-          info;
+        const {
+          status,
+          resolution,
+          viewersNumber,
+          praiseNumber,
+          historyChatMsgList,
+        } = info;
 
         if (status === 1) {
           this.startLive();
@@ -306,7 +311,6 @@ Component({
       }
     },
 
-    async setRecommendGoods() {
-    },
+    async setRecommendGoods() {},
   },
 });

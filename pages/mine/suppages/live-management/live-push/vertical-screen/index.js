@@ -13,11 +13,11 @@ Page({
       menus: ['shareAppMessage', 'shareTimeline']
     })
 
-    this.setRoomInfo(id)
+    this.setRoomInfo()
   },
 
-  async setRoomInfo(id) {
-    const roomInfo = await liveService.getLivePushRoomInfo(id)
+  async setRoomInfo() {
+    const roomInfo = await liveService.getPushRoomInfo()
     this.setData({ roomInfo })
   },
 

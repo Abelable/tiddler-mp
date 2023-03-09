@@ -1,5 +1,5 @@
 import { store } from '../../../store/index'
-import im from '../../../utils/im/index'
+import tim from '../../../utils/tim/index'
 import BaseService from '../../../services/baseService'
 
 const baseService = new BaseService()
@@ -109,7 +109,7 @@ Component({
       }
 
       baseService.saveLiveMsg(room_id, name, avatar, type_name, JSON.stringify(store.userTagList), msg, chatMsg.time)
-      im.sendLiveChatMsg(group_id, chatMsg)
+      tim.sendLiveChatMsg(group_id, chatMsg)
     }
   }
 })
