@@ -16,7 +16,7 @@ class LiveService extends BaseService {
     })
   }
 
-  async deleteLive(id, success) {
+  async deleteNoticeRoom(id, success) {
     return await this.post({ 
       url: `${this.baseUrl}/media/live/delete_notice_room`, 
       data: { id },

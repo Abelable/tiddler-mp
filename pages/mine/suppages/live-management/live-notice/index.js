@@ -35,12 +35,12 @@ Page({
     }, 1000)
   },
 
-  deleteLive() {
+  deleteLiveNotice() {
     wx.showModal({
       content: '确定删除直播预告吗？',
       success: (result) => {
         if(result.confirm){
-          liveService.deleteLive(this.data.roomInfo.id, () => {
+          liveService.deleteNoticeRoom(this.data.roomInfo.id, () => {
             wx.showToast({
               title: '删除成功',
               icon: 'none',

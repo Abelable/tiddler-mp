@@ -23,7 +23,7 @@
   </view>
 
   <view class="btn-wrap row between">
-    <button class="delete-btn" bindtap="deleteLive" hover-class="none">删除预告</button>
+    <button class="delete-btn" bindtap="deleteLiveNotice" hover-class="none">删除预告</button>
     <button class="start-btn" bindtap="startLive" hover-class="none">开始直播</button>
   </view>
 </view>
