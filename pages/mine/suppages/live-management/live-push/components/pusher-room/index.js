@@ -46,17 +46,22 @@ Component({
   observers: {
     roomInfo: function (info) {
       if (info) {
-        const { status, viewersNumber, praiseNumber } = info;
+        const { status, viewersNumber, praiseNumber, historyChatMsgList } =
+          info;
 
         if (status === 1) {
           this.startLive();
           store.setAudienceCount(viewersNumber);
           store.setPraiseCount(praiseNumber);
-          // 聊天消息
+          store.setLiveMsgList([
+            ...historyChatMsgList,
+            {
+              message:
+                "平台依法对直播内容进行24小时巡查，倡导绿色直播，维护网络文明健康。切勿与他人私下交易，非官方活动谨慎参与，避免上当受骗。",
+            },
+          ]);
         }
-
         store.setDefinitionIndex(resolution - 1);
-        // !this.data.recommendGood && this.getRecommendGood();
       }
     },
   },
@@ -82,6 +87,7 @@ Component({
     async startLive() {
       const { status, groupId } = this.properties.roomInfo;
       status !== 1 && liveService.startLive();
+      this.setRecommendGoods();
       tim.joinGroup(groupId);
       this.setData({ start: true });
     },
@@ -300,18 +306,7 @@ Component({
       }
     },
 
-    async getRecommendGood() {
-      const { list = [] } =
-        (await liveService.getYouboRoomGoodsList(
-          this.properties.roomInfo.id,
-          "3",
-          1
-        )) || {};
-      if (list.length) {
-        this.setData({
-          recommendGood: list[0],
-        });
-      }
+    async setRecommendGoods() {
     },
   },
 });
