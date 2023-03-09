@@ -4,6 +4,6 @@
   "navigationStyle": "custom",
   "navigationBarTextStyle": "white",
   "usingComponents": {
-    "pusher-room": "../components/pusher-room/index"
+    "push-room": "../components/push-room/index"
   }
 }

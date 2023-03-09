@@ -86,6 +86,7 @@ Component({
         this.setData({
           countdownVisible: false,
         });
+        this.startLive()
       }, 5000);
     },
 
@@ -193,22 +194,24 @@ Component({
     },
 
     confirmStopLive() {
-      wx.showModal({
-        content: "确定结束直播吗？",
-        showCancel: true,
-        success: (result) => {
-          if (result.confirm) {
-            this.setData({ stop: true });
-            store.resetRoomData();
-            store.setAudienceCount(0);
-            store.setPraiseCount(0);
-            liveService.stopLive();
-            wx.switchTab({
-              url: "/pages/tab-bar-pages/home/index",
-            });
-          }
-        },
-      });
+      if (this.data.start) {
+        wx.showModal({
+          content: "确定结束直播吗？",
+          showCancel: true,
+          success: (result) => {
+            if (result.confirm) {
+              this.setData({ stop: true });
+              store.resetRoomData();
+              store.setAudienceCount(0);
+              store.setPraiseCount(0);
+              liveService.stopLive();
+              wx.switchTab({ url: "/pages/mine/index" });
+            }
+          },
+        });
+      } else {
+        wx.switchTab({ url: "/pages/mine/index" });
+      }
     },
 
     // 点赞

@@ -6,7 +6,7 @@ Component({
 
   storeBindings: {
     store,
-    fields: ['devicePosition', 'remoteMirror', 'localMirror', 'beautyValue', 'whitenessValue', 'visualFilterValue', 'soundFilterValue', 'muted', 'definitionIndex', 'studioInfo', 'lampVisible']
+    fields: ['devicePosition', 'remoteMirror', 'localMirror', 'beautyValue', 'whitenessValue', 'visualFilterValue', 'soundFilterValue', 'muted', 'definitionIndex', 'lampVisible']
   },
 
   properties: {

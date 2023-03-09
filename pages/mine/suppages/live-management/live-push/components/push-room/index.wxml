@@ -1,6 +1,6 @@
 <wxs module="NUM" src="/utils/filters/num.wxs" />
 
-<i-pusher src="{{roomInfo.pushUrl}}" start="{{start}}" stop="{{stop}}">
+<live-push src="{{roomInfo.pushUrl || ''}}" start="{{start}}" stop="{{stop}}">
   <view 
     class="inner {{roomInfo.direction === 2 ? 'horizontal' : ''}}"
     style="top: {{roomInfo.direction === 2 ? 8 : statusBarHeight}}px;"
@@ -27,15 +27,15 @@
 
       <i-comment wx:if="{{start}}" fullScreen="{{fullScreen ? '1' : '0'}}" isAnchor />
 
-      <button class="start-btn" wx:if="{{!start && !countdownVisible}}" bindtap="countdownVisible" hover-class="none">开始直播</button>
+      <button class="start-btn" wx:if="{{!start && !countdownVisible}}" bindtap="startCountdown" hover-class="none">开始直播</button>
       
-      <view class="btns-wrap row">
-        <view class="input-btn" wx:if="{{start}}" catchtap="showInput">说点什么......</view>
+      <view class="btns-wrap row" wx:if="{{start}}">
+        <view class="input-btn" catchtap="showInput">说点什么......</view>
         <view class="row">
           <image class="feature-btn" catchtap="showGoodsShelvesPopup" src="./images/cart.png" />
           <image class="feature-btn" catchtap="showMoreFeaturesPopup" src="https://img.ubo.vip/mp/sass/live-push/more.png" />
           <image class="feature-btn" catchtap="showShareModal" src="https://img.ubo.vip/mp/sass/live-push/share.png" />
-          <view class="feature-btn" wx:if="{{start}}">
+          <view class="feature-btn">
             <view class="praise-icon" catchtap="praise" hover-class="hover" hover-stop-propagation="false">
               <image style="width: 35px; height: 35px;" src="https://img.ubo.vip/mp/sass/live-push/praise.png" />
             </view>
@@ -48,7 +48,7 @@
       </view>
     </view>
   </view>
-</i-pusher>
+</live-push>
 
 <i-share-popup wx:if="{{shareModalVisible}}" roomId="{{roomInfo.id}}" bind:showPosterModal="showPosterModal" bind:hide="hideModal" />
 <i-features-popup 
@@ -59,9 +59,9 @@
   bind:showBeautyPopup="showBeautyPopup"
   bind:hide="hideModal"
 />
-<i-start-remind-popup wx:if="{{startRemindPopupVisible}}" groupId="{{roomInfo.group_id}}" bind:hide="hideModal" />
-<i-beauty-popup wx:if="{{beautyPopupVisible}}" bind:hide="hideModal" />
-<i-goods-shelves-popup wx:if="{{goodsShelvesPopupVisible}}" roomInfo="{{roomInfo}}" bind:hide="hideModal" bind:getRecommendGood="getRecommendGood" />
+<subscribe-remind-popup wx:if="{{startRemindPopupVisible}}" groupId="{{roomInfo.group_id}}" bind:hide="hideModal" />
+<beauty-popup wx:if="{{beautyPopupVisible}}" bind:hide="hideModal" />
+<goods-shelves-popup wx:if="{{goodsShelvesPopupVisible}}" roomInfo="{{roomInfo}}" bind:hide="hideModal" bind:getRecommendGood="getRecommendGood" />
 
 <i-mask 
   wx:if="{{inputVisible || quitModalVisible || posterModalVisible}}" 

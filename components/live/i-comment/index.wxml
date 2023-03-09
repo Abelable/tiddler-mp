@@ -26,7 +26,7 @@
         wx:key="index" 
         wx:for-item="tag"
       >{{tag.tag_name}}</text>
-      <text class="msg-user-name" wx:if="{{item.nick_name}}">{{(!isAnchor && anonymoused) ? STRING.formatName(item.nick_name) : item.nick_name}}</text>
+      <text class="msg-user-name" wx:if="{{item.nick_name}}">{{!isAnchor? STRING.formatName(item.nick_name) : item.nick_name}}</text>
       <text class="message-content">{{item.message}}</text>
     </view>
   </view>

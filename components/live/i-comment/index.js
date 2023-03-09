@@ -7,7 +7,7 @@ Component({
 
   storeBindings: {
     store,
-    fields: ['anonymoused', 'liveMsgList'],
+    fields: ['liveMsgList'],
   },
 
   properties: {

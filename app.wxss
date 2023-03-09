@@ -64,6 +64,9 @@ switch {
 .row.between {
   justify-content: space-between;
 }
+.row.end {
+  justify-content: flex-end;
+}
 .row.baseline {
   align-items: baseline;
 }

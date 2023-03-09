@@ -6,7 +6,7 @@ Component({
 
   storeBindings: {
     store,
-    fields: ['devicePosition', 'localMirror', 'muted', 'anonymoused'],
+    fields: ['devicePosition', 'localMirror', 'muted'],
   },
 
   properties: {
