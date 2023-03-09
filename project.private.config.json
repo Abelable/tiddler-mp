@@ -85,7 +85,7 @@
         },
         {
           "name": "创建直播",
-          "pathName": "pages/mine/suppages/live-management/index",
+          "pathName": "pages/mine/suppages/live-management/create-live/index",
           "query": "",
           "launchMode": "default",
           "scene": null

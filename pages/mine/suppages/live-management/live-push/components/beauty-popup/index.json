@@ -1,6 +1,6 @@
 {
   "component": true,
   "usingComponents": {
-    "i-popup": "/components/i-popup/index"
+    "i-popup": "/components/popup/index"
   }
 }

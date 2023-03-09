@@ -1,4 +1,5 @@
-<import src="/templates/i-empty-illus/index.wxml"/>
+<import src="/templates/empty-illus/index.wxml"/>
+
 <i-popup bind:hide="hide">
   <view class="goods-shelves-popup">
     <view class="menu-wrap">

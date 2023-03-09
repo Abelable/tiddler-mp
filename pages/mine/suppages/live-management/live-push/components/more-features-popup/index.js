@@ -1,9 +1,8 @@
 import { storeBindingsBehavior } from 'mobx-miniprogram-bindings'
 import { store } from '../../../../../../../store/index'
-import HomeService from '../../../../../../../services/homeService'
+import LiveService from '../../../utils/liveService'
 
-const homeService = new HomeService()
-
+const liveService = new LiveService()
 const featureList = [
   { icon: 'beauty', name: '美颜' },
 ]
@@ -83,7 +82,7 @@ Component({
             title: '确定清空所有消息吗？',
             success: (result) => {
               if(result.confirm){
-                homeService.clearRoomChatMsg(this.properties.roomInfo.id)
+                liveService.clearRoomChatMsg(this.properties.roomInfo.id)
                 store.clearLiveMsgList()
               }
             }
@@ -99,7 +98,7 @@ Component({
           break
 
         case 'anonymous': 
-          homeService.toggleAnonymousStatus(this.properties.roomInfo.id, store.anonymoused === 0 ? 1 : 0, () => {
+          liveService.toggleAnonymousStatus(this.properties.roomInfo.id, store.anonymoused === 0 ? 1 : 0, () => {
             store.setAnonymoused(store.anonymoused === 0 ? 1 : 0)
           })
           break

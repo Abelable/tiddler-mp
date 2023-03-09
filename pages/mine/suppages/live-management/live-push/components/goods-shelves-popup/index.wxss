@@ -1,7 +1,9 @@
-@import "/templates/i-empty-illus/index.wxss";
+@import "/templates/empty-illus/index.wxss";
+
 .empty-illus-wrap {
   margin-top:100rpx;
 }
+
 .goods-shelves-popup {
   background: #f5f6f7;
   padding-bottom: env(safe-area-inset-bottom);

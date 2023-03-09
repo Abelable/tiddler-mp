@@ -1,4 +1,4 @@
-import HomeService from '../../../../../../../services/homeService'
+import LiveService from '../../../utils/liveService'
 
 Component({ 
   options: {
@@ -11,7 +11,7 @@ Component({
 
   methods: {
     pushRemind() {
-      new HomeService().pushLiveStartRemind(this.properties.groupId, () => {
+      new LiveService().pushLiveStartRemind(this.properties.groupId, () => {
         wx.showToast({
           title: '推送成功',
           icon: 'none'

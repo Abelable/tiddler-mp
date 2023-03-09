@@ -1,6 +1,6 @@
-import BaseService from '../../../../../../services/baseService'
+import LiveService from '../../../utils/liveService'
 
-const baseService = new BaseService()
+const liveService = new LiveService()
 
 Component({ 
   properties: {
@@ -28,7 +28,7 @@ Component({
   methods: {
     async recommendFn(e){
       let { type, id } = e.currentTarget.dataset
-      baseService.showGood({
+      liveService.showGood({
         room_id: this.properties.roomInfo.id,
         good_id: id,
         type
@@ -69,7 +69,7 @@ Component({
         }
         good_id = dataList.join(',')
       }
-      baseService.youboGoodsStatus({
+      liveService.youboGoodsStatus({
         room_id: this.properties.roomInfo.id,
         good_id,
         type: post_type
@@ -176,7 +176,7 @@ Component({
       if (init) {
         curMenuIdx === 0 ? this.dataPage0 = 0 : this.dataPage1 = 0
       }
-      const { list = [] } = await baseService.getYouboRoomGoodsList(this.properties.roomInfo.id, curMenuIdx === 0 ? '1' : '2', curMenuIdx === 0 ? ++this.dataPage0 : ++this.dataPage1) || {}
+      const { list = [] } = await liveService.getYouboRoomGoodsList(this.properties.roomInfo.id, curMenuIdx === 0 ? '1' : '2', curMenuIdx === 0 ? ++this.dataPage0 : ++this.dataPage1) || {}
       if (curMenuIdx === 0) {
         this.check('0', init ? list : [...dataList0, ...list])
       } else {
@@ -204,7 +204,7 @@ Component({
     },
 
     async _getRecommendId() {
-      const { list = [] } = await baseService.getYouboRoomGoodsList(this.properties.roomInfo.id, '3', 1) || {}
+      const { list = [] } = await liveService.getYouboRoomGoodsList(this.properties.roomInfo.id, '3', 1) || {}
       if(list.length > 0){
         this.setData({
           recommend_id: list[0].goods_id

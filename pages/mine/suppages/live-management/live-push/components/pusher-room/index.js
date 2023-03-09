@@ -1,9 +1,9 @@
 import { storeBindingsBehavior } from 'mobx-miniprogram-bindings'
-import { store } from '../../../../../store/index'
-import im from '../../../../../utils/im/index'
-import HomeService from '../../../../../services/homeService'
+import { store } from '../../../../../../../store/index'
+import tim from '../../../../../../../utils/tim/index'
+import LiveService from '../../../utils/liveService'
 
-const homeService = new HomeService()
+const liveService = new LiveService()
 const { statusBarHeight } = getApp().globalData
 
 Component({
@@ -94,7 +94,7 @@ Component({
       // 所以每次onshow时，重新加群
       setTimeout(() => {
         if (this.properties.roomInfo) {
-          im.joinGroup(this.properties.roomInfo.group_id)
+          tim.joinGroup(this.properties.roomInfo.group_id)
         }
       }, 2000);
     }
@@ -133,28 +133,28 @@ Component({
     async startLive() {
       const { id, group_id, status } = this.properties.roomInfo
       this.setData({ start: true })
-      homeService.getMsgHistory(id)
+      liveService.getMsgHistory(id)
       // 主播未开播的场景，退出后台（进行海报分享等操作）时间过长之后，发送消息会报未加群的错误，所以主播都让他加群
-      im.joinGroup(group_id)
+      tim.joinGroup(group_id)
       if (status == 4) {
-        await homeService.restartPushRoom(id)
+        await liveService.restartPushRoom(id)
       }
-      homeService.startLivePush(id)
+      liveService.startLivePush(id)
     },
 
     refresh() {
-      im.joinGroup(this.properties.roomInfo.group_id)
+      tim.joinGroup(this.properties.roomInfo.group_id)
     },
 
     async setAnchorPhraseList() {
-      const { list: anchorPhraseList = [] } = await homeService.getPhraseList(store.studioInfo.id, 1) || {}
+      const { list: anchorPhraseList = [] } = await liveService.getPhraseList(store.studioInfo.id, 1) || {}
       this.setData({ anchorPhraseList })
     },
 
     showAnimation() {
       if (store.animationIndex === -1) {
         store.setAnimationIndex(0)
-        im.sendLiveCustomMsg(this.properties.roomInfo.group_id, { type: 'animation', index: 0 })
+        tim.sendLiveCustomMsg(this.properties.roomInfo.group_id, { type: 'animation', index: 0 })
       }
     },
 
@@ -261,7 +261,7 @@ Component({
   
     async setPosterInfo() {
       const { id, cover, title, studio_id, studio_title, studio_head_img } = this.properties.roomInfo
-      const { qrcode_url, share_url } = await homeService.getShopSharePosterInfo(studio_id, 3, id) || {}
+      const { qrcode_url, share_url } = await liveService.getShopSharePosterInfo(studio_id, 3, id) || {}
   
       this.setData({
         roomPosterInfo: { 
@@ -386,7 +386,7 @@ Component({
         wx.switchTab({ 
           url: '/pages/tab-bar-pages/home/index' 
         })
-        homeService.pausePushRoom(this.properties.roomInfo.id)
+        liveService.pausePushRoom(this.properties.roomInfo.id)
       })
     },
 
@@ -405,7 +405,7 @@ Component({
         store.setPraiseCount(0)
         store.setUserFixed(false)
         store.setVestInfo(null)
-        homeService.closePushRoom(id)
+        liveService.closePushRoom(id)
       })
     },
 
@@ -438,7 +438,7 @@ Component({
     praise() {
       wx.vibrateShort({ type: 'heavy' })
       if (!this.data.manualPraise) this.setData({ manualPraise: true })
-      homeService.praiseHandler(this.properties.roomInfo.id)
+      liveService.praiseHandler(this.properties.roomInfo.id)
     },
 
     handleCustomMsg(customMsg) {
@@ -518,7 +518,7 @@ Component({
             case 'update_tag':
               const userIds = customMsg.user_id.split(',')
               if (userIds.includes(`${store.userInfo.id}`)) {
-                homeService.setCurUserTagList(this.properties.roomInfo.studio_id, store.userInfo.id)
+                liveService.setCurUserTagList(this.properties.roomInfo.studio_id, store.userInfo.id)
               }
               break
           }
@@ -527,7 +527,7 @@ Component({
     },
 
     async getRecommendGood(){
-      const { list = [] } = await homeService.getYouboRoomGoodsList(this.properties.roomInfo.id, '3', 1) || {}
+      const { list = [] } = await liveService.getYouboRoomGoodsList(this.properties.roomInfo.id, '3', 1) || {}
       if (list.length) {
         this.setData({
           recommendGood: list[0]
