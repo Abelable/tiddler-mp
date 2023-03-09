@@ -1,9 +1,13 @@
 .inner {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  left: 8px;
+  right: 8px;
+  bottom: env(safe-area-inset-bottom);
+}
+.inner.horizontal {
+  left: 30px;
+  right: 30px;
+  bottom: calc(8px + env(safe-area-inset-bottom));
 }
 
 .header {
@@ -76,7 +80,7 @@
   transform: translateY(50%);
   z-index: 100;
 }
-.shortcut-btns.full-screen {
+.shortcut-btns.horizontal {
   right: 30px;
 }
 .shortcut-btn {
@@ -104,7 +108,7 @@
   height: 24px;
 }
 
-.full-screen-btn {
+.horizontal-btn {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -117,11 +121,11 @@
   border: 0.5px solid rgba(255,255,255,0.3);
   z-index: 1;
 }
-.full-screen-icon {
+.horizontal-icon {
   width: 18px;
   height: 18px;
 }
-.full-screen-desc {
+.horizontal-desc {
   margin-left: 4px;
   color: #fff;
   font-size: 12px;
@@ -134,7 +138,7 @@
   padding: 0 12px env(safe-area-inset-bottom);
   width: 100%;
 }
-.footer.full-screen {
+.footer.horizontal {
   padding: 0 30px 8px;
 }
 
@@ -217,14 +221,10 @@
   white-space: nowrap;
 }
 
-.i-praise {
+.praise-animation-wrap {
   position: absolute;
   right: 0;
-  bottom: calc(56.5px + env(safe-area-inset-bottom));
-}
-.i-praise.full-screen {
-  right: 20px;
-  bottom: 63px;
+  bottom: 56.5px;
 }
 
 .test-obs-label {
@@ -270,9 +270,6 @@
 }
 .audience-action-tips.share {
   background: rgba(19,47,199,0.6);
-}
-.audience-action-tips.packet {
-  background: rgba(251,85,28,0.6);
 }
 .audience-action-tips.show {
   opacity: 1;
