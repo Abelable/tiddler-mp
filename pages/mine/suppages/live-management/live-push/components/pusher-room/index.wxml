@@ -3,13 +3,13 @@
 <i-pusher src="{{roomInfo.pushUrl}}" start="{{start}}" stop="{{stop}}">
   <view class="inner">
     <i-praise 
-      class="i-praise {{direction === 2 ? 'full-screen' : ''}}" 
+      class="i-praise {{roomInfo.direction === 2 ? 'full-screen' : ''}}" 
       wx:if="{{start}}"
       count="{{praiseCount}}" 
       manual="{{manualPraise}}" 
     />
     
-    <view class="header" style="padding: {{direction === 2 ? 8 : statusBarHeight}}px {{direction === 2 ? 30 : 8}}px 0;">
+    <view class="header" style="padding: {{roomInfo.direction === 2 ? 8 : statusBarHeight}}px {{roomInfo.direction === 2 ? 30 : 8}}px 0;">
       <view class="nav-bar">
         <i-back-icon custom bind:navigateBack="showQuitModal"/>
         <i-anchor-capsule roomInfo="{{roomInfo}}" />
@@ -31,7 +31,7 @@
 
     <count-down wx:if="{{countdownVisible && !start}}" />
 
-    <view class="footer {{direction === 2 ? 'full-screen' : ''}}">
+    <view class="footer {{roomInfo.direction === 2 ? 'full-screen' : ''}}">
       <view class="audience-action-tips {{audienceActionTips.type}} {{showAudienceActionTips ? 'show' : ''}}">{{audienceActionTips.message}}</view>
       <i-comment wx:if="{{start}}" fullScreen="{{fullScreen ? '1' : '0'}}" isAnchor />
 
