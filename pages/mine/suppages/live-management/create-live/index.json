@@ -1,7 +1,6 @@
 {
   "navigationBarTitleText": "创建直播",
   "usingComponents": {
-    "date-picker": "/components/date-picker/index",
-    "count-down": "/components/count-down/index"
+    "date-picker": "/components/date-picker/index"
   }
 }
