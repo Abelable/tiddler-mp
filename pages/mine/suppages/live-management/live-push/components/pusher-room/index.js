@@ -46,11 +46,7 @@ Component({
   observers: {
     roomInfo: function (info) {
       if (info) {
-        const {
-          status,
-          viewersNumber, 
-          praiseNumber
-        } = info;
+        const { status, viewersNumber, praiseNumber } = info;
 
         if (status === 1) {
           this.startLive();
