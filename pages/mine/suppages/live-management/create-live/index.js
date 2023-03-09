@@ -6,6 +6,12 @@ const liveService = new LiveService()
 
 Page({
   data: {
+    resolutionList: [
+      { name: '标清', detail: '480P/1000kbps' },
+      { name: '高清', detail: '720P/1500kbps' },
+      { name: '超清', detail: '1080P/1800kbps' },
+    ],
+    curResolutionIdx: 2,
     uploadCoverLoading: false,
     uploadShareCoverLoading: false,
     cover: '',
@@ -46,6 +52,12 @@ Page({
       }
       this.setData({ uploadShareCoverLoading: false })
     }
+  },
+
+  selectResolution(e) {
+    this.setData({
+      curResolutionIdx: Number(e.currentTarget.dataset.index)
+    })
   },
 
   setTitle(e) {
