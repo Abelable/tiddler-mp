@@ -13,16 +13,18 @@
   </view>
 </view>
 
-<swiper style="height: {{contentWrapHeightArr[curMenuIndex]}}px;" current="{{curMenuIndex}}" bindchange="swiperChange">
-  <swiper-item>
-    <view class="content-wrap" style="padding-top: {{statusBarHeight + 102}}px;">关注</view>
-  </swiper-item>
-  <swiper-item>
-    <view class="content-wrap" style="padding-top: {{statusBarHeight + 102}}px;">
-      <strategy-item />
-      <note-item />
-      <live-item />
-      <video-item />
-    </view>
-  </swiper-item>
-</swiper>
+<view class="container">
+  <swiper style="height: {{contentWrapHeightArr[curMenuIndex]}}px;" current="{{curMenuIndex}}" bindchange="swiperChange">
+    <swiper-item>
+      <view class="content-wrap" style="padding-top: {{statusBarHeight + 102}}px;">关注</view>
+    </swiper-item>
+    <swiper-item>
+      <view class="content-wrap" style="padding-top: {{statusBarHeight + 102}}px;">
+        <strategy-item />
+        <note-item />
+        <live-item />
+        <video-item />
+      </view>
+    </swiper-item>
+  </swiper>
+</view>

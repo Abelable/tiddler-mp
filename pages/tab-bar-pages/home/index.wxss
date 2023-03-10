@@ -1,3 +1,7 @@
+.container {
+  padding-bottom: calc(48px + env(safe-area-inset-bottom));
+}
+
 .nav-bar {
   position: fixed;
   width: 100%;

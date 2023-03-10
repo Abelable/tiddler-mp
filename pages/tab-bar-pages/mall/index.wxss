@@ -2,6 +2,10 @@ page {
   background: #fff;
 }
 
+.container {
+  padding-bottom: calc(48px + env(safe-area-inset-bottom));
+}
+
 .nav-bar {
   position: fixed;
   display: flex;

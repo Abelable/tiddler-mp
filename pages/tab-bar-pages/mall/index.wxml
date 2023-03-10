@@ -5,22 +5,24 @@
   </view>
 </view>
 
-<swiper class="banner custom-dots" style="height: calc({{statusBarHeight + 44}}px + 250rpx);" autoplay indicator-dots circular>
-  <swiper-item class="banner-item">
-    <image class="banner-img" mode="widthFix" src="http://img.ubo.vip/youlian/temporary/banner.png" />
-  </swiper-item>
-  <swiper-item>
-    <image class="banner-img" mode="widthFix" src="http://img.ubo.vip/youlian/temporary/banner_1.png" />
-  </swiper-item>
-</swiper>
-
-<view class="category-wrap">
-  <view class="category-item" wx:for="{{categoryList}}" wx:key="index" bindtap="navTo" data-index="{{index}}">
-    <image class="category-icon" src="{{item.icon}}" />
-    <view class="category-desc">{{item.name}}</view>
+<view class="container">
+  <swiper class="banner custom-dots" style="height: calc({{statusBarHeight + 44}}px + 250rpx);" autoplay indicator-dots circular>
+    <swiper-item class="banner-item">
+      <image class="banner-img" mode="widthFix" src="http://img.ubo.vip/youlian/temporary/banner.png" />
+    </swiper-item>
+    <swiper-item>
+      <image class="banner-img" mode="widthFix" src="http://img.ubo.vip/youlian/temporary/banner_1.png" />
+    </swiper-item>
+  </swiper>
+  
+  <view class="category-wrap">
+    <view class="category-item" wx:for="{{categoryList}}" wx:key="index" bindtap="navTo" data-index="{{index}}">
+      <image class="category-icon" src="{{item.icon}}" />
+      <view class="category-desc">{{item.name}}</view>
+    </view>
   </view>
-</view>
-
-<view class="goods-list">
-  <goods-item />
+  
+  <view class="goods-list">
+    <goods-item />
+  </view>
 </view>
