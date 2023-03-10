@@ -31,7 +31,7 @@
         {{audienceActionTips.message}}
       </view>
 
-      <i-comment wx:if="{{start}}" fullScreen="{{fullScreen ? '1' : '0'}}" isAnchor />
+      <comment-showcase wx:if="{{start}}" />
 
       <button class="start-btn" wx:if="{{!start && !countdownVisible}}" bindtap="startCountdown" hover-class="none">开始直播</button>
       

@@ -11,9 +11,7 @@ Component({
   },
 
   properties: {
-    roomId: String,
-    isAnchor: Boolean,
-    fullScreen: String
+    fullScreen: Boolean
   },
 
   data: {

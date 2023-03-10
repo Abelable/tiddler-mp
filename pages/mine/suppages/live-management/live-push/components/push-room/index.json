@@ -6,7 +6,7 @@
     "i-poster-modal": "/components/i-poster-modal/index",
     "live-push": "../live-push/index",
     "anchor-capsule": "../anchor-capsule/index",
-    "i-comment": "/components/live/i-comment/index",
+    "comment-showcase": "/components/live/comment-showcase/index",
     "praise-animation": "/components/live/praise-animation/index",
     "input-popup": "/components/live/input-popup/index",
     "mask": "/components/mask/index",

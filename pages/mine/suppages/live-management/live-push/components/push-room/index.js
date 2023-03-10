@@ -123,7 +123,6 @@ Component({
       this.setData({
         shareModalVisible: true,
       });
-      if (this.data.fullScreen) this.exitFullScreen();
     },
 
     showPosterModal() {
@@ -137,7 +136,6 @@ Component({
       this.setData({
         moreFeaturesPopupVisible: true,
       });
-      if (this.data.fullScreen) this.exitFullScreen();
     },
 
     showBeautyPopup() {
@@ -151,7 +149,6 @@ Component({
       this.setData({
         goodsShelvesPopupVisible: true,
       });
-      if (this.data.fullScreen) this.exitFullScreen();
     },
 
     showTrafficRechargePopup() {
