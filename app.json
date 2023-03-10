@@ -1,74 +1,67 @@
 {
   "pages":[
-    "pages/index/index",
-    "pages/index/subpages/sign-in/index",
-    "pages/index/subpages/search/index",
-    "pages/index/subpages/strategy/index",
-    "pages/index/subpages/note/index",
-    "pages/index/subpages/live/index",
-    "pages/index/subpages/video/index",
-    "pages/mall/index",
-    "pages/mall/subpages/search/index",
-    "pages/mall/subpages/ticket/index",
-    "pages/mall/subpages/tour/index",
-    "pages/mall/subpages/hotel/index",
-    "pages/mall/subpages/foot/index",
-    "pages/mall/subpages/goods/index",
-    "pages/mall/subpages/goods/subpages/goods-detail/index",
-    "pages/mall/subpages/goods/subpages/shop/index",
-    "pages/mall/subpages/goods/subpages/cart/index",
-    "pages/mall/subpages/goods/subpages/search/index",
-    "pages/mall/subpages/goods/subpages/order-check/index",
-    "pages/mine/index",
-    "pages/mine/suppages/address-list/index",
-    "pages/mine/suppages/address-list/subpages/add/index",
-    "pages/mine/suppages/address-list/subpages/edit/index",
-    "pages/mine/suppages/order-list/index",
-    "pages/mine/suppages/order-list/subpages/order-detail/index",
-    "pages/mine/suppages/order-list/subpages/comment/index",
-    "pages/mine/suppages/order-list/subpages/shipping/index",
-    "pages/mine/suppages/shop-management/index",
-    "pages/mine/suppages/shop-management/subpages/order-detail/index",
-    "pages/mine/suppages/shop-management/subpages/shipping/index",
-    "pages/mine/suppages/live-management/create-live/index",
-    "pages/mine/suppages/live-management/live-notice/index",
-    "pages/mine/suppages/live-management/live-push/vertical-screen/index",
-    "pages/mine/suppages/live-management/live-push/horizontal-screen/index",
-    "pages/common/register/index",
-    "pages/common/user-center/index",
-    "pages/common/webview/index",
-    "pages/common/pay/index"
+    "pages/tab-bar-pages/home/index",
+    "pages/tab-bar-pages/mall/index",
+    "pages/tab-bar-pages/mine/index"
   ],
+  "subPackages": [{
+    "root": "pages/subpages/",
+    "pages": [
+      "common/register/index",
+      "common/user-center/index",
+      "common/webview/index",
+      "common/pay/index",
+      "home/sign-in/index",
+      "home/search/index",
+      "home/strategy/index",
+      "home/note/index",
+      "home/live/index",
+      "home/video/index",
+      "mall/search/index",
+      "mall/ticket/index",
+      "mall/tour/index",
+      "mall/hotel/index",
+      "mall/foot/index",
+      "mall/goods/index",
+      "mall/goods/subpages/goods-detail/index",
+      "mall/goods/subpages/shop/index",
+      "mall/goods/subpages/cart/index",
+      "mall/goods/subpages/search/index",
+      "mall/goods/subpages/order-check/index",
+      "mine/address-list/index",
+      "mine/address-list/subpages/add/index",
+      "mine/address-list/subpages/edit/index",
+      "mine/order-list/index",
+      "mine/order-list/subpages/order-detail/index",
+      "mine/order-list/subpages/comment/index",
+      "mine/order-list/subpages/shipping/index",
+      "mine/shop-management/index",
+      "mine/shop-management/subpages/order-detail/index",
+      "mine/shop-management/subpages/shipping/index",
+      "mine/live-management/create-live/index",
+      "mine/live-management/live-notice/index",
+      "mine/live-management/live-push/vertical-screen/index",
+      "mine/live-management/live-push/horizontal-screen/index"
+    ]
+  }],
   "tabBar": {
-    "color": "#979797",
-    "selectedColor": "#000000",
-    "borderStyle": "white",
-    "backgroundColor": "#fafafa",
+    "custom": true,
     "list": [
       {
-        "pagePath": "pages/index/index",
-        "text": "首页",
-        "iconPath": "/images/home.png",
-        "selectedIconPath": "/images/home_fill.png"
+        "pagePath": "pages/tab-bar-pages/home/index"
       },
       {
-        "pagePath": "pages/mall/index",
-        "text": "商城",
-        "iconPath": "/images/mall.png",
-        "selectedIconPath": "/images/mall_fill.png"
+        "pagePath": "pages/tab-bar-pages/mall/index"
       },
       {
-        "pagePath": "pages/mine/index",
-        "text": "我的",
-        "iconPath": "/images/mine.png",
-        "selectedIconPath": "/images/mine_fill.png"
+        "pagePath": "pages/tab-bar-pages/mine/index"
       }
     ]
   },
-  "window":{
-    "backgroundTextStyle":"dark",
+  "window": {
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#ffffff",
-    "navigationBarTextStyle":"black",
+    "navigationBarTextStyle": "black",
     "backgroundColor": "#f5f6f8"
   },
   "sitemapLocation": "sitemap.json"

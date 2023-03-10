@@ -1,8 +1,8 @@
-import { WEBVIEW_BASE_URL } from '../../../config'
-import RegisterService from '../../../services/registerService'
+import { WEBVIEW_BASE_URL } from '../../../../config'
+import BaseService from '../../../../services/baseService'
 
+const baseService = new BaseService()
 const { statusBarHeight } = getApp().globalData
-const registerService = new RegisterService()
 
 Page({
   data: {
@@ -11,7 +11,7 @@ Page({
   },
 
   async getMobile(e) {
-    const mobile = await registerService.getUserMobile(e.detail.code)
+    const mobile = await baseService.getUserMobile(e.detail.code)
     if (mobile) {
       this.mobile = mobile
       this.setData({ showAuthModal: true })
@@ -19,14 +19,14 @@ Page({
   },
 
   async getUserInfo() {
-    const { userInfo } = await registerService.getUserProfile()
+    const { userInfo } = await baseService.getUserProfile()
     this.register(userInfo)
   },
 
   async register(userInfo) {
     const { avatarUrl: avatar, nickName: nickname, gender } = userInfo
-    const { code } = await registerService.wxLogin()
-    const token = await registerService.register(code, avatar, nickname, gender, this.mobile)
+    const { code } = await baseService.wxLogin()
+    const token = await baseService.register(code, avatar, nickname, gender, this.mobile)
     if (token) {
       wx.setStorageSync('token', token)
       wx.navigateBack()

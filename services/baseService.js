@@ -3,6 +3,14 @@ import { cleanObject } from '../utils/index'
 import Base from './base/index'
 
 class BaseService extends Base {
+  async getUserMobile(code) {
+    return await this.post({ url: `${this.baseUrl}/auth/wx_mp/mobile`, data: { code } })
+  }
+
+  async register(code, avatar, nickname, gender, mobile) {
+    return await this.post({ url: `${this.baseUrl}/auth/wx_mp/register`, data: { code, avatar, nickname, gender, mobile } })
+  }
+
   async login() {
     const { code } = await this.wxLogin()
     const token = await this.post({ url: `${this.baseUrl}/auth/wx_mp/login`, data: { code } })
