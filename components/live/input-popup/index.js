@@ -63,7 +63,5 @@ Component({
       tim.sendLiveChatMsg(groupId, chatMsg);
       baseService.saveLiveChatMsg(id, content, identity);
     },
-
-    catchtap() {},
   },
 });

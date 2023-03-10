@@ -1,4 +1,4 @@
-<view class="input-wrap row" style="bottom: {{containerBottom}}px;" catchtap="catchtap">
+<view class="input-wrap row" style="bottom: {{containerBottom}}px;">
   <input 
     class="input" 
     placeholder-style="color: #cdcdcd;" 
