@@ -41,7 +41,7 @@ Component({
             canvas.height = renderHeight * dpr
             ctx.scale(dpr, dpr)
 
-            for (let i = 1; i < 8; i++) {
+            for (let i = 1; i < 18; i++) {
               const likeImgae = canvas.createImage()
               likeImgae.src = `./images/${i}.png`
               likeImgae.onload = () => {
@@ -75,8 +75,8 @@ Component({
       }
       let times = newVal - oldVal
       // 限制差值大小
-      if (times >= 6) {
-        times = 6
+      if (times >= 18) {
+        times = 18
       }
       for (let i = 0; i < times; i++) {
         setTimeout(() => {
