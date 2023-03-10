@@ -24,7 +24,7 @@ Page({
   },
 
   onShareAppMessage() {
-    const path = `/pages/subpages/common/webview/index?url=${this.webviewUrl.replace('?', '&')}`
+    const path = `/pages/subpages/subpages/common/webview/index?url=${this.webviewUrl.replace('?', '&')}`
     return { path }
   }
 })
