@@ -1,42 +1,10 @@
 .input-wrap {
   position: fixed;
   left: 0;
+  padding: 10px 15px;
   width: 100%;
   background: #fff;
   border-radius: 10px 10px 0 0;
-}
-
-.phrase-wrap {
-  display: flex;
-  align-items: center;
-  padding: 10px 0 0 15px;
-}
-.label {
-  color: #999;
-  font-size: 12px;
-}
-.phrase-list {
-  flex: 1;
-  overflow-x: scroll;
-  white-space: nowrap;
-}
-.phrase {
-  display: inline-block;
-  margin-right: 10px;
-  padding: 0 10px;
-  height: 23px;
-  color: #999;
-  font-size: 12px;
-  line-height: 23px;
-  background: #F1F5F7;
-  border-radius: 12px;
-}
-
-.input-main {
-  display: flex;
-  align-items: center;
-  padding: 10px 15px;
-  width: 100%;
 }
 .input {
   margin-left: 5px;

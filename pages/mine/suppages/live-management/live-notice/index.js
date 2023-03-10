@@ -40,7 +40,7 @@ Page({
       content: '确定删除直播预告吗？',
       success: (result) => {
         if(result.confirm){
-          liveService.deleteNoticeRoom(this.data.roomInfo.id, () => {
+          liveService.deleteNoticeRoom(() => {
             wx.showToast({
               title: '删除成功',
               icon: 'none',
