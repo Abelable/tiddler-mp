@@ -218,7 +218,22 @@ Component({
     praise() {
       wx.vibrateShort({ type: "heavy" });
       if (!this.data.manualPraise) this.setData({ manualPraise: true });
-      liveService.praiseHandler(this.properties.roomInfo.id);
+
+      let praiseCount = store.praiseCount
+      store.setPraiseCount(++praiseCount)
+      if (typeof(this.praiseCount) != 'number') this.praiseCount = 0
+      ++this.praiseCount
+      if (!this.savePraiseInterval) {
+        this.savePraiseInterval = setInterval(() => {
+          if (this.praiseCount) {
+            liveService.savePraiseCount(this.properties.roomInfo.id, this.praiseCount)
+            this.praiseCount = 0
+          } else {
+            clearInterval(this.savePraiseInterval)
+            this.savePraiseInterval = null
+          }
+        }, 5000)
+      }
     },
 
     handleCustomMsg(customMsg) {

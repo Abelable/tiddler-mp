@@ -1,6 +1,10 @@
 <wxs module="NUM" src="/utils/filters/num.wxs" />
 
 <live-push src="{{roomInfo.pushUrl || ''}}" start="{{start}}" stop="{{stop}}">
+  <view class="praise-animation-wrap">
+    <praise-animation count="{{praiseCount}}" manual="{{manualPraise}}" />
+  </view>
+  
   <view 
     class="inner {{roomInfo.direction === 2 ? 'horizontal' : ''}}"
     style="top: {{roomInfo.direction === 2 ? 8 : statusBarHeight}}px;"
@@ -12,9 +16,9 @@
         </view>
         <anchor-capsule />
       </view>
-      <view class="recommend-goods row" wx:if="{{recommendGood}}">
+      <view class="recommend-goods row" wx:if="{{recommendGoods}}">
         <view class="recommend-goods-title">热门推荐</view>
-        <image class="recommend-goods-pic" src="{{recommendGood.goods_img}}" />
+        <image class="recommend-goods-pic" src="{{recommendGoods.image}}" />
       </view>
     </view>
 
@@ -37,14 +41,11 @@
           <image class="feature-btn" catchtap="showGoodsShelvesPopup" src="./images/cart.png" />
           <image class="feature-btn" catchtap="showMoreFeaturesPopup" src="https://img.ubo.vip/mp/sass/live-push/more.png" />
           <image class="feature-btn" catchtap="showShareModal" src="https://img.ubo.vip/mp/sass/live-push/share.png" />
-          <view class="feature-btn">
-            <view class="praise-icon" catchtap="praise" hover-class="hover" hover-stop-propagation="false">
+          <view class="feature-btn" catchtap="praise">
+            <view class="praise-icon" hover-class="hover" hover-stop-propagation="false">
               <image style="width: 35px; height: 35px;" src="https://img.ubo.vip/mp/sass/live-push/praise.png" />
             </view>
             <view class="praise-count" wx:if="{{praiseCount}}">{{NUM.over(praiseCount, 100000)}}</view>
-            <view class="praise-animation-wrap">
-              <praise-animation count="{{praiseCount}}" manual="{{manualPraise}}" />
-            </view>
           </view>
         </view>
       </view>

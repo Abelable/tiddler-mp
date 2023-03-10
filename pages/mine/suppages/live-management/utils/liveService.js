@@ -43,6 +43,13 @@ class LiveService extends BaseService {
       success
     });
   }
+
+  async savePraiseCount(id, count) {
+    return await this.post({
+      url: `${this.baseUrl}/media/live/praise`,
+      data: { id, count }
+    });
+  }
 }
 
 export default LiveService;

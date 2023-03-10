@@ -13,8 +13,9 @@
   justify-content: center;
   width: fit-content;
   height: fit-content;
-  color: #161F4E;
+  color: #EE3769;
   font-size: 200rpx;
+  font-weight: bold;
 }
 .count-down::after{
   --t: 5;

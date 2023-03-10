@@ -91,7 +91,7 @@ Component({
         timer: 0,
         opacity: 1,
         pathData: this.generatePathData(),
-        image: this.properties.manual ? userAvatar : imagesArr[Math.floor(Math.random() * imagesArr.length)],
+        image: this.properties.manual ? [...imagesArr, userAvatar][Math.floor(Math.random() * (imagesArr.length + 1))] : imagesArr[Math.floor(Math.random() * imagesArr.length)],
         imageSize: 0.5,
         factor: {
           speed: 0.01, // 运动速度，值越小越慢
