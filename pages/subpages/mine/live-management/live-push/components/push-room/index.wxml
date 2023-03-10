@@ -54,7 +54,7 @@
 </live-push>
 
 <i-share-popup wx:if="{{shareModalVisible}}" roomId="{{roomInfo.id}}" bind:showPosterModal="showPosterModal" bind:hide="hideModal" />
-<i-features-popup 
+<more-features-popup 
   wx:if="{{moreFeaturesPopupVisible}}"
   roomInfo="{{roomInfo}}"
   bind:showSubscribePopup="showSubscribeRemindPopup" 
