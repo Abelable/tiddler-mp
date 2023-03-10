@@ -80,7 +80,7 @@ Page({
 
   setNoticeTime(e) {
     const { date, dateString } = e.detail;
-    this.noticeTime = `${Date.parse(date)}`;
+    this.noticeTime = new Date(date).toISOString();
     this.setData({
       noticeTimeString: dateString.slice(0, -3),
     });

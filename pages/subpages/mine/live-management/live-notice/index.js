@@ -19,7 +19,7 @@ Page({
     const roomInfo = await liveService.getNoticeRoomInfo()
     if (roomInfo) {
       this.setData({ roomInfo })
-      this.setCountDown(roomInfo.noticeTime)
+      this.setCountDown(new Date(roomInfo.noticeTime).getTime())
     }
   },
 
