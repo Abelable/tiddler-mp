@@ -30,18 +30,17 @@ Component({
     start: false,
     stop: false,
     liveEnd: false, // 直播结束
+    recommendGood: null,
     manualPraise: false, // 是否是手动点赞
     audienceActionTips: "", // 观众行为（进直播间、下单...）
     showAudienceActionTips: false, // 控制观众行为弹幕的显示隐藏
-    inputVisible: false,
+    inputPopupVisible: false,
     shareModalVisible: false,
     posterModalVisible: false,
     moreFeaturesPopupVisible: false,
     beautyPopupVisible: false,
-    startRemindPopupVisible: false,
-    quitModalVisible: false,
+    subscribeRemindPopupVisible: false,
     goodsShelvesPopupVisible: false,
-    recommendGood: null,
   },
 
   observers: {
@@ -109,23 +108,14 @@ Component({
 
     showInput() {
       this.setData({
-        inputVisible: true,
+        inputPopupVisible: true,
       });
     },
 
-    hideInputModal() {
-      if (this.data.inputDefaultValue) {
-        this.setData({
-          inputDefaultValue: "",
-        });
-      }
-      this.hideModal();
-    },
-
-    showStartRemindPopup() {
+    showSubscribeRemindPopup() {
       this.setData({
         moreFeaturesPopupVisible: false,
-        startRemindPopupVisible: true,
+        subscribeRemindPopupVisible: true,
       });
     },
 
@@ -172,24 +162,22 @@ Component({
 
     hideModal() {
       const {
-        inputVisible,
+        inputPopupVisible,
         shareModalVisible,
         posterModalVisible,
         moreFeaturesPopupVisible,
         beautyPopupVisible,
-        startRemindPopupVisible,
-        quitModalVisible,
+        subscribeRemindPopupVisible,
         goodsShelvesPopupVisible,
       } = this.data;
-      if (inputVisible) this.setData({ inputVisible: false });
+      if (inputPopupVisible) this.setData({ inputPopupVisible: false });
       if (shareModalVisible) this.setData({ shareModalVisible: false });
       if (posterModalVisible) this.setData({ posterModalVisible: false });
       if (moreFeaturesPopupVisible)
         this.setData({ moreFeaturesPopupVisible: false });
       if (beautyPopupVisible) this.setData({ beautyPopupVisible: false });
-      if (startRemindPopupVisible)
-        this.setData({ startRemindPopupVisible: false });
-      if (quitModalVisible) this.setData({ quitModalVisible: false });
+      if (subscribeRemindPopupVisible)
+        this.setData({ subscribeRemindPopupVisible: false });
       if (goodsShelvesPopupVisible)
         this.setData({ goodsShelvesPopupVisible: false });
     },

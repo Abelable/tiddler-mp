@@ -57,21 +57,19 @@
 <i-features-popup 
   wx:if="{{moreFeaturesPopupVisible}}"
   roomInfo="{{roomInfo}}"
-  trafficPanelVisible="{{trafficPanelVisible}}"
-  bind:showSubscribePopup="showStartRemindPopup" 
+  bind:showSubscribePopup="showSubscribeRemindPopup" 
   bind:showBeautyPopup="showBeautyPopup"
   bind:hide="hideModal"
 />
-<subscribe-remind-popup wx:if="{{startRemindPopupVisible}}" groupId="{{roomInfo.group_id}}" bind:hide="hideModal" />
+<subscribe-remind-popup wx:if="{{subscribeRemindPopupVisible}}" groupId="{{roomInfo.group_id}}" bind:hide="hideModal" />
 <beauty-popup wx:if="{{beautyPopupVisible}}" bind:hide="hideModal" />
 <goods-shelves-popup wx:if="{{goodsShelvesPopupVisible}}" roomInfo="{{roomInfo}}" bind:hide="hideModal" bind:getRecommendGood="getRecommendGood" />
 
 <mask 
-  wx:if="{{inputVisible || quitModalVisible || posterModalVisible}}" 
+  wx:if="{{inputPopupVisible || posterModalVisible}}" 
   filter="{{posterModalVisible}}"
-  opcity="{{inputVisible ? 0 : 0.3}}"
+  opcity="{{inputPopupVisible ? 0 : 0.3}}"
   catchtap="hideModal"
 />
-<i-input wx:if="{{inputVisible}}" roomInfo="{{roomInfo}}" isLivePush defaultValue="{{inputDefaultValue}}" bind:hide="hideInputModal" />
-<i-quit-modal wx:if="{{quitModalVisible}}" bind:pause="pauseRoom" bind:stop="quitRoom" />
+<input-popup wx:if="{{inputPopupVisible}}" roomInfo="{{roomInfo}}" identity="{{2}}" bind:hide="hideModal" />
 <i-poster-modal wx:if="{{posterModalVisible}}" roomPosterInfo="{{roomPosterInfo}}" bind:hidePosterModal="hideModal" />
