@@ -201,11 +201,11 @@ Component({
           success: (result) => {
             if (result.confirm) {
               this.setData({ stop: true });
-              store.resetRoomData();
               store.setAudienceCount(0);
               store.setPraiseCount(0);
-              liveService.stopLive();
-              wx.switchTab({ url: "/pages/mine/index" });
+              liveService.stopLive(() => {
+                wx.switchTab({ url: "/pages/mine/index" });
+              });
             }
           },
         });
