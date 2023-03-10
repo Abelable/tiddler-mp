@@ -246,7 +246,7 @@ Page({
 
   navToShop(e) {
     wx.navigateTo({ 
-      url: `/pages/mall/subpages/goods/subpages/shop/index?id=${e.currentTarget.dataset.id}`
+      url: `/pages/subpages/mall/goods/subpages/shop/index?id=${e.currentTarget.dataset.id}`
     })
   },
 

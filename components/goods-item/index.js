@@ -16,7 +16,7 @@ Component({
 
     navToShop() {
       wx.navigateTo({
-        url: `/pages/mall/subpages/goods/subpages/shop/index?id=${this.properties.item.shopInfo.id}`
+        url: `/pages/subpages/mall/goods/subpages/shop/index?id=${this.properties.item.shopInfo.id}`
       })
     },
   }

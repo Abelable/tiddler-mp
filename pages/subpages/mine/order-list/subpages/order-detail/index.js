@@ -100,7 +100,7 @@ Page({
 
   navToShop(e) {
     const { id } = e.currentTarget.dataset
-    const url = `/pages/mall/subpages/goods/subpages/shop/index?id=${id}`
+    const url = `/pages/subpages/mall/goods/subpages/shop/index?id=${id}`
     wx.navigateTo({ url })
   },
 })

@@ -70,7 +70,7 @@ Page({
   // 分享
   onShareAppMessage() {
     const { id, name: title, image: imageUrl } = this.data.shopInfo
-    const path = `/pages/mall/subpages/goods/subpages/shop/index?id=${id}`
+    const path = `/pages/subpages/mall/goods/subpages/shop/index?id=${id}`
     return { title, imageUrl, path }
   },
 
