@@ -2,20 +2,27 @@
   position: absolute;
   left: 8px;
   right: 8px;
-  bottom: env(safe-area-inset-bottom);
+  bottom: calc(8px + env(safe-area-inset-bottom));
 }
 .inner.horizontal {
   left: 30px;
   right: 30px;
-  bottom: calc(8px + env(safe-area-inset-bottom));
 }
 
 .header {
   position: absolute;
   width: 100%;
 }
+
 .nav-bar {
   height: 44px;
+}
+.close-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.3);
+  border: 0.5px solid rgba(255,255,255,0.3);
 }
 
 .header-layer {

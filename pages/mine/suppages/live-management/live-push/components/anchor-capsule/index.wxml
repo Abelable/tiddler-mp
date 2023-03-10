@@ -1,0 +1,9 @@
+<wxs module="NUM" src="/utils/filters/num.wxs" />
+
+<view class="anchor-capsule row">
+  <image class="anchor-avatar" src="{{userInfo.avatar}}" />
+  <view class="anchor-capsule-content">
+    <view class="anchor-name omit single-line">{{userInfo.nickname}}</view>
+    <view class="audience-count">{{NUM.over(audienceCount, 100000)}}人观看</view>
+  </view>
+</view>

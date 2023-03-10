@@ -5,7 +5,7 @@
     "i-share-popup": "/components/i-share-modal/index",
     "i-poster-modal": "/components/i-poster-modal/index",
     "live-push": "../live-push/index",
-    "i-anchor-capsule": "/components/live/i-anchor-capsule/index",
+    "anchor-capsule": "../anchor-capsule/index",
     "i-comment": "/components/live/i-comment/index",
     "praise-animation": "/components/live/praise-animation/index",
     "i-input": "/components/live/i-input/index",

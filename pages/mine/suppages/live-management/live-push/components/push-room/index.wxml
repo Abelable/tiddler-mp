@@ -7,8 +7,10 @@
   >
     <view class="header">
       <view class="nav-bar row">
-        <back-icon custom bind:navigateBack="confirmStopLive"/>
-        <i-anchor-capsule roomInfo="{{roomInfo}}" />
+        <view class="close-icon row center" bindtap="confirmStopLive">
+          <image style="width: 18px; height: 18px;" src="./images/close.png" />
+        </view>
+        <anchor-capsule />
       </view>
       <view class="recommend-goods row" wx:if="{{recommendGood}}">
         <view class="recommend-goods-title">热门推荐</view>
