@@ -2,6 +2,7 @@ import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
 import { store } from "../../../../../../../store/index";
 import tim from "../../../../../../../utils/tim/index";
 import LiveService from "../../../utils/liveService";
+import { MSG_TYPE_PRAISE } from './utils/msgType'
 
 const liveService = new LiveService();
 const { statusBarHeight } = getApp().globalData;
@@ -238,93 +239,44 @@ Component({
 
     handleCustomMsg(customMsg) {
       if (customMsg) {
-        if (customMsg) {
-          let {
-            manualPraise,
-            praiseCount,
-            audienceCount,
-            showAudienceActionTips,
-          } = this.data;
+        let {
+          manualPraise,
+          praiseCount,
+          audienceCount,
+          showAudienceActionTips,
+        } = this.data;
 
-          switch (customMsg.type) {
-            case "user_coming":
-              if (!showAudienceActionTips) {
-                this.setData({
-                  audienceActionTips: {
-                    type: "coming",
-                    message: customMsg.message,
-                  },
-                  showAudienceActionTips: true,
-                });
-                setTimeout(() => {
-                  this.setData({ showAudienceActionTips: false });
-                }, 2000);
-              }
-              break;
+        switch (customMsg.type) {
+          case "user_coming":
+            if (!showAudienceActionTips) {
+              this.setData({
+                audienceActionTips: {
+                  type: "coming",
+                  message: customMsg.message,
+                },
+                showAudienceActionTips: true,
+              });
+              setTimeout(() => {
+                this.setData({ showAudienceActionTips: false });
+              }, 2000);
+            }
+            break;
 
-            case "robot_in_group":
-              if (!showAudienceActionTips) {
-                this.setData({
-                  audienceActionTips: {
-                    type: "coming",
-                    isRobot: 1,
-                    message: customMsg.message,
-                  },
-                  showAudienceActionTips: true,
-                });
-                setTimeout(() => {
-                  this.setData({ showAudienceActionTips: false });
-                }, 2000);
-              }
-              break;
+          case "user_comed":
+            if (customMsg.zhubo_total_num) {
+              store.setAudienceCount(customMsg.zhubo_total_num || 0);
+            } else {
+              store.setAudienceCount(++audienceCount);
+            }
+            break;
 
-            case "user_comed":
-              if (customMsg.zhubo_total_num) {
-                store.setAudienceCount(customMsg.zhubo_total_num || 0);
-              } else {
-                store.setAudienceCount(++audienceCount);
-              }
-              break;
-
-            case "user_leaving":
-              if (customMsg.zhubo_total_num) {
-                store.setAudienceCount(customMsg.zhubo_total_num || 0);
-              } else {
-                --audienceCount;
-                store.setAudienceCount(audienceCount < 0 ? 0 : audienceCount);
-              }
-              break;
-
-            case "live_room_like":
-              const newPraiseCount = Number(customMsg.like_num);
-              if (newPraiseCount > praiseCount) {
-                manualPraise && this.setData({ manualPraise: false });
-                store.setPraiseCount(newPraiseCount);
-              }
-              break;
-
-            case "group_subtitle":
-              store.setSubtitleContent(customMsg.subtitle);
-              break;
-
-            case "delete_group_msg":
-              store.deleteLiveMsg(customMsg.delete);
-              break;
-
-            case "animation":
-              store.setAnimationIndex(Number(customMsg.index));
-              break;
-
-            case "update_tag":
-              const userIds = customMsg.user_id.split(",");
-              if (userIds.includes(`${store.userInfo.id}`)) {
-                liveService.setCurUserTagList(
-                  this.properties.roomInfo.studio_id,
-                  store.userInfo.id
-                );
-              }
-              break;
-          }
+          case MSG_TYPE_PRAISE:
+            const { praiseNumber } = customMsg.data;
+            if (praiseNumber > praiseCount) {
+              manualPraise && this.setData({ manualPraise: false });
+              store.setPraiseCount(praiseNumber);
+            }
+            break;
         }
       }
     },

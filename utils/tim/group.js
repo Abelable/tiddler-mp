@@ -45,8 +45,8 @@ export const sendLiveCustomMsg = (selToId, customMsg) => {
   })
 }
 
-export const handleLiveCustomMsg = (payload) => {
-  getApp().globalData.liveCustomMsg = JSON.parse(payload.data)
+export const handleLiveCustomMsg = (data) => {
+  getApp().globalData.liveCustomMsg = data
 }
 
 let liveChatMsgCache = []

@@ -42,7 +42,9 @@ const onMsgReceive = ({ data = [] }) => {
     switch (conversationType) {
       case TIM.TYPES.CONV_SYSTEM:
         if (type === TIM.TYPES.MSG_GRP_SYS_NOTICE) {
-          handleLiveCustomMsg(payload)
+          if (payload.userDefinedField) {
+            handleLiveCustomMsg(JSON.parse(payload.userDefinedField).data)
+          }
         }
         break
 

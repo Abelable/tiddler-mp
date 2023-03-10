@@ -2,9 +2,9 @@
 
 <live-push src="{{roomInfo.pushUrl || ''}}" start="{{start}}" stop="{{stop}}">
   <view class="praise-animation-wrap">
-    <praise-animation count="{{praiseCount}}" manual="{{manualPraise}}" />
+    <praise-animation count="{{praiseCount || 0}}" manual="{{manualPraise}}" />
   </view>
-  
+
   <view 
     class="inner {{roomInfo.direction === 2 ? 'horizontal' : ''}}"
     style="top: {{roomInfo.direction === 2 ? 8 : statusBarHeight}}px;"
