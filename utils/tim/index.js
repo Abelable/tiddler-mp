@@ -38,6 +38,7 @@ const logout = () => {
 
 const onMsgReceive = ({ data = [] }) => {
   data.forEach(item => {
+    console.log('tim', item)
     const { conversationType, type, payload } = item
     switch (conversationType) {
       case TIM.TYPES.CONV_SYSTEM:

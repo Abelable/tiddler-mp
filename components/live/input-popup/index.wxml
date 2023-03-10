@@ -16,6 +16,6 @@
     always-embed
     adjust-position="{{false}}" 
     cursor-spacing='9' 
-    />
-  <view class="send-btn" catchtap="filterMsg">发送</view>
+  />
+  <view class="send-btn" bindtap="filterMsg">发送</view>
 </view>
