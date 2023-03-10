@@ -61,7 +61,7 @@ Component({
           store.setLiveMsgList([
             ...historyChatMsgList,
             {
-              message:
+              content:
                 "平台依法对直播内容进行24小时巡查，倡导绿色直播，维护网络文明健康。切勿与他人私下交易，非官方活动谨慎参与，避免上当受骗。",
             },
           ]);

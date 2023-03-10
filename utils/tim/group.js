@@ -21,7 +21,7 @@ export const sendLiveChatMsg = (selToId, chatMsg) => {
     to: selToId,
     conversationType: TIM.TYPES.CONV_GROUP,
     payload: {
-      data: JSON.stringify(chatMsg)
+      text: JSON.stringify(chatMsg)
     }
   })
   return store.tim.sendMessage(message).catch(err => {

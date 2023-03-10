@@ -60,6 +60,7 @@ Component({
       const { id, groupId } = roomInfo;
       const { id: userId, nickname, avatar } = store.userInfo;
       const chatMsg = { identity, userId, nickname, avatar, content };
+      console.log(chatMsg)
       store.setLiveMsgList(chatMsg);
       tim.sendLiveChatMsg(groupId, chatMsg);
       baseService.saveLiveChatMsg(id, content, identity);

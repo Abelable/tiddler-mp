@@ -39,7 +39,6 @@
 .tag {
   display: inline-block;
   margin-right: 5px;
-  vertical-align: top;
   padding: 0 6px;
   height: 18px;
   font-size: 11px;
