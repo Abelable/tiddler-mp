@@ -252,7 +252,7 @@ Page({
 
   showGoodsDetail(e){
     wx.navigateTo({ 
-      url: `/pages/mall/subpages/goods/subpages/goods-detail/index?id=${e.currentTarget.dataset.id}`
+      url: `/pages/subpages/mall/goods/subpages/goods-detail/index?id=${e.currentTarget.dataset.id}`
     })
   },
 

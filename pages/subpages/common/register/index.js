@@ -42,6 +42,6 @@ Page({
   },
 
   navToHome() {
-    wx.switchTab({ url: '/pages/index/index' })
+    wx.switchTab({ url: '/pages/tab-bar-pages/home/index' })
   }
 })

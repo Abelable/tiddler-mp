@@ -187,7 +187,7 @@ Page({
   // 分享
   onShareAppMessage() {
     const { id, name: title, image: imageUrl } = this.data.goodsInfo
-    const path = `/pages/mall/subpages/goods/subpages/goods-detail/index?id=${id}`
+    const path = `/pages/subpages/mall/goods/subpages/goods-detail/index?id=${id}`
     return { title, imageUrl, path }
   },
 
