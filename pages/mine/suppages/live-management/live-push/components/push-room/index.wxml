@@ -65,7 +65,7 @@
 <beauty-popup wx:if="{{beautyPopupVisible}}" bind:hide="hideModal" />
 <goods-shelves-popup wx:if="{{goodsShelvesPopupVisible}}" roomInfo="{{roomInfo}}" bind:hide="hideModal" bind:getRecommendGood="getRecommendGood" />
 
-<mask 
+<modal-mask 
   wx:if="{{inputPopupVisible || posterModalVisible}}" 
   filter="{{posterModalVisible}}"
   opcity="{{inputPopupVisible ? 0 : 0.3}}"

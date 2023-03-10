@@ -9,7 +9,7 @@
     "input-popup": "/components/live/input-popup/index",
     "comment-showcase": "/components/live/comment-showcase/index",
     "praise-animation": "/components/live/praise-animation/index",
-    "mask": "/components/mask/index",
+    "modal-mask": "/components/modal-mask/index",
     "more-features-popup": "../more-features-popup/index",
     "subscribe-remind-popup": "../subscribe-remind-popup/index",
     "beauty-popup": "../beauty-popup/index",
