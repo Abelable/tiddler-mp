@@ -64,7 +64,7 @@
         },
         {
           "name": "支付",
-          "pathName": "pages/common/pay/index",
+          "pathName": "pages/subpages/common/pay/index",
           "query": "",
           "launchMode": "default",
           "scene": null
