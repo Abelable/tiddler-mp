@@ -1,5 +1,5 @@
 <view class="login-wrap">
-  <image class="bg" mode="widthFix" src="./images/bg.jpeg" />
+  <image class="bg" mode="widthFix" src="http://img.ubo.vip/tiddler/register/bg.jpeg" />
   <view class="back-icon-wrap" style="top: {{statusBarHeight + 5}}px">
     <back-icon custom bind:navigateBack="navToHome" />
   </view>
@@ -24,7 +24,7 @@
   <view class="modal-mask" wx:if="{{showAuthModal}}" bindtap="hideModal" />
   <view class="modal-dialog" wx:if="{{showAuthModal}}">
     <view class="modal-title">
-      <image style="width: 300rpx; height: 230rpx;" src="./images/discover.png" />
+      <image style="width: 300rpx; height: 230rpx;" src="http://img.ubo.vip/tiddler/register/discover.png" />
     </view>
     <view class="modal-content">
       <view>申请获得您的公开信息</view>
