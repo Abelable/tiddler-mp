@@ -6,7 +6,7 @@
 </view>
 
 <view class="container">
-  <image class="bg" src="/images/bg.jpg" />
+  <image class="bg" src="https://img.ubo.vip/tiddler/bg.jpg" />
   <view class="content">
     <view class="avatar-wrap">
       <image class="avatar" src="{{userInfo.avatar}}" />

@@ -84,3 +84,9 @@ switch {
 .omit.single-line {
   -webkit-line-clamp: 1;
 }
+
+.avatar-default {
+  background-image: url('https://img.ubo.vip/tiddler/default-avatar.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

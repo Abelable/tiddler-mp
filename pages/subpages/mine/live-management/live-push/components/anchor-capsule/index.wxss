@@ -11,9 +11,7 @@
 .anchor-avatar {
   width: 27px;
   height: 27px;
-  flex-shrink: 0;
   border-radius: 50%;
-  background: #f5f6f7;
 }
 .anchor-capsule-content {
   margin-left: 5px;
