@@ -23,7 +23,6 @@ Component({
   },
 
   methods: {
-    // 消息输入
     bindInput(e) {
       this.content = e.detail.value;
     },
@@ -45,11 +44,6 @@ Component({
         return;
       }
       this.sendMessage(this.content);
-      this.triggerEvent("hide");
-    },
-
-    sendPhrase(e) {
-      this.sendMessage(e.currentTarget.dataset.phrase);
       this.triggerEvent("hide");
     },
 
