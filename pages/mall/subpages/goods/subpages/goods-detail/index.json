@@ -9,7 +9,7 @@
     "fall-flow": "/components/fall-flow/index",
     "goods-item": "/components/goods-item/index",
     "spec-popup": "../../components/spec-popup/index",
-    "i-mask": "/components/i-mask/index",
+    "mask": "/components/mask/index",
     "i-share-modal": "/components/i-share-modal/index",
     "i-poster-modal": "/components/i-poster-modal/index"
   }
