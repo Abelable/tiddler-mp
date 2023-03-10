@@ -14,7 +14,7 @@
         },
         {
           "name": "我的",
-          "pathName": "pages/mine/index",
+          "pathName": "pages/tab-bar-pages/mine/index",
           "query": "",
           "scene": null
         },
@@ -50,7 +50,7 @@
         },
         {
           "name": "注册",
-          "pathName": "pages/common/register/index",
+          "pathName": "pages/subpages/common/register/index",
           "query": "",
           "launchMode": "default",
           "scene": null

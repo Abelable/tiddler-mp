@@ -190,13 +190,13 @@ Component({
               store.setAudienceCount(0);
               store.setPraiseCount(0);
               liveService.stopLive(() => {
-                wx.switchTab({ url: "/pages/mine/index" });
+                wx.switchTab({ url: "/pages/tab-bar-pages/mine/index" });
               });
             }
           },
         });
       } else {
-        wx.switchTab({ url: "/pages/mine/index" });
+        wx.switchTab({ url: "/pages/tab-bar-pages/mine/index" });
       }
     },
 
