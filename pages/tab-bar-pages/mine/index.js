@@ -124,14 +124,14 @@ Component({
       const statusInfo = await baseService.getRoomStatus();
       if (!statusInfo) {
         wx.navigateTo({
-          url: "./suppages/live-management/create-live/index",
+          url: "/pages/subpages/mine/live-management/create-live/index",
         });
       } else {
         const { status, direction } = statusInfo;
         const url =
           status === 3
-            ? "./suppages/live-management/live-notice/index"
-            : `./suppages/live-management/live-push/${
+            ? "/pages/subpages/mine/live-management/live-notice/index"
+            : `/pages/subpages/mine/live-management/live-push/${
                 direction === 1 ? "vertical" : "horizontal"
               }-screen/index`;
         wx.navigateTo({ url });
