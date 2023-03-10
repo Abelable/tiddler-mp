@@ -1,6 +1,0 @@
-
-<view class="anchor-capsule">
-  <image class="anchor-avatar" src="{{roomInfo.studio_head_img}}" />
-  <view class="anchor-name omit single-line">{{roomInfo.studio_title}}</view>
-  <view class="follow-icon" wx:if="{{roomType == 2}}" catchtap="follow">{{isFollow ? '订阅' : '关注'}}</view>
-</view>
