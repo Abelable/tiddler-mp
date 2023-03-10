@@ -22,9 +22,9 @@
   margin-left: 15px;
   width: 70px;
   height: 36px;
-  color: #FFE5BD;
+  color: #fff;
   font-size: 14px;
   font-weight: bold;
-  background: linear-gradient(128deg, #404A5C 0%, #0F131A 100%);
+  background: #161F4E;
   border-radius: 18px;
 }
