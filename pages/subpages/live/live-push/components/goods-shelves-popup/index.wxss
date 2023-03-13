@@ -172,16 +172,12 @@
   border-radius: 12px;
 }
 .recommend-btn {
-  color: #2F3241;
-  background: linear-gradient(315deg, #DAB174 0%, #FFE5BD 100%);
+  color: #fff;
+  background: linear-gradient(90deg, #f71854 0%, #ee5e84 100%);
 }
 .recommend-btn.invalid {
   color: #666;
   background: #E4E4E4;
-}
-.coupon-btn {
-  color: #BA9243;
-  border: 1px solid #BA9243;
 }
 
 .goods-pick-btn {

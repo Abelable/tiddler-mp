@@ -53,7 +53,40 @@ class LiveService extends BaseService {
   async getPushRoomGoodsList(status) {
     return await this.get({
       url: `${this.baseUrl}/media/live/push_room_goods_list`,
-      data: { status }
+      data: { status },
+      loadingTitle: '加载中...'
+    })
+  }
+
+  async listingGoods(goodsIds, success) {
+    return await this.post({
+      url: `${this.baseUrl}/media/live/listing_goods`,
+      data: { goodsIds },
+      success
+    })
+  }
+
+  async delistingGoods(goodsIds, success) {
+    return await this.post({
+      url: `${this.baseUrl}/media/live/de_listing_goods`,
+      data: { goodsIds },
+      success
+    })
+  }
+
+  async setHotGoods(goodsId, success) {
+    return await this.post({
+      url: `${this.baseUrl}/media/live/set_hot_goods`,
+      data: { goodsId },
+      success
+    })
+  }
+
+  async cancelHotGoods(goodsId, success) {
+    return await this.post({
+      url: `${this.baseUrl}/media/live/cancel_hot_goods`,
+      data: { goodsId },
+      success
     })
   }
 }

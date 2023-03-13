@@ -22,7 +22,7 @@
           <image class="select-icon" src="{{allSelected ? './images/selected.png' : './images/unselected.png'}}"  />
           <view class="all-pick-title">全选商品一键{{curMenuIdx === 0 ? '下架' : '上架'}}</view>
         </view>
-        <view class="all-pick-btn row center" ontap="statusChange" data-type="downAll">
+        <view class="all-pick-btn row center" bindtap="{{curMenuIdx === 0 ? 'delistingSelectedGoods' : 'listingSelectedGoods'}}">
           <view>{{curMenuIdx === 0 ? '下架' : '上架'}}</view>
           <image class="all-pick-icon" src="{{curMenuIdx === 0 ? './images/down.png' : './images/up.png' }}" />
         </view>
@@ -40,8 +40,16 @@
             <view class="goods-price-wrap">
               <price-unit price="{{item.price}}" />
               <view class="btns-wrap">
-                <view class="recommend-btn {{item.isHot ? 'invalid' : ''}}" wx:if="{{curMenuIdx === 0}}" bindtap="{{item.isHot ? 'cancleHot' : 'setHot'}}" data-id="{{item.id}}">{{item.isHot ? '取消热卖' : '热卖'}}</view>
-                <image class="goods-pick-btn" bindtap="{{curMenuIdx === 0 ? 'delisting' : 'listing'}}" data-id="{{item.id}}" src="{{curMenuIdx === 0 ? './images/down.png' : './images/up.png'}}" />
+                <view 
+                  class="recommend-btn {{item.isHot ? 'invalid' : ''}}" 
+                  wx:if="{{curMenuIdx === 0}}" 
+                  bindtap="{{item.isHot ? 'cancelHot' : 'setHot'}}" 
+                  data-id="{{item.id}}"
+                  data-index="{{index}}"
+                  >
+                    {{item.isHot ? '取消热卖' : '设为热卖'}}
+                  </view>
+                <image class="goods-pick-btn" bindtap="{{curMenuIdx === 0 ? 'delistingGoods' : 'listingGoods'}}" data-id="{{item.id}}" src="{{curMenuIdx === 0 ? './images/down.png' : './images/up.png'}}" />
               </view>
             </view>
           </view>
