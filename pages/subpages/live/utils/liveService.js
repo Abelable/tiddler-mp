@@ -49,6 +49,13 @@ class LiveService extends BaseService {
       data: { id, count }
     });
   }
+
+  async getPushRoomGoodsList(status) {
+    return await this.get({
+      url: `${this.baseUrl}/media/live/push_room_goods_list`,
+      data: { status }
+    })
+  }
 }
 
 export default LiveService;

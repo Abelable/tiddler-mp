@@ -1,88 +1,52 @@
 <import src="/templates/empty-illus/index.wxml"/>
 
-<i-popup bind:hide="hide">
+<popup bind:hide="hide">
   <view class="goods-shelves-popup">
     <view class="menu-wrap">
-      <view class="memu-item {{curMenuIdx === 0 ? 'selected' : ''}}" bindtap="selectMenu" data-index="0">上架商品</view>
-      <view class="memu-item {{curMenuIdx === 1 ? 'selected' : ''}}" bindtap="selectMenu" data-index="1">未上架商品</view>
+      <view 
+        class="memu-item {{curMenuIdx === 0 ? 'selected' : ''}}" 
+        wx:for="{{['上架中商品', '未上架商品']}}" wx:key="index" 
+        bindtap="selectMenu" data-index="{{index}}"
+      >{{item}}</view>
     </view>
     <scroll-view class="goods-list-wrap" wx:if="{{curMenuIdx === 0}}" scroll-y bindscrolltolower="scrolltolowerFn">
       <view class="all-pick-bar">
         <view class="all-pick-title-wrap" ontap="dataSelectAll0Fn">
-          <image class="select-icon" src="{{dataSelectAll0 ? '/images/selected.png' : '/images/unselected.png'}}"  />
-          <view class="all-pick-title">全选商品一键下架</view>
+          <image class="select-icon" src="{{allSelected ? '/images/selected.png' : '/images/unselected.png'}}"  />
+          <view class="all-pick-title">全选商品一键{{curMenuIdx === 0 ? '下架' : '上架'}}</view>
         </view>
         <view class="all-pick-btn" ontap="statusChange" data-type="downAll">
-          <view>下架</view>
-          <image class="all-pick-icon" src="/images/live/goods-shelves-popup/all-down.png" />
+          <view>{{curMenuIdx === 0 ? '下架' : '上架'}}</view>
+          <image class="all-pick-icon" src="{{curMenuIdx === 0 ? './images/all-down.png' : './images/all-up.png' }}" />
         </view>
       </view>
 
       <view class="goods-list">
-        <view class="goods-item" wx:for="{{dataList0}}" wx:key="index" >
-          <image class="select-icon" wx:if="{{dataSelectAll0}}" ontap="selectOne0" data-id="{{item.goods_id}}" src="{{item.check  ? '/images/selected.png' : '/images/unselected.png'}}" />
+        <view class="goods-item" wx:for="{{goodsList}}" wx:key="index" >
+          <image class="select-icon" wx:if="{{allSelected}}" bindtap="select" data-id="{{item.id}}" src="{{item.checked  ? './images/selected.png' : './images/unselected.png'}}" />
           <view class="goods-img-wrap">
-            <image class="goods-img" src="{{item.goods_img}}" />
-            <view class="goods-id" wx:if="{{curMenuIdx === 0 && item.sort_no}}">{{item.sort_no}}</view>
+            <image class="goods-img" src="{{item.image}}" />
+            <view class="goods-id">{{index}}</view>
           </view>
           <view class="goods-info-wrap">
             <view class="goods-name">
               <text class="goods-tag">直播上新</text>
-              <text>{{item.goods_name}}</text>
+              <text>{{item.name}}</text>
             </view>
-            <view class="goods-stock">库存：{{item.goods_number}}件</view>
+            <view class="goods-stock">库存：{{item.stock}}件</view>
             <view class="goods-price-wrap">
-              <view class="goods-price">{{item.shop_price}}</view>
+              <view class="goods-price">{{item.price}}</view>
               <view class="btns-wrap">
-                <view class="recommend-btn invalid" ontap="recommendFn" data-type="2" data-id="{{item.goods_id}}" wx:if="{{recommend_id == item.goods_id}}">取消推荐</view>
-                <view class="recommend-btn" ontap="recommendFn" data-type="1" data-id="{{item.goods_id}}" wx:else>推荐</view>
-                <image class="goods-pick-btn" ontap="statusChange" data-type="downOne" data-id="{{item.goods_id}}" src="/images/live/goods-shelves-popup/down.png" />
+                <view class="recommend-btn {{item.isHot ? 'invalid' : ''}}" bindtap="{{item.isHot ? 'cancleHot' : 'setHot'}}" data-id="{{item.id}}">{{item.isHot ? '取消热卖' : '热卖'}}</view>
+                <image class="goods-pick-btn" bindtap="{{curMenuIdx === 0 ? 'delisting' : 'listing'}}" data-id="{{item.id}}" src="{{curMenuIdx === 0 ? './images/down.png' : './images/up.png'}}" />
               </view>
             </view>
           </view>
         </view>
       </view>
-      <view class="empty-illus-wrap" wx:if="{{dataList0.length == 0}}">
-        <template is="i-empty-illus" data="{{desc: '暂无商品'}}" />
-      </view>
-    </scroll-view>
-    <scroll-view class="goods-list-wrap" wx:if="{{curMenuIdx === 1}}" scroll-y bindscrolltolower="scrolltolowerFn">
-      <view class="all-pick-bar">
-        <view class="all-pick-title-wrap" ontap="dataSelectAll1Fn">
-          <image class="select-icon" src="{{dataSelectAll1 ? '/images/selected.png' : '/images/unselected.png'}}"  />
-          <view class="all-pick-title">全选商品一键上架</view>
-        </view>
-        <view class="all-pick-btn" ontap="statusChange" data-type="upAll">
-          <view>上架</view>
-          <image class="all-pick-icon" src="/images/live/goods-shelves-popup/all-up.png" />
-        </view>
-      </view>
-      <view class="goods-list">
-        <view class="goods-item" wx:for="{{dataList1}}" wx:key="index" >
-          <image class="select-icon" wx:if="{{dataSelectAll1}}"  ontap="selectOne1" data-id="{{item.goods_id}}" src="{{item.check ? '/images/selected.png' : '/images/unselected.png'}}" />
-          <view class="goods-img-wrap">
-            <image class="goods-img" src="{{item.goods_img}}" />
-            <view class="goods-id">{{index+1}}</view>
-          </view>
-          <view class="goods-info-wrap">
-            <view class="goods-name">
-              <text class="goods-tag">直播上新</text>
-              <text>{{item.goods_name}}</text>
-            </view>
-            <view class="goods-stock">库存：{{item.goods_number}}件</view>
-            <view class="goods-price-wrap">
-              <view class="goods-price">{{item.shop_price}}</view>
-              <view class="btns-wrap">
-                <!-- <view class="coupon-btn">发券</view> -->
-                <image class="goods-pick-btn" ontap="statusChange" data-type="upOne" data-id="{{item.goods_id}}" src="/images/live/goods-shelves-popup/up.png" />
-              </view>
-            </view>
-          </view>
-        </view>
-      </view>
-      <view class="empty-illus-wrap" wx:if="{{dataList1.length == 0}}">
+      <view class="empty-illus-wrap" wx:if="{{!goodsList.length}}">
         <template is="i-empty-illus" data="{{desc: '暂无商品'}}" />
       </view>
     </scroll-view>
   </view>
-</i-popup>
+</popup>
