@@ -1,4 +1,11 @@
 Component({
+  properties: {
+    background: {
+      type: String,
+      value: '#fff'
+    }
+  },
+
   data: {
     show: false
   },

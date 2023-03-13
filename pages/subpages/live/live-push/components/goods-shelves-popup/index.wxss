@@ -1,27 +1,23 @@
-@import "/templates/empty-illus/index.wxss";
-
-.empty-illus-wrap {
-  margin-top:100rpx;
-}
-
 .goods-shelves-popup {
-  background: #f5f6f7;
   padding-bottom: env(safe-area-inset-bottom);
+  background: #f5f6f7;
+  border-radius: 15px 15px 0 0;
 }
 
+.header {
+  padding: 6px 12px;
+  background: #fff;
+  border-radius: 15px 15px 0 0;
+}
 .menu-wrap {
-  display: flex;
-  align-items: center;
-  height: 50px;
+  padding: 0 6px;
+  height: 40px;
 }
 .memu-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
+  margin-right: 24px;
   height: 40px;
   color: #999;
-  font-size: 16px;
+  font-size: 15px;
 }
 .memu-item.selected {
   position: relative;
@@ -30,12 +26,17 @@
 .memu-item.selected::after {
   position: absolute;
   left: 50%;
-  bottom: 0;
+  bottom: 3px;
   transform: translateX(-50%);
-  width: 52px;
-  height: 2px;
+  width: 100%;
+  height: 3px;
   content: "";
-  background: #FDCC87;
+  border-radius: 1.5px;
+  background: #3979BE;
+}
+.multiple-switch {
+  color: #333;
+  font-size: 14px;
 }
 
 .goods-list-wrap {
@@ -43,46 +44,37 @@
   height: 500px;
   max-height: calc(100vh - 50px - env(safe-area-inset-bottom));
   overflow-y: scroll;
-  padding-top:12px;
 }
 
 .all-pick-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  margin-top: 12px;
   padding: 0 15px;
   height: 36px;
   background: #fff;
   border-radius: 18px;
-}
-.all-pick-title-wrap {
-  display: flex;
-  align-items: center;
 }
 .select-icon {
   width: 16px;
   height: 16px;
 }
 .all-pick-title {
-  margin-left: 7px;
+  margin-left: 12px;
   color: #333;
   font-size: 14px;
 }
 .all-pick-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 64px;
   height: 24px;
-  color: #FFE5BD;
+  color: #fff;
   font-size: 12px;
-  background: linear-gradient(270deg, #404A5C 0%, #0F131A 99%);
+  line-height: 1;
+  background: #3979BE;
   border-radius: 15px;
 }
 .all-pick-icon {
   margin-left: 3px;
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
 }
 
 .goods-list {
@@ -98,7 +90,7 @@
   border-radius: 12px;
 }
 .goods-item .select-icon{
-  margin-right:7px;
+  margin-right: 12px;
 }
 .goods-img-wrap {
   position: relative;
