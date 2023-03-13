@@ -1,4 +1,3 @@
-import { store } from '../../../../../store/index'
 import LiveService from '../utils/liveService'
 
 const liveService = new LiveService()

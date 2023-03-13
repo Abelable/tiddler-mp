@@ -15,7 +15,6 @@
       "home/search/index",
       "home/strategy/index",
       "home/note/index",
-      "home/live/index",
       "home/video/index",
       "mall/search/index",
       "mall/ticket/index",
@@ -38,10 +37,10 @@
       "mine/shop-management/index",
       "mine/shop-management/subpages/order-detail/index",
       "mine/shop-management/subpages/shipping/index",
-      "mine/live-management/create-live/index",
-      "mine/live-management/live-notice/index",
-      "mine/live-management/live-push/vertical-screen/index",
-      "mine/live-management/live-push/horizontal-screen/index"
+      "live/create-live/index",
+      "live/live-notice/index",
+      "live/live-push/vertical-screen/index",
+      "live/live-push/horizontal-screen/index"
     ]
   }],
   "tabBar": {
