@@ -1,6 +1,6 @@
 <view class="nav-bar {{navBarActive ? 'active': ''}}" style="padding-top: {{statusBarHeight}}px">
   <view class="menu-tabs-wrap">
-    <image class="sign-tab" src="./images/sign.png" bindtap="signIn" />
+    <image class="notice-icon" src="./images/notice.png" bindtap="navToNoticeCenter" />
     <view class="menu-tabs">
       <view wx:for="{{['关注', '发现']}}" wx:key="index" class="menu-tab {{curMenuIndex === index ? 'active' : ''}}" bindtap="switchMenu" data-index="{{index}}">{{item}}</view>
     </view>

@@ -19,13 +19,13 @@
   justify-content: center;
   height: 44px;
 }
-.sign-tab {
+.notice-icon {
   position: absolute;
   top: 50%;
   left: 8px;
   transform: translateY(-50%);
-  width: 34px;
-  height: 34px;
+  width: 24px;
+  height: 24px;
 }
 .menu-tabs {
   display: flex;

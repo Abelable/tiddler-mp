@@ -36,15 +36,22 @@
       <button class="start-btn" wx:if="{{!start && !countdownVisible}}" bindtap="startCountdown" hover-class="none">开始直播</button>
       
       <view class="btns-wrap row" wx:if="{{start}}">
-        <view class="input-btn" catchtap="showInput">说点什么......</view>
+        <view class="input-btn row">
+          <image class="chat-icon" src="./images/chat.png" />
+          <text>说点什么...</text>
+        </view>
         <view class="row">
-          <image class="feature-btn" catchtap="showGoodsShelvesPopup" src="./images/cart.png" />
-          <image class="feature-btn" catchtap="showMoreFeaturesPopup" src="https://img.ubo.vip/mp/sass/live-push/more.png" />
-          <image class="feature-btn" catchtap="showShareModal" src="https://img.ubo.vip/mp/sass/live-push/share.png" />
-          <view class="feature-btn" catchtap="praise">
-            <view class="praise-icon" hover-class="hover" hover-stop-propagation="false">
-              <image style="width: 35px; height: 35px;" src="https://img.ubo.vip/mp/sass/live-push/praise.png" />
-            </view>
+          <view class="feature-btn row center" catchtap="showGoodsShelvesPopup" >
+            <image class="goods-icon" src="./images/goods.png" />
+          </view>
+          <view class="feature-btn row center" catchtap="showMoreFeaturesPopup" >
+            <image class="more-icon" src="./images/more.png" />
+          </view>
+           <view class="feature-btn row center" catchtap="showShareModal" >
+            <image class="share-icon" src="./images/share.png" />
+          </view>
+          <view class="feature-btn row center" catchtap="praise">
+            <image class="praise-icon" hover-class="hover" hover-stop-propagation="false" src="./images/praise.png" />
             <view class="praise-count" wx:if="{{praiseCount}}">{{NUM.over(praiseCount, 100000)}}</view>
           </view>
         </view>
