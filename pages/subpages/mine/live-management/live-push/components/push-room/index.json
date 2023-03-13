@@ -14,6 +14,7 @@
     "subscribe-remind-popup": "../subscribe-remind-popup/index",
     "beauty-popup": "../beauty-popup/index",
     "goods-shelves-popup": "../goods-shelves-popup/index",
-    "count-down": "../count-down/index"
+    "count-down": "../count-down/index",
+    "explanation-goods": "../explanation-goods/index"
   }
 }

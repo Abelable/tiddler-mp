@@ -9,18 +9,18 @@
     class="inner {{roomInfo.direction === 2 ? 'horizontal' : ''}}"
     style="top: {{roomInfo.direction === 2 ? 8 : statusBarHeight}}px;"
   >
-    <view class="header">
-      <view class="nav-bar row">
-        <view class="close-icon row center" bindtap="confirmStopLive">
-          <image style="width: 18px; height: 18px;" src="./images/close.png" />
-        </view>
-        <anchor-capsule />
+    <view class="nav-bar row">
+      <view class="close-icon row center" bindtap="confirmStopLive">
+        <image style="width: 18px; height: 18px;" src="/images/close.png" />
       </view>
-      <view class="recommend-goods row" wx:if="{{recommendGoods}}">
-        <view class="recommend-goods-title">热门推荐</view>
-        <image class="recommend-goods-pic" src="{{recommendGoods.image}}" />
-      </view>
+      <anchor-capsule />
     </view>
+
+    <explanation-goods 
+      wx:if="{{explanationGoods && explanationGoodsVisible}}" 
+      goodsInfo="{{explanationGoods}}" 
+      bind:hide="hideExplanationGoods"
+    />
 
     <count-down wx:if="{{countdownVisible && !start}}" />
 

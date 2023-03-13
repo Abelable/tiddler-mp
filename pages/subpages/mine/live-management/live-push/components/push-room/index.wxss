@@ -15,12 +15,9 @@
   right: 30px;
 }
 
-.header {
+.nav-bar {
   position: absolute;
   width: 100%;
-}
-
-.nav-bar {
   height: 44px;
 }
 .close-icon {
@@ -29,35 +26,6 @@
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.3);
   border: 0.5px solid rgba(255,255,255,0.3);
-}
-
-.header-layer {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 11px;
-}
-
-.recommend-goods {
-  flex-direction: column;
-  margin-top: 11px;
-  width: 62px;
-  height: 82px;
-  background-image: url('https://img.ubo.vip/youbo_plus/live/recommend-goods-bg.png');
-  background-size: 100%;
-  background-repeat: no-repeat;
-}
-.recommend-goods-title {
-  margin-top: 1px;
-  color: #FFE5BD;
-  font-size: 10px;
-  line-height: 15px;
-}
-.recommend-goods-pic {
-  margin-top: 6px;
-  width: 57px;
-  height: 57px;
-  border-radius: 9px;
 }
 
 .footer {
@@ -170,7 +138,7 @@
   transition: .3s linear;
 }
 .audience-action-tips.coming {
-  background: rgba(11,157,59,0.6);
+  background: rgba(238, 55, 105, 0.6);
 }
 .audience-action-tips.follow {
   background: rgba(251,28,28,0.6);
