@@ -62,10 +62,10 @@
 
 <i-share-popup wx:if="{{shareModalVisible}}" roomId="{{roomInfo.id}}" bind:showPosterModal="showPosterModal" bind:hide="hideModal" />
 <more-features-popup 
-  wx:if="{{moreFeaturesPopupVisible}}"
+  wx:if="{{moreFeaturesPopupVisible}}" 
   roomInfo="{{roomInfo}}"
-  bind:showSubscribePopup="showSubscribeRemindPopup" 
   bind:showBeautyPopup="showBeautyPopup"
+  bind:showSubscribePopup="showSubscribeRemindPopup" 
   bind:hide="hideModal"
 />
 <subscribe-remind-popup wx:if="{{subscribeRemindPopupVisible}}" groupId="{{roomInfo.group_id}}" bind:hide="hideModal" />

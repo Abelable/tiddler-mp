@@ -7,9 +7,6 @@ export default {
   localMirror: 'auto',
   muted: false,
   definitionIndex: 0,
-  userFixed: false,
-  vestInfo: null,
-  vestIndex: 0,
   lampVisible: false,
 
   setDevicePosition: action(function (status) {
@@ -26,15 +23,6 @@ export default {
   }),
   setDefinitionIndex: action(function (index) {
     this.definitionIndex = index
-  }),
-  setUserFixed: action(function (turthy) {
-    this.userFixed = turthy
-  }),
-  setVestInfo: action(function (info) {
-    this.vestInfo = info
-  }),
-  setVestIndex: action(function (index) {
-    this.vestIndex = index
   }),
   toggleLampVisible: action(function () {
     this.lampVisible = !this.lampVisible
