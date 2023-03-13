@@ -47,7 +47,7 @@
                   data-id="{{item.id}}"
                   data-index="{{index}}"
                   >
-                    {{item.isHot ? '取消热卖' : '设为热卖'}}
+                    {{item.isHot ? '取消讲解' : '讲解'}}
                   </view>
                 <image class="goods-pick-btn" bindtap="{{curMenuIdx === 0 ? 'delistingGoods' : 'listingGoods'}}" data-id="{{item.id}}" src="{{curMenuIdx === 0 ? './images/down.png' : './images/up.png'}}" />
               </view>

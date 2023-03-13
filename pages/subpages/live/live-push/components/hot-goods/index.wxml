@@ -1,7 +1,7 @@
 <view class="hot-goods" catchtap="navToGoodsDetail">
   <view class="status-tips row">
     <view class="dot" />
-    <view>热卖中</view>
+    <view>讲解中</view>
   </view>
   <view class="close-btn row center" catchtap="hide">
     <image class="close-icon" src="/images/close.png" />
