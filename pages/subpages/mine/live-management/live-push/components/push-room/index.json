@@ -15,6 +15,6 @@
     "beauty-popup": "../beauty-popup/index",
     "goods-shelves-popup": "../goods-shelves-popup/index",
     "count-down": "../count-down/index",
-    "explanation-goods": "../explanation-goods/index"
+    "hot-goods": "../hot-goods/index"
   }
 }

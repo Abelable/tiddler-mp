@@ -16,9 +16,9 @@
       <anchor-capsule />
     </view>
 
-    <explanation-goods 
-      wx:if="{{explanationGoods && explanationGoodsVisible}}" 
-      goodsInfo="{{explanationGoods}}" 
+    <hot-goods 
+      wx:if="{{hotGoods && hotGoodsVisible}}" 
+      goodsInfo="{{hotGoods}}" 
       bind:hide="hideExplanationGoods"
     />
 

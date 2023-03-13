@@ -30,7 +30,8 @@ Component({
     start: false,
     stop: false,
     liveEnd: false, // 直播结束
-    recommendGood: null,
+    hotGoods: null,
+    hotGoodsVisible: true,
     manualPraise: false, // 是否是手动点赞
     audienceActionTips: "", // 观众行为（进直播间、下单...）
     showAudienceActionTips: false, // 控制观众行为弹幕的显示隐藏
