@@ -1,5 +1,5 @@
 import { store } from "../../../store/index";
-const { statusBarHeight, windowHeight } = getApp().globalData
+const { statusBarHeight, windowHeight } = getApp().globalData.systemInfo
 
 Component({
   data: {

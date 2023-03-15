@@ -1,0 +1,131 @@
+.image-cropper {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(14, 13, 13, 0.8);
+  z-index: 1;
+}
+.main {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+.content {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9;
+}
+
+.bg_black {
+  background: rgba(0, 0, 0, 0.8) !important;
+}
+
+.bg_gray {
+  background: rgba(0, 0, 0, 0.45);
+  transition-duration: 0.35s;
+}
+
+.content > .content_top {
+  pointer-events: none;
+}
+
+.content > .content_middle {
+  display: flex;
+  height: 200px;
+  width: 100%;
+}
+
+.content_middle_middle {
+  position: relative;
+  width: 200px;
+  box-sizing: border-box;
+  transition-duration: 0.3s;
+}
+
+.content_middle_right {
+  flex: auto;
+}
+
+.content > .content_bottom {
+  flex: auto;
+}
+
+.img {
+  z-index: 2;
+  top: 0;
+  left: 0;
+  position: absolute;
+  border: none;
+  width: 100%;
+  backface-visibility: hidden;
+  transform-origin: center;
+}
+
+.image-cropper-canvas {
+  position: fixed;
+  background: white;
+  width: 150px;
+  height: 150px;
+  z-index: 10;
+  top: -200%;
+  pointer-events: none;
+}
+
+.border {
+  position: absolute;
+  background: #fff;
+  pointer-events: auto;
+}
+.border.top-left {
+  left: -2.5px;
+  top: -2.5px;
+  width: 33rpx;
+  height: 2.5px;
+}
+.border.top-right {
+  right: -2.5px;
+  top: -2.5px;
+  width: 33rpx;
+  height: 2.5px;
+}
+.border.right-top {
+  top: -1px;
+  right: -2.5px;
+  width: 2.5px;
+  height: 30rpx;
+}
+.border.right-bottom {
+  right: -2.5px;
+  bottom: -1px;
+  width: 2.5px;
+  height: 30rpx;
+}
+.border.bottom-left {
+  bottom: -2.5px;
+  left: -2.5px;
+  width: 33rpx;
+  height: 2.5px;
+}
+.border.bottom-right {
+  bottom: -2.5px;
+  right: -2.5px;
+  width: 33rpx;
+  height: 2.5px;
+}
+.border.left-top {
+  top: -1px;
+  left: -2.5px;
+  width: 2.5px;
+  height: 30rpx;
+}
+.border.left-bottom {
+  left: -2.5px;
+  bottom: -1px;
+  width: 2.5px;
+  height: 30rpx;
+}

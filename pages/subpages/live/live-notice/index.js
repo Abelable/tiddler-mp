@@ -1,7 +1,7 @@
 import LiveService from '../utils/liveService'
 
 const liveService = new LiveService()
-const { statusBarHeight } = getApp().globalData
+const { statusBarHeight } = getApp().globalData.systemInfo
 
 Page({
   data: {

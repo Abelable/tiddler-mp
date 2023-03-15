@@ -1,4 +1,4 @@
-const { statusBarHeight } = getApp().globalData
+const { statusBarHeight } = getApp().globalData.systemInfo
 
 Page({
   data: {

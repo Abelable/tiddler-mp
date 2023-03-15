@@ -1,6 +1,7 @@
 import promisify from './promisify'
 
 export default {
+  getSystemInfo: promisify(wx.getSystemInfo),
   getSetting: promisify(wx.getSetting),
   getLocation: promisify(wx.getLocation),
   request: promisify(wx.request),

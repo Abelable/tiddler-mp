@@ -1,4 +1,4 @@
-const { statusBarHeight } = getApp().globalData
+const { statusBarHeight } = getApp().globalData.systemInfo
 
 import { checkLogin, customBack } from '../../../../utils/index'
 import GoodsService from './utils/goodsService'

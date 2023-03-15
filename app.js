@@ -6,8 +6,7 @@ const baseService = new BaseService()
 
 App({
   globalData: {
-    statusBarHeight: '',
-    windowHeight: '',
+    systemInfo: null,
     liveCustomMsg: null,
   },
 
@@ -29,14 +28,8 @@ App({
     tim.init(Number(sdkAppId), String(userId), userSig)
   },
 
-  setSystemInfo() {
-    wx.getSystemInfo({
-      success: res => {
-        const { windowHeight, statusBarHeight } = res
-        this.globalData.statusBarHeight = statusBarHeight
-        this.globalData.windowHeight = windowHeight
-      }
-    })
+  async setSystemInfo() {
+    this.globalData.systemInfo = await baseService.getSystemInfo()
   },
 
   update() {

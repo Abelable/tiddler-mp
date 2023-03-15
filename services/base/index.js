@@ -106,6 +106,10 @@ class Base {
     }
   }
 
+  getSystemInfo() {
+    return api.getSystemInfo()
+  }
+
   getSetting() {
     return api.getSetting()
   }

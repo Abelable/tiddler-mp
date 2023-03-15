@@ -5,7 +5,7 @@ import LiveService from "../../../utils/liveService";
 import { MSG_TYPE_PRAISE } from "./utils/msgType";
 
 const liveService = new LiveService();
-const { statusBarHeight } = getApp().globalData;
+const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Component({
   options: {

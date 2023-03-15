@@ -4,7 +4,7 @@ import { checkLogin } from "../../../utils/index";
 import BaseService from "../../../services/baseService";
 
 const baseService = new BaseService();
-const { statusBarHeight } = getApp().globalData;
+const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Component({
   behaviors: [storeBindingsBehavior],

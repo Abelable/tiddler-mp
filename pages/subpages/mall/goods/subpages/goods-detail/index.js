@@ -2,7 +2,7 @@ import { getQueryString, checkLogin } from '../../../../../../utils/index'
 import GoodsService from '../../utils/goodsService'
 
 const goodsService = new GoodsService()
-const { statusBarHeight } = getApp().globalData
+const { statusBarHeight } = getApp().globalData.systemInfo
 const navBarHeight = statusBarHeight + 44
 
 Page({

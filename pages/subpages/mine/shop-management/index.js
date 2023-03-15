@@ -2,7 +2,7 @@ import { WEBVIEW_BASE_URL } from '../../../../config'
 import ShopService from './utils/shopService'
 
 const shopService = new ShopService()
-const { statusBarHeight } = getApp().globalData
+const { statusBarHeight } = getApp().globalData.systemInfo
 
 Page({
   data: {
