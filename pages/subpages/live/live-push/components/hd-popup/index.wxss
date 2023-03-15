@@ -1,8 +1,3 @@
-.hd-popup {
-  padding-bottom: env(safe-area-inset-bottom);
-  overflow-y: scroll;
-}
-
 .title {
   display: flex;
   align-items: center;
@@ -15,15 +10,15 @@
 }
 
 .resolution-selections {
-  margin-top: 20rpx;
+  margin: 0 12px 12px;
 }
 .resolution-selection {
-  width: 204rpx;
-  height: 100rpx;
+  width: 102px;
+  height: 50px;
   color: #999;
   text-align: center;
   background: #F5F6F7;
-  border-radius: 8rpx;
+  border-radius: 4px;
 }
 .resolution-selection.active {
   position: relative;
@@ -31,11 +26,11 @@
   background: linear-gradient(128deg, #53678d 0%, #161F4E 100%);
 }
 .resolution-name {
-  margin-top: 16rpx;
-  font-size: 24rpx;
+  margin-top: 8px;
+  font-size: 12px;
   font-weight: bold;
 }
 .resolution-detail {
-  margin-top: 6rpx;
-  font-size: 20rpx;
+  margin-top: 3px;
+  font-size: 10px;
 }

@@ -1,6 +1,6 @@
 <popup bind:hide="hide">
   <view class="hd-popup">
-    <view class="title">更多功能</view>
+    <view class="title">选择清晰度</view>
     <view class="resolution-selections row between">
       <view 
         class="resolution-selection {{definitionIndex === index ? 'active' : ''}}" 

@@ -6,7 +6,7 @@ export default {
   remoteMirror: true,
   localMirror: 'auto',
   muted: false,
-  definitionIndex: 0,
+  definitionIndex: 2,
   lampVisible: false,
 
   setDevicePosition: action(function (status) {
