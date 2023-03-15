@@ -220,14 +220,13 @@ Component({
      * 上传图片
      */
     upload() {
-      let that = this;
       wx.chooseImage({
         count: 1,
         sizeType: ["original", "compressed"],
         sourceType: ["album", "camera"],
         success(res) {
           const tempFilePaths = res.tempFilePaths[0];
-          that.pushImg(tempFilePaths);
+          this.pushImg(tempFilePaths);
           wx.showLoading({
             title: "加载中...",
           });
@@ -443,7 +442,7 @@ Component({
         },
       });
     },
-    imageLoad(e) {
+    imageLoad() {
       setTimeout(() => {
         this.triggerEvent("imageload", this.data.imageObject);
       }, 1000);
