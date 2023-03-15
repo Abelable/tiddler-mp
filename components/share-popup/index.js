@@ -1,12 +1,15 @@
 Component({
-  properties: {
-    show: Boolean,
-    desc: String
+  options: {
+    addGlobalClass: true
   },
-  
+
   methods: {
     showPosterModal() {
       this.triggerEvent('showPosterModal')
+    },
+
+    hide() {
+      this.triggerEvent('hide')
     }
   }
 })

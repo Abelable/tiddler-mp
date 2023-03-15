@@ -1,0 +1,16 @@
+<popup bind:hide="hide">
+  <view class="share-popup row between">
+    <view class="share-btn">
+      <button class="icon-wrap wechat" open-type='share' hover-class="none">
+        <image class="icon" src="./images/wechat.png" />
+      </button>
+      <view class="desc">分享好友</view>
+    </view>
+    <view class="share-btn">
+      <view class="icon-wrap qrcode row center" catchtap="showPosterModal">
+        <image class="icon" src="./images/qrcode.png" />
+      </view>
+      <view class="desc">生成海报</view>
+    </view>
+  </view>
+</popup>

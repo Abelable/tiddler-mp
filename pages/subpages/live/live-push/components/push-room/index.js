@@ -36,7 +36,7 @@ Component({
     audienceActionTips: "", // 观众行为（进直播间、下单...）
     showAudienceActionTips: false, // 控制观众行为弹幕的显示隐藏
     inputPopupVisible: false,
-    shareModalVisible: false,
+    sharePopupVisible: false,
     posterModalVisible: false,
     moreFeaturesPopupVisible: false,
     beautyPopupVisible: false,
@@ -115,15 +115,15 @@ Component({
       });
     },
 
-    showShareModal() {
+    showSharePopup() {
       this.setData({
-        shareModalVisible: true,
+        sharePopupVisible: true,
       });
     },
 
     showPosterModal() {
       this.setData({
-        shareModalVisible: false,
+        sharePopupVisible: false,
         posterModalVisible: true,
       });
     },
@@ -163,7 +163,7 @@ Component({
     hideModal() {
       const {
         inputPopupVisible,
-        shareModalVisible,
+        sharePopupVisible,
         posterModalVisible,
         moreFeaturesPopupVisible,
         beautyPopupVisible,
@@ -172,7 +172,7 @@ Component({
         goodsShelvesPopupVisible,
       } = this.data;
       if (inputPopupVisible) this.setData({ inputPopupVisible: false });
-      if (shareModalVisible) this.setData({ shareModalVisible: false });
+      if (sharePopupVisible) this.setData({ sharePopupVisible: false });
       if (posterModalVisible) this.setData({ posterModalVisible: false });
       if (moreFeaturesPopupVisible)
         this.setData({ moreFeaturesPopupVisible: false });

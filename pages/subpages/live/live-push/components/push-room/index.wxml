@@ -47,7 +47,7 @@
           <view class="feature-btn row center" catchtap="showMoreFeaturesPopup" >
             <image class="more-icon" src="./images/more.png" />
           </view>
-           <view class="feature-btn row center" catchtap="showShareModal" >
+           <view class="feature-btn row center" catchtap="showSharePopup" >
             <image class="share-icon" src="./images/share.png" />
           </view>
           <view class="feature-btn row center" catchtap="praise">
@@ -60,7 +60,8 @@
   </view>
 </live-push>
 
-<i-share-popup wx:if="{{shareModalVisible}}" roomId="{{roomInfo.id}}" bind:showPosterModal="showPosterModal" bind:hide="hideModal" />
+<goods-shelves-popup wx:if="{{goodsShelvesPopupVisible}}" bind:hide="hideModal" />
+<share-popup wx:if="{{sharePopupVisible}}" bind:showPosterModal="showPosterModal" bind:hide="hideModal" />
 <more-features-popup 
   wx:if="{{moreFeaturesPopupVisible}}" 
   roomInfo="{{roomInfo}}"
@@ -72,7 +73,6 @@
 <beauty-popup wx:if="{{beautyPopupVisible}}" bind:hide="hideModal" />
 <hd-popup wx:if="{{hdPopupVisible}}" bind:hide="hideModal" />
 <subscribe-remind-popup wx:if="{{subscribeRemindPopupVisible}}" groupId="{{roomInfo.groupId}}" bind:hide="hideModal" />
-<goods-shelves-popup wx:if="{{goodsShelvesPopupVisible}}" roomInfo="{{roomInfo}}" bind:hide="hideModal" bind:getRecommendGood="getRecommendGood" />
 
 <modal-mask 
   wx:if="{{inputPopupVisible || posterModalVisible}}" 

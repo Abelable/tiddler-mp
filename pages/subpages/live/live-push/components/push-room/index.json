@@ -2,7 +2,7 @@
   "component": true,
   "usingComponents": {
     "back-icon": "/components/back-icon-white/index",
-    "i-share-popup": "/components/i-share-modal/index",
+    "share-popup": "/components/share-popup/index",
     "i-poster-modal": "/components/i-poster-modal/index",
     "live-push": "../live-push/index",
     "anchor-capsule": "../anchor-capsule/index",
