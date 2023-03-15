@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "popup": "/components/popup/index",
+    "empty-illus": "/components/empty-illus/index"
+  }
+}
