@@ -1,5 +1,3 @@
-@import "./templates/i-status-loading/index.wxss";
-
 .room {
   width: 100%;
   height: 100%;

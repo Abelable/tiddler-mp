@@ -1,6 +1,6 @@
 import { storeBindingsBehavior } from 'mobx-miniprogram-bindings'
-import { store } from '../../../../../../store/index'
-import { debounce } from '../../../../../../utils/index'
+import { store } from '../../../../../../../../store/index'
+import { debounce } from '../../../../../../../../utils/index'
 
 Component({ 
   behaviors: [storeBindingsBehavior],

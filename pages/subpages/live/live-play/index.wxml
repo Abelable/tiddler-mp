@@ -2,14 +2,16 @@
 
 <swiper class="rooms-wrap" bindchange="changeRoom" vertical>
   <swiper-item wx:for="{{roomList}}" wx:key="index">
-    <image class="bg" src="{{IMG.resize(item.cover, 10)}}" mode="aspectFill" lazy-load="{{true}}" />
-    <i-room class="room" wx:if="{{index === curRoomIdx}}" roomInfo="{{roomList[curRoomIdx]}}" />
+    <image class="bg" wx:if="{{index > (curRoomIdx - 2) && index < (curRoomIdx + 2)}}" src="{{IMG.resize(item.cover, 10)}}" mode="aspectFill" lazy-load />
+    <block wx:if="{{index === curRoomIdx}}">
+      <play-room wx:if="{{item.status === 1}}" roomInfo="{{item}}" />
+      <live-notice wx:if="{{item.status === 3}}" roomInfo="{{item}}" />
+    </block>
   </swiper-item>
 </swiper>
 
-<i-back-icon class="back-icon" style="top: {{statusBarHeight}}px;"/>
+<back-icon class="back-icon" style="top: {{statusBarHeight}}px;"/>
 <i-mask wx:if="{{maskVisible}}" opcity="{{maskOpcity}}" ontap="hideModal" />
-<i-anchor-modal wx:if="{{anchorModalVisible}}" roomInfo="{{roomList[curRoomIdx]}}" />
 <i-input wx:if="{{inputModalVisible}}" roomInfo="{{roomList[curRoomIdx]}}" />
 <i-goods-modal show="{{goodsModalVisible}}" goodsList="{{goodsList}}" liveId="{{roomList[curRoomIdx].id}}" bind:showSpecSelection="showSpecModal"/>
 <i-spec-modal show="{{specModalVisible}}" />
