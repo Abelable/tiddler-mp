@@ -58,7 +58,7 @@
     </view>
     <view class="list row between" wx:if="{{userInfo.shopId}}">
       <view class="title">添加商品</view>
-      <view class="list-picker row" bindtap="selectGoods">
+      <view class="list-picker row" bindtap="showGoodsPickerPopup">
         <text>{{pickedGoodsIds.length ? ('已选' + pickedGoodsIds.length + '件商品') : '请选择商品'}}</text>
         <image class="arrow" src="https://img.ubo.vip/mp/sass/mine/gray-arrow.png" />
       </view>
@@ -85,3 +85,5 @@
 <button class="create-btn" bindtap="startLive">{{isNotice ? '创建预告' : '开始直播'}}</button>
 
 <count-down wx:if="{{countDownVisible}}" />
+
+<goods-picker-popup show="{{goodsPickerPopupVisible}}" bind:confirm="setGoodsIds" bind:hide="hideGoodsPickerPopup" />

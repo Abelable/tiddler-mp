@@ -18,6 +18,7 @@ Page({
     shareCover: "",
     direction: 1,
     isMerchant: false,
+    goodsPickerPopupVisible: false,
     pickedGoodsIds: [],
     noticeTimeString: "",
     isNotice: false,
@@ -70,7 +71,24 @@ Page({
     });
   },
 
-  selectGoods() {},
+  showGoodsPickerPopup() {
+    this.setData({
+      goodsPickerPopupVisible: true
+    })
+  },
+
+  setGoodsIds(e) {
+    this.setData({
+      pickedGoodsIds: e.detail,
+      goodsPickerPopupVisible: false
+    })
+  },
+
+  hideGoodsPickerPopup() {
+    this.setData({
+      goodsPickerPopupVisible: false
+    })
+  },
 
   toggleIsNotice(e) {
     this.setData({
@@ -122,6 +140,7 @@ Page({
       goodsIds: pickedGoodsIds,
       noticeTime: this.noticeTime,
     };
+
     liveService.createLive(roomInfo, () => {
       const url = isNotice
         ? "../live-notice/index"

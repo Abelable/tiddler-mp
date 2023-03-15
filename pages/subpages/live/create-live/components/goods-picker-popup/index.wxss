@@ -1,8 +1,9 @@
-.pick-goods-popup {
+.goods-picker-popup {
   position: relative;
   padding: 24rpx;
-  padding-bottom: calc(100rpx + env(safe-area-inset-bottom));
-  height: 1200rpx;
+  padding-bottom: 100rpx;
+  height: 1100rpx;
+  max-height: 100vh;
   background: #f5f6f7;
 }
 
@@ -16,23 +17,20 @@
   flex-wrap: wrap;
 }
 .goods-item {
-  display: flex;
-  flex-direction: column;
   margin-bottom: 22rpx;
-  padding: 30rpx;
+  padding: 24rpx;
   width: 340rpx;
-  height: 488rpx;
+  height: 450rpx;
   background: #FFFFFF;
-  border-radius: 8rpx;
+  border-radius: 20rpx;
 }
 .goods-img {
-  width: 280rpx;
-  height: 280rpx;
-  border-radius: 20rpx;
-  background: #f5f6f7;
+  width: 292rpx;
+  height: 292rpx;
+  border-radius: 10rpx;
 }
 .goods-name {
-  margin-top: 24rpx;
+  margin-top: 10rpx;
   flex: 1;
   color: #333;
   font-size: 28rpx;
@@ -43,10 +41,6 @@
   justify-content: space-between;
   margin-top: 10rpx;
 }
-.goods-price {
-  color: #BA9243;
-  font-size: 32rpx;
-}
 .pick-icon {
   width: 32rpx;
   height: 32rpx;
@@ -56,34 +50,27 @@
   position: absolute;
   left: 0;
   bottom: 0;
-  padding-bottom: env(safe-area-inset-bottom);
   width: 100%;
   background: #fff;
 }
 .btn-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-left: 64rpx;
-  padding-right: 54rpx;
+  padding: 0 32rpx;
   height: 100rpx;
 }
-.tips {
-  color: #FB6155;
-  font-size: 24rpx;
+.select-all-tips {
+  margin-left: 10rpx;
+  color: #333;
+  font-size: 28rpx;
 }
 .confirm-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 196rpx;
   height: 64rpx;
   color: #666;
-  font-size: 32rpx;
+  font-size: 28rpx;
   background: #E4E4E4;
   border-radius: 32rpx;
 }
 .confirm-btn.active {
-  color: #FFE5BD;
-  background: linear-gradient(270deg, #404A5C 0%, #0F131A 99%);
+  color: #fff;
+  background: linear-gradient(128deg, #53678d 0%, #161F4E 100%);
 }
