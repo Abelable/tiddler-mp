@@ -2,7 +2,7 @@ import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
 import { store } from "../../../../../../store/index";
 import tim from "../../../../../../utils/tim/index";
 import LiveService from "../../../utils/liveService";
-import { MSG_TYPE_PRAISE } from './utils/msgType'
+import { MSG_TYPE_PRAISE } from "./utils/msgType";
 
 const liveService = new LiveService();
 const { statusBarHeight } = getApp().globalData;
@@ -47,13 +47,8 @@ Component({
   observers: {
     roomInfo: function (info) {
       if (info) {
-        const {
-          status,
-          resolution,
-          viewersNumber,
-          praiseNumber,
-          historyChatMsgList,
-        } = info;
+        const { status, viewersNumber, praiseNumber, historyChatMsgList } =
+          info;
 
         if (status === 1) {
           this.startLive();
@@ -67,7 +62,6 @@ Component({
             },
           ]);
         }
-        store.setDefinitionIndex(resolution - 1);
       }
     },
   },
@@ -87,7 +81,7 @@ Component({
         this.setData({
           countdownVisible: false,
         });
-        this.startLive()
+        this.startLive();
       }, 5000);
     },
 
@@ -206,20 +200,23 @@ Component({
       wx.vibrateShort({ type: "heavy" });
       if (!this.data.manualPraise) this.setData({ manualPraise: true });
 
-      let praiseCount = store.praiseCount
-      store.setPraiseCount(++praiseCount)
-      if (typeof(this.praiseCount) != 'number') this.praiseCount = 0
-      ++this.praiseCount
+      let praiseCount = store.praiseCount;
+      store.setPraiseCount(++praiseCount);
+      if (typeof this.praiseCount != "number") this.praiseCount = 0;
+      ++this.praiseCount;
       if (!this.savePraiseInterval) {
         this.savePraiseInterval = setInterval(() => {
           if (this.praiseCount) {
-            liveService.savePraiseCount(this.properties.roomInfo.id, this.praiseCount)
-            this.praiseCount = 0
+            liveService.savePraiseCount(
+              this.properties.roomInfo.id,
+              this.praiseCount
+            );
+            this.praiseCount = 0;
           } else {
-            clearInterval(this.savePraiseInterval)
-            this.savePraiseInterval = null
+            clearInterval(this.savePraiseInterval);
+            this.savePraiseInterval = null;
           }
-        }, 5000)
+        }, 5000);
       }
     },
 

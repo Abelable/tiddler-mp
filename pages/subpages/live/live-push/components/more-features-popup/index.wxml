@@ -1,4 +1,4 @@
-<i-popup bind:hide="hide">
+<popup bind:hide="hide">
   <scroll-view class="features-popup" scroll-y>
     <view class="title">更多功能</view>
     <view class="list">
@@ -46,4 +46,4 @@
       </view>
     </view>
   </scroll-view>
-</i-popup>
+</popup>

@@ -1,4 +1,4 @@
-<i-popup bind:hide="hide">
+<popup bind:hide="hide">
   <view class="start-remind-popup">
     <view class="title">开播提醒</view>
     <scroll-view class="content" scroll-y>
@@ -7,4 +7,4 @@
     </scroll-view>
     <view class="notice-btn" catchtap="pushRemind">推送开播提醒</view>
   </view>
-</i-popup>
+</popup>

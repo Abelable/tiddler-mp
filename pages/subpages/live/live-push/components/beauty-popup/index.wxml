@@ -1,4 +1,4 @@
-<i-popup bind:hide="hide">
+<popup bind:hide="hide">
   <view class="beauty-popup">
     <view class="header">
       <view class="menu-wrap">
@@ -47,5 +47,5 @@
       </scroll-view>
     </view>
   </view>
-</i-popup>
+</popup>
 

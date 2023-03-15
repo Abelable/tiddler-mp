@@ -73,21 +73,21 @@ Page({
 
   showGoodsPickerPopup() {
     this.setData({
-      goodsPickerPopupVisible: true
-    })
+      goodsPickerPopupVisible: true,
+    });
   },
 
   setGoodsIds(e) {
     this.setData({
       pickedGoodsIds: e.detail,
-      goodsPickerPopupVisible: false
-    })
+      goodsPickerPopupVisible: false,
+    });
   },
 
   hideGoodsPickerPopup() {
     this.setData({
-      goodsPickerPopupVisible: false
-    })
+      goodsPickerPopupVisible: false,
+    });
   },
 
   toggleIsNotice(e) {
@@ -135,12 +135,12 @@ Page({
       title: this.title,
       cover,
       shareCover,
-      resolution: curResolutionIdx + 1,
       direction,
       goodsIds: pickedGoodsIds,
       noticeTime: this.noticeTime,
     };
 
+    store.setDefinitionIndex(curResolutionIdx);
     liveService.createLive(roomInfo, () => {
       const url = isNotice
         ? "../live-notice/index"
