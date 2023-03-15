@@ -65,11 +65,13 @@
   wx:if="{{moreFeaturesPopupVisible}}" 
   roomInfo="{{roomInfo}}"
   bind:showBeautyPopup="showBeautyPopup"
+  bind:showHdPopup="showHdPopup"
   bind:showSubscribePopup="showSubscribeRemindPopup" 
   bind:hide="hideModal"
 />
-<subscribe-remind-popup wx:if="{{subscribeRemindPopupVisible}}" groupId="{{roomInfo.groupId}}" bind:hide="hideModal" />
 <beauty-popup wx:if="{{beautyPopupVisible}}" bind:hide="hideModal" />
+<hd-popup wx:if="{{hdPopupVisible}}" bind:hide="hideModal" />
+<subscribe-remind-popup wx:if="{{subscribeRemindPopupVisible}}" groupId="{{roomInfo.groupId}}" bind:hide="hideModal" />
 <goods-shelves-popup wx:if="{{goodsShelvesPopupVisible}}" roomInfo="{{roomInfo}}" bind:hide="hideModal" bind:getRecommendGood="getRecommendGood" />
 
 <modal-mask 

@@ -3,7 +3,7 @@
     <view class="title">更多功能</view>
     <view class="resolution-selections row between">
       <view 
-        class="resolution-selection {{curResolutionIdx === index ? 'active' : ''}}" 
+        class="resolution-selection {{definitionIndex === index ? 'active' : ''}}" 
         wx:for="{{resolutionList}}"
         wx:key="index"
         bindtap="selectResolution"

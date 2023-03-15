@@ -40,6 +40,7 @@ Component({
     posterModalVisible: false,
     moreFeaturesPopupVisible: false,
     beautyPopupVisible: false,
+    hdPopupVisible: false,
     subscribeRemindPopupVisible: false,
     goodsShelvesPopupVisible: false,
   },
@@ -140,6 +141,13 @@ Component({
       });
     },
 
+    showHdPopup() {
+      this.setData({
+        moreFeaturesPopupVisible: false,
+        hdPopupVisible: true,
+      });
+    },
+
     showGoodsShelvesPopup() {
       this.setData({
         goodsShelvesPopupVisible: true,
@@ -159,6 +167,7 @@ Component({
         posterModalVisible,
         moreFeaturesPopupVisible,
         beautyPopupVisible,
+        hdPopupVisible,
         subscribeRemindPopupVisible,
         goodsShelvesPopupVisible,
       } = this.data;
@@ -168,6 +177,7 @@ Component({
       if (moreFeaturesPopupVisible)
         this.setData({ moreFeaturesPopupVisible: false });
       if (beautyPopupVisible) this.setData({ beautyPopupVisible: false });
+      if (hdPopupVisible) this.setData({ hdPopupVisible: false });
       if (subscribeRemindPopupVisible)
         this.setData({ subscribeRemindPopupVisible: false });
       if (goodsShelvesPopupVisible)

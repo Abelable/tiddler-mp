@@ -26,7 +26,7 @@ Component({
           break
 
         case 'hd': 
-          this.triggerEvent('showHDPopup')
+          this.triggerEvent('showHdPopup')
           break
 
         case 'reverse':
