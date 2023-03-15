@@ -25,16 +25,23 @@
   width: 25%;
   max-width: 75px;
 }
-.more-icon {
+.icon-wrap {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: #F1F5F7;
+  background: #f1f5f7;
 }
-.more-desc {
+.icon-wrap.active {
+  background: #404B5B;
+}
+.icon {
+  width: 20px;
+  height: 20px;
+}
+.desc {
   margin-top: 3px;
   color: #999;
   font-size: 10px;

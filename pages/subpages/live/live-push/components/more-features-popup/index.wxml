@@ -3,24 +3,46 @@
     <view class="title">更多功能</view>
     <view class="list">
       <view class="item" catchtap="click" data-type="beauty">
-        <image class="more-icon" src="https://img.ubo.vip/youbo_plus/live_features_popup/beauty.png" />
-        <view class="more-desc">美颜</view>
+        <view class="icon-wrap">
+          <image class="icon" src="./images/beauty.png" />
+        </view>
+        <view class="desc">美颜</view>
+      </view>
+      <view class="item" catchtap="click" data-type="hd">
+        <view class="icon-wrap">
+          <image class="icon" src="./images/hd.png" />
+        </view>
+        <view class="desc">清晰度</view>
       </view>
       <view class="item" catchtap="click" data-type="reverse">
-        <image class="more-icon" src="https://img.ubo.vip/youbo_plus/live_features_popup/{{devicePosition !== 'front' ? 'reversed' : 'reverse'}}.png" />
-        <view class="more-desc">{{devicePosition !== 'front' ? '取消反转' : '镜头反转'}}</view>
+        <view class="icon-wrap {{devicePosition !== 'front' ? 'active' : ''}}">
+          <image class="icon" src="./images/reverse{{devicePosition !== 'front' ? '-active' : ''}}.png" />
+        </view>
+        <view class="desc">镜头反转</view>
       </view>
       <view class="item" catchtap="click" data-type="mirror">
-        <image class="more-icon" src="https://img.ubo.vip/youbo_plus/live_features_popup/{{localMirror !== 'auto' ? 'mirrored' : 'mirror'}}.png" />
-        <view class="more-desc">{{localMirror !== 'auto' ? '取消镜像' : '镜像'}}</view>
+        <view class="icon-wrap {{localMirror !== 'auto' ? 'active' : ''}}">
+          <image class="icon" src="./images/mirror{{localMirror !== 'auto' ? '-active' : ''}}.png" />
+        </view>
+        <view class="desc">镜像</view>
       </view>
       <view class="item" catchtap="click" data-type="mute">
-        <image class="more-icon" src="https://img.ubo.vip/youbo_plus/live_features_popup/{{muted ? 'muted' : 'mute'}}.png" />
-        <view class="more-desc">{{muted ? '取消静音' : '静音'}}</view>
+        <view class="icon-wrap {{muted ? 'active' : ''}}">
+          <image class="icon" src="./images/mute{{muted ? '-active' : ''}}.png" />
+        </view>
+        <view class="desc">静音</view>
+      </view>
+      <view class="item" catchtap="click" data-type="lamp">
+        <view class="icon-wrap {{lampVisible ? 'active' : ''}}">
+          <image class="icon" src="./images/lamp{{lampVisible ? '-active' : ''}}.png" />
+        </view>
+        <view class="desc">闪光灯</view>
       </view>
       <view class="item" catchtap="click" data-type="subscribe">
-        <image class="more-icon" src="https://img.ubo.vip/youbo_plus/live_features_popup/subscribe.png" />
-        <view class="more-desc">提醒订阅</view>
+        <view class="icon-wrap">
+          <image class="icon" src="./images/subscribe.png" />
+        </view>
+        <view class="desc">提醒订阅</view>
       </view>
     </view>
   </scroll-view>

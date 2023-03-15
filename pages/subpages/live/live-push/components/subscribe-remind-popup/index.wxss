@@ -1,7 +1,3 @@
-.start-remind-popup {
-  padding-bottom: env(safe-area-inset-bottom);
-}
-
 .title {
   display: flex;
   align-items: center;
@@ -35,9 +31,8 @@
   margin: 20px auto;
   width: 240px;
   height: 40px;
-  color: #FFE5BD;
+  color: #fff;
   font-size: 16px;
-  font-weight: bold;
-  background: linear-gradient(128deg, #404A5C 0%, #0F131A 100%);
+  background: #161F4E;
   border-radius: 20px;
 }

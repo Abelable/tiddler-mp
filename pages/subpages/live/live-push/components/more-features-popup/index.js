@@ -1,20 +1,21 @@
 import { storeBindingsBehavior } from 'mobx-miniprogram-bindings'
 import { store } from '../../../../../../store/index'
 
-Component({ 
+Component({
+  options: {
+    addGlobalClass: true
+  },
+
   behaviors: [storeBindingsBehavior],
 
   storeBindings: {
     store,
-    fields: ['devicePosition', 'localMirror', 'muted'],
+    fields: ['devicePosition', 'localMirror', 'muted', 'lampVisible'],
   },
 
   properties: {
     roomInfo: Object,
     trafficPanelVisible: Boolean
-  },
-
-  data: {
   },
   
   methods: { 
@@ -22,6 +23,10 @@ Component({
       switch (e.currentTarget.dataset.type) {
         case 'beauty': 
           this.triggerEvent('showBeautyPopup')
+          break
+
+        case 'hd': 
+          this.triggerEvent('showHDPopup')
           break
 
         case 'reverse':
@@ -37,6 +42,10 @@ Component({
 
         case 'mute': 
           store.setMuted(!store.muted)
+          break
+
+        case 'lamp': 
+          store.toggleLampVisible(!store.lampVisible)
           break
 
         case 'subscribe': 
