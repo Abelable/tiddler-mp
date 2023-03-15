@@ -1,0 +1,50 @@
+.input-wrap {
+  position: fixed;
+  left: 0;
+  width: 100%;
+}
+
+.phrase-wrap {
+  padding-bottom: 18rpx;
+  width: 100%;
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+.phrase {
+  display: inline-block;
+  margin-left: 22rpx;
+  padding: 0 18rpx;
+  height: 48rpx;
+  color: #333;
+  font-size: 24rpx;
+  line-height: 48rpx;
+  border-radius: 24rpx;
+  background: #d8d8d8;
+}
+
+.input-main {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100rpx;
+  background-color: #fff;
+}
+.input {
+  margin-left: 10rpx;
+  flex: 1;
+  height: 29px;
+  line-height: 100rpx;
+  font-size: 28rpx;
+  color: #000;
+  background-color: #fff;
+}
+.send-btn {
+  width: 160rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 30rpx;
+  color: #F7CC9C;
+  font-weight: 500;
+  text-align: center;
+  background: #000;
+}

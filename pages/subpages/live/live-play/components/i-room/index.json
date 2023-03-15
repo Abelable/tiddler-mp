@@ -1,0 +1,12 @@
+{
+  "component": true,
+  "usingComponents": {
+    "i-player": "./components/i-player/index",
+    "i-status-end": "./components/i-status-end/index",
+    "i-status-break": "./components/i-status-break/index",
+    "i-status-unstart": "./components/i-status-unstart/index",
+    "i-anchor-capsule": "./components/i-anchor-capsule/index",
+    "i-comment": "./components/i-comment/index",
+    "i-praise": "./components/i-praise/index"
+  }
+}

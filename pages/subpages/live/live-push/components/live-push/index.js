@@ -1,6 +1,8 @@
 import { storeBindingsBehavior } from 'mobx-miniprogram-bindings'
 import { store } from '../../../../../../store/index'
 
+const { statusBarHeight } = getApp().globalData.systemInfo;
+
 Component({
   behaviors: [storeBindingsBehavior],
 
@@ -16,7 +18,7 @@ Component({
   },
 
   data: {
-    statusBarHeight: getApp().globalData.statusBarHeight,
+    statusBarHeight,
     definitionList: ['SD', 'HD', 'FHD'],
     visualFilterList: ['standard', 'pink', 'nostalgia', 'blues', 'romantic', 'cool', 'fresher', 'solor', 'aestheticism', 'whitening', 'cerisered'],
     smallScreenMode: ['push']

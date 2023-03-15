@@ -1,0 +1,28 @@
+<wxs module="TIME" src="../../../../../../../../utils/filters/time.wxs" />
+<wxs module="NUM" src="../../../../../../../../utils/filters/num.wxs" />
+
+<view class="live-end-wrap">
+  <view class="back-icon-wrap" style="top: {{statusBarHeight}}px;">
+    <i-back-icon />
+  </view>
+  <view class="anchor-info">
+    <image class="anchor-avatar" src="{{anchorAvatar}}"></image>
+    <view class="anchor-name">{{anchorName}}</view>
+  </view>
+  <view class="time-wrap">
+    <view class="line" />
+    <view class="tips">直播结束</view>
+    <view class="time">时长：{{TIME.transform(liveDuration).hours}}:{{TIME.transform(liveDuration).minutes}}:{{TIME.transform(liveDuration).seconds}}</view>
+    <view class="line" />
+  </view>
+  <view class="harvest-wrap">
+    <view class="watcher-num">
+      <view class="num">{{NUM.over(audienceCount, 100000)}}</view>
+      <view>观看人数</view>
+    </view>
+    <view class="parise-num">
+      <view class="num">{{NUM.over(praiseCount, 100000)}}</view>
+      <view>获点赞数</view>
+    </view>
+  </view>
+</view>

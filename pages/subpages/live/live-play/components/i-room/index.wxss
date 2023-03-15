@@ -1,0 +1,227 @@
+@import "./templates/i-status-loading/index.wxss";
+
+.room {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+.room.show {
+  opacity: 1;
+}
+.inner-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.inner {
+  background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 10%, rgba(0,0,0,0) 90%, rgba(0,0,0,0.6) 100%);
+}
+.top-part {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+.anchor-capsule-wrap {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  height: 44px;
+}
+.anchor-capsule-wrap.full-screen {
+  justify-content: space-between;
+  width: 100%;
+}
+.activity-wrap {
+  display: flex;
+  justify-content: space-between; 
+  margin-top: 4rpx;
+}
+.room-id-capsule-wrap {
+  display: flex; 
+  flex-direction: column; 
+  align-items: flex-end;
+}
+.room-id-capsule {
+  display: flex;
+  align-items: center;
+  padding: 0 15rpx;
+  height: 44rpx;
+  color: #fff;
+  font-size: 22rpx;
+  line-height: 1;
+  border-radius: 22rpx;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1rpx solid rgba(255,255,255,0.3);
+}
+
+.full-screen-icon{
+  position: absolute;
+  right: 24rpx;
+  width: 32px;
+  height: 32px;
+  z-index: 1;
+}
+
+.bottom-part {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 0 0 calc(8px + env(safe-area-inset-bottom)) 8px;
+  width: 100%;
+  overflow: hidden;
+  /* z-index: -1; */
+}
+.bottom-part.full-screen {
+  padding: 0 30px 8px;
+}
+
+/* 用户加入购物车，关注，下单 */
+.audience-action-tips {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5rpx;
+  padding: 0 15rpx;
+  font-size: 26rpx;
+  width: fit-content;
+  height: 44rpx;
+  border-radius: 8rpx;
+  color: #fff;
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: .3s linear;
+}
+.audience-action-tips.coming {
+  background: rgba(11,157,59,0.6);
+}
+.audience-action-tips.follow {
+  background: rgba(251,28,28,0.6);
+}
+.audience-action-tips.buy {
+  background: rgba(114,0,251,0.6);
+}
+.audience-action-tips.cart {
+  background: rgba(255,168,41,0.6);
+}
+.audience-action-tips.share {
+  background: rgba(19,47,199,0.6);
+}
+.audience-action-tips.packet {
+  background: rgba(251,85,28,0.6);
+}
+.audience-action-tips.show {
+  opacity: 1;
+  transform: translateX(0);
+  transition: .3s linear;
+}
+.i-praise {
+  position: absolute;
+  right: 0;
+  bottom: calc(112rpx + env(safe-area-inset-bottom));
+}
+.i-praise.full-screen {
+  right: 30px;
+  bottom: 112rpx;
+}
+.i-praise.hide, .i-praise.full-screen.hide {
+  display: none;
+}
+
+.operation-wrap {
+  display: flex;
+  align-items: flex-end;
+  padding-right: 24rpx;
+}
+.room-btn-wrap {
+  margin-left: 10rpx;
+  display: flex;
+  justify-content: flex-end;
+  flex: 1;
+}
+.room-btn {
+  position: relative;
+  margin-right: 16rpx;
+  width: 70rpx;
+  height: 70rpx;
+  overflow: initial;
+}
+.room-btn.chat {
+  padding-left: 27rpx;
+  flex: 1;
+  color: #fff;
+  font-size: 30rpx;
+  line-height: 70rpx;
+  border-radius: 35rpx;
+  background: rgba(0, 0, 0, 0.3);
+}
+.room-btn:last-child {
+  margin-right: 0;
+}
+
+.file-display-icon {
+  position: absolute;
+  right: -8rpx;
+  bottom: -8rpx;
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.praise-icon.hover {
+  animation: scaleDraw 1s ease-in-out; 
+}
+@keyframes scaleDraw{
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(0.9);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(0.9);
+  }
+}
+
+.praise-count {
+  position: absolute;
+  top: -28rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0 10rpx;
+  font-size: 18rpx;
+  color: #F94950;
+  height: 28rpx;
+  line-height: 28rpx;
+  border-radius: 14rpx;
+  background: #fff;
+  white-space: nowrap;
+}
+
+.praise-heart {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  opacity: 0;
+}
+
+@keyframes float {
+  0% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.8) translateY(-60px);
+    opacity: 0;
+  }
+}
+
+.ad-container {
+  position: absolute;
+  right: 24rpx;
+  bottom: calc(86px + env(safe-area-inset-bottom));
+}

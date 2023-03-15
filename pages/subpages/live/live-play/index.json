@@ -1,1 +1,15 @@
-{}
+{
+  "disableSwipeBack": true,
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "i-back-icon": "/components/i-back-icon/index",
+    "i-room": "./components/i-room/index",
+    "i-mask": "/components/i-mask/index",
+    "i-anchor-modal": "./components/i-anchor-modal/index",
+    "i-goods-modal": "/components/i-goods-modal/index",
+    "i-input": "./components/i-input/index",
+    "i-share-modal": "/components/i-share-modal/index",
+    "i-poster-modal": "/components/i-poster-modal/index"
+  }
+}

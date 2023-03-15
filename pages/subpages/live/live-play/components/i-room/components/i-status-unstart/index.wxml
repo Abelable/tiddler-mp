@@ -1,0 +1,20 @@
+<wxs module="TIME" src="../../../../../../../../utils/filters/time.wxs" />
+<wxs module="STRING" src="../../../../../../../../utils/filters/string.wxs" />
+
+<view class="live-notice">
+  <navigator class="anchor-info" style="margin-top: {{statusBarHeight + 110}}px;" url="/pages/subpages/index/room/subpages/shop/index?id={{roomInfo.shopId}}&anchorId={{roomInfo.anchorId}}" hover-class="none">
+    <image class="avatar" src="{{roomInfo.cover}}" mode="aspectFill" />
+    <view class="title">{{roomInfo.title && STRING.slice(roomInfo.title, 10)}}</view>
+    <view class="id">直播间id：{{roomInfo.id}}</view>
+  </navigator>
+
+  <view class="time-wrap">
+    <view>开始时间：{{TIME.transform(roomInfo.startTime).year}}/{{TIME.transform(roomInfo.startTime).month}}/{{TIME.transform(roomInfo.startTime).date}} {{TIME.transform(roomInfo.startTime).hours}}:{{TIME.transform(roomInfo.startTime).minutes}}</view>
+    <view>倒计时：{{TIME.countDown(time).days}}天{{TIME.countDown(time).hours}}时{{TIME.countDown(time).minutes}}分{{TIME.countDown(time).seconds}}秒</view>
+  </view>
+
+  <view class="btn-wrap">
+    <view class="btn {{roomInfo.previewDestine != 0 ? 'invalid' : ''}}" catchtap="toggleSubscribe">{{roomInfo.previewDestine == 0 ? '预约直播间' : '已预约'}}</view>
+    <view class="btn" catchtap="share">分享直播间</view>
+  </view>
+</view>

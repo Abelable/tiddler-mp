@@ -1,0 +1,25 @@
+<wxs module="IMG" src="../../../../utils/filters/img.wxs" />
+
+<swiper class="rooms-wrap" bindchange="changeRoom" vertical>
+  <swiper-item wx:for="{{roomList}}" wx:key="index">
+    <image class="bg" src="{{IMG.resize(item.cover, 10)}}" mode="aspectFill" lazy-load="{{true}}"/>
+    <i-room class="room" wx:if="{{index === curRoomIdx}}" roomInfo="{{roomList[curRoomIdx]}}" bind:toAnotherRoom="toAnotherRoom"/>
+  </swiper-item>
+</swiper>
+
+<i-back-icon class="back-icon" style="top: {{statusBarHeight}}px;"/>
+<i-mask wx:if="{{maskVisible}}" opcity="{{maskOpcity}}" ontap="hideModal" />
+<i-anchor-modal wx:if="{{anchorModalVisible}}" roomInfo="{{roomList[curRoomIdx]}}" />
+<i-intimacy-modal roomInfo="{{roomList[curRoomIdx]}}" />
+<i-sharers-modal roomInfo="{{roomList[curRoomIdx]}}" />
+<i-red-packet-modal wx:if="{{redPacketModalVisible}}" roomInfo="{{roomList[curRoomIdx]}}" />
+<i-input wx:if="{{inputModalVisible}}" roomInfo="{{roomList[curRoomIdx]}}" />
+<i-gift-modal roomInfo="{{roomList[curRoomIdx]}}" />
+<i-more-features-modal roomInfo="{{roomList[curRoomIdx]}}" />
+<i-definition-modal />
+<i-file-display-modal roomInfo="{{roomList[curRoomIdx]}}" />
+<i-goods-modal show="{{goodsModalVisible}}" goodsList="{{goodsList}}" liveId="{{roomList[curRoomIdx].id}}" bind:showSpecSelection="showSpecModal"/>
+<i-spec-modal show="{{specModalVisible}}" goodsName="{{specInfo.specGoodsName}}" goodsId="{{specInfo.specGoodsId}}" goodsPic="{{specInfo.specGoodsPic}}" basePrice="{{specInfo.specBasePrice}}" totalStock="{{specInfo.specStock}}" mainInfo="{{specInfo.specMainInfo}}" roomId="{{roomList[curRoomIdx].id}}" groupId="{{roomList[curRoomIdx].groupId}}" bind:hideSpecModal="hideSpecModal"/>
+<i-share-modal show="{{shareModalVisible}}" bind:showPosterModal="showPosterModal" />
+<i-poster-modal wx:if="{{posterModalVisible}}" roomPosterInfo="{{roomPosterInfo}}" bind:hidePosterModal="hideModal"/>
+<i-coupon-modal wx:if="{{couponModalVisible}}" />
