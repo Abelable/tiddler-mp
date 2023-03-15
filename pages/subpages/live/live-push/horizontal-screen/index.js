@@ -17,7 +17,7 @@ Page({
   },
 
   async setRoomInfo() {
-    const roomInfo = await liveService.getLivePushRoomInfo()
+    const roomInfo = await liveService.getPushRoomInfo()
     this.setData({ roomInfo })
   },
 

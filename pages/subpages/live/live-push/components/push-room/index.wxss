@@ -3,6 +3,9 @@
   right: 0;
   bottom: calc(57px + env(safe-area-inset-bottom));
 }
+.praise-animation-wrap.horizontal {
+  right: 22px;
+}
 
 .inner {
   position: absolute;

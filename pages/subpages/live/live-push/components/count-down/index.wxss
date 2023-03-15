@@ -14,7 +14,7 @@
   width: fit-content;
   height: fit-content;
   color: #EE3769;
-  font-size: 200rpx;
+  font-size: 100px;
   font-weight: bold;
 }
 .count-down::after{

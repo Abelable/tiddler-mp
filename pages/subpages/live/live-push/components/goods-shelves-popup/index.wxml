@@ -38,7 +38,7 @@
             <view class="goods-name omit">{{item.name}}</view>
             <view class="goods-stock">库存：{{item.stock}}</view>
             <view class="goods-price-wrap">
-              <price-unit price="{{item.price}}" />
+              <price-unit price="{{item.price}}" fontSize="12px" integerFontSize="16px" />
               <view class="btns-wrap">
                 <view 
                   class="recommend-btn {{item.isHot ? 'invalid' : ''}}" 

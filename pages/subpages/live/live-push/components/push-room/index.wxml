@@ -1,7 +1,7 @@
 <wxs module="NUM" src="/utils/filters/num.wxs" />
 
 <live-push src="{{roomInfo.pushUrl || ''}}" start="{{start}}" stop="{{stop}}">
-  <view class="praise-animation-wrap">
+  <view class="praise-animation-wrap {{roomInfo.direction === 2 ? 'horizontal' : ''}}">
     <praise-animation count="{{praiseCount || 0}}" manual="{{manualPraise}}" />
   </view>
 
