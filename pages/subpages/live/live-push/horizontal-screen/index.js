@@ -35,7 +35,7 @@ Page({
 
   onShareAppMessage() {
     const { id, title, shareCover: imageUrl } = this.data.roomInfo
-    const path = `/pages/index/subpages/live/index?id=${id}`
+    const path = `/pages/subpages/live/live-play/index?id=${id}`
     return { path, title, imageUrl }
   },
   
