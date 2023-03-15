@@ -1,3 +1,5 @@
+const { windowHeight, windowWidth, platform } = getApp().globalData.systemInfo;
+
 Component({
   properties: {
     // 图片路径
@@ -53,12 +55,12 @@ Component({
     // 图片宽度
     img_width: {
       type: null,
-      value: null
+      value: null,
     },
     // 图片高度
-    img_height:  {
+    img_height: {
       type: null,
-      value: null
+      value: null,
     },
     // 图片缩放比
     scale: {
@@ -88,7 +90,6 @@ Component({
 
   data: {
     el: "image-cropper", //暂时无用
-    info: wx.getSystemInfoSync(),
     MOVE_THROTTLE: null, //触摸移动节流settimeout
     MOVE_THROTTLE_FLAG: true, //节流标识
     INIT_IMGWIDTH: 0, //图片设置尺寸,此值不变（记录最初设定的尺寸）
@@ -190,7 +191,6 @@ Component({
   },
 
   attached() {
-    this.data.info = wx.getSystemInfoSync();
     //启用数据监听
     this._watcher();
     this.data.INIT_IMGWIDTH = this.data.img_width;
@@ -214,7 +214,7 @@ Component({
       cropper: this,
     });
   },
-  
+
   methods: {
     /**
      * 上传图片
@@ -341,8 +341,8 @@ Component({
      * 设置剪裁框和图片居中
      */
     setCutCenter() {
-      let cut_top = (this.data.info.windowHeight - this.data.height) * 0.5;
-      let cut_left = (this.data.info.windowWidth - this.data.width) * 0.5;
+      let cut_top = (windowHeight - this.data.height) * 0.5;
+      let cut_left = (windowWidth - this.data.width) * 0.5;
       //顺序不能变
       this.setData({
         _img_top: this.data._img_top - this.data.cut_top + cut_top,
@@ -352,8 +352,8 @@ Component({
       });
     },
     _setCutCenter() {
-      let cut_top = (this.data.info.windowHeight - this.data.height) * 0.5;
-      let cut_left = (this.data.info.windowWidth - this.data.width) * 0.5;
+      let cut_top = (windowHeight - this.data.height) * 0.5;
+      let cut_left = (windowWidth - this.data.width) * 0.5;
       this.setData({
         cut_top: cut_top, //截取的框上边距
         cut_left: cut_left, //截取的框左边距
@@ -488,7 +488,7 @@ Component({
       ) {
         let width = this.data.INIT_IMGWIDTH.replace("%", "");
         this.data.INIT_IMGWIDTH = this.data.img_width =
-          (this.data.info.windowWidth / 100) * width;
+          (windowWidth / 100) * width;
       }
       if (
         this.data.INIT_IMGHEIGHT &&
@@ -497,7 +497,7 @@ Component({
       ) {
         let height = this.data.img_height.replace("%", "");
         this.data.INIT_IMGHEIGHT = this.data.img_height =
-          (this.data.info.windowHeight / 100) * height;
+          (windowHeight / 100) * height;
       }
     },
     /**
@@ -511,12 +511,9 @@ Component({
               cut_top: 0,
             });
           }
-          if (
-            this.data.cut_top >
-            this.data.info.windowHeight - this.data.height
-          ) {
+          if (this.data.cut_top > windowHeight - this.data.height) {
             this.setData({
-              cut_top: this.data.info.windowHeight - this.data.height,
+              cut_top: windowHeight - this.data.height,
             });
           }
         },
@@ -527,12 +524,9 @@ Component({
               cut_left: 0,
             });
           }
-          if (
-            this.data.cut_left >
-            this.data.info.windowWidth - this.data.width
-          ) {
+          if (this.data.cut_left > windowWidth - this.data.width) {
             this.setData({
-              cut_left: this.data.info.windowWidth - this.data.width,
+              cut_left: windowWidth - this.data.width,
             });
           }
         };
@@ -545,12 +539,12 @@ Component({
       } else if (this.data.cut_top != null && this.data.cut_left == null) {
         _cutDetectionPositionTop();
         this.setData({
-          cut_left: (this.data.info.windowWidth - this.data.width) / 2,
+          cut_left: (windowWidth - this.data.width) / 2,
         });
       } else if (this.data.cut_top == null && this.data.cut_left != null) {
         _cutDetectionPositionLeft();
         this.setData({
-          cut_top: (this.data.info.windowHeight - this.data.height) / 2,
+          cut_top: (windowHeight - this.data.height) / 2,
         });
       }
     },
@@ -571,7 +565,7 @@ Component({
       ) {
         if (
           this.data.canvas_top < -this.data.height ||
-          this.data.canvas_top > this.data.info.windowHeight
+          this.data.canvas_top > windowHeight
         ) {
           this.data._canvas_overflow = true;
         } else {
@@ -593,7 +587,7 @@ Component({
         });
         if (
           this.data.canvas_left < -this.data.width ||
-          this.data.canvas_left > this.data.info.windowWidth
+          this.data.canvas_left > windowWidth
         ) {
           this.data._canvas_overflow = true;
         } else {
@@ -704,28 +698,22 @@ Component({
     },
     //改变截取框大小
     _computeCutSize() {
-      if (this.data.width > this.data.info.windowWidth) {
+      if (this.data.width > windowWidth) {
         this.setData({
-          width: this.data.info.windowWidth,
+          width: windowWidth,
         });
-      } else if (
-        this.data.width + this.data.cut_left >
-        this.data.info.windowWidth
-      ) {
+      } else if (this.data.width + this.data.cut_left > windowWidth) {
         this.setData({
-          cut_left: this.data.info.windowWidth - this.data.cut_left,
+          cut_left: windowWidth - this.data.cut_left,
         });
       }
-      if (this.data.height > this.data.info.windowHeight) {
+      if (this.data.height > windowHeight) {
         this.setData({
-          height: this.data.info.windowHeight,
+          height: windowHeight,
         });
-      } else if (
-        this.data.height + this.data.cut_top >
-        this.data.info.windowHeight
-      ) {
+      } else if (this.data.height + this.data.cut_top > windowHeight) {
         this.setData({
-          cut_top: this.data.info.windowHeight - this.data.cut_top,
+          cut_top: windowHeight - this.data.cut_top,
         });
       }
       !this.data._canvas_overflow && this._draw();
@@ -765,7 +753,7 @@ Component({
     },
     _move_throttle() {
       //安卓需要节流
-      if (this.data.info.platform == "android") {
+      if (platform == "android") {
         clearTimeout(this.data.MOVE_THROTTLE);
         this.data.MOVE_THROTTLE = setTimeout(() => {
           this.data.MOVE_THROTTLE_FLAG = true;
