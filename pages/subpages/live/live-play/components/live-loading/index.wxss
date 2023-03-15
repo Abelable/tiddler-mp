@@ -18,15 +18,3 @@
   font-weight: 500;
   line-height: 50rpx;
 }
-.return-btn {
-  margin: 320rpx auto 0;
-  width: 580rpx;
-  height: 88rpx;
-  line-height: 80rpx;
-  text-align: center;
-  color: #fff;
-  font-size: 34rpx;
-  font-weight: 500;
-  border-radius: 44rpx;
-  border: 4rpx solid #fff;
-}

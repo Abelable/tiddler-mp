@@ -1,6 +1,0 @@
-<template name="i-status-loading">
-  <view class="loading-logo">
-    <image style="width:120rpx;height:120rpx;" src="https://img.ubo.vip/mp/index/room/loading-pic.png"/>
-    <view>主播就快出来咯～</view>
-  </view>
-</template>

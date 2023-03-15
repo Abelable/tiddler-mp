@@ -1,6 +1,6 @@
 <wxs module="NUM" src="/utils/filters/num.wxs" />
 
-<live-push src="{{roomInfo.pushUrl || ''}}" start="{{start}}" stop="{{stop}}">
+<live-pusher src="{{roomInfo.pushUrl || ''}}" start="{{start}}" stop="{{stop}}">
   <view class="praise-animation-wrap {{roomInfo.direction === 2 ? 'horizontal' : ''}}">
     <praise-animation count="{{praiseCount || 0}}" manual="{{manualPraise}}" />
   </view>
@@ -58,7 +58,7 @@
       </view>
     </view>
   </view>
-</live-push>
+</live-pusher>
 
 <goods-shelves-popup wx:if="{{goodsShelvesPopupVisible}}" bind:hide="hideModal" />
 <share-popup wx:if="{{sharePopupVisible}}" bind:showPosterModal="showPosterModal" bind:hide="hideModal" />

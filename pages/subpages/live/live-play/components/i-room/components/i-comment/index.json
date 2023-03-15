@@ -1,6 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "i-fans-level": "../../../i-fans-level/index"
-  }
-}
