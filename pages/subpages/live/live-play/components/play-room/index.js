@@ -33,19 +33,21 @@ Component({
 
   data: {
     statusBarHeight,
-    liveEnd: false, // 直播结束
-    liveDuration: 0, // 直播总时长
+    isFollow: false,
+    goodsList: [],
     manualPraise: false, // 是否是手动点赞
     audienceActionTips: "", // 观众行为（进直播间、下单...）
     showAudienceActionTips: false, // 控制观众行为弹幕的显示隐藏
     praiseHeartArr: [], // 双击爱心
+    liveEnd: false, // 直播结束
+    liveDuration: 0, // 直播总时长
   },
 
   observers: {
     srcIniting: function (truthy) {
       !truthy &&
         checkLogin(() => {
-          this.joinRoom();
+          this.init();
         }, false);
     },
   },
@@ -55,6 +57,21 @@ Component({
   },
 
   methods: {
+    async init() {
+      const { id, groupId } = this.properties.roomInfo
+      const { viewersNumber, praiseNumber, goodsList, historyChatMsgList, isFollow } = await liveService.joinRoom(id) || {}
+      store.setAudienceCount(viewersNumber);
+      store.setPraiseCount(praiseNumber);
+      store.setLiveMsgList([
+        ...historyChatMsgList,
+        {
+          content:
+            "平台依法对直播内容进行24小时巡查，倡导绿色直播，维护网络文明健康。切勿与他人私下交易，非官方活动谨慎参与，避免上当受骗。",
+        },
+      ]);
+      this.setData({ goodsList, isFollow })
+    },
+
     joinRoom() {
       const { id, groupId } = this.properties.roomInfo;
       getApp().globalData.im.joinGroup(groupId);

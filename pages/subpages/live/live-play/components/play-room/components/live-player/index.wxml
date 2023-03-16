@@ -1,7 +1,7 @@
 <live-player 
   id="live-player" 
   class="player {{horizontal ? 'horizontal' : ''}}" 
-  style="top: {{horizontal ? ('calc(260rpx + ' + statusBarHeight + 'px)') : (merge ? ('calc(200rpx + ' + statusBarHeight + 'px)') : 0)}};"
+  style="top: {{horizontal ? ('calc(260rpx + ' + statusBarHeight + 'px)') : 0}};"
   src="{{src}}" 
   autoplay 
   picture-in-picture-mode="{{mode}}"

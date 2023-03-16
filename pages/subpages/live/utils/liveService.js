@@ -111,6 +111,13 @@ class LiveService extends BaseService {
     })
   }
 
+  async joinRoom(id) {
+    return await this.post({
+      url: `${this.baseUrl}/media/live/join_room`,
+      data: { id }
+    })
+  }
+
   async subscribeAnchor(anchorId, success) {
     return await this.post({
       url: `${this.baseUrl}/media/live/subscribe`,

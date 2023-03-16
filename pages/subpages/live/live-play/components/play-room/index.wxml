@@ -6,7 +6,7 @@
       <swiper-item class="inner">
         <view class="top-part" style="padding: {{fullScreen ? 8 : statusBarHeight}}px {{fullScreen ? 30 : 8}}px 0; ">
           <view class="anchor-capsule-wrap {{fullScreen ? 'full-screen' : ''}}">
-            <anchor-capsule anchorInfo="{{roomInfo.anchorInfo}}" isFollow="{{roomInfo.isFollow}}" />
+            <anchor-capsule anchorInfo="{{roomInfo.anchorInfo}}" isFollow="{{isFollow}}" />
             <image style="width: 32px; height: 32px;" wx:if="{{fullScreen}}" catchtap="exitFullScreen" src="https://img.ubo.vip/mp/index/room/exit-fullscreen-icon.png" />
           </view>
         </view>
