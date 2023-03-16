@@ -31,18 +31,4 @@ Component({
     leftList: [],
     rightList: [],
   },
-
-  methods: {
-    init() {
-      return new Promise((resolve) => {
-        this.setData(
-          {
-            leftList: [],
-            rightList: [],
-          },
-          resolve
-        );
-      });
-    },
-  },
 });

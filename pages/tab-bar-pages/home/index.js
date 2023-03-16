@@ -1,4 +1,4 @@
-import { storeBindingsBehavior } from 'mobx-miniprogram-bindings'
+import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
 import { store } from "../../../store/index";
 import HomeService from "./utils/homeService";
 import {
@@ -15,7 +15,7 @@ Component({
 
   storeBindings: {
     store,
-    fields: ['userInfo'],
+    fields: ["userInfo"],
   },
 
   data: {
@@ -24,7 +24,9 @@ Component({
     wrapHeightList: [windowHeight, windowHeight],
     curMenuIndex: 1,
     followMediaList: [],
+    nomoreFollow: false,
     mediaList: [],
+    nomore: false,
   },
 
   lifetimes: {
@@ -69,6 +71,48 @@ Component({
 
     onPullDownRefresh() {
       wx.stopPullDownRefresh();
+    },
+
+    setList(scene) {
+      switch (scene) {
+        case SCENE_SWITCH_TAB:
+          break;
+        case SCENE_REFRESH:
+          break;
+        case SCENE_LOADMORE:
+          break;
+      }
+    },
+
+    async setFollowMediaList(init = false) {
+      if (init) {
+        this.followPage = 0;
+        this.setData({ nomoreFollow: false });
+      }
+      const limit = 10;
+      const list =
+        (await homeService.getFollowMediaList(++this.followPage, limit)) || [];
+      this.setData({
+        followMediaList: init ? list : [...this.data.followMediaList, ...list],
+      });
+      if (list.length < limit) {
+        this.setData({ nomoreFollow: true });
+      }
+    },
+
+    async setMediaList(init = false) {
+      if (init) {
+        this.page = 0;
+        this.setData({ nomore: false });
+      }
+      const limit = 10;
+      const list = (await homeService.getMediaList(++this.page, limit)) || [];
+      this.setData({
+        mediaList: init ? list : [...this.data.mediaList, ...list],
+      });
+      if (list.length < limit) {
+        this.setData({ nomore: true });
+      }
     },
 
     setWrapHeight() {
