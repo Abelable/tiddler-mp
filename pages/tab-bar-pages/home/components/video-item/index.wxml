@@ -1,4 +1,4 @@
-<view class="video-item">
+<navigator class="video-item" url="/pages/subpages/home/video/index?id={{item.id}}" hover-class="none">
   <view class="cover-wrap">
     <image class="cover" mode="widthFix" src="http://img.ubo.vip/youlian/temporary/item_cover_5.jpg" />
     <view class="video-symbol">
@@ -20,4 +20,4 @@
       <text>10w</text>
     </view>
   </view>
-</view>
+</navigator>

@@ -1,4 +1,4 @@
-<navigator class="note-item" >
+<navigator class="note-item" url="/pages/subpages/home/note/index?id={{item.id}}" hover-class="none">
   <view class="cover-wrap">
     <image class="cover" mode="widthFix" src="http://img.ubo.vip/youlian/temporary/item_cover.jpeg" />
     <view class="address-info">
