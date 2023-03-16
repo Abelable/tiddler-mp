@@ -1,9 +1,9 @@
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { store } from "../../../../store/index";
 import { getQueryString } from "../../../../utils/index";
-import RoomService from "./utils/roomService";
+import LiveService from "../utils/liveService";
 
-const roomService = new RoomService();
+const liveService = new LiveService();
 const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Page({
@@ -21,15 +21,7 @@ Page({
 
     this.storeBindings = createStoreBindings(this, {
       store,
-      fields: [
-        "userInfo",
-        "maskVisible",
-        "maskOpcity",
-        "goodsModalVisible",
-        "inputModalVisible",
-        "shareModalVisible",
-        "posterModalVisible",
-      ],
+      fields: ["userInfo"],
       actions: ["setLiveMsgList", "showModal", "hideModal"],
     });
 
@@ -39,14 +31,23 @@ Page({
     this.roomId =
       id || decodedScene.split("-")[0] || getQueryString(decodedQ, "id");
 
+    this.page = 0
     await this.setRoomList();
     this.setCurRoomInfo();
   },
 
   onShow() {
-    wx.setKeepScreenOn({ keepScreenOn: true }); // 保持屏幕常亮
+    wx.setKeepScreenOn({
+      keepScreenOn: true,
+    });
   },
-  
+
+  onHide() {
+    wx.setKeepScreenOn({
+      keepScreenOn: false,
+    });
+  },
+
   changeRoom(e) {
     const { current: curRoomIdx } = e.detail;
     this.setCurRoomIdxTimeout && clearTimeout(this.setCurRoomIdxTimeout);
@@ -59,33 +60,15 @@ Page({
   },
 
   async setRoomList() {
-    const roomList = (await roomService.getRoomLists(this.roomId)) || [];
+    const { list: [] } = await liveService.getRoomList(this.roomId, ++this.page) || {};
     this.setData({
-      roomList: [...this.data.roomList, ...roomList],
+      roomList: [...this.data.roomList, ...list],
     });
-  },
-
-  async setCurRoomInfo() {
-    const { roomList, curRoomIdx } = this.data;
-    const { id, status } = roomList[curRoomIdx];
-    if (status === 1) {
-      const { hotGoods, viewersNumber, praiseNumber } =
-        (await roomService.getRoomInfo(id)) || {};
-      this.setData({
-        [`roomList[${curRoomIdx}].hotGoods`]: hotGoods,
-      });
-    }
   },
 
   onUnload() {
     this.hideModal();
     this.storeBindings.destroyStoreBindings();
-  },
-
-  showSpecModal(e) {},
-
-  showPosterModal() {
-    this.showModal("poster");
   },
 
   onShareAppMessage() {

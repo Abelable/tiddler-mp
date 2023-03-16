@@ -1,4 +1,4 @@
-import LiveService from "../../../utils/liveService";
+import LiveService from "../../../../../utils/liveService";
 
 const liveService = new LiveService();
 

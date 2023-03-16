@@ -4,12 +4,7 @@
   "navigationBarTextStyle": "white",
   "usingComponents": {
     "back-icon": "/components/back-icon-white/index",
-    "play-room": "./components/play-room/index",
-    "i-mask": "/components/i-mask/index",
-    "i-anchor-modal": "./components/i-anchor-modal/index",
-    "i-goods-modal": "/components/i-goods-modal/index",
-    "i-input": "./components/i-input/index",
-    "i-share-modal": "/components/i-share-modal/index",
-    "i-poster-modal": "/components/i-poster-modal/index"
+    "share-popup": "/components/share-popup/index",
+    "play-room": "./components/play-room/index"
   }
 }

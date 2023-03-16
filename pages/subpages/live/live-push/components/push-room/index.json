@@ -1,21 +1,20 @@
 {
   "component": true,
   "usingComponents": {
+    "modal-mask": "/components/modal-mask/index",
     "back-icon": "/components/back-icon-white/index",
     "share-popup": "/components/share-popup/index",
-    "i-poster-modal": "/components/i-poster-modal/index",
-    "live-pusher": "../live-pusher/index",
-    "anchor-capsule": "../anchor-capsule/index",
-    "input-popup": "/components/live/input-popup/index",
-    "comment-showcase": "/components/live/comment-showcase/index",
-    "praise-animation": "/components/live/praise-animation/index",
-    "modal-mask": "/components/modal-mask/index",
-    "more-features-popup": "../more-features-popup/index",
-    "subscribe-remind-popup": "../subscribe-remind-popup/index",
-    "beauty-popup": "../beauty-popup/index",
-    "hd-popup": "../hd-popup/index",
-    "goods-shelves-popup": "../goods-shelves-popup/index",
-    "count-down": "../count-down/index",
-    "hot-goods": "../hot-goods/index"
+    "input-popup": "../../../components/input-popup/index",
+    "anchor-capsule": "../../../components/anchor-capsule/index",
+    "comment-showcase": "../../../components/comment-showcase/index",
+    "praise-animation": "../../../components/praise-animation/index",
+    "hot-goods": "../../../components/hot-goods/index",
+    "live-pusher": "./components/live-pusher/index",
+    "more-features-popup": "./components/more-features-popup/index",
+    "subscribe-remind-popup": "./components/subscribe-remind-popup/index",
+    "beauty-popup": "./components/beauty-popup/index",
+    "hd-popup": "./components/hd-popup/index",
+    "goods-shelves-popup": "./components/goods-shelves-popup/index",
+    "count-down": "./components/count-down/index"
   }
 }

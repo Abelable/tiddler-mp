@@ -81,4 +81,3 @@
   catchtap="hideModal"
 />
 <input-popup wx:if="{{inputPopupVisible}}" roomInfo="{{roomInfo}}" identity="{{2}}" bind:hide="hideModal" />
-<i-poster-modal wx:if="{{posterModalVisible}}" roomPosterInfo="{{roomPosterInfo}}" bind:hidePosterModal="hideModal" />

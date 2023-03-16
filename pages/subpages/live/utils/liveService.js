@@ -96,6 +96,13 @@ class LiveService extends BaseService {
       success
     })
   }
+
+  async getRoomList(id, page, limit = 10) {
+    return await this.get({
+      url: `${this.baseUrl}/media/live/list`,
+      data: { id, page, limit }
+    })
+  }
 }
 
 export default LiveService;
