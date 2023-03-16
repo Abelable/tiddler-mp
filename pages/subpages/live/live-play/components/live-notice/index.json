@@ -1,6 +1,3 @@
 {
-  "component": true,
-  "usingComponents": {
-    "i-back-icon": "/components/i-back-icon/index"
-  }
+  "component": true
 }

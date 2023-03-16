@@ -5,6 +5,7 @@
   "usingComponents": {
     "back-icon": "/components/back-icon-white/index",
     "share-popup": "/components/share-popup/index",
-    "play-room": "./components/play-room/index"
+    "play-room": "./components/play-room/index",
+    "live-notice": "./components/live-notice/index"
   }
 }

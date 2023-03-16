@@ -1,5 +1,5 @@
-<wxs module="TIME" src="../../../../../../../../utils/filters/time.wxs" />
-<wxs module="STRING" src="../../../../../../../../utils/filters/string.wxs" />
+<wxs module="TIME" src="/utils/filters/time.wxs" />
+<wxs module="STRING" src="/utils/filters/string.wxs" />
 
 <view class="live-notice">
   <navigator class="anchor-info" style="margin-top: {{statusBarHeight + 110}}px;" url="/pages/subpages/index/room/subpages/shop/index?id={{roomInfo.shopId}}&anchorId={{roomInfo.anchorId}}" hover-class="none">
