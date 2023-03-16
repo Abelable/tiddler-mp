@@ -218,5 +218,9 @@ Component({
     showShareModal() {
       this.showModal("share");
     },
+
+    login() {
+      wx.navigateTo({ url: "/pages/subpages/common/register/index" });
+    },
   },
 });
