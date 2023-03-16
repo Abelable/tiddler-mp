@@ -1,6 +1,6 @@
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
-import { store } from "../../../../../store/index";
-import HomeService from "../../utils/homeService";
+import { store } from "../../../../../../../store/index";
+import HomeService from "../../../../utils/homeService";
 
 const homeService = new HomeService();
 

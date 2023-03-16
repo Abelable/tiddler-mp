@@ -1,0 +1,5 @@
+<view class="media-item">
+  <live-item wx:if="{{item.type === 1}}" item="{{item}}" />
+  <video-item wx:if="{{item.type === 2}}" item="{{item}}" />
+  <i-goods-list wx:if="{{item.type === 3}}" item="{{item}}" />
+</view>
