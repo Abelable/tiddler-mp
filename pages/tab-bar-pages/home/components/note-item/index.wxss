@@ -1,4 +1,4 @@
-.strategy-item {
+.note-item {
   margin-bottom: 30rpx;
   width: 350rpx;
 }

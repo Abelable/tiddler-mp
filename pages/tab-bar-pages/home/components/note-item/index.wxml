@@ -1,8 +1,8 @@
-<view class="strategy-item" bindtap="navTo">
+<navigator class="note-item" >
   <view class="cover-wrap">
     <image class="cover" mode="widthFix" src="http://img.ubo.vip/youlian/temporary/item_cover.jpeg" />
     <view class="address-info">
-      <image class="address-icon" src="./images/address.png" />
+      <image class="address-icon" src="../../images/address.png" />
       <text class="address-detail omit single-line">千岛湖绿城度假酒店千岛湖绿城度假酒店</text>
     </view>
   </view>
@@ -13,8 +13,8 @@
       <text class="name omit single-line">花束情人花束情人花束情人花束情人花束情人花束情人花束情人</text>
     </view>
     <view class="praise-info">
-      <image class="praise-icon" src="./images/heart.png" />
+      <image class="praise-icon" src="../../images/heart.png" />
       <text>10w</text>
     </view>
   </view>
-</view>
+</navigator>
