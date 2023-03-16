@@ -1,8 +1,8 @@
 <view class="fall-flow-wrap">
   <view class="left-list">
-    <item class="item" wx:for="{{leftList}}" wx:key="index" item="{{item}}" />
+    <item class="item" wx:for="{{leftList}}" wx:key="index" item="{{item}}" data-info="{{item}}" />
   </view>
   <view class="right-list">
-    <item class="item" wx:for="{{rightList}}" wx:key="index" item="{{item}}" />
+    <item class="item" wx:for="{{rightList}}" wx:key="index" item="{{item}}" data-info="{{item}}" />
   </view>
 </view>

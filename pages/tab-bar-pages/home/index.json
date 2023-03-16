@@ -2,6 +2,7 @@
   "navigationStyle": "custom",
   "enablePullDownRefresh": true,
   "usingComponents": {
-    
+    "fall-flow": "/components/fall-flow/index",
+    "media-item": "./components/media-item"
   }
 }

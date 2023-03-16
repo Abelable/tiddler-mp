@@ -1,7 +1,11 @@
+const setActiveMediaItem = require('../../utils/behaviors/setActiveMediaItem')
+
 Component({
   options: {
     multipleSlots: true 
   },
+
+  behaviors: [setActiveMediaItem],
 
   properties: {
     list: {
@@ -16,7 +20,9 @@ Component({
             rightList.push(item)
           }
         })
-        this.setData({ leftList, rightList })
+        this.setData({ leftList, rightList }, () => {
+          this.triggerEvent('finish')
+        })
       }
     }
   },
