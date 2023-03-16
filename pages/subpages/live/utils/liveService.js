@@ -110,6 +110,15 @@ class LiveService extends BaseService {
       data: { id, page, limit }
     })
   }
+
+  async subscribeAnchor(anchorId, success) {
+    return await this.post({
+      url: `${this.baseUrl}/media/live/subscribe`,
+      data: { anchorId },
+      success
+    })
+  }
+
 }
 
 export default LiveService;

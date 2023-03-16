@@ -51,8 +51,6 @@
   margin-top: 8px;
 }
 .input-btn {
-  display: flex;
-  align-items: center;
   padding-left: 10px;
   flex: 1;
   height: 35px;

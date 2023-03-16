@@ -7,11 +7,15 @@ const roomService = new RoomService()
 const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Component({
+  options: {
+    addGlobalClass: true,
+  },
+
   behaviors: [storeBindingsBehavior],
 
   storeBindings: {
     store,
-    fields: ['userInfo', 'srcIniting', 'liveLoading', 'liveBreak', 'definitionIndex', 'fullScreen', 'audienceCount', 'praiseCount', 'goodsList', 'liveMsgList', 'liveCustomMsg', 'maskVisible', 'roomPosterInfo',],
+    fields: ['userInfo', 'srcIniting', 'liveLoading', 'liveBreak', 'definitionIndex', 'fullScreen', 'audienceCount', 'praiseCount', 'goodsList', 'liveCustomMsg', 'maskVisible', 'roomPosterInfo',],
     actions: ['resetRoomData', 'setRoomPosterInfo', 'setFullScreen', 'exitFullScreen',  'setAudienceCount', 'setPraiseCount', 'setLiveMsgList', 'showModal' ]
   },
 

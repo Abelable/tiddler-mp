@@ -113,58 +113,61 @@
   transform: translateX(0);
   transition: .3s linear;
 }
-.i-praise {
+
+.praise-animation {
   position: absolute;
   right: 0;
   bottom: calc(112rpx + env(safe-area-inset-bottom));
 }
-.i-praise.full-screen {
+.praise-animation.full-screen {
   right: 30px;
   bottom: 112rpx;
 }
-.i-praise.hide, .i-praise.full-screen.hide {
-  display: none;
-}
 
-.operation-wrap {
-  display: flex;
-  align-items: flex-end;
-  padding-right: 24rpx;
+.btns-wrap {
+  margin-top: 8px;
 }
-.room-btn-wrap {
-  margin-left: 10rpx;
-  display: flex;
-  justify-content: flex-end;
+.input-btn {
+  padding-left: 10px;
   flex: 1;
-}
-.room-btn {
-  position: relative;
-  margin-right: 16rpx;
-  width: 70rpx;
-  height: 70rpx;
-  overflow: initial;
-}
-.room-btn.chat {
-  padding-left: 27rpx;
-  flex: 1;
+  height: 35px;
   color: #fff;
-  font-size: 30rpx;
-  line-height: 70rpx;
-  border-radius: 35rpx;
+  font-size: 13px;
+  border-radius: 18px;
   background: rgba(0, 0, 0, 0.3);
 }
-.room-btn:last-child {
-  margin-right: 0;
+.chat-icon {
+  margin-right: 5px;
+  width: 26px;
+  height: 26px;
 }
-
-.file-display-icon {
-  position: absolute;
-  right: -8rpx;
-  bottom: -8rpx;
-  width: 32rpx;
-  height: 32rpx;
+.feature-btn {
+  position: relative;
+  margin-left: 8px;
+  width: 35px;
+  height: 35px;
+  overflow: initial;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
 }
-
+.goods-icon {
+  width: 23px;
+  height: 23px;
+}
+.more-icon {
+  width: 30px;
+  height: 30px;
+}
+.share-icon {
+  margin-right: 1px;
+  width: 22px;
+  height: 22px;
+}
+.praise-icon {
+  margin-bottom: 1px;
+  width: 24px;
+  height: 24px;
+}
 .praise-icon.hover {
   animation: scaleDraw 1s ease-in-out; 
 }
@@ -182,18 +185,17 @@
     transform: scale(0.9);
   }
 }
-
 .praise-count {
   position: absolute;
-  top: -28rpx;
+  top: -14px;
   left: 50%;
   transform: translateX(-50%);
-  padding: 0 10rpx;
-  font-size: 18rpx;
+  padding: 0 5px;
+  font-size: 9px;
   color: #F94950;
-  height: 28rpx;
-  line-height: 28rpx;
-  border-radius: 14rpx;
+  height: 14px;
+  line-height: 14px;
+  border-radius: 7px;
   background: #fff;
   white-space: nowrap;
 }
@@ -203,23 +205,4 @@
   width: 80px;
   height: 80px;
   opacity: 0;
-}
-
-@keyframes float {
-  0% {
-    opacity: 1;
-  }
-  30% {
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1.8) translateY(-60px);
-    opacity: 0;
-  }
-}
-
-.ad-container {
-  position: absolute;
-  right: 24rpx;
-  bottom: calc(86px + env(safe-area-inset-bottom));
 }

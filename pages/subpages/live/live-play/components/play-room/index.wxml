@@ -1,12 +1,12 @@
 <wxs module="NUM" src="/utils/filters/num.wxs" />
 
 <view class="room {{!srcIniting ? 'show' : ''}}" ontap="dbTap">
-  <live-player wx:if="{{roomInfo.status === 1 && !liveEnd}}" horizontal="{{roomInfo.direction === 2}}" src="{{roomInfo.playUrl}}" bind:statechange="statechange">
+  <live-player wx:if="{{!liveEnd}}" horizontal="{{roomInfo.direction === 2}}" src="{{roomInfo.playUrl}}" bind:statechange="statechange">
     <swiper class="inner-wrap" slot="{{fullScreen ? 'inside' : 'outside'}}">
       <swiper-item class="inner">
         <view class="top-part" style="padding: {{fullScreen ? 8 : statusBarHeight}}px {{fullScreen ? 30 : 8}}px 0; ">
           <view class="anchor-capsule-wrap {{fullScreen ? 'full-screen' : ''}}">
-            <i-anchor-capsule roomInfo="{{roomInfo}}"/>
+            <anchor-capsule anchorInfo="{{roomInfo.anchorInfo}}" isFollow="{{roomInfo.isFollow}}" />
             <image style="width: 32px; height: 32px;" wx:if="{{fullScreen}}" catchtap="exitFullScreen" src="https://img.ubo.vip/mp/index/room/exit-fullscreen-icon.png" />
           </view>
         </view>
@@ -15,18 +15,19 @@
 
         <view class="bottom-part {{fullScreen ? 'full-screen' : ''}}">
           <view class="audience-action-tips {{audienceActionTips.type}} {{showAudienceActionTips ? 'show' : ''}}">{{audienceActionTips.message}}</view>
-          <i-comment srcIniting="{{srcIniting}}" roomId="{{roomInfo.id}}" fansName="{{roomInfo.fansName}}" msgList="{{liveMsgList}}" isLive="{{roomInfo.status === 1}}"/>
-          <i-praise class="i-praise {{fullScreen ? 'full-screen' : ''}} {{(srcIniting || maskVisible || roomInfo.status !== 1) ? 'hide' : ''}}" count="{{praiseCount}}" manual="{{manualPraise}}" />
-          <view class="operation-wrap">
-            <view class="room-btn-wrap">
-              <view class="room-btn chat" catchtap="showInputModal">说点什么……</view>
-              <view class="room-btn" catchtap="showShareModal">
-                <image style="width: 70rpx; height: 70rpx;" src="https://img.ubo.vip/mp/index/room/share-icon.png" />
+          <comment-showcase />
+          <praise-animation class="praise-animation {{fullScreen ? 'full-screen' : ''}}" count="{{praiseCount || 0}}" manual="{{manualPraise}}" />
+          <view class="btns-wrap row">
+            <view class="input-btn row">
+              <image class="chat-icon" src="./images/chat.png" />
+              <text>说点什么...</text>
+            </view>
+            <view class="row">
+              <view class="feature-btn row center" catchtap="showSharePopup" >
+                <image class="share-icon" src="./images/share.png" />
               </view>
-              <view class="room-btn" catchtap="praise" wx:if="{{roomInfo.status === 1}}">
-                <view class="praise-icon" hover-class="hover" hover-stop-propagation="false">
-                  <image style="width: 70rpx; height: 70rpx;" src="https://img.ubo.vip/mp/index/room/praise-icon.png" />
-                </view>
+              <view class="feature-btn row center" catchtap="praise">
+                <image class="praise-icon" hover-class="hover" hover-stop-propagation="false" src="./images/praise.png" />
                 <view class="praise-count" wx:if="{{praiseCount}}">{{NUM.over(praiseCount, 100000)}}</view>
               </view>
             </view>
@@ -42,11 +43,9 @@
 </view>
 
 <!-- 直播中断 -->
-<i-status-break wx:if="{{liveLoading || liveBreak}}" />
+<live-loading wx:if="{{liveLoading || liveBreak}}" />
 
 <!-- 直播结束 -->
-<i-status-end wx:if="{{liveEnd}}" liveDuration="{{liveDuration}}" anchorAvatar="{{roomInfo.anchorAvatar}}" anchorName="{{roomInfo.anchorName}}" />
+<live-end wx:if="{{liveEnd}}" anchorInfo="{{roomInfo.anchorInfo}}" liveDuration="{{liveDuration}}" />
 
-<!-- 直播预告 -->
-<i-status-unstart wx:if="{{roomInfo.status === 3}}" roomInfo="{{roomInfo}}" bind:share="showShareModal" />
  

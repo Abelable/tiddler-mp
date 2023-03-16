@@ -79,6 +79,14 @@ class BaseService extends Base {
     }) || {}
     return list
   }
+
+  async followAuthor(authorId, success) {
+    return await this.post({
+      url: `${this.baseUrl}/fan/follow`,
+      data: { authorId },
+      success
+    })
+  }
 }
 
 export default BaseService

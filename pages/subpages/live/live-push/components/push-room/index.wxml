@@ -13,7 +13,7 @@
       <view class="close-icon row center" bindtap="confirmStopLive">
         <image style="width: 18px; height: 18px;" src="/images/close.png" />
       </view>
-      <anchor-capsule anchorInfo="{{userInfo}}" />
+      <anchor-capsule anchorInfo="{{userInfo}}" isLivePush />
     </view>
 
     <hot-goods 
