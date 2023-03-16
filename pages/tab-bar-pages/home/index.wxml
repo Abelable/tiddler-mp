@@ -20,7 +20,7 @@
     </swiper-item>
     <swiper-item>
       <view class="content-wrap" style="padding-top: {{statusBarHeight + 102}}px;">
-        
+        <fall-flow class="fall-flow-1" list="{{mediaList}}" generic:item="media-item" bind:finish="setWrapHeight" />
       </view>
     </swiper-item>
   </swiper>

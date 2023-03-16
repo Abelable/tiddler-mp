@@ -1,4 +1,12 @@
 import { store } from "../../../store/index";
+import HomeService from "./utils/homeService";
+import {
+  SCENE_SWITCH_TAB,
+  SCENE_REFRESH,
+  SCENE_LOADMORE,
+} from "./utils/sceneEnums";
+
+const homeService = new HomeService();
 const { statusBarHeight, windowHeight } = getApp().globalData.systemInfo;
 
 Component({
@@ -7,6 +15,8 @@ Component({
     navBarActive: false,
     wrapHeightList: [windowHeight, windowHeight],
     curMenuIndex: 1,
+    followMediaList: [],
+    mediaList: [],
   },
 
   lifetimes: {
@@ -20,6 +30,11 @@ Component({
 
   pageLifetimes: {
     show() {
+      wx.showShareMenu({
+        withShareTicket: true,
+        menus: ["shareAppMessage", "shareTimeline"],
+      });
+
       store.setTabType("home");
     },
   },
@@ -82,12 +97,14 @@ Component({
       wx.stopPullDownRefresh();
     },
 
-    signIn() {},
-
     search() {
       wx.navigateTo({
         url: "/pages/subpages/home/search/index",
       });
     },
+
+    onShareAppMessage() {},
+
+    onShareTimeline() {},
   },
 });
