@@ -34,6 +34,7 @@ Component({
 
   data: {
     statusBarHeight,
+    isLogin: true,
     isFollow: false,
     goodsList: [],
     manualPraise: false, // 是否是手动点赞
