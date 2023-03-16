@@ -1,52 +1,29 @@
-<!-- <view class="live-item">
-  <view class="cover-wrap">
-    <image class="cover" mode="widthFix" src="http://img.ubo.vip/youlian/temporary/item_cover_3.jpg" lazy-load />
-    <view class="live-symbol">
-      <image class="live-icon" src="./images/live.gif" />
-      <text>直播</text>
-    </view>
-  </view>
-  <view class="title omit">千岛湖3天骑车、皮划艇、游泳和吃吃吃，千岛湖3天骑车、皮划艇、游泳和吃吃吃，千岛湖3天骑车、皮划艇、游泳和吃吃吃</view>
-  <view class="info-wrap">
-    <view class="author-info">
-      <image class="avatar" src="http://img.ubo.vip/youlian/temporary/avatar.jpeg" />
-      <text class="name omit single-line">花束情人花束情人花束情人花束情人花束情人花束情人花束情人</text>
-    </view>
-    <view class="praise-info">
-      <image class="praise-icon" src="./images/fire.png" />
-      <text>10w</text>
-    </view>
-  </view>
-</view> -->
-
 <wxs module="NUM" src="/utils/filters/num.wxs" />
 <wxs module="TIME" src="/utils/filters/time.wxs" />
 
 <navigator class="live-item" url="/pages/subpages/index/room/index?id={{item.id}}" hover-class="none">
-  <image class="bg" src="http://img.ubo.vip/youlian/temporary/item_cover_3.jpg" mode="aspectFill" lazy-load />
-  <live-player class="active-bg {{activeBgVisble ? 'show' : ''}}" wx:if="{{active}}" src="{{item.url}}" bindstatechange="statechange" autoplay muted object-fit="fillCrop" />
+  <image class="bg" src="{{item.cover}}" mode="aspectFill" lazy-load />
+  <live-player class="active-bg {{activeBgVisible ? 'show' : ''}}" wx:if="{{active}}" src="{{item.playUrl}}" bindstatechange="statechange" autoplay muted object-fit="fillCrop" />
 
-  <!-- <view class="status-wrap">
-    <view class="status {{item.is_stopped == 1 ? 'video' : item.start_time == 0 ? 'live' : 'notice'}}">
-      <image wx:if="{{item.is_stopped != 1 && item.start_time == 0}}" style="width: 18rpx; height: 24rpx;" src="https://img.ubo.vip/mp/i-media-list/live_status.gif" />
-      <text wx:else>{{item.is_stopped == 1 ? '回放' : item.start_time == 0 ? '' : '预告'}}</text>
+  <view class="status-wrap row">
+    <view class="status row {{item.status === 1 ? 'live' : 'notice'}}">
+      <image class="live-icon" wx:if="{{item.status === 1}}" src="https://img.ubo.vip/mp/i-media-list/live_status.gif" />
+      <view class="notice-spot" wx:if="{{item.status === 3}}" />
+      <text>{{item.status === 1 ? '直播' : '预告'}}</text>
     </view>
-    <view class="audience-num">{{item.start_time != 0 ? TIME.transform(item.start_time).month + '月' + TIME.transform(item.start_time).date + '日' + TIME.transform(item.start_time).hours + ':' + TIME.transform(item.start_time).minutes + '开始' : NUM.over(item.memberNum, 100000) + '观看'}}</view>
-  </view> -->
-  <view class="live-symbol">
-    <image class="live-icon" src="./images/live.gif" />
-    <text>直播</text>
+    <view class="status-desc">{{item.status === 1 ? (NUM.over(item.memberNum, 100000) + '人观看') : TIME.transform(item.noticeTime, 'MM月DD日hh:mm开始')}}</view>
   </view>
 
   <view class="info-wrap">
-    <view class="title omit">千岛湖3天骑车、皮划艇、游泳和吃吃吃，千岛湖3天骑车、皮划艇、游泳和吃吃吃，千岛湖3天骑车、皮划艇、游泳和吃吃吃</view>
+    <view class="title omit">{{item.title}}</view>
     <view class="info row">
-      <image class="anchor-avatar" src="http://img.ubo.vip/youlian/temporary/avatar.jpeg" lazy-load mode="aspectFill" />
-      <view class="anchor-name omit single-line">花束情人花束情人花束情人花束情人花束情人花束情人花束情人</view>
-      <view class="praise-info row">
+      <image class="anchor-avatar" src="{{item.anchorInfo.avatar}}" lazy-load mode="aspectFill" />
+      <view class="anchor-name omit single-line">{{item.anchorInfo.nickename}}</view>
+      <view class="praise-info row" wx:if="{{item.status === 1}}">
         <image class="praise-icon" src="./images/fire.png" />
-        <text>10w</text>
+        <text>{{NUM.over(item.praiseNumber, 100000)}}</text>
       </view>
+      <button class="notice-btn" wx:if="{{item.status === 3}}" bindtap="subscribe">预约</button>
     </view>
   </view>
 </navigator>
