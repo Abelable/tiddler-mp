@@ -19,15 +19,18 @@
           <praise-animation class="praise-animation {{fullScreen ? 'full-screen' : ''}}" count="{{praiseCount || 0}}" manual="{{manualPraise}}" />
           <view class="btns-wrap row">
             <view class="input-btn row">
-              <image class="chat-icon" src="./images/chat.png" />
+              <image class="chat-icon" src="../../../images/chat.png" />
               <text>说点什么...</text>
             </view>
             <view class="row">
+              <view class="feature-btn row center" catchtap="showGoodsPopup" >
+                <image class="goods-icon" src="../../../images/goods.png" />
+              </view>
               <view class="feature-btn row center" catchtap="showSharePopup" >
-                <image class="share-icon" src="./images/share.png" />
+                <image class="share-icon" src="../../../images/share.png" />
               </view>
               <view class="feature-btn row center" catchtap="praise">
-                <image class="praise-icon" hover-class="hover" hover-stop-propagation="false" src="./images/praise.png" />
+                <image class="praise-icon" hover-class="hover" hover-stop-propagation="false" src="../../../images/praise.png" />
                 <view class="praise-count" wx:if="{{praiseCount}}">{{NUM.over(praiseCount, 100000)}}</view>
               </view>
             </view>

@@ -1,9 +1,9 @@
-import { storeBindingsBehavior } from 'mobx-miniprogram-bindings'
-import { store } from '../../../../../../store/index'
-import { checkLogin } from '../../../../../../utils/index'
-import RoomService from '../../utils/roomService'
+import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
+import { store } from "../../../../../../store/index";
+import { checkLogin } from "../../../../../../utils/index";
+import LiveService from "../../../utils/liveService";
 
-const roomService = new RoomService()
+const liveService = new LiveService();
 const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Component({
@@ -15,188 +15,171 @@ Component({
 
   storeBindings: {
     store,
-    fields: ['userInfo', 'srcIniting', 'liveLoading', 'liveBreak', 'definitionIndex', 'fullScreen', 'audienceCount', 'praiseCount', 'goodsList', 'liveCustomMsg', 'maskVisible', 'roomPosterInfo',],
-    actions: ['resetRoomData', 'setRoomPosterInfo', 'setFullScreen', 'exitFullScreen',  'setAudienceCount', 'setPraiseCount', 'setLiveMsgList', 'showModal' ]
+    fields: [
+      "userInfo",
+      "srcIniting",
+      "liveLoading",
+      "liveBreak",
+      "fullScreen",
+      "audienceCount",
+      "praiseCount",
+    ],
+    actions: ["setFullScreen", "exitFullScreen"],
   },
 
   properties: {
-    roomInfo: Object
+    roomInfo: Object,
   },
 
   data: {
     statusBarHeight,
-    settleIconVisible: false,
-    liveEnd: false,                      // 直播结束
-    liveDuration: 0,                     // 直播总时长
-    manualPraise: false,                 // 是否是手动点赞
-    audienceActionTips: '',              // 观众行为（进直播间、下单...）
-    showAudienceActionTips: false,       // 控制观众行为弹幕的显示隐藏
-    praiseHeartArr: [],                  // 双击爱心
+    liveEnd: false, // 直播结束
+    liveDuration: 0, // 直播总时长
+    manualPraise: false, // 是否是手动点赞
+    audienceActionTips: "", // 观众行为（进直播间、下单...）
+    showAudienceActionTips: false, // 控制观众行为弹幕的显示隐藏
+    praiseHeartArr: [], // 双击爱心
   },
 
   observers: {
-    'liveCustomMsg': function(customMsg) {
-      this.handleCustomMsg(customMsg)
-    },
-    'srcIniting': function(truthy) {
-      !truthy && checkLogin(() => { this.joinRoom() }, false)
+    srcIniting: function (truthy) {
+      !truthy &&
+        checkLogin(() => {
+          this.joinRoom();
+        }, false);
     },
   },
 
   detached() {
-    checkLogin(() => { this.quitRoom() }, false)
+    store.resetRoomData();
   },
 
   methods: {
     joinRoom() {
-      const { id, groupId } = this.properties.roomInfo
-      roomService.getGoodsList(id)
-      roomService.getMsgHistory(id)
-      getApp().globalData.im.joinGroup(groupId)
-    },
-
-    quitRoom() {
-      this.resetRoomData() // 重置数据
+      const { id, groupId } = this.properties.roomInfo;
+      getApp().globalData.im.joinGroup(groupId);
     },
 
     handleCustomMsg(customMsg) {
       if (customMsg) {
-        const { audienceCount, praiseCount, manualPraise, showAudienceActionTips, liveBreak } = this.data
-        const { url, message } = customMsg
-        const { show_message, total_time: liveDuration, member_num, praise_count, invite_id, envelope } = message
-        
+        const {
+          audienceCount,
+          praiseCount,
+          manualPraise,
+          showAudienceActionTips,
+          liveBreak,
+        } = this.data;
+        const { url, message } = customMsg;
+        const {
+          show_message,
+          total_time: liveDuration,
+          member_num,
+          praise_count,
+        } = message;
+
         // 监听用户数量
-        if (member_num && member_num > audienceCount) this.setAudienceCount(member_num)
-        
+        if (member_num && member_num > audienceCount)
+          store.setAudienceCount(member_num);
+
         // 监听用户操作
-        const audienceActionIndex = audienceActionTipsArr.indexOf(url)
+        const audienceActionIndex = audienceActionTipsArr.indexOf(url);
         if (audienceActionIndex !== -1 && !showAudienceActionTips) {
-          this.setData({ 
+          this.setData({
             audienceActionTips: {
               type: audienceActionTypeArr[audienceActionIndex],
-              message: show_message
+              message: show_message,
             },
-            showAudienceActionTips: true
-          })
-          setTimeout(() => { 
-            this.setData({ showAudienceActionTips: false }) 
-          }, 2000)
+            showAudienceActionTips: true,
+          });
+          setTimeout(() => {
+            this.setData({ showAudienceActionTips: false });
+          }, 2000);
         }
-        
+
         // 监听点赞
         if (praise_count && praise_count > praiseCount) {
-          manualPraise && this.setData({ manualPraise: false })
-          this.setPraiseCount(praise_count)
+          manualPraise && this.setData({ manualPraise: false });
+          store.setPraiseCount(praise_count);
         }
 
         // 监听直播重连
-        url === 'report-openliveroom' && this.setVideoPlayingStatus(true)
+        url === "report-openliveroom" && this.setVideoPlayingStatus(true);
 
         // 监听直播结束
-        if (show_message === '房间已被关闭') {
-          this.setData({ liveDuration, liveEnd: true })
-          liveBreak && this.setData({ liveBreak: false })
+        if (show_message === "房间已被关闭") {
+          this.setData({ liveDuration, liveEnd: true });
+          liveBreak && this.setData({ liveBreak: false });
         }
       }
     },
 
-    hideSettleIcon() {
-      clearTimeout(this.hidesettleIconTimeout)
-      this.setData({ settleIconVisible: false })
-    },
-
     dbTap(e) {
       checkLogin(() => {
-        const { timeStamp, detail } = e
+        const { timeStamp, detail } = e;
         if (this.lastTimeStamp) {
           if (timeStamp - this.lastTimeStamp < 300) {
-            const { x, y } = detail
-            const deg = Math.floor(Math.random() * 60) - 30
-            const praiseHeartItem = { 
-              style: `top: ${y - 40}px; left: ${x - 40}px; transform: rotate(${deg}deg); animation: float 0.6s linear;`,
-              url: 'https://img.ubo.vip/mp/praise-heart.png'
-            }
+            const { x, y } = detail;
+            const deg = Math.floor(Math.random() * 60) - 30;
+            const praiseHeartItem = {
+              style: `top: ${y - 40}px; left: ${
+                x - 40
+              }px; transform: rotate(${deg}deg); animation: float 0.6s linear;`,
+              url: "https://img.ubo.vip/mp/praise-heart.png",
+            };
             this.setData({
-              [`praiseHeartArr[${this.data.praiseHeartArr.length}]`]: praiseHeartItem
-            })
-            this.praise()
-            if (this.clearPraiseHeartArrTimeout) clearTimeout(this.clearPraiseHeartArrTimeout)
+              [`praiseHeartArr[${this.data.praiseHeartArr.length}]`]:
+                praiseHeartItem,
+            });
+            this.praise();
+            if (this.clearPraiseHeartArrTimeout)
+              clearTimeout(this.clearPraiseHeartArrTimeout);
             this.clearPraiseHeartArrTimeout = setTimeout(() => {
-              this.setData({ praiseHeartArr: [] })
-            }, 2000)
+              this.setData({ praiseHeartArr: [] });
+            }, 2000);
           }
-          this.lastTimeStamp = 0
+          this.lastTimeStamp = 0;
         } else {
-          this.lastTimeStamp = timeStamp
+          this.lastTimeStamp = timeStamp;
         }
-      })
+      });
     },
 
-    // 点赞
     praise() {
-      checkLogin(() => {
-        wx.vibrateShort({ type: 'heavy' })
-        const { id, anchorId } = this.properties.roomInfo
-        if (!this.data.manualPraise) this.setData({ manualPraise: true })
-        roomService.praiseHandler(id, anchorId)
-      })
-    },
+      wx.vibrateShort({ type: "heavy" });
+      if (!this.data.manualPraise) this.setData({ manualPraise: true });
 
-    showSharersModal() {
-      checkLogin(() => {
-        this.showModal('sharers')
-      })
+      let praiseCount = store.praiseCount;
+      store.setPraiseCount(++praiseCount);
+      if (!this.praiseCount) this.praiseCount = 0;
+      ++this.praiseCount;
+      if (!this.savePraiseInterval) {
+        this.savePraiseInterval = setInterval(() => {
+          if (this.praiseCount) {
+            liveService.savePraiseCount(
+              this.properties.roomInfo.id,
+              this.praiseCount
+            );
+            this.praiseCount = 0;
+          } else {
+            clearInterval(this.savePraiseInterval);
+            this.savePraiseInterval = null;
+          }
+        }, 5000);
+      }
     },
 
     showGoodsModal() {
-      roomService.getGoodsList(this.properties.roomInfo.id)
-      this.showModal('goods')
+      this.showModal("goods");
     },
 
     showInputModal() {
       checkLogin(() => {
-        this.showModal('input')
-      })
-    },
-
-    showGiftModal() {
-      checkLogin(() => {
-        this.showModal('gift')
-      })
-    },
-
-    showMoreFeaturesModal() {
-      checkLogin(() => {
-        this.setData({
-          fileDisplayingPromptVisible: false
-        })
-        this.showModal('more-features')
-      })
+        this.showModal("input");
+      });
     },
 
     showShareModal() {
-      checkLogin(() => {
-        const { id, status, title, anchorId, anchorName, anchorAvatar } = this.properties.roomInfo
-        !this.data.roomPosterInfo && this.setPosterInfo(id, status, title, anchorName, anchorAvatar)
-        this.data.followStatus && roomService.addIntimacy('day-share-live', anchorId, id)
-        this.showModal('share')
-      })
+      this.showModal("share");
     },
-
-    async setPosterInfo(id, status, title, name, anchorAvatar) {
-      const { wxacode_pic, room_cover, cover_width, cover_height } = await roomService.getPosterUrl(id) || {}
-      const { path: qrCode } = await roomService.getImageInfo(wxacode_pic) || {}
-      const roomCover = cover_width <= cover_height ? `${room_cover}?x-oss-process=image/crop,x_0,y_0,w_${cover_width},h_${cover_width}` : `${room_cover}?x-oss-process=image/crop,x_0,y_0,w_${cover_height},h_${cover_height}`
-      const { path: cover } = await roomService.getImageInfo(roomCover) || {}
-      const { path: avatar } = await roomService.getImageInfo(anchorAvatar.includes('https://m.youboi.com/images/headimg/') ? 'https://img.ubo.vip/mp/default-ubo-icon.png' : anchorAvatar) || {}
-      
-      this.setRoomPosterInfo({ cover, title, avatar, name, status, qrCode })
-    },
-
-    report() {
-      checkLogin(() => {
-        wx.navigateTo({ url: `/pages/subpages/index/room/subpages/report/index?id=${this.properties.roomInfo.id}` })
-      })
-    }
-  }
-})
+  },
+});

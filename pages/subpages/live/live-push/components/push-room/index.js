@@ -211,7 +211,7 @@ Component({
 
       let praiseCount = store.praiseCount;
       store.setPraiseCount(++praiseCount);
-      if (typeof this.praiseCount != "number") this.praiseCount = 0;
+      if (!this.praiseCount) this.praiseCount = 0;
       ++this.praiseCount;
       if (!this.savePraiseInterval) {
         this.savePraiseInterval = setInterval(() => {
