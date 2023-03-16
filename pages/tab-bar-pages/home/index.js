@@ -1,6 +1,6 @@
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
 import { store } from "../../../store/index";
-import { debounce } from "../../../utils/index";
+import { checkLogin, debounce } from "../../../utils/index";
 import HomeService from "./utils/homeService";
 import {
   SCENE_SWITCH_TAB,
@@ -112,20 +112,22 @@ Component({
       }
     },
 
-    async setFollowMediaList(init = false) {
-      if (init) {
-        this.followPage = 0;
-        this.setData({ nomoreFollow: false });
-      }
-      const limit = 10;
-      const list =
-        (await homeService.getFollowMediaList(++this.followPage, limit)) || [];
-      this.setData({
-        followMediaList: init ? list : [...this.data.followMediaList, ...list],
-      });
-      if (list.length < limit) {
-        this.setData({ nomoreFollow: true });
-      }
+    setFollowMediaList(init = false) {
+      checkLogin(async () => {
+        if (init) {
+          this.followPage = 0;
+          this.setData({ nomoreFollow: false });
+        }
+        const limit = 10;
+        const list =
+          (await homeService.getFollowMediaList(++this.followPage, limit)) || [];
+        this.setData({
+          followMediaList: init ? list : [...this.data.followMediaList, ...list],
+        });
+        if (list.length < limit) {
+          this.setData({ nomoreFollow: true });
+        }
+      }, false)
     },
 
     async setMediaList(init = false) {
