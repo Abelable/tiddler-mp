@@ -176,7 +176,7 @@ Component({
     },
 
     setActiveMediaItem: debounce(function() {
-      this.selectComponent(`.fall-flow-${this.data.activeMenuIdx}`).setActiveMediaItem()
+      this.selectComponent(`.fall-flow-${this.data.curMenuIndex}`).setActiveMediaItem()
     }, 1000),
 
     search() {

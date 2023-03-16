@@ -11,14 +11,14 @@
       <view class="notice-spot" wx:if="{{item.status === 3}}" />
       <text>{{item.status === 1 ? '直播' : '预告'}}</text>
     </view>
-    <view class="status-desc">{{item.status === 1 ? (NUM.over(item.memberNum, 100000) + '人观看') : TIME.transform(item.noticeTime, 'MM月DD日hh:mm开始')}}</view>
+    <view class="status-desc">{{item.status === 1 ? (NUM.over(item.viewersNumber, 100000) + '人观看') : TIME.transform(item.noticeTime, 'MM月DD日hh:mm开始')}}</view>
   </view>
 
   <view class="info-wrap">
     <view class="title omit">{{item.title}}</view>
     <view class="info row">
       <image class="anchor-avatar avatar-default" src="{{item.anchorInfo.avatar}}" lazy-load mode="aspectFill" />
-      <view class="anchor-name omit single-line">{{item.anchorInfo.nickename}}</view>
+      <view class="anchor-name omit single-line">{{item.anchorInfo.nickname}}</view>
       <view class="praise-info row" wx:if="{{item.status === 1}}">
         <image class="praise-icon" src="./images/fire.png" />
         <text>{{NUM.over(item.praiseNumber, 100000)}}</text>
