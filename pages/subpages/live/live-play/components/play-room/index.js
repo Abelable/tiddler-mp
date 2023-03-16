@@ -1,6 +1,7 @@
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
 import { store } from "../../../../../../store/index";
 import { checkLogin } from "../../../../../../utils/index";
+import tim from "../../../../../../utils/tim/index";
 import LiveService from "../../../utils/liveService";
 
 const liveService = new LiveService();
@@ -45,20 +46,23 @@ Component({
 
   observers: {
     srcIniting: function (truthy) {
-      !truthy &&
-        checkLogin(() => {
-          this.init();
-        }, false);
+      !truthy && checkLogin(this.init, false);
     },
   },
 
   lifetimes: {
     attached() {
-      getApp().onLiveCustomMsgReceive(this.handleCustomMsg.bind(this));
+      this.inited = false;
     },
 
     detached() {
       store.resetRoomData();
+    },
+  },
+
+  pageLifetimes: {
+    show() {
+      !this.inited && checkLogin(this.init, false);
     },
   },
 
@@ -82,6 +86,9 @@ Component({
         },
       ]);
       this.setData({ goodsList, isFollow });
+      getApp().onLiveCustomMsgReceive(this.handleCustomMsg.bind(this));
+      tim.joinGroup(groupId);
+      this.inited = true;
     },
 
     joinRoom() {
