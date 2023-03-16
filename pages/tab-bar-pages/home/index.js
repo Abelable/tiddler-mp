@@ -1,5 +1,6 @@
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
 import { store } from "../../../store/index";
+import { debounce } from "../../../utils/index";
 import HomeService from "./utils/homeService";
 import {
   SCENE_SWITCH_TAB,
@@ -43,6 +44,11 @@ Component({
       });
 
       store.setTabType("home");
+
+      const { curMenuIndex, followMediaList, mediaList } = this.data
+      if ((curMenuIndex === 0 && !followMediaList.length) || (curMenuIndex === 1 && !mediaList.length)) {
+        this.setList(SCENE_SWITCH_TAB)
+      }
     },
   },
 
@@ -58,7 +64,9 @@ Component({
     handleMenuChange(index) {
       const { curMenuIndex } = this.data;
       if (curMenuIndex !== index) {
-        this.setData({ curMenuIndex: index });
+        this.setData({ curMenuIndex: index }, () => {
+          this.setList(SCENE_SWITCH_TAB)
+        });
         this.scrollTopArr[curMenuIndex] = this.scrollTop || 0;
         wx.pageScrollTo({
           scrollTop: this.scrollTopArr[index] || 0,
@@ -67,19 +75,39 @@ Component({
       }
     },
 
-    onReachBottom() {},
-
     onPullDownRefresh() {
+      this.setList(SCENE_REFRESH)
       wx.stopPullDownRefresh();
     },
 
+    onReachBottom() {
+      this.setList(SCENE_LOADMORE)
+    },
+
     setList(scene) {
+      const { curMenuIndex, followMediaList, mediaList } = this.data
       switch (scene) {
         case SCENE_SWITCH_TAB:
+          if (curMenuIndex === 0) {
+            if (!followMediaList.length) this.setFollowMediaList(true)
+          } else {
+            if (!mediaList.length) this.setMediaList(true)
+          }
+          this.setActiveMediaItem()
           break;
         case SCENE_REFRESH:
+          if (curMenuIndex === 0) {
+            this.setFollowMediaList(true)
+          } else {
+            this.setMediaList(true)
+          }
           break;
         case SCENE_LOADMORE:
+          if (curMenuIndex === 0) {
+            this.setFollowMediaList()
+          } else {
+            this.setMediaList()
+          }
           break;
       }
     },
@@ -144,7 +172,12 @@ Component({
       }
 
       this.scrollTop = e.scrollTop;
+      this.setActiveMediaItem()
     },
+
+    setActiveMediaItem: debounce(function() {
+      this.selectComponent(`.fall-flow-${this.data.activeMenuIdx}`).setActiveMediaItem()
+    }, 1000),
 
     search() {
       wx.navigateTo({

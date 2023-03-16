@@ -13,7 +13,7 @@ Component({
 
   storeBindings: {
     store,
-    fields: ["activeListInfo"],
+    fields: ["activeMediaItem"],
   },
 
   properties: {
@@ -26,7 +26,7 @@ Component({
   },
 
   observers: {
-    activeListInfo: function (info) {
+    activeMediaItem: function (info) {
       if (info) {
         const { id, top } = info;
         const { active } = this.data;
