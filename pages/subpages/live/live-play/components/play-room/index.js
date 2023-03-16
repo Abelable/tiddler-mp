@@ -52,14 +52,26 @@ Component({
     },
   },
 
-  detached() {
-    store.resetRoomData();
+  lifetimes: {
+    attached() {
+      getApp().onLiveCustomMsgReceive(this.handleCustomMsg.bind(this));
+    },
+
+    detached() {
+      store.resetRoomData();
+    },
   },
 
   methods: {
     async init() {
-      const { id, groupId } = this.properties.roomInfo
-      const { viewersNumber, praiseNumber, goodsList, historyChatMsgList, isFollow } = await liveService.joinRoom(id) || {}
+      const { id, groupId } = this.properties.roomInfo;
+      const {
+        viewersNumber,
+        praiseNumber,
+        goodsList,
+        historyChatMsgList,
+        isFollow,
+      } = (await liveService.joinRoom(id)) || {};
       store.setAudienceCount(viewersNumber);
       store.setPraiseCount(praiseNumber);
       store.setLiveMsgList([
@@ -69,7 +81,7 @@ Component({
             "平台依法对直播内容进行24小时巡查，倡导绿色直播，维护网络文明健康。切勿与他人私下交易，非官方活动谨慎参与，避免上当受骗。",
         },
       ]);
-      this.setData({ goodsList, isFollow })
+      this.setData({ goodsList, isFollow });
     },
 
     joinRoom() {
@@ -158,7 +170,7 @@ Component({
         } else {
           this.lastTimeStamp = timeStamp;
         }
-      });
+      }, false);
     },
 
     praise() {
