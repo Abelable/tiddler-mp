@@ -20,7 +20,6 @@
     </swiper-item>
     <swiper-item>
       <view class="content-wrap" style="padding-top: {{statusBarHeight + 102}}px;">
-        <strategy-item />
         <note-item />
         <live-item />
         <video-item />

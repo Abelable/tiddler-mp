@@ -2,7 +2,7 @@ Component({
   options: {
     addGlobalClass: true
   },
-  
+
   properties: {
     item: Object
   },
@@ -13,7 +13,7 @@ Component({
   methods: {
     navTo() {
       wx.navigateTo({
-        url: '/pages/subpages/home/note/index'
+        url: '/pages/subpages/home/strategy/index'
       })
     }
   }

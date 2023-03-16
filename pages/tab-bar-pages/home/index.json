@@ -2,7 +2,6 @@
   "navigationStyle": "custom",
   "enablePullDownRefresh": true,
   "usingComponents": {
-    "strategy-item": "./components/strategy-item/index",
     "note-item": "./components/note-item/index",
     "live-item": "./components/live-item/index",
     "video-item": "./components/video-item/index"

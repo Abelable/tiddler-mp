@@ -1,13 +1,9 @@
-<view class="live-item">
+<!-- <view class="live-item">
   <view class="cover-wrap">
-    <image class="cover" mode="widthFix" src="http://img.ubo.vip/youlian/temporary/item_cover_3.jpg" />
+    <image class="cover" mode="widthFix" src="http://img.ubo.vip/youlian/temporary/item_cover_3.jpg" lazy-load />
     <view class="live-symbol">
       <image class="live-icon" src="./images/live.gif" />
       <text>直播</text>
-    </view>
-    <view class="address-info">
-      <image class="address-icon" src="./images/address.png" />
-      <text class="address-detail omit single-line">千岛湖绿城度假酒店千岛湖绿城度假酒店</text>
     </view>
   </view>
   <view class="title omit">千岛湖3天骑车、皮划艇、游泳和吃吃吃，千岛湖3天骑车、皮划艇、游泳和吃吃吃，千岛湖3天骑车、皮划艇、游泳和吃吃吃</view>
@@ -21,4 +17,36 @@
       <text>10w</text>
     </view>
   </view>
-</view>
+</view> -->
+
+<wxs module="NUM" src="/utils/filters/num.wxs" />
+<wxs module="TIME" src="/utils/filters/time.wxs" />
+
+<navigator class="live-item" url="/pages/subpages/index/room/index?id={{item.id}}" hover-class="none">
+  <image class="bg" src="http://img.ubo.vip/youlian/temporary/item_cover_3.jpg" mode="aspectFill" lazy-load />
+  <live-player class="active-bg {{activeBgVisble ? 'show' : ''}}" wx:if="{{active}}" src="{{item.url}}" bindstatechange="statechange" autoplay muted object-fit="fillCrop" />
+
+  <!-- <view class="status-wrap">
+    <view class="status {{item.is_stopped == 1 ? 'video' : item.start_time == 0 ? 'live' : 'notice'}}">
+      <image wx:if="{{item.is_stopped != 1 && item.start_time == 0}}" style="width: 18rpx; height: 24rpx;" src="https://img.ubo.vip/mp/i-media-list/live_status.gif" />
+      <text wx:else>{{item.is_stopped == 1 ? '回放' : item.start_time == 0 ? '' : '预告'}}</text>
+    </view>
+    <view class="audience-num">{{item.start_time != 0 ? TIME.transform(item.start_time).month + '月' + TIME.transform(item.start_time).date + '日' + TIME.transform(item.start_time).hours + ':' + TIME.transform(item.start_time).minutes + '开始' : NUM.over(item.memberNum, 100000) + '观看'}}</view>
+  </view> -->
+  <view class="live-symbol">
+    <image class="live-icon" src="./images/live.gif" />
+    <text>直播</text>
+  </view>
+
+  <view class="info-wrap">
+    <view class="title omit">千岛湖3天骑车、皮划艇、游泳和吃吃吃，千岛湖3天骑车、皮划艇、游泳和吃吃吃，千岛湖3天骑车、皮划艇、游泳和吃吃吃</view>
+    <view class="info row">
+      <image class="anchor-avatar" src="http://img.ubo.vip/youlian/temporary/avatar.jpeg" lazy-load mode="aspectFill" />
+      <view class="anchor-name omit single-line">花束情人花束情人花束情人花束情人花束情人花束情人花束情人</view>
+      <view class="praise-info row">
+        <image class="praise-icon" src="./images/fire.png" />
+        <text>10w</text>
+      </view>
+    </view>
+  </view>
+</navigator>
