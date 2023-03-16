@@ -45,9 +45,12 @@ Component({
 
       store.setTabType("home");
 
-      const { curMenuIndex, followMediaList, mediaList } = this.data
-      if ((curMenuIndex === 0 && !followMediaList.length) || (curMenuIndex === 1 && !mediaList.length)) {
-        this.setList(SCENE_SWITCH_TAB)
+      const { curMenuIndex, followMediaList, mediaList } = this.data;
+      if (
+        (curMenuIndex === 0 && !followMediaList.length) ||
+        (curMenuIndex === 1 && !mediaList.length)
+      ) {
+        this.setList(SCENE_SWITCH_TAB);
       }
     },
   },
@@ -65,7 +68,7 @@ Component({
       const { curMenuIndex } = this.data;
       if (curMenuIndex !== index) {
         this.setData({ curMenuIndex: index }, () => {
-          this.setList(SCENE_SWITCH_TAB)
+          this.setList(SCENE_SWITCH_TAB);
         });
         this.scrollTopArr[curMenuIndex] = this.scrollTop || 0;
         wx.pageScrollTo({
@@ -76,37 +79,37 @@ Component({
     },
 
     onPullDownRefresh() {
-      this.setList(SCENE_REFRESH)
+      this.setList(SCENE_REFRESH);
       wx.stopPullDownRefresh();
     },
 
     onReachBottom() {
-      this.setList(SCENE_LOADMORE)
+      this.setList(SCENE_LOADMORE);
     },
 
     setList(scene) {
-      const { curMenuIndex, followMediaList, mediaList } = this.data
+      const { curMenuIndex, followMediaList, mediaList } = this.data;
       switch (scene) {
         case SCENE_SWITCH_TAB:
           if (curMenuIndex === 0) {
-            if (!followMediaList.length) this.setFollowMediaList(true)
+            if (!followMediaList.length) this.setFollowMediaList(true);
           } else {
-            if (!mediaList.length) this.setMediaList(true)
+            if (!mediaList.length) this.setMediaList(true);
           }
-          this.setActiveMediaItem()
+          this.setActiveMediaItem();
           break;
         case SCENE_REFRESH:
           if (curMenuIndex === 0) {
-            this.setFollowMediaList(true)
+            this.setFollowMediaList(true);
           } else {
-            this.setMediaList(true)
+            this.setMediaList(true);
           }
           break;
         case SCENE_LOADMORE:
           if (curMenuIndex === 0) {
-            this.setFollowMediaList()
+            this.setFollowMediaList();
           } else {
-            this.setMediaList()
+            this.setMediaList();
           }
           break;
       }
@@ -120,14 +123,17 @@ Component({
         }
         const limit = 10;
         const list =
-          (await homeService.getFollowMediaList(++this.followPage, limit)) || [];
+          (await homeService.getFollowMediaList(++this.followPage, limit)) ||
+          [];
         this.setData({
-          followMediaList: init ? list : [...this.data.followMediaList, ...list],
+          followMediaList: init
+            ? list
+            : [...this.data.followMediaList, ...list],
         });
         if (list.length < limit) {
           this.setData({ nomoreFollow: true });
         }
-      }, false)
+      }, false);
     },
 
     async setMediaList(init = false) {
@@ -146,14 +152,17 @@ Component({
     },
 
     setWrapHeight() {
-      const { curMenuIndex } = this.data;
+      const { curMenuIndex, wrapHeightList } = this.data;
       const query = wx.createSelectorQuery();
       query.selectAll(".content-wrap").boundingClientRect();
       query.exec((res) => {
         if (res[0][curMenuIndex]) {
-          this.setData({
-            [`wrapHeightList[${curMenuIndex}]`]: res[0][curMenuIndex].height,
-          });
+          const { height } = res[0][curMenuIndex];
+          if (height > wrapHeightList[curMenuIndex]) {
+            this.setData({
+              [`wrapHeightList[${curMenuIndex}]`]: height,
+            });
+          }
         }
       });
     },
@@ -174,11 +183,13 @@ Component({
       }
 
       this.scrollTop = e.scrollTop;
-      this.setActiveMediaItem()
+      this.setActiveMediaItem();
     },
 
-    setActiveMediaItem: debounce(function() {
-      this.selectComponent(`.fall-flow-${this.data.curMenuIndex}`).setActiveMediaItem()
+    setActiveMediaItem: debounce(function () {
+      this.selectComponent(
+        `.fall-flow-${this.data.curMenuIndex}`
+      ).setActiveMediaItem();
     }, 1000),
 
     search() {
