@@ -1,12 +1,11 @@
 {
   "component": true,
   "usingComponents": {
-    "i-player": "./components/i-player/index",
-    "i-status-end": "./components/i-status-end/index",
-    "i-status-break": "./components/i-status-break/index",
-    "i-status-unstart": "./components/i-status-unstart/index",
-    "i-anchor-capsule": "./components/i-anchor-capsule/index",
-    "i-comment": "./components/i-comment/index",
-    "i-praise": "./components/i-praise/index"
+    "anchor-capsule": "../../../components/anchor-capsule/index",
+    "comment-showcase": "../../../components/comment-showcase/index",
+    "praise-animation": "../../../components/praise-animation/index",
+    "live-player": "./components/live-player/index",
+    "live-end": "./components/live-end/index",
+    "live-loading": "./components/live-loading/index"
   }
 }

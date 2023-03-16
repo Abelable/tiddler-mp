@@ -79,13 +79,6 @@ class BaseService extends Base {
     }) || {}
     return list
   }
-
-  async saveLiveChatMsg(id, content, identity) {
-    return await this.post({
-      url: `${this.baseUrl}/media/live/comment`,
-      data: { id, content, identity }
-    })
-  }
 }
 
 export default BaseService

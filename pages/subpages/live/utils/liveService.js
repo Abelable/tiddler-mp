@@ -97,6 +97,13 @@ class LiveService extends BaseService {
     })
   }
 
+  async saveLiveChatMsg(id, content, identity) {
+    return await this.post({
+      url: `${this.baseUrl}/media/live/comment`,
+      data: { id, content, identity }
+    })
+  }
+
   async getRoomList(id, page, limit = 10) {
     return await this.get({
       url: `${this.baseUrl}/media/live/list`,

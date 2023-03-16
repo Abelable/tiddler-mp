@@ -13,7 +13,7 @@
       <view class="close-icon row center" bindtap="confirmStopLive">
         <image style="width: 18px; height: 18px;" src="/images/close.png" />
       </view>
-      <anchor-capsule />
+      <anchor-capsule anchorInfo="{{userInfo}}" />
     </view>
 
     <hot-goods 

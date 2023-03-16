@@ -1,8 +1,8 @@
-import { store } from "../../../store/index";
-import tim from "../../../utils/tim/index";
-import BaseService from "../../../services/baseService";
+import { store } from "../../../../../store/index";
+import tim from "../../../../../utils/tim/index";
+import LiveService from "../../utils/liveService";
 
-const baseService = new BaseService();
+const liveService = new LiveService();
 
 Component({
   options: {
@@ -55,7 +55,7 @@ Component({
       const chatMsg = { identity, userId, nickname, avatar, content };
       store.setLiveMsgList(chatMsg);
       tim.sendLiveChatMsg(groupId, chatMsg);
-      baseService.saveLiveChatMsg(id, content, identity);
+      liveService.saveLiveChatMsg(id, content, identity);
     },
   },
 });

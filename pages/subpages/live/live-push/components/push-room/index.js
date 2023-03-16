@@ -2,7 +2,7 @@ import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
 import { store } from "../../../../../../store/index";
 import tim from "../../../../../../utils/tim/index";
 import LiveService from "../../../utils/liveService";
-import { MSG_TYPE_PRAISE } from "./utils/msgType";
+import { MSG_TYPE_JOIN_ROOM, MSG_TYPE_PRAISE } from "./utils/msgType";
 
 const liveService = new LiveService();
 const { statusBarHeight } = getApp().globalData.systemInfo;
@@ -16,8 +16,7 @@ Component({
 
   storeBindings: {
     store,
-    fields: ["praiseCount", "audienceCount", "devicePosition"],
-    actions: ["toggleLampVisible"],
+    fields: ["userInfo"],
   },
 
   properties: {
@@ -232,20 +231,15 @@ Component({
 
     handleCustomMsg(customMsg) {
       if (customMsg) {
-        let {
-          manualPraise,
-          praiseCount,
-          audienceCount,
-          showAudienceActionTips,
-        } = this.data;
+        const { manualPraise, showAudienceActionTips } = this.data;
 
         switch (customMsg.type) {
-          case "user_coming":
+          case MSG_TYPE_JOIN_ROOM:
             if (!showAudienceActionTips) {
               this.setData({
                 audienceActionTips: {
                   type: "coming",
-                  message: customMsg.message,
+                  message: customMsg.data.message,
                 },
                 showAudienceActionTips: true,
               });
@@ -253,19 +247,13 @@ Component({
                 this.setData({ showAudienceActionTips: false });
               }, 2000);
             }
-            break;
-
-          case "user_comed":
-            if (customMsg.zhubo_total_num) {
-              store.setAudienceCount(customMsg.zhubo_total_num || 0);
-            } else {
-              store.setAudienceCount(++audienceCount);
-            }
+            let audienceCount = store.audienceCount;
+            store.setAudienceCount(++audienceCount);
             break;
 
           case MSG_TYPE_PRAISE:
             const { praiseNumber } = customMsg.data;
-            if (praiseNumber > praiseCount) {
+            if (praiseNumber > store.praiseCount) {
               manualPraise && this.setData({ manualPraise: false });
               store.setPraiseCount(praiseNumber);
             }

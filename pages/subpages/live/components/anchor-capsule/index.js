@@ -10,6 +10,10 @@ Component({
 
   storeBindings: {
     store,
-    fields: ['userInfo', 'audienceCount'],
+    fields: ['audienceCount'],
   },
+
+  properties: {
+    anchorInfo: Object
+  }
 })
