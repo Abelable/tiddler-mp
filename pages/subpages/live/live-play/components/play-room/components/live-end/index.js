@@ -12,8 +12,7 @@ Component({
   },
 
   properties: {
-    anchorAvatar: String,
-    anchorName: String,
+    anchorInfo: Object,
     liveDuration: Number
   },
 

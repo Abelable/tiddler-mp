@@ -1,18 +1,15 @@
-<wxs module="TIME" src="../../../../../../../../utils/filters/time.wxs" />
-<wxs module="NUM" src="../../../../../../../../utils/filters/num.wxs" />
+<wxs module="TIME" src="/utils/filters/time.wxs" />
+<wxs module="NUM" src="/utils/filters/num.wxs" />
 
 <view class="live-end-wrap">
-  <view class="back-icon-wrap" style="top: {{statusBarHeight}}px;">
-    <i-back-icon />
-  </view>
   <view class="anchor-info">
-    <image class="anchor-avatar" src="{{anchorAvatar}}"></image>
-    <view class="anchor-name">{{anchorName}}</view>
+    <image class="anchor-avatar" src="{{anchorInfo.avatar}}"></image>
+    <view class="anchor-name">{{anchorInfo.nickname}}</view>
   </view>
   <view class="time-wrap">
     <view class="line" />
     <view class="tips">直播结束</view>
-    <view class="time">时长：{{TIME.transform(liveDuration).hours}}:{{TIME.transform(liveDuration).minutes}}:{{TIME.transform(liveDuration).seconds}}</view>
+    <view class="time">时长：{{liveDuration}}</view>
     <view class="line" />
   </view>
   <view class="harvest-wrap">

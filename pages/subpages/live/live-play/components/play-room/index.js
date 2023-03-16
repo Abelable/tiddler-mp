@@ -1,6 +1,6 @@
 import { storeBindingsBehavior } from 'mobx-miniprogram-bindings'
 import { store } from '../../../../../../store/index'
-import checkLogin from '../../../../../../utils/checkLogin'
+import { checkLogin } from '../../../../../../utils/index'
 import RoomService from '../../utils/roomService'
 
 const roomService = new RoomService()
