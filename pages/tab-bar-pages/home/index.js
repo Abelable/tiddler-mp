@@ -1,3 +1,4 @@
+import { storeBindingsBehavior } from 'mobx-miniprogram-bindings'
 import { store } from "../../../store/index";
 import HomeService from "./utils/homeService";
 import {
@@ -10,6 +11,13 @@ const homeService = new HomeService();
 const { statusBarHeight, windowHeight } = getApp().globalData.systemInfo;
 
 Component({
+  behaviors: [storeBindingsBehavior],
+
+  storeBindings: {
+    store,
+    fields: ['userInfo'],
+  },
+
   data: {
     statusBarHeight,
     navBarActive: false,
@@ -22,9 +30,6 @@ Component({
   lifetimes: {
     attached() {
       this.scrollTopArr = [0, 0];
-      setTimeout(() => {
-        this.setWrapHeight();
-      }, 1000);
     },
   },
 
@@ -60,6 +65,12 @@ Component({
       }
     },
 
+    onReachBottom() {},
+
+    onPullDownRefresh() {
+      wx.stopPullDownRefresh();
+    },
+
     setWrapHeight() {
       const { curMenuIndex } = this.data;
       const query = wx.createSelectorQuery();
@@ -89,12 +100,6 @@ Component({
       }
 
       this.scrollTop = e.scrollTop;
-    },
-
-    onReachBottom() {},
-
-    onPullDownRefresh() {
-      wx.stopPullDownRefresh();
     },
 
     search() {
