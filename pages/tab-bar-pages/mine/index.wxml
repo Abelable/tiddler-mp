@@ -54,22 +54,22 @@
         <swiper-item>
           <view class="works-list" wx:if="{{strategyList.length}}">
           </view>
-          <empty-illus wx:else desc="暂时还没有作品，快去发布吧～" />
+          <empty-illus wx:else desc="暂时还没有作品，快去发布吧～" height="680rpx" />
         </swiper-item>
         <swiper-item>
           <view class="works-list" wx:if="{{videoList.length}}">
           </view>
-          <empty-illus wx:else desc="暂时还没有作品，快去发布吧～" />
+          <empty-illus wx:else desc="暂时还没有作品，快去发布吧～" height="680rpx" />
         </swiper-item>
         <swiper-item>
           <view class="works-list" wx:if="{{liveList.length}}">
           </view>
-          <empty-illus wx:else desc="暂时还没有作品，快去发布吧～" />
+          <empty-illus wx:else desc="暂时还没有作品，快去发布吧～" height="680rpx" />
         </swiper-item>
         <swiper-item>
           <view class="works-list" wx:if="{{noteList.length}}">
           </view>
-          <empty-illus wx:else desc="暂时还没有作品，快去发布吧～" />
+          <empty-illus wx:else desc="暂时还没有作品，快去发布吧～" height="680rpx" />
         </swiper-item>
       </swiper>
     </view>
