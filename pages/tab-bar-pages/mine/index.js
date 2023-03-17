@@ -113,6 +113,58 @@ Component({
       }
     },
 
+    async setNoteList(init = false) {
+      const limit = 10;
+      const { noteFinished, noteList } = this.data;
+      if (init) {
+        this.notePage = 0;
+        noteFinished && this.setData({ noteFinished: false });
+      }
+      const { list = [], total = 0 } =
+        (await mineService.getUserNoteList(++this.notePage, limit)) || {};
+      this.setData({
+        noteList: init ? list : [...noteList, ...list],
+      });
+      if (init) {
+        this.setData({ noteListTotal: total });
+      }
+      if (list.length < limit) {
+        this.setData({ noteFinished: true });
+      }
+    },
+
+    async setCollectMediaList(init = false) {
+      const limit = 10;
+      const { collectFinished, collectMediaList } = this.data;
+      if (init) {
+        this.collectPage = 0;
+        collectFinished && this.setData({ collectFinished: false });
+      }
+      const list = (await mineService.getUserCollectMediaList(++this.collectPage, limit)) || [];
+      this.setData({
+        collectMediaList: init ? list : [...collectMediaList, ...list],
+      });
+      if (list.length < limit) {
+        this.setData({ collectFinished: true });
+      }
+    },
+
+    async setLikeMediaList(init = false) {
+      const limit = 10;
+      const { likeFinished, likeMediaList } = this.data;
+      if (init) {
+        this.likePage = 0;
+        likeFinished && this.setData({ likeFinished: false });
+      }
+      const list = (await mineService.getUserLikeMediaList(++this.likePage, limit)) || [];
+      this.setData({
+        likeMediaList: init ? list : [...likeMediaList, ...list],
+      });
+      if (list.length < limit) {
+        this.setData({ likeFinished: true });
+      }
+    },
+
     setWrapHeight() {
       const { curMenuIndex, wrapHeightList } = this.data;
       const query = wx.createSelectorQuery();
