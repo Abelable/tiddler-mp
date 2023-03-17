@@ -50,26 +50,48 @@
         <view wx:for="{{['视频', '游记', '收藏', '点赞']}}" wx:key="index" class="works-menu-item {{curMenuIndex === index ? 'active' : ''}}" bindtap="switchMenu" data-index="{{index}}">{{item}}</view>
         <view class="active-underline" style="left: {{curMenuIndex * 25}}vw;"></view>
       </view>
-      <swiper style="height: {{worksListHeightArr[curMenuIndex]}}px;" current="{{curMenuIndex}}" bindchange="swiperChange">
+      <swiper style="height: {{wrapHeightList[curMenuIndex]}}px;" current="{{curMenuIndex}}" bindchange="swiperChange">
         <swiper-item>
-          <view class="works-list" wx:if="{{strategyList.length}}">
+          <view class="content-wrap">
+            <view class="total-info row between">
+              <view class="total-tips">共{{videoListTotal}}条视频</view>
+              <button class="add-btn">
+                <image class="add-icon" src="./images/add.png" />
+                <text>视频</text>
+              </button>
+            </view>
+            <fall-flow class="fall-flow-0" list="{{videoList}}" generic:item="video-item" bind:finish="setWrapHeight" />
+            <empty-illus wx:if="{{videoFinished && !videoList.length}}" desc="暂无视频，快去发布吧～" height="680rpx" />
+            <view class="no-more-tips" wx:if="{{videoFinished && videoList.length}}">～没有更多了～</view>
           </view>
-          <empty-illus wx:else desc="暂时还没有作品，快去发布吧～" height="680rpx" />
         </swiper-item>
         <swiper-item>
-          <view class="works-list" wx:if="{{videoList.length}}">
+          <view class="content-wrap">
+            <view class="total-info row between">
+              <view class="total-tips">共{{noteListTotal}}条游记</view>
+              <button class="add-btn">
+                <image class="add-icon" src="./images/add.png" />
+                <text>游记</text>
+              </button>
+            </view>
+            <fall-flow class="fall-flow-1" list="{{noteList}}" generic:item="note-item" bind:finish="setWrapHeight" />
+            <empty-illus wx:if="{{noteFinished && !noteList.length}}" desc="暂无游记作品，快去发布吧～" height="680rpx" />
+            <view class="no-more-tips" wx:if="{{noteFinished && noteList.length}}">～没有更多了～</view>
           </view>
-          <empty-illus wx:else desc="暂时还没有作品，快去发布吧～" height="680rpx" />
         </swiper-item>
         <swiper-item>
-          <view class="works-list" wx:if="{{liveList.length}}">
+          <view class="content-wrap">
+            <fall-flow class="fall-flow-2" list="{{collectMediaList}}" generic:item="media-item" bind:finish="setWrapHeight" />
+            <empty-illus wx:if="{{collectFinished && !collectMediaList.length}}" desc="您还未收藏任何作品" height="680rpx" />
+            <view class="no-more-tips" wx:if="{{collectFinished && collectMediaList.length}}">～没有更多了～</view>
           </view>
-          <empty-illus wx:else desc="暂时还没有作品，快去发布吧～" height="680rpx" />
         </swiper-item>
         <swiper-item>
-          <view class="works-list" wx:if="{{noteList.length}}">
+          <view class="content-wrap">
+            <fall-flow class="fall-flow-3" list="{{likeMediaList}}" generic:item="media-item" bind:finish="setWrapHeight" />
+            <empty-illus wx:if="{{likeFinished && !likeMediaList.length}}" desc="您还未点赞任何作品" height="680rpx" />
+            <view class="no-more-tips" wx:if="{{likeFinished && likeMediaList.length}}">～没有更多了～</view>
           </view>
-          <empty-illus wx:else desc="暂时还没有作品，快去发布吧～" height="680rpx" />
         </swiper-item>
       </swiper>
     </view>

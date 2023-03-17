@@ -154,3 +154,36 @@
   background: var(--theme-color);
   transition: left .2s ease;
 }
+
+.content-wrap {
+  padding: 0 20rpx;
+}
+
+.total-info {
+  padding: 20rpx 0;
+}
+.total-tips {
+  color: #666;
+  font-size: 24rpx;
+}
+.add-btn {
+  padding: 0 16rpx;
+  height: 46rpx;
+  color: #333;
+  font-size: 24rpx;
+  line-height: 1;
+  border: 1px solid #ddd;
+  border-radius: 23rpx;
+}
+.add-icon {
+  margin-right: 6rpx;
+  width: 20rpx;
+  height: 20rpx;
+}
+
+.no-more-tips {
+  margin-top: 36rpx;
+  color: #999;
+  font-size: 24rpx;
+  text-align: center;
+}

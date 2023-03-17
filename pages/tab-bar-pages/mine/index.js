@@ -19,9 +19,17 @@ Component({
     curMenuIndex: 0,
     navBarVisible: false,
     menuFixed: false,
-    worksListHeightArr: [400, 400, 400, 400],
+    wrapHeightList: [400, 400, 400, 400],
+    videoListTotal: 0,
     videoList: [],
+    videoFinished: false,
+    noteListTotal: 0,
     noteList: [],
+    noteFinished: false,
+    collectMediaList: [],
+    collectFinished: false,
+    likeMediaList: [],
+    likeFinished: false,
   },
 
   lifetimes: {
@@ -43,7 +51,6 @@ Component({
   },
 
   methods: {
-
     switchMenu(e) {
       this.setData({
         curMenuIndex: e.currentTarget.dataset.index,
