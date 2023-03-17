@@ -1,9 +1,9 @@
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
-import { store } from "../../../../../../../store/index";
-import { checkLogin } from "../../../../../../../utils/index";
-import HomeService from "../../../../utils/homeService";
+import { store } from "../../store/index";
+import { checkLogin } from "../../utils/index";
+import BaseService from "../../services/baseService";
 
-const homeService = new HomeService();
+const baseService = new BaseService();
 
 Component({
   options: {
@@ -57,7 +57,7 @@ Component({
     subscribe() {
       checkLogin(() => {
         const anchorId = this.properties.item.anchorInfo.id;
-        homeService.subscribeAnchor(anchorId, () => {
+        baseService.subscribeAnchor(anchorId, () => {
           wx.showToast({
             title: "预约成功",
             icon: "none",

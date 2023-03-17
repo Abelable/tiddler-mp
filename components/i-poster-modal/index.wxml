@@ -1,4 +1,0 @@
-<view class="poster-modal {{(show && !authModalVisible) ? 'show' : ''}}">
-  <canvas class="poster" canvas-id="poster" />
-  <button class="save-btn" bindtap='save' hover-class="none">↓ 保存海报</button>
-</view>
