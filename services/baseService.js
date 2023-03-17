@@ -88,6 +88,13 @@ class BaseService extends Base {
     })
   }
 
+  async getFollowStatus(authorId) {
+    return await this.get({
+      url: `${this.baseUrl}/fan/follow_status`,
+      data: { authorId },
+    })
+  }
+
   async subscribeAnchor(anchorId, success) {
     return await this.post({
       url: `${this.baseUrl}/media/live/subscribe`,

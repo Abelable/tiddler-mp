@@ -12,7 +12,7 @@
   <view class="anchor-info">
     <view class="avatar-wrap">
       <image class="anchor-avatar avatar-default" src="{{roomInfo.anchorInfo.avatar}}" />
-      <image class="follow-icon" src="./images/follow.png" />
+      <image class="follow-icon" wx:if="{{!isFollow}}" bindtap="follow" src="./images/follow.png" />
     </view>
     <view class="anchor-name omit single-line">{{roomInfo.anchorInfo.nickname}}</view>
   </view>

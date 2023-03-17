@@ -8,13 +8,14 @@ Component({
   options: {
     addGlobalClass: true,
   },
-  
+
   properties: {
     roomInfo: {
       type: Object,
       observer(info) {
         if (info) {
-          this.setCountDown(new Date(info.noticeTime).getTime())
+          this.setCountDown(new Date(info.noticeTime).getTime());
+          this.setFollowStatus();
         }
       },
     },
@@ -22,7 +23,8 @@ Component({
 
   data: {
     statusBarHeight,
-    time: 0,
+    countDown: 0,
+    isFollow: false,
   },
 
   detached() {
@@ -30,53 +32,49 @@ Component({
   },
 
   methods: {
-    share() {
-      this.triggerEvent("share", { type: "poster" });
+    setCountDown(startTime) {
+      const currentTime = new Date().getTime();
+      let countDown = (startTime - currentTime) / 1000;
+      this.setData({ countDown });
+      this.countDownInterval = setInterval(() => {
+        if (countDown > 0) {
+          --countDown;
+          this.setData({ countDown });
+        } else clearInterval(this.countDownInterval);
+      }, 1000);
     },
 
-    toggleSubscribe() {
-      checkLogin(() => {
-        const { id, previewDestine } = this.properties.roomInfo;
-        if (previewDestine == 0) {
-          liveService.subscribeAnchor(
-            id,
-            (data) => {
-              if (data) {
-                wx.showToast({ title: "订阅成功", icon: "none" });
-                this.setData({ ["roomInfo.previewDestine"]: 1 });
-              }
-            },
-            (err) => {
-              err && wx.showToast({ title: err.data.message, icon: "none" });
-            }
-          );
-        } else {
-          liveService.unSubscribeAnchor(
-            id,
-            (data) => {
-              if (data) {
-                wx.showToast({ title: "取消订阅成功", icon: "none" });
-                this.setData({ ["roomInfo.previewDestine"]: 0 });
-              }
-            },
-            (err) => {
-              err && wx.showToast({ title: err.data.message, icon: "none" });
-            }
-          );
-        }
+    setFollowStatus() {
+      checkLogin(async () => {
+        const anchorId = this.properties.roomInfo.anchorInfo.id;
+        const { isFollow } = await liveService.getFollowStatus(anchorId);
+        this.setData({ isFollow });
       });
     },
 
-    setCountDown(startTime) {
-      const currentTime = (new Date()).getTime()
-      let countDown = (startTime - currentTime) / 1000
-      this.setData({ countDown })
-      this.countDownInterval = setInterval(() => {
-        if (countDown > 0) {
-          --countDown
-          this.setData({ countDown })
-        } else clearInterval(this.countDownInterval)
-      }, 1000)
+    follow() {
+      checkLogin(() => {
+        const anchorId = this.properties.roomInfo.anchorInfo.id;
+        liveService.followAuthor(anchorId, () => {
+          this.setData({ isFollow: true });
+        });
+      });
+    },
+
+    subscribe() {
+      checkLogin(() => {
+        const anchorId = this.properties.roomInfo.anchorInfo.id;
+        liveService.subscribeAnchor(anchorId, () => {
+          wx.showToast({
+            title: "预约成功",
+            icon: "none",
+          });
+        });
+      });
+    },
+
+    share() {
+      this.triggerEvent("share");
     },
   },
 });

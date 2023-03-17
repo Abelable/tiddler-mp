@@ -1,5 +1,6 @@
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
 import { store } from "../../../../../../../store/index";
+import { checkLogin } from "../../../../../../../utils/index";
 import HomeService from "../../../../utils/homeService";
 
 const homeService = new HomeService();
@@ -54,10 +55,13 @@ Component({
     },
 
     subscribe() {
-      homeService.subscribeAnchor(this.properties.item.anchorInfo.id, () => {
-        wx.showToast({
-          title: "订阅成功",
-          icon: "none",
+      checkLogin(() => {
+        const anchorId = this.properties.item.anchorInfo.id;
+        homeService.subscribeAnchor(anchorId, () => {
+          wx.showToast({
+            title: "预约成功",
+            icon: "none",
+          });
         });
       });
     },
