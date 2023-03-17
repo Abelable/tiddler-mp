@@ -102,6 +102,20 @@ class BaseService extends Base {
       success
     })
   }
+
+  async getUserVideoList(page, limit = 10, id = 0) {
+    return await this.get({
+      url: `${this.baseUrl}/media/short_video/user_list`,
+      data: { page, limit, id },
+    });
+  }
+
+  async getUserNoteList(page, limit = 10, id = 0) {
+    return await this.get({
+      url: `${this.baseUrl}/media/tourism_note/user_list`,
+      data: { page, limit, id },
+    });
+  }
 }
 
 export default BaseService

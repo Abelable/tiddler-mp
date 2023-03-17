@@ -1,17 +1,19 @@
 import BaseService from "../../../../services/baseService";
 
 class MineService extends BaseService {
-  async getUserVideoList(page, limit = 10, id = 0) {
+  async getUserCollectMediaList(page, limit = 10) {
     return await this.get({
-      url: `${this.baseUrl}/media/short_video`,
-      data: { page, limit, id },
+      url: `${this.baseUrl}/media/colloct_list`,
+      data: { page, limit },
+      loadingTitle: "加载中...",
     });
   }
 
-  async getFollowMediaList(page, limit = 10) {
+  async getUserLikeMediaList(page, limit = 10) {
     return await this.get({
-      url: `${this.baseUrl}/media/follow_list`,
+      url: `${this.baseUrl}/media/like_list`,
       data: { page, limit },
+      loadingTitle: "加载中...",
     });
   }
 }
