@@ -3,7 +3,7 @@ import BaseService from "../../../../services/baseService";
 class MineService extends BaseService {
   async getUserCollectMediaList(page, limit = 10) {
     return await this.get({
-      url: `${this.baseUrl}/media/colloct_list`,
+      url: `${this.baseUrl}/media/collect_list`,
       data: { page, limit },
       loadingTitle: "加载中...",
     });
