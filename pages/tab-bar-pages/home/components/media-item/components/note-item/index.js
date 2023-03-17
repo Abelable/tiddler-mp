@@ -6,15 +6,4 @@ Component({
   properties: {
     item: Object
   },
-
-  data: {
-  },
-
-  methods: {
-    navTo() {
-      wx.navigateTo({
-        url: '/pages/subpages/home/strategy/index'
-      })
-    }
-  }
 })

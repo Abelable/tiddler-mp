@@ -1,23 +1,25 @@
+<wxs module="NUM" src="/utils/filters/num.wxs" />
+
 <navigator class="video-item" url="/pages/subpages/home/video/index?id={{item.id}}" hover-class="none">
   <view class="cover-wrap">
-    <image class="cover" mode="widthFix" src="http://img.ubo.vip/youlian/temporary/item_cover_5.jpg" />
+    <image class="cover" mode="widthFix" src="{{item.cover || (item.video_url + '?x-oss-process=video/snapshot')}}" />
     <view class="video-symbol">
       <image class="video-icon" src="./images/play.png" />
     </view>
-    <view class="address-info">
+    <view class="address-info" wx:if="{{item.address}}">
       <image class="address-icon" src="../../images/address.png" />
-      <text class="address-detail omit single-line">千岛湖绿城度假酒店千岛湖绿城度假酒店</text>
+      <text class="address-detail omit single-line">{{item.address}}</text>
     </view>
   </view>
-  <view class="title omit">千岛湖3天骑车、皮划艇、游泳和吃吃吃，千岛湖3天骑车、皮划艇、游泳和吃吃吃，千岛湖3天骑车、皮划艇、游泳和吃吃吃</view>
+  <view class="title omit">{{item.title}}</view>
   <view class="info-wrap">
     <view class="author-info">
-      <image class="avatar" src="http://img.ubo.vip/youlian/temporary/avatar.jpeg" />
-      <text class="name omit single-line">花束情人花束情人花束情人花束情人花束情人花束情人花束情人花束情人花束情人花束情人</text>
+      <image class="avatar avatar-default" src="{{item.authorInfo.avatar}}" />
+      <text class="name omit single-line">{{item.authorInfo.nickname}}</text>
     </view>
     <view class="praise-info">
       <image class="praise-icon" src="../../images/heart.png" />
-      <text>10w</text>
+      <text>{{NUM.over(item.praiseNumber, 100000)}}</text>
     </view>
   </view>
 </navigator>
