@@ -76,5 +76,7 @@ Component({
     share() {
       this.triggerEvent("share");
     },
+
+    navToUserCenter() {}
   },
 });

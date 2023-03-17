@@ -9,7 +9,7 @@
 
   <view class="title omit single-line">{{roomInfo.title}}</view>
 
-  <view class="anchor-info">
+  <view class="anchor-info" bindtap="navToUserCenter">
     <view class="avatar-wrap">
       <image class="anchor-avatar avatar-default" src="{{roomInfo.anchorInfo.avatar}}" />
       <image class="follow-icon" wx:if="{{!isFollow}}" bindtap="follow" src="./images/follow.png" />
