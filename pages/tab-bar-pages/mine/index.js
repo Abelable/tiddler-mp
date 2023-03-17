@@ -310,7 +310,7 @@ Component({
     },
 
     async navToLive() {
-      const statusInfo = await baseService.getRoomStatus();
+      const statusInfo = await mineService.getRoomStatus();
       if (!statusInfo) {
         wx.navigateTo({
           url: "/pages/subpages/live/create-live/index",
