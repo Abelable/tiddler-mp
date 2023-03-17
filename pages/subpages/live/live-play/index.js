@@ -60,7 +60,7 @@ Page({
   },
 
   async setRoomList() {
-    const { list: [] } = await liveService.getRoomList(this.roomId, ++this.page) || {};
+    const { list = [] } = await liveService.getRoomList(this.roomId, ++this.page) || {};
     this.setData({
       roomList: [...this.data.roomList, ...list],
     });

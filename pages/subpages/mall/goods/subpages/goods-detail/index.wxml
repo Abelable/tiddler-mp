@@ -125,4 +125,4 @@
   bind:hide="hideSpecPopup"
 />
 <!-- 分享 -->
-<share-popup show="{{shareModalVisible}}" bind:showPosterModal="showPosterModal" />
+<share-popup wx:if="{{shareModalVisible}}" />

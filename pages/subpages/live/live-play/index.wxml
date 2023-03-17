@@ -17,4 +17,4 @@
 </swiper>
 
 <back-icon class="back-icon" style="top: {{statusBarHeight}}px;"/>
-<share-popup show="{{shareModalVisible}}" />
+<share-popup wx:if="{{shareModalVisible}}" />
