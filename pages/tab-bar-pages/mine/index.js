@@ -95,17 +95,21 @@ Component({
 
     async setVideoList(init = false) {
       const limit = 10;
-      const { videoFinished, videoList } = this.data
+      const { videoFinished, videoList } = this.data;
       if (init) {
-        this.videoPage = 0
-        videoFinished && this.setData({ videoFinished: false })
+        this.videoPage = 0;
+        videoFinished && this.setData({ videoFinished: false });
       }
-      const { list = [], total = 0 } = await mineService.getUserVideoList(++this.videoPage, limit) || {}
+      const { list = [], total = 0 } =
+        (await mineService.getUserVideoList(++this.videoPage, limit)) || {};
       this.setData({
-        videoList: init ? list : [...videoList, ...list]
-      })
+        videoList: init ? list : [...videoList, ...list],
+      });
+      if (init) {
+        this.setData({ videoListTotal: total });
+      }
       if (list.length < limit) {
-        this.setData({ videoFinished: true })
+        this.setData({ videoFinished: true });
       }
     },
 
