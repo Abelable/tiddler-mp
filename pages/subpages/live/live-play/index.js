@@ -22,7 +22,7 @@ Page({
     this.storeBindings = createStoreBindings(this, {
       store,
       fields: ["userInfo"],
-      actions: ["setLiveMsgList", "showModal", "hideModal"],
+      actions: ["setLiveMsgList"],
     });
 
     const { id, scene, q } = options;
@@ -33,7 +33,6 @@ Page({
 
     this.page = 0
     await this.setRoomList();
-    this.setCurRoomInfo();
   },
 
   onShow() {
@@ -53,7 +52,6 @@ Page({
     this.setCurRoomIdxTimeout && clearTimeout(this.setCurRoomIdxTimeout);
     this.setCurRoomIdxTimeout = setTimeout(() => {
       this.setData({ curRoomIdx });
-      this.setCurRoomInfo();
     }, 500);
     const { roomList } = this.data;
     curRoomIdx > roomList.length - 5 && this.setRoomList();
@@ -67,7 +65,6 @@ Page({
   },
 
   onUnload() {
-    this.hideModal();
     this.storeBindings.destroyStoreBindings();
   },
 

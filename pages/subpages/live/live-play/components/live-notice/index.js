@@ -5,13 +5,16 @@ const liveService = new LiveService();
 const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Component({
+  options: {
+    addGlobalClass: true,
+  },
+  
   properties: {
     roomInfo: {
       type: Object,
       observer(info) {
         if (info) {
-          const { status, startTime } = info;
-          !status && this.setCountDown(startTime);
+          this.setCountDown(new Date(info.noticeTime).getTime())
         }
       },
     },
@@ -65,15 +68,15 @@ Component({
     },
 
     setCountDown(startTime) {
-      const currentTime = new Date().getTime() / 1000;
-      let time = startTime - currentTime;
-      this.setData({ time });
+      const currentTime = (new Date()).getTime()
+      let countDown = (startTime - currentTime) / 1000
+      this.setData({ countDown })
       this.countDownInterval = setInterval(() => {
-        if (time > 0) {
-          --time;
-          this.setData({ time });
-        } else clearInterval(this.countDownInterval);
-      }, 1000);
+        if (countDown > 0) {
+          --countDown
+          this.setData({ countDown })
+        } else clearInterval(this.countDownInterval)
+      }, 1000)
     },
   },
 });
