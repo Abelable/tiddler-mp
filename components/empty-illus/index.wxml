@@ -1,4 +1,5 @@
 <view class="empty">
-  <image class="illus" src="./images/empty.png" />
-  <view>{{desc}}</view>
+  <image class="illus" src="https://img.ubo.vip/tiddler/empty.png" />
+  <view>{{registerBtnVisible ? '您还未登录' : desc}}</view>
+  <button class="register-btn" wx:if="{{registerBtnVisible}}">点击登录</button>
 </view>

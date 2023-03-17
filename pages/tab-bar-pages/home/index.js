@@ -25,9 +25,9 @@ Component({
     wrapHeightList: [windowHeight, windowHeight],
     curMenuIndex: 1,
     followMediaList: [],
-    nomoreFollow: false,
+    followFinished: false,
     mediaList: [],
-    nomore: false,
+    finished: false,
   },
 
   lifetimes: {
@@ -119,7 +119,7 @@ Component({
       checkLogin(async () => {
         if (init) {
           this.followPage = 0;
-          this.setData({ nomoreFollow: false });
+          this.setData({ followFinished: false });
         }
         const limit = 10;
         const list =
@@ -131,7 +131,7 @@ Component({
             : [...this.data.followMediaList, ...list],
         });
         if (list.length < limit) {
-          this.setData({ nomoreFollow: true });
+          this.setData({ followFinished: true });
         }
       }, false);
     },
@@ -139,7 +139,7 @@ Component({
     async setMediaList(init = false) {
       if (init) {
         this.page = 0;
-        this.setData({ nomore: false });
+        this.setData({ finished: false });
       }
       const limit = 10;
       const list = (await homeService.getMediaList(++this.page, limit)) || [];
@@ -147,7 +147,7 @@ Component({
         mediaList: init ? list : [...this.data.mediaList, ...list],
       });
       if (list.length < limit) {
-        this.setData({ nomore: true });
+        this.setData({ finished: true });
       }
     },
 

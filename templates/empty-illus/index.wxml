@@ -1,6 +1,0 @@
-<template name="empty-illus">
-  <view class="empty-illus">
-    <image class="empty-img" src="https://img.ubo.vip/tiddler/empty.png" />
-    <view>暂时还没有作品，快去发布吧～</view>
-  </view>
-</template>
