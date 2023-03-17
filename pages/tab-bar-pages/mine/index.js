@@ -1,4 +1,4 @@
-import { storeBindingsBehavior } from 'mobx-miniprogram-bindings'
+import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
 import { store } from "../../../store/index";
 import { checkLogin } from "../../../utils/index";
 import BaseService from "../../../services/baseService";
@@ -11,7 +11,7 @@ Component({
 
   storeBindings: {
     store,
-    fields: ['userInfo'],
+    fields: ["userInfo"],
   },
 
   data: {
@@ -37,34 +37,28 @@ Component({
       this.setNavBarVisibleLimit();
       this.setMenuFixedLimit();
       this.scrollTopArr = [0, 0, 0, 0];
-    }
+    },
   },
 
   pageLifetimes: {
     show() {
-      store.setTabType('mine')
+      store.setTabType("mine");
 
       // checkLogin(() => {
       //   !store.userInfo && baseService.getUserInfo()
       // })
-    }
+    },
   },
 
   methods: {
     switchMenu(e) {
-      this.setData({
-        curMenuIndex: e.currentTarget.dataset.index,
-      });
-    },
-  
-    switchMenu(e) {
       this.handleMenuChange(Number(e.currentTarget.dataset.index));
     },
-  
+
     swiperChange(e) {
       this.handleMenuChange(Number(e.detail.current));
     },
-  
+
     handleMenuChange(index) {
       const { curMenuIndex } = this.data;
       if (curMenuIndex !== index) {
@@ -76,7 +70,7 @@ Component({
         });
       }
     },
-  
+
     setNavBarVisibleLimit() {
       const query = wx.createSelectorQuery();
       query.select(".name").boundingClientRect();
@@ -84,7 +78,7 @@ Component({
         this.navBarVisibleLimit = res[0].bottom;
       });
     },
-  
+
     setMenuFixedLimit() {
       const query = wx.createSelectorQuery();
       query.select(".works-menu").boundingClientRect();
@@ -92,13 +86,13 @@ Component({
         this.menuFixedLimit = res[0].top - statusBarHeight - 44;
       });
     },
-  
-    onReachBottom() {},
-  
+
     onPullDownRefresh() {
       wx.stopPullDownRefresh();
     },
-  
+
+    onReachBottom() {},
+
     onPageScroll(e) {
       if (e.scrollTop >= this.navBarVisibleLimit) {
         !this.data.navBarVisible &&
@@ -111,7 +105,7 @@ Component({
             navBarVisible: false,
           });
       }
-  
+
       if (e.scrollTop >= this.menuFixedLimit) {
         !this.data.menuFixed &&
           this.setData({
@@ -123,10 +117,10 @@ Component({
             menuFixed: false,
           });
       }
-  
+
       this.scrollTop = e.scrollTop;
     },
-  
+
     async navToLive() {
       const statusInfo = await baseService.getRoomStatus();
       if (!statusInfo) {
@@ -144,5 +138,5 @@ Component({
         wx.navigateTo({ url });
       }
     },
-  }
+  },
 });
