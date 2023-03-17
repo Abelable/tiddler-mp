@@ -1,6 +1,14 @@
-Component({ 
+Component({
   properties: {
     desc: String,
-    registerBtnVisible: Boolean
+    registerBtnVisible: Boolean,
   },
-})
+
+  methods: {
+    register() {
+      wx.navigateTo({
+        url: "/pages/subpages/common/register/index",
+      });
+    },
+  },
+});
