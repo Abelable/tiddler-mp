@@ -47,17 +47,17 @@
 
     <view class="works-wrap {{menuFixed ? 'fixed' : '' }}">
       <view class="works-menu {{menuFixed ? 'fixed' : '' }}" style="top: {{menuFixed ? statusBarHeight + 44 : 0}}px;">
-        <view wx:for="{{['视频', '游记', '收藏', '点赞']}}" wx:key="index" class="works-menu-item {{curMenuIndex === index ? 'active' : ''}}" bindtap="switchMenu" data-index="{{index}}">{{item}}</view>
+        <view wx:for="{{['短视频', '游记', '收藏', '点赞']}}" wx:key="index" class="works-menu-item {{curMenuIndex === index ? 'active' : ''}}" bindtap="switchMenu" data-index="{{index}}">{{item}}</view>
         <view class="active-underline" style="left: {{curMenuIndex * 25}}vw;"></view>
       </view>
       <swiper style="height: {{wrapHeightList[curMenuIndex]}}px;" current="{{curMenuIndex}}" bindchange="swiperChange">
         <swiper-item>
           <view class="content-wrap">
             <view class="total-info row between">
-              <view class="total-tips">共{{videoListTotal}}条视频</view>
+              <view class="total-tips">共{{videoListTotal}}条短视频</view>
               <button class="add-btn">
                 <image class="add-icon" src="./images/add.png" />
-                <text>视频</text>
+                <text>短视频</text>
               </button>
             </view>
             <fall-flow class="fall-flow-0" list="{{videoList}}" generic:item="video-item" bind:finish="setWrapHeight" />
