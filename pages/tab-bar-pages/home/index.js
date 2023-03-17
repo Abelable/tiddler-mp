@@ -98,6 +98,7 @@ Component({
           }
           this.setActiveMediaItem();
           break;
+
         case SCENE_REFRESH:
           if (curMenuIndex === 0) {
             this.setFollowMediaList(true);
@@ -105,6 +106,7 @@ Component({
             this.setMediaList(true);
           }
           break;
+
         case SCENE_LOADMORE:
           if (curMenuIndex === 0) {
             this.setFollowMediaList();
@@ -117,18 +119,17 @@ Component({
 
     setFollowMediaList(init = false) {
       checkLogin(async () => {
+        const limit = 10;
+        const { followFinished, followMediaList } = this.data;
         if (init) {
           this.followPage = 0;
-          this.setData({ followFinished: false });
+          followFinished && this.setData({ followFinished: false });
         }
-        const limit = 10;
         const list =
           (await homeService.getFollowMediaList(++this.followPage, limit)) ||
           [];
         this.setData({
-          followMediaList: init
-            ? list
-            : [...this.data.followMediaList, ...list],
+          followMediaList: init ? list : [...followMediaList, ...list],
         });
         if (list.length < limit) {
           this.setData({ followFinished: true });
@@ -137,14 +138,15 @@ Component({
     },
 
     async setMediaList(init = false) {
+      const limit = 10;
+      const { finished, mediaList } = this.data;
       if (init) {
         this.page = 0;
-        this.setData({ finished: false });
+        finished && this.setData({ finished: false });
       }
-      const limit = 10;
       const list = (await homeService.getMediaList(++this.page, limit)) || [];
       this.setData({
-        mediaList: init ? list : [...this.data.mediaList, ...list],
+        mediaList: init ? list : [...mediaList, ...list],
       });
       if (list.length < limit) {
         this.setData({ finished: true });

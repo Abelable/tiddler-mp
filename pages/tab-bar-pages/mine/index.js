@@ -1,9 +1,9 @@
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
 import { store } from "../../../store/index";
 import { checkLogin } from "../../../utils/index";
-import BaseService from "../../../services/baseService";
+import MineService from "./utils/mineService";
 
-const baseService = new BaseService();
+const mineService = new MineService();
 const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Component({
@@ -92,6 +92,38 @@ Component({
     },
 
     onReachBottom() {},
+
+    async setVideoList(init = false) {
+      const limit = 10;
+      const { videoFinished, videoList } = this.data
+      if (init) {
+        this.videoPage = 0
+        videoFinished && this.setData({ videoFinished: false })
+      }
+      const { list = [], total = 0 } = await mineService.getUserVideoList(++this.videoPage, limit) || {}
+      this.setData({
+        videoList: init ? list : [...videoList, ...list]
+      })
+      if (list.length < limit) {
+        this.setData({ videoFinished: true })
+      }
+    },
+
+    setWrapHeight() {
+      const { curMenuIndex, wrapHeightList } = this.data;
+      const query = wx.createSelectorQuery();
+      query.selectAll(".content-wrap").boundingClientRect();
+      query.exec((res) => {
+        if (res[0][curMenuIndex]) {
+          const { height } = res[0][curMenuIndex];
+          if (height > wrapHeightList[curMenuIndex]) {
+            this.setData({
+              [`wrapHeightList[${curMenuIndex}]`]: height,
+            });
+          }
+        }
+      });
+    },
 
     onPageScroll(e) {
       if (e.scrollTop >= this.navBarVisibleLimit) {
