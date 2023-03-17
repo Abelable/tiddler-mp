@@ -6,7 +6,7 @@ import {
   SCENE_SWITCH_TAB,
   SCENE_REFRESH,
   SCENE_LOADMORE,
-} from "./utils/sceneEnums";
+} from "../../../utils/emuns/scene";
 
 const homeService = new HomeService();
 const { statusBarHeight, windowHeight } = getApp().globalData.systemInfo;

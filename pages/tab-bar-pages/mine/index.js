@@ -2,6 +2,11 @@ import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
 import { store } from "../../../store/index";
 import { checkLogin } from "../../../utils/index";
 import MineService from "./utils/mineService";
+import {
+  SCENE_SWITCH_TAB,
+  SCENE_REFRESH,
+  SCENE_LOADMORE,
+} from "../../../utils/emuns/scene";
 
 const mineService = new MineService();
 const { statusBarHeight } = getApp().globalData.systemInfo;
@@ -44,9 +49,21 @@ Component({
     show() {
       store.setTabType("mine");
 
-      // checkLogin(() => {
-      //   !store.userInfo && baseService.getUserInfo()
-      // })
+      const {
+        curMenuIndex,
+        videoList,
+        noteList,
+        collectMediaList,
+        likeMediaList,
+      } = this.data;
+      if (
+        (curMenuIndex === 0 && !videoList.length) ||
+        (curMenuIndex === 1 && !noteList.length) ||
+        (curMenuIndex === 2 && !collectMediaList.length) ||
+        (curMenuIndex === 3 && !likeMediaList.length)
+      ) {
+        this.setList(SCENE_SWITCH_TAB);
+      }
     },
   },
 
@@ -62,7 +79,9 @@ Component({
     handleMenuChange(index) {
       const { curMenuIndex } = this.data;
       if (curMenuIndex !== index) {
-        this.setData({ curMenuIndex: index });
+        this.setData({ curMenuIndex: index }, () => {
+          this.setList(SCENE_SWITCH_TAB);
+        });
         this.scrollTopArr[curMenuIndex] = this.scrollTop || 0;
         wx.pageScrollTo({
           scrollTop: this.scrollTopArr[index] || 0,
@@ -71,27 +90,87 @@ Component({
       }
     },
 
-    setNavBarVisibleLimit() {
-      const query = wx.createSelectorQuery();
-      query.select(".name").boundingClientRect();
-      query.exec((res) => {
-        this.navBarVisibleLimit = res[0].bottom;
-      });
-    },
-
-    setMenuFixedLimit() {
-      const query = wx.createSelectorQuery();
-      query.select(".works-menu").boundingClientRect();
-      query.exec((res) => {
-        this.menuFixedLimit = res[0].top - statusBarHeight - 44;
-      });
-    },
-
     onPullDownRefresh() {
+      this.setList(SCENE_REFRESH);
       wx.stopPullDownRefresh();
     },
 
-    onReachBottom() {},
+    onReachBottom() {
+      this.setList(SCENE_LOADMORE);
+    },
+
+    setList(scene) {
+      checkLogin(() => {
+        const {
+          curMenuIndex,
+          videoList,
+          noteList,
+          collectMediaList,
+          likeMediaList,
+        } = this.data;
+        switch (scene) {
+          case SCENE_SWITCH_TAB:
+            switch (curMenuIndex) {
+              case 0:
+                if (!videoList.length) this.setVideoList(true);
+                break;
+
+              case 1:
+                if (!noteList.length) this.setNoteList(true);
+                break;
+
+              case 2:
+                if (!collectMediaList.length) this.setCollectMediaList(true);
+                break;
+
+              case 3:
+                if (!likeMediaList.length) this.setLikeMediaList(true);
+                break;
+            }
+            break;
+
+          case SCENE_REFRESH:
+            switch (curMenuIndex) {
+              case 0:
+                this.setVideoList(true);
+                break;
+
+              case 1:
+                this.setNoteList(true);
+                break;
+
+              case 2:
+                this.setCollectMediaList(true);
+                break;
+
+              case 3:
+                this.setLikeMediaList(true);
+                break;
+            }
+            break;
+
+          case SCENE_LOADMORE:
+            switch (curMenuIndex) {
+              case 0:
+                this.setVideoList();
+                break;
+
+              case 1:
+                this.setNoteList();
+                break;
+
+              case 2:
+                this.setCollectMediaList();
+                break;
+
+              case 3:
+                this.setLikeMediaList();
+                break;
+            }
+            break;
+        }
+      });
+    },
 
     async setVideoList(init = false) {
       const limit = 10;
@@ -140,7 +219,11 @@ Component({
         this.collectPage = 0;
         collectFinished && this.setData({ collectFinished: false });
       }
-      const list = (await mineService.getUserCollectMediaList(++this.collectPage, limit)) || [];
+      const list =
+        (await mineService.getUserCollectMediaList(
+          ++this.collectPage,
+          limit
+        )) || [];
       this.setData({
         collectMediaList: init ? list : [...collectMediaList, ...list],
       });
@@ -156,13 +239,30 @@ Component({
         this.likePage = 0;
         likeFinished && this.setData({ likeFinished: false });
       }
-      const list = (await mineService.getUserLikeMediaList(++this.likePage, limit)) || [];
+      const list =
+        (await mineService.getUserLikeMediaList(++this.likePage, limit)) || [];
       this.setData({
         likeMediaList: init ? list : [...likeMediaList, ...list],
       });
       if (list.length < limit) {
         this.setData({ likeFinished: true });
       }
+    },
+
+    setNavBarVisibleLimit() {
+      const query = wx.createSelectorQuery();
+      query.select(".name").boundingClientRect();
+      query.exec((res) => {
+        this.navBarVisibleLimit = res[0].bottom;
+      });
+    },
+
+    setMenuFixedLimit() {
+      const query = wx.createSelectorQuery();
+      query.select(".works-menu").boundingClientRect();
+      query.exec((res) => {
+        this.menuFixedLimit = res[0].top - statusBarHeight - 44;
+      });
     },
 
     setWrapHeight() {
