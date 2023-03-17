@@ -3,7 +3,7 @@
   "enablePullDownRefresh": true,
   "usingComponents": {
     "fall-flow": "/components/fall-flow/index",
-    "media-item": "./components/media-item",
+    "media-item": "/components/media-item",
     "empty-illus": "/components/empty-illus/index"
   }
 }
