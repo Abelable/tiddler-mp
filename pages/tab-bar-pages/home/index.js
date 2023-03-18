@@ -125,9 +125,9 @@ Component({
           this.followPage = 0;
           followFinished && this.setData({ followFinished: false });
         }
-        const list =
+        const { list = [] } =
           (await homeService.getFollowMediaList(++this.followPage, limit)) ||
-          [];
+          {};
         this.setData({
           followMediaList: init ? list : [...followMediaList, ...list],
         });
@@ -144,7 +144,8 @@ Component({
         this.page = 0;
         finished && this.setData({ finished: false });
       }
-      const list = (await homeService.getMediaList(++this.page, limit)) || [];
+      const { list = [] } =
+        (await homeService.getMediaList(++this.page, limit)) || {};
       this.setData({
         mediaList: init ? list : [...mediaList, ...list],
       });
@@ -161,7 +162,8 @@ Component({
         if (res[0][curMenuIndex]) {
           const { height } = res[0][curMenuIndex];
           this.setData({
-            [`wrapHeightList[${curMenuIndex}]`]: height < windowHeight ? windowHeight : height,
+            [`wrapHeightList[${curMenuIndex}]`]:
+              height < windowHeight ? windowHeight : height,
           });
         }
       });
