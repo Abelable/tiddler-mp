@@ -1,0 +1,66 @@
+<view class="container">
+  <view class="title-wrap">
+    <view class="title-textarea-wrap">
+      <textarea class="title-textarea" style="width: 100%; height: 100%;" placeholder="有趣的标题会吸引更多的人看哟～" maxlength="50" bindinput="setTitle" />
+      <view class="length-desc">{{title.length}}/50</view>
+    </view>
+    <view class="cover-editor" ontap="editCover">
+      <image class="cover" mode="aspectFill" src="{{cover}}" />
+      <view class="editor-desc">编辑封面</view>
+    </view>
+  </view>
+
+  <view class="goods-editor">
+    <view class="goods-uploader-wrap">
+      <view class="goods-uploader-title">
+        <image class="goods-icon" src="./images/goods-icon.png" />
+        <text>添加宝贝</text>
+      </view>
+      <navigator class="goods-uploader" url="./subpages/choose-goods/index"  hover-class="none">
+        <text>{{shortVideoGoodsId ? 1 : 0}}件宝贝</text>
+        <image class="right-arrow" src="./images/right-arrow.png" />
+      </navigator>
+    </view>
+    <view class="goods-desc" wx:if="{{shortVideoGoodsId}}">
+      <text>·宝贝简称</text>
+      <input class="goods-desc-input" type="text" placeholder="最多10个字" maxlength="10" bindinput="setGoodsDesc" />
+    </view>
+  </view>
+
+  <view class="private-editor">
+    <view class="private-editor-title">
+      <image class="private-icon" src="./images/lock.png" />
+      <text>设置私密</text>
+    </view>
+    <switch style="transform: scale(0.8)" bindchange="switchChange" color="#000" checked="{{isPrivate}}" />
+  </view>
+
+  <view class="address-editor">
+    <view class="address-editor-title">
+      <image class="address-icon" src="./images/address-icon.png" />
+      <text>所在位置</text>
+    </view>
+    <view class="address" ontap="toggleLoctionVisible">
+      <block wx:if="{{loctionVisible}}">
+        <text>{{province}} {{city}}</text>
+        <image class="delete-icon" src="./images/delete-icon.png" />
+      </block>
+      <block wx:else>
+        <text>显示位置信息</text>
+        <image class="right-arrow" src="./images/right-arrow.png" />
+      </block>
+    </view>
+  </view>
+
+  <view class="tag-editor">
+    <view class="tag-editor-title">
+      <image class="tag-icon" src="./images/tag-icon.png" />
+      <text>添加标签</text>
+    </view>
+    <view class="tag-wrap">
+      <view class="tag {{item.selected ? 'selected' : ''}}" wx:for="{{tagLists}}" wx:key="index" ontap="selectTag" data-index="{{index}}">#{{item.tag_name}}</view>
+    </view>
+  </view>
+</view>
+
+<view class="publish-btn {{pulishBtnActive ? 'active' : ''}}" ontap="publish">发布</view>

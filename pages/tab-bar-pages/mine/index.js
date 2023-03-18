@@ -326,5 +326,11 @@ Component({
         wx.navigateTo({ url });
       }
     },
+
+    navToVideoCreate() {
+      wx.navigateTo({
+        url: '/pages/subpages/mine/video-create/index',
+      });
+    }
   },
 });
