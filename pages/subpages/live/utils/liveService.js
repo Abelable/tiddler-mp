@@ -9,13 +9,6 @@ class LiveService extends BaseService {
     });
   }
 
-  async getUserGoodsList(page, limit = 10) {
-    return await this.get({
-      url: `${this.baseUrl}/goods/user_goods_list`,
-      data: { page, limit }
-    })
-  }
-
   async getNoticeRoomInfo() {
     return await this.get({
       url: `${this.baseUrl}/media/live/notice_room`,

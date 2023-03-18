@@ -10,39 +10,34 @@
 
   <view class="card" style="padding-top: 0; padding-bottom: 0;">
     <view class="list row between">
-      <view class="title row">
-        <image class="list-icon" src="./images/goods-icon.png" />
-        <text>添加商品</text>
-      </view>
+      <view class="title">添加商品</view>
       <view class="list-picker row" bindtap="showGoodsPickerPopup">
         <text>{{pickedGoodsName? ('已选：' + pickedGoodsName) : '请选择商品'}}</text>
         <image class="arrow" src="https://img.ubo.vip/mp/sass/mine/gray-arrow.png" />
       </view>
     </view>
     <view class="list row between">
-      <view class="title row">
-        <image class="list-icon" src="./images/address-icon.png" />
-        <text>所在位置</text>
-      </view>
-      <view class="list-picker row" bindtap="toggleLocationVisible">
-        <block wx:if="{{locationVisible}}">
-          <text>{{location}}</text>
-          <image class="delete-icon" src="./images/delete-icon.png" />
-        </block>
-        <block wx:else>
-          <text>显示位置信息</text>
-          <image class="arrow" src="https://img.ubo.vip/mp/sass/mine/gray-arrow.png" />
-        </block>
-      </view>
-    </view>
-    <view class="list row between">
-      <view class="title row">
-        <image class="list-icon" src="./images/lock.png" />
-        <text>设置私密</text>
-      </view>
+      <view class="title row">设置私密</view>
       <switch color="#0095fa" bindchange="toggleIsPrivate" />
+    </view>
+  </view>
+
+  <view class="card" style="padding-top: 0; padding-bottom: 0;">
+    <view class="list row between">
+      <view class="title row">显示位置</view>
+      <switch color="#0095fa" checked="{{addressVisible}}" bindchange="toggleAddressVisible" />
+    </view>
+    <view class="list row between" wx:if="{{addressVisible}}">
+      <view class="title">位置信息</view>
+      <view class="list-picker row" wx:if="{{!address}}" bindtap="openLocationSetting">
+        <text>获取位置信息</text>
+        <image class="arrow" src="https://img.ubo.vip/mp/sass/mine/gray-arrow.png" />
+      </view>
+      <input class="list-input" wx:if="{{address}}" value="{{address}}" bindinput="editAddress" />
     </view>
   </view>
 </view>
 
-<button class="publish-btn {{btnActive ? 'active' : ''}}" bindtap="publish">发布</button>
+<button class="publish-btn {{title ? 'active' : ''}}" bindtap="publish">发布</button>
+
+<goods-picker-popup show="{{goodsPickPopupVisible}}" bind:confirm="goodsPickerConfirm" bind:hide="hideGoodsPickerPopup" />

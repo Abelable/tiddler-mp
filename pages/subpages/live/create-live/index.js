@@ -150,4 +150,8 @@ Page({
       wx.navigateTo({ url });
     });
   },
+
+  onUnload() {
+    this.storeBindings.destroyStoreBindings();
+  },
 });

@@ -8,16 +8,19 @@ Component({
   },
 
   properties: {
-    show: Boolean
+    show: {
+      type: Boolean,
+      observer(truthy) {
+        if (truthy && !this.data.goodsList.length) {
+          this.setGoodsList(true);
+        }
+      }
+    }
   },
 
   data: {
     goodsList: [],
     allChecked: false
-  },
-
-  attached() {
-    this.setGoodsList(true);
   },
 
   methods: {

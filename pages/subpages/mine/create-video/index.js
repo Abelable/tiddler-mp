@@ -1,22 +1,30 @@
+import { createStoreBindings } from "mobx-miniprogram-bindings";
+import { store } from "../../../../store/index";
 import { debounce } from "../../../../utils/index";
+import { QQ_MAP_KEY } from "../../../../config";
 import VideoService from "./utils/videoService";
-import { QQ_MAP_KEY } from '../../../../config'
 
-const Map = require('../../../../utils/libs/qqmap-wx-jssdk.min')
+const Map = require("../../../../utils/libs/qqmap-wx-jssdk.min");
 const videoService = new VideoService();
 
 Page({
   data: {
     title: "",
     cover: "",
-    location: '',
-    locationVisible: true,
-    btnActive: false,
+    address: "",
+    addressVisible: true,
+    pickedGoodsName: "",
+    goodsPickPopupVisible: false,
   },
 
   async onLoad({ tempFilePath }) {
+    this.storeBindings = createStoreBindings(this, {
+      store,
+      fields: ["userInfo"],
+    });
+
     this.setVideoUrl(tempFilePath);
-    this.setLocationInfo()
+    this.setLocationInfo();
   },
 
   async setVideoUrl(tempFilePath) {
@@ -26,42 +34,54 @@ Page({
   },
 
   async setLocationInfo() {
-    const { authSetting } = await videoService.getSetting()
-    if (authSetting['scope.userLocation'] !== false) {
-      const info = await videoService.getLocation()
-      console.log('经纬度', info)
-      const { longitude, latitude } = info
-      const map = new Map({ key: QQ_MAP_KEY })
+    const { authSetting } = await videoService.getSetting();
+    if (authSetting["scope.userLocation"] !== false) {
+      const { longitude, latitude } = await videoService.getLocation();
+      const map = new Map({ key: QQ_MAP_KEY });
       map.reverseGeocoder({
         location: { longitude, latitude },
-        success: res => {
-          console.log('locationInfo', res)
-        }
-      })
+        success: (res) => {
+          if (res.status === 0) {
+            const { address } = res.result;
+            this.setData({ address });
+            this.longitude = longitude;
+            this.latitude = latitude;
+          } else {
+            wx.showToast({
+              title: res.message,
+              icon: "none",
+            });
+          }
+        },
+      });
     }
   },
 
-  toggleLoctionVisible() {
-    const { location, locationVisible } = this.data
-    if (!location) {
-      wx.openSetting({
-        success: () => {
-          this.setLocationInfo()
-        }
-      }) 
-      return
-    }
-    this.setData({
-      locationVisible: !locationVisible,
+  openLocationSetting() {
+    wx.openSetting({
+      success: () => {
+        this.setLocationInfo();
+      },
     });
   },
+
+  toggleAddressVisible(e) {
+    this.setData({
+      addressVisible: e.detail.value,
+    });
+  },
+
+  editAddress: debounce(function (e) {
+    this.setData({
+      address: e.detail.value,
+    });
+  }, 200),
 
   setTitle: debounce(function (e) {
     this.title = e.detail.value;
     this.setData({
       title: this.title,
     });
-    this.check();
   }, 200),
 
   async editCover() {
@@ -72,58 +92,56 @@ Page({
     }
   },
 
-  setGoodsDesc(e) {
-    this.goodsDesc = e.detail.value;
-    this.check();
-  },
-
-  switchChange(e) {
-    this.isPrivate = e.detail.value ? 1 : 0;
-  },
-
-  check() {
-    const { title, shortVideoGoodsId, btnActive } = this.data;
-    const truthy =
-      (shortVideoGoodsId && this.goodsDesc && title) ||
-      (!shortVideoGoodsId && title);
-    if (btnActive !== truthy) this.setData({ btnActive: truthy });
-  },
-
-  selectTag(e) {
-    const { index } = e.currentTarget.dataset;
+  showGoodsPickerPopup() {
     this.setData({
-      [`tagLists[${index}].selected`]: !this.data.tagLists[index].selected,
+      goodsPickPopupVisible: true,
     });
   },
 
-  async publish() {
-    if (this.data.btnActive) {
-      const {
-        title,
-        cover,
-        isPrivate,
-        tagLists,
-        locationVisible,
-        province,
-        city,
-      } = this.data;
-      let tagIdsArr = [];
-      tagLists.forEach((item) => {
-        if (item.selected) tagIdsArr.push(item.id);
-      });
-      await videoService.creatShortVideo(
-        title,
-        cover,
-        this.src,
-        isPrivate,
-        this.goodsDesc,
-        tagIdsArr.join(),
-        locationVisible ? this.longitude : "",
-        locationVisible ? this.latitude : "",
-        locationVisible ? province : "",
-        locationVisible ? city : ""
-      );
-      wx.navigateBack();
+  goodsPickerConfirm(e) {
+    const { id, name } = e.detail;
+    this.setData({
+      pickedGoodsName: name,
+      goodsPickPopupVisible: false,
+    });
+    this.pickedGoodsId = id;
+  },
+
+  hideGoodsPickerPopup() {
+    this.setData({
+      goodsPickPopupVisible: false,
+    });
+  },
+
+  toggleIsPrivate(e) {
+    this.isPrivate = e.detail.value ? 1 : 0;
+  },
+
+  publish() {
+    const { title, cover, address, addressVisible } = this.data;
+    const { videoUrl, pickedGoodsId, longitude, latitude, isPrivate } = this;
+
+    if (!title) {
+      return;
     }
+
+    const videoInfo = {
+      title,
+      cover,
+      videoUrl,
+      longitude,
+      latitude,
+      isPrivate,
+      goodsId: pickedGoodsId,
+      address: addressVisible ? address : "",
+    };
+
+    videoService.createVideo(videoInfo, () => {
+      wx.navigateBack();
+    });
+  },
+
+  onUnload() {
+    this.storeBindings.destroyStoreBindings();
   },
 });

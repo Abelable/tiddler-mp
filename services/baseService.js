@@ -131,6 +131,13 @@ class BaseService extends Base {
       loadingTitle: "加载中...",
     });
   }
+
+  async getUserGoodsList(page, limit = 10) {
+    return await this.get({
+      url: `${this.baseUrl}/goods/user_goods_list`,
+      data: { page, limit }
+    })
+  }
 }
 
 export default BaseService;

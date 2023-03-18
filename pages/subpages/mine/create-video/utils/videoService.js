@@ -2,8 +2,6 @@ import BaseService from '../../../../../services/baseService'
 import { cleanObject } from '../../../../../utils/index'
 
 class VideoService extends BaseService {
-  // title, cover, videoUrl, goodsId, longitude, latitude, addressDetail, isPrivate,
-
   async createVideo(videoInfo, success) {
     return await this.post({ 
       url: `${this.baseUrl}/media/short_video/create`, 
