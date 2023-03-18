@@ -1,4 +1,4 @@
-<van-popup show="{{show}}" round position="bottom" bind:close="hide">
+<van-popup show="{{show}}" bind:close="hide" custom-style="background: #f5f6f7;" round position="bottom">
   <view class="goods-picker-popup">
     <scroll-view class="goods-list-wrap" bindscrolltolower="loadMore" scroll-y>
       <view class="goods-list">

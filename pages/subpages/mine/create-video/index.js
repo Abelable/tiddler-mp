@@ -15,6 +15,7 @@ Page({
     addressVisible: true,
     pickedGoodsName: "",
     goodsPickPopupVisible: false,
+    textareaHeight: 0,
   },
 
   async onLoad({ tempFilePath }) {
@@ -138,6 +139,15 @@ Page({
 
     videoService.createVideo(videoInfo, () => {
       wx.navigateBack();
+    });
+  },
+
+  setTextareaHeight() {
+    const query = wx.createSelectorQuery();
+    query.select(".cover").boundingClientRect();
+    query.exec((res) => {
+      const { height: textareaHeight } = res || {};
+      this.setData({ textareaHeight });
     });
   },
 

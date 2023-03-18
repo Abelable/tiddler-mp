@@ -5,7 +5,7 @@ const { windowHeight } = getApp().globalData.systemInfo;
 module.exports = Behavior({
   methods: {
     setActiveMediaItem() {
-      const query = wx.createSelectorQuery().in(this);
+      const query = this.createSelectorQuery();
       query.selectAll(".item").boundingClientRect();
       query.exec((res) => {
         const list = res[0].filter((item) => {

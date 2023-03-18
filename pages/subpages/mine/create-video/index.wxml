@@ -1,15 +1,15 @@
 <view class="container">
-  <view class="card row">
-    <textarea class="title-textarea" bindinput="setTitle" placeholder="有趣的标题会吸引更多的人看哟～" maxlength="50" />
+  <view class="card row top">
+    <textarea class="title-textarea" style="height: {{textareaHeight}}px;" bindinput="setTitle" placeholder="有趣的标题会吸引更多的人看哟～" maxlength="50" />
     <view class="cover-wrap" bindtap="editCover">
-      <image class="cover" src="{{cover}}" mode="widthFix" />
+      <image class="cover" src="{{cover}}" bindload="setTextareaHeight" mode="widthFix" />
       <button class="cover-editor" hover-class="none">编辑封面</button>
     </view>
     <view class="length-desc">{{title.length}}/50</view>
   </view>
 
   <view class="card" style="padding-top: 0; padding-bottom: 0;">
-    <view class="list row between">
+    <view class="list row between" wx:if="{{userInfo.shopId}}">
       <view class="title">添加商品</view>
       <view class="list-picker row" bindtap="showGoodsPickerPopup">
         <text>{{pickedGoodsName? ('已选：' + pickedGoodsName) : '请选择商品'}}</text>

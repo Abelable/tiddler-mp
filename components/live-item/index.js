@@ -32,7 +32,7 @@ Component({
         const { id, top } = info;
         const { active } = this.data;
         if (id == this.properties.item.id) {
-          const query = wx.createSelectorQuery().in(this);
+          const query = this.createSelectorQuery();
           query.select(".live-item").boundingClientRect();
           query.exec((res) => {
             if (res[0].top === top) this.setData({ active: true });
