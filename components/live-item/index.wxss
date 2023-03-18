@@ -1,6 +1,6 @@
 .live-item {
   position: relative;
-  margin-bottom: 18rpx;
+  margin-bottom: 10rpx;
   width: 350rpx;
   height: 525rpx;
   font-size: 0;
