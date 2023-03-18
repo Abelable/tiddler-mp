@@ -106,16 +106,25 @@ class Base {
     }
   }
 
-  getSystemInfo() {
+  async getSystemInfo() {
     return api.getSystemInfo()
   }
 
-  getSetting() {
+  async getSetting() {
     return api.getSetting()
   }
 
-  chooseImage(count, fail) {
+  async chooseImage(count, fail) {
     return api.chooseImage({ count }).catch(err => {
+      fail && fail(err)
+    })
+  }
+
+  async chooseVideo(fail) {
+    return api.chooseVideo({ 
+      sourceType:['album', 'camera'],
+      compressed: false 
+    }).catch(err => {
       fail && fail(err)
     })
   }
@@ -124,19 +133,19 @@ class Base {
     return api.getLocation()
   }  
 
-  getUserProfile() {
+  async getUserProfile() {
     return api.getUserProfile({ desc: '用于完善会员资料' })
   }
 
-  getImageInfo(src) {
+  async getImageInfo(src) {
     return api.getImageInfo({ src })
   }
 
-  wxLogin() {
+  async wxLogin() {
     return api.login()
   }
   
-  requestSubscribeMessage(tmplId) {
+  async requestSubscribeMessage(tmplId) {
     return api.requestSubscribeMessage({ tmplIds: [tmplId]})
   }
 }

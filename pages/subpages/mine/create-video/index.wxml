@@ -1,13 +1,11 @@
 <view class="container">
   <view class="title-wrap">
-    <view class="title-textarea-wrap">
-      <textarea class="title-textarea" style="width: 100%; height: 100%;" placeholder="有趣的标题会吸引更多的人看哟～" maxlength="50" bindinput="setTitle" />
-      <view class="length-desc">{{title.length}}/50</view>
+    <textarea class="title-textarea" bindinput="setTitle" placeholder="有趣的标题会吸引更多的人看哟～" maxlength="50" />
+    <view class="cover-wrap" bindtap="editCover">
+      <image class="cover" src="{{cover}}" mode="widthFix" />
+      <view class="cover-editor">编辑封面</view>
     </view>
-    <view class="cover-editor" ontap="editCover">
-      <image class="cover" mode="aspectFill" src="{{cover}}" />
-      <view class="editor-desc">编辑封面</view>
-    </view>
+    <view class="length-desc">{{title.length}}/50</view>
   </view>
 
   <view class="goods-editor">
@@ -32,7 +30,7 @@
       <image class="private-icon" src="./images/lock.png" />
       <text>设置私密</text>
     </view>
-    <switch style="transform: scale(0.8)" bindchange="switchChange" color="#000" checked="{{isPrivate}}" />
+    <switch bindchange="switchChange" color="#0095fa" />
   </view>
 
   <view class="address-editor">
@@ -49,16 +47,6 @@
         <text>显示位置信息</text>
         <image class="right-arrow" src="./images/right-arrow.png" />
       </block>
-    </view>
-  </view>
-
-  <view class="tag-editor">
-    <view class="tag-editor-title">
-      <image class="tag-icon" src="./images/tag-icon.png" />
-      <text>添加标签</text>
-    </view>
-    <view class="tag-wrap">
-      <view class="tag {{item.selected ? 'selected' : ''}}" wx:for="{{tagLists}}" wx:key="index" ontap="selectTag" data-index="{{index}}">#{{item.tag_name}}</view>
     </view>
   </view>
 </view>

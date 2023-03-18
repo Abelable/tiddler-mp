@@ -49,21 +49,23 @@ Component({
     show() {
       store.setTabType("mine");
 
-      const {
-        curMenuIndex,
-        videoList,
-        noteList,
-        collectMediaList,
-        likeMediaList,
-      } = this.data;
-      if (
-        (curMenuIndex === 0 && !videoList.length) ||
-        (curMenuIndex === 1 && !noteList.length) ||
-        (curMenuIndex === 2 && !collectMediaList.length) ||
-        (curMenuIndex === 3 && !likeMediaList.length)
-      ) {
-        this.setList(SCENE_SWITCH_TAB);
-      }
+      checkLogin(() => {
+        const {
+          curMenuIndex,
+          videoList,
+          noteList,
+          collectMediaList,
+          likeMediaList,
+        } = this.data;
+        if (
+          (curMenuIndex === 0 && !videoList.length) ||
+          (curMenuIndex === 1 && !noteList.length) ||
+          (curMenuIndex === 2 && !collectMediaList.length) ||
+          (curMenuIndex === 3 && !likeMediaList.length)
+        ) {
+          this.setList(SCENE_SWITCH_TAB);
+        }
+      });
     },
   },
 
@@ -100,76 +102,74 @@ Component({
     },
 
     setList(scene) {
-      checkLogin(() => {
-        const {
-          curMenuIndex,
-          videoList,
-          noteList,
-          collectMediaList,
-          likeMediaList,
-        } = this.data;
-        switch (scene) {
-          case SCENE_SWITCH_TAB:
-            switch (curMenuIndex) {
-              case 0:
-                if (!videoList.length) this.setVideoList(true);
-                break;
+      const {
+        curMenuIndex,
+        videoList,
+        noteList,
+        collectMediaList,
+        likeMediaList,
+      } = this.data;
+      switch (scene) {
+        case SCENE_SWITCH_TAB:
+          switch (curMenuIndex) {
+            case 0:
+              if (!videoList.length) this.setVideoList(true);
+              break;
 
-              case 1:
-                if (!noteList.length) this.setNoteList(true);
-                break;
+            case 1:
+              if (!noteList.length) this.setNoteList(true);
+              break;
 
-              case 2:
-                if (!collectMediaList.length) this.setCollectMediaList(true);
-                break;
+            case 2:
+              if (!collectMediaList.length) this.setCollectMediaList(true);
+              break;
 
-              case 3:
-                if (!likeMediaList.length) this.setLikeMediaList(true);
-                break;
-            }
-            break;
+            case 3:
+              if (!likeMediaList.length) this.setLikeMediaList(true);
+              break;
+          }
+          break;
 
-          case SCENE_REFRESH:
-            switch (curMenuIndex) {
-              case 0:
-                this.setVideoList(true);
-                break;
+        case SCENE_REFRESH:
+          switch (curMenuIndex) {
+            case 0:
+              this.setVideoList(true);
+              break;
 
-              case 1:
-                this.setNoteList(true);
-                break;
+            case 1:
+              this.setNoteList(true);
+              break;
 
-              case 2:
-                this.setCollectMediaList(true);
-                break;
+            case 2:
+              this.setCollectMediaList(true);
+              break;
 
-              case 3:
-                this.setLikeMediaList(true);
-                break;
-            }
-            break;
+            case 3:
+              this.setLikeMediaList(true);
+              break;
+          }
+          break;
 
-          case SCENE_LOADMORE:
-            switch (curMenuIndex) {
-              case 0:
-                this.setVideoList();
-                break;
+        case SCENE_LOADMORE:
+          switch (curMenuIndex) {
+            case 0:
+              this.setVideoList();
+              break;
 
-              case 1:
-                this.setNoteList();
-                break;
+            case 1:
+              this.setNoteList();
+              break;
 
-              case 2:
-                this.setCollectMediaList();
-                break;
+            case 2:
+              this.setCollectMediaList();
+              break;
 
-              case 3:
-                this.setLikeMediaList();
-                break;
-            }
-            break;
-        }
-      });
+            case 3:
+              this.setLikeMediaList();
+              break;
+          }
+          break;
+      }
     },
 
     async setVideoList(init = false) {
@@ -327,10 +327,12 @@ Component({
       }
     },
 
-    navToVideoCreate() {
-      wx.navigateTo({
-        url: '/pages/subpages/mine/video-create/index',
-      });
-    }
+    async navToVideoCreate() {
+      const { tempFilePath } = (await mineService.chooseVideo()) || {};
+      if (tempFilePath) {
+        const url = `/pages/subpages/mine/create-video/index?tempFilePath=${tempFilePath}`;
+        wx.navigateTo({ url });
+      }
+    },
   },
 });
