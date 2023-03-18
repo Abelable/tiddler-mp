@@ -7,19 +7,19 @@
       <image class="video-icon" src="./images/play.png" />
     </view>
     <view class="address-info" wx:if="{{item.address}}">
-      <image class="address-icon" src="../../images/address.png" />
+      <image class="address-icon" src="/images/address.png" />
       <text class="address-detail omit single-line">{{item.address}}</text>
     </view>
   </view>
   <view class="title omit">{{item.title}}</view>
   <view class="info-wrap">
     <view class="author-info">
-      <image class="avatar avatar-default" src="{{item.authorInfo.avatar}}" />
-      <text class="name omit single-line">{{item.authorInfo.nickname}}</text>
+      <image class="author-avatar avatar-default" src="{{item.authorInfo.avatar}}" />
+      <text class="author-name omit single-line">{{item.authorInfo.nickname}}</text>
     </view>
     <view class="praise-info">
       <image class="praise-icon" src="../../images/heart.png" />
-      <text>{{NUM.over(item.praiseNumber, 100000)}}</text>
+      <text>{{NUM.over(item.likeNumber, 100000)}}</text>
     </view>
   </view>
 </navigator>

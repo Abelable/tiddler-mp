@@ -73,13 +73,13 @@
   margin-right: 10rpx;
   flex: 1;
 }
-.avatar {
+.author-avatar {
   margin-right: 8rpx;
   width: 36rpx;
   height: 36rpx;
   border-radius: 50%;
 }
-.name {
+.author-name {
   flex: 1;
 }
 .praise-info {
