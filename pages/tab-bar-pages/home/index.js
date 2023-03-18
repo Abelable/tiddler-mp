@@ -154,17 +154,15 @@ Component({
     },
 
     setWrapHeight() {
-      const { curMenuIndex, wrapHeightList } = this.data;
+      const { curMenuIndex } = this.data;
       const query = wx.createSelectorQuery();
       query.selectAll(".content-wrap").boundingClientRect();
       query.exec((res) => {
         if (res[0][curMenuIndex]) {
           const { height } = res[0][curMenuIndex];
-          if (height > wrapHeightList[curMenuIndex]) {
-            this.setData({
-              [`wrapHeightList[${curMenuIndex}]`]: height,
-            });
-          }
+          this.setData({
+            [`wrapHeightList[${curMenuIndex}]`]: height < windowHeight ? windowHeight : height,
+          });
         }
       });
     },
