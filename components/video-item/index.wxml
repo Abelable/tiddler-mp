@@ -2,7 +2,7 @@
 
 <navigator class="video-item" url="/pages/subpages/home/video/index?id={{item.id}}" hover-class="none">
   <view class="cover-wrap">
-    <image class="cover" src="{{item.cover || (item.video_url + '?x-oss-process=video/snapshot,t_0')}}" mode="widthFix" />
+    <image class="cover" src="{{item.cover}}" mode="widthFix" />
     <view class="video-symbol">
       <image class="video-icon" src="./images/play.png" />
     </view>

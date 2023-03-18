@@ -67,8 +67,8 @@
 
   <view class="card" style="padding-top: 0; padding-bottom: 0;">
     <view class="list row between">
-      <view class="title row">创建预告</view>
-      <switch class="list-switch" color="#0095fa" bindchange="toggleIsNotice" />
+      <view class="title">创建预告</view>
+      <switch color="#0095fa" bindchange="toggleIsNotice" />
     </view>
     <view class="list row between" wx:if="{{isNotice}}">
       <view class="title row">预告时间</view>

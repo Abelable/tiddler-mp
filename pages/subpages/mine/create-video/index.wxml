@@ -1,54 +1,48 @@
 <view class="container">
-  <view class="title-wrap">
+  <view class="card row">
     <textarea class="title-textarea" bindinput="setTitle" placeholder="有趣的标题会吸引更多的人看哟～" maxlength="50" />
     <view class="cover-wrap" bindtap="editCover">
       <image class="cover" src="{{cover}}" mode="widthFix" />
-      <view class="cover-editor">编辑封面</view>
+      <button class="cover-editor" hover-class="none">编辑封面</button>
     </view>
     <view class="length-desc">{{title.length}}/50</view>
   </view>
 
-  <view class="goods-editor">
-    <view class="goods-uploader-wrap">
-      <view class="goods-uploader-title">
-        <image class="goods-icon" src="./images/goods-icon.png" />
-        <text>添加宝贝</text>
+  <view class="card" style="padding-top: 0; padding-bottom: 0;">
+    <view class="list row between">
+      <view class="title row">
+        <image class="list-icon" src="./images/goods-icon.png" />
+        <text>添加商品</text>
       </view>
-      <navigator class="goods-uploader" url="./subpages/choose-goods/index"  hover-class="none">
-        <text>{{shortVideoGoodsId ? 1 : 0}}件宝贝</text>
-        <image class="right-arrow" src="./images/right-arrow.png" />
-      </navigator>
+      <view class="list-picker row" bindtap="showGoodsPickerPopup">
+        <text>{{pickedGoodsName? ('已选：' + pickedGoodsName) : '请选择商品'}}</text>
+        <image class="arrow" src="https://img.ubo.vip/mp/sass/mine/gray-arrow.png" />
+      </view>
     </view>
-    <view class="goods-desc" wx:if="{{shortVideoGoodsId}}">
-      <text>·宝贝简称</text>
-      <input class="goods-desc-input" type="text" placeholder="最多10个字" maxlength="10" bindinput="setGoodsDesc" />
+    <view class="list row between">
+      <view class="title row">
+        <image class="list-icon" src="./images/address-icon.png" />
+        <text>所在位置</text>
+      </view>
+      <view class="list-picker row" bindtap="toggleLocationVisible">
+        <block wx:if="{{locationVisible}}">
+          <text>{{location}}</text>
+          <image class="delete-icon" src="./images/delete-icon.png" />
+        </block>
+        <block wx:else>
+          <text>显示位置信息</text>
+          <image class="arrow" src="https://img.ubo.vip/mp/sass/mine/gray-arrow.png" />
+        </block>
+      </view>
     </view>
-  </view>
-
-  <view class="private-editor">
-    <view class="private-editor-title">
-      <image class="private-icon" src="./images/lock.png" />
-      <text>设置私密</text>
-    </view>
-    <switch bindchange="switchChange" color="#0095fa" />
-  </view>
-
-  <view class="address-editor">
-    <view class="address-editor-title">
-      <image class="address-icon" src="./images/address-icon.png" />
-      <text>所在位置</text>
-    </view>
-    <view class="address" ontap="toggleLoctionVisible">
-      <block wx:if="{{loctionVisible}}">
-        <text>{{province}} {{city}}</text>
-        <image class="delete-icon" src="./images/delete-icon.png" />
-      </block>
-      <block wx:else>
-        <text>显示位置信息</text>
-        <image class="right-arrow" src="./images/right-arrow.png" />
-      </block>
+    <view class="list row between">
+      <view class="title row">
+        <image class="list-icon" src="./images/lock.png" />
+        <text>设置私密</text>
+      </view>
+      <switch color="#0095fa" bindchange="toggleIsPrivate" />
     </view>
   </view>
 </view>
 
-<view class="publish-btn {{pulishBtnActive ? 'active' : ''}}" ontap="publish">发布</view>
+<button class="publish-btn {{btnActive ? 'active' : ''}}" bindtap="publish">发布</button>

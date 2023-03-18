@@ -1,27 +1,22 @@
-import { createStoreBindings } from "mobx-miniprogram-bindings";
-import { store } from "../../../../store/index";
 import { debounce } from "../../../../utils/index";
 import VideoService from "./utils/videoService";
+import { QQ_MAP_KEY } from '../../../../config'
 
+const Map = require('../../../../utils/libs/qqmap-wx-jssdk.min')
 const videoService = new VideoService();
 
 Page({
   data: {
+    title: "",
     cover: "",
-    loctionVisible: true,
-    pulishBtnActive: false,
+    location: '',
+    locationVisible: true,
+    btnActive: false,
   },
 
   async onLoad({ tempFilePath }) {
-    this.storeBindings = createStoreBindings(this, {
-      store,
-      fields: ["shortVideoGoodsId"],
-      actions: ["setShortVideoGoodsId"],
-    });
-
     this.setVideoUrl(tempFilePath);
-    // if (!store.locationInfo) await videoService.setLocationInfo()
-    // this.setLoaction()
+    this.setLocationInfo()
   },
 
   async setVideoUrl(tempFilePath) {
@@ -30,24 +25,34 @@ Page({
     this.setData({ cover });
   },
 
-  setLoaction() {
-    // const { longitude, latitude } = store.locationInfo
-    // this.longitude = longitude
-    // this.latitude = latitude
-    // let Map = require('../../../../utils/libs/qqmap-wx-jssdk.min')
-    // let map = new Map({ key: 'BGCBZ-UFHWX-MBQ4O-TANN2-7WTZ3-CLBIP' })
-    // map.reverseGeocoder({
-    //   location: { longitude, latitude },
-    //   success: res => {
-    //     const { province, city } = res.result.ad_info
-    //     this.setData({ province, city })
-    //   }
-    // })
+  async setLocationInfo() {
+    const { authSetting } = await videoService.getSetting()
+    if (authSetting['scope.userLocation'] !== false) {
+      const info = await videoService.getLocation()
+      console.log('经纬度', info)
+      const { longitude, latitude } = info
+      const map = new Map({ key: QQ_MAP_KEY })
+      map.reverseGeocoder({
+        location: { longitude, latitude },
+        success: res => {
+          console.log('locationInfo', res)
+        }
+      })
+    }
   },
 
   toggleLoctionVisible() {
+    const { location, locationVisible } = this.data
+    if (!location) {
+      wx.openSetting({
+        success: () => {
+          this.setLocationInfo()
+        }
+      }) 
+      return
+    }
     this.setData({
-      loctionVisible: !this.data.loctionVisible,
+      locationVisible: !locationVisible,
     });
   },
 
@@ -77,11 +82,11 @@ Page({
   },
 
   check() {
-    const { title, shortVideoGoodsId, pulishBtnActive } = this.data;
+    const { title, shortVideoGoodsId, btnActive } = this.data;
     const truthy =
       (shortVideoGoodsId && this.goodsDesc && title) ||
       (!shortVideoGoodsId && title);
-    if (pulishBtnActive !== truthy) this.setData({ pulishBtnActive: truthy });
+    if (btnActive !== truthy) this.setData({ btnActive: truthy });
   },
 
   selectTag(e) {
@@ -92,13 +97,13 @@ Page({
   },
 
   async publish() {
-    if (this.data.pulishBtnActive) {
+    if (this.data.btnActive) {
       const {
         title,
         cover,
         isPrivate,
         tagLists,
-        loctionVisible,
+        locationVisible,
         province,
         city,
       } = this.data;
@@ -113,17 +118,12 @@ Page({
         isPrivate,
         this.goodsDesc,
         tagIdsArr.join(),
-        loctionVisible ? this.longitude : "",
-        loctionVisible ? this.latitude : "",
-        loctionVisible ? province : "",
-        loctionVisible ? city : ""
+        locationVisible ? this.longitude : "",
+        locationVisible ? this.latitude : "",
+        locationVisible ? province : "",
+        locationVisible ? city : ""
       );
       wx.navigateBack();
     }
-  },
-
-  onUnload() {
-    this.setShortVideoGoodsId("");
-    this.storeBindings.destroyStoreBindings();
   },
 });
