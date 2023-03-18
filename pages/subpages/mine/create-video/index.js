@@ -144,9 +144,9 @@ Page({
 
   setTextareaHeight() {
     const query = wx.createSelectorQuery();
-    query.select(".cover").boundingClientRect();
+    query.select(".cover-wrap").boundingClientRect();
     query.exec((res) => {
-      const { height: textareaHeight } = res || {};
+      const { height: textareaHeight } = res[0] || {};
       this.setData({ textareaHeight });
     });
   },
