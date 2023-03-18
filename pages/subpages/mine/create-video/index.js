@@ -130,10 +130,10 @@ Page({
       title,
       cover,
       videoUrl,
-      longitude,
-      latitude,
       isPrivate,
       goodsId: pickedGoodsId,
+      longitude: addressVisible ? longitude : 0,
+      latitude: addressVisible ? latitude : 0,
       address: addressVisible ? address : "",
     };
 
