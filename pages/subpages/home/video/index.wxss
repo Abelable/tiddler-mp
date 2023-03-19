@@ -17,15 +17,21 @@
 .bottom-bar {
   position: fixed;
   bottom: 0;
-  padding: 12px 12px calc(12px + env(safe-area-inset-bottom));
+  padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
   width: 100vw;
   background: #141414;
 }
 .input-btn {
   padding: 0 12px;
-  height: 26px;
+  flex: 1;
+  height: 30px;
   color: #fff;
-  font-size: 13px;
-  border-radius: 13px;
+  font-size: 12px;
+  border-radius: 15px;
   background: #434343;
+}
+.at-icon {
+  margin-left: 12px;
+  width: 20px;
+  height: 20px;
 }

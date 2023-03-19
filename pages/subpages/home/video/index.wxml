@@ -15,9 +15,11 @@
   <back-icon />
 </view>
 
-<view class="bottom-bar">
+<view class="bottom-bar row">
   <view class="input-btn row">说点什么...</view>
+  <image class="at-icon" src="./images/at.png" />
 </view>
+
 
 <comment-popup wx:if="{{commentPopupVisible}}" videoId="{{videoList[curVideoIdx].id}}" bind:hide="hideModal" />
 <feature-popup wx:if="{{featurePopupVisible}}" videoId="{{videoList[curVideoIdx].id}}" bind:hide="hideModal" />

@@ -41,8 +41,17 @@
   margin-top: 40rpx;
 }
 .btn-icon {
-  width: 70rpx;
+  width: 68rpx;
   height: 68rpx;
+}
+.btn-icon.share {
+  width: 60rpx;
+  height: 60rpx;
+}
+.btn-icon.more {
+  margin-left: -10rpx;
+  width: 66rpx;
+  height: 66rpx;
 }
 .btn-desc {
   margin-top: 8rpx;
@@ -84,16 +93,16 @@
 .address {
   display: flex;
   align-items: center;
-  margin-top: 10rpx;
-  font-size: 24rpx;
+  margin-top: 6rpx;
+  font-size: 22rpx;
 }
 .address-icon {
   margin-right: 2rpx;
-  width: 30rpx;
-  height: 30rpx;
+  width: 20rpx;
+  height: 20rpx;
 }
 .video-title {
-  margin-top: 10rpx;
+  margin-top: 16rpx;
   font-size: 26rpx;
   line-height: 40rpx;
 }
