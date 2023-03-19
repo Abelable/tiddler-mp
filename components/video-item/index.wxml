@@ -3,6 +3,10 @@
 <navigator class="video-item" url="/pages/subpages/home/video/index?id={{item.id}}" hover-class="none">
   <view class="cover-wrap">
     <image class="cover" src="{{item.cover}}" mode="widthFix" />
+    <view class="private-tag row" wx:if="{{item.isPrivate}}">
+      <image class="private-icon" src="./images/private-icon.png" />
+      <text>私密</text>
+    </view>
     <view class="video-symbol">
       <image class="video-icon" src="./images/play.png" />
     </view>
