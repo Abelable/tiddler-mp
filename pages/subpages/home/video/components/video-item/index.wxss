@@ -50,8 +50,8 @@
 }
 .btn-icon.more {
   margin-left: -10rpx;
-  width: 66rpx;
-  height: 66rpx;
+  width: 62rpx;
+  height: 62rpx;
 }
 .btn-desc {
   margin-top: 8rpx;
