@@ -12,7 +12,7 @@
 </swiper>
 
 <view class="back-icon-wrap row" style="top: {{statusBarHeight}}px;">
-  <back-icon >
+  <back-icon />
 </view>
 
 <view class="bottom-bar">

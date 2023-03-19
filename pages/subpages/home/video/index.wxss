@@ -8,7 +8,7 @@
   height: calc(100vh - 50px - env(safe-area-inset-bottom));
 }
 
-.back-icon {
+.back-icon-wrap {
   position: fixed;
   left: 8px;
   height: 44px;

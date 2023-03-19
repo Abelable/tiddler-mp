@@ -11,6 +11,7 @@ Page({
     statusBarHeight,
     moreModalType: 1,
     videoList: [],
+    curVideoIdx: 0,
     commentPopupVisible: false,
     featurePopupVisible: false,
     sharePopupVisible: false,
@@ -42,7 +43,7 @@ Page({
 
     this.setCurMediaIdxTimeout && clearTimeout(this.setCurMediaIdxTimeout);
     this.setCurMediaIdxTimeout = setTimeout(async () => {
-      this.setCurMediaIdx(curVideoIdx);
+      this.setData({ curVideoIdx });
     }, 200);
 
     if (curVideoIdx > videoList.length - 5) this.setVideoList();
@@ -50,17 +51,15 @@ Page({
 
   async setVideoList() {
     if (!this.page) this.page = 0;
-    const list =
+    const { list = [] } =
       (await videoService.getVideoList(
         ++this.page,
         this.videoId,
         this.authorId
-      )) || [];
-    if (list.length) {
-      this.setData({
-        videoList: [...this.data.videoList, ...list],
-      });
-    }
+      )) || {};
+    this.setData({
+      videoList: [...this.data.videoList, ...list],
+    });
   },
 
   showCommentModal(e) {
