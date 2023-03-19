@@ -1,0 +1,33 @@
+<popup bind:hide="hide">
+  <view class="comment-modal" bindtap="hideInputModal">
+    <view class="header">
+      <view class="title">
+        评论 
+        <text wx:if="{{totalCount != 0}}">{{totalCount}}</text>
+      </view>
+      <image class="close-icon" catchtap="hideModal" src="./images/close-icon.png" />
+    </view>
+
+    <view class="empty-tips" wx:if="{{totalCount == 0}}">——暂无评论，来抢沙发——</view>
+
+    <scroll-view class="comment-lists" bindscrolltolower="setCommentsList" scroll-x="false" scroll-y>
+      <comment-list wx:for="{{commentsList}}" wx:key="index" item="{{item}}" curCommentId="{{curCommentId}}" bind:reply="showInputModal">
+        <comment-list wx:if="{{item.comment_num != 0 && !item.replyFold}}" wx:for="{{item.replyLists}}" wx:key="index" wx:for-item="child" item="{{child}}" isChild curCommentId="{{curCommentId}}" bind:reply="showInputModal"  />
+        <view class="spread-reply-btn" wx:if="{{item.comment_num != 0}}" ontap="spreadReply" data-index="{{index}}">
+          <text>{{(item.comment_num > item.replyLists.length || item.replyFold) ? ('展开查看' + (item.replyFold ? item.comment_num : (item.comment_num - item.replyLists.length)) + '条回复') : '收起'}} </text>
+          <image class="spread-icon" src="{{(item.comment_num > item.replyLists.length || item.replyFold) ? './images/down-arrow.png' : './images/up-arrow.png'}}" />
+        </view>
+      </comment-list>
+      <view class="nomore-tips" wx:if="{{showNomore}}">——暂时没有更多了——</view>
+    </scroll-view>
+
+    <view class="input-bar">
+      <view class="input-main" catchtap="showInputModal">
+        <text class="desc">快说点好听的～</text>
+        <image style="width: 40rpx; height: 40rpx;" catchtap="atUser" src="./images/at-icon.png" />
+      </view>
+    </view>
+  </view>
+</popup>
+
+<input-modal id="inputModal" wx:if="{{inputModalVisible}}" videoId="{{videoId}}" replyCommentId="{{replyCommentId}}" replyUserName="{{replyUserName}}" bind:sendedMsg="sendedMsg" />

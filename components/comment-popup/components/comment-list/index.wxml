@@ -1,0 +1,30 @@
+<wxs module="TIME" src="../../../../utils/filters/time.wxs" />
+
+<view class="comment-list {{isChild ? 'is-reply' : ''}}" catchtap="reply">
+  <view class="main {{item.id == curCommentId ? 'is-top' : ''}}">
+    <image class="user-avatar {{isChild ? 'is-child' : ''}}" src="{{item.appraiser.headimg}}" />
+    <view class="list-content">
+      <view class="user-name-wrap">
+        <view class="user-name">{{item.appraiser.nick_name}}</view>
+        <view class="author-icon" wx:if="{{item.is_author}}">作者</view>
+        <view class="reply-tips" wx:if="{{item.evaluatedPerson}}">回复 {{item.evaluatedPerson.nick_name}}</view>
+      </view>
+      <view class="comment">
+        <text class="at-lebal" wx:for="{{item.at_person}}" wx:key="index" wx:for-item="lebal">@{{lebal.nick_name}} </text>
+        <text>{{content || item.content}}</text> 
+      </view>
+      <view class="date">
+        <text>{{TIME.transform(item.create_time).year + '-' + TIME.transform(item.create_time).month + '-' + TIME.transform(item.create_time).date}}</text>
+        <text style="margin-left: 20rpx;">回复</text>
+      </view>
+      <view class="praise-wrap" catchtap="togglePraise">
+        <image class="praise-icon" src="{{item.is_like ? './images/active-heart.png' : './images/heart.png'}}" />
+        <view class="praise-count">{{item.like_num}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="slot-wrap">
+    <slot></slot>
+  </view>
+</view>
+

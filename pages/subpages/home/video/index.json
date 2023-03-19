@@ -4,7 +4,7 @@
   "usingComponents": {
     "back-icon": "/components/back-icon-white/index",
     "video-item": "./components/video-item/index",
-    "i-comment-modal": "/components/i-comment-modal/index",
+    "comment-modal": "/components/comment-popup/index",
     "i-more-modal": "/components/i-more-modal/index",
     "share-popup": "/components/share-popup/index"
   }

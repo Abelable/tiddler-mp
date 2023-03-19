@@ -1,0 +1,26 @@
+<view class="input-modal" style="bottom: {{focus ? containerBottom : 0}};">
+  <scroll-view class="users-popup {{usersPopupVisible ? 'show' : ''}}" scroll-x>
+    <view class="user-list" wx:for="{{userLists}}" wx:key="index" ontap="selectUser" data-index="{{index}}">
+      <image class="avatar" src="{{item.headimg}}" />
+      <view class="name">{{item.nick_name}}</view>
+    </view>
+    <view class="no-data-tips" wx:if="{{!userLists.length}}">暂未搜索到用户～</view>
+  </scroll-view>
+
+  <view class="main">
+    <view class="chat-input-wrap">
+      <view class="chat-input">
+        <input class="input" value="{{content}}" bindinput="onInput" bindfocus="onFocus" bindblur="onBlur" bindconfirm="sendMsg" focus="{{focus}}" type="text" confirm-type="send" placeholder="{{replyUserName ? '回复 @' + replyUserName : '快说点好听的～'}}" adjust-position="{{false}}"/>
+        <image class="at-icon" ontap="atUser" src="../../images/at-icon.png" />
+      </view>
+      <image class="send-btn" ontap="sendMsg" src="./images/send-icon.png" />
+    </view>
+  
+    <view class="at-labels">
+      <view class="at-label" wx:for="{{attedUserLists}}" wx:key="index">
+        <text>@{{item.nick_name}}</text>
+        <image class="close-icon" ontap="deleteAttedUser" data-index="{{index}}" src="./images/close-icon.png" />
+      </view>
+    </view>
+  </view>
+</view>
