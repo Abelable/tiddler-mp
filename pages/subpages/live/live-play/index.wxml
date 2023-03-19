@@ -17,4 +17,4 @@
 </swiper>
 
 <back-icon class="back-icon" style="top: {{statusBarHeight}}px;"/>
-<share-popup wx:if="{{shareModalVisible}}" />
+<share-popup wx:if="{{shareModalVisible}}" roomInfo="{{roomList[curRoomIdx]}}" />

@@ -1,0 +1,31 @@
+.page {
+  background: #000;
+}
+
+.video-swiper {
+  position: fixed;
+  width: 100vw;
+  height: calc(100vh - 50px - env(safe-area-inset-bottom));
+}
+
+.back-icon {
+  position: fixed;
+  left: 8px;
+  height: 44px;
+}
+
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  padding: 12px 12px calc(12px + env(safe-area-inset-bottom));
+  width: 100vw;
+  background: #141414;
+}
+.input-btn {
+  padding: 0 12px;
+  height: 26px;
+  color: #fff;
+  font-size: 13px;
+  border-radius: 13px;
+  background: #434343;
+}

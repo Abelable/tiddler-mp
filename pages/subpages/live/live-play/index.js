@@ -31,8 +31,7 @@ Page({
     this.roomId =
       id || decodedScene.split("-")[0] || getQueryString(decodedQ, "id");
 
-    this.page = 0
-    await this.setRoomList();
+    this.setRoomList();
   },
 
   onShow() {
@@ -58,7 +57,9 @@ Page({
   },
 
   async setRoomList() {
-    const { list = [] } = await liveService.getRoomList(this.roomId, ++this.page) || {};
+    if (!this.page) this.page = 0;
+    const { list = [] } =
+      (await liveService.getRoomList(this.roomId, ++this.page)) || {};
     this.setData({
       roomList: [...this.data.roomList, ...list],
     });

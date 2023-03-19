@@ -1,1 +1,24 @@
-<view>视频</view>
+<swiper class="video-swiper" bindchange="changeVideo" vertical>
+  <swiper-item wx:for="{{videoList}}" wx:key="index">
+    <video-item
+      wx:if="{{index > curVideoIdx - 2 && index < curVideoIdx + 4}}"
+      item="{{item}}" 
+      index="{{index}}" 
+      curIdx="{{curVideoIdx}}"
+      bind:showCommentPopup="showCommentPopup"
+      bind:showFeaturePopup="showFeaturePopup"
+    />
+  </swiper-item>
+</swiper>
+
+<view class="back-icon-wrap row" style="top: {{statusBarHeight}}px;">
+  <back-icon >
+</view>
+
+<view class="bottom-bar">
+  <view class="input-btn row">说点什么...</view>
+</view>
+
+<comment-popup wx:if="{{commentPopupVisible}}" videoId="{{videoList[curVideoIdx].id}}" bind:hide="hideModal" />
+<feature-popup wx:if="{{featurePopupVisible}}" videoId="{{videoList[curVideoIdx].id}}" bind:hide="hideModal" />
+<share-popup wx:if="{{sharePopupVisible}}" videoInfo="{{videoList[curVideoIdx]}}" bind:hide="hideModal" />
