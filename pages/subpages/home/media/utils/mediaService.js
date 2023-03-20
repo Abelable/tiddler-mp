@@ -54,6 +54,38 @@ class LiveService extends BaseService {
       loadingTitle: "加载中...",
     });
   }
+
+  async toggleVideoPrivateStatus(id, success) {
+    return await this.post({
+      url: `${this.baseUrl}/meida/short_video/toggle_private`,
+      data: { id },
+      success,
+    });
+  }
+
+  async toggleNotePrivateStatus(id, success) {
+    return await this.post({
+      url: `${this.baseUrl}/meida/tourism_note/toggle_private`,
+      data: { id },
+      success,
+    });
+  }
+
+  async deleteVideo(id, success) {
+    return await this.post({
+      url: `${this.baseUrl}/meida/short_video/delete`,
+      data: { id },
+      success,
+    });
+  }
+
+  async deleteNote(id, success) {
+    return await this.post({
+      url: `${this.baseUrl}/meida/tourism_note/delete`,
+      data: { id },
+      success,
+    });
+  }
 }
 
 export default LiveService;
