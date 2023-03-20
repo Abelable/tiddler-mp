@@ -48,7 +48,7 @@
 }
 
 .input-bar {
-  padding: 20rpx 30rpx calc(20rpx + env(safe-area-inset-bottom));
+  padding: 20rpx 30rpx;
   border-top: 0.5px solid #E8E8E8;
 }
 .input-main {
