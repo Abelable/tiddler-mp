@@ -10,6 +10,7 @@ Page({
     videoList: [],
     curVideoIdx: 0,
     commentId: 0,
+    nickname: "",
     commentPopupVisible: false,
     inputPopupVisible: false,
     featurePopupVisible: false,
@@ -68,15 +69,26 @@ Page({
     });
   },
 
+  reply(e) {
+    const { commentId, nickname } = e.detail;
+    this.setData({
+      commentId,
+      nickname,
+      inputPopupVisible: true,
+    });
+  },
+
   showInputModal() {
     this.setData({
       inputPopupVisible: true,
     });
   },
-  
+
   hideInputModal() {
     this.setData({
       inputPopupVisible: false,
+      commentId: 0,
+      nickname: "",
     });
   },
 

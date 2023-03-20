@@ -23,6 +23,7 @@ Component({
     videoId: Number,
     noteId: Number,
     commentId: Number,
+    nickname: String,
   },
 
   data: {

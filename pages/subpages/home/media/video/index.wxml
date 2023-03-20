@@ -39,4 +39,11 @@
 />
 
 <modal-mask wx:if="{{inputPopupVisible}}" zIndex="100" bindtap="hideInputModal" />
-<input-popup wx:if="{{inputPopupVisible}}" mediaType="{{2}}" videoId="{{videoList[curVideoIdx].id}}" commentId="{{commentId}}" bind:hide="hideInputModal" />
+<input-popup 
+  wx:if="{{inputPopupVisible}}" 
+  mediaType="{{2}}" 
+  videoId="{{videoList[curVideoIdx].id}}" 
+  commentId="{{commentId}}" 
+  nickname="{{nickname}}" 
+  bind:hide="hideInputModal"
+/>

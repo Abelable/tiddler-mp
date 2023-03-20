@@ -144,7 +144,7 @@ Component({
     },
 
     reply(e) {
-      this.triggerEvent("reply", { commentId: e.detail.id });
+      this.triggerEvent("reply", e.detail);
     },
 
     hide() {

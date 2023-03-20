@@ -8,7 +8,7 @@
     bindblur="setFocus"
     bindkeyboardheightchange="setFocus"
     focus="{{focus}}"
-    placeholder="说点什么~" 
+    placeholder="{{nickname ? '回复 @' + nickname : '说点什么...'}}" 
     type="text" 
     confirm-type="send"
     hold-keyboard
