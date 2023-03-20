@@ -6,7 +6,7 @@ import {
   SCENE_SWITCH_TAB,
   SCENE_REFRESH,
   SCENE_LOADMORE,
-} from "../../../utils/emuns/scene";
+} from "../../../utils/emuns/listScene";
 
 const mineService = new MineService();
 const { statusBarHeight } = getApp().globalData.systemInfo;
