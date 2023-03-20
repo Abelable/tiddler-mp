@@ -1,10 +1,10 @@
 .input-wrap {
   position: fixed;
-  left: 0;
   padding: 10px 15px;
   width: 100%;
   background: #fff;
   border-radius: 10px 10px 0 0;
+  z-index: 100;
 }
 .input {
   margin-left: 5px;

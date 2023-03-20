@@ -148,6 +148,7 @@ Component({
     },
 
     comment() {
+      console.log('comment')
       this.triggerEvent("comment");
     },
 

@@ -19,9 +19,10 @@
   <view class="input-btn row" bindtap="showInputModal">说点什么...</view>
 </view>
 
-<modal-mask wx:if="{{inputPopupVisible}}" opcity="{{0}}" bindtap="hideInputModal" />
-<input-popup wx:if="{{inputPopupVisible}}" videoId="{{videoId}}" commentId="{{commentId}}" bind:hide="hideInputModal" />
-
-<comment-popup wx:if="{{commentPopupVisible}}" videoId="{{videoList[curVideoIdx].id}}" bind:hide="hideCommentPopup" />
 <feature-popup wx:if="{{featurePopupVisible}}" videoId="{{videoList[curVideoIdx].id}}" />
 <share-popup wx:if="{{sharePopupVisible}}" videoInfo="{{videoList[curVideoIdx]}}" bind:hide="hideModal" />
+<comment-popup wx:if="{{commentPopupVisible}}" videoId="{{videoList[curVideoIdx].id}}" bind:comment="showInputModal" bind:replay="replay" bind:hide="hideCommentPopup" />
+
+<modal-mask wx:if="{{inputPopupVisible}}" zIndex="100" bindtap="hideInputModal" />
+<input-popup wx:if="{{inputPopupVisible}}" scene="{{2}}" videoId="{{videoList[curVideoIdx].id}}" commentId="{{commentId}}" bind:hide="hideInputModal" />
+

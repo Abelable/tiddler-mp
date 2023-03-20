@@ -7,9 +7,9 @@ const { statusBarHeight } = getApp().globalData.systemInfo;
 Page({
   data: {
     statusBarHeight,
-    moreModalType: 1,
     videoList: [],
     curVideoIdx: 0,
+    commentId: 0,
     commentPopupVisible: false,
     inputPopupVisible: false,
     featurePopupVisible: false,
