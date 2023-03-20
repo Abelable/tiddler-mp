@@ -40,10 +40,7 @@
     </scroll-view>
 
     <view class="input-bar">
-      <view class="input-main" catchtap="comment">
-        <text class="desc">说点什么...</text>
-        <image style="width: 40rpx; height: 40rpx;" catchtap="atUser" src="./images/at-icon.png" />
-      </view>
+      <view class="input-main row" catchtap="comment">说点什么...</view>
     </view>
   </view>
 </popup>
