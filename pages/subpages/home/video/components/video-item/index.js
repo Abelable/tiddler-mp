@@ -116,10 +116,12 @@ Component({
 
     navToAuthorCenter() {
       checkLogin(() => {
-        const { id, user_id } = this.properties.item;
-        wx.navigateTo({
-          url: `/pages/subpages/index/short-video/subpages/personal-center/index?id=${user_id}&preVideoId=${id}`,
-        });
+        const { id } = this.properties.item.userInfo;
+        if (store.userInfo.id !== id) {
+          wx.navigateTo({
+            url: `/pages/subpages/index/short-video/subpages/personal-center/index?id=${user_id}`,
+          });
+        }
       });
     },
 

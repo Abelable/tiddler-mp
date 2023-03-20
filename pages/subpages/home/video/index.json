@@ -8,6 +8,6 @@
     "comment-popup": "/components/comment-popup/index",
     "input-modal": "/components/input-modal/index",
     "video-item": "./components/video-item/index",
-    "feature-modal": "./components/feature-modal/index"
+    "feature-popup": "./components/feature-popup/index"
   }
 }

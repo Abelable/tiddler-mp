@@ -30,12 +30,6 @@ Component({
     finished: false,
   },
 
-  lifetimes: {
-    attached() {
-      this.scrollTopArr = [0, 0];
-    },
-  },
-
   pageLifetimes: {
     show() {
       wx.showShareMenu({
@@ -45,13 +39,12 @@ Component({
 
       store.setTabType("home");
 
-      const { curMenuIndex, followMediaList, mediaList } = this.data;
-      if (
-        (curMenuIndex === 0 && !followMediaList.length) ||
-        (curMenuIndex === 1 && !mediaList.length)
-      ) {
-        this.setList(SCENE_SWITCH_TAB);
-      }
+      this.scrollTopArr = [0, 0];
+      wx.pageScrollTo({
+        scrollTop: 0,
+        duration: 0,
+      });
+      this.setList(SCENE_REFRESH);
     },
   },
 

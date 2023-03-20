@@ -41,7 +41,6 @@ Component({
     attached() {
       this.setNavBarVisibleLimit();
       this.setMenuFixedLimit();
-      this.scrollTopArr = [0, 0, 0, 0];
     },
   },
 
@@ -50,21 +49,12 @@ Component({
       store.setTabType("mine");
 
       checkLogin(() => {
-        const {
-          curMenuIndex,
-          videoList,
-          noteList,
-          collectMediaList,
-          likeMediaList,
-        } = this.data;
-        if (
-          (curMenuIndex === 0 && !videoList.length) ||
-          (curMenuIndex === 1 && !noteList.length) ||
-          (curMenuIndex === 2 && !collectMediaList.length) ||
-          (curMenuIndex === 3 && !likeMediaList.length)
-        ) {
-          this.setList(SCENE_SWITCH_TAB);
-        }
+        this.scrollTopArr = [0, 0, 0, 0];
+        wx.pageScrollTo({
+          scrollTop: 0,
+          duration: 0,
+        });
+        this.setList(SCENE_REFRESH);
       });
     },
   },

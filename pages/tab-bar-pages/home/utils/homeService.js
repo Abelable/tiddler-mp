@@ -5,6 +5,7 @@ class HomeService extends BaseService {
     return await this.get({
       url: `${this.baseUrl}/media/list`,
       data: { page, limit },
+      loadingTitle: '加载中...'
     });
   }
 
@@ -12,6 +13,7 @@ class HomeService extends BaseService {
     return await this.get({
       url: `${this.baseUrl}/media/follow_list`,
       data: { page, limit },
+      loadingTitle: '加载中...'
     });
   }
 }
