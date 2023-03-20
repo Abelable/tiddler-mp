@@ -33,7 +33,7 @@
       <image class="btn-icon share" src="./images/share.png" />
       <view class="btn-desc">{{item.shareNumber ? NUM.over(item.shareNumber, 100000) : '分享'}}</view>
     </view>
-    <view class="btn" style="margin-top: 30rpx;" catchtap="showFeaturePopup" wx:if="{{userInfo.id === item.authorInfo.id}}">
+    <view class="btn" catchtap="showFeaturePopup" wx:if="{{userInfo.id === item.authorInfo.id}}">
       <image class="btn-icon more" src="./images/more.png" />
       <view class="btn-desc">更多</view>
     </view>

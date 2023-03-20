@@ -86,7 +86,7 @@
 }
 
 .author-name {
-  font-size: 34rpx;
+  font-size: 32rpx;
   font-weight: 600;
   line-height: 48rpx;
 }
@@ -98,8 +98,8 @@
 }
 .address-icon {
   margin-right: 2rpx;
-  width: 20rpx;
-  height: 20rpx;
+  width: 22rpx;
+  height: 22rpx;
 }
 .video-title {
   margin-top: 16rpx;
