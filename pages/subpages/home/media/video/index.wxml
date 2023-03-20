@@ -34,7 +34,7 @@
   videoId="{{videoList[curVideoIdx].id}}"
   authorId="{{videoList[curVideoIdx].authorInfo.id}}"
   bind:comment="showInputModal" 
-  bind:replay="replay" 
+  bind:reply="reply" 
   bind:hide="hideCommentPopup" 
 />
 
