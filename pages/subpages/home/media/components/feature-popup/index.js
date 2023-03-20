@@ -17,14 +17,14 @@ Component({
       switch (mediaType) {
         case VIDEO:
           mediaService.toggleVideoPrivateStatus(videoId, () => {
-            this.setData({ isPrivate: isPrivate ? 0 : 1 })
-          })
+            this.setData({ isPrivate: isPrivate ? 0 : 1 });
+          });
           break;
 
         case NOTE:
           mediaService.toggleNotePrivateStatus(noteId, () => {
-            this.setData({ isPrivate: isPrivate ? 0 : 1 })
-          })
+            this.setData({ isPrivate: isPrivate ? 0 : 1 });
+          });
           break;
       }
     },
@@ -41,11 +41,13 @@ Component({
               if (result.confirm) {
                 mediaService.deleteVideo(videoId, () => {
                   wx.showToast({
-                    title: '删除成功',
-                    icon: 'none',
+                    title: "删除成功",
+                    icon: "none",
                   });
-                  wx.navigateBack();
-                })
+                  setTimeout(() => {
+                    wx.navigateBack();
+                  }, 2000);
+                });
               }
             },
           });
@@ -59,16 +61,22 @@ Component({
               if (result.confirm) {
                 mediaService.deleteNote(noteId, () => {
                   wx.showToast({
-                    title: '删除成功',
-                    icon: 'none',
+                    title: "删除成功",
+                    icon: "none",
                   });
-                  wx.navigateBack();
-                })
+                  setTimeout(() => {
+                    wx.navigateBack();
+                  }, 2000);
+                });
               }
             },
           });
           break;
       }
+    },
+
+    hide() {
+      this.triggerEvent("hide");
     },
   },
 });

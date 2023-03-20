@@ -20,7 +20,13 @@
   <view class="input-btn row" bindtap="showInputModal">说点什么...</view>
 </view>
 
-<feature-popup wx:if="{{featurePopupVisible}}" mediaType="{{2}}" videoId="{{videoList[curVideoIdx].id}}" bind:hide="hideFeaturePopup" />
+<feature-popup 
+  wx:if="{{featurePopupVisible}}" 
+  mediaType="{{2}}"
+  isPrivate="{{videoList[curVideoIdx].isPrivate}}"
+  videoId="{{videoList[curVideoIdx].id}}" 
+  bind:hide="hideFeaturePopup" 
+/>
 <share-popup wx:if="{{sharePopupVisible}}" videoInfo="{{videoList[curVideoIdx]}}" bind:hide="hideSharePopup" />
 <comment-popup 
   wx:if="{{commentPopupVisible}}"

@@ -57,7 +57,7 @@ class LiveService extends BaseService {
 
   async toggleVideoPrivateStatus(id, success) {
     return await this.post({
-      url: `${this.baseUrl}/meida/short_video/toggle_private`,
+      url: `${this.baseUrl}/media/short_video/toggle_private`,
       data: { id },
       success,
     });
@@ -65,7 +65,7 @@ class LiveService extends BaseService {
 
   async toggleNotePrivateStatus(id, success) {
     return await this.post({
-      url: `${this.baseUrl}/meida/tourism_note/toggle_private`,
+      url: `${this.baseUrl}/media/tourism_note/toggle_private`,
       data: { id },
       success,
     });
@@ -73,7 +73,7 @@ class LiveService extends BaseService {
 
   async deleteVideo(id, success) {
     return await this.post({
-      url: `${this.baseUrl}/meida/short_video/delete`,
+      url: `${this.baseUrl}/media/short_video/delete`,
       data: { id },
       success,
     });
@@ -81,7 +81,7 @@ class LiveService extends BaseService {
 
   async deleteNote(id, success) {
     return await this.post({
-      url: `${this.baseUrl}/meida/tourism_note/delete`,
+      url: `${this.baseUrl}/media/tourism_note/delete`,
       data: { id },
       success,
     });
