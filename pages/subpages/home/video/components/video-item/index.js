@@ -114,7 +114,7 @@ Component({
       }
     },
 
-    navToPersonalCenter() {
+    navToAuthorCenter() {
       checkLogin(() => {
         const { id, user_id } = this.properties.item;
         wx.navigateTo({
@@ -123,28 +123,38 @@ Component({
       });
     },
 
-    praise() {
+    like() {
       checkLogin(() => {
-        wx.vibrateShort({ type: "heavy" });
-        let { id, is_like, like_num } = this.properties.item;
-        homeService.togglePraiseStatus(id);
-        this.setData({
-          [`item.is_like`]: !is_like,
-          [`item.like_num`]: is_like ? --like_num : ++like_num,
+        let { id, isLike, likeNumber } = this.properties.item;
+        videoService.toggleLikeStatus(id, () => {
+          this.setData({
+            [`item.isLike`]: !isLike,
+            [`item.likeNumber`]: isLike ? --likeNumber : ++likeNumber,
+          });
         });
       });
     },
 
-    showCommentModal() {
+    collect() {
       checkLogin(() => {
-        this.triggerEvent("showCommentModal");
+        let { id, isCollected, collectionTimes } = this.properties.item;
+        videoService.toggleCollectStatus(id, () => {
+          this.setData({
+            [`item.isCollected`]: !isCollected,
+            [`item.collectionTimes`]: isCollected ? --collectionTimes : ++collectionTimes,
+          });
+        });
       });
     },
 
-    showMoreModal() {
+    comment() {
       checkLogin(() => {
-        this.triggerEvent("showMoreModal");
+        this.triggerEvent("comment");
       });
+    },
+
+    more() {
+      this.triggerEvent("more");
     },
   },
 });

@@ -5,8 +5,8 @@
       item="{{item}}" 
       index="{{index}}" 
       curIdx="{{curVideoIdx}}"
-      bind:showCommentPopup="showCommentPopup"
-      bind:showFeaturePopup="showFeaturePopup"
+      bind:comment="showCommentPopup"
+      bind:more="showFeaturePopup"
     />
   </swiper-item>
 </swiper>

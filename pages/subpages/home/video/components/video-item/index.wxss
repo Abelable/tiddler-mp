@@ -18,15 +18,15 @@
 
 .author-avatar {
   position: relative;
-  width: 94rpx;
-  height: 94rpx;
+  width: 96rpx;
+  height: 96rpx;
   border-radius: 50%;
-  border: 2rpx solid #fff;
 }
 .avatar-img {
-  width: 90rpx;
-  height: 90rpx;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
+  border: 4rpx solid #fff;
 }
 .follow-icon {
   position: absolute;

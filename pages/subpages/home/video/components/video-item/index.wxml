@@ -13,27 +13,27 @@
   bindloadedmetadata="setMode"
 >
   <view class="interactive-area">
-    <view class="author-avatar" catchtap="navToPersonalCenter">
+    <view class="author-avatar" catchtap="navToAuthorCenter">
       <image class="avatar-img avatar-default" src="{{item.authorInfo.avatar}}" lazy-load />
       <image class="follow-icon" wx:if="{{!item.isFollow}}" catchtap="followAuthor" src="./images/follow.png" />
     </view>
-    <view class="btn" catchtap="praise">
+    <view class="btn" catchtap="like">
       <image class="btn-icon" src="./images/like{{item.isLike ? '-active' : ''}}.png" />
       <view class="btn-desc">{{item.likeNumber ? NUM.over(item.likeNumber, 100000) : '点赞'}}</view>
     </view>
-    <view class="btn" catchtap="showCommentPopup">
+    <view class="btn" catchtap="comment">
       <image class="btn-icon" src="./images/comment.png" />
       <view class="btn-desc">{{item.commentNumber ? NUM.over(item.commentNumber, 100000) : '评论'}}</view>
     </view>
     <view class="btn" catchtap="collect">
-      <image class="btn-icon" style="width: 70rpx; height: 68rpx;" src="./images/collect{{item.isLike ? '-active' : ''}}.png" />
-      <view class="btn-desc">{{item.collectionNumber ? NUM.over(item.collectionNumber, 100000) : '收藏'}}</view>
+      <image class="btn-icon" style="width: 70rpx; height: 68rpx;" src="./images/collect{{item.isCollected ? '-active' : ''}}.png" />
+      <view class="btn-desc">{{item.collectionTimes ? NUM.over(item.collectionTimes, 100000) : '收藏'}}</view>
     </view>
     <view class="btn" catchtap="share">
       <image class="btn-icon share" src="./images/share.png" />
-      <view class="btn-desc">{{item.shareNumber ? NUM.over(item.shareNumber, 100000) : '分享'}}</view>
+      <view class="btn-desc">{{item.shareTimes ? NUM.over(item.shareTimes, 100000) : '分享'}}</view>
     </view>
-    <view class="btn" catchtap="showFeaturePopup" wx:if="{{userInfo.id === item.authorInfo.id}}">
+    <view class="btn" catchtap="more" wx:if="{{userInfo.id === item.authorInfo.id}}">
       <image class="btn-icon more" src="./images/more.png" />
       <view class="btn-desc">更多</view>
     </view>
