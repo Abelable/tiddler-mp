@@ -1,5 +1,3 @@
-import { createStoreBindings } from "mobx-miniprogram-bindings";
-import { store } from "../../../../store/index";
 import { getQueryString } from "../../../../utils/index";
 import VideoService from "./utils/videoService";
 
@@ -21,11 +19,6 @@ Page({
     wx.showShareMenu({
       withShareTicket: true,
       menus: ["shareAppMessage", "shareTimeline"],
-    });
-
-    this.storeBindings = createStoreBindings(this, {
-      store,
-      fields: ["userInfo"],
     });
 
     const decodedScene = scene ? decodeURIComponent(scene) : "";
@@ -62,75 +55,22 @@ Page({
     });
   },
 
-  showCommentModal(e) {
+  showCommentPopup() {
     this.setData({
-      commentModalVisible: true,
-      curVideoId: e.detail.id,
-      commentId: this.data.curVideoIdx == 0 ? this.commentId : "",
-      secondCommentId: this.data.curVideoIdx == 0 ? this.secondCommentId : "",
+      commentPopupVisible: true,
     });
   },
 
-  showMoreModal() {
+  showFeaturePopup() {
     this.setData({
-      moreModalVisible: true,
+      featurePopupVisible: true,
     });
   },
 
   showShareModal() {
     this.setData({
-      shareModalVisible: true,
+      sharePopupVisible: true,
     });
-  },
-
-  async setPosterInfo() {
-    const { videoList, curVideoIdx } = this.data;
-    let { id, title, nickname: name } = videoList[curVideoIdx];
-    const { share_data } =
-      (await videoService.getShortVideoShareInfo(id)) || {};
-    const { wxacode_pic, pic_url, head_img } = share_data;
-    const { path: qrCode } = await videoService.getImageInfo(wxacode_pic);
-    const { path: cover } = await videoService.getImageInfo(pic_url);
-    const { path: avatar } = await videoService.getImageInfo(
-      head_img
-        ? head_img.indexOf("http") === -1
-          ? `https://img.ubo.vip/${head_img}`
-          : head_img
-        : "https://img.ubo.vip/mp-short-video/youlian-icon.png"
-    );
-    this.setData({
-      posterInfo: {
-        cover,
-        avatar,
-        name,
-        qrCode,
-        title: title.length > 10 ? `${title.slice(0, 10)}...` : title,
-      },
-    });
-  },
-
-  showPosterModal() {
-    this.setData({
-      shareModalVisible: false,
-      posterModalVisible: true,
-    });
-  },
-
-  hideModal() {
-    const {
-      commentModalVisible,
-      moreModalVisible,
-      shareModalVisible,
-      posterModalVisible,
-    } = this.data;
-    if (commentModalVisible) this.setData({ commentModalVisible: false });
-    if (moreModalVisible) this.setData({ moreModalVisible: false });
-    if (shareModalVisible) this.setData({ shareModalVisible: false });
-    if (posterModalVisible) this.setData({ posterModalVisible: false });
-  },
-
-  onUnload() {
-    this.storeBindings.destroyStoreBindings();
   },
 
   onShareAppMessage() {

@@ -34,14 +34,6 @@ Component({
   },
 
   methods: {
-    initData() {
-      this.setData({
-        commentList: [],
-        replyCommentId: 0,
-        showNomore: false,
-      });
-    },
-
     async setCommentList() {
       const limit = 10;
       const { videoId, noteId, totalCount, commentList, finished } = this.data;

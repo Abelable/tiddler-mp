@@ -10,7 +10,7 @@
 
     <view class="empty-tips" wx:if="{{!total}}">——暂无评论，来抢沙发——</view>
 
-    <scroll-view class="comment-list" bindscrolltolower="loadMore" scroll-y>
+    <scroll-view class="comment-list" bindscrolltolower="setCommentList" scroll-y>
       <comment-item
         wx:for="{{commentList}}"
         wx:key="index" 
