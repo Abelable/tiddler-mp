@@ -1,6 +1,13 @@
 import BaseService from "../../../../../services/baseService";
 
 class LiveService extends BaseService {
+  async saveLiveChatMsg(id, content, identity) {
+    return await this.post({
+      url: `${this.baseUrl}/media/live/comment`,
+      data: { id, content, identity }
+    })
+  }
+  
   async addVideoComment(mediaId, content, success, commentId) {
     return await this.post({
       url: `${this.baseUrl}/media/short_video/comment`,

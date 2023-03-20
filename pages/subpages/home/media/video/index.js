@@ -11,7 +11,7 @@ Page({
     videoList: [],
     curVideoIdx: 0,
     commentPopupVisible: false,
-    inputModalVisible: false,
+    inputPopupVisible: false,
     featurePopupVisible: false,
     sharePopupVisible: false,
   },
@@ -70,7 +70,13 @@ Page({
 
   showInputModal() {
     this.setData({
-      inputModalVisible: true,
+      inputPopupVisible: true,
+    });
+  },
+  
+  hideInputModal() {
+    this.setData({
+      inputPopupVisible: false,
     });
   },
 

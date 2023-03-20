@@ -1,8 +1,13 @@
 import { store } from "../../../../../../store/index";
 import tim from "../../../../../../utils/tim/index";
-import LiveService from "../../live/utils/liveService";
+import {
+  SCENE_LIVE,
+  SCENE_VIDEO,
+  SCENE_NOTE,
+} from "../../../../../../utils/emuns/inputScene";
+import MediaService from "../../utils/mediaService";
 
-const liveService = new LiveService();
+const mediaService = new MediaService();
 
 Component({
   options: {
@@ -10,11 +15,18 @@ Component({
   },
 
   properties: {
+    scene: {
+      type: Number,
+      value: 1
+    },
     roomInfo: Object,
     identity: {
       type: Number,
       value: 1,
     },
+    videoId: Number,
+    noteId: Number,
+    commentId: Number,
   },
 
   data: {
@@ -49,13 +61,26 @@ Component({
 
     // 发送消息
     async sendMessage(content) {
-      const { roomInfo, identity } = this.properties;
-      const { id, groupId } = roomInfo;
-      const { id: userId, nickname, avatar } = store.userInfo;
-      const chatMsg = { identity, userId, nickname, avatar, content };
-      store.setLiveMsgList(chatMsg);
-      tim.sendLiveChatMsg(groupId, chatMsg);
-      liveService.saveLiveChatMsg(id, content, identity);
+      const { scene, roomInfo, identity, videoId, noteId, commentId } = this.properties;
+
+      switch (scene) {
+        case SCENE_LIVE:
+          const { id, groupId } = roomInfo;
+          const { id: userId, nickname, avatar } = store.userInfo;
+          const chatMsg = { identity, userId, nickname, avatar, content };
+          store.setLiveMsgList(chatMsg);
+          tim.sendLiveChatMsg(groupId, chatMsg);
+          mediaService.saveLiveChatMsg(id, content, identity);
+          break;
+      
+        case SCENE_VIDEO:
+          
+          break;
+
+        case SCENE_NOTE:
+          
+          break;
+      }
     },
   },
 });
