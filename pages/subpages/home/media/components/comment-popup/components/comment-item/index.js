@@ -1,17 +1,18 @@
 Component({
   options: {
-    addGlobalClass: true
+    addGlobalClass: true,
   },
 
   properties: {
     item: Object,
-    isReply: Boolean
+    isReply: Boolean,
+    authorId: Number,
   },
 
   methods: {
     reply() {
-      const { id } = this.properties.item
-      this.triggerEvent('reply', { id })
+      const { id, userInfo } = this.properties.item;
+      this.triggerEvent("reply", { id, nickname: userInfo.nickname });
     },
-  }
-})
+  },
+});

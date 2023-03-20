@@ -14,7 +14,8 @@
       <comment-item
         wx:for="{{commentList}}"
         wx:key="index" 
-        item="{{item}}" 
+        item="{{item}}"
+        authorId="{{authorId}}"
         bind:reply="reply"
       >
         <comment-item
@@ -22,7 +23,8 @@
           wx:for="{{item.replies}}"
           wx:key="index" 
           wx:for-item="reply" 
-          item="{{reply}}" 
+          item="{{reply}}"
+          authorId="{{authorId}}"
           isReply
         />
         <view class="spread-reply-btn" wx:if="{{item.repliesCount}}" bindtap="showReply" data-index="{{index}}">

@@ -31,7 +31,8 @@
 <comment-popup 
   wx:if="{{commentPopupVisible}}"
   mediaType="{{2}}"
-  videoId="{{videoList[curVideoIdx].id}}" 
+  videoId="{{videoList[curVideoIdx].id}}"
+  authorId="{{videoList[curVideoIdx].authorInfo.id}}"
   bind:comment="showInputModal" 
   bind:replay="replay" 
   bind:hide="hideCommentPopup" 

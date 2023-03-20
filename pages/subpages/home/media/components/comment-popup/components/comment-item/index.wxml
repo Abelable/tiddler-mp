@@ -6,7 +6,7 @@
     <view class="list-content">
       <view class="row">
         <view class="user-name">{{item.userInfo.nickname}}</view>
-        <view class="author-icon" wx:if="{{item.userInfo.id === userInfo.id}}">作者</view>
+        <view class="author-icon" wx:if="{{item.userInfo.id === authorId}}">作者</view>
       </view>
       <view class="comment">{{item.content}}</view>
       <view class="date">

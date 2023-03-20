@@ -19,8 +19,9 @@ Component({
 
   properties: {
     mediaType: Number,
-    videoId: String,
-    noteId: String,
+    videoId: Number,
+    noteId: Number,
+    authorId: Number
   },
 
   data: {
