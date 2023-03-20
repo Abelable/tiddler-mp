@@ -1,6 +1,6 @@
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
-import { store } from "../../../../../../store/index";
-import tim from "../../../../../../utils/tim/index";
+import { store } from "../../../../../../../../store/index";
+import tim from "../../../../../../../../utils/tim/index";
 import LiveService from "../../../utils/liveService";
 import { MSG_TYPE_JOIN_ROOM, MSG_TYPE_PRAISE } from "./utils/msgType";
 

@@ -5,8 +5,8 @@
   "usingComponents": {
     "back-icon": "/components/back-icon-white/index",
     "share-popup": "/components/share-popup/index",
-    "comment-popup": "/components/comment-popup/index",
-    "input-modal": "/components/input-modal/index",
+    "comment-popup": "../components/comment-popup/index",
+    "input-modal": "../components/input-modal/index",
     "video-item": "./components/video-item/index",
     "feature-popup": "./components/feature-popup/index"
   }

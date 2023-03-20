@@ -1,6 +1,6 @@
 import { createStoreBindings } from "mobx-miniprogram-bindings";
-import { store } from "../../../../store/index";
-import { getQueryString } from "../../../../utils/index";
+import { store } from "../../../../../../store/index";
+import { getQueryString } from "../../../../../../utils/index";
 import LiveService from "../utils/liveService";
 
 const liveService = new LiveService();
