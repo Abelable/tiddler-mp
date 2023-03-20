@@ -74,11 +74,11 @@ Component({
           break;
       
         case SCENE_VIDEO:
-          
+          mediaService.addVideoComment(videoId, content, commentId)
           break;
 
         case SCENE_NOTE:
-          
+          mediaService.addNoteComment(noteId, content, commentId)
           break;
       }
     },
