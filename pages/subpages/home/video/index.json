@@ -6,6 +6,7 @@
     "back-icon": "/components/back-icon-white/index",
     "share-popup": "/components/share-popup/index",
     "comment-modal": "/components/comment-popup/index",
+    "input-modal": "/components/input-modal/index",
     "video-item": "./components/video-item/index",
     "feature-modal": "./components/feature-modal/index"
   }

@@ -2,7 +2,6 @@
   "component": true,
   "usingComponents": {
     "popup": "/components/popup/index",
-    "comment-list": "./components/comment-list/index",
-    "input-modal": "./components/input-modal/index"
+    "comment-list": "./components/comment-list/index"
   }
 }
