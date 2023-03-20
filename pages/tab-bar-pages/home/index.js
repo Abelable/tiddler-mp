@@ -119,38 +119,46 @@ Component({
 
     setFollowMediaList(init = false) {
       checkLogin(async () => {
-        const limit = 10;
-        const { followFinished, followMediaList } = this.data;
         if (init) {
           this.followPage = 0;
-          followFinished && this.setData({ followFinished: false });
+          this.setData({ followFinished: false });
         }
-        const { list = [] } =
-          (await homeService.getFollowMediaList(++this.followPage, limit)) ||
-          {};
-        this.setData({
-          followMediaList: init ? list : [...followMediaList, ...list],
-        });
-        if (list.length < limit) {
-          this.setData({ followFinished: true });
+
+        const limit = 10;
+        const { followFinished, followMediaList } = this.data;
+
+        if (!followFinished) {
+          const { list = [] } =
+            (await homeService.getFollowMediaList(++this.followPage, limit)) ||
+            {};
+          this.setData({
+            followMediaList: init ? list : [...followMediaList, ...list],
+          });
+          if (list.length < limit) {
+            this.setData({ followFinished: true });
+          }
         }
       }, false);
     },
 
     async setMediaList(init = false) {
-      const limit = 10;
-      const { finished, mediaList } = this.data;
       if (init) {
         this.page = 0;
-        finished && this.setData({ finished: false });
+        this.setData({ finished: false });
       }
-      const { list = [] } =
-        (await homeService.getMediaList(++this.page, limit)) || {};
-      this.setData({
-        mediaList: init ? list : [...mediaList, ...list],
-      });
-      if (list.length < limit) {
-        this.setData({ finished: true });
+
+      const limit = 10;
+      const { finished, mediaList } = this.data;
+
+      if (!finished) {
+        const { list = [] } =
+          (await homeService.getMediaList(++this.page, limit)) || {};
+        this.setData({
+          mediaList: init ? list : [...mediaList, ...list],
+        });
+        if (list.length < limit) {
+          this.setData({ finished: true });
+        }
       }
     },
 
