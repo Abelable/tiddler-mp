@@ -1,6 +1,6 @@
 import { store } from "../../../../../store/index";
 import tim from "../../../../../utils/tim/index";
-import LiveService from "../../utils/liveService";
+import LiveService from "../../live/utils/liveService";
 
 const liveService = new LiveService();
 

@@ -1,6 +1,6 @@
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
-import { store } from "../../../../../../store/index";
-import { checkLogin } from "../../../../../../utils/index";
+import { store } from "../../../../../../../store/index";
+import { checkLogin } from "../../../../../../../utils/index";
 import VideoService from "../../utils/videoService";
 
 const videoService = new VideoService();

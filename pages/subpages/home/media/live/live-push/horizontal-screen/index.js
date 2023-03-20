@@ -4,10 +4,10 @@ const liveService = new LiveService()
 
 Page({
   data: {
-    roomInfo: null,
+    roomInfo: null
   },
 
-  async onLoad() {
+  onLoad() {
     wx.showShareMenu({
       withShareTicket: false,
       menus: ['shareAppMessage', 'shareTimeline']
@@ -35,10 +35,10 @@ Page({
 
   onShareAppMessage() {
     const { id, title, shareCover: imageUrl } = this.data.roomInfo
-    const path = `/pages/subpages/live/live-play/index?id=${id}`
+    const path = `/pages/subpages/home/media/live/live-play/index?id=${id}`
     return { path, title, imageUrl }
   },
-
+  
   onShareTimeline() {
     const { id, title, shareCover: imageUrl } = this.data.roomInfo
     const query = `id=${id}`

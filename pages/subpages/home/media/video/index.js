@@ -1,4 +1,4 @@
-import { getQueryString } from "../../../../utils/index";
+import { getQueryString } from "../../../../../utils/index";
 import VideoService from "./utils/videoService";
 
 const videoService = new VideoService();

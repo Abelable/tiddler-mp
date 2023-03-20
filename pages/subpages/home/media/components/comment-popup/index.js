@@ -1,6 +1,6 @@
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
-import { store } from "../../store/index";
-import BaseService from "../../services/baseService";
+import { store } from "../../../../../../store/index";
+import BaseService from "../../../../../../services/baseService";
 
 const baseService = new BaseService();
 

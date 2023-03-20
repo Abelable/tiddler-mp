@@ -1,5 +1,5 @@
-import BaseService from '../../../../../services/baseService'
-import { cleanObject } from '../../../../../utils/index'
+import BaseService from '../../../../../../services/baseService'
+import { cleanObject } from '../../../../../../utils/index'
 
 class VideoService extends BaseService {
   async getVideoList(page, id = 0, authorId = 0, limit = 10) {

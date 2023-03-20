@@ -308,14 +308,14 @@ Component({
       const statusInfo = await mineService.getRoomStatus();
       if (!statusInfo) {
         wx.navigateTo({
-          url: "/pages/subpages/live/create-live/index",
+          url: "/pages/subpages/home/media/live/create-live/index",
         });
       } else {
         const { status, direction } = statusInfo;
         const url =
           status === 3
-            ? "/pages/subpages/live/live-notice/index"
-            : `/pages/subpages/live/live-push/${
+            ? "/pages/subpages/home/media/live/live-notice/index"
+            : `/pages/subpages/home/media/live/live-push/${
                 direction === 1 ? "vertical" : "horizontal"
               }-screen/index`;
         wx.navigateTo({ url });

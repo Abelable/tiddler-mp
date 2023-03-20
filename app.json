@@ -13,8 +13,13 @@
       "common/pay/index",
       "home/sign-in/index",
       "home/search/index",
-      "home/note/index",
-      "home/video/index",
+      "home/media/live/create-live/index",
+      "home/media/live/live-notice/index",
+      "home/media/live/live-push/vertical-screen/index",
+      "home/media/live/live-push/horizontal-screen/index",
+      "home/media/live/live-play/index",
+      "home/media/note/index",
+      "home/media/video/index",
       "mall/search/index",
       "mall/ticket/index",
       "mall/tour/index",
@@ -36,12 +41,7 @@
       "mine/shop-management/index",
       "mine/shop-management/subpages/order-detail/index",
       "mine/shop-management/subpages/shipping/index",
-      "mine/create-video/index",
-      "live/create-live/index",
-      "live/live-notice/index",
-      "live/live-push/vertical-screen/index",
-      "live/live-push/horizontal-screen/index",
-      "live/live-play/index"
+      "mine/create-video/index"
     ]
   }],
   "tabBar": {

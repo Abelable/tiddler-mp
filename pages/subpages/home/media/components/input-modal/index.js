@@ -1,4 +1,4 @@
-import BaseService from "../../services/baseService";
+import BaseService from "../../../../../../services/baseService";
 
 const baseService = new BaseService();
 
