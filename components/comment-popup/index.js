@@ -6,7 +6,7 @@ const baseService = new BaseService();
 
 Component({
   options: {
-    addGlobalClass: true
+    addGlobalClass: true,
   },
 
   behaviors: [storeBindingsBehavior],
@@ -23,56 +23,102 @@ Component({
 
   data: {
     totalCount: 0,
-    commentsList: [],
-    replyCommentId: 0,
-    replyUserName: "",
-    showNomore: false,
-    inputModalVisible: false,
+    commentList: [],
+    finished: false,
   },
 
   lifetimes: {
     attached() {
-      this.commentListService = this.properties.videoId
-        ? baseService.getVideoCommentList
-        : baseService.getNoteCommentList;
-      
-      this.replyCommentListService = this.properties.videoId
-      ? baseService.getVideoReplyCommentList
-      : baseService.getNoteReplyCommentList;
+      this.setCommentList();
     },
   },
 
   methods: {
     initData() {
       this.setData({
-        commentsList: [],
+        commentList: [],
         replyCommentId: 0,
         showNomore: false,
       });
     },
 
-    async setCommentsList(init = false) {
-      // const initTruthy = (typeof(init) === 'boolean' && init)
-      // if (initTruthy) {
-      //   this.page = 0
-      //   this.replyPageArr = []
-      //   this.setData({ commentsList: [] })
-      // }
-      // const { videoId, curCommentId, curSecCommentId } = this.properties
-      // const { comment_count: totalCount, list: commentsList = [] } = await baseService.getCommentsLists({ videoId, commentId: initTruthy ? curCommentId : '', secCommentId: initTruthy ? curSecCommentId : '', page: ++this.page }) || {}
-      // if (initTruthy) this.setData({ totalCount })
-      // if (commentsList.length) {
-      //   commentsList.map(item => {
-      //     item.replyFold = true
-      //     item.replyLists = []
-      //   })
-      //   this.setData({
-      //     commentsList: initTruthy ? commentsList : [...this.data.commentsList, ...commentsList]
-      //   })
-      //   if (initTruthy && curSecCommentId) this.toggleSpread(0)
-      // } else {
-      //   !initTruthy && this.setData({ showNomore: true })
-      // }
+    async setCommentList() {
+      const limit = 10;
+      const { videoId, noteId, totalCount, commentList, finished } = this.data;
+      if (!this.page) this.page = 0;
+
+      if (!finished) {
+        const { total = 0, list = [] } =
+          (await baseService[`get${videoId ? "Video" : "Note"}CommentList`](
+            videoId || noteId,
+            ++this.page,
+            limit
+          )) || {};
+        this.setData({
+          commentList: [...commentList, ...list],
+        });
+        if (!totalCount) {
+          this.setData({ totalCount: total });
+        }
+        if (list.length < limit) {
+          this.setData({ finished: true });
+        }
+      }
+    },
+
+    async setVideoCommentList(init = false) {
+      if (init) {
+        this.setData({ finished: false });
+        this.page = 0;
+      }
+
+      const limit = 10;
+      const { videoId, commentList, finished } = this.data;
+
+      if (!finished) {
+        const { total = 0, list = [] } =
+          (await baseService.getVideoCommentList(
+            videoId,
+            ++this.page,
+            limit
+          )) || {};
+        if (init) {
+          this.setData({ total });
+        }
+        this.setData({
+          commentList: init ? list : [...commentList, ...list],
+        });
+
+        if (list.length < limit) {
+          this.setData({ finished: true });
+        }
+      }
+    },
+
+    async setNoteCommentList(init = false) {
+      if (init) {
+        this.setData({ finished: false });
+        this.page = 0;
+      }
+
+      const limit = 10;
+      const { videoId, commentList, finished } = this.data;
+
+      if (!finished) {
+        const { total = 0, list = [] } =
+          (await baseService.getNoteCommentList(videoId, ++this.page, limit)) ||
+          {};
+        if (init) {
+          this.setData({ total });
+        }
+        this.setData({
+          commentList: init ? list : [...commentList, ...list],
+        });
+
+        if (list.length < limit) {
+          this.setData({ finished: true });
+        }
+      }
     },
 
     spreadReply(e) {
@@ -88,20 +134,20 @@ Component({
         replyLists,
         comment_num: replayCount,
         replyFold,
-      } = this.data.commentsList[index];
+      } = this.data.commentList[index];
       if (replayCount > replyLists.length) {
         const { list } = await baseService.getSecondCommentsLists({
           parentId,
           page: ++this.replyPageArr[index],
         });
         if (replyFold)
-          this.setData({ [`commentsList[${index}].replyFold`]: false });
+          this.setData({ [`commentList[${index}].replyFold`]: false });
         this.setData({
-          [`commentsList[${index}].replyLists`]: [...replyLists, ...list],
+          [`commentList[${index}].replyLists`]: [...replyLists, ...list],
         });
       }
       if (replayCount == replyLists.length) {
-        this.setData({ [`commentsList[${index}].replyFold`]: !replyFold });
+        this.setData({ [`commentList[${index}].replyFold`]: !replyFold });
       }
     },
 

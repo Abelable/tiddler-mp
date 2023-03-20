@@ -12,7 +12,7 @@
 
     <scroll-view class="comment-list" bindscrolltolower="loadMore" scroll-y>
       <comment-item
-        wx:for="{{commentsList}}"
+        wx:for="{{commentList}}"
         wx:key="index" 
         item="{{item}}" 
         bind:reply="reply"

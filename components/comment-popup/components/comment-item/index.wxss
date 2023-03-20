@@ -9,19 +9,13 @@
   display: flex;
   padding: 10rpx;
 }
-.main.is-top {
-  background: #F7F7F7;
-}
 
 .user-avatar {
   width: 62rpx;
   height: 62rpx;
   border-radius: 50%;
-  background-image: url('https://img.ubo.vip/mp-short-video/youlian-icon.png');
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
 }
-.user-avatar.is-child {
+.user-avatar.is-reply {
   width: 40rpx;
   height: 40rpx;
 }
@@ -32,10 +26,6 @@
   flex: 1;
 }
 
-.user-name-wrap {
-  display: flex;
-  align-items: center;
-}
 .user-name {
   color: #DAB174;
   font-size: 26rpx;
@@ -51,11 +41,6 @@
   background: #FE3552;
   border-radius: 4rpx;
 }
-.reply-tips {
-  margin-left: 40rpx;
-  color: #999;
-  font-size: 24rpx;
-}
 
 .comment {
   margin-top: 2rpx;
@@ -63,31 +48,10 @@
   color: #333;
   font-size: 30rpx;
 }
-.at-lebal {
-  color: #3E6BF8;
-}
 .date {
   margin-top: 4rpx;
   color: #999;
   font-size: 26rpx;
-}
-.praise-wrap {
-  position: absolute;
-  top: 0;
-  right: 0;
-  font-size: 0;
-  text-align: center;
-}
-.praise-icon {
-  width: 32rpx; 
-  height: 30rpx;
-}
-.praise-count {
-  margin-top: 6rpx;
-  color: #999;
-  font-size: 22rpx;
-  line-height: 1;
-  white-space: nowrap;
 }
 
 .slot-wrap {

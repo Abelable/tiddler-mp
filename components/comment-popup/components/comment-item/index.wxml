@@ -1,25 +1,17 @@
 <wxs module="TIME" src="/utils/filters/time.wxs" />
 
-<view class="comment-item {{isChild ? 'is-reply' : ''}}" catchtap="reply">
-  <view class="main {{item.id == curCommentId ? 'is-top' : ''}}">
-    <image class="user-avatar {{isChild ? 'is-child' : ''}}" src="{{item.appraiser.headimg}}" />
+<view class="comment-item {{isReply ? 'is-reply' : ''}}">
+  <view class="main">
+    <image class="user-avatar avatar-default {{isReply ? 'is-reply' : ''}}" src="{{item.userInfo.avatar}}" />
     <view class="list-content">
-      <view class="user-name-wrap">
-        <view class="user-name">{{item.appraiser.nick_name}}</view>
-        <view class="author-icon" wx:if="{{item.is_author}}">作者</view>
-        <view class="reply-tips" wx:if="{{item.evaluatedPerson}}">回复 {{item.evaluatedPerson.nick_name}}</view>
+      <view class="row">
+        <view class="user-name">{{item.userInfo.nickname}}</view>
+        <view class="author-icon" wx:if="{{item.userInfo.id === userInfo.id}}">作者</view>
       </view>
-      <view class="comment">
-        <text class="at-lebal" wx:for="{{item.at_person}}" wx:key="index" wx:for-item="lebal">@{{lebal.nick_name}} </text>
-        <text>{{content || item.content}}</text> 
-      </view>
+      <view class="comment">{{item.content}}</view>
       <view class="date">
-        <text>{{TIME.transform(item.create_time).year + '-' + TIME.transform(item.create_time).month + '-' + TIME.transform(item.create_time).date}}</text>
-        <text style="margin-left: 20rpx;">回复</text>
-      </view>
-      <view class="praise-wrap" catchtap="togglePraise">
-        <image class="praise-icon" src="{{item.is_like ? './images/active-heart.png' : './images/heart.png'}}" />
-        <view class="praise-count">{{item.like_num}}</view>
+        <text>{{TIME.transform(item.createdAt, 'YYYY-MM-DD')}}</text>
+        <text style="margin-left: 20rpx;" wx:if="{{isReply}}" catchtap="reply">回复</text>
       </view>
     </view>
   </view>
@@ -27,4 +19,3 @@
     <slot></slot>
   </view>
 </view>
-
