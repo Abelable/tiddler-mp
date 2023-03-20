@@ -21,11 +21,11 @@ Component({
     mediaType: Number,
     videoId: Number,
     noteId: Number,
-    authorId: Number
+    authorId: Number,
+    total: Number,
   },
 
   data: {
-    total: 0,
     commentList: [],
     finished: false,
   },
@@ -40,11 +40,11 @@ Component({
     init() {
       switch (this.properties.mediaType) {
         case VIDEO:
-          this.setVideoCommentList(true)
+          this.setVideoCommentList(true);
           break;
-      
+
         case NOTE:
-          this.setNoteCommentList(true)
+          this.setNoteCommentList(true);
           break;
       }
     },
@@ -52,11 +52,11 @@ Component({
     loadMore() {
       switch (this.properties.mediaType) {
         case VIDEO:
-          this.setVideoCommentList()
+          this.setVideoCommentList();
           break;
-      
+
         case NOTE:
-          this.setNoteCommentList()
+          this.setNoteCommentList();
           break;
       }
     },
@@ -70,11 +70,8 @@ Component({
       const { videoId, commentList, finished } = this.data;
 
       if (!finished) {
-        const { total = 0, list = [] } =
+        const { list = [] } =
           (await mediaService.getVideoCommentList(videoId, ++this.page)) || {};
-        if (init) {
-          this.setData({ total });
-        }
         this.setData({
           commentList: init ? list : [...commentList, ...list],
         });
@@ -94,11 +91,8 @@ Component({
       const { noteId, commentList, finished } = this.data;
 
       if (!finished) {
-        const { total = 0, list = [] } =
+        const { list = [] } =
           (await mediaService.getNoteCommentList(noteId, ++this.page)) || {};
-        if (init) {
-          this.setData({ total });
-        }
         this.setData({
           commentList: init ? list : [...commentList, ...list],
         });

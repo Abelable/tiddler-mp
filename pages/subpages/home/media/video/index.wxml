@@ -33,6 +33,7 @@
   mediaType="{{2}}"
   videoId="{{videoList[curVideoIdx].id}}"
   authorId="{{videoList[curVideoIdx].authorInfo.id}}"
+  total="{{videoList[curVideoIdx].commentsNumber}}"
   bind:comment="showInputModal" 
   bind:reply="reply" 
   bind:hide="hideCommentPopup" 
