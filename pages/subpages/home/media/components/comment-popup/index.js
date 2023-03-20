@@ -1,8 +1,8 @@
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
 import { store } from "../../../../../../store/index";
-import BaseService from "../../../../../../services/baseService";
+import MediaService from "../../utils/mediaService";
 
-const baseService = new BaseService();
+const mediaService = new MediaService();
 
 Component({
   options: {
@@ -41,7 +41,7 @@ Component({
 
       if (!finished) {
         const { total = 0, list = [] } =
-          (await baseService[`get${videoId ? "Video" : "Note"}CommentList`](
+          (await mediaService[`get${videoId ? "Video" : "Note"}CommentList`](
             videoId || noteId,
             ++this.page,
             limit
@@ -69,7 +69,7 @@ Component({
 
       if (!finished) {
         const { total = 0, list = [] } =
-          (await baseService.getVideoCommentList(
+          (await mediaService.getVideoCommentList(
             videoId,
             ++this.page,
             limit
@@ -98,7 +98,7 @@ Component({
 
       if (!finished) {
         const { total = 0, list = [] } =
-          (await baseService.getNoteCommentList(videoId, ++this.page, limit)) ||
+          (await mediaService.getNoteCommentList(videoId, ++this.page, limit)) ||
           {};
         if (init) {
           this.setData({ total });
@@ -128,7 +128,7 @@ Component({
         replyFold,
       } = this.data.commentList[index];
       if (replayCount > replyLists.length) {
-        const { list } = await baseService.getSecondCommentsLists({
+        const { list } = await mediaService.getSecondCommentsLists({
           parentId,
           page: ++this.replyPageArr[index],
         });

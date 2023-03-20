@@ -4,9 +4,10 @@
   "navigationBarTextStyle": "white",
   "usingComponents": {
     "back-icon": "/components/back-icon-white/index",
+    "modal-mask": "/components/modal-mask/index",
     "share-popup": "/components/share-popup/index",
     "comment-popup": "../components/comment-popup/index",
-    "input-modal": "../components/input-modal/index",
+    "input-popup": "../components/input-popup/index",
     "video-item": "./components/video-item/index",
     "feature-popup": "./components/feature-popup/index"
   }
