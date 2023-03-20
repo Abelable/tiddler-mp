@@ -20,7 +20,6 @@
   <image class="at-icon" src="./images/at.png" />
 </view>
 
-
 <comment-popup wx:if="{{commentPopupVisible}}" videoId="{{videoList[curVideoIdx].id}}" bind:hide="hideModal" />
 <feature-popup wx:if="{{featurePopupVisible}}" videoId="{{videoList[curVideoIdx].id}}" bind:hide="hideModal" />
 <share-popup wx:if="{{sharePopupVisible}}" videoInfo="{{videoList[curVideoIdx]}}" bind:hide="hideModal" />
