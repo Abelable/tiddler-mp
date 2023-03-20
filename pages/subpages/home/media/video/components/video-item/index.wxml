@@ -23,7 +23,7 @@
     </view>
     <view class="btn" catchtap="comment">
       <image class="btn-icon" src="./images/comment.png" />
-      <view class="btn-desc">{{item.commentNumber ? NUM.over(item.commentNumber, 100000) : '评论'}}</view>
+      <view class="btn-desc">{{item.commentsNumber ? NUM.over(item.commentsNumber, 100000) : '评论'}}</view>
     </view>
     <view class="btn" catchtap="collect">
       <image class="btn-icon" style="width: 70rpx; height: 68rpx;" src="./images/collect{{item.isCollected ? '-active' : ''}}.png" />

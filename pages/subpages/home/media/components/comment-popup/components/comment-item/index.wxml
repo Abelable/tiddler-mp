@@ -11,7 +11,7 @@
       <view class="comment">{{item.content}}</view>
       <view class="date">
         <text>{{TIME.transform(item.createdAt, 'YYYY-MM-DD')}}</text>
-        <text style="margin-left: 20rpx;" wx:if="{{isReply}}" catchtap="reply">回复</text>
+        <text style="margin-left: 20rpx;" wx:if="{{!isReply}}" catchtap="reply">回复</text>
       </view>
     </view>
   </view>

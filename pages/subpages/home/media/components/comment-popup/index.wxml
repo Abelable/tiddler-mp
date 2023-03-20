@@ -36,7 +36,7 @@
           <image class="spread-icon" src="{{(item.repliesCount > item.replies.length || !item.repliesVisible) ? './images/down-arrow.png' : './images/up-arrow.png'}}" />
         </view>
       </comment-item>
-      <view class="nomore-tips" wx:if="{{showNomore}}">——暂时没有更多了——</view>
+      <view class="nomore-tips" wx:if="{{finished}}">——暂时没有更多了——</view>
     </scroll-view>
 
     <view class="input-bar">
