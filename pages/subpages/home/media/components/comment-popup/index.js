@@ -1,5 +1,6 @@
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
 import { store } from "../../../../../../store/index";
+import { VIDEO, NOTE } from "../../../../../../utils/emuns/mediaType";
 import MediaService from "../../utils/mediaService";
 
 const mediaService = new MediaService();
@@ -17,44 +18,45 @@ Component({
   },
 
   properties: {
+    mediaType: Number,
     videoId: String,
     noteId: String,
   },
 
   data: {
-    totalCount: 0,
+    total: 0,
     commentList: [],
     finished: false,
   },
 
   lifetimes: {
     attached() {
-      this.setCommentList();
+      this.init();
     },
   },
 
   methods: {
-    async setCommentList() {
-      const limit = 10;
-      const { videoId, noteId, totalCount, commentList, finished } = this.data;
-      if (!this.page) this.page = 0;
+    init() {
+      switch (this.properties.mediaType) {
+        case VIDEO:
+          this.setVideoCommentList(true)
+          break;
+      
+        case NOTE:
+          this.setNoteCommentList(true)
+          break;
+      }
+    },
 
-      if (!finished) {
-        const { total = 0, list = [] } =
-          (await mediaService[`get${videoId ? "Video" : "Note"}CommentList`](
-            videoId || noteId,
-            ++this.page,
-            limit
-          )) || {};
-        this.setData({
-          commentList: [...commentList, ...list],
-        });
-        if (!totalCount) {
-          this.setData({ totalCount: total });
-        }
-        if (list.length < limit) {
-          this.setData({ finished: true });
-        }
+    loadMore() {
+      switch (this.properties.mediaType) {
+        case VIDEO:
+          this.setVideoCommentList()
+          break;
+      
+        case NOTE:
+          this.setNoteCommentList()
+          break;
       }
     },
 
@@ -64,16 +66,11 @@ Component({
         this.page = 0;
       }
 
-      const limit = 10;
       const { videoId, commentList, finished } = this.data;
 
       if (!finished) {
         const { total = 0, list = [] } =
-          (await mediaService.getVideoCommentList(
-            videoId,
-            ++this.page,
-            limit
-          )) || {};
+          (await mediaService.getVideoCommentList(videoId, ++this.page)) || {};
         if (init) {
           this.setData({ total });
         }
@@ -81,7 +78,7 @@ Component({
           commentList: init ? list : [...commentList, ...list],
         });
 
-        if (list.length < limit) {
+        if (!list.length) {
           this.setData({ finished: true });
         }
       }
@@ -93,13 +90,11 @@ Component({
         this.page = 0;
       }
 
-      const limit = 10;
-      const { videoId, commentList, finished } = this.data;
+      const { noteId, commentList, finished } = this.data;
 
       if (!finished) {
         const { total = 0, list = [] } =
-          (await mediaService.getNoteCommentList(videoId, ++this.page, limit)) ||
-          {};
+          (await mediaService.getNoteCommentList(noteId, ++this.page)) || {};
         if (init) {
           this.setData({ total });
         }
@@ -107,7 +102,7 @@ Component({
           commentList: init ? list : [...commentList, ...list],
         });
 
-        if (list.length < limit) {
+        if (!list.length) {
           this.setData({ finished: true });
         }
       }
@@ -143,17 +138,12 @@ Component({
       }
     },
 
-    atUser() {
-      this.triggerEvent("atUser");
-    },
-
     comment() {
-      console.log('comment')
       this.triggerEvent("comment");
     },
 
     reply(e) {
-      this.triggerEvent("atUser", { commentId: e.detail.id });
+      this.triggerEvent("reply", { commentId: e.detail.id });
     },
 
     hide() {
