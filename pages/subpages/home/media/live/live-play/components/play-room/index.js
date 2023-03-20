@@ -1,7 +1,7 @@
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
-import { store } from "../../../../../../store/index";
-import { checkLogin } from "../../../../../../utils/index";
-import tim from "../../../../../../utils/tim/index";
+import { store } from "../../../../../../../../store/index";
+import { checkLogin } from "../../../../../../../../utils/index";
+import tim from "../../../../../../../../utils/tim/index";
 import LiveService from "../../../utils/liveService";
 
 const liveService = new LiveService();
