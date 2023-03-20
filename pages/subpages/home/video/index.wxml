@@ -16,7 +16,7 @@
 </view>
 
 <view class="bottom-bar row">
-  <view class="input-btn row">说点什么...</view>
+  <view class="input-btn row" bindtap="showInputModal">说点什么...</view>
   <image class="at-icon" src="./images/at.png" />
 </view>
 

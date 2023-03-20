@@ -5,16 +5,15 @@ const baseService = new BaseService();
 Component({
   properties: {
     videoId: String,
-    replyCommentId: String,
-    replyUserName: String,
+    commentId: String,
   },
 
   data: {
     containerBottom: 0,
     content: "",
     focus: true,
-    attedUserLists: [],
-    userLists: [],
+    attedUserList: [],
+    userList: [],
     usersPopupVisible: false,
   },
 
@@ -75,13 +74,13 @@ Component({
     },
 
     async searchUser(atString = "") {
-      const { list: userLists } = await baseService.getRelationshipLists(
+      const { list: userList } = await baseService.getRelationshipLists(
         1,
         1,
         atString,
         100
       );
-      this.setData({ userLists });
+      this.setData({ userList });
     },
 
     atUser() {
@@ -98,19 +97,19 @@ Component({
 
     selectUser(e) {
       const { index } = e.currentTarget.dataset;
-      let { userLists, attedUserLists } = this.data;
-      const userList = userLists[index];
+      let { userList, attedUserList } = this.data;
+      const user = userList[index];
 
       let attedUserIsExist = false;
-      attedUserLists.forEach((item) => {
-        if (item.user_id === userList.user_id) attedUserIsExist = true;
+      attedUserList.forEach((item) => {
+        if (item.user_id === user.user_id) attedUserIsExist = true;
       });
 
       if (!attedUserIsExist) {
-        attedUserLists.push(userList);
+        attedUserList.push(user);
         const content = this.content.replace(`@${this.atString || ""}`, "");
         this.setData({
-          attedUserLists,
+          attedUserList,
           content,
           usersPopupVisible: false,
         });
@@ -125,13 +124,13 @@ Component({
 
     deleteAttedUser(e) {
       const { index } = e.currentTarget.dataset;
-      let { attedUserLists } = this.data;
-      attedUserLists.splice(index, 1);
-      this.setData({ attedUserLists });
+      let { attedUserList } = this.data;
+      attedUserList.splice(index, 1);
+      this.setData({ attedUserList });
     },
 
     sendMsg() {
-      let { videoId, replyCommentId, content, attedUserLists } = this.data;
+      let { videoId, replyCommentId, content, attedUserList } = this.data;
       if (this.content !== content) content = this.content;
       if (!content) {
         wx.showToast({ title: "请输入消息", icon: "none" });
@@ -139,8 +138,8 @@ Component({
       }
 
       let atUserids = [];
-      if (attedUserLists.length) {
-        attedUserLists.forEach((item) => {
+      if (attedUserList.length) {
+        attedUserList.forEach((item) => {
           atUserids.push(item.user_id);
         });
       }
@@ -164,8 +163,8 @@ Component({
       this.setData({
         content: "",
         focus: true,
-        attedUserLists: [],
-        userLists: [],
+        attedUserList: [],
+        userList: [],
         usersPopupVisible: false,
       });
     },

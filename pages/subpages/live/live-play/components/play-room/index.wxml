@@ -1,6 +1,6 @@
 <wxs module="NUM" src="/utils/filters/num.wxs" />
 
-<view class="room {{!srcIniting ? 'show' : ''}}" ontap="dbTap">
+<view class="room {{!srcIniting ? 'show' : ''}}" bindtap="dbTap">
   <live-player wx:if="{{!liveEnd}}" horizontal="{{roomInfo.direction === 2}}" src="{{roomInfo.playUrl}}" bind:statechange="statechange">
     <swiper class="inner-wrap" wx:if="{{userInfo}}" slot="{{fullScreen ? 'inside' : 'outside'}}">
       <swiper-item class="inner">

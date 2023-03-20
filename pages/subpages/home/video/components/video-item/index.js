@@ -81,7 +81,7 @@ Component({
         });
 
         checkLogin(() => {
-          item.is_like ? wx.vibrateShort({ type: "heavy" }) : this.praise();
+          item.isLike ? wx.vibrateShort({ type: "heavy" }) : this.like();
         }, false);
 
         if (this.clearPraiseHeartArrTimeout)
