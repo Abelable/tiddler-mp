@@ -123,18 +123,16 @@ Component({
           this.followPage = 0;
           this.setData({ followFinished: false });
         }
-
-        const limit = 10;
         const { followFinished, followMediaList } = this.data;
 
         if (!followFinished) {
           const { list = [] } =
-            (await homeService.getFollowMediaList(++this.followPage, limit)) ||
+            (await homeService.getFollowMediaList(++this.followPage)) ||
             {};
           this.setData({
             followMediaList: init ? list : [...followMediaList, ...list],
           });
-          if (list.length < limit) {
+          if (!list.length) {
             this.setData({ followFinished: true });
           }
         }
@@ -146,17 +144,15 @@ Component({
         this.page = 0;
         this.setData({ finished: false });
       }
-
-      const limit = 10;
       const { finished, mediaList } = this.data;
 
       if (!finished) {
         const { list = [] } =
-          (await homeService.getMediaList(++this.page, limit)) || {};
+          (await homeService.getMediaList(++this.page)) || {};
         this.setData({
           mediaList: init ? list : [...mediaList, ...list],
         });
-        if (list.length < limit) {
+        if (!list.length) {
           this.setData({ finished: true });
         }
       }

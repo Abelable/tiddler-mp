@@ -177,20 +177,18 @@ Component({
         this.videoPage = 0;
         this.setData({ videoFinished: false });
       }
-
-      const limit = 10;
       const { videoFinished, videoList } = this.data;
 
       if (!videoFinished) {
         const { list = [], total = 0 } =
-          (await mineService.getUserVideoList(++this.videoPage, limit)) || {};
+          (await mineService.getUserVideoList(++this.videoPage)) || {};
         this.setData({
           videoList: init ? list : [...videoList, ...list],
         });
         if (init) {
           this.setData({ videoListTotal: total });
         }
-        if (list.length < limit) {
+        if (!list.length) {
           this.setData({ videoFinished: true });
         }
       }
@@ -201,20 +199,18 @@ Component({
         this.notePage = 0;
         this.setData({ noteFinished: false });
       }
-
-      const limit = 10;
       const { noteFinished, noteList } = this.data;
 
       if (!noteFinished) {
         const { list = [], total = 0 } =
-          (await mineService.getUserNoteList(++this.notePage, limit)) || {};
+          (await mineService.getUserNoteList(++this.notePage)) || {};
         this.setData({
           noteList: init ? list : [...noteList, ...list],
         });
         if (init) {
           this.setData({ noteListTotal: total });
         }
-        if (list.length < limit) {
+        if (!list.length) {
           this.setData({ noteFinished: true });
         }
       }
@@ -225,20 +221,17 @@ Component({
         this.collectPage = 0;
         this.setData({ collectFinished: false });
       }
-
-      const limit = 10;
       const { collectFinished, collectMediaList } = this.data;
 
       if (!collectFinished) {
         const list =
           (await mineService.getUserCollectMediaList(
-            ++this.collectPage,
-            limit
+            ++this.collectPage
           )) || [];
         this.setData({
           collectMediaList: init ? list : [...collectMediaList, ...list],
         });
-        if (list.length < limit) {
+        if (!list.length) {
           this.setData({ collectFinished: true });
         }
       }
@@ -249,17 +242,15 @@ Component({
         this.likePage = 0;
         this.setData({ likeFinished: false });
       }
-
-      const limit = 10;
       const { likeFinished, likeMediaList } = this.data;
 
       if (!likeFinished) {
         const list =
-          (await mineService.getUserLikeMediaList(++this.likePage, limit)) || [];
+          (await mineService.getUserLikeMediaList(++this.likePage)) || [];
         this.setData({
           likeMediaList: init ? list : [...likeMediaList, ...list],
         });
-        if (list.length < limit) {
+        if (!list.length) {
           this.setData({ likeFinished: true });
         }
       }
