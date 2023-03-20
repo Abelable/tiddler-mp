@@ -1,4 +1,4 @@
-.comment-modal {
+.comment-popup {
   display: flex;
   flex-direction: column;
   height: 1100rpx;
@@ -7,8 +7,6 @@
 }
 
 .header {
-  display: flex;
-  align-items: center;
   padding: 20rpx 30rpx 0 62rpx;
 }
 .title {
@@ -30,18 +28,11 @@
   text-align: center;
 }
 
-.comment-lists {
+.comment-list {
   padding-top: 6rpx;
   flex: 1;
   overflow-y: scroll;
 }
-/* .comment-list {
-  display: block;
-  padding-bottom: 40rpx;
-}
-.reply-list {
-  padding: 20rpx 0;
-} */
 
 .spread-reply-btn {
   display: flex;

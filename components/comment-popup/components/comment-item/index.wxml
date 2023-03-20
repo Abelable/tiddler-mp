@@ -1,6 +1,6 @@
-<wxs module="TIME" src="../../../../utils/filters/time.wxs" />
+<wxs module="TIME" src="/utils/filters/time.wxs" />
 
-<view class="comment-list {{isChild ? 'is-reply' : ''}}" catchtap="reply">
+<view class="comment-item {{isChild ? 'is-reply' : ''}}" catchtap="reply">
   <view class="main {{item.id == curCommentId ? 'is-top' : ''}}">
     <image class="user-avatar {{isChild ? 'is-child' : ''}}" src="{{item.appraiser.headimg}}" />
     <view class="list-content">

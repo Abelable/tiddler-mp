@@ -5,6 +5,10 @@ import BaseService from "../../services/baseService";
 const baseService = new BaseService();
 
 Component({
+  options: {
+    addGlobalClass: true
+  },
+
   behaviors: [storeBindingsBehavior],
 
   storeBindings: {
