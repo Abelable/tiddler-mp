@@ -62,6 +62,12 @@ Page({
     });
   },
 
+  hideCommentPopup() {
+    this.setData({
+      commentPopupVisible: false,
+    });
+  },
+
   showInputModal() {
     this.setData({
       inputModalVisible: true,
