@@ -9,6 +9,6 @@
     "comment-popup": "../components/comment-popup/index",
     "input-popup": "../components/input-popup/index",
     "video-item": "./components/video-item/index",
-    "feature-popup": "./components/feature-popup/index"
+    "feature-popup": "../components/feature-popup/index"
   }
 }

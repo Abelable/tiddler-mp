@@ -80,15 +80,27 @@ Page({
     });
   },
 
+  showSharePopup() {
+    this.setData({
+      sharePopupVisible: true,
+    });
+  },
+
+  hideSharePopup() {
+    this.setData({
+      sharePopupVisible: true,
+    });
+  },
+
   showFeaturePopup() {
     this.setData({
       featurePopupVisible: true,
     });
   },
 
-  showShareModal() {
+  hideFeaturePopup() {
     this.setData({
-      sharePopupVisible: true,
+      featurePopupVisible: false,
     });
   },
 

@@ -6,6 +6,7 @@
       index="{{index}}" 
       curIdx="{{curVideoIdx}}"
       bind:comment="showCommentPopup"
+      bind:share="showSharePopup"
       bind:more="showFeaturePopup"
     />
   </swiper-item>
@@ -19,8 +20,8 @@
   <view class="input-btn row" bindtap="showInputModal">说点什么...</view>
 </view>
 
-<feature-popup wx:if="{{featurePopupVisible}}" videoId="{{videoList[curVideoIdx].id}}" />
-<share-popup wx:if="{{sharePopupVisible}}" videoInfo="{{videoList[curVideoIdx]}}" bind:hide="hideModal" />
+<feature-popup wx:if="{{featurePopupVisible}}" mediaType="{{2}}" videoId="{{videoList[curVideoIdx].id}}" bind:hide="hideFeaturePopup" />
+<share-popup wx:if="{{sharePopupVisible}}" videoInfo="{{videoList[curVideoIdx]}}" bind:hide="hideSharePopup" />
 <comment-popup 
   wx:if="{{commentPopupVisible}}"
   mediaType="{{2}}"
