@@ -21,8 +21,14 @@
 
 <feature-popup wx:if="{{featurePopupVisible}}" videoId="{{videoList[curVideoIdx].id}}" />
 <share-popup wx:if="{{sharePopupVisible}}" videoInfo="{{videoList[curVideoIdx]}}" bind:hide="hideModal" />
-<comment-popup wx:if="{{commentPopupVisible}}" videoId="{{videoList[curVideoIdx].id}}" bind:comment="showInputModal" bind:replay="replay" bind:hide="hideCommentPopup" />
+<comment-popup 
+  wx:if="{{commentPopupVisible}}" 
+  videoId="{{videoList[curVideoIdx].id}}" 
+  bind:comment="showInputModal" 
+  bind:replay="replay" 
+  bind:hide="hideCommentPopup" 
+/>
 
 <modal-mask wx:if="{{inputPopupVisible}}" zIndex="100" bindtap="hideInputModal" />
-<input-popup wx:if="{{inputPopupVisible}}" scene="{{2}}" videoId="{{videoList[curVideoIdx].id}}" commentId="{{commentId}}" bind:hide="hideInputModal" />
+<input-popup wx:if="{{inputPopupVisible}}" mediaType="{{2}}" videoId="{{videoList[curVideoIdx].id}}" commentId="{{commentId}}" bind:hide="hideInputModal" />
 

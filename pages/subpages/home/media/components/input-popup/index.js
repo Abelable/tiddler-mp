@@ -1,10 +1,6 @@
 import { store } from "../../../../../../store/index";
 import tim from "../../../../../../utils/tim/index";
-import {
-  SCENE_LIVE,
-  SCENE_VIDEO,
-  SCENE_NOTE,
-} from "../../../../../../utils/emuns/inputScene";
+import { LIVE, VIDEO, NOTE } from "../../../../../../utils/emuns/mediaType";
 import MediaService from "../../utils/mediaService";
 
 const mediaService = new MediaService();
@@ -15,9 +11,9 @@ Component({
   },
 
   properties: {
-    scene: {
+    mediaType: {
       type: Number,
-      value: 1
+      value: 1,
     },
     roomInfo: Object,
     identity: {
@@ -61,10 +57,11 @@ Component({
 
     // 发送消息
     async sendMessage(content) {
-      const { scene, roomInfo, identity, videoId, noteId, commentId } = this.properties;
+      const { mediaType, roomInfo, identity, videoId, noteId, commentId } =
+        this.properties;
 
-      switch (scene) {
-        case SCENE_LIVE:
+      switch (mediaType) {
+        case LIVE:
           const { id, groupId } = roomInfo;
           const { id: userId, nickname, avatar } = store.userInfo;
           const chatMsg = { identity, userId, nickname, avatar, content };
@@ -72,13 +69,13 @@ Component({
           tim.sendLiveChatMsg(groupId, chatMsg);
           mediaService.saveLiveChatMsg(id, content, identity);
           break;
-      
-        case SCENE_VIDEO:
-          mediaService.addVideoComment(videoId, content, commentId)
+
+        case VIDEO:
+          mediaService.addVideoComment(videoId, content, commentId);
           break;
 
-        case SCENE_NOTE:
-          mediaService.addNoteComment(noteId, content, commentId)
+        case NOTE:
+          mediaService.addNoteComment(noteId, content, commentId);
           break;
       }
     },
