@@ -38,80 +38,47 @@ Component({
 
   methods: {
     init() {
-      switch (this.properties.mediaType) {
-        case VIDEO:
-          this.setVideoCommentList(true);
-          break;
-
-        case NOTE:
-          this.setNoteCommentList(true);
-          break;
-      }
+      this.setCommentList(true)
     },
 
     loadMore() {
-      switch (this.properties.mediaType) {
-        case VIDEO:
-          this.setVideoCommentList();
-          break;
-
-        case NOTE:
-          this.setNoteCommentList();
-          break;
-      }
+      this.setCommentList()
     },
 
-    async setVideoCommentList(init = false) {
+    async setCommentList(init = false) {
       if (init) {
         this.setData({ finished: false });
         this.page = 0;
       }
 
-      const { videoId, finished } = this.data;
+      const { mediaType, videoId, noteId, commentList, finished } = this.data;
 
       if (!finished) {
-        const { list = [] } =
-          (await mediaService.getVideoCommentList(videoId, ++this.page)) || {};
-        const commentList = list.map((item) => ({
-          ...item,
-          replies: [],
-          repliesVisible: false,
-        }));
-        this.setData({
-          commentList: init
-            ? commentList
-            : [...this.data.commentList, ...commentList],
-        });
-
-        if (!commentList.length) {
-          this.setData({ finished: true });
+        let list
+        switch (mediaType) {
+          case VIDEO:
+            list = await mediaService.getVideoCommentList(videoId, ++this.page)
+            break;
+  
+          case NOTE:
+            list = await mediaService.getNoteCommentList(noteId, ++this.page)
+            break;
         }
-      }
-    },
-
-    async setNoteCommentList(init = false) {
-      if (init) {
-        this.setData({ finished: false });
-        this.page = 0;
-      }
-
-      const { noteId, finished } = this.data;
-
-      if (!finished) {
-        const { list = [] } =
-          (await mediaService.getNoteCommentList(noteId, ++this.page)) || {};
-        const commentList = list.map((item) => ({
+         list = list.map((item) => ({
           ...item,
           replies: [],
           repliesVisible: false,
         }));
+
         this.setData({
           commentList: init
-            ? commentList
-            : [...this.data.commentList, ...commentList],
+            ? list
+            : [...commentList, ...list],
         });
 
-        if (!commentList.length) {
+        console.log(this.data.commentList)
+
+        if (!list.length) {
           this.setData({ finished: true });
         }
       }

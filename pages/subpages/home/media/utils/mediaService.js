@@ -25,11 +25,12 @@ class LiveService extends BaseService {
   }
 
   async getVideoCommentList(mediaId, page, limit = 10) {
-    return await this.get({
+    const { list = [] } = await this.get({
       url: `${this.baseUrl}/media/short_video/comment_list`,
       data: { mediaId, page, limit },
       loadingTitle: "加载中...",
-    });
+    }) || {};
+    return list;
   }
 
   async getVideoReplyCommentList(mediaId, commentId, page, limit = 10) {
@@ -48,11 +49,12 @@ class LiveService extends BaseService {
   }
 
   async getNoteCommentList(mediaId, page, limit = 10) {
-    return await this.get({
+    const { list = [] } =  await this.get({
       url: `${this.baseUrl}/media/tourism_note/comment_list`,
       data: { mediaId, page, limit },
       loadingTitle: "加载中...",
-    });
+    }) || {};
+    return list;
   }
 
   async deleteNoteComment(id) {
