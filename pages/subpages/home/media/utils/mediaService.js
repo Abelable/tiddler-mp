@@ -27,10 +27,11 @@ class LiveService extends BaseService {
     return list;
   }
 
-  async addVideoComment(mediaId, content, commentId) {
+  async addVideoComment(mediaId, content, commentId, success) {
     return await this.post({
       url: `${this.baseUrl}/media/short_video/comment`,
       data: cleanObject({ mediaId, commentId, content }),
+      success
     });
   }
 
@@ -60,10 +61,11 @@ class LiveService extends BaseService {
     return list;
   }
 
-  async addNoteComment(mediaId, content, commentId) {
+  async addNoteComment(mediaId, content, commentId, success) {
     return await this.post({
       url: `${this.baseUrl}/media/tourism_note/comment`,
       data: cleanObject({ mediaId, commentId, content }),
+      success
     });
   }
 

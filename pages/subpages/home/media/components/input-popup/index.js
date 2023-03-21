@@ -53,7 +53,6 @@ Component({
         return;
       }
       this.sendMessage(this.content);
-      this.triggerEvent("hide");
     },
 
     // 发送消息
@@ -66,17 +65,22 @@ Component({
           const { id, groupId } = roomInfo;
           const { id: userId, nickname, avatar } = store.userInfo;
           const chatMsg = { identity, userId, nickname, avatar, content };
-          store.setLiveMsgList(chatMsg);
           tim.sendLiveChatMsg(groupId, chatMsg);
           mediaService.saveLiveChatMsg(id, content, identity);
+          store.setLiveMsgList(chatMsg);
+          this.triggerEvent("hide");
           break;
 
         case VIDEO:
-          mediaService.addVideoComment(videoId, content, commentId);
+          mediaService.addVideoComment(videoId, content, commentId, () => {
+
+          });
           break;
 
         case NOTE:
-          mediaService.addNoteComment(noteId, content, commentId);
+          mediaService.addNoteComment(noteId, content, commentId, () => {
+            
+          });
           break;
       }
     },
