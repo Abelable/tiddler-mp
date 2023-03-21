@@ -35,14 +35,8 @@
           isReply
           bind:delete="delete"
         />
-        <view class="spread-reply-btn" wx:if="{{item.repliesCount}}" bindtap="showReply" data-index="{{index}}">
-          <text>
-            {{
-              (item.repliesCount > item.replies.length || !item.repliesVisible) 
-                ? ('展开查看' + (!item.repliesVisible ? item.repliesCount : (item.repliesCount - item.replies.length)) + '条回复') 
-                : '收起'
-            }} 
-          </text>
+        <view class="spread-btn row" wx:if="{{item.repliesCount}}" bindtap="toggleRepliesVisible" data-index="{{index}}">
+          <text>{{(item.repliesCount > item.replies.length || !item.repliesVisible) ? ('展开' + (!item.repliesVisible ? item.repliesCount : (item.repliesCount - item.replies.length)) + '条回复') : '收起'}} </text>
           <image class="spread-icon" src="{{(item.repliesCount > item.replies.length || !item.repliesVisible) ? './images/down-arrow.png' : './images/up-arrow.png'}}" />
         </view>
       </comment-item>

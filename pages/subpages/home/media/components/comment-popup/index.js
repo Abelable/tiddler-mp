@@ -103,7 +103,7 @@ Component({
       }
     },
 
-    spreadReply(e) {
+    showReply(e) {
       const { index } = e.currentTarget.dataset;
       this.toggleSpread(index);
     },

@@ -34,17 +34,18 @@
   overflow-y: scroll;
 }
 
-.spread-reply-btn {
+.spread-btn {
   display: flex;
   align-items: center;
   margin-top: 14rpx;
-  color: #DAB174;
-  font-size: 26rpx;
+  color: #666;
+  font-size: 24rpx;
+  font-weight: 500;
 }
 .spread-icon {
-  margin-left: 10rpx;
-  width: 20rpx;
-  height: 20rpx;
+  margin-left: 8rpx;
+  width: 24rpx;
+  height: 24rpx;
 }
 
 .input-bar {
