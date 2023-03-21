@@ -1,4 +1,3 @@
-import { store } from "../../../../../../store";
 import { VIDEO, NOTE } from "../../../../../../utils/emuns/mediaType";
 import MediaService from "../../utils/mediaService";
 
@@ -131,6 +130,7 @@ Component({
         inputPopupVisible: true,
       });
       this.commentIdx = index;
+      console.log(this.commentIdx)
     },
 
     finishComment(e) {
