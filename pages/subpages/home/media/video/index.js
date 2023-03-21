@@ -1,4 +1,5 @@
 import { getQueryString } from "../../../../../utils/index";
+import { SCENE_MINE } from '../../../../../utils/emuns/mediaScene'
 import VideoService from "./utils/videoService";
 
 const videoService = new VideoService();
@@ -15,7 +16,7 @@ Page({
     sharePopupVisible: false,
   },
 
-  async onLoad({ id, authorId, scene, q }) {
+  async onLoad({ id, authorId, mediaScene, scene, q }) {
     wx.showShareMenu({
       withShareTicket: true,
       menus: ["shareAppMessage", "shareTimeline"],
@@ -26,6 +27,7 @@ Page({
     this.videoId =
       id || decodedScene.split("-")[0] || getQueryString(decodedQ, "id");
     this.authorId = authorId || 0;
+    this.mediaScene = mediaScene
 
     await this.setVideoList();
   },
@@ -44,14 +46,18 @@ Page({
 
   async setVideoList() {
     if (!this.page) this.page = 0;
-    const { list = [] } =
-      (await videoService.getVideoList(
+    let res
+    if (this.mediaScene === SCENE_MINE) {
+      res = await videoService.getVideoList(
         ++this.page,
         this.videoId,
         this.authorId
-      )) || {};
+      )
+    } else {
+      res = await videoService.getUserVideoList(++this.page, 10, this.videoId)
+    }
     this.setData({
-      videoList: [...this.data.videoList, ...list],
+      videoList: [...this.data.videoList, ...res.list],
     });
   },
 

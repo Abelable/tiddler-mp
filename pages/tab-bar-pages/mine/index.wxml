@@ -60,7 +60,7 @@
                 <text>短视频</text>
               </button>
             </view>
-            <fall-flow class="fall-flow-0" list="{{videoList}}" generic:item="video-item" bind:finish="setWrapHeight" />
+            <fall-flow class="fall-flow-0" list="{{videoList}}" mediaScene="{{3}}" generic:item="video-item" bind:finish="setWrapHeight" />
             <empty-illus wx:if="{{videoFinished && !videoList.length}}" desc="暂无短视频作品，快去发布吧～" height="520rpx" />
             <view class="no-more-tips" wx:if="{{videoFinished && videoList.length}}">～没有更多了～</view>
           </view>

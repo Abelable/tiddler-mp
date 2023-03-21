@@ -1,6 +1,6 @@
 <wxs module="NUM" src="/utils/filters/num.wxs" />
 
-<navigator class="video-item" url="/pages/subpages/home/media/video/index?id={{item.id}}" hover-class="none">
+<view class="video-item" bindtap="navToVideoDetail">
   <view class="cover-wrap">
     <image class="cover" src="{{item.cover}}" mode="widthFix" />
     <view class="private-tag row" wx:if="{{item.isPrivate}}">
@@ -26,4 +26,4 @@
       <text>{{NUM.over(item.likeNumber, 100000)}}</text>
     </view>
   </view>
-</navigator>
+</view>

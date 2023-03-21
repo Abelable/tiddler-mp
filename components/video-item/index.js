@@ -1,9 +1,24 @@
+import { SCENE_AUTHOR } from "../../utils/emuns/mediaScene";
+
 Component({
   options: {
-    addGlobalClass: true
+    addGlobalClass: true,
   },
-  
+
   properties: {
-    item: Object
+    item: Object,
+    mediaScene: Number,
   },
-})
+
+  methods: {
+    navToVideoDetail() {
+      const { item, mediaScene } = this.properties;
+      const { id, authorInfo } = item;
+
+      const url = `/pages/subpages/home/media/video/index?id=${id}&mediaScene=${mediaScene}&authorId=${
+        mediaScene === SCENE_AUTHOR ? authorInfo.id : 0
+      }`;
+      wx.navigateTo({ url });
+    },
+  },
+});
