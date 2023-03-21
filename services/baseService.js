@@ -116,11 +116,11 @@ class BaseService extends Base {
     });
   }
 
-  async getUserVideoList(page, limit = 10, id = 0) {
+  async getUserVideoList({ id, page, limit = 10, loadingTitle }) {
     return await this.get({
       url: `${this.baseUrl}/media/short_video/user_list`,
-      data: { page, limit, id },
-      loadingTitle: "加载中...",
+      data: cleanObject({ id, page, limit }),
+      loadingTitle,
     });
   }
 

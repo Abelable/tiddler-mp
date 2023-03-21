@@ -171,7 +171,10 @@ Component({
 
       if (!videoFinished) {
         const { list = [], total = 0 } =
-          (await mineService.getUserVideoList(++this.videoPage)) || {};
+          (await mineService.getUserVideoList({
+            page: ++this.videoPage,
+            loadingTitle: "加载中...",
+          })) || {};
         this.setData({
           videoList: init ? list : [...videoList, ...list],
         });
@@ -215,9 +218,7 @@ Component({
 
       if (!collectFinished) {
         const list =
-          (await mineService.getUserCollectMediaList(
-            ++this.collectPage
-          )) || [];
+          (await mineService.getUserCollectMediaList(++this.collectPage)) || [];
         this.setData({
           collectMediaList: init ? list : [...collectMediaList, ...list],
         });

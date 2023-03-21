@@ -25,9 +25,9 @@ Page({
     const decodedScene = scene ? decodeURIComponent(scene) : "";
     const decodedQ = q ? decodeURIComponent(q) : "";
     this.videoId =
-      id || decodedScene.split("-")[0] || getQueryString(decodedQ, "id");
-    this.authorId = authorId || 0;
-    this.mediaScene = mediaScene
+      +id || decodedScene.split("-")[0] || getQueryString(decodedQ, "id");
+    this.authorId = authorId ? +authorId : 0;
+    this.mediaScene = +mediaScene
 
     await this.setVideoList();
   },
@@ -45,20 +45,25 @@ Page({
   },
 
   async setVideoList() {
-    if (!this.page) this.page = 0;
-    let res
-    if (this.mediaScene === SCENE_MINE) {
-      res = await videoService.getVideoList(
-        ++this.page,
-        this.videoId,
-        this.authorId
-      )
-    } else {
-      res = await videoService.getUserVideoList(++this.page, 10, this.videoId)
+    if (!this.finished) {
+      if (!this.page) this.page = 0;
+      let res
+      if (this.mediaScene === SCENE_MINE) {
+        res = await videoService.getUserVideoList({ id: this.videoId, page: ++this.page })
+      } else {
+        res = await videoService.getVideoList(
+          ++this.page,
+          this.videoId,
+          this.authorId
+        )
+      }
+      this.setData({
+        videoList: [...this.data.videoList, ...res.list],
+      });
+      if (!res.list.length) {
+        this.finished = true
+      }
     }
-    this.setData({
-      videoList: [...this.data.videoList, ...res.list],
-    });
   },
 
   showCommentPopup() {
