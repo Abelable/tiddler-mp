@@ -56,5 +56,5 @@
   videoId="{{videoId}}" 
   commentId="{{commentId}}" 
   nickname="{{nickname}}" 
-  bind:hide="hideInputModal"
+  bind:finish="finishComment"
 />

@@ -24,11 +24,10 @@ Component({
 
   methods: {
     reply() {
-      const { id, userInfo, index, replyIndex } = this.properties.item;
+      const { id, userInfo, index } = this.properties.item;
       this.triggerEvent("reply", {
         commentId: id,
         index,
-        replyIndex,
         nickname: userInfo.nickname,
       });
     },

@@ -1,5 +1,4 @@
-import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
-import { store } from "../../../../../../store/index";
+import { store } from "../../../../../../store";
 import { VIDEO, NOTE } from "../../../../../../utils/emuns/mediaType";
 import MediaService from "../../utils/mediaService";
 
@@ -8,13 +7,6 @@ const mediaService = new MediaService();
 Component({
   options: {
     addGlobalClass: true,
-  },
-
-  behaviors: [storeBindingsBehavior],
-
-  storeBindings: {
-    store,
-    actions: [],
   },
 
   properties: {
@@ -121,23 +113,58 @@ Component({
 
     showInputModal() {
       this.setData({
-        inputPopupVisible: true
-      })
+        inputPopupVisible: true,
+      });
     },
 
     hideInputModal() {
       this.setData({
-        inputPopupVisible: false
-      })
+        inputPopupVisible: false,
+      });
     },
 
     reply(e) {
-      const { commentId, nickname } = e.detail
+      const { commentId, nickname, index } = e.detail;
       this.setData({
         commentId,
         nickname,
-        inputPopupVisible: true
-      })
+        inputPopupVisible: true,
+      });
+      this.commentIdx = index;
+    },
+
+    finishComment(e) {
+      const { total, curVideoIdx, commentList } = this.data;
+
+      if (this.data.commentId) {
+        const curComment = commentList[this.commentIdx];
+        this.setData({
+          [`commentList[${this.commentIdx}]`]: {
+            ...curComment,
+            repliesCount: +curComment.repliesCount,
+            replies: [e.detail, ...curComment.replies],
+          },
+          commentId: 0,
+          nickname: "",
+        });
+      } else {
+        this.setData({
+          commentList: [
+            {
+              ...e.detail,
+              repliesCount: 0,
+              replies: [],
+              repliesVisible: false,
+            },
+            ...commentList,
+          ],
+        });
+      }
+
+      this.triggerEvent("update", {
+        commentsNumber: ++total,
+        curVideoIdx,
+      });
     },
 
     delete(e) {
