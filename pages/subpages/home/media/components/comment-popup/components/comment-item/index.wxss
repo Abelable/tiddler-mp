@@ -2,7 +2,7 @@
   padding: 12rpx 24rpx;
 }
 .comment-item.is-reply {
-  margin-top: 10rpx;
+  margin-top: 24rpx;
   padding: 0;
 }
 .main {

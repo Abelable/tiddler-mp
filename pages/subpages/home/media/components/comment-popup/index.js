@@ -75,8 +75,6 @@ Component({
           commentList: init ? list : [...commentList, ...list],
         });
 
-        console.log(this.data.commentList);
-
         if (!list.length) {
           this.setData({ finished: true });
         }
@@ -88,21 +86,37 @@ Component({
       if (!this.replyPageArr) this.replyPageArr = [];
       if (!this.replyPageArr[index]) this.replyPageArr[index] = 0;
 
-      const { id, replies, replayCount, repliesVisble } =
-        this.data.commentList[index];
-      if (replayCount > replyLists.length) {
-        const { list } = await mediaService.getSecondCommentsLists({
-          parentId,
-          page: ++this.replyPageArr[index],
-        });
-        if (replyFold)
-          this.setData({ [`commentList[${index}].replyFold`]: false });
+      const { videoId, noteId, commentList } = this.data;
+      const { id, replies, repliesCount, repliesVisible } = commentList[index];
+      if (replies.length < repliesCount) {
+        let list;
+        switch (this.properties.mediaType) {
+          case VIDEO:
+            list = await mediaService.getVideoReplies(
+              videoId,
+              id,
+              ++this.replyPageArr[index]
+            );
+            break;
+
+          case NOTE:
+            list = await mediaService.getNoteReplies(
+              noteId,
+              id,
+              ++this.replyPageArr[index]
+            );
+            break;
+        }
+        if (!repliesVisible) {
+          this.setData({ [`commentList[${index}].repliesVisible`]: true });
+        }
         this.setData({
-          [`commentList[${index}].replyLists`]: [...replyLists, ...list],
+          [`commentList[${index}].replies`]: [...replies, ...list],
         });
-      }
-      if (replayCount == replyLists.length) {
-        this.setData({ [`commentList[${index}].replyFold`]: !replyFold });
+      } else {
+        this.setData({
+          [`commentList[${index}].repliesVisible`]: !repliesVisible,
+        });
       }
     },
 
