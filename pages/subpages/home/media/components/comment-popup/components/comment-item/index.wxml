@@ -11,7 +11,7 @@
       <view class="comment">{{item.content}}</view>
       <view class="row between">
         <view class="date">
-          <text>{{TIME.transform(item.createdAt, 'YYYY-MM-DD')}}</text>
+          <text>{{TIME.timeDiff(item.createdAt)}}</text>
           <text class="reply-btn" wx:if="{{!isReply}}" catchtap="reply">回复</text>
         </view>
         <image class="delete-icon" wx:if="{{userInfo.id === item.userInfo.id}}" catchtap="delete" src="./images/delete.png" />

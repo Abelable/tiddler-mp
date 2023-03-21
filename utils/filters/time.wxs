@@ -1,37 +1,46 @@
 function format(time) {
   time = time.toString();
-  return time[1] ? time : '0' + time;
+  return time[1] ? time : "0" + time;
 }
 
 function transform(timeStamp, statement) {
   if (timeStamp) {
-    var year = getDate(timeStamp).getFullYear()
-    var month = format(getDate(timeStamp).getMonth() + 1)
-    var day = format(getDate(timeStamp).getDate())
-    var hours = format(getDate(timeStamp).getHours())
-    var minutes = format(getDate(timeStamp).getMinutes())
-    var seconds = format(getDate(timeStamp).getSeconds())
-    return statement.replace('YYYY', year).replace('MM', month).replace('DD', day).replace('hh', hours).replace('mm', minutes).replace('ss', seconds)
+    var year = getDate(timeStamp).getFullYear();
+    var month = format(getDate(timeStamp).getMonth() + 1);
+    var day = format(getDate(timeStamp).getDate());
+    var hours = format(getDate(timeStamp).getHours());
+    var minutes = format(getDate(timeStamp).getMinutes());
+    var seconds = format(getDate(timeStamp).getSeconds());
+    return statement
+      .replace("YYYY", year)
+      .replace("MM", month)
+      .replace("DD", day)
+      .replace("hh", hours)
+      .replace("mm", minutes)
+      .replace("ss", seconds);
   }
 }
 
 function countDown(timeStamp, statement) {
-  var days = format(Math.floor(timeStamp / (24 * 60 * 60)))
-  var hours = format(Math.floor(timeStamp % (24 * 60 * 60) / (60 * 60)))
-  var minutes = format(Math.floor(timeStamp % (60 * 60) / 60))
-  var seconds = format(Math.floor(timeStamp % 60))
-  return statement.replace('dd', days).replace('hh', hours).replace('mm', minutes).replace('ss', seconds)
+  var days = format(Math.floor(timeStamp / (24 * 60 * 60)));
+  var hours = format(Math.floor((timeStamp % (24 * 60 * 60)) / (60 * 60)));
+  var minutes = format(Math.floor((timeStamp % (60 * 60)) / 60));
+  var seconds = format(Math.floor(timeStamp % 60));
+  return statement
+    .replace("dd", days)
+    .replace("hh", hours)
+    .replace("mm", minutes)
+    .replace("ss", seconds);
 }
 
-function getDateDiff(dateTimeStamp) {
-  var result;
+function timeDiff(timeStamp) {
   var minute = 1000 * 60;
   var hour = minute * 60;
   var day = hour * 24;
-  var halfamonth = day * 15;
   var month = day * 30;
+
   var now = getDate().getTime();
-  var diffValue = now - dateTimeStamp * 1000;
+  var diffValue = now - getDate(timeStamp).getTime();
   if (diffValue < 0) {
     return;
   }
@@ -40,51 +49,42 @@ function getDateDiff(dateTimeStamp) {
   var dayC = diffValue / day;
   var hourC = diffValue / hour;
   var minC = diffValue / minute;
+
+  var result;
   if (monthC >= 1) {
-    if (monthC <= 12)
-      result = "" + parseInt(monthC) + "月前";
-    else {
-      result = "" + parseInt(monthC / 12) + "年前";
+    if (monthC <= 12) {
+      result = parseInt(monthC) + "月前";
+    } else {
+      result = parseInt(monthC / 12) + "年前";
     }
-  }
-  else if (weekC >= 1) {
-    result = "" + parseInt(weekC) + "周前";
-  }
-  else if (dayC >= 1) {
+  } else if (weekC >= 1) {
+    result = parseInt(weekC) + "周前";
+  } else if (dayC >= 1) {
     if (dayC < 2) {
       result = "昨天";
     } else {
-      result = "" + parseInt(dayC) + "天前";
+      result = parseInt(dayC) + "天前";
     }
-  }
-  else if (hourC >= 1) {
-    result = "" + parseInt(hourC) + "小时前";
-  }
-  else if (minC >= 1) {
-    result = "" + parseInt(minC) + "分钟前";
+  } else if (hourC >= 1) {
+    result = parseInt(hourC) + "小时前";
+  } else if (minC >= 1) {
+    result = parseInt(minC) + "分钟前";
   } else {
     result = "刚刚";
   }
   return result;
 }
 
-function getTimeDiff(dateTimeStamp) {
-  var now = getDate().getTime();
-  var diffValue = now - dateTimeStamp * 1000;
-  return diffValue;
-}
-
 function calculateDuration(startTimeStamp, statement, endTimeStamp = 0) {
   if (startTimeStamp) {
-    var diffValue
+    var diffValue;
     if (endTimeStamp != 0) {
-      diffValue = endTimeStamp - startTimeStamp
+      diffValue = endTimeStamp - startTimeStamp;
     } else {
       var now = getDate().getTime();
       diffValue = (now - startTimeStamp * 1000) / 1000;
     }
-    
-    return countDown(diffValue, statement)
+    return countDown(diffValue, statement);
   }
 }
 
@@ -92,7 +92,6 @@ module.exports = {
   format: format,
   transform: transform,
   countDown: countDown,
-  getDateDiff: getDateDiff,
-  getTimeDiff: getTimeDiff,
-  calculateDuration: calculateDuration
-}
+  timeDiff: timeDiff,
+  calculateDuration: calculateDuration,
+};
