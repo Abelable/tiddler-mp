@@ -28,7 +28,6 @@ Page({
       id || decodedScene.split("-")[0] || getQueryString(decodedQ, "id");
     this.authorId = authorId || 0;
     this.mediaScene = mediaScene
-    console.log('mediaScene', mediaScene)
 
     await this.setVideoList();
   },

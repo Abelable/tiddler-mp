@@ -25,10 +25,7 @@ Component({
         });
       },
     },
-    mediaScene: {
-      type: Number,
-      value: 1
-    }
+    mediaScene: Number
   },
 
   data: {
