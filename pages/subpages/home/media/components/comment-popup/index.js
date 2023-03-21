@@ -130,7 +130,6 @@ Component({
         inputPopupVisible: true,
       });
       this.commentIdx = index;
-      console.log(this.commentIdx)
     },
 
     finishComment(e) {
@@ -141,11 +140,12 @@ Component({
         this.setData({
           [`commentList[${this.commentIdx}]`]: {
             ...curComment,
-            repliesCount: +curComment.repliesCount,
+            repliesCount: curComment.repliesCount + 1,
             replies: [e.detail, ...curComment.replies],
           },
           commentId: 0,
           nickname: "",
+          inputPopupVisible: false,
         });
       } else {
         this.setData({
@@ -158,6 +158,7 @@ Component({
             },
             ...commentList,
           ],
+          inputPopupVisible: false,
         });
       }
 
