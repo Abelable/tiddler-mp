@@ -6,5 +6,5 @@
     <view class="anchor-name omit single-line">{{anchorInfo.nickname}}</view>
     <view class="audience-count">{{NUM.over(audienceCount, 100000)}}人观看</view>
   </view>
-  <bnttom class="follow-btn" wx:hidden="{{isLivePush}}" catchtap="toggleFollow">{{followStatus ? '订阅' : '关注'}}</bnttom>
+  <button class="follow-btn" wx:hidden="{{isLivePush}}" catchtap="toggleFollow">{{followStatus ? '订阅' : '关注'}}</button>
 </view>
