@@ -1,1 +1,1 @@
-<view class="mask" style="{{'background-color: rgba(0, 0, 0,' + opcity + '); z-index: ' + zIndex + ';'}}" />
+<view class="modal-mask" style="background: rgba(0, 0, 0, {{opcity}});" />
