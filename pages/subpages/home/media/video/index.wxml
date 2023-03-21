@@ -35,8 +35,6 @@
   videoId="{{videoList[curVideoIdx].id}}"
   authorId="{{videoList[curVideoIdx].authorInfo.id}}"
   total="{{videoList[curVideoIdx].commentsNumber}}"
-  bind:comment="showInputModal" 
-  bind:reply="reply" 
   bind:update="updateCommentsNumber"
   bind:hide="hideCommentPopup" 
 />
@@ -46,7 +44,5 @@
   wx:if="{{inputPopupVisible}}" 
   mediaType="{{2}}" 
   videoId="{{videoList[curVideoIdx].id}}" 
-  commentId="{{commentId}}" 
-  nickname="{{nickname}}" 
-  bind:hide="hideInputModal"
+  bind:finish="finishComment"
 />

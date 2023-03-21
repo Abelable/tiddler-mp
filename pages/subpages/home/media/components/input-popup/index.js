@@ -73,13 +73,13 @@ Component({
 
         case VIDEO:
           mediaService.addVideoComment(videoId, content, commentId, () => {
-
+            this.triggerEvent('finish', { content })
           });
           break;
 
         case NOTE:
           mediaService.addNoteComment(noteId, content, commentId, () => {
-            
+            this.triggerEvent('finish', { content })
           });
           break;
       }

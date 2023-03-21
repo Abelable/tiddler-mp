@@ -44,7 +44,17 @@
     </scroll-view>
 
     <view class="input-bar">
-      <view class="input-main row" catchtap="comment">说点什么...</view>
+      <view class="input-main row" catchtap="showInputModal">说点什么...</view>
     </view>
   </view>
 </popup>
+
+<modal-mask wx:if="{{inputPopupVisible}}" bindtap="hideInputModal" />
+<input-popup 
+  wx:if="{{inputPopupVisible}}" 
+  mediaType="{{mediaType}}" 
+  videoId="{{videoId}}" 
+  commentId="{{commentId}}" 
+  nickname="{{nickname}}" 
+  bind:hide="hideInputModal"
+/>

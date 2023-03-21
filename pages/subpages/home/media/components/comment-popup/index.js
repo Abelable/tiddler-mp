@@ -29,19 +29,18 @@ Component({
   data: {
     commentList: [],
     finished: false,
+    commentId: 0,
+    nickname: "",
+    inputPopupVisible: false,
   },
 
   lifetimes: {
     attached() {
-      this.init();
+      this.setCommentList(true);
     },
   },
 
   methods: {
-    init() {
-      this.setCommentList(true);
-    },
-
     loadMore() {
       this.setCommentList();
     },
@@ -120,12 +119,25 @@ Component({
       }
     },
 
-    comment() {
-      this.triggerEvent("comment");
+    showInputModal() {
+      this.setData({
+        inputPopupVisible: true
+      })
+    },
+
+    hideInputModal() {
+      this.setData({
+        inputPopupVisible: false
+      })
     },
 
     reply(e) {
-      this.triggerEvent("reply", e.detail);
+      const { commentId, nickname } = e.detail
+      this.setData({
+        commentId,
+        nickname,
+        inputPopupVisible: true
+      })
     },
 
     delete(e) {

@@ -9,8 +9,6 @@ Page({
     statusBarHeight,
     videoList: [],
     curVideoIdx: 0,
-    commentId: 0,
-    nickname: "",
     commentPopupVisible: false,
     inputPopupVisible: false,
     featurePopupVisible: false,
@@ -91,11 +89,17 @@ Page({
     });
   },
 
+  finishComment() {
+    const { videoList, curVideoIdx } = this.data
+    this.setData({
+      [`videoList[${curVideoIdx}].commentsNumber`]: ++videoList[curVideoIdx].commentsNumber,
+      inputPopupVisible: false
+    })
+  },
+
   hideInputModal() {
     this.setData({
-      inputPopupVisible: false,
-      commentId: 0,
-      nickname: "",
+      inputPopupVisible: false
     });
   },
 
