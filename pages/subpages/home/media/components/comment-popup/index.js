@@ -162,7 +162,7 @@ Component({
       }
 
       this.triggerEvent("update", {
-        commentsNumber: ++total,
+        commentsNumber: total + 1,
         curVideoIdx,
       });
     },
