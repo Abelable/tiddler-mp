@@ -34,15 +34,13 @@
   overflow-y: scroll;
 }
 
-.spread-btn {
-  display: flex;
-  align-items: center;
+.replies-btn {
   margin-top: 14rpx;
   color: #666;
   font-size: 24rpx;
   font-weight: 500;
 }
-.spread-icon {
+.arrow-icon {
   margin-left: 8rpx;
   width: 24rpx;
   height: 24rpx;

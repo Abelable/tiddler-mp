@@ -67,16 +67,23 @@ Component({
         this.page = 0;
       }
 
-      const { videoId, commentList, finished } = this.data;
+      const { videoId, finished } = this.data;
 
       if (!finished) {
         const { list = [] } =
           (await mediaService.getVideoCommentList(videoId, ++this.page)) || {};
+        const commentList = list.map((item) => ({
+          ...item,
+          replies: [],
+          repliesVisible: false,
+        }));
         this.setData({
-          commentList: init ? list : [...commentList, ...list],
+          commentList: init
+            ? commentList
+            : [...this.data.commentList, ...commentList],
         });
 
-        if (!list.length) {
+        if (!commentList.length) {
           this.setData({ finished: true });
         }
       }
@@ -88,35 +95,35 @@ Component({
         this.page = 0;
       }
 
-      const { noteId, commentList, finished } = this.data;
+      const { noteId, finished } = this.data;
 
       if (!finished) {
         const { list = [] } =
           (await mediaService.getNoteCommentList(noteId, ++this.page)) || {};
+        const commentList = list.map((item) => ({
+          ...item,
+          replies: [],
+          repliesVisible: false,
+        }));
         this.setData({
-          commentList: init ? list : [...commentList, ...list],
+          commentList: init
+            ? commentList
+            : [...this.data.commentList, ...commentList],
         });
 
-        if (!list.length) {
+        if (!commentList.length) {
           this.setData({ finished: true });
         }
       }
     },
 
-    showReply(e) {
+    async toggleRepliesVisible(e) {
       const { index } = e.currentTarget.dataset;
-      this.toggleSpread(index);
-    },
-
-    async toggleSpread(index) {
+      if (!this.replyPageArr) this.replyPageArr = [];
       if (!this.replyPageArr[index]) this.replyPageArr[index] = 0;
 
-      const {
-        id: parentId,
-        replyLists,
-        commentsNumber: replayCount,
-        replyFold,
-      } = this.data.commentList[index];
+      const { id, replies, replayCount, repliesVisble } =
+        this.data.commentList[index];
       if (replayCount > replyLists.length) {
         const { list } = await mediaService.getSecondCommentsLists({
           parentId,
@@ -142,41 +149,40 @@ Component({
     },
 
     delete(e) {
-      const { commentId, index, replyIndex, isReply } = e.detail
-      
+      const { commentId, index, replyIndex, isReply } = e.detail;
+
       switch (this.properties.mediaType) {
         case VIDEO:
           wx.showModal({
-            content: '确定删除该评论吗',
+            content: "确定删除该评论吗",
             showCancel: true,
             success: (result) => {
-              if(result.confirm){
+              if (result.confirm) {
                 mediaService.deleteVideoComment(commentId, (res) => {
-                  const total = res.data
+                  const total = res.data;
                   if (isReply) {
-                    const { replies } = this.data.commentList[index] 
-                    replies.splice(replyIndex, 1)
+                    const { replies } = this.data.commentList[index];
+                    replies.splice(replyIndex, 1);
                     this.setData({
                       total,
-                      [`commentList${index}.replies`]: replies
-                    })
+                      [`commentList${index}.replies`]: replies,
+                    });
                   } else {
-                    const { commentList } = this.data
-                    commentList.splice(index, 1)
-                    this.setData({ total, commentList })
+                    const { commentList } = this.data;
+                    commentList.splice(index, 1);
+                    this.setData({ total, commentList });
                   }
-                })
+                });
               }
-            }
+            },
           });
-          
+
           break;
 
         case NOTE:
           this.setNoteCommentList();
           break;
       }
-
     },
 
     hide() {
