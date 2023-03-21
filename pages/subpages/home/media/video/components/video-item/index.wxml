@@ -13,7 +13,7 @@
   bindloadedmetadata="setMode"
 >
   <view class="interactive-area">
-    <view class="author-avatar" catchtap="navToAuthorCenter">
+    <view class="author-avatar" catchtap="navToUserCenter">
       <image class="avatar-img avatar-default" src="{{item.authorInfo.avatar}}" lazy-load />
       <image class="follow-icon" wx:if="{{!item.isFollow}}" catchtap="followAuthor" src="./images/follow.png" />
     </view>
