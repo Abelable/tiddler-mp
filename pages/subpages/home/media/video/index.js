@@ -78,6 +78,13 @@ Page({
     });
   },
 
+  updateCommentsNumber(e) {
+    const { commentsNumber, curVideoIdx } = e.detail;
+    this.setData({
+      [`videoList[${curVideoIdx}].commentsNumber`]: commentsNumber,
+    });
+  },
+
   showInputModal() {
     this.setData({
       inputPopupVisible: true,

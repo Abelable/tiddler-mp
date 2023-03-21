@@ -19,6 +19,7 @@ Component({
 
   properties: {
     mediaType: Number,
+    curVideoIdx: Number,
     videoId: Number,
     noteId: Number,
     authorId: Number,
@@ -38,11 +39,11 @@ Component({
 
   methods: {
     init() {
-      this.setCommentList(true)
+      this.setCommentList(true);
     },
 
     loadMore() {
-      this.setCommentList()
+      this.setCommentList();
     },
 
     async setCommentList(init = false) {
@@ -54,29 +55,27 @@ Component({
       const { mediaType, videoId, noteId, commentList, finished } = this.data;
 
       if (!finished) {
-        let list
+        let list;
         switch (mediaType) {
           case VIDEO:
-            list = await mediaService.getVideoCommentList(videoId, ++this.page)
+            list = await mediaService.getVideoCommentList(videoId, ++this.page);
             break;
-  
+
           case NOTE:
-            list = await mediaService.getNoteCommentList(noteId, ++this.page)
+            list = await mediaService.getNoteCommentList(noteId, ++this.page);
             break;
         }
-         list = list.map((item) => ({
+        list = list.map((item) => ({
           ...item,
           replies: [],
           repliesVisible: false,
         }));
 
         this.setData({
-          commentList: init
-            ? list
-            : [...commentList, ...list],
+          commentList: init ? list : [...commentList, ...list],
         });
 
-        console.log(this.data.commentList)
+        console.log(this.data.commentList);
 
         if (!list.length) {
           this.setData({ finished: true });
@@ -118,36 +117,43 @@ Component({
     delete(e) {
       const { commentId, index, replyIndex, isReply } = e.detail;
 
+      wx.showModal({
+        content: "确定删除该评论吗",
+        showCancel: true,
+        success: (result) => {
+          if (result.confirm) {
+            this.deleteComment(commentId, (res) => {
+              const { commentList, curVideoIdx } = this.data;
+
+              if (isReply) {
+                const { replies } = commentList[index];
+                replies.splice(replyIndex, 1);
+                this.setData({
+                  [`commentList${index}.replies`]: replies,
+                });
+              } else {
+                commentList.splice(index, 1);
+                this.setData({ commentList });
+              }
+
+              this.triggerEvent("update", {
+                commentsNumber: res.data,
+                curVideoIdx,
+              });
+            });
+          }
+        },
+      });
+    },
+
+    deleteComment(commentId, success) {
       switch (this.properties.mediaType) {
         case VIDEO:
-          wx.showModal({
-            content: "确定删除该评论吗",
-            showCancel: true,
-            success: (result) => {
-              if (result.confirm) {
-                mediaService.deleteVideoComment(commentId, (res) => {
-                  const total = res.data;
-                  if (isReply) {
-                    const { replies } = this.data.commentList[index];
-                    replies.splice(replyIndex, 1);
-                    this.setData({
-                      total,
-                      [`commentList${index}.replies`]: replies,
-                    });
-                  } else {
-                    const { commentList } = this.data;
-                    commentList.splice(index, 1);
-                    this.setData({ total, commentList });
-                  }
-                });
-              }
-            },
-          });
-
+          mediaService.deleteVideoComment(commentId, success);
           break;
 
         case NOTE:
-          this.setNoteCommentList();
+          mediaService.deleteNoteComment(commentId, success);
           break;
       }
     },

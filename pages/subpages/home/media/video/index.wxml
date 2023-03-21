@@ -31,11 +31,13 @@
 <comment-popup 
   wx:if="{{commentPopupVisible}}"
   mediaType="{{2}}"
+  curVideoIdx="{{curVideoIdx}}"
   videoId="{{videoList[curVideoIdx].id}}"
   authorId="{{videoList[curVideoIdx].authorInfo.id}}"
   total="{{videoList[curVideoIdx].commentsNumber}}"
   bind:comment="showInputModal" 
   bind:reply="reply" 
+  bind:update="updateCommentsNumber"
   bind:hide="hideCommentPopup" 
 />
 
