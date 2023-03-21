@@ -2,8 +2,8 @@
   <view class="comment-popup">
     <view class="header row">
       <view class="title">
+        <text wx:if="{{total}}">{{total}}条</text>
         <text>评论</text>
-        <text wx:if="{{total}}">{{total}}</text>
       </view>
       <image class="close-icon" catchtap="hideModal" src="./images/close-icon.png" />
     </view>
@@ -13,19 +13,27 @@
     <scroll-view class="comment-list" bindscrolltolower="loadMore" scroll-y>
       <comment-item
         wx:for="{{commentList}}"
-        wx:key="index" 
+        wx:key="index"
+        mediaType="{{mediaType}}"
         item="{{item}}"
+        index="{{index}}"
         authorId="{{authorId}}"
         bind:reply="reply"
+        bind:delete="delete"
       >
         <comment-item
           wx:if="{{item.repliesVisible}}"
           wx:for="{{item.replies}}"
-          wx:key="index" 
-          wx:for-item="reply" 
+          wx:key="replyIndex" 
+          wx:for-index="replyIndex"
+          wx:for-item="reply"
+          mediaType="{{mediaType}}"
           item="{{reply}}"
+          index="{{index}}"
+          replyIndex="{{replyIndex}}"
           authorId="{{authorId}}"
           isReply
+          bind:delete="delete"
         />
         <view class="spread-reply-btn" wx:if="{{item.repliesCount}}" bindtap="showReply" data-index="{{index}}">
           <text>

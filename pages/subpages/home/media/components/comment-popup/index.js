@@ -114,7 +114,7 @@ Component({
       const {
         id: parentId,
         replyLists,
-        comment_num: replayCount,
+        commentsNumber: replayCount,
         replyFold,
       } = this.data.commentList[index];
       if (replayCount > replyLists.length) {
@@ -139,6 +139,44 @@ Component({
 
     reply(e) {
       this.triggerEvent("reply", e.detail);
+    },
+
+    delete(e) {
+      const { commentId, index, replyIndex, isReply } = e.detail
+      
+      switch (this.properties.mediaType) {
+        case VIDEO:
+          wx.showModal({
+            content: '确定删除该评论吗',
+            showCancel: true,
+            success: (result) => {
+              if(result.confirm){
+                mediaService.deleteVideoComment(commentId, (res) => {
+                  const total = res.data
+                  if (isReply) {
+                    const { replies } = this.data.commentList[index] 
+                    replies.splice(replyIndex, 1)
+                    this.setData({
+                      total,
+                      [`commentList${index}.replies`]: replies
+                    })
+                  } else {
+                    const { commentList } = this.data
+                    commentList.splice(index, 1)
+                    this.setData({ total, commentList })
+                  }
+                })
+              }
+            }
+          });
+          
+          break;
+
+        case NOTE:
+          this.setNoteCommentList();
+          break;
+      }
+
     },
 
     hide() {

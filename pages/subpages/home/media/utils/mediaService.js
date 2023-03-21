@@ -16,6 +16,14 @@ class LiveService extends BaseService {
     });
   }
 
+  async deleteVideoComment(id, success) {
+    return await this.post({
+      url: `${this.baseUrl}/media/short_video/delete_comment`,
+      data: { id },
+      success
+    });
+  }
+
   async getVideoCommentList(mediaId, page, limit = 10) {
     return await this.get({
       url: `${this.baseUrl}/media/short_video/comment_list`,
@@ -44,6 +52,13 @@ class LiveService extends BaseService {
       url: `${this.baseUrl}/media/tourism_note/comment_list`,
       data: { mediaId, page, limit },
       loadingTitle: "加载中...",
+    });
+  }
+
+  async deleteNoteComment(id) {
+    return await this.post({
+      url: `${this.baseUrl}/media/tourism_note/delete_comment`,
+      data: { id },
     });
   }
 

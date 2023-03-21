@@ -11,8 +11,8 @@
 }
 
 .user-avatar {
-  width: 62rpx;
-  height: 62rpx;
+  width: 68rpx;
+  height: 68rpx;
   border-radius: 50%;
 }
 .user-avatar.is-reply {
@@ -27,31 +27,40 @@
 }
 
 .user-name {
-  color: #DAB174;
-  font-size: 26rpx;
+  color: #999;
+  font-size: 24rpx;
 }
 .author-icon {
   margin-left: 22rpx;
-  width: 60rpx;
-  height: 34rpx;
+  padding: 0 8rpx;
+  height: 32rpx;
   color: #fff;
-  font-size: 24rpx;
-  text-align: center;
-  line-height: 34rpx;
+  font-size: 20rpx;
+  line-height: 1;
   background: #FE3552;
   border-radius: 4rpx;
 }
 
 .comment {
-  margin-top: 2rpx;
+  margin-top: 6rpx;
   padding-right: 80rpx;
   color: #333;
-  font-size: 30rpx;
+  font-size: 28rpx;
 }
 .date {
-  margin-top: 4rpx;
+  margin-top: 8rpx;
   color: #999;
-  font-size: 26rpx;
+  font-size: 24rpx;
+  
+}
+.reply-btn {
+  margin-left: 20rpx;
+  color: #666;
+  font-weight: 500;
+}
+.delete-icon {
+  width: 26rpx;
+  height: 26rpx;
 }
 
 .slot-wrap {
