@@ -1,7 +1,7 @@
 <swiper class="video-swiper" bindchange="changeVideo" vertical>
   <swiper-item wx:for="{{videoList}}" wx:key="index">
     <video-item
-      wx:if="{{index > curVideoIdx - 2 && index < curVideoIdx + 4}}"
+      wx:if="{{index > curVideoIdx - 2 && index < curVideoIdx + 3}}"
       item="{{item}}" 
       index="{{index}}" 
       curIdx="{{curVideoIdx}}"

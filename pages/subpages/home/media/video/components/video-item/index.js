@@ -32,10 +32,8 @@ Component({
   observers: {
     "index, curIdx": function (index, curIdx) {
       if (index === curIdx) {
-        setTimeout(() => {
-          this.player = wx.createVideoContext("video-player", this);
-          this.player.play();
-        }, 200);
+        this.player = wx.createVideoContext("video-player", this);
+        this.player.play();
       } else if (this.player) {
         this.player.pause();
       }
