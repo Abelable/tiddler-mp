@@ -29,7 +29,7 @@ Component({
   methods: {
     previewImage(e) {
       const { current } = e.currentTarget.dataset;
-      const urls = this.properties.item.imageList
+      const urls = this.properties.item.imageList;
       wx.previewImage({ current, urls });
     },
 
