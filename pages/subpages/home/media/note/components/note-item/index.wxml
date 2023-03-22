@@ -8,7 +8,7 @@
       <view class="author-name">{{item.authorInfo.nickname}}</view>
       <view class="time">{{TIME.transform(item.createdAt, 'YYYY-MM-DD')}}</view>
     </view>
-    <view class="follow-btn" wx:if="{{item.isFollow}}" bindtap="follow">+ 关注</view>
+    <view class="follow-btn" wx:if="{{!item.isFollow}}" bindtap="follow">+ 关注</view>
   </view>
   
   <swiper class="note-imgs small-dots" indicator-dots circular>
