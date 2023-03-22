@@ -41,7 +41,8 @@
       "mine/shop-management/index",
       "mine/shop-management/subpages/order-detail/index",
       "mine/shop-management/subpages/shipping/index",
-      "mine/create-video/index"
+      "mine/create-video/index",
+      "mine/create-note/index"
     ]
   }],
   "tabBar": {

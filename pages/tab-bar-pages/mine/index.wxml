@@ -69,7 +69,7 @@
           <view class="content-wrap">
             <view class="total-info row between">
               <view class="total-tips">共{{noteListTotal}}条游记</view>
-              <button class="add-btn">
+              <button class="add-btn" bindtap="navToNoteCreate">
                 <image class="add-icon" src="./images/add.png" />
                 <text>游记</text>
               </button>

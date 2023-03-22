@@ -1,0 +1,43 @@
+<view class="container">
+  <view class="card row top">
+    <textarea class="title-textarea" bindinput="setContent" placeholder="分享这一刻的心情..." />
+    <view class="cover-wrap" bindtap="editCover">
+      <image class="cover" src="{{cover}}" bindload="setTextareaHeight" mode="widthFix" />
+      <button class="cover-editor" hover-class="none">编辑封面</button>
+    </view>
+    <view class="length-desc">{{title.length}}/50</view>
+  </view>
+
+  <view class="card" style="padding-top: 0; padding-bottom: 0;">
+    <view class="list row between" wx:if="{{userInfo.shopId}}">
+      <view class="title">添加商品</view>
+      <view class="list-picker row" bindtap="showGoodsPickerPopup">
+        <text>{{pickedGoodsName? ('已选：' + pickedGoodsName) : '请选择商品'}}</text>
+        <image class="arrow" src="https://img.ubo.vip/mp/sass/mine/gray-arrow.png" />
+      </view>
+    </view>
+    <view class="list row between">
+      <view class="title row">设置私密</view>
+      <switch color="#0095fa" bindchange="toggleIsPrivate" />
+    </view>
+  </view>
+
+  <view class="card" style="padding-top: 0; padding-bottom: 0;">
+    <view class="list row between">
+      <view class="title row">显示位置</view>
+      <switch color="#0095fa" checked="{{addressVisible}}" bindchange="toggleAddressVisible" />
+    </view>
+    <view class="list row between" wx:if="{{addressVisible}}">
+      <view class="title">位置信息</view>
+      <view class="list-picker row" wx:if="{{!address}}" bindtap="openLocationSetting">
+        <text>获取位置信息</text>
+        <image class="arrow" src="https://img.ubo.vip/mp/sass/mine/gray-arrow.png" />
+      </view>
+      <input class="list-input" wx:if="{{address}}" value="{{address}}" bindinput="editAddress" />
+    </view>
+  </view>
+</view>
+
+<button class="publish-btn {{title ? 'active' : ''}}" bindtap="publish">发布</button>
+
+<goods-picker-popup show="{{goodsPickPopupVisible}}" bind:confirm="goodsPickerConfirm" bind:hide="hideGoodsPickerPopup" />

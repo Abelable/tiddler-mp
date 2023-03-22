@@ -330,5 +330,10 @@ Component({
         wx.navigateTo({ url });
       }
     },
+
+    async navToNoteCreate() {
+      const url = '/pages/subpages/mine/create-note/index';
+      wx.navigateTo({ url });
+    },
   },
 });
