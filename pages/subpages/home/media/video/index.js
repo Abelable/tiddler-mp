@@ -91,15 +91,6 @@ Page({
     });
   },
 
-  reply(e) {
-    const { commentId, nickname } = e.detail;
-    this.setData({
-      commentId,
-      nickname,
-      inputPopupVisible: true,
-    });
-  },
-
   updateCommentsNumber(e) {
     const { commentsNumber, curVideoIdx } = e.detail;
     this.setData({
@@ -152,21 +143,16 @@ Page({
   },
 
   onShareAppMessage() {
-    const { videoList, curVideoIdx, userInfo } = this.data;
-    let { id, title, cover_url: imageUrl } = videoList[curVideoIdx];
-    const path = `/pages/subpages/index/short-video/index?id=${id}&shopid=${wx.getStorageSync(
-      "myShopid"
-    )}&inviteid=${userInfo.userID}`;
+    const { videoList, curVideoIdx } = this.data;
+    const { id, title, cover: imageUrl } = videoList[curVideoIdx];
+    const path = `/pages/subpages/index/short-video/index?id=${id}`;
     return { path, title, imageUrl };
   },
 
   onShareTimeline() {
-    const { videoList, curVideoIdx, userInfo } = this.data;
-    let { id, title, cover_url: imageUrl } = videoList[curVideoIdx];
-    title = `海豹视频：${title}`;
-    const query = `id=${id}&shopid=${wx.getStorageSync("myShopid")}&inviteid=${
-      userInfo.userID
-    }`;
+    const { videoList, curVideoIdx } = this.data;
+    const { id, title, cover: imageUrl } = videoList[curVideoIdx];
+    const query = `id=${id}`;
     return { query, title, imageUrl };
   },
 });

@@ -9,7 +9,6 @@ Page({
   data: {
     statusBarHeight,
     noteList: [],
-    curNoteIdx: 0,
     commentPopupVisible: false,
     inputPopupVisible: false,
     featurePopupVisible: false,
@@ -29,26 +28,16 @@ Page({
     this.authorId = authorId ? +authorId : 0;
     this.mediaScene = +mediaScene
 
-    await this.setNoteList();
+    await this.setNoteList(true);
   },
 
-  changeNote(e) {
-    const curNoteIdx = Number(e.detail.current);
-    const { noteList } = this.data;
-
-    this.setCurMediaIdxTimeout && clearTimeout(this.setCurMediaIdxTimeout);
-    this.setCurMediaIdxTimeout = setTimeout(async () => {
-      this.setData({ curNoteIdx });
-    }, 200);
-
-    if (curNoteIdx > noteList.length - 5) this.setNoteList();
-  },
-
-  async setNoteList() {
+  async setNoteList(init) {
+    if (init) {
+      this.page = 0
+      this.finished = false
+    }
     if (!this.finished) {
-      if (!this.page) this.page = 0;
       let res
-
       switch (this.mediaScene) {
         case SCENE_MINE:
           res = await noteService.getUserNoteList({ id: this.noteId, page: ++this.page })
@@ -152,21 +141,16 @@ Page({
   },
 
   onShareAppMessage() {
-    const { noteList, curNoteIdx, userInfo } = this.data;
-    let { id, title, cover_url: imageUrl } = noteList[curNoteIdx];
-    const path = `/pages/subpages/index/short-note/index?id=${id}&shopid=${wx.getStorageSync(
-      "myShopid"
-    )}&inviteid=${userInfo.userID}`;
+    const { noteList, curNoteIdx } = this.data;
+    const { id, title, cover: imageUrl } = noteList[curNoteIdx];
+    const path = `/pages/subpages/index/short-note/index?id=${id}`;
     return { path, title, imageUrl };
   },
 
   onShareTimeline() {
-    const { noteList, curNoteIdx, userInfo } = this.data;
-    let { id, title, cover_url: imageUrl } = noteList[curNoteIdx];
-    title = `海豹视频：${title}`;
-    const query = `id=${id}&shopid=${wx.getStorageSync("myShopid")}&inviteid=${
-      userInfo.userID
-    }`;
+    const { noteList, curNoteIdx } = this.data;
+    const { id, title, cover: imageUrl } = noteList[curNoteIdx];
+    const query = `id=${id}`;
     return { query, title, imageUrl };
   },
 });
