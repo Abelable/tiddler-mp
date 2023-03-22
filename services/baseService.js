@@ -132,6 +132,34 @@ class BaseService extends Base {
     });
   }
 
+  async getUserCollectVideoList(id, page, limit = 10) {
+    return await this.get({
+      url: `${this.baseUrl}/media/short_video/collect_list`,
+      data: { id, page, limit },
+    });
+  }
+
+  async getUserCollectNoteList(id, page, limit = 10) {
+    return await this.get({
+      url: `${this.baseUrl}/media/tourism_note/collect_list`,
+      data: { id, page, limit },
+    });
+  }
+
+  async getUserLikeVideoList(id, page, limit = 10) {
+    return await this.get({
+      url: `${this.baseUrl}/media/short_video/like_list`,
+      data: { id, page, limit },
+    });
+  }
+
+  async getUserLikeNoteList(id, page, limit = 10) {
+    return await this.get({
+      url: `${this.baseUrl}/media/tourism_note/like_list`,
+      data: { id, page, limit },
+    });
+  }
+
   async getUserGoodsList(page, limit = 10) {
     return await this.get({
       url: `${this.baseUrl}/goods/user_goods_list`,

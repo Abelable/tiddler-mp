@@ -1,5 +1,5 @@
 import { getQueryString } from "../../../../../utils/index";
-import { SCENE_MINE } from '../../../../../utils/emuns/mediaScene'
+import { SCENE_MINE, SCENE_COLLECT, SCENE_LIKE } from '../../../../../utils/emuns/mediaScene'
 import VideoService from "./utils/videoService";
 
 const videoService = new VideoService();
@@ -48,14 +48,27 @@ Page({
     if (!this.finished) {
       if (!this.page) this.page = 0;
       let res
-      if (this.mediaScene === SCENE_MINE) {
-        res = await videoService.getUserVideoList({ id: this.videoId, page: ++this.page })
-      } else {
-        res = await videoService.getVideoList(
-          ++this.page,
-          this.videoId,
-          this.authorId
-        )
+
+      switch (this.mediaScene) {
+        case SCENE_MINE:
+          res = await videoService.getUserVideoList({ id: this.videoId, page: ++this.page })
+          break;
+
+        case SCENE_COLLECT:
+          res = await videoService.getUserCollectVideoList(this.videoId, ++this.page)
+          break;
+
+        case SCENE_LIKE:
+          res = await videoService.getUserLikeVideoList(this.videoId, ++this.page)
+          break;
+      
+        default:
+          res = await videoService.getVideoList(
+            ++this.page,
+            this.videoId,
+            this.authorId
+          )
+          break;
       }
       this.setData({
         videoList: [...this.data.videoList, ...res.list],
