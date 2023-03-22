@@ -9,6 +9,7 @@ Page({
   data: {
     statusBarHeight,
     noteList: [],
+    finished: false,
     commentPopupVisible: false,
     inputPopupVisible: false,
     featurePopupVisible: false,
@@ -34,9 +35,9 @@ Page({
   async setNoteList(init) {
     if (init) {
       this.page = 0
-      this.finished = false
+      this.setData({ finished: false })
     }
-    if (!this.finished) {
+    if (!this.data.finished) {
       let res
       switch (this.mediaScene) {
         case SCENE_MINE:
@@ -63,7 +64,7 @@ Page({
         noteList: [...this.data.noteList, ...res.list],
       });
       if (!res.list.length) {
-        this.finished = true
+        this.setData({ finished: true })
       }
     }
   },

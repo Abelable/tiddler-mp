@@ -5,7 +5,8 @@ class NoteService extends BaseService {
   async getNoteList(page, id = 0, authorId = 0, limit = 10) {
     return await this.get({ 
       url: `${this.baseUrl}/media/tourism_note/list` , 
-      data: cleanObject({ page, limit, id, authorId }) 
+      data: cleanObject({ page, limit, id, authorId }),
+      loadingTitle: '加载中...'
     })
   }
 
