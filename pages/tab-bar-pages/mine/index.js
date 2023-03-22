@@ -217,8 +217,8 @@ Component({
       const { collectFinished, collectMediaList } = this.data;
 
       if (!collectFinished) {
-        const list =
-          (await mineService.getUserCollectMediaList(++this.collectPage)) || [];
+        const { list = [] } =
+          (await mineService.getUserCollectMediaList(++this.collectPage)) || {};
         this.setData({
           collectMediaList: init ? list : [...collectMediaList, ...list],
         });
@@ -236,8 +236,8 @@ Component({
       const { likeFinished, likeMediaList } = this.data;
 
       if (!likeFinished) {
-        const list =
-          (await mineService.getUserLikeMediaList(++this.likePage)) || [];
+        const { list = [] } =
+          (await mineService.getUserLikeMediaList(++this.likePage)) || {};
         this.setData({
           likeMediaList: init ? list : [...likeMediaList, ...list],
         });
