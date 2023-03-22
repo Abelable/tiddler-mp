@@ -76,6 +76,11 @@ Component({
       });
     },
 
+    showCommentPopup() {
+      const { index: curNoteIdx } = this.properties 
+      this.triggerEvent("showCommentPopup", { curNoteIdx });
+    },
+
     comment() {
       checkLogin(() => {
         const { index: curNoteIdx } = this.properties 

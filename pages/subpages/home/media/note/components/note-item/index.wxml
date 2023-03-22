@@ -22,7 +22,7 @@
     <text wx:if="{{contentFold}}" style="color: #000; font-weight: bold;"> 展开</text>
   </view>
   
-  <view class="comment-wrap" wx:if="{{item.commentsNumber}}">
+  <view class="comment-wrap" wx:if="{{item.commentsNumber}}" bindtap="showCommentPopup">
     <view class="comment-list">
       <view class="comment-item" wx:for="{{item.comments}}" wx:key="index" wx:for-item="comment">
         <view class="commentator-name">{{comment.nickname}}：</view>

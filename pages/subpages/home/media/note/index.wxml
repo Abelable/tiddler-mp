@@ -3,6 +3,7 @@
   wx:key="index" 
   item="{{item}}" 
   index="{{index}}"
+  bind:showCommentPopup="showCommentPopup"
   bind:comment="showInputModal"
   bind:share="showSharePopup"
   bind:more="showFeaturePopup"
