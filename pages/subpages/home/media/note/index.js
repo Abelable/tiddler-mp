@@ -10,6 +10,7 @@ Page({
     statusBarHeight,
     noteList: [],
     finished: false,
+    curNoteIdx: 0,
     commentPopupVisible: false,
     inputPopupVisible: false,
     featurePopupVisible: false,
@@ -30,6 +31,15 @@ Page({
     this.mediaScene = +mediaScene
 
     await this.setNoteList(true);
+  },
+
+  onPullDownRefresh() {
+    this.setNoteList(true);
+    wx.stopPullDownRefresh();
+  },
+
+  onReachBottom() {
+    this.setNoteList(false);
   },
 
   async setNoteList(init) {
@@ -69,8 +79,10 @@ Page({
     }
   },
 
-  showCommentPopup() {
+  showCommentPopup(e) {
+    const { curNoteIdx } = e.detail
     this.setData({
+      curNoteIdx,
       commentPopupVisible: true,
     });
   },
@@ -81,15 +93,6 @@ Page({
     });
   },
 
-  reply(e) {
-    const { commentId, nickname } = e.detail;
-    this.setData({
-      commentId,
-      nickname,
-      inputPopupVisible: true,
-    });
-  },
-
   updateCommentsNumber(e) {
     const { commentsNumber, curNoteIdx } = e.detail;
     this.setData({
@@ -97,8 +100,10 @@ Page({
     });
   },
 
-  showInputModal() {
+  showInputModal(e) {
+    const { curNoteIdx } = e.detail
     this.setData({
+      curNoteIdx,
       inputPopupVisible: true,
     });
   },
@@ -117,8 +122,10 @@ Page({
     });
   },
 
-  showSharePopup() {
+  showSharePopup(e) {
+    const { curNoteIdx } = e.detail
     this.setData({
+      curNoteIdx,
       sharePopupVisible: true,
     });
   },
@@ -129,8 +136,10 @@ Page({
     });
   },
 
-  showFeaturePopup() {
+  showFeaturePopup(e) {
+    const { curNoteIdx } = e.detail
     this.setData({
+      curNoteIdx,
       featurePopupVisible: true,
     });
   },

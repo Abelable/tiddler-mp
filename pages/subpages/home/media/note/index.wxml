@@ -1,1 +1,29 @@
-<note-item wx:for="{{noteList}}" wx:key="index" item="{{item}}" />
+<note-item wx:for="{{noteList}}" wx:key="index" item="{{item}}" index="{{index}}" />
+
+<feature-popup 
+  wx:if="{{featurePopupVisible}}" 
+  mediaType="{{3}}"
+  isPrivate="{{noteList[curNoteIdx].isPrivate}}"
+  noteId="{{noteList[curNoteIdx].id}}" 
+  bind:hide="hideFeaturePopup" 
+/>
+<share-popup wx:if="{{sharePopupVisible}}" noteInfo="{{noteList[curNoteIdx]}}" bind:hide="hideSharePopup" />
+<comment-popup 
+  wx:if="{{commentPopupVisible}}"
+  mediaType="{{3}}"
+  curNoteIdx="{{curNoteIdx}}"
+  noteId="{{noteList[curNoteIdx].id}}"
+  authorId="{{noteList[curNoteIdx].authorInfo.id}}"
+  total="{{noteList[curNoteIdx].commentsNumber}}"
+  bind:update="updateCommentsNumber"
+  bind:hide="hideCommentPopup" 
+/>
+
+<modal-mask wx:if="{{inputPopupVisible}}" opcity="{{0}}" bindtap="hideInputModal" />
+<input-popup 
+  wx:if="{{inputPopupVisible}}" 
+  mediaType="{{3}}" 
+  noteId="{{noteList[curNoteIdx].id}}" 
+  bind:finish="finishComment"
+/>
+
