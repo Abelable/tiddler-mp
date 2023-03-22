@@ -1,6 +1,6 @@
 <wxs module="NUM" src="/utils/filters/num.wxs" />
 
-<navigator class="note-item" url="/pages/subpages/home/note/index?id={{item.id}}" hover-class="none">
+<view class="note-item" bindtap="navToNoteDetail">
   <view class="cover-wrap">
     <image class="cover" mode="widthFix" src="{{item.imageList[0]}}" />
     <view class="address-info" wx:if="{{item.address}}">
@@ -19,4 +19,4 @@
       <text>{{NUM.over(item.praiseNumber, 100000)}}</text>
     </view>
   </view>
-</navigator>
+</view>
