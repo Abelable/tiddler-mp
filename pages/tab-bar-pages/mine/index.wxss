@@ -155,11 +155,11 @@
 }
 
 .content-wrap {
-  padding: 0 20rpx;
+  padding: 20rpx;
 }
 
 .total-info {
-  padding: 20rpx 0;
+  padding-bottom: 20rpx;
 }
 .total-tips {
   color: #666;
