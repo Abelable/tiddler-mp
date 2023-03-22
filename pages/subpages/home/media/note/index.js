@@ -1,5 +1,9 @@
 import { getQueryString } from "../../../../../utils/index";
-import { SCENE_MINE, SCENE_COLLECT, SCENE_LIKE } from '../../../../../utils/emuns/mediaScene'
+import {
+  SCENE_MINE,
+  SCENE_COLLECT,
+  SCENE_LIKE,
+} from "../../../../../utils/emuns/mediaScene";
 import NoteService from "./utils/noteService";
 
 const noteService = new NoteService();
@@ -28,7 +32,7 @@ Page({
     this.noteId =
       +id || decodedScene.split("-")[0] || getQueryString(decodedQ, "id");
     this.authorId = authorId ? +authorId : 0;
-    this.mediaScene = +mediaScene
+    this.mediaScene = +mediaScene;
 
     await this.setNoteList(true);
   },
@@ -44,43 +48,49 @@ Page({
 
   async setNoteList(init) {
     if (init) {
-      this.page = 0
-      this.setData({ finished: false })
+      this.page = 0;
+      this.setData({ finished: false });
     }
     if (!this.data.finished) {
-      let res
+      let res;
       switch (this.mediaScene) {
         case SCENE_MINE:
-          res = await noteService.getUserNoteList({ id: this.noteId, page: ++this.page })
+          res = await noteService.getUserNoteList({
+            id: this.noteId,
+            page: ++this.page,
+          });
           break;
 
         case SCENE_COLLECT:
-          res = await noteService.getUserCollectNoteList(this.noteId, ++this.page)
+          res = await noteService.getUserCollectNoteList(
+            this.noteId,
+            ++this.page
+          );
           break;
 
         case SCENE_LIKE:
-          res = await noteService.getUserLikeNoteList(this.noteId, ++this.page)
+          res = await noteService.getUserLikeNoteList(this.noteId, ++this.page);
           break;
-      
+
         default:
           res = await noteService.getNoteList(
             ++this.page,
             this.noteId,
             this.authorId
-          )
+          );
           break;
       }
       this.setData({
-        noteList: [...this.data.noteList, ...res.list],
+        noteList: init ? res.list : [...this.data.noteList, ...res.list],
       });
       if (!res.list.length) {
-        this.setData({ finished: true })
+        this.setData({ finished: true });
       }
     }
   },
 
   showCommentPopup(e) {
-    const { curNoteIdx } = e.detail
+    const { curNoteIdx } = e.detail;
     this.setData({
       curNoteIdx,
       commentPopupVisible: true,
@@ -101,7 +111,7 @@ Page({
   },
 
   showInputModal(e) {
-    const { curNoteIdx } = e.detail
+    const { curNoteIdx } = e.detail;
     this.setData({
       curNoteIdx,
       inputPopupVisible: true,
@@ -109,21 +119,22 @@ Page({
   },
 
   finishComment() {
-    const { noteList, curNoteIdx } = this.data
+    const { noteList, curNoteIdx } = this.data;
     this.setData({
-      [`noteList[${curNoteIdx}].commentsNumber`]: ++noteList[curNoteIdx].commentsNumber,
-      inputPopupVisible: false
-    })
+      [`noteList[${curNoteIdx}].commentsNumber`]: ++noteList[curNoteIdx]
+        .commentsNumber,
+      inputPopupVisible: false,
+    });
   },
 
   hideInputModal() {
     this.setData({
-      inputPopupVisible: false
+      inputPopupVisible: false,
     });
   },
 
   showSharePopup(e) {
-    const { curNoteIdx } = e.detail
+    const { curNoteIdx } = e.detail;
     this.setData({
       curNoteIdx,
       sharePopupVisible: true,
@@ -137,7 +148,7 @@ Page({
   },
 
   showFeaturePopup(e) {
-    const { curNoteIdx } = e.detail
+    const { curNoteIdx } = e.detail;
     this.setData({
       curNoteIdx,
       featurePopupVisible: true,

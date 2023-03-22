@@ -60,7 +60,7 @@
 }
 
 .comment-wrap {
-  margin: 24rpx;
+  margin-top: 24rpx;
   padding: 20rpx 24rpx;
   background: #f5f6f8;
   border-radius: 20rpx;
@@ -88,6 +88,7 @@
 .btn-wrap {
   display: flex;
   align-items: center;
+  margin-top: 24rpx;
   padding: 10rpx 80rpx 24rpx 24rpx;
 }
 .comment-btn {
