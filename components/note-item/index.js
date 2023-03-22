@@ -4,6 +4,10 @@ Component({
   },
 
   properties: {
-    item: Object
+    item: Object,
+    mediaScene: {
+      type: Number,
+      value: 1
+    },
   },
 })

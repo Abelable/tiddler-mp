@@ -89,20 +89,20 @@ Page({
   },
 
   deleteImage(e) {
-    const { imageList } = this.data
-    imageList.splice(e.detail.index, 1)
-    this.setData({ imageList })
+    const { imageList } = this.data;
+    imageList.splice(e.detail.index, 1);
+    this.setData({ imageList });
   },
 
   setTitle: debounce(function (e) {
     this.setData({
-      title: e.detail.value
+      title: e.detail.value,
     });
   }, 200),
 
   setContent: debounce(function (e) {
     this.setData({
-      content: e.detail.value
+      content: e.detail.value,
     });
   }, 200),
 
@@ -152,7 +152,7 @@ Page({
     }
 
     const noteInfo = {
-      imageList: JSON.stringify(imageList),
+      imageList: JSON.stringify(imageList.map((item) => item.url)),
       title,
       content,
       isPrivate,
