@@ -24,7 +24,7 @@
   
   <view class="comment-wrap" wx:if="{{item.commentsNumber}}">
     <view class="comment-list">
-      <view class="comment-item" wx:for="{{item.commentList}}" wx:key="index" wx:for-item="comment">
+      <view class="comment-item" wx:for="{{item.comments}}" wx:key="index" wx:for-item="comment">
         <view class="commentator-name">{{comment.nickname}}：</view>
         <view class="comment-content omit single-line">{{comment.content}}</view>
       </view>
