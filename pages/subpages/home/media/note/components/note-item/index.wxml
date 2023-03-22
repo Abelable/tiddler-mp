@@ -33,20 +33,20 @@
   </view>
   
   <view class="btn-wrap">
-    <view class="comment-btn" bindtap="">
+    <view class="comment-btn" bindtap="comment">
       <image class="user-avatar avatar-default" src="{{userInfo.avatar}}" />
       <view class="comment-btn-desc">添加评论...</view>
     </view>
     <view class="other-btns">
-      <view class="btn-item">
+      <view class="btn-item" bindtap="share">
         <image class="btn-icon" src="./images/share.png" />
         <view class="btn-data">{{item.shareTimes}}</view>
       </view>
-      <view class="btn-item">
+      <view class="btn-item" bindtap="like">
         <image class="btn-icon" src="./images/heart{{item.isLike ? '-active' : ''}}.png" />
         <view class="btn-data">{{item.likeNumber}}</view>
       </view>
-      <view class="btn-item">
+      <view class="btn-item" bindtap="collect">
         <image class="btn-icon" src="./images/collection{{item.isCollected ? '-active' : ''}}.png" />
         <view class="btn-data">{{item.collectionTimes}}</view>
       </view>

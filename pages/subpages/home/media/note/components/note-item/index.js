@@ -78,12 +78,21 @@ Component({
 
     comment() {
       checkLogin(() => {
-        this.triggerEvent("comment");
+        const { index: curNoteIdx } = this.properties 
+        this.triggerEvent("comment", { curNoteIdx });
+      });
+    },
+
+    share() {
+      checkLogin(() => {
+        const { index: curNoteIdx } = this.properties 
+        this.triggerEvent("share", { curNoteIdx });
       });
     },
 
     more() {
-      this.triggerEvent("more");
+      const { index: curNoteIdx } = this.properties 
+      this.triggerEvent("more", { curNoteIdx });
     },
   }
 })
