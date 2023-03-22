@@ -7,7 +7,7 @@ const noteService = new NoteService();
 
 Component({
   options: {
-    addGlobalClass: true
+    addGlobalClass: true,
   },
 
   behaviors: [storeBindingsBehavior],
@@ -16,20 +16,21 @@ Component({
     store,
     fields: ["userInfo"],
   },
-  
+
   properties: {
     item: Object,
     index: Number,
   },
 
   data: {
-    contentFold: true
+    contentFold: true,
   },
 
   methods: {
     previewImage(e) {
-      const { current } = e.currentTarget.dataset
-      wx.previewImage({ current, urls: this.data.imgs })
+      const { current } = e.currentTarget.dataset;
+      const urls = this.properties.item.imageList
+      wx.previewImage({ current, urls });
     },
 
     follow() {
@@ -70,34 +71,36 @@ Component({
         noteService.toggleCollectStatus(id, () => {
           this.setData({
             [`item.isCollected`]: !isCollected,
-            [`item.collectionTimes`]: isCollected ? --collectionTimes : ++collectionTimes,
+            [`item.collectionTimes`]: isCollected
+              ? --collectionTimes
+              : ++collectionTimes,
           });
         });
       });
     },
 
     showCommentPopup() {
-      const { index: curNoteIdx } = this.properties 
+      const { index: curNoteIdx } = this.properties;
       this.triggerEvent("showCommentPopup", { curNoteIdx });
     },
 
     comment() {
       checkLogin(() => {
-        const { index: curNoteIdx } = this.properties 
+        const { index: curNoteIdx } = this.properties;
         this.triggerEvent("comment", { curNoteIdx });
       });
     },
 
     share() {
       checkLogin(() => {
-        const { index: curNoteIdx } = this.properties 
+        const { index: curNoteIdx } = this.properties;
         this.triggerEvent("share", { curNoteIdx });
       });
     },
 
     more() {
-      const { index: curNoteIdx } = this.properties 
+      const { index: curNoteIdx } = this.properties;
       this.triggerEvent("more", { curNoteIdx });
     },
-  }
-})
+  },
+});
