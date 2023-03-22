@@ -29,7 +29,7 @@ Page({
     this.authorId = authorId ? +authorId : 0;
     this.mediaScene = +mediaScene
 
-    await this.setVideoList();
+    this.setVideoList();
   },
 
   changeVideo(e) {

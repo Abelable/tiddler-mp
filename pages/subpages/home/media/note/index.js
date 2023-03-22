@@ -34,7 +34,7 @@ Page({
     this.authorId = authorId ? +authorId : 0;
     this.mediaScene = +mediaScene;
 
-    await this.setNoteList(true);
+    this.setNoteList(true);
   },
 
   onPullDownRefresh() {
@@ -55,10 +55,7 @@ Page({
       let res;
       switch (this.mediaScene) {
         case SCENE_MINE:
-          res = await noteService.getUserNoteList({
-            id: this.noteId,
-            page: ++this.page,
-          });
+          res = await noteService.getUserNoteList(++this.page, this.noteId);
           break;
 
         case SCENE_COLLECT:

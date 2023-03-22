@@ -124,7 +124,7 @@ class BaseService extends Base {
     });
   }
 
-  async getUserNoteList(page, limit = 10, id = 0) {
+  async getUserNoteList(page, id = 0, limit = 10) {
     return await this.get({
       url: `${this.baseUrl}/media/tourism_note/user_list`,
       data: { page, limit, id },
