@@ -1,4 +1,12 @@
-<note-item wx:for="{{noteList}}" wx:key="index" item="{{item}}" index="{{index}}" />
+<note-item 
+  wx:for="{{noteList}}" 
+  wx:key="index" 
+  item="{{item}}" 
+  index="{{index}}"
+  bind:comment="showInputModal"
+  bind:share="showSharePopup"
+  bind:more="showFeaturePopup"
+/>
 <view class="no-more-tips" wx:if="{{finished}}">～没有更多了～</view>
 
 <feature-popup 
