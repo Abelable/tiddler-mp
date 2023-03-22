@@ -2,13 +2,14 @@
 <wxs module="TIME" src="/utils/filters/time.wxs" />
 
 <view class="note-item">
-  <view class="author-info-wrap">
+  <view class="author-info-wrap row" bindtap="navToUserCenter">
     <image class="author-avatar" src="{{item.authorInfo.avatar}}" />
     <view class="name-wrap">
       <view class="author-name">{{item.authorInfo.nickname}}</view>
       <view class="time">{{TIME.transform(item.createdAt, 'YYYY-MM-DD')}}</view>
     </view>
-    <view class="follow-btn" wx:if="{{!item.isFollow}}" bindtap="follow">+ 关注</view>
+    <view class="follow-btn" wx:if="{{!item.isFollow}}" catchtap="follow">+ 关注</view>
+    <image class="more-icon" wx:if="{{userInfo.id === item.authorInfo.id}}" catchtap="more" src="./images/more.png" />
   </view>
   
   <swiper class="note-imgs small-dots" indicator-dots circular>
