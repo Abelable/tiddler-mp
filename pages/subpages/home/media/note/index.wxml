@@ -1,4 +1,5 @@
 <note-item wx:for="{{noteList}}" wx:key="index" item="{{item}}" index="{{index}}" />
+<view class="no-more-tips" wx:if="{{finished}}">～没有更多了～</view>
 
 <feature-popup 
   wx:if="{{featurePopupVisible}}" 
