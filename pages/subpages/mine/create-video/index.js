@@ -79,9 +79,8 @@ Page({
   }, 200),
 
   setTitle: debounce(function (e) {
-    this.title = e.detail.value;
     this.setData({
-      title: this.title,
+      title: e.detail.value,
     });
   }, 200),
 

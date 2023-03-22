@@ -94,6 +94,18 @@ Page({
     this.setData({ imageList })
   },
 
+  setTitle: debounce(function (e) {
+    this.setData({
+      title: e.detail.value
+    });
+  }, 200),
+
+  setContent: debounce(function (e) {
+    this.setData({
+      content: e.detail.value
+    });
+  }, 200),
+
   toggleAddressVisible(e) {
     this.setData({
       addressVisible: e.detail.value,
@@ -103,13 +115,6 @@ Page({
   editAddress: debounce(function (e) {
     this.setData({
       address: e.detail.value,
-    });
-  }, 200),
-
-  setTitle: debounce(function (e) {
-    this.title = e.detail.value;
-    this.setData({
-      title: this.title,
     });
   }, 200),
 
@@ -139,17 +144,17 @@ Page({
   },
 
   publish() {
-    const { title, cover, address, addressVisible } = this.data;
-    const { noteUrl, pickedGoodsId, longitude, latitude, isPrivate } = this;
+    const { imageList, title, content, address, addressVisible } = this.data;
+    const { pickedGoodsId, longitude, latitude, isPrivate } = this;
 
-    if (!title) {
+    if (!imageList.length || !title || !content) {
       return;
     }
 
     const noteInfo = {
+      imageList: JSON.stringify(imageList),
       title,
-      cover,
-      noteUrl,
+      content,
       isPrivate,
       goodsId: pickedGoodsId,
       longitude: addressVisible ? longitude : 0,
