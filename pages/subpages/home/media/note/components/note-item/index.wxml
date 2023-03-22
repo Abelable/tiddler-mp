@@ -19,7 +19,7 @@
   
   <view class="content">
     <text>{{contentFold ? STRING.slice(item.content || '', 50) : item.content}}</text>
-    <text wx:if="{{contentFold}}" style="color: #000; font-weight: bold;"> 展开</text>
+    <text wx:if="{{item.content.length > 50}}" bindtap="toggleContentFold" style="color: #000; font-weight: bold;"> {{contentFold ? '展开' : '收起'}}</text>
   </view>
   
   <view class="comment-wrap" wx:if="{{item.commentsNumber}}" bindtap="showCommentPopup">

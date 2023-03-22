@@ -33,6 +33,12 @@ Component({
       wx.previewImage({ current, urls });
     },
 
+    toggleContentFold() {
+      this.setData({
+        contentFold: !this.data.contentFold
+      })
+    },
+
     follow() {
       checkLogin(() => {
         const { id } = this.properties.item.authorInfo;
