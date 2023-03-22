@@ -1,14 +1,28 @@
 <view class="container">
-  <view class="card row top">
-    <textarea class="title-textarea" bindinput="setContent" placeholder="分享这一刻的心情..." />
-    <view class="cover-wrap" bindtap="editCover">
-      <image class="cover" src="{{cover}}" bindload="setTextareaHeight" mode="widthFix" />
-      <button class="cover-editor" hover-class="none">编辑封面</button>
+  <view class="card">
+    <view class="title">上传图片</view>
+    <view style="margin-top: 24rpx;">
+      <van-uploader 
+        file-list="{{imageList}}" 
+        bind:after-read="uploadImage" 
+        bind:delete="deleteImage" 
+        accept="image" 
+        max-count="10" 
+        deletable 
+      />
     </view>
-    <view class="length-desc">{{title.length}}/50</view>
+  </view>
+
+  <view class="card">
+    <view class="title">游记内容</view>
+    <textarea class="title-textarea" bindinput="setContent" placeholder="分享这一刻的心情..." />
   </view>
 
   <view class="card" style="padding-top: 0; padding-bottom: 0;">
+    <view class="list row between">
+      <view class="title row">游记标题</view>
+      <input class="list-input" placeholder="有趣的标题更吸引人哦～" bindinput="setTitle" />
+    </view>
     <view class="list row between" wx:if="{{userInfo.shopId}}">
       <view class="title">添加商品</view>
       <view class="list-picker row" bindtap="showGoodsPickerPopup">
@@ -38,6 +52,6 @@
   </view>
 </view>
 
-<button class="publish-btn {{title ? 'active' : ''}}" bindtap="publish">发布</button>
+<button class="publish-btn {{(imageList.length && content && title) ? 'active' : ''}}" bindtap="publish">发布</button>
 
 <goods-picker-popup show="{{goodsPickPopupVisible}}" bind:confirm="goodsPickerConfirm" bind:hide="hideGoodsPickerPopup" />

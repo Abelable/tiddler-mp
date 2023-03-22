@@ -89,6 +89,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "创建游记",
+          "pathName": "pages/subpages/mine/create-note/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

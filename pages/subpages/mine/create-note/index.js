@@ -9,8 +9,9 @@ const noteService = new NoteService();
 
 Page({
   data: {
+    imageList: [],
     title: "",
-    cover: "",
+    content: "",
     address: "",
     addressVisible: true,
     pickedGoodsName: "",
@@ -58,6 +59,41 @@ Page({
     });
   },
 
+  async uploadImage(e) {
+    const { index, file } = e.detail;
+    this.setData({
+      imageList: [
+        ...this.data.imageList,
+        { status: "uploading", message: "上传中", deletable: true },
+      ],
+    });
+    const url = (await noteService.uploadFile(file.url)) || "";
+    if (url) {
+      this.setData({
+        [`imageList[${index}]`]: {
+          ...this.data.imageList[index],
+          status: "done",
+          message: "上传成功",
+          url,
+        },
+      });
+    } else {
+      this.setData({
+        [`imageList[${index}]`]: {
+          ...this.data.imageList[index],
+          status: "fail",
+          message: "上传失败",
+        },
+      });
+    }
+  },
+
+  deleteImage(e) {
+    const { imageList } = this.data
+    imageList.splice(e.detail.index, 1)
+    this.setData({ imageList })
+  },
+
   toggleAddressVisible(e) {
     this.setData({
       addressVisible: e.detail.value,
@@ -76,14 +112,6 @@ Page({
       title: this.title,
     });
   }, 200),
-
-  async editCover() {
-    const { tempFilePaths } = (await noteService.chooseImage(1)) || {};
-    if (tempFilePaths) {
-      const cover = (await noteService.uploadFile(tempFilePaths[0])) || "";
-      this.setData({ cover });
-    }
-  },
 
   showGoodsPickerPopup() {
     this.setData({
