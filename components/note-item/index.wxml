@@ -2,7 +2,7 @@
 
 <view class="note-item" bindtap="navToNoteDetail">
   <view class="cover-wrap">
-    <image class="cover" mode="widthFix" src="{{item.imageList[0]}}" lazy-load />
+    <image class="cover" src="{{item.imageList[0]}}" mode="widthFix" lazy-load />
     <view class="private-tag row" wx:if="{{item.isPrivate}}">
       <image class="private-icon" src="/images/private-icon.png" />
       <text>私密</text>
