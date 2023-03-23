@@ -4,8 +4,11 @@
   item="{{item}}" 
   index="{{index}}"
   bind:showCommentPopup="showCommentPopup"
+  bind:follow="follow"
   bind:comment="showInputModal"
   bind:share="showSharePopup"
+  bind:like="like"
+  bind:collect="collect"
   bind:more="showFeaturePopup"
 />
 <view class="no-more-tips" wx:if="{{finished}}">～没有更多了～</view>

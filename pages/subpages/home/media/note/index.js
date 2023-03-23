@@ -115,11 +115,12 @@ Page({
     });
   },
 
-  finishComment() {
+  finishComment(e) {
     const { noteList, curNoteIdx } = this.data;
+    let { commentsNumber, comments } = noteList[curNoteIdx];
     this.setData({
-      [`noteList[${curNoteIdx}].commentsNumber`]: ++noteList[curNoteIdx]
-        .commentsNumber,
+      [`noteList[${curNoteIdx}].commentsNumber`]: ++commentsNumber,
+      [`noteList[${curNoteIdx}].comments`]: [e.detail, ...comments],
       inputPopupVisible: false,
     });
   },
@@ -155,6 +156,44 @@ Page({
   hideFeaturePopup() {
     this.setData({
       featurePopupVisible: false,
+    });
+  },
+
+  follow(e) {
+    const { curNoteIdx } = e.detail;
+    const { id } = this.data.noteList[curNoteIdx].authorInfo;
+    noteService.followAuthor(id, () => {
+      const noteList = this.data.noteList.concat.map((item) => ({
+        ...item,
+        isFollow: item.authorInfo.id === id,
+      }));
+      this.setData({ noteList });
+    });
+  },
+
+  like(e) {
+    const { curNoteIdx } = e.detail;
+    let { id, isLike, likeNumber } = this.data.noteList[curNoteIdx];
+    noteService.toggleLikeStatus(id, () => {
+      this.setData({
+        [`noteList[${curNoteIdx}].isLike`]: !isLike,
+        [`noteList[${curNoteIdx}].likeNumber`]: isLike
+          ? --likeNumber
+          : ++likeNumber,
+      });
+    });
+  },
+
+  collect(e) {
+    const { curNoteIdx } = e.detail;
+    let { id, isCollected, collectionTimes } = this.data.noteList[curNoteIdx];
+    noteService.toggleCollectStatus(id, () => {
+      this.setData({
+        [`noteList[${curNoteIdx}].isCollected`]: !isCollected,
+        [`noteList[${curNoteIdx}].collectionTimes`]: isCollected
+          ? --collectionTimes
+          : ++collectionTimes,
+      });
     });
   },
 

@@ -1,9 +1,6 @@
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
 import { store } from "../../../../../../../store/index";
 import { checkLogin } from "../../../../../../../utils/index";
-import NoteService from "../../utils/noteService";
-
-const noteService = new NoteService();
 
 Component({
   options: {
@@ -41,12 +38,8 @@ Component({
 
     follow() {
       checkLogin(() => {
-        const { id } = this.properties.item.authorInfo;
-        noteService.followAuthor(id, () => {
-          this.setData({
-            [`item.isFollow`]: true,
-          });
-        });
+        const { index: curNoteIdx } = this.properties;
+        this.triggerEvent("follow", { curNoteIdx });
       });
     },
 
@@ -61,27 +54,15 @@ Component({
 
     like() {
       checkLogin(() => {
-        let { id, isLike, likeNumber } = this.properties.item;
-        noteService.toggleLikeStatus(id, () => {
-          this.setData({
-            [`item.isLike`]: !isLike,
-            [`item.likeNumber`]: isLike ? --likeNumber : ++likeNumber,
-          });
-        });
+        const { index: curNoteIdx } = this.properties;
+        this.triggerEvent("like", { curNoteIdx });
       });
     },
 
     collect() {
       checkLogin(() => {
-        let { id, isCollected, collectionTimes } = this.properties.item;
-        noteService.toggleCollectStatus(id, () => {
-          this.setData({
-            [`item.isCollected`]: !isCollected,
-            [`item.collectionTimes`]: isCollected
-              ? --collectionTimes
-              : ++collectionTimes,
-          });
-        });
+        const { index: curNoteIdx } = this.properties;
+        this.triggerEvent("collect", { curNoteIdx });
       });
     },
 
