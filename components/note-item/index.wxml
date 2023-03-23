@@ -20,7 +20,7 @@
     </view>
     <view class="praise-info">
       <image class="praise-icon" src="/images/heart.png" />
-      <text>{{NUM.over(item.praiseNumber, 100000)}}</text>
+      <text>{{NUM.over(item.likeNumber, 100000)}}</text>
     </view>
   </view>
 </view>
