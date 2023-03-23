@@ -47,7 +47,9 @@ Component({
 
   observers: {
     srcIniting: function (truthy) {
-      !truthy && checkLogin(this.init, false);
+      !truthy && checkLogin(() => {
+        this.init()
+      }, false);
     },
   },
 
@@ -63,7 +65,9 @@ Component({
 
   pageLifetimes: {
     show() {
-      !this.inited && checkLogin(this.init, false);
+      !this.inited && checkLogin(() => {
+        this.init()
+      }, false);
     },
   },
 

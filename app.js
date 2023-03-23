@@ -15,7 +15,9 @@ App({
     if (!wx.getStorageSync('token')) {
       await baseService.login()
     }
-    checkLogin(this.init, false)
+    checkLogin(() => {
+      this.init()
+    }, false)
   },
 
   onShow() {
