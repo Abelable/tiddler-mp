@@ -1,37 +1,59 @@
 <wxs module="NUM" src="/utils/filters/num.wxs" />
 
-<view class="room {{!srcIniting ? 'show' : ''}}" bindtap="dbTap">
+<view class="room {{!srcIniting ? 'show' : ''}}">
   <player wx:if="{{!liveEnd}}" horizontal="{{roomInfo.direction === 2}}" src="{{roomInfo.playUrl || ''}}" bind:statechange="statechange">
-    <swiper class="inner-wrap" wx:if="{{userInfo}}" slot="{{fullScreen ? 'inside' : 'outside'}}">
-      <swiper-item class="inner">
-        <view class="top-part" style="padding: {{fullScreen ? 8 : statusBarHeight}}px {{fullScreen ? 30 : 8}}px 0; ">
-          <view class="anchor-capsule-wrap {{fullScreen ? 'full-screen' : ''}}">
-            <anchor-capsule anchorInfo="{{roomInfo.anchorInfo}}" isFollow="{{isFollow}}" />
-            <image style="width: 32px; height: 32px;" wx:if="{{fullScreen}}" catchtap="exitFullScreen" src="https://img.ubo.vip/mp/index/room/exit-fullscreen-icon.png" />
-          </view>
+    <swiper class="swiper" wx:if="{{userInfo}}" slot="{{fullScreen ? 'inside' : 'outside'}}">
+      <swiper-item class="inner-wrap" bindtap="dbTap">
+        <view class="praise-animation-wrap {{fullScreen ? 'full-screen' : ''}}">
+          <praise-animation count="{{praiseCount || 0}}" manual="{{manualPraise}}" />
         </view>
+        
+        <view 
+          class="inner {{roomInfo.direction === 2 ? 'horizontal' : ''}}"
+          style="top: {{roomInfo.direction === 2 ? 8 : statusBarHeight}}px;"
+        >
+          <view class="nav-bar row between">
+            <anchor-capsule anchorInfo="{{roomInfo.anchorInfo}}" isFollow="{{isFollow}}" />
+            <image 
+              class="exsit-full-screen-icon" 
+              wx:if="{{fullScreen}}" 
+              catchtap="exitFullScreen" 
+              src="https://img.ubo.vip/mp/index/room/exit-fullscreen-icon.png" 
+            />
+          </view>
 
-        <image class="full-screen-icon" style="top: {{'calc(606rpx + ' + statusBarHeight + 'px)'}};" wx:if="{{roomInfo.horizontal && !fullScreen && !audioPlayingStatus}}" catchtap="setFullScreen" src="https://img.ubo.vip/mp/index/room/request-fullscreen-icon.png" />
-
-        <view class="bottom-part {{fullScreen ? 'full-screen' : ''}}">
-          <view class="audience-action-tips {{audienceActionTips.type}} {{showAudienceActionTips ? 'show' : ''}}">{{audienceActionTips.message}}</view>
-          <comment-showcase />
-          <praise-animation class="praise-animation {{fullScreen ? 'full-screen' : ''}}" count="{{praiseCount || 0}}" manual="{{manualPraise}}" />
-          <view class="btns-wrap row">
-            <view class="input-btn row">
-              <image class="chat-icon" src="../../../images/chat.png" />
-              <text>说点什么...</text>
-            </view>
-            <view class="row">
-              <view class="feature-btn row center" catchtap="showGoodsPopup" >
-                <image class="goods-icon" src="../../../images/goods.png" />
+          <hot-goods 
+            wx:if="{{hotGoods && hotGoodsVisible}}" 
+            goodsInfo="{{hotGoods}}" 
+            bind:hide="hideHotGoods"
+          />
+  
+          <image 
+            class="full-screen-icon" 
+            wx:if="{{roomInfo.direction === 2 && !fullScreen}}" 
+            catchtap="setFullScreen" 
+            src="https://img.ubo.vip/mp/index/room/request-fullscreen-icon.png" 
+          />
+  
+          <view class="footer">
+            <view class="audience-action-tips {{audienceActionTips.type}} {{showAudienceActionTips ? 'show' : ''}}">{{audienceActionTips.message}}</view>
+            <comment-showcase />
+            <view class="btns-wrap row">
+              <view class="input-btn row">
+                <image class="chat-icon" src="../../../images/chat.png" />
+                <text>说点什么...</text>
               </view>
-              <view class="feature-btn row center" catchtap="showSharePopup" >
-                <image class="share-icon" src="../../../images/share.png" />
-              </view>
-              <view class="feature-btn row center" catchtap="praise">
-                <image class="praise-icon" hover-class="hover" hover-stop-propagation="false" src="../../../images/praise.png" />
-                <view class="praise-count" wx:if="{{praiseCount}}">{{NUM.over(praiseCount, 100000)}}</view>
+              <view class="row">
+                <view class="feature-btn row center" catchtap="showGoodsPopup" >
+                  <image class="goods-icon" src="../../../images/goods.png" />
+                </view>
+                <view class="feature-btn row center" catchtap="showSharePopup" >
+                  <image class="share-icon" src="../../../images/share.png" />
+                </view>
+                <view class="feature-btn row center" catchtap="praise">
+                  <image class="praise-icon" hover-class="hover" hover-stop-propagation="false" src="../../../images/praise.png" />
+                  <view class="praise-count" wx:if="{{praiseCount}}">{{NUM.over(praiseCount, 100000)}}</view>
+                </view>
               </view>
             </view>
           </view>

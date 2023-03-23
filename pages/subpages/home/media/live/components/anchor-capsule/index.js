@@ -39,5 +39,13 @@ Component({
         });
       });
     },
+
+    navToAnchorCenter() {
+      const { isLivePush, anchorInfo } = this.properties;
+      if (!isLivePush) {
+        const url = `?id=${anchorInfo.id}`;
+        wx.navigateTo({ url });
+      }
+    },
   },
 });

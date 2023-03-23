@@ -1,6 +1,6 @@
 <wxs module="NUM" src="/utils/filters/num.wxs" />
 
-<view class="anchor-capsule row">
+<view class="anchor-capsule row" catchtap="navToAnchorCenter">
   <image class="anchor-avatar avatar-default" src="{{anchorInfo.avatar}}" />
   <view class="anchor-capsule-content">
     <view class="anchor-name omit single-line">{{anchorInfo.nickname}}</view>

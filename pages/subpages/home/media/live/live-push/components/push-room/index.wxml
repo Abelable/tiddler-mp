@@ -19,7 +19,7 @@
     <hot-goods 
       wx:if="{{hotGoods && hotGoodsVisible}}" 
       goodsInfo="{{hotGoods}}" 
-      bind:hide="hideExplanationGoods"
+      bind:hide="hideHotGoods"
     />
 
     <count-down wx:if="{{countdownVisible && !start}}" />
