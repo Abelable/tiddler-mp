@@ -21,11 +21,19 @@
   font-size: 26rpx;
   font-weight: bold;
 }
-.time {
+.time, .address {
   color: #999;
   font-size: 20rpx;
-  font-weight: 500;
 }
+.split-spot {
+  margin: 0 6rpx;
+}
+.address-icon {
+  margin-right: 4rpx;
+  width: 18rpx;
+  height: 18rpx;
+}
+
 .follow-btn {
   display: flex;
   align-items: center;
@@ -42,6 +50,7 @@
   color: #b2b2b2;
   background: #f1f1f1;
 }
+
 .more-icon {
   width: 50rpx;
   height: 50rpx;
@@ -55,10 +64,17 @@
   height: 700rpx
 }
 
-.content {
+.title {
   padding: 0 24rpx;
   color: #333;
   font-size: 30rpx;
+  font-weight: bold;
+}
+.content {
+  margin-top: 12rpx;
+  padding: 0 24rpx;
+  color: #333;
+  font-size: 28rpx;
 }
 
 .comment-wrap {

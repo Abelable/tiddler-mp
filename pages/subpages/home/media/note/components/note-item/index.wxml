@@ -6,7 +6,14 @@
     <image class="author-avatar" src="{{item.authorInfo.avatar}}" />
     <view class="name-wrap">
       <view class="author-name">{{item.authorInfo.nickname}}</view>
-      <view class="time">{{TIME.transform(item.createdAt, 'YYYY-MM-DD')}}</view>
+      <view class="row">
+        <view class="time">{{TIME.timeDiff(item.createdAt)}}</view>
+        <view class="address row" wx:if="{{item.address}}">
+          <text class="split-spot">·</text>
+          <image class="address-icon" src="./images/address.png" />
+          <text>{{item.address}}</text>
+        </view>
+      </view>
     </view>
     <view class="follow-btn" wx:if="{{!item.isFollow}}" catchtap="follow">+ 关注</view>
     <image class="more-icon" wx:if="{{userInfo.id === item.authorInfo.id}}" catchtap="more" src="./images/more.png" />
@@ -18,6 +25,7 @@
     </swiper-item>
   </swiper>
   
+  <view class="title">{{item.title}}</view>
   <view class="content">
     <text>{{contentFold ? STRING.slice(item.content || '', 50) : item.content}}</text>
     <text wx:if="{{item.content.length > 50}}" bindtap="toggleContentFold" style="color: #000; font-weight: bold;"> {{contentFold ? '展开' : '收起'}}</text>
