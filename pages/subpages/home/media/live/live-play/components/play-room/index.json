@@ -4,7 +4,7 @@
     "anchor-capsule": "../../../components/anchor-capsule/index",
     "comment-showcase": "../../../components/comment-showcase/index",
     "praise-animation": "../../../components/praise-animation/index",
-    "live-play": "./components/live-play/index",
+    "player": "./components/player/index",
     "live-end": "./components/live-end/index",
     "live-loading": "./components/live-loading/index"
   }

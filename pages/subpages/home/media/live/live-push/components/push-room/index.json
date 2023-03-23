@@ -9,7 +9,7 @@
     "comment-showcase": "../../../components/comment-showcase/index",
     "praise-animation": "../../../components/praise-animation/index",
     "hot-goods": "../../../components/hot-goods/index",
-    "live-pusher": "./components/live-pusher/index",
+    "pusher": "./components/pusher/index",
     "more-features-popup": "./components/more-features-popup/index",
     "subscribe-remind-popup": "./components/subscribe-remind-popup/index",
     "beauty-popup": "./components/beauty-popup/index",
