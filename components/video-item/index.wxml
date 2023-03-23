@@ -2,7 +2,7 @@
 
 <view class="video-item" bindtap="navToVideoDetail">
   <view class="cover-wrap">
-    <image class="cover {{overSize ? 'over-size' : ''}}" src="{{item.cover}}" bindload="observe" mode="{{overSize ? 'aspectFill' : 'widthFix'}}" lazy-load />
+    <image class="cover" src="{{item.cover}}" mode="widthFix" lazy-load />
     <view class="private-tag row" wx:if="{{item.isPrivate}}">
       <image class="private-icon" src="./images/private-icon.png" />
       <text>私密</text>
