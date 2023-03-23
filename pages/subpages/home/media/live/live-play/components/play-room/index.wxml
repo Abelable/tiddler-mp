@@ -1,7 +1,7 @@
 <wxs module="NUM" src="/utils/filters/num.wxs" />
 
 <view class="room {{!srcIniting ? 'show' : ''}}" bindtap="dbTap">
-  <live-player wx:if="{{!liveEnd}}" horizontal="{{roomInfo.direction === 2}}" src="{{roomInfo.playUrl}}" bind:statechange="statechange">
+  <live-play wx:if="{{!liveEnd}}" horizontal="{{roomInfo.direction === 2}}" src="{{roomInfo.playUrl || ''}}" bind:statechange="statechange">
     <swiper class="inner-wrap" wx:if="{{userInfo}}" slot="{{fullScreen ? 'inside' : 'outside'}}">
       <swiper-item class="inner">
         <view class="top-part" style="padding: {{fullScreen ? 8 : statusBarHeight}}px {{fullScreen ? 30 : 8}}px 0; ">
@@ -40,7 +40,7 @@
       <swiper-item></swiper-item>
     </swiper>
     <button class="login-btn" wx:else catchtap="login" slot="outside">登录参与直播互动</button>
-  </live-player>
+  </live-play>
 
   <!-- 双击爱心 -->
   <image class="praise-heart" style="{{item.style}}" wx:for="{{praiseHeartArr}}" wx:key="index" src="{{item.url}}" />
