@@ -13,7 +13,21 @@ Component({
     },
   },
 
+  data: {
+    overSize: false
+  },
+
   methods: {
+    observe() {
+      const query = this.createSelectorQuery();
+      query.select(".cover").boundingClientRect();
+      query.exec((res) => {
+        if (res[0].height > 240) {
+          this.setData({ overSize: true })
+        }
+      });
+    },
+
     navToVideoDetail() {
       const { item, mediaScene } = this.properties;
       const { id, authorInfo } = item;

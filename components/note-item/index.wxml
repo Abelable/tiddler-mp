@@ -2,7 +2,7 @@
 
 <view class="note-item" bindtap="navToNoteDetail">
   <view class="cover-wrap">
-    <image class="cover" mode="widthFix" src="{{item.imageList[0]}}" />
+    <image class="cover" mode="widthFix" src="{{item.imageList[0]}}" lazy-load />
     <view class="address-info" wx:if="{{item.address}}">
       <image class="address-icon" src="/images/address.png" />
       <text class="address-detail omit single-line">{{item.address}}</text>
