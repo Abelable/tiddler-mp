@@ -163,7 +163,7 @@ Page({
     const { curNoteIdx } = e.detail;
     const { id } = this.data.noteList[curNoteIdx].authorInfo;
     noteService.followAuthor(id, () => {
-      const noteList = this.data.noteList.concat.map((item) => ({
+      const noteList = this.data.noteList.map((item) => ({
         ...item,
         isFollow: item.authorInfo.id === id,
       }));

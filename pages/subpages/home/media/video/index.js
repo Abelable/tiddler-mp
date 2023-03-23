@@ -79,6 +79,44 @@ Page({
     }
   },
 
+  follow() {
+    const { videoList, curVideoIdx } = this.data
+    const { id } = videoList[curVideoIdx].authorInfo;
+    videoService.followAuthor(id, () => {
+      const list = videoList.map((item) => ({
+        ...item,
+        isFollow: item.authorInfo.id === id,
+      }));
+      this.setData({ videoList: list });
+    });
+  },
+
+  like() {
+    const { videoList, curVideoIdx } = this.data
+    let { id, isLike, likeNumber } = videoList[curVideoIdx];
+    videoService.toggleLikeStatus(id, () => {
+      this.setData({
+        [`videoList[${curVideoIdx}].isLike`]: !isLike,
+        [`videoList[${curVideoIdx}].likeNumber`]: isLike
+          ? --likeNumber
+          : ++likeNumber,
+      });
+    });
+  },
+  
+  collect() {
+    const { videoList, curVideoIdx } = this.data
+    let { id, isCollected, collectionTimes } = videoList[curVideoIdx];
+    videoService.toggleCollectStatus(id, () => {
+      this.setData({
+        [`videoList[${curVideoIdx}].isCollected`]: !isCollected,
+        [`videoList[${curVideoIdx}].collectionTimes`]: isCollected
+          ? --collectionTimes
+          : ++collectionTimes,
+      });
+    });
+  },
+
   showCommentPopup() {
     this.setData({
       commentPopupVisible: true,

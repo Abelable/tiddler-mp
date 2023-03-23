@@ -5,6 +5,7 @@
       item="{{item}}" 
       index="{{index}}" 
       curIdx="{{curVideoIdx}}"
+      bind:follow="follow"
       bind:comment="showCommentPopup"
       bind:share="showSharePopup"
       bind:more="showFeaturePopup"

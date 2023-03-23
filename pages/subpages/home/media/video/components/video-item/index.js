@@ -1,9 +1,6 @@
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
 import { store } from "../../../../../../../store/index";
 import { checkLogin } from "../../../../../../../utils/index";
-import VideoService from "../../utils/videoService";
-
-const videoService = new VideoService();
 
 Component({
   options: {
@@ -47,12 +44,7 @@ Component({
 
     followAuthor() {
       checkLogin(() => {
-        const { id } = this.properties.item.authorInfo;
-        videoService.followAuthor(id, () => {
-          this.setData({
-            [`item.isFollow`]: true,
-          });
-        });
+        this.triggerEvent("follow");
       });
     },
 
@@ -123,25 +115,13 @@ Component({
 
     like() {
       checkLogin(() => {
-        let { id, isLike, likeNumber } = this.properties.item;
-        videoService.toggleLikeStatus(id, () => {
-          this.setData({
-            [`item.isLike`]: !isLike,
-            [`item.likeNumber`]: isLike ? --likeNumber : ++likeNumber,
-          });
-        });
+        this.triggerEvent("like");
       });
     },
 
     collect() {
       checkLogin(() => {
-        let { id, isCollected, collectionTimes } = this.properties.item;
-        videoService.toggleCollectStatus(id, () => {
-          this.setData({
-            [`item.isCollected`]: !isCollected,
-            [`item.collectionTimes`]: isCollected ? --collectionTimes : ++collectionTimes,
-          });
-        });
+        this.triggerEvent("collect");
       });
     },
 
