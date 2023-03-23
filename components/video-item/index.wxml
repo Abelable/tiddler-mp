@@ -4,7 +4,7 @@
   <view class="cover-wrap">
     <image class="cover" src="{{item.cover}}" mode="widthFix" lazy-load />
     <view class="private-tag row" wx:if="{{item.isPrivate}}">
-      <image class="private-icon" src="./images/private-icon.png" />
+      <image class="private-icon" src="/images/private-icon.png" />
       <text>私密</text>
     </view>
     <view class="video-symbol">
