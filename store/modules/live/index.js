@@ -1,5 +1,6 @@
 import { action } from 'mobx-miniprogram'
 import pushRoom from './push-room/index'
+import playRoom from './play-room/index'
 
 export default {
   definitionIndex: 2,
@@ -28,4 +29,5 @@ export default {
   }),
 
   ...pushRoom,
+  ...playRoom
 }
