@@ -6,6 +6,8 @@
       index="{{index}}" 
       curIdx="{{curVideoIdx}}"
       bind:follow="follow"
+      bind:like="like"
+      bind:collect="collect"
       bind:comment="showCommentPopup"
       bind:share="showSharePopup"
       bind:more="showFeaturePopup"
