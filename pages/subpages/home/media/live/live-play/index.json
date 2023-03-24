@@ -4,8 +4,12 @@
   "navigationBarTextStyle": "white",
   "usingComponents": {
     "back-icon": "/components/back-icon-white/index",
+    "modal-mask": "/components/modal-mask/index",
+    "input-popup": "../../components/input-popup/index",
     "share-popup": "/components/share-popup/index",
     "play-room": "./components/play-room/index",
-    "live-notice": "./components/live-notice/index"
+    "live-notice": "./components/live-notice/index",
+    "goods-popup": "./components/goods-popup/index",
+    "notify-modal": "./components/notify-modal/index"
   }
 }

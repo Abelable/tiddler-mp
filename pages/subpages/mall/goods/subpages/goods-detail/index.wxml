@@ -115,7 +115,7 @@
 </view>
 
 <!-- 遮罩 -->
-<modal-mask wx:if="{{showMask}}" bindtap="hideModal" opcity="{{posterModalVisible ? 0.6 : 0.3}}" />
+<modal-mask wx:if="{{showMask}}" bindtap="hideModal" opacity="{{posterModalVisible ? 0.6 : 0.3}}" />
 
 <!-- 商品规格选择弹窗 -->
 <spec-popup

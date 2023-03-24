@@ -11,6 +11,10 @@ Page({
     statusBarHeight,
     roomList: [],
     curRoomIdx: 0,
+    inputPopupVisible: false,
+    goodsPopupVisible: false,
+    sharePopupVisible: false,
+    notifyModalVisible: false,
   },
 
   async onLoad(options) {
@@ -63,6 +67,40 @@ Page({
     this.setData({
       roomList: [...this.data.roomList, ...list],
     });
+  },
+
+  showInputPopup() {
+    this.setData({
+      inputPopupVisible: true,
+    });
+  },
+
+  showNotifyModal() {
+    this.setData({
+      notifyModalVisible: true,
+    });
+  },
+
+  hideModal() {
+    const { inputPopupVisible, notifyModalVisible } = this.data;
+    inputPopupVisible && this.setData({ inputPopupVisible: false });
+    notifyModalVisible && this.setData({ notifyModalVisible: false });
+  },
+
+  showGoodsPopup() {
+    this.setData({ goodsPopupVisible: true })
+  },
+  
+  hideGoodsPopup() {
+    this.setData({ goodsPopupVisible: false })
+  },
+
+  showSharePopup() {
+    this.setData({ sharePopupVisible: true })
+  },
+  
+  hideSharePopup() {
+    this.setData({ sharePopupVisible: false })
   },
 
   onUnload() {

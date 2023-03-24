@@ -32,7 +32,7 @@
   bind:hide="hideCommentPopup" 
 />
 
-<modal-mask wx:if="{{inputPopupVisible}}" opcity="{{0}}" bindtap="hideInputModal" />
+<modal-mask wx:if="{{inputPopupVisible}}" opacity="{{0}}" bindtap="hideInputModal" />
 <input-popup 
   wx:if="{{inputPopupVisible}}" 
   mediaType="{{3}}" 

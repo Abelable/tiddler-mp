@@ -68,7 +68,7 @@ Component({
           tim.sendLiveChatMsg(groupId, chatMsg);
           mediaService.saveLiveChatMsg(id, content, identity);
           store.setLiveMsgList(chatMsg);
-          this.triggerEvent("hide");
+          this.triggerEvent("finish");
           break;
 
         case VIDEO:

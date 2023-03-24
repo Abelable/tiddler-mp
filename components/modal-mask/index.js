@@ -1,6 +1,6 @@
 Component({
   properties: {
-    opcity: {
+    opacity: {
       type: Number,
       value: 0.3
     },

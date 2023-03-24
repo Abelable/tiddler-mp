@@ -101,7 +101,7 @@ Component({
       store.setLocalMirror("auto");
     },
 
-    showInput() {
+    shopInputPopup() {
       this.setData({
         inputPopupVisible: true,
       });

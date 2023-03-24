@@ -36,7 +36,7 @@
       <button class="start-btn" wx:if="{{!start && !countdownVisible}}" bindtap="startCountdown" hover-class="none">开始直播</button>
       
       <view class="btns-wrap row" wx:if="{{start}}">
-        <view class="input-btn row">
+        <view class="input-btn row" catchtap="shopInputPopup">
           <image class="chat-icon" src="../../../images/chat.png" />
           <text>说点什么...</text>
         </view>
@@ -74,5 +74,5 @@
 <hd-popup wx:if="{{hdPopupVisible}}" bind:hide="hideModal" />
 <subscribe-remind-popup wx:if="{{subscribeRemindPopupVisible}}" groupId="{{roomInfo.groupId}}" bind:hide="hideModal" />
 
-<modal-mask wx:if="{{inputPopupVisible}}" opcity="{{0}}" catchtap="hideModal" />
+<modal-mask wx:if="{{inputPopupVisible}}" opacity="{{0}}" catchtap="hideModal" />
 <input-popup wx:if="{{inputPopupVisible}}" roomInfo="{{roomInfo}}" identity="{{2}}" bind:hide="hideModal" />

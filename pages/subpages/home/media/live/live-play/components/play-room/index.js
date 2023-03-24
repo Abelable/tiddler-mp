@@ -36,7 +36,8 @@ Component({
     statusBarHeight,
     isLogin: true,
     isFollow: false,
-    goodsList: [],
+    hotGoods: null,
+    hotGoodsVisible: false,
     manualPraise: false, // 是否是手动点赞
     audienceActionTips: "", // 观众行为（进直播间、下单...）
     showAudienceActionTips: false, // 控制观众行为弹幕的显示隐藏
@@ -77,7 +78,7 @@ Component({
       const {
         viewersNumber,
         praiseNumber,
-        goodsList,
+        hotGoods,
         historyChatMsgList,
         isFollow,
       } = (await liveService.joinRoom(id)) || {};
@@ -90,14 +91,20 @@ Component({
             "平台依法对直播内容进行24小时巡查，倡导绿色直播，维护网络文明健康。切勿与他人私下交易，非官方活动谨慎参与，避免上当受骗。",
         },
       ]);
-      this.setData({ goodsList, isFollow });
+      if (hotGoods) {
+        this.setData({
+          hotGoods,
+
+        })
+      }
+      this.setData({ hotGoods, isFollow });
       getApp().onLiveCustomMsgReceive(this.handleCustomMsg.bind(this));
       tim.joinGroup(groupId);
       this.inited = true;
     },
 
     joinRoom() {
-      const { id, groupId } = this.properties.roomInfo;
+      const { groupId } = this.properties.roomInfo;
       getApp().globalData.im.joinGroup(groupId);
     },
 
@@ -209,18 +216,20 @@ Component({
       }
     },
 
-    showGoodsModal() {
-      this.showModal("goods");
+    showGoodsPopup() {
+      this.triggerEvent('showGoodsPopup')
     },
 
-    showInputModal() {
+    showInputPopup() {
       checkLogin(() => {
-        this.showModal("input");
+        this.triggerEvent('showInputPopup')
       });
     },
 
-    showShareModal() {
-      this.showModal("share");
+    showSharePopup() {
+      checkLogin(() => {
+        this.triggerEvent('showSharePopup')
+      });
     },
 
     login() {
