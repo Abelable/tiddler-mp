@@ -5,14 +5,14 @@
       <view class="goods-item" wx:for="{{goodsList}}" wx:key="index" catchtap="navToGoodsDetail" data-id="{{item.id}}">
         <view class="goods-img-wrap">
           <image class="goods-img" src="{{item.image}}" />
-          <view class="goods-index {{item.isHot ? 'is-hot' : ''}}">{{index + 1}}{{item.isHot ? '讲解中' : ''}}</view>
+          <view class="goods-index row {{item.isHot ? 'is-hot' : ''}}">{{index + 1}}{{item.isHot ? ' · 讲解中' : ''}}</view>
         </view>
         <view class="goods-info-wrap">
           <view class="goods-name omit">{{item.name}}</view>
           <view class="goods-stock">库存：{{item.stock}}件</view>
-          <view class="goods-price-wrap">
-            <view class="goods-price">{{item.price}}</view>
-            <view class="buy-btn">立即购买</view>
+          <view class="row between">
+            <price-unit price="{{item.price}}" fontSize="12px" integerFontSize="16px" />
+            <button class="buy-btn" hover-class="none">立即购买</button>
           </view>
         </view>
       </view>
