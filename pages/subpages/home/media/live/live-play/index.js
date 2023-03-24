@@ -14,7 +14,7 @@ Page({
     inputPopupVisible: false,
     goodsPopupVisible: false,
     sharePopupVisible: false,
-    notifyModalVisible: false,
+    subscribeModalVisible: false,
   },
 
   async onLoad(options) {
@@ -75,16 +75,16 @@ Page({
     });
   },
 
-  showNotifyModal() {
+  showSubscribeModal() {
     this.setData({
-      notifyModalVisible: true,
+      subscribeModalVisible: true,
     });
   },
 
   hideModal() {
-    const { inputPopupVisible, notifyModalVisible } = this.data;
+    const { inputPopupVisible, subscribeModalVisible } = this.data;
     inputPopupVisible && this.setData({ inputPopupVisible: false });
-    notifyModalVisible && this.setData({ notifyModalVisible: false });
+    subscribeModalVisible && this.setData({ subscribeModalVisible: false });
   },
 
   showGoodsPopup() {

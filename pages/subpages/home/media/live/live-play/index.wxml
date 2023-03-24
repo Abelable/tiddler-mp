@@ -16,7 +16,7 @@
         bind:showInputPopup="showInputPopup"
         bind:showGoodsPopup="showGoodsPopup"
         bind:showSharePopup="showSharePopup"
-        bind:showNotifyModal="showNotifyModal"
+        bind:showSubscribeModal="showSubscribeModal"
       />
       <live-notice wx:if="{{item.status === 3}}" roomInfo="{{item}}" />
     </block>
@@ -27,6 +27,6 @@
 <goods-popup wx:if="{{goodsPopupVisible}}" roomId="{{roomList[curRoomIdx].id}}" bind:hide="hideGoodsPopup" />
 <share-popup wx:if="{{sharePopupVisible}}" roomInfo="{{roomList[curRoomIdx]}}" bind:hide="hideSharePopup" />
 
-<modal-mask wx:if="{{inputPopupVisible || notifyModalVisible}}" opacity="{{inputPopupVisible ? 0 : 0.3}}" catchtap="hideModal" />
+<modal-mask wx:if="{{inputPopupVisible || subscribeModalVisible}}" opacity="{{inputPopupVisible ? 0 : 0.3}}" catchtap="hideModal" />
 <input-popup wx:if="{{inputPopupVisible}}" roomInfo="{{roomList[curRoomIdx]}}" bind:finish="hideModal" />
-<notify-modal  wx:if="{{notifyModalVisible}}" anchorId="{{roomList[curRoomIdx].anchorInfo.id}}" bind:hide="hideModal" />
+<subscribe-modal  wx:if="{{subscribeModalVisible}}" anchorId="{{roomList[curRoomIdx].anchorInfo.id}}" bind:hide="hideModal" />

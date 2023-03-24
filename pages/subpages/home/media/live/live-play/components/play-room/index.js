@@ -2,7 +2,11 @@ import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
 import { store } from "../../../../../../../../store/index";
 import { checkLogin } from "../../../../../../../../utils/index";
 import tim from "../../../../../../../../utils/tim/index";
-import { MSG_TYPE_HOT_GOODS, MSG_TYPE_LIVE_END } from "../../../utils/msgType";
+import {
+  MSG_TYPE_HOT_GOODS,
+  MSG_TYPE_LIVE_END,
+  MSG_TYPE_SUBSCRIBE_REMIND,
+} from "../../../utils/msgType";
 import LiveService from "../../../utils/liveService";
 
 const liveService = new LiveService();
@@ -148,6 +152,10 @@ Component({
           case MSG_TYPE_LIVE_END:
             const { liveDuration } = customMsg.data;
             this.setData({ liveDuration, liveEnd: true });
+            break;
+
+          case MSG_TYPE_SUBSCRIBE_REMIND:
+            this.triggerEvent("showSubscribeModal");
             break;
         }
       }

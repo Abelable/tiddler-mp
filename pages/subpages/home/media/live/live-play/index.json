@@ -10,6 +10,6 @@
     "play-room": "./components/play-room/index",
     "live-notice": "./components/live-notice/index",
     "goods-popup": "./components/goods-popup/index",
-    "notify-modal": "./components/notify-modal/index"
+    "subscribe-modal": "./components/subscribe-modal/index"
   }
 }
