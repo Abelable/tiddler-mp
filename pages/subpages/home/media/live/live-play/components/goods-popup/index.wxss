@@ -1,11 +1,4 @@
-.goods-popup {
-  padding-bottom: env(safe-area-inset-bottom);
-  background: #f5f6f7;
-}
-
-.title {
-  display: flex;
-  align-items: center;
+.popup-title {
   padding-left: 15px;
   height: 44px;
 }

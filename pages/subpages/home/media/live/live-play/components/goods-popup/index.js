@@ -3,6 +3,10 @@ import LiveService from "../../../utils/liveService";
 const liveService = new LiveService();
 
 Component({
+  options: {
+    addGlobalClass: true,
+  },
+
   properties: {
     roomId: Number,
   },
@@ -39,8 +43,10 @@ Component({
       });
     },
 
-    showGoodsDetailPopup(e) {
-      
+    navToGoodsDetail(e) {
+      const { id } = e.currentTarget.dataset;
+      const url = `/pages/subpages/mall/goods/subpages/goods-detail/index?id=${id}`;
+      wx.navigateTo({ url });
     },
 
     hide() {

@@ -39,7 +39,7 @@
             <view class="audience-action-tips {{audienceActionTips.type}} {{showAudienceActionTips ? 'show' : ''}}">{{audienceActionTips.message}}</view>
             <comment-showcase />
             <view class="btns-wrap row">
-              <view class="input-btn row" catchtap="shopInputPopup">
+              <view class="input-btn row" catchtap="showInputPopup">
                 <image class="chat-icon" src="../../../images/chat.png" />
                 <text>说点什么...</text>
               </view>
