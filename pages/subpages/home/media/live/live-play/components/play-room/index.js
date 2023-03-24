@@ -2,6 +2,7 @@ import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
 import { store } from "../../../../../../../../store/index";
 import { checkLogin } from "../../../../../../../../utils/index";
 import tim from "../../../../../../../../utils/tim/index";
+import { MSG_TYPE_HOT_GOODS, MSG_TYPE_LIVE_END } from "../../../utils/msgType";
 import LiveService from "../../../utils/liveService";
 
 const liveService = new LiveService();
@@ -20,7 +21,6 @@ Component({
       "userInfo",
       "srcIniting",
       "liveLoading",
-      "liveBreak",
       "fullScreen",
       "audienceCount",
       "praiseCount",
@@ -38,19 +38,20 @@ Component({
     isFollow: false,
     hotGoods: null,
     hotGoodsVisible: true,
-    manualPraise: false, // 是否是手动点赞
-    audienceActionTips: "", // 观众行为（进直播间、下单...）
-    showAudienceActionTips: false, // 控制观众行为弹幕的显示隐藏
-    praiseHeartArr: [], // 双击爱心
-    liveEnd: false, // 直播结束
-    liveDuration: 0, // 直播总时长
+    manualPraise: false,
+    audienceActionTips: "",
+    showAudienceActionTips: false,
+    praiseHeartArr: [],
+    liveEnd: false,
+    liveDuration: 0,
   },
 
   observers: {
     srcIniting: function (truthy) {
-      !truthy && checkLogin(() => {
-        this.init()
-      }, false);
+      !truthy &&
+        checkLogin(() => {
+          this.init();
+        }, false);
     },
   },
 
@@ -66,9 +67,10 @@ Component({
 
   pageLifetimes: {
     show() {
-      !this.inited && checkLogin(() => {
-        this.init()
-      }, false);
+      !this.inited &&
+        checkLogin(() => {
+          this.init();
+        }, false);
     },
   },
 
@@ -94,8 +96,7 @@ Component({
       if (hotGoods) {
         this.setData({
           hotGoods,
-
-        })
+        });
       }
       this.setData({ hotGoods, isFollow });
       getApp().onLiveCustomMsgReceive(this.handleCustomMsg.bind(this));
@@ -110,53 +111,44 @@ Component({
 
     handleCustomMsg(customMsg) {
       if (customMsg) {
-        const {
-          audienceCount,
-          praiseCount,
-          manualPraise,
-          showAudienceActionTips,
-          liveBreak,
-        } = this.data;
-        const { url, message } = customMsg;
-        const {
-          show_message,
-          total_time: liveDuration,
-          member_num,
-          praise_count,
-        } = message;
+        const { manualPraise, showAudienceActionTips } = this.data;
 
-        // 监听用户数量
-        if (member_num && member_num > audienceCount)
-          store.setAudienceCount(member_num);
+        switch (customMsg.type) {
+          case MSG_TYPE_JOIN_ROOM:
+            if (!showAudienceActionTips) {
+              const { nickname } = customMsg.data;
+              this.setData({
+                audienceActionTips: {
+                  type: "coming",
+                  message: `${nickname}进入直播间`,
+                },
+                showAudienceActionTips: true,
+              });
+              setTimeout(() => {
+                this.setData({ showAudienceActionTips: false });
+              }, 2000);
+            }
+            let audienceCount = store.audienceCount;
+            store.setAudienceCount(++audienceCount);
+            break;
 
-        // 监听用户操作
-        const audienceActionIndex = audienceActionTipsArr.indexOf(url);
-        if (audienceActionIndex !== -1 && !showAudienceActionTips) {
-          this.setData({
-            audienceActionTips: {
-              type: audienceActionTypeArr[audienceActionIndex],
-              message: show_message,
-            },
-            showAudienceActionTips: true,
-          });
-          setTimeout(() => {
-            this.setData({ showAudienceActionTips: false });
-          }, 2000);
-        }
+          case MSG_TYPE_PRAISE:
+            const { praiseNumber } = customMsg.data;
+            if (praiseNumber > store.praiseCount) {
+              manualPraise && this.setData({ manualPraise: false });
+              store.setPraiseCount(praiseNumber);
+            }
+            break;
 
-        // 监听点赞
-        if (praise_count && praise_count > praiseCount) {
-          manualPraise && this.setData({ manualPraise: false });
-          store.setPraiseCount(praise_count);
-        }
+          case MSG_TYPE_HOT_GOODS:
+            const { hotGoods } = customMsg.data;
+            this.setData({ hotGoods });
+            break;
 
-        // 监听直播重连
-        url === "report-openliveroom" && this.setVideoPlayingStatus(true);
-
-        // 监听直播结束
-        if (show_message === "房间已被关闭") {
-          this.setData({ liveDuration, liveEnd: true });
-          liveBreak && this.setData({ liveBreak: false });
+          case MSG_TYPE_LIVE_END:
+            const { liveDuration } = customMsg.data;
+            this.setData({ liveDuration, liveEnd: true });
+            break;
         }
       }
     },
@@ -217,22 +209,22 @@ Component({
     },
 
     hideHotGoods() {
-      this.setData({ hotGoodsVisible: false })
+      this.setData({ hotGoodsVisible: false });
     },
 
     showGoodsPopup() {
-      this.triggerEvent('showGoodsPopup')
+      this.triggerEvent("showGoodsPopup");
     },
 
     showInputPopup() {
       checkLogin(() => {
-        this.triggerEvent('showInputPopup')
+        this.triggerEvent("showInputPopup");
       });
     },
 
     showSharePopup() {
       checkLogin(() => {
-        this.triggerEvent('showSharePopup')
+        this.triggerEvent("showSharePopup");
       });
     },
 

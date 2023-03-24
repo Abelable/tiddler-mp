@@ -69,7 +69,7 @@
 </view>
 
 <!-- 直播中断 -->
-<live-loading wx:if="{{liveLoading || liveBreak}}" />
+<live-loading wx:if="{{liveLoading}}" />
 
 <!-- 直播结束 -->
 <live-end wx:if="{{liveEnd}}" anchorInfo="{{roomInfo.anchorInfo}}" liveDuration="{{liveDuration}}" />

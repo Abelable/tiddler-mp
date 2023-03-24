@@ -2,7 +2,7 @@ import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
 import { store } from "../../../../../../../../store/index";
 import tim from "../../../../../../../../utils/tim/index";
 import LiveService from "../../../utils/liveService";
-import { MSG_TYPE_JOIN_ROOM, MSG_TYPE_PRAISE } from "./utils/msgType";
+import { MSG_TYPE_JOIN_ROOM, MSG_TYPE_PRAISE } from "../../../utils/msgType";
 
 const liveService = new LiveService();
 const { statusBarHeight } = getApp().globalData.systemInfo;
@@ -236,10 +236,11 @@ Component({
         switch (customMsg.type) {
           case MSG_TYPE_JOIN_ROOM:
             if (!showAudienceActionTips) {
+              const { nickname } = customMsg.data;
               this.setData({
                 audienceActionTips: {
                   type: "coming",
-                  message: customMsg.data.message,
+                  message: `${nickname}进入直播间`,
                 },
                 showAudienceActionTips: true,
               });
