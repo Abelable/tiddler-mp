@@ -68,14 +68,11 @@
   width: 620rpx;
 }
 
-.goods {
-  display: flex;
-  align-items: center;
+.goods-tag {
   padding: 10rpx;
   height: 60rpx;
   width: fit-content;
-  font-size: 26rpx;
-  color: #fff;
+  max-width: 360rpx;
   border-radius: 8rpx;
   background-color: rgba(0, 0, 0, 0.35);
 }
@@ -84,8 +81,15 @@
   width: 40rpx;
   height: 40rpx;
 }
+.goods-name {
+  flex: 1;
+  color: #fff;
+  font-size: 26rpx;
+  line-height: 1;
+}
 
 .author-name {
+  margin-top: 12rpx;
   font-size: 32rpx;
   font-weight: 600;
   line-height: 48rpx;

@@ -134,5 +134,11 @@ Component({
     more() {
       this.triggerEvent("more");
     },
+
+    navToGoodsDetail() {
+      const { id } = this.properties.item.goodsInfo;
+      const url = `/pages/subpages/mall/goods/subpages/goods-detail/index?id=${id}`;
+      wx.navigateTo({ url });
+    },
   },
 });

@@ -52,12 +52,13 @@
 .list:last-child {
   border-bottom: none;
 }
-.list-input {
+.list-input, .list-picker {
   margin-left: 30rpx;
   flex: 1;
   text-align: right;
 }
-.list-picker {
+.list-picker-desc {
+  flex: 1;
   color: #666;
 }
 .list-icon {

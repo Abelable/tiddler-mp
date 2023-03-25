@@ -40,6 +40,10 @@
   </view>
 
   <view class="video-info">
+    <view class="goods-tag row" wx:if="{{item.goodsInfo}}" catchtap="navToGoodsDetail" data-id="{{item.goodsInfo.id}}">
+      <image class="goods-icon" src="https://img.ubo.vip/mp/index/short-video/goods.png" />
+      <text class="goods-name omit single-line">{{item.goodsInfo.name}}</text>
+    </view>
     <view class="author-name" catchtap="navToPersonalCenter">@{{item.authorInfo.nickname}}</view>
     <view class="address" wx:if="{{item.address}}">
       <image class="address-icon" src="./images/address.png" />
