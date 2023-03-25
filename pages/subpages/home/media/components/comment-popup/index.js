@@ -164,7 +164,7 @@ Component({
       this.triggerEvent("update", {
         commentsNumber: total + 1,
         curMediaIdx,
-        comment: !this.data.commentId ? e.detail : null
+        comment: !this.data.commentId ? e.detail : null,
       });
     },
 
@@ -180,10 +180,11 @@ Component({
               const { commentList, curMediaIdx } = this.data;
 
               if (isReply) {
-                const { replies } = commentList[index];
+                const { replies, repliesCount } = commentList[index];
                 replies.splice(replyIndex, 1);
                 this.setData({
-                  [`commentList${index}.replies`]: replies,
+                  [`commentList[${index}].replies`]: replies,
+                  [`commentList[${index}].repliesCount`]: repliesCount - 1,
                 });
               } else {
                 commentList.splice(index, 1);
@@ -193,7 +194,7 @@ Component({
               this.triggerEvent("delete", {
                 commentsNumber: res.data,
                 curMediaIdx,
-                commentIdx: (!isReply && index < 8) ? index : -1
+                commentIdx: !isReply && index < 8 ? index : -1,
               });
             });
           }
