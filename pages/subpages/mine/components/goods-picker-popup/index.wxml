@@ -2,7 +2,7 @@
   <view class="goods-picker-popup">
     <scroll-view class="goods-list-wrap" bindscrolltolower="loadMore" scroll-y>
       <view class="goods-list">
-        <view class="goods-item" wx:for="{{goodsList}}" wx:key="index" bindtap="toggleChecked" data-index="{{selectedGoods}}">
+        <view class="goods-item" wx:for="{{goodsList}}" wx:key="index" bindtap="selectGoods" data-index="{{index}}">
           <image class="goods-img" src="{{item.image}}" mode="aspectFill" lazy-load />
           <view class="goods-name omit single-line">{{item.name}}</view>
           <view class="goods-price-wrap">

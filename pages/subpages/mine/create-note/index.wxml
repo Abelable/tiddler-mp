@@ -26,7 +26,7 @@
     <view class="list row between" wx:if="{{userInfo.shopId}}">
       <view class="title">添加商品</view>
       <view class="list-picker row" bindtap="showGoodsPickerPopup">
-        <text>{{pickedGoodsName? ('已选：' + pickedGoodsName) : '请选择商品'}}</text>
+        <text class="list-picker-desc omit single-line">{{pickedGoodsName? ('已选：' + pickedGoodsName) : '请选择商品'}}</text>
         <image class="arrow" src="https://img.ubo.vip/mp/sass/mine/gray-arrow.png" />
       </view>
     </view>

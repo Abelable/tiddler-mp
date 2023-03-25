@@ -37,7 +37,7 @@ Component({
       });
     },
 
-    selectedGoods(e) {
+    selectGoods(e) {
       const selectedIndex = Number(e.currentTarget.dataset.index);
       this.setData({ selectedIndex });
     },

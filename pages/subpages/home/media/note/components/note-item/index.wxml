@@ -3,7 +3,7 @@
 
 <view class="note-item">
   <view class="author-info-wrap row" bindtap="navToUserCenter">
-    <image class="author-avatar" src="{{item.authorInfo.avatar}}" />
+    <image class="author-avatar avatar-default" src="{{item.authorInfo.avatar}}" lazy-load />
     <view class="name-wrap">
       <view class="author-name">{{item.authorInfo.nickname}}</view>
       <view class="row">
