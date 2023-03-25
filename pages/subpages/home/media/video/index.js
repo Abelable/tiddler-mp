@@ -130,9 +130,9 @@ Page({
   },
 
   updateCommentsNumber(e) {
-    const { commentsNumber, curVideoIdx } = e.detail;
+    const { commentsNumber, curMediaIdx } = e.detail;
     this.setData({
-      [`videoList[${curVideoIdx}].commentsNumber`]: commentsNumber,
+      [`videoList[${curMediaIdx}].commentsNumber`]: commentsNumber,
     });
   },
 

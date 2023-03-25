@@ -34,11 +34,12 @@
 <comment-popup 
   wx:if="{{commentPopupVisible}}"
   mediaType="{{2}}"
-  curVideoIdx="{{curVideoIdx}}"
-  videoId="{{videoList[curVideoIdx].id}}"
+  curMediaIdx="{{curVideoIdx}}"
+  mediaId="{{videoList[curVideoIdx].id}}"
   authorId="{{videoList[curVideoIdx].authorInfo.id}}"
   total="{{videoList[curVideoIdx].commentsNumber}}"
   bind:update="updateCommentsNumber"
+  bind:delete="updateCommentsNumber"
   bind:hide="hideCommentPopup" 
 />
 
@@ -46,6 +47,6 @@
 <input-popup 
   wx:if="{{inputPopupVisible}}" 
   mediaType="{{2}}" 
-  videoId="{{videoList[curVideoIdx].id}}" 
+  mediaId="{{videoList[curVideoIdx].id}}" 
   bind:finish="finishComment"
 />

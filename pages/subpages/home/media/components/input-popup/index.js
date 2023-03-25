@@ -20,8 +20,7 @@ Component({
       type: Number,
       value: 1,
     },
-    videoId: Number,
-    noteId: Number,
+    mediaId: Number,
     commentId: Number,
     nickname: String,
   },
@@ -57,7 +56,7 @@ Component({
 
     // 发送消息
     async sendMessage(content) {
-      const { mediaType, roomInfo, identity, videoId, noteId, commentId } =
+      const { mediaType, roomInfo, identity, mediaId, commentId } =
         this.properties;
 
       switch (mediaType) {
@@ -72,13 +71,13 @@ Component({
           break;
 
         case VIDEO:
-          mediaService.addVideoComment(videoId, content, commentId, (res) => {
+          mediaService.addVideoComment(mediaId, content, commentId, (res) => {
             this.triggerEvent('finish', res.data)
           });
           break;
 
         case NOTE:
-          mediaService.addNoteComment(noteId, content, commentId, (res) => {
+          mediaService.addNoteComment(mediaId, content, commentId, (res) => {
             this.triggerEvent('finish', res.data)
           });
           break;

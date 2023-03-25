@@ -10,9 +10,8 @@ Component({
 
   properties: {
     mediaType: Number,
-    curVideoIdx: Number,
-    videoId: Number,
-    noteId: Number,
+    curMediaIdx: Number,
+    mediaId: Number,
     authorId: Number,
     total: Number,
   },
@@ -42,17 +41,17 @@ Component({
         this.page = 0;
       }
 
-      const { mediaType, videoId, noteId, commentList, finished } = this.data;
+      const { mediaType, mediaId, commentList, finished } = this.data;
 
       if (!finished) {
         let list;
         switch (mediaType) {
           case VIDEO:
-            list = await mediaService.getVideoCommentList(videoId, ++this.page);
+            list = await mediaService.getVideoCommentList(mediaId, ++this.page);
             break;
 
           case NOTE:
-            list = await mediaService.getNoteCommentList(noteId, ++this.page);
+            list = await mediaService.getNoteCommentList(mediaId, ++this.page);
             break;
         }
         list = list.map((item) => ({
@@ -76,14 +75,14 @@ Component({
       if (!this.replyPageArr) this.replyPageArr = [];
       if (!this.replyPageArr[index]) this.replyPageArr[index] = 0;
 
-      const { videoId, noteId, commentList } = this.data;
+      const { mediaId, commentList } = this.data;
       const { id, replies, repliesCount, repliesVisible } = commentList[index];
       if (replies.length < repliesCount) {
         let list;
         switch (this.properties.mediaType) {
           case VIDEO:
             list = await mediaService.getVideoReplies(
-              videoId,
+              mediaId,
               id,
               ++this.replyPageArr[index]
             );
@@ -91,7 +90,7 @@ Component({
 
           case NOTE:
             list = await mediaService.getNoteReplies(
-              noteId,
+              mediaId,
               id,
               ++this.replyPageArr[index]
             );
@@ -133,7 +132,7 @@ Component({
     },
 
     finishComment(e) {
-      const { total, curVideoIdx, commentList } = this.data;
+      const { mediaType, total, curMediaIdx, commentList } = this.data;
 
       if (this.data.commentId) {
         const curComment = commentList[this.commentIdx];
@@ -164,7 +163,8 @@ Component({
 
       this.triggerEvent("update", {
         commentsNumber: total + 1,
-        curVideoIdx,
+        curMediaIdx,
+        comment: !this.data.commentId ? e.detail : null
       });
     },
 
@@ -177,7 +177,7 @@ Component({
         success: (result) => {
           if (result.confirm) {
             this.deleteComment(commentId, (res) => {
-              const { commentList, curVideoIdx } = this.data;
+              const { mediaType, commentList, curMediaIdx } = this.data;
 
               if (isReply) {
                 const { replies } = commentList[index];
@@ -190,9 +190,10 @@ Component({
                 this.setData({ commentList });
               }
 
-              this.triggerEvent("update", {
+              this.triggerEvent("delete", {
                 commentsNumber: res.data,
-                curVideoIdx,
+                curMediaIdx,
+                commentIdx: isReply ? index : -1
               });
             });
           }

@@ -24,11 +24,12 @@
 <comment-popup 
   wx:if="{{commentPopupVisible}}"
   mediaType="{{3}}"
-  curNoteIdx="{{curNoteIdx}}"
-  noteId="{{noteList[curNoteIdx].id}}"
+  curMediaIdx="{{curNoteIdx}}"
+  mediaId="{{noteList[curNoteIdx].id}}"
   authorId="{{noteList[curNoteIdx].authorInfo.id}}"
   total="{{noteList[curNoteIdx].commentsNumber}}"
-  bind:update="updateCommentsNumber"
+  bind:update="updateComments"
+  bind:delete="deleteComment"
   bind:hide="hideCommentPopup" 
 />
 
@@ -36,7 +37,7 @@
 <input-popup 
   wx:if="{{inputPopupVisible}}" 
   mediaType="{{3}}" 
-  noteId="{{noteList[curNoteIdx].id}}" 
+  mediaId="{{noteList[curNoteIdx].id}}" 
   bind:finish="finishComment"
 />
 

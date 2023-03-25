@@ -15,12 +15,18 @@ Component({
   },
 
   properties: {
-    item: Object,
+    item: {
+      type: Object,
+      observer({ comments = [] }) {
+        this.setData({ comments: comments.slice(0, 2) });
+      },
+    },
     index: Number,
   },
 
   data: {
     contentFold: true,
+    comments: [],
   },
 
   methods: {

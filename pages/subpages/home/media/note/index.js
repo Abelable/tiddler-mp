@@ -100,11 +100,33 @@ Page({
     });
   },
 
-  updateCommentsNumber(e) {
-    const { commentsNumber, curNoteIdx } = e.detail;
+  updateComments(e) {
+    const { commentsNumber, curMediaIdx, comment } = e.detail;
     this.setData({
-      [`noteList[${curNoteIdx}].commentsNumber`]: commentsNumber,
+      [`noteList[${curMediaIdx}].commentsNumber`]: commentsNumber,
     });
+    if (comment) {
+      this.setData({
+        [`noteList[${curMediaIdx}].comments`]: [
+          { nickname: comment.userInfo.nickname, content: comment.content },
+          ...this.data.noteList[curMediaIdx].comments,
+        ],
+      });
+    }
+  },
+
+  deleteComment(e) {
+    const { commentsNumber, curMediaIdx, commentIdx } = e.detail;
+    const { comments } = this.data.noteList[curMediaIdx];
+    this.setData({
+      [`noteList[${curMediaIdx}].commentsNumber`]: commentsNumber,
+    });
+    if (commentIdx !== -1) {
+      comments.splice(commentIdx, 1);
+      this.setData({
+        [`noteList[${curMediaIdx}].comments`]: comments,
+      });
+    }
   },
 
   showInputModal(e) {

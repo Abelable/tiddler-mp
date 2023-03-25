@@ -69,10 +69,11 @@ class LiveService extends BaseService {
     });
   }
 
-  async deleteNoteComment(id) {
+  async deleteNoteComment(id, success) {
     return await this.post({
       url: `${this.baseUrl}/media/tourism_note/delete_comment`,
       data: { id },
+      success
     });
   }
 
