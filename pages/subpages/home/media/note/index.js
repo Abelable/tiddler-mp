@@ -116,6 +116,7 @@ Page({
   },
 
   deleteComment(e) {
+    console.log("deleteComment", e);
     const { commentsNumber, curMediaIdx, commentIdx } = e.detail;
     const { comments } = this.data.noteList[curMediaIdx];
     this.setData({
@@ -142,7 +143,10 @@ Page({
     let { commentsNumber, comments } = noteList[curNoteIdx];
     this.setData({
       [`noteList[${curNoteIdx}].commentsNumber`]: ++commentsNumber,
-      [`noteList[${curNoteIdx}].comments`]: [e.detail, ...comments],
+      [`noteList[${curNoteIdx}].comments`]: [
+        { nickname: e.detail.userInfo.nickname, content: e.detail.content },
+        ...comments,
+      ],
       inputPopupVisible: false,
     });
   },

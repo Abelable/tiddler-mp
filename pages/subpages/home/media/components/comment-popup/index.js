@@ -132,7 +132,7 @@ Component({
     },
 
     finishComment(e) {
-      const { mediaType, total, curMediaIdx, commentList } = this.data;
+      const { total, curMediaIdx, commentList } = this.data;
 
       if (this.data.commentId) {
         const curComment = commentList[this.commentIdx];
@@ -177,7 +177,7 @@ Component({
         success: (result) => {
           if (result.confirm) {
             this.deleteComment(commentId, (res) => {
-              const { mediaType, commentList, curMediaIdx } = this.data;
+              const { commentList, curMediaIdx } = this.data;
 
               if (isReply) {
                 const { replies } = commentList[index];
@@ -193,7 +193,7 @@ Component({
               this.triggerEvent("delete", {
                 commentsNumber: res.data,
                 curMediaIdx,
-                commentIdx: isReply ? index : -1
+                commentIdx: (!isReply && index < 8) ? index : -1
               });
             });
           }
