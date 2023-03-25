@@ -55,15 +55,33 @@ Component({
     },
 
     subscribe() {
-      checkLogin(() => {
-        const anchorId = this.properties.item.anchorInfo.id;
-        baseService.subscribeAnchor(anchorId, () => {
-          wx.showToast({
-            title: "预约成功",
-            icon: "none",
+      const { id } = this.properties.item.anchorInfo;
+      if (id !== store.userInfo.id) {
+        checkLogin(() => {
+          baseService.subscribeAnchor(id, () => {
+            wx.showToast({
+              title: "预约成功",
+              icon: "none",
+            });
           });
         });
-      });
+      }
+    },
+
+    navToLiveDetail() {
+      const { id, anchorInfo, status, direction } = this.properties.item;
+      let url;
+      if (anchorInfo.id === store.userInfo.id) {
+        url =
+          status === 3
+            ? "/pages/subpages/home/media/live/live-notice/index"
+            : `/pages/subpages/home/media/live/live-push/${
+                direction === 1 ? "vertical" : "horizontal"
+              }-screen/index`;
+      } else {
+        url = `/pages/subpages/home/media/live/live-play/index?id=${id}`;
+      }
+      wx.navigateTo({ url });
     },
   },
 });

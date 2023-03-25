@@ -1,7 +1,7 @@
 <wxs module="NUM" src="/utils/filters/num.wxs" />
 <wxs module="TIME" src="/utils/filters/time.wxs" />
 
-<navigator class="live-item" url="/pages/subpages/home/media/live/live-play/index?id={{item.id}}" hover-class="none">
+<view class="live-item" bindtap="navToLiveDetail">
   <image class="bg" src="{{item.cover}}" mode="aspectFill" lazy-load />
   <live-player class="active-bg {{activeBgVisible ? 'show' : ''}}" wx:if="{{active}}" src="{{item.playUrl}}" bindstatechange="statechange" autoplay muted object-fit="fillCrop" />
 
@@ -26,4 +26,4 @@
       <button class="notice-btn" wx:if="{{item.status === 3}}" bindtap="subscribe">预约</button>
     </view>
   </view>
-</navigator>
+</view>
