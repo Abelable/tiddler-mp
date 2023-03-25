@@ -116,7 +116,6 @@ Page({
   },
 
   deleteComment(e) {
-    console.log("deleteComment", e);
     const { commentsNumber, curMediaIdx, commentIdx } = e.detail;
     const { comments } = this.data.noteList[curMediaIdx];
     this.setData({
