@@ -25,6 +25,9 @@
   color: #999;
   font-size: 20rpx;
 }
+.address {
+  flex: 1;
+}
 .split-spot {
   margin: 0 6rpx;
 }
@@ -32,6 +35,9 @@
   margin-right: 4rpx;
   width: 18rpx;
   height: 18rpx;
+}
+.address-detail {
+  flex: 1;
 }
 
 .follow-btn {
@@ -52,6 +58,7 @@
 }
 
 .more-icon {
+  margin-left: 24rpx;
   width: 50rpx;
   height: 50rpx;
 }
@@ -77,9 +84,62 @@
   font-size: 28rpx;
 }
 
+.goods-info-wrap {
+  margin: 24rpx;
+  padding: 16rpx;
+  border-radius: 20rpx;
+  border: 1px solid #eee;
+}
+.goods-image-wrap {
+  position: relative;
+  font-size: 0;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+}
+.goods-image {
+  width: 100%;
+  height: 100%;
+}
+.type-tag {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0 8rpx;
+  height: 30rpx;
+  color: #fff;
+  font-size: 18rpx;
+  line-height: 1;
+  border-bottom-right-radius: 6rpx;
+  background: rgba(0, 0, 0, 0.6);
+}
+.goods-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 16rpx;
+  flex: 1;
+  height: 100rpx;
+}
+.goods-name {
+  color: #333;
+  font-size: 24rpx;
+  font-weight: bold;
+}
+.market-price {
+  margin-left: 8rpx;
+  color: #bbb;
+  font-size: 22rpx;
+  text-decoration: line-through;
+}
+.sales-volumns {
+  color: #999;
+  font-size: 22rpx;
+}
+
 .comment-wrap {
   margin: 24rpx;
-  margin-bottom: 0;
   padding: 20rpx 24rpx;
   background: #f5f6f8;
   border-radius: 20rpx;

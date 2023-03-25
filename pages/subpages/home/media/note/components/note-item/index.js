@@ -32,8 +32,8 @@ Component({
 
     toggleContentFold() {
       this.setData({
-        contentFold: !this.data.contentFold
-      })
+        contentFold: !this.data.contentFold,
+      });
     },
 
     follow() {
@@ -50,6 +50,12 @@ Component({
           url: `/pages/subpages/index/short-video/subpages/personal-center/index?id=${user_id}`,
         });
       }
+    },
+
+    navToGoodsDetail() {
+      const { id } = this.properties.item.goodsInfo;
+      const url = `/pages/subpages/mall/goods/subpages/goods-detail/index?id=${id}`;
+      wx.navigateTo({ url });
     },
 
     like() {

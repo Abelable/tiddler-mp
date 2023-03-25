@@ -11,7 +11,7 @@
         <view class="address row" wx:if="{{item.address}}">
           <text class="split-spot">·</text>
           <image class="address-icon" src="./images/address.png" />
-          <text>{{item.address}}</text>
+          <text class="address-detail omit single-line">{{item.address}}{{item.address}}{{item.address}}</text>
         </view>
       </view>
     </view>
@@ -29,6 +29,23 @@
   <view class="content">
     <text>{{contentFold ? STRING.slice(item.content || '', 50) : item.content}}</text>
     <text wx:if="{{item.content.length > 50}}" bindtap="toggleContentFold" style="color: #000; font-weight: bold;"> {{contentFold ? '展开' : '收起'}}</text>
+  </view>
+
+  <view class="goods-info-wrap row" wx:if="{{item.goodsInfo}}" bindtap="navToGoodsDetail">
+    <view class="goods-image-wrap">
+      <image class="goods-image" src="{{item.goodsInfo.image}}" />
+      <view class="type-tag row">商品</view>
+    </view>
+    <view class="goods-info">
+      <view class="goods-name omit single-line">{{item.goodsInfo.name}}</view>
+      <view class="row between baseline">
+        <view class="row baseline">
+          <price-unit price="{{item.goodsInfo.price || 0}}" fontSize="22rpx" integerFontSize="26rpx" />
+          <view class="market-price">¥{{item.goodsInfo.marketPrice}}</view>
+        </view>
+        <view class="sales-volumns">已售{{item.goodsInfo.salesVolume}}件</view>
+      </view>
+    </view>
   </view>
   
   <view class="comment-wrap" wx:if="{{item.commentsNumber}}" bindtap="showCommentPopup">
