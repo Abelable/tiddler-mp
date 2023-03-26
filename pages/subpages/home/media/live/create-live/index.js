@@ -31,13 +31,38 @@ Page({
     });
   },
 
+  onShow() {
+    if (this.uploadingCover) {
+      this.uploadCover();
+    }
+
+    if (this.uploadingShareCover) {
+      this.uploadShareCover();
+    }
+  },
+
+  cropCover() {
+    this.uploadingCover = true;
+    wx.navigateTo({
+      url: "/pages/subpages/common/cropper/index?height=375",
+    });
+  },
+
+  cropShareCover() {
+    this.uploadingShareCover = true;
+    wx.navigateTo({
+      url: "/pages/subpages/common/cropper/index",
+    });
+  },
+
   async uploadCover() {
     if (!this.data.uploadCoverLoading) {
       this.setData({ uploadCoverLoading: true });
-      const { tempFilePaths } = (await liveService.chooseImage(1)) || {};
-      if (tempFilePaths) {
-        const cover = await liveService.uploadFile(tempFilePaths[0]);
+      if (store.croppedImagePath) {
+        const cover = await liveService.uploadFile(store.croppedImagePath);
         this.setData({ cover });
+        store.setCroppedImagePath("");
+        this.uploadingCover = false
       }
       this.setData({ uploadCoverLoading: false });
     }
@@ -46,10 +71,11 @@ Page({
   async uploadShareCover() {
     if (!this.data.uploadShareCoverLoading) {
       this.setData({ uploadShareCoverLoading: true });
-      const { tempFilePaths } = (await liveService.chooseImage(1)) || {};
-      if (tempFilePaths) {
-        const shareCover = await liveService.uploadFile(tempFilePaths[0]);
+      if (store.croppedImagePath) {
+        const shareCover = await liveService.uploadFile(store.croppedImagePath);
         this.setData({ shareCover });
+        store.setCroppedImagePath("");
+        this.uploadingShareCover = false;
       }
       this.setData({ uploadShareCoverLoading: false });
     }

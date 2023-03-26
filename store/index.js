@@ -8,6 +8,7 @@ export const store = observable({
   tabType: 'home',
   userInfo: null,
   activeMediaItem: null,
+  croppedImagePath: '',
   
   setTabType: action(function (type) {
     this.tabType = type
@@ -17,6 +18,9 @@ export const store = observable({
   }),
   setActiveMediaItem: action(function (info) {
     this.activeMediaItem = info
+  }),
+  setCroppedImagePath: action(function (path) {
+    this.croppedImagePath = path
   }),
 
   ...tim,

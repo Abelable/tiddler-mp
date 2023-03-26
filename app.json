@@ -11,6 +11,7 @@
       "common/user-center/index",
       "common/webview/index",
       "common/pay/index",
+      "common/cropper/index",
       "home/sign-in/index",
       "home/search/index",
       "home/media/live/create-live/index",
