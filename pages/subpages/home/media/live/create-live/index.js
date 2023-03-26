@@ -44,7 +44,7 @@ Page({
   cropCover() {
     this.uploadingCover = true;
     wx.navigateTo({
-      url: "/pages/subpages/common/cropper/index?height=375",
+      url: "/pages/subpages/common/cropper/index?height=300",
     });
   },
 

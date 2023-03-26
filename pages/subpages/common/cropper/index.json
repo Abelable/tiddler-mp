@@ -1,9 +1,7 @@
 {
-  "navigationBarTitleText": "图片剪切",
   "disableScroll": true,
-  "navigationBarBackgroundColor": "#000000",
+  "navigationStyle": "custom",
   "navigationBarTextStyle": "white",
-  "backgroundColor": "#000000",
   "usingComponents": {
     "image-cropper": "./components/image-cropper/index"
   }

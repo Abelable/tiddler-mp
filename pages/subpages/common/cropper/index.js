@@ -3,8 +3,7 @@ import { store } from "../../../../store/index";
 Page({
   data: {
     src: "",
-    height: 250,
-    exportScale: 3,
+    height: 200,
   },
 
   onLoad({ height }) {

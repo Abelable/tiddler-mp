@@ -3,19 +3,14 @@
   imgSrc="{{src}}" 
   bindimageload="loadimage" 
   bindtapcut="clickcut" 
-  width="250" 
   height="{{height}}" 
-  max_width="300" 
-  max_height="300" 
   limit_move
   disable_width
   disable_height
   disable_rotate
-  disable_ratio="{{false}}"
-  export_scale="{{exportScale}}"
 />
 
-<view class='btn-wrap'>
-  <view class="cancel-btn" bindtap='cancel'>取消</view>
-  <view class="confirm-btn" bindtap='submit'>确定</view>
+<view class="btn-wrap row between">
+  <button class="cancel-btn" bindtap='cancel' hover-class="none">取消</button>
+  <button class="confirm-btn" bindtap='submit' hover-class="none">确定</button>
 </view>
