@@ -11,7 +11,7 @@
         <view class="address row" wx:if="{{item.address}}">
           <text class="split-spot">·</text>
           <image class="address-icon" src="./images/address.png" />
-          <text class="address-detail omit single-line">{{item.address}}{{item.address}}{{item.address}}</text>
+          <text class="address-detail omit single-line">{{item.address}}</text>
         </view>
       </view>
     </view>
