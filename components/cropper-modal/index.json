@@ -1,6 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "image-cropper": "./components/image-cropper/index"
-  }
-}
