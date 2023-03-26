@@ -36,16 +36,16 @@
   height: 30rpx;
 }
 .info {
-  margin: 0 24rpx;
+  margin: 0 16rpx;
   flex: 1;
 }
 .shop-name {
   color: #333;
-  font-size: 30rpx;
+  font-size: 28rpx;
   font-weight: 550;
 }
 .authentication {
-  margin-top: 16rpx;
+  margin-top: 8rpx;
   padding: 0 16rpx;
   height: 32rpx;
   width: fit-content;
