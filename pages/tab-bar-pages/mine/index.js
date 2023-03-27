@@ -309,6 +309,12 @@ Component({
       this.scrollTop = e.scrollTop;
     },
 
+    navToSetting() {
+      wx.navigateTo({
+        url: "/pages/subpages/mine/setting/index",
+      });
+    },
+
     async navToLive() {
       const statusInfo = await mineService.getRoomStatus();
       if (!statusInfo) {
@@ -336,7 +342,7 @@ Component({
     },
 
     async navToNoteCreate() {
-      const url = '/pages/subpages/mine/create-note/index';
+      const url = "/pages/subpages/mine/create-note/index";
       wx.navigateTo({ url });
     },
   },

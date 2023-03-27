@@ -34,8 +34,8 @@
   border: 0.5px solid rgba(255,255,255,0.3);
 }
 .setting {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
 }
 .mine-avatar {
   margin-left: 8px;

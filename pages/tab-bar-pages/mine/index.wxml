@@ -3,7 +3,7 @@
 <view class="nav-bar row" style="padding-top: {{statusBarHeight}}px;">
   <image class="nav-bg" wx:if="{{navBarVisible}}" src="{{userInfo.bg || 'https://img.ubo.vip/tiddler/bg.jpg'}}" />
   <view class="bg-cover" wx:if="{{navBarVisible}}" />
-  <view class="setting-wrap row center">
+  <view class="setting-wrap row center" bindtap="navToSetting">
     <image class="setting" src="./images/setting.png" />
   </view>
   <image class="mine-avatar" wx:if="{{navBarVisible}}" src="{{userInfo.avatar}}" />
