@@ -1,12 +1,12 @@
-import { checkLogin } from "../../../../utils/index";
-import BaseService from "../../../../services/baseService";
+import { checkLogin } from "../../../../../utils/index";
+import MediaService from "../utils/mediaService";
 import {
   SCENE_SWITCH_TAB,
   SCENE_REFRESH,
   SCENE_LOADMORE,
-} from "../../../../utils/emuns/listScene";
+} from "../../../../../utils/emuns/listScene";
 
-const baseService = new BaseService();
+const mediaService = new MediaService();
 const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Page({
@@ -114,7 +114,7 @@ Page({
 
     if (!videoFinished) {
       const { list = [] } =
-        (await baseService.getUserVideoList({
+        (await mediaService.getAuthorVideoList({
           page: ++this.videoPage,
           loadingTitle: "加载中...",
         })) || {};
@@ -136,7 +136,7 @@ Page({
 
     if (!noteFinished) {
       const { list = [] } =
-        (await baseService.getUserNoteList(++this.notePage)) || {};
+        (await mediaService.getAuthorNoteList(++this.notePage)) || {};
       this.setData({
         noteList: init ? list : [...noteList, ...list],
       });

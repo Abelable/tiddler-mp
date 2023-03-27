@@ -8,7 +8,6 @@
     "root": "pages/subpages/",
     "pages": [
       "common/register/index",
-      "common/author-center/index",
       "common/webview/index",
       "common/pay/index",
       "common/cropper/index",
@@ -21,6 +20,7 @@
       "home/media/live/live-play/index",
       "home/media/note/index",
       "home/media/video/index",
+      "home/media/author-center/index",
       "mall/search/index",
       "mall/ticket/index",
       "mall/tour/index",
