@@ -46,8 +46,8 @@ class BaseService extends Base {
     return await this.get({ url: `${this.baseUrl}/tim_login_info` });
   }
 
-  async getAuthorInfo(id) {
-    return await this.get({ url: `${this.baseUrl}/author_info`, data: { id } });
+  async getAuthorInfo(authorId) {
+    return await this.get({ url: `${this.baseUrl}/author_info`, data: { authorId } });
   }
 
   async getRoomStatus() {

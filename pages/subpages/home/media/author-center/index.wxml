@@ -1,3 +1,5 @@
+<wxs module="NUM" src="/utils/filters/num.wxs" />
+
 <view class="nav-bar row" style="padding-top: {{statusBarHeight}}px;">
   <view class="nav-bg"></view>
   <image class="nav-bg" wx:if="{{navBarVisible}}" src="{{authorInfo.bg || 'https://img.ubo.vip/tiddler/bg.jpg'}}" />
@@ -17,15 +19,15 @@
       <view class="data-wrap">
         <view class="data-item">
           <view class="data-title">获赞</view>
-          <view class="data">100</view>
+          <view class="data">{{NUM.over(authorInfo.beLikedTimes, 100000)}}</view>
         </view>
         <view class="data-item">
           <view class="data-title">关注</view>
-          <view class="data">200</view>
+          <view class="data">{{NUM.over(authorInfo.followedAuthorNumber, 100000)}}</view>
         </view>
         <view class="data-item">
           <view class="data-title">粉丝</view>
-          <view class="data">36</view>
+          <view class="data">{{NUM.over(authorInfo.fansNumber, 100000)}}</view>
         </view>
       </view>
     </view>

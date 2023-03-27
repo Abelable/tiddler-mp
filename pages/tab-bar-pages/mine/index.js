@@ -27,7 +27,7 @@ Component({
     wrapHeightList: [400, 400, 400, 400],
     beLikedTimes: 0,
     beCollectedTimes: 0,
-    followNumber: 0,
+    followedAuthorNumber: 0,
     fansNumber: 0,
     videoListTotal: 0,
     videoList: [],
