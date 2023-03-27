@@ -1,3 +1,5 @@
+import { WEBVIEW_BASE_URL } from "../../../../config"
+
 Page({
   data: {
   },

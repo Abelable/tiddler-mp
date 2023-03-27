@@ -6,7 +6,7 @@
 </view>
 
 <view class="list-wrap">
-  <view class="list row between">
+  <view class="list row between" bindtap="navToSettleIn">
     <view class="title">商家入驻</view>
     <image class="arrow" src="./images/arrow.png" />
   </view>
