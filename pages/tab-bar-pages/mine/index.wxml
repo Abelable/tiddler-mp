@@ -1,4 +1,5 @@
-<view class="nav-bar" style="padding-top: {{statusBarHeight}}px; opacity: {{navBarVisible ? 100 : 0}};">
+<view class="nav-bar" style="padding-top: {{statusBarHeight}}px; opacity: {{navBarVisible ? 100 : 0}}; background-image: url({{userInfo.bg || 'https://img.ubo.vip/tiddler/bg.jpg'}});">
+  <view class="bg-cover" />
   <image class="user-avatar" src="{{userInfo.avatar}}" />
   <view class="user-name">{{userInfo.nickname}}</view>
 </view>
