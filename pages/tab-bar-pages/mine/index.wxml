@@ -1,3 +1,5 @@
+<wxs module="NUM" src="/utils/filters/num.wxs" />
+
 <view class="nav-bar" style="padding-top: {{statusBarHeight}}px; opacity: {{navBarVisible ? 100 : 0}}; background-image: url({{userInfo.bg || 'https://img.ubo.vip/tiddler/bg.jpg'}});">
   <view class="bg-cover" />
   <image class="user-avatar" src="{{userInfo.avatar}}" />
@@ -11,16 +13,16 @@
       <image class="avatar" src="{{userInfo.avatar}}" />
       <view class="data-wrap">
         <view class="data-item">
-          <view class="data-title">获赞</view>
-          <view class="data">100</view>
+          <view class="data-title">获赞与收藏</view>
+          <view class="data">{{NUM.over((likeNumber + collectionTimes), 100000)}}</view>
         </view>
         <view class="data-item">
           <view class="data-title">关注</view>
-          <view class="data">200</view>
+          <view class="data">{{NUM.over(followNumber, 100000)}}</view>
         </view>
         <view class="data-item">
           <view class="data-title">粉丝</view>
-          <view class="data">36</view>
+          <view class="data">{{NUM.over(fansNumber, 100000)}}</view>
         </view>
       </view>
     </view>

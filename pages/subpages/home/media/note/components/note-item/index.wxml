@@ -1,5 +1,6 @@
 <wxs module="STRING" src="/utils/filters/string.wxs" />
 <wxs module="TIME" src="/utils/filters/time.wxs" />
+<wxs module="NUM" src="/utils/filters/num.wxs" />
 
 <view class="note-item">
   <view class="author-info-wrap row" bindtap="navToAuthorCenter">
@@ -55,7 +56,7 @@
         <view class="comment-content omit single-line">{{comment.content}}</view>
       </view>
     </view>
-    <view class="explain">共{{item.commentsNumber}}条评论</view>
+    <view class="explain">共{{NUM.over(item.commentsNumber, 100000)}}条评论</view>
   </view>
   
   <view class="btn-wrap">
@@ -66,15 +67,15 @@
     <view class="other-btns">
       <view class="btn-item" bindtap="share">
         <image class="btn-icon" src="./images/share.png" />
-        <view class="btn-data">{{item.shareTimes}}</view>
+        <view class="btn-data">{{NUM.over(item.shareTimes, 100000)}}</view>
       </view>
       <view class="btn-item" bindtap="like">
         <image class="btn-icon" src="./images/heart{{item.isLike ? '-active' : ''}}.png" />
-        <view class="btn-data">{{item.likeNumber}}</view>
+        <view class="btn-data">{{NUM.over(item.likeNumber, 100000)}}</view>
       </view>
       <view class="btn-item" bindtap="collect">
         <image class="btn-icon" src="./images/collection{{item.isCollected ? '-active' : ''}}.png" />
-        <view class="btn-data">{{item.collectionTimes}}</view>
+        <view class="btn-data">{{NUM.over(item.collectionTimes, 100000)}}</view>
       </view>
     </view>
   </view>
