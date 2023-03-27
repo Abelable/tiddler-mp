@@ -8,7 +8,7 @@
     "root": "pages/subpages/",
     "pages": [
       "common/register/index",
-      "common/user-center/index",
+      "common/author-center/index",
       "common/webview/index",
       "common/pay/index",
       "common/cropper/index",

@@ -1,0 +1,60 @@
+<view class="nav-bar" style="padding-top: {{statusBarHeight}}px; opacity: {{navBarVisible ? 100 : 0}}; background-image: url({{author.bg || 'https://img.ubo.vip/tiddler/bg.jpg'}});">
+  <view class="bg-cover" />
+  <image class="user-avatar" src="{{author.avatar}}" />
+  <view class="user-name">{{author.nickname}}</view>
+</view>
+
+<view class="container">
+  <image class="bg" src="https://img.ubo.vip/tiddler/bg.jpg" />
+  <view class="content">
+    <view class="avatar-wrap">
+      <image class="avatar" src="{{author.avatar}}" />
+      <view class="data-wrap">
+        <view class="data-item">
+          <view class="data-title">获赞</view>
+          <view class="data">100</view>
+        </view>
+        <view class="data-item">
+          <view class="data-title">关注</view>
+          <view class="data">200</view>
+        </view>
+        <view class="data-item">
+          <view class="data-title">粉丝</view>
+          <view class="data">36</view>
+        </view>
+      </view>
+    </view>
+    <view class="name">{{author.nickname}}</view>
+    <view class="introduce">来一段简短的自我介绍吧～</view>
+
+    <view class="function-wrap">
+      <navigator class="function-item" url="/pages/subpages/mine/shop-management/index" hover-class="none">
+        <image class="function-icon" src="./images/shop.png" />
+        <view class="function-desc">我的店铺</view>
+      </navigator>
+    </view>
+
+    <view class="works-wrap {{menuFixed ? 'fixed' : '' }}">
+      <view class="works-menu {{menuFixed ? 'fixed' : '' }}" style="top: {{menuFixed ? statusBarHeight + 44 : 0}}px;">
+        <view wx:for="{{['短视频', '游记']}}" wx:key="index" class="works-menu-item {{curMenuIndex === index ? 'active' : ''}}" bindtap="switchMenu" data-index="{{index}}">{{item}}</view>
+        <view class="active-underline" style="left: {{curMenuIndex * 25}}vw;"></view>
+      </view>
+      <swiper style="height: {{wrapHeightList[curMenuIndex]}}px;" current="{{curMenuIndex}}" bindchange="swiperChange">
+        <swiper-item>
+          <view class="content-wrap">
+            <fall-flow class="fall-flow-0" list="{{videoList}}" mediaScene="{{3}}" generic:item="video-item" bind:finish="setWrapHeight" />
+            <empty-illus wx:if="{{videoFinished && !videoList.length}}" desc="暂无短视频列表" height="520rpx" />
+            <view class="no-more-tips" wx:if="{{videoFinished && videoList.length}}">～没有更多了～</view>
+          </view>
+        </swiper-item>
+        <swiper-item>
+          <view class="content-wrap">
+            <fall-flow class="fall-flow-1" list="{{noteList}}" mediaScene="{{3}}" generic:item="note-item" bind:finish="setWrapHeight" />
+            <empty-illus wx:if="{{noteFinished && !noteList.length}}" desc="暂无游记列表" height="520rpx" />
+            <view class="no-more-tips" wx:if="{{noteFinished && noteList.length}}">～没有更多了～</view>
+          </view>
+        </swiper-item>
+      </swiper>
+    </view>
+  </view>
+</view>
