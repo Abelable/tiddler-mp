@@ -105,7 +105,6 @@
 .more-info-wrap {
   margin: 0 36rpx;
   padding: 160rpx 0 24rpx;
-  border-bottom: 1px solid #ddd;
 }
 .name {
   color: #333;
@@ -124,9 +123,20 @@
 }
 
 .function-wrap {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   margin: 24rpx 0 8rpx;
+}
+.function-wrap::before {
+  position: absolute;
+  top: -24rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100vw - 48rpx);
+  height: 1px;
+  content: '';
+  background: #ddd;
 }
 .function-item {
   margin-bottom: 24rpx;

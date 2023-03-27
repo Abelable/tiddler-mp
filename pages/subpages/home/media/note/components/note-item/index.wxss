@@ -49,8 +49,8 @@
   color: #fff;
   font-size: 22rpx;
   font-weight: bold;
-  border-radius: 23rpx;
-  background: var(--theme-color-btn-bg);
+  border-radius: 21rpx;
+  background: #EE3769;
 }
 .follow-btn.invalid {
   color: #b2b2b2;

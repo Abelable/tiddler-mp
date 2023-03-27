@@ -1,7 +1,6 @@
 <wxs module="NUM" src="/utils/filters/num.wxs" />
 
 <view class="nav-bar row" style="padding-top: {{statusBarHeight}}px;">
-  <view class="nav-bg"></view>
   <image class="nav-bg" wx:if="{{navBarVisible}}" src="{{authorInfo.bg || 'https://img.ubo.vip/tiddler/bg.jpg'}}" />
   <view class="bg-cover" wx:if="{{navBarVisible}}" />
   <back-icon style="margin-left: 8px;" />
@@ -37,8 +36,8 @@
       <view class="signature">{{authorInfo.signature || '作者未设置个性签名'}}</view>
     </view>
 
-    <view class="function-wrap">
-      <navigator class="function-item" url="/pages/subpages/mine/shop-management/index" hover-class="none">
+    <view class="function-wrap" wx:if="{{authorInfo.shopId}}">
+      <navigator class="function-item" url="/pages/subpages/mall/goods/subpages/shop/index?id={{authorInfo.shopId}}" hover-class="none">
         <image class="function-icon" src="./images/shop.png" />
         <view class="function-desc">作者店铺</view>
       </navigator>
