@@ -37,7 +37,7 @@
     <view class="works-wrap {{menuFixed ? 'fixed' : '' }}">
       <view class="works-menu {{menuFixed ? 'fixed' : '' }}" style="top: {{menuFixed ? statusBarHeight + 44 : 0}}px;">
         <view wx:for="{{['短视频', '游记']}}" wx:key="index" class="works-menu-item {{curMenuIndex === index ? 'active' : ''}}" bindtap="switchMenu" data-index="{{index}}">{{item}}</view>
-        <view class="active-underline" style="left: {{curMenuIndex * 25}}vw;"></view>
+        <view class="active-underline" style="left: {{curMenuIndex * 50}}vw;"></view>
       </view>
       <swiper style="height: {{wrapHeightList[curMenuIndex]}}px;" current="{{curMenuIndex}}" bindchange="swiperChange">
         <swiper-item>

@@ -39,7 +39,6 @@
   position: relative;
   font-size: 0;
   overflow: hidden;
-  padding-bottom: calc(48px + env(safe-area-inset-bottom));
 }
 .bg {
   position: absolute;
@@ -160,7 +159,7 @@
 .active-underline {
   position: absolute;
   bottom: 0;
-  width: 25vw;
+  width: 50vw;
   height: 4rpx;
   background: var(--theme-color);
   transition: left .2s ease;

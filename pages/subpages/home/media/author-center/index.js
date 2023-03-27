@@ -11,23 +11,22 @@ const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Page({
   data: {
-    data: {
-      statusBarHeight,
-      curMenuIndex: 0,
-      navBarVisible: false,
-      menuFixed: false,
-      wrapHeightList: [400, 400],
-      authorInfo: null,
-      videoList: [],
-      videoFinished: false,
-      noteList: [],
-      noteFinished: false,
-    },
+    statusBarHeight,
+    curMenuIndex: 0,
+    navBarVisible: false,
+    menuFixed: false,
+    wrapHeightList: [400, 400],
+    authorInfo: null,
+    videoList: [],
+    videoFinished: false,
+    noteList: [],
+    noteFinished: false,
   },
 
   onLoad({ id }) {
     this.authorId = +id;
     this.setAuthorInfo()
+
     this.setNavBarVisibleLimit();
     this.setMenuFixedLimit();
 
@@ -89,7 +88,6 @@ Page({
       case SCENE_REFRESH:
         switch (curMenuIndex) {
           case 0:
-            console.log('setVideoList')
             this.setVideoList(true);
             break;
 
