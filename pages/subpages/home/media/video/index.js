@@ -1,5 +1,9 @@
 import { getQueryString } from "../../../../../utils/index";
-import { SCENE_MINE, SCENE_COLLECT, SCENE_LIKE } from '../../../../../utils/emuns/mediaScene'
+import {
+  SCENE_MINE,
+  SCENE_COLLECT,
+  SCENE_LIKE,
+} from "../../../../../utils/emuns/mediaScene";
 import VideoService from "./utils/videoService";
 
 const videoService = new VideoService();
@@ -27,7 +31,7 @@ Page({
     this.videoId =
       +id || decodedScene.split("-")[0] || getQueryString(decodedQ, "id");
     this.authorId = authorId ? +authorId : 0;
-    this.mediaScene = +mediaScene
+    this.mediaScene = +mediaScene;
 
     this.setVideoList();
   },
@@ -47,40 +51,49 @@ Page({
   async setVideoList() {
     if (!this.finished) {
       if (!this.page) this.page = 0;
-      let res
+      let res;
 
       switch (this.mediaScene) {
         case SCENE_MINE:
-          res = await videoService.getUserVideoList({ id: this.videoId, page: ++this.page })
+          res = await videoService.getUserVideoList({
+            id: this.videoId,
+            page: ++this.page,
+          });
           break;
 
         case SCENE_COLLECT:
-          res = await videoService.getUserCollectVideoList(this.videoId, ++this.page)
+          res = await videoService.getUserCollectVideoList(
+            this.videoId,
+            ++this.page
+          );
           break;
 
         case SCENE_LIKE:
-          res = await videoService.getUserLikeVideoList(this.videoId, ++this.page)
-          break;
-      
-        default:
-          res = await videoService.getVideoList(
-            ++this.page,
+          res = await videoService.getUserLikeVideoList(
             this.videoId,
-            this.authorId
-          )
+            ++this.page
+          );
+          break;
+
+        default:
+          res = await videoService.getVideoList({
+            id: this.videoId,
+            authorId: this.authorId,
+            page: ++this.page,
+          });
           break;
       }
       this.setData({
         videoList: [...this.data.videoList, ...res.list],
       });
       if (!res.list.length) {
-        this.finished = true
+        this.finished = true;
       }
     }
   },
 
   follow() {
-    const { videoList, curVideoIdx } = this.data
+    const { videoList, curVideoIdx } = this.data;
     const { id } = videoList[curVideoIdx].authorInfo;
     videoService.followAuthor(id, () => {
       const list = videoList.map((item) => ({
@@ -92,7 +105,7 @@ Page({
   },
 
   like() {
-    const { videoList, curVideoIdx } = this.data
+    const { videoList, curVideoIdx } = this.data;
     let { id, isLike, likeNumber } = videoList[curVideoIdx];
     videoService.toggleLikeStatus(id, () => {
       this.setData({
@@ -103,9 +116,9 @@ Page({
       });
     });
   },
-  
+
   collect() {
-    const { videoList, curVideoIdx } = this.data
+    const { videoList, curVideoIdx } = this.data;
     let { id, isCollected, collectionTimes } = videoList[curVideoIdx];
     videoService.toggleCollectStatus(id, () => {
       this.setData({
@@ -143,16 +156,17 @@ Page({
   },
 
   finishComment() {
-    const { videoList, curVideoIdx } = this.data
+    const { videoList, curVideoIdx } = this.data;
     this.setData({
-      [`videoList[${curVideoIdx}].commentsNumber`]: ++videoList[curVideoIdx].commentsNumber,
-      inputPopupVisible: false
-    })
+      [`videoList[${curVideoIdx}].commentsNumber`]: ++videoList[curVideoIdx]
+        .commentsNumber,
+      inputPopupVisible: false,
+    });
   },
 
   hideInputModal() {
     this.setData({
-      inputPopupVisible: false
+      inputPopupVisible: false,
     });
   },
 

@@ -70,11 +70,11 @@ Page({
           break;
 
         default:
-          res = await noteService.getNoteList(
-            ++this.page,
-            this.noteId,
-            this.authorId
-          );
+          res = await noteService.getNoteList({
+            id: this.noteId,
+            authorId: this.authorId,
+            page: ++this.page,
+          });
           break;
       }
       this.setData({

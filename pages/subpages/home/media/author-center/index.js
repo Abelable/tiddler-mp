@@ -114,7 +114,8 @@ Page({
 
     if (!videoFinished) {
       const { list = [] } =
-        (await mediaService.getAuthorVideoList({
+        (await mediaService.getVideoList({
+          authorId: this.authorId,
           page: ++this.videoPage,
           loadingTitle: "加载中...",
         })) || {};
@@ -136,7 +137,11 @@ Page({
 
     if (!noteFinished) {
       const { list = [] } =
-        (await mediaService.getAuthorNoteList(++this.notePage)) || {};
+        (await mediaService.getNoteList({ 
+          authorId: this.authorId,
+          page: ++this.notePage,
+          loadingTitle: '加载中...'
+        })) || {};
       this.setData({
         noteList: init ? list : [...noteList, ...list],
       });

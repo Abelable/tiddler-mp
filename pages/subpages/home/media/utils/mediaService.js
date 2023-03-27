@@ -9,21 +9,31 @@ class LiveService extends BaseService {
     });
   }
 
+  async getVideoList({ id, authorId, page, limit = 10, loadingTitle }) {
+    return await this.get({
+      url: `${this.baseUrl}/media/short_video/list`,
+      data: cleanObject({ id, authorId, page, limit }),
+      loadingTitle
+    });
+  }
+
   async getVideoCommentList(mediaId, page, limit = 10) {
-    const { list = [] } = await this.get({
-      url: `${this.baseUrl}/media/short_video/comment_list`,
-      data: { mediaId, page, limit },
-      loadingTitle: "加载中...",
-    }) || {};
+    const { list = [] } =
+      (await this.get({
+        url: `${this.baseUrl}/media/short_video/comment_list`,
+        data: { mediaId, page, limit },
+        loadingTitle: "加载中...",
+      })) || {};
     return list;
   }
 
   async getVideoReplies(mediaId, commentId, page, limit = 10) {
-    const { list = [] } = await this.get({
-      url: `${this.baseUrl}/media/short_video/reply_comment_list`,
-      data: { mediaId, commentId, page, limit },
-      loadingTitle: "加载中...",
-    }) || {};
+    const { list = [] } =
+      (await this.get({
+        url: `${this.baseUrl}/media/short_video/reply_comment_list`,
+        data: { mediaId, commentId, page, limit },
+        loadingTitle: "加载中...",
+      })) || {};
     return list;
   }
 
@@ -31,7 +41,7 @@ class LiveService extends BaseService {
     return await this.post({
       url: `${this.baseUrl}/media/short_video/comment`,
       data: cleanObject({ mediaId, commentId, content }),
-      success
+      success,
     });
   }
 
@@ -39,25 +49,35 @@ class LiveService extends BaseService {
     return await this.post({
       url: `${this.baseUrl}/media/short_video/delete_comment`,
       data: { id },
-      success
+      success,
+    });
+  }
+
+  async getNoteList({ id, authorId, page, limit = 10, loadingTitle }) {
+    return await this.get({
+      url: `${this.baseUrl}/media/tourism_note/list`,
+      data: cleanObject({ id, authorId, page, limit }),
+      loadingTitle,
     });
   }
 
   async getNoteCommentList(mediaId, page, limit = 10) {
-    const { list = [] } =  await this.get({
-      url: `${this.baseUrl}/media/tourism_note/comment_list`,
-      data: { mediaId, page, limit },
-      loadingTitle: "加载中...",
-    }) || {};
+    const { list = [] } =
+      (await this.get({
+        url: `${this.baseUrl}/media/tourism_note/comment_list`,
+        data: { mediaId, page, limit },
+        loadingTitle: "加载中...",
+      })) || {};
     return list;
   }
 
   async getNoteReplies(mediaId, commentId, page, limit = 10) {
-    const { list = [] } = await this.get({
-      url: `${this.baseUrl}/media/tourism_note/reply_comment_list`,
-      data: { mediaId, commentId, page, limit },
-      loadingTitle: "加载中...",
-    }) || {};
+    const { list = [] } =
+      (await this.get({
+        url: `${this.baseUrl}/media/tourism_note/reply_comment_list`,
+        data: { mediaId, commentId, page, limit },
+        loadingTitle: "加载中...",
+      })) || {};
     return list;
   }
 
@@ -65,7 +85,7 @@ class LiveService extends BaseService {
     return await this.post({
       url: `${this.baseUrl}/media/tourism_note/comment`,
       data: cleanObject({ mediaId, commentId, content }),
-      success
+      success,
     });
   }
 
@@ -73,7 +93,7 @@ class LiveService extends BaseService {
     return await this.post({
       url: `${this.baseUrl}/media/tourism_note/delete_comment`,
       data: { id },
-      success
+      success,
     });
   }
 
