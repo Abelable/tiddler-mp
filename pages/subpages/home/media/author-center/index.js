@@ -23,15 +23,15 @@ Page({
     noteFinished: false,
   },
 
-  onLoad({ id }) {
+  async onLoad({ id }) {
     this.authorId = +id;
-    this.setAuthorInfo()
-
-    this.setNavBarVisibleLimit();
-    this.setMenuFixedLimit();
+    await this.setAuthorInfo()
 
     this.scrollTopArr = [0, 0];
     this.setList(SCENE_REFRESH);
+
+    this.setNavBarVisibleLimit();
+    this.setMenuFixedLimit();
   },
 
   async setAuthorInfo() {

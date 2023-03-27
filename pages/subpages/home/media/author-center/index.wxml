@@ -1,7 +1,12 @@
-<view class="nav-bar" style="padding-top: {{statusBarHeight}}px; opacity: {{navBarVisible ? 100 : 0}}; background-image: url({{authorInfo.bg || 'https://img.ubo.vip/tiddler/bg.jpg'}});">
-  <view class="bg-cover" />
-  <image class="user-avatar" src="{{authorInfo.avatar}}" />
-  <view class="user-name">{{authorInfo.nickname}}</view>
+<view class="nav-bar row" style="padding-top: {{statusBarHeight}}px;">
+  <view class="nav-bg"></view>
+  <image class="nav-bg" wx:if="{{navBarVisible}}" src="{{authorInfo.bg || 'https://img.ubo.vip/tiddler/bg.jpg'}}" />
+  <view class="bg-cover" wx:if="{{navBarVisible}}" />
+  <back-icon style="margin-left: 8px;" />
+  <block wx:if="{{navBarVisible}}">
+    <image class="user-avatar" src="{{authorInfo.avatar}}" />
+    <view class="user-name">{{authorInfo.nickname}}</view>
+  </block>
 </view>
 
 <view class="container">
