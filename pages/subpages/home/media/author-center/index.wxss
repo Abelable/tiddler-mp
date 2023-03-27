@@ -104,7 +104,7 @@
 
 .more-info-wrap {
   margin: 0 36rpx;
-  padding: 160rpx 0 24rpx;
+  padding: 160rpx 0 32rpx;
 }
 .name {
   color: #333;
