@@ -120,6 +120,11 @@
   color: #666;
   font-size: 24rpx;
 }
+.edit-icon {
+  margin-left: 6rpx;
+  width: 24rpx;
+  height: 24rpx;
+}
 
 .function-wrap {
   display: flex;

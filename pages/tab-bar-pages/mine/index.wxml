@@ -31,7 +31,10 @@
       </view>
     </view>
     <view class="name">{{userInfo.nickname}}</view>
-    <view class="introduce">来一段简短的自我介绍吧～</view>
+    <view class="introduce row">
+      <text>来一段简短的自我介绍吧～</text>
+      <image class="edit-icon" src="./images/edit.png" />
+    </view>
 
     <view class="function-wrap">
       <navigator class="function-item" url="/pages/subpages/mine/order-list/index" hover-class="none">
