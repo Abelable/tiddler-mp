@@ -17,6 +17,7 @@ Page({
     menuFixed: false,
     wrapHeightList: [400, 400],
     authorInfo: null,
+    isFollow: false,
     videoList: [],
     videoFinished: false,
     noteList: [],
@@ -34,9 +35,32 @@ Page({
     this.setMenuFixedLimit();
   },
 
+  onShow() {
+    this.setFollowStatus()
+  },
+
   async setAuthorInfo() {
     const authorInfo = await mediaService.getAuthorInfo(this.authorId)
     this.setData({ authorInfo })
+  },
+
+  setFollowStatus() {
+    checkLogin(async () => {
+      const { isFollow } = await mediaService.getFollowStatus(this.authorId);
+      this.setData({ isFollow });
+    });
+  },
+
+  follow() {
+    mediaService.followAuthor(this.authorId, () => {
+      this.setData({ isFollow: true });
+    })
+  },
+
+  cancelFollow() {
+    mediaService.cancelFollowAuthor(this.authorId, () => {
+      this.setData({ isFollow: false });
+    })
   },
 
   switchMenu(e) {

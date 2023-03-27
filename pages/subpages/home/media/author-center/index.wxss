@@ -70,50 +70,66 @@
   border: 10rpx solid #f5f6f8;
   background: #f5f6f8;
 }
-.data-wrap {
-  display: flex;
+
+.btns-wrap {
   flex: 1;
 }
-.data-item {
-  flex: 1;
-  border-right: 1rpx solid #e8e8e8;
-  text-align: center;
+.chat-btn, .share-btn {
+  margin-right: 24rpx;
+  width: 120rpx;
+  height: 60rpx;
+  color: #01a1e0;
+  font-size: 24rpx;
+  border-radius: 30rpx;
+  border: 1px solid #aee5fb;
 }
-.data-item:last-child {
-  border-right: none;
+.btn-icon {
+  margin-right: 8rpx;
+  width: 24rpx;
+  height: 24rpx;
 }
-.data-title {
-  color: #666;
-  font-size: 22rpx;
+.follow-btn {
+  margin-right: 32rpx;
+  width: 160rpx;
+  height: 60rpx;
+  color: #fff;
+  font-size: 24rpx;
+  border-radius: 30rpx;
+  background: linear-gradient(90deg, #e86084 0%, #e80f49 100%);
 }
-.data {
-  margin-top: 6rpx;
-  color: #333;
-  font-size: 32rpx;
-  font-weight: bold;
-  line-height: 1;
+.follow-btn.invalid {
+  color: #999;
+  background: #e8e8e8;
 }
 
+.more-info-wrap {
+  margin: 0 36rpx;
+  padding: 160rpx 0 24rpx;
+  border-bottom: 1px solid #ddd;
+}
 .name {
-  padding: 160rpx 36rpx 0;
   color: #333;
   font-size: 40rpx;
   font-weight: bold;
 }
-.introduce {
-  padding-top: 6rpx;
-  padding-left: 36rpx;
+.data-presentattion {
+  margin-top: 12rpx;
   color: #666;
-  font-size: 24rpx;
+  font-size: 22rpx;
+}
+.signature {
+  margin-top: 12rpx;
+  color: #666;
+  font-size: 26rpx;
 }
 
 .function-wrap {
   display: flex;
   flex-wrap: wrap;
-  margin: 40rpx 0 8rpx;
+  margin: 24rpx 0 8rpx;
 }
 .function-item {
-  margin-bottom: 32rpx;
+  margin-bottom: 24rpx;
   width: 20%;
   text-align: center;
 }

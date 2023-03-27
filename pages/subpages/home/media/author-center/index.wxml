@@ -16,28 +16,31 @@
   <view class="content">
     <view class="avatar-wrap">
       <image class="avatar" src="{{authorInfo.avatar}}" />
-      <view class="data-wrap">
-        <view class="data-item">
-          <view class="data-title">获赞</view>
-          <view class="data">{{NUM.over(authorInfo.beLikedTimes, 100000)}}</view>
-        </view>
-        <view class="data-item">
-          <view class="data-title">关注</view>
-          <view class="data">{{NUM.over(authorInfo.followedAuthorNumber, 100000)}}</view>
-        </view>
-        <view class="data-item">
-          <view class="data-title">粉丝</view>
-          <view class="data">{{NUM.over(authorInfo.fansNumber, 100000)}}</view>
-        </view>
+      <view class="btns-wrap row end">
+        <button class="chat-btn">
+          <image class="btn-icon" src="./images/chat.png" />
+          <text>私聊</text>
+        </button>
+        <button class="share-btn">
+          <image class="btn-icon" src="./images/share.png" />
+          <text>分享</text>
+        </button>
+        <button class="follow-btn {{isFollow ? 'invalid' : ''}}" bindtap="{{isFollow ? 'cancelFollow' : 'follow'}}">
+          <image class="btn-icon" wx:if="{{!isFollow}}" src="./images/plus.png" />
+          <text>{{isFollow ? '已关注' : '关注'}}</text>
+        </button>
       </view>
     </view>
-    <view class="name">{{authorInfo.nickname}}</view>
-    <view class="introduce">来一段简短的自我介绍吧～</view>
+    <view class="more-info-wrap">
+      <view class="name">{{authorInfo.nickname}}</view>
+      <view class="data-presentattion">{{NUM.over(authorInfo.beLikedTimes, 100000)}}获赞｜{{NUM.over(authorInfo.followedAuthorNumber, 100000)}}关注｜{{NUM.over(authorInfo.fansNumber, 100000)}}粉丝</view>
+      <view class="signature">{{authorInfo.signature || '作者未设置个性签名'}}</view>
+    </view>
 
     <view class="function-wrap">
       <navigator class="function-item" url="/pages/subpages/mine/shop-management/index" hover-class="none">
         <image class="function-icon" src="./images/shop.png" />
-        <view class="function-desc">进入店铺</view>
+        <view class="function-desc">作者店铺</view>
       </navigator>
     </view>
 

@@ -105,6 +105,14 @@ class BaseService extends Base {
     });
   }
 
+  async cancelFollowAuthor(authorId, success) {
+    return await this.post({
+      url: `${this.baseUrl}/fan/cancel_follow`,
+      data: { authorId },
+      success,
+    });
+  }
+
   async getFollowStatus(authorId) {
     return await this.get({
       url: `${this.baseUrl}/fan/follow_status`,
