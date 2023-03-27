@@ -1,6 +1,6 @@
-import BaseService from "../../../../../../services/baseService";
+import MediaService from "../../utils/mediaService";
 
-class NoteService extends BaseService {
+class NoteService extends MediaService {
   async toggleLikeStatus(id, success) {
     return await this.post({
       url: `${this.baseUrl}/media/tourism_note/toggle_like`,

@@ -104,11 +104,11 @@ Component({
       }
     },
 
-    navToUserCenter() {
+    navToAuthorCenter() {
       const { id } = this.properties.item.authorInfo;
       if (store.userInfo.id !== id) {
         wx.navigateTo({
-          url: `/pages/subpages/index/short-video/subpages/personal-center/index?id=${user_id}`,
+          url: `/pages/subpages/home/media/author-center/index?id=${id}`,
         });
       }
     },

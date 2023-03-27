@@ -46,6 +46,10 @@ class BaseService extends Base {
     return await this.get({ url: `${this.baseUrl}/tim_login_info` });
   }
 
+  async getAuthorInfo(id) {
+    return await this.get({ url: `${this.baseUrl}/author_info`, data: { id } });
+  }
+
   async getRoomStatus() {
     return await this.get({ url: `${this.baseUrl}/media/live/room_status` });
   }
@@ -143,7 +147,7 @@ class BaseService extends Base {
     return await this.get({
       url: `${this.baseUrl}/media/tourism_note/collect_list`,
       data: { id, page, limit },
-      loadingTitle: '加载中...'
+      loadingTitle: "加载中...",
     });
   }
 
@@ -158,7 +162,7 @@ class BaseService extends Base {
     return await this.get({
       url: `${this.baseUrl}/media/tourism_note/like_list`,
       data: { id, page, limit },
-      loadingTitle: '加载中...'
+      loadingTitle: "加载中...",
     });
   }
 

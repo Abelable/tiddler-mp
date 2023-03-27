@@ -27,11 +27,18 @@ Page({
 
   onLoad({ id }) {
     this.authorId = +id;
+    this.setAuthorInfo()
     this.setNavBarVisibleLimit();
     this.setMenuFixedLimit();
+
+    this.scrollTopArr = [0, 0];
+    this.setList(SCENE_REFRESH);
   },
 
-  setAuthorInfo() {},
+  async setAuthorInfo() {
+    const authorInfo = await mediaService.getAuthorInfo(this.authorId)
+    this.setData({ authorInfo })
+  },
 
   switchMenu(e) {
     this.handleMenuChange(Number(e.currentTarget.dataset.index));
@@ -82,6 +89,7 @@ Page({
       case SCENE_REFRESH:
         switch (curMenuIndex) {
           case 0:
+            console.log('setVideoList')
             this.setVideoList(true);
             break;
 
