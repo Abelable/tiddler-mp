@@ -5,7 +5,7 @@ Page({
   },
 
   navToSettleIn() {
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/merchant/settle_in`
+    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/merchant/settle_in`
     wx.navigateTo({ url })
   },
 })
