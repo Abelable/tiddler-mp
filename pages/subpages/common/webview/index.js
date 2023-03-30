@@ -19,7 +19,7 @@ Page({
         this.setData({
           url: `${this.webviewUrl}${this.webviewUrl.indexOf('?') === -1 ? '?' : '&'}token=${wx.getStorageSync('token')}`
         })
-      })
+      }, false)
     })
   },
 
