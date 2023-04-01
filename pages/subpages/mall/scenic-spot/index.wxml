@@ -26,8 +26,8 @@
 
 <view class="container" style="padding-top: {{statusBarHeight + 88}}px;">
   <view class="scenic-spots" >
-    <ticket-item />
-    <ticket-item />
-    <ticket-item />
+    <scenic-spot-item />
+    <scenic-spot-item />
+    <scenic-spot-item />
   </view>
 </view>

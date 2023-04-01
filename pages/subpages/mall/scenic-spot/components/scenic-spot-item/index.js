@@ -1,15 +1,19 @@
 Component({
   options: {
-    addGlobalClass: true
+    addGlobalClass: true,
   },
 
   properties: {
-    item: Object
+    item: Object,
   },
 
-  data: {
-  },
+  data: {},
 
   methods: {
-  }
-})
+    navToDetail() {
+      wx.navigateTo({
+        url: '/pages/subpages/mall/scenic-spot/subpages/spot-detail/index'
+      });
+    },
+  },
+});

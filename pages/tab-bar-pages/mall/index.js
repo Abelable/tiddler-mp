@@ -50,8 +50,8 @@ Component({
 
     navTo(e) {
       const pageList = [
-        "/pages/subpages/mall/ticket/index",
         "/pages/subpages/mall/scenic-spot/index",
+        "/pages/subpages/mall/hotel/index",
         "/pages/subpages/mall/foot/index",
         "/pages/subpages/mall/goods/index",
       ];
