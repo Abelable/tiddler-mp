@@ -25,7 +25,6 @@
   z-index: -1;
 }
 .user-avatar {
-  margin-left: 8px;
   width: 30px;
   height: 30px;
   border-radius: 50%;
