@@ -12,9 +12,9 @@ const { statusBarHeight } = getApp().globalData.systemInfo;
 Page({
   data: {
     statusBarHeight,
-    curMenuIndex: 0,
     navBarVisible: false,
     menuFixed: false,
+    curMenuIndex: 0,
     wrapHeightList: [400, 400],
     authorInfo: null,
     isFollow: false,

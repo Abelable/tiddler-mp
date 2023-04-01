@@ -1,1 +1,42 @@
-<!-- http://1301400133.vod2.myqcloud.com/d9ed72b2vodcq1301400133/b617ca2a5285890819220454346/SrPypYJizP4A.mp4 -->
+<view class="nav-bar row" style="padding-top: {{statusBarHeight}}px;">
+  <image class="nav-bg" wx:if="{{navBarVisible}}" src="{{spotInfo.bg || 'https://img.ubo.vip/tiddler/bg.jpg'}}" />
+  <view class="bg-cover" wx:if="{{navBarVisible}}" />
+  <back-icon style="margin-left: 8px;" noBorder="{{navBarVisible}}" />
+  <image class="spot-image" wx:if="{{navBarVisible}}" src="{{spotInfo.avatar}}" />
+  <view class="spot-name" wx:if="{{navBarVisible}}">{{spotInfo.nickname}}</view>
+</view>
+
+<view class="banner-wrap">
+  <swiper style="height: 420rpx;" circular bindchange="bannerChange">
+    <swiper-item wx:if="{{spotInfo.video}}">
+      <view class="video-wrap" bindtap="fullScreenPlay">
+        <video
+          class="video-player"
+          src="{{spotInfo.video}}"
+          autoplay
+          loop
+          muted="{{muted}}"
+          controls="{{false}}"
+          show-center-play-btn="{{false}}" 
+          show-fullscreen-btn="{{false}}"
+        />
+        <view class="mute-icon-wrap row center" catchtap="toggleMuted">
+          <image class="mute-icon" src="./images/{{muted ? 'muted' : 'unmuted'}}.png" />
+        </view>
+      </view>
+    </swiper-item>
+    <swiper-item 
+      wx:for="{{spotInfo.imageList}}" 
+      wx:key="index" 
+      bindtap="previewImage" 
+      data-current="{{item}}" 
+      data-urls="{{spotInfo.imageList}}"
+    >
+      <image style="width:100%; height:100%;" src="{{item}}" mode='aspectFill' lazy-load />
+    </swiper-item>
+  </swiper>
+  <view class="banner-dots">
+    <text class="cur-dot">{{curDot}}</text>
+    <text> / {{spotInfo.imageList.length + (spotInfo.video ? 1 : 0)}}</text>
+  </view>
+</view>

@@ -96,6 +96,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "景点详情",
+          "pathName": "pages/subpages/mall/scenic-spot/subpages/spot-detail/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }
