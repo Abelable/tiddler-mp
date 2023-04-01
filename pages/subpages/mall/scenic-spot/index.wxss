@@ -108,7 +108,7 @@
   height: 16px;
 }
 
-.ticket-list {
+.scenic-spots {
   padding: 0 28rpx;
   background: #fff;
 }

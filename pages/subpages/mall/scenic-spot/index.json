@@ -1,6 +1,6 @@
 {
   "navigationStyle": "custom",
   "usingComponents": {
-    "ticket-item": "./components/ticket-item/index"
+    "scenic-spot-item": "./components/scenic-spot-item/index"
   }
 }

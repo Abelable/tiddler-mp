@@ -5,7 +5,7 @@ Component({
   data: {
     statusBarHeight,
     categoryList: [
-      { name: "景点门票", icon: "./images/ticket.png" },
+      { name: "景点门票", icon: "./images/scenic-spot.png" },
       { name: "酒店民宿", icon: "./images/hotel.png" },
       { name: "餐饮美食", icon: "./images/foot.png" },
       { name: "特色商品", icon: "./images/cart.png" },
@@ -51,7 +51,7 @@ Component({
     navTo(e) {
       const pageList = [
         "/pages/subpages/mall/ticket/index",
-        "/pages/subpages/mall/hotel/index",
+        "/pages/subpages/mall/scenic-spot/index",
         "/pages/subpages/mall/foot/index",
         "/pages/subpages/mall/goods/index",
       ];
