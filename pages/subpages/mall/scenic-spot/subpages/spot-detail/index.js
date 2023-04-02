@@ -7,6 +7,7 @@ Page({
     navBarVisible: false,
     spotInfo: {
       status: 1,
+      grade: 4.5,
       video: 'http://1301400133.vod2.myqcloud.com/d9ed72b2vodcq1301400133/b617ca2a5285890819220454346/SrPypYJizP4A.mp4',
       imageList: [
         'https://img.ubo.vip/images/202208/thumb_img/0_thumb_P_1660717847911.jpg',
@@ -17,6 +18,7 @@ Page({
     },
     curDot: 1,
     muted: true,
+    activeNames: ['1'],
   },
 
   onLoad(options) {
@@ -42,6 +44,12 @@ Page({
   previewImage(e) {
     const { current, urls } =  e.currentTarget.dataset
     wx.previewImage({ current, urls })
+  },
+
+  onChange(event) {
+    this.setData({
+      activeNames: event.detail,
+    });
   },
 
   onShareAppMessage() {

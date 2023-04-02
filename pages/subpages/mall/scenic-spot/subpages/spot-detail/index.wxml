@@ -49,14 +49,12 @@
     </view>
     <image class="share-icon" src="./images/share.png" />
   </view>
+
   <view class="score-wrap">
-    <image class="star" src="./images/star-active.png" />
-    <image class="star" src="./images/star-active.png" />
-    <image class="star" src="./images/star-active.png" />
-    <image class="star" src="./images/star-active.png" />
-    <image class="star" src="./images/star.png" />
-    <text class="score">4.4分</text>
+    <van-rate value="{{spotInfo.grade}}" size="16" gutter="0" color="#ffd21e" void-icon="star" void-color="#eee" allow-half />
+    <text class="score">{{spotInfo.grade}}分</text>
   </view>
+
   <view class="info-list-wrap">
     <view class="info-list row between">
       <view class="row">
@@ -80,4 +78,6 @@
       </button>
     </view>
   </view>
+
+  <view class="title">景点门票</view>
 </view>
