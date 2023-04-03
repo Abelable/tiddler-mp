@@ -466,3 +466,75 @@
   background: #1986F8;
   border-radius: 0 6rpx 6rpx 0;
 }
+
+.hotel-list {
+  margin-top: 24rpx;
+  white-space: nowrap;
+  overflow-x: scroll;
+}
+.hotel-item {
+  display: inline-block;
+  margin-right: 12rpx;
+  margin-bottom: 8rpx;
+  width: 280rpx;
+  font-size: 0;
+  border-radius: 12rpx;
+  vertical-align: top;
+  box-shadow: 0 0 12rpx 6rpx #f5f6f7;
+}
+.hotel-image {
+  border-radius: 12rpx 12rpx 0 0;
+  width: 100%;
+  height: 180rpx;
+}
+.hotel-info {
+  padding: 10rpx;
+}
+.hotel-name {
+  color: #333;
+  font-size: 24rpx;
+  font-weight: bold;
+}
+.hotel-appraise {
+  margin-top: 12rpx;
+  color: #666;
+  font-size: 20rpx;
+  line-height: 1;
+}
+.hotel-rate-number {
+  color: #333;
+  font-weight: bold;
+}
+.hotel-type {
+  margin-left: 8rpx;
+  padding-left: 8rpx;
+  border-left: 1px solid #ddd;
+}
+.hotel-tag {
+  margin-top: 18rpx;
+  padding: 0 8rpx;
+  width: fit-content;
+  height: 30rpx;
+  color: #ed547c;
+  font-size: 19rpx;
+  font-weight: bold;
+  line-height: 1;
+  background: #f6edf1;
+  border-radius: 6rpx;
+}
+.hotel-distance-wrap {
+  margin-top: 12rpx;
+}
+.hotel-distance {
+  color: #666;
+  font-size: 20rpx;
+}
+.hotel-distance-icon {
+  margin-right: 4rpx;
+  width: 18rpx;
+  height: 18rpx;
+}
+.price-wrap {
+  color: #666;
+  font-size: 20rpx;
+}
