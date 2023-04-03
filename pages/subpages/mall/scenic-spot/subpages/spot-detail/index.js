@@ -18,7 +18,65 @@ Page({
     },
     curDot: 1,
     muted: true,
-    activeNames: ['1'],
+    ticketTypeList: ['成人票', '儿童票', '老人票', '学生票'],
+    curTicketTypeIdx: 0,
+    ticketList: [
+      {
+        name: '门票',
+        basePrice: 40,
+        fold: true,
+        list: [
+          {
+            shopType: 1,
+            shopName: '千岛湖旅游',
+            tips: '出票3小时后可用',
+            bookingTips: '可订今日',
+            needChange: false,
+            isRefundable: true,
+            salesVolume: 3000,
+            price: 40
+          },
+          {
+            shopType: 2,
+            shopName: '浙风旅行社',
+            tips: '出票3小时后可用',
+            bookingTips: '可订今日',
+            needChange: false,
+            isRefundable: true,
+            salesVolume: 10,
+            price: 40
+          }
+        ]
+      },
+      {
+        name: '门票+骑行',
+        basePrice: 40,
+        fold: true,
+        list: [
+          {
+            shopType: 1,
+            shopName: '千岛湖旅游',
+            tips: '出票3小时后可用',
+            bookingTips: '可订今日',
+            needChange: false,
+            isRefundable: true,
+            salesVolume: 3000,
+            price: 40
+          },
+          {
+            shopType: 2,
+            shopName: '浙风旅行社',
+            tips: '出票3小时后可用',
+            bookingTips: '可订今日',
+            needChange: false,
+            isRefundable: true,
+            salesVolume: 10,
+            price: 40
+          }
+        ]
+      }
+    ],
+    combinedTicketList: [],
   },
 
   onLoad(options) {
@@ -50,6 +108,20 @@ Page({
     this.setData({
       activeNames: event.detail,
     });
+  },
+
+  selectTicketType(e) {
+    this.setData({
+      curTicketTypeIdx: Number(e.currentTarget.dataset.index)
+    })
+  },
+
+  toggleFold(e) {
+    const { index } = e.currentTarget.dataset
+    const { ticketList } = this.data
+    this.setData({
+      [`ticketList[${index}].fold`]: !ticketList[index].fold
+    })
   },
 
   onShareAppMessage() {

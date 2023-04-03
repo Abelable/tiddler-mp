@@ -99,19 +99,19 @@
 }
 .name {
   color: #333;
-  font-size: 36rpx;
+  font-size: 38rpx;
   font-weight: bold;
 }
 .level-tag {
   margin-left: 8rpx;
   padding: 0 12rpx;
   height: 32rpx;
-  color: #FFE5BD;
+  color: #5dce86;
   font-size: 20rpx;
   font-weight: bold;
   line-height: 1;
   border-radius: 8rpx;
-  background: linear-gradient(90deg, #404A5C 0%, #0F131A 100%);
+  background: #d1f7e5;
 }
 .share-icon {
   width: 42rpx;
@@ -174,6 +174,7 @@
   font-size: 24rpx;
 }
 .more-icon {
+  margin-left: 2rpx;
   width: 20rpx;
   height: 20rpx;
 }
@@ -192,9 +193,71 @@
   height: 18rpx;
 }
 
-.title {
+.title-wrap {
   margin-top: 24rpx;
+}
+.title {
   color: #333;
-  font-size: 28rpx;
+  font-size: 30rpx;
   font-weight: bold;
+}
+.title-tips {
+  margin-left: 12rpx;
+  color: #529AFE;
+  font-size: 24rpx;
+}
+
+.ticket-type-menu {
+  margin-top: 18rpx;
+  white-space: nowrap;
+  overflow-x: scroll;
+}
+.ticket-type-item {
+  display: inline-block;
+  margin-right: 18rpx;
+  padding: 0 18rpx;
+  height: 44rpx;
+  color: #999;
+  font-size: 22rpx;
+  line-height: 40rpx;
+  border-radius: 22rpx;
+  background: #f5f6f7;
+  border: 2rpx solid #f5f6f7;
+}
+.ticket-type-item.active {
+  color: #333;
+  border: 2rpx solid #ddd;
+}
+
+.collapse {
+  margin-top: 24rpx;
+  background: #f8f8f8;
+  border-radius: 18rpx;
+}
+.collapse-item {
+  padding: 0 24rpx;
+  border-bottom: 1px solid #eee;
+}
+.collapse-item:last-child {
+  border-bottom: none;
+}
+.collapse-trunk {
+  height: 88rpx;
+}
+.collapse-trunk-title {
+  color: #333;
+  font-size: 26rpx;
+  font-weight: bold;
+}
+.collapse-trunk-content {
+  color: #666;
+  font-size: 22rpx;
+}
+.base-price {
+  color: #EE0D23;
+}
+.arrow {
+  margin-left: 4rpx;
+  width: 24rpx;
+  height: 24rpx;
 }
