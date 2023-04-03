@@ -92,8 +92,8 @@
   left: 0;
   top: 396rpx;
   padding: 20rpx;
+  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
   width: 100%;
-  height: 100vh;
   background: #fff;
   border-radius: 24rpx 24rpx 0 0;
 }
@@ -197,9 +197,22 @@
   margin-top: 48rpx;
 }
 .title {
+  position: relative;
+  padding-left: 12rpx;
   color: #333;
   font-size: 30rpx;
   font-weight: bold;
+}
+.title::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 6rpx;
+  height: 24rpx;
+  content: '';
+  background: #f476b4;
+  border-radius: 6rpx 0 6rpx 0;
 }
 .title-tips {
   margin-left: 12rpx;
@@ -245,6 +258,8 @@
   height: 88rpx;
 }
 .collapse-trunk-title {
+  margin-right: 8rpx;
+  flex: 1;
   color: #333;
   font-size: 28rpx;
   font-weight: bold;

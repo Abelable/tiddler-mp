@@ -59,8 +59,8 @@ Page({
         ]
       },
       {
-        name: '门票+骑行',
-        basePrice: 40,
+        name: '门票+项目',
+        basePrice: 60,
         fold: true,
         list: [
           {
@@ -71,7 +71,7 @@ Page({
             needChange: false,
             isRefundable: true,
             salesVolume: 3000,
-            price: 40
+            price: 60
           },
           {
             shopType: 2,
@@ -81,12 +81,79 @@ Page({
             needChange: false,
             isRefundable: true,
             salesVolume: 10,
-            price: 40
+            price: 60
           }
         ]
       }
     ],
-    combinedTicketList: [],
+    combinedTicketTypeList: ['成人票', '儿童票', '老人票', '学生票'],
+    curCombinedTicketTypeIdx: 0,
+    combinedTicketList: [
+      {
+        name: '森林氧吧+钓鱼岛观光游船',
+        basePrice: 90,
+        fold: true,
+        list: [
+          {
+            shopType: 1,
+            shopName: '千岛湖旅游',
+            tips: '出票3小时后可用',
+            bookingTips: '可订今日',
+            needChange: false,
+            isRefundable: true,
+            salesVolume: 3000,
+            price: 90
+          },
+          {
+            shopType: 2,
+            shopName: '小鱼度假',
+            tips: '出票3小时后可用',
+            bookingTips: '可订今日',
+            needChange: false,
+            isRefundable: true,
+            salesVolume: 10,
+            price: 90
+          },
+          {
+            shopType: 3,
+            shopName: '浙风旅行社',
+            tips: '出票3小时后可用',
+            bookingTips: '可订今日',
+            needChange: false,
+            isRefundable: true,
+            salesVolume: 10,
+            price: 90
+          }
+        ]
+      },
+      {
+        name: '森林氧吧+水之灵剧场(嘉宾席)',
+        basePrice: 210,
+        fold: true,
+        list: [
+          {
+            shopType: 1,
+            shopName: '千岛湖旅游',
+            tips: '出票3小时后可用',
+            bookingTips: '可订今日',
+            needChange: false,
+            isRefundable: true,
+            salesVolume: 3000,
+            price: 210
+          },
+          {
+            shopType: 2,
+            shopName: '小鱼度假',
+            tips: '出票3小时后可用',
+            bookingTips: '可订今日',
+            needChange: false,
+            isRefundable: true,
+            salesVolume: 10,
+            price: 210
+          }
+        ]
+      }
+    ],
   },
 
   onLoad(options) {
@@ -126,11 +193,25 @@ Page({
     })
   },
 
-  toggleFold(e) {
+  toggleTicketsFold(e) {
     const { index } = e.currentTarget.dataset
     const { ticketList } = this.data
     this.setData({
       [`ticketList[${index}].fold`]: !ticketList[index].fold
+    })
+  },
+
+  selectCombinedTicketType(e) {
+    this.setData({
+      curCombinedTicketTypeIdx: Number(e.currentTarget.dataset.index)
+    })
+  },
+
+  toggleCombinedTicketsFold(e) {
+    const { index } = e.currentTarget.dataset
+    const { combinedTicketList } = this.data
+    this.setData({
+      [`combinedTicketList[${index}].fold`]: !combinedTicketList[index].fold
     })
   },
 

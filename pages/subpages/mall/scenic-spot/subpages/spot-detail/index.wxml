@@ -63,7 +63,7 @@
         <view class="opening-hours">08:00-17:00开放（17:00停止入园）</view>
       </view>
       <view class="row">
-        <view class="more-detail">简介</view>
+        <view class="more-detail">详情</view>
         <image class="more-icon" src="./images/more.png" />
       </view>
     </view>
@@ -98,8 +98,8 @@
   <view class="collapse">
     <view class="collapse-item" wx:for="{{ticketList}}" wx:key="index">
       <view class="collapse-trunk row between">
-        <view class="collapse-trunk-title">{{item.name}}</view>
-        <view class="collapse-trunk-content row" bindtap="toggleFold" data-index="{{index}}">
+        <view class="collapse-trunk-title omit single-line">{{item.name}}</view>
+        <view class="collapse-trunk-content row" bindtap="toggleTicketsFold" data-index="{{index}}">
           <block wx:if="{{item.fold}}">
             <text class="base-price">¥{{item.basePrice}}起</text>
             <image class="arrow" src="./images/arrow-down.png" />
@@ -142,23 +142,23 @@
     </view>
   </view>
 
-  <view class="title-wrap row between">
+  <view class="title-wrap">
     <view class="title">多景点联票</view>
   </view>
   <scroll-view class="ticket-type-menu" scroll-x>
     <view 
-      class="ticket-type-item {{curTicketTypeIdx === index ? 'active' : ''}}" 
-      wx:for="{{ticketTypeList}}" 
+      class="ticket-type-item {{curCombinedTicketTypeIdx === index ? 'active' : ''}}" 
+      wx:for="{{combinedTicketTypeList}}" 
       wx:key="index"
-      bindtap="selectTicketType"
+      bindtap="selectCombinedTicketType"
       data-index="{{index}}"
     >{{item}}</view>
   </scroll-view>
   <view class="collapse">
-    <view class="collapse-item" wx:for="{{ticketList}}" wx:key="index">
+    <view class="collapse-item" wx:for="{{combinedTicketList}}" wx:key="index">
       <view class="collapse-trunk row between">
-        <view class="collapse-trunk-title">{{item.name}}</view>
-        <view class="collapse-trunk-content row" bindtap="toggleFold" data-index="{{index}}">
+        <view class="collapse-trunk-title omit single-line">{{item.name}}</view>
+        <view class="collapse-trunk-content row" bindtap="toggleCombinedTicketsFold" data-index="{{index}}">
           <block wx:if="{{item.fold}}">
             <text class="base-price">¥{{item.basePrice}}起</text>
             <image class="arrow" src="./images/arrow-down.png" />
@@ -200,4 +200,25 @@
       </view>
     </view>
   </view>
+
+  <view class="title-wrap">
+    <view class="title">点评</view>
+  </view>
+
+  <view class="title-wrap">
+    <view class="title">问答</view>
+  </view>
+
+  <view class="title-wrap">
+    <view class="title">附近酒店</view>
+  </view>
+
+  <view class="title-wrap">
+    <view class="title">附近景点</view>
+  </view>
+
+  <view class="title-wrap">
+    <view class="title">达人打卡</view>
+  </view>
+
 </view>
