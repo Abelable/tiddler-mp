@@ -427,8 +427,8 @@
 }
 .answer-user-avatar {
   margin-left: -8rpx;
-  width: 24rpx;
-  height: 24rpx;
+  width: 28rpx;
+  height: 28rpx;
   border-radius: 50%;
   border: 2rpx solid #fff;
 }
