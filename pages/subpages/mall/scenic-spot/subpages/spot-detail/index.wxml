@@ -20,9 +20,6 @@
           show-center-play-btn="{{false}}" 
           show-fullscreen-btn="{{false}}"
         />
-        <view class="mute-icon-wrap row center" catchtap="toggleMuted">
-          <image class="mute-icon" src="./images/{{muted ? 'muted' : 'unmuted'}}.png" />
-        </view>
       </view>
     </swiper-item>
     <swiper-item 
@@ -35,6 +32,9 @@
       <image style="width:100%; height:100%;" src="{{item}}" mode='aspectFill' lazy-load />
     </swiper-item>
   </swiper>
+  <view class="mute-icon-wrap row center" wx:if="{{spotInfo.video && curDot === 1}}" catchtap="toggleMuted">
+    <image class="mute-icon" src="./images/{{muted ? 'muted' : 'unmuted'}}.png" />
+  </view>
   <view class="banner-dots row">
     <image class="dot-icon" src="{{(spotInfo.video && curDot === 1) ? './images/video.png' : './images/photo.png'}}" />
     <text>{{curDot}}/{{spotInfo.imageList.length + (spotInfo.video ? 1 : 0)}}</text>

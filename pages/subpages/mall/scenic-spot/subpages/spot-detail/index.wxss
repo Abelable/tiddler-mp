@@ -154,7 +154,7 @@
   padding: 0 8rpx;
   height: 30rpx;
   color: #37B766;
-  font-size: 18rpx;
+  font-size: 20rpx;
   font-weight: bold;
   line-height: 1;
   border: 1px solid #37B766;
@@ -184,7 +184,7 @@
   height: 36rpx;
   color: #666;
   font-size: 20rpx;
-  border-radius: 16rpx;
+  border-radius: 18rpx;
   background: #f1f1f1;
 }
 .navigation-icon {
@@ -427,8 +427,8 @@
 }
 .answer-user-avatar {
   margin-left: -8rpx;
-  width: 28rpx;
-  height: 28rpx;
+  width: 30rpx;
+  height: 30rpx;
   border-radius: 50%;
   border: 2rpx solid #fff;
 }
@@ -460,7 +460,7 @@
   width: 30rpx;
   height: 30rpx;
   color: #fff;
-  font-size: 18rpx;
+  font-size: 20rpx;
   font-weight: bold;
   line-height: 1;
   background: #1986F8;

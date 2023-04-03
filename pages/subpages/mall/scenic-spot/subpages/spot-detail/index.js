@@ -157,7 +157,6 @@ Page({
   },
 
   onLoad(options) {
-    this.player = wx.createVideoContext("video-player");
   },
 
   bannerChange(e) {
@@ -173,7 +172,6 @@ Page({
   },
 
   fullScreenPlay() {
-    this.player.requestFullScreen()
   },
 
   previewImage(e) {
