@@ -1,7 +1,7 @@
 <view class="hotel-item">
   <image class="hotel-image" mode="aspectFill" src="{{info.image}}" />
   <view class="hotel-info">
-    <view class="hotel-name omit single-line">{{info.name}}{{info.name}}{{info.name}}</view>
+    <view class="hotel-name omit single-line">{{info.name}}</view>
     <view class="hotel-appraise row">
       <view class="hotel-rate">
         <text class="hotel-rate-number">{{info.rate}}</text>
