@@ -4,6 +4,7 @@
   "usingComponents": {
     "back-icon": "/components/back-icon-white/index",
     "van-rate": "@vant/weapp/rate/index",
-    "price-unit": "/components/price-unit/index"
+    "price-unit": "/components/price-unit/index",
+    "hotel-item": "./components/hotel-item/index"
   }
 }
