@@ -111,7 +111,91 @@
         </view>
       </view>
       <view class="collapse-subitems" wx:if="{{!item.fold}}">
-        <view class="collapse-subitem">
+        <view class="collapse-subitem row between" wx:for="{{item.list}}" wx:key="ticketIndex" wx:for-index="ticketIndex" wx:for-item="ticket">
+          <view class="ticket-info">
+            <view class="shop-info row">
+              <view class="shop-type row" wx:if="{{ticket.shopType !== 3}}">{{ticket.shopType === 1 ? '官方' : '自营'}}</view>
+              <view class="shop-name">{{ticket.shopName}}</view>
+            </view>
+            <view class="tips-wrap row">
+              <view class="tips stress">{{ticket.bookingTips}}</view>
+              <view class="tips">{{ticket.tips}}</view>
+            </view>
+            <view class="tips-wrap row">
+              <view class="tips stress">{{ticket.isRefundable ? '随时可退' : '有条件退'}}</view>
+              <view class="tips" wx:if="{{!ticket.needChange}}">无需换票</view>
+            </view>
+            <view class="tips-wrap row">
+              <view class="tips">已售{{ticket.salesVolume}}</view>
+              <view class="tips stress row" wx:if="{{!ticket.needChange}}">
+                <text>预定须知</text>
+                <image class="more-icon" src="./images/more-blue.png" />
+              </view>
+            </view>
+          </view>
+          <view class="booking-wrap">
+            <price-unit price="{{ticket.price}}" />
+            <button class="booking-btn">预定</button>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="title-wrap row between">
+    <view class="title">多景点联票</view>
+  </view>
+  <scroll-view class="ticket-type-menu" scroll-x>
+    <view 
+      class="ticket-type-item {{curTicketTypeIdx === index ? 'active' : ''}}" 
+      wx:for="{{ticketTypeList}}" 
+      wx:key="index"
+      bindtap="selectTicketType"
+      data-index="{{index}}"
+    >{{item}}</view>
+  </scroll-view>
+  <view class="collapse">
+    <view class="collapse-item" wx:for="{{ticketList}}" wx:key="index">
+      <view class="collapse-trunk row between">
+        <view class="collapse-trunk-title">{{item.name}}</view>
+        <view class="collapse-trunk-content row" bindtap="toggleFold" data-index="{{index}}">
+          <block wx:if="{{item.fold}}">
+            <text class="base-price">¥{{item.basePrice}}起</text>
+            <image class="arrow" src="./images/arrow-down.png" />
+          </block>
+          <block wx:else>
+            <text>收起</text>
+            <image class="arrow" src="./images/arrow-up.png" />
+          </block>
+        </view>
+      </view>
+      <view class="collapse-subitems" wx:if="{{!item.fold}}">
+        <view class="collapse-subitem row between" wx:for="{{item.list}}" wx:key="ticketIndex" wx:for-index="ticketIndex" wx:for-item="ticket">
+          <view class="ticket-info">
+            <view class="shop-info row">
+              <view class="shop-type row" wx:if="{{ticket.shopType !== 3}}">{{ticket.shopType === 1 ? '官方' : '自营'}}</view>
+              <view class="shop-name">{{ticket.shopName}}</view>
+            </view>
+            <view class="tips-wrap row">
+              <view class="tips stress">{{ticket.bookingTips}}</view>
+              <view class="tips">{{ticket.tips}}</view>
+            </view>
+            <view class="tips-wrap row">
+              <view class="tips stress">{{ticket.isRefundable ? '随时可退' : '有条件退'}}</view>
+              <view class="tips" wx:if="{{!ticket.needChange}}">无需换票</view>
+            </view>
+            <view class="tips-wrap row">
+              <view class="tips">已售{{ticket.salesVolume}}</view>
+              <view class="tips stress row" wx:if="{{!ticket.needChange}}">
+                <text>预定须知</text>
+                <image class="more-icon" src="./images/more-blue.png" />
+              </view>
+            </view>
+          </view>
+          <view class="booking-wrap">
+            <price-unit price="{{ticket.price}}" />
+            <button class="booking-btn">预定</button>
+          </view>
         </view>
       </view>
     </view>

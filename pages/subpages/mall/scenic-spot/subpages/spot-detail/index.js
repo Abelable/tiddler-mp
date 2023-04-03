@@ -38,6 +38,16 @@ Page({
           },
           {
             shopType: 2,
+            shopName: '小鱼度假',
+            tips: '出票3小时后可用',
+            bookingTips: '可订今日',
+            needChange: false,
+            isRefundable: true,
+            salesVolume: 10,
+            price: 40
+          },
+          {
+            shopType: 3,
             shopName: '浙风旅行社',
             tips: '出票3小时后可用',
             bookingTips: '可订今日',
@@ -65,7 +75,7 @@ Page({
           },
           {
             shopType: 2,
-            shopName: '浙风旅行社',
+            shopName: '小鱼度假',
             tips: '出票3小时后可用',
             bookingTips: '可订今日',
             needChange: false,
