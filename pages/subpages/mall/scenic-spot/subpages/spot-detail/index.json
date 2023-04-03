@@ -6,6 +6,7 @@
     "van-rate": "@vant/weapp/rate/index",
     "price-unit": "/components/price-unit/index",
     "comment-item": "./components/comment-item/index",
-    "hotel-item": "./components/hotel-item/index"
+    "hotel-item": "./components/hotel-item/index",
+    "scenic-spot-item": "./components/scenic-spot-item/index"
   }
 }

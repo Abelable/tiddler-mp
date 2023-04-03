@@ -244,6 +244,56 @@ Page({
         basePrice: 500
       },
     ],
+    nearbyScenicSpotList: [
+      {
+        image: "http://img.ubo.vip/uploads/15095212_63f83fc85e023/4uPSXbFzNsQt13bvyvURZtMj1YOqc7okLbSKdxSv.jpeg",
+        name: "千岛湖啤酒小镇",
+        rate: 4.6,
+        distance: "4.5km",
+      },
+      {
+        image: "http://img.ubo.vip/uploads/15095212_63f83fc80e25d/uF2jdRqXSBtSAxRdX4cdLJvvApNreExaVw51LU5t.jpeg",
+        name: "千岛湖欢乐水世界",
+        rate: 4.2,
+        distance: "4.1km",
+      },
+      {
+        image: "http://img.ubo.vip/uploads/15095212_63f83fc85e023/4uPSXbFzNsQt13bvyvURZtMj1YOqc7okLbSKdxSv.jpeg",
+        name: "千岛湖啤酒小镇",
+        rate: 4.6,
+        distance: "4.5km",
+      },
+      {
+        image: "http://img.ubo.vip/uploads/15095212_63f83fc80e25d/uF2jdRqXSBtSAxRdX4cdLJvvApNreExaVw51LU5t.jpeg",
+        name: "千岛湖欢乐水世界",
+        rate: 4.2,
+        distance: "4.1km",
+      },
+      {
+        image: "http://img.ubo.vip/uploads/15095212_63f83fc85e023/4uPSXbFzNsQt13bvyvURZtMj1YOqc7okLbSKdxSv.jpeg",
+        name: "千岛湖啤酒小镇",
+        rate: 4.6,
+        distance: "4.5km",
+      },
+      {
+        image: "http://img.ubo.vip/uploads/15095212_63f83fc80e25d/uF2jdRqXSBtSAxRdX4cdLJvvApNreExaVw51LU5t.jpeg",
+        name: "千岛湖欢乐水世界",
+        rate: 4.2,
+        distance: "4.1km",
+      },
+      {
+        image: "http://img.ubo.vip/uploads/15095212_63f83fc85e023/4uPSXbFzNsQt13bvyvURZtMj1YOqc7okLbSKdxSv.jpeg",
+        name: "千岛湖啤酒小镇",
+        rate: 4.6,
+        distance: "4.5km",
+      },
+      {
+        image: "http://img.ubo.vip/uploads/15095212_63f83fc80e25d/uF2jdRqXSBtSAxRdX4cdLJvvApNreExaVw51LU5t.jpeg",
+        name: "千岛湖欢乐水世界",
+        rate: 4.2,
+        distance: "4.1km",
+      },
+    ],
   },
 
   onLoad(options) {},

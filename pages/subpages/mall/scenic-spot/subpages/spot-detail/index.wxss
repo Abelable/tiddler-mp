@@ -123,14 +123,10 @@
   align-items: center;
   margin-top: 10rpx;
 }
-.star {
-  width: 32rpx;
-  height: 32rpx;
-}
 .score {
   margin-left: 10rpx;
   color: #333;
-  font-size: 24rpx;
+  font-size: 26rpx;
   font-weight: bold;
 }
 
@@ -414,4 +410,11 @@
   flex-wrap: nowrap;
   margin-top: 24rpx;
   height: 380rpx;
+}
+
+.scenic-spot-list {
+  display: flex;
+  flex-wrap: nowrap;
+  margin-top: 24rpx;
+  height: 280rpx;
 }
