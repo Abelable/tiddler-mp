@@ -468,7 +468,8 @@
 }
 
 .hotel-list {
+  display: flex;
+  flex-wrap: nowrap;
   margin-top: 24rpx;
-  white-space: nowrap;
-  overflow-x: scroll;
+  height: 380rpx;
 }

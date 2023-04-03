@@ -301,7 +301,7 @@
       <image class="more-icon" src="./images/more.png" />
     </view>
   </view>
-  <scroll-view class="hotel-list" scroll-x>
+  <scroll-view class="hotel-list" scroll-x enable-flex>
     <hotel-item wx:for="{{nearbyHotelList}}" wx:key="index" info="{{item}}" />
   </scroll-view>
 
