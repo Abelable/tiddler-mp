@@ -1,0 +1,28 @@
+<wxs module="TIME" src="/utils/filters/time.wxs" />
+
+<view class="comment-item">
+  <view class="user-info-wrap row">
+    <image class="user-avatar" src="{{item.userInfo.avatar}}" />
+    <view class="user-info">
+      <view class="user-name">{{item.userInfo.nickname}}</view>
+      <view class="comment-date">{{TIME.timeDiff(item.createdAt)}}</view>
+    </view>
+    <view class="row">
+      <van-rate value="{{item.rate}}" size="16" gutter="0" color="#ffd21e" void-icon="star" void-color="#eee" allow-half />
+      <view class="comment-rate">{{item.rate}}分</view>
+    </view>
+  </view>
+  <view class="comment-content omit">{{item.content}}</view>
+  <view class="comment-images row between">
+    <image 
+      class="comment-image" 
+      wx:for="{{imageList}}" 
+      wx:key="imageIndex" 
+      wx:for-index="imageIndex" 
+      wx:for-item="image" 
+      src="{{image}}"
+      mode="aspectFill" 
+    />
+    <view class="more-image-tips row center">+{{item.imageList.length - 3}}</view>
+  </view>
+</view>
