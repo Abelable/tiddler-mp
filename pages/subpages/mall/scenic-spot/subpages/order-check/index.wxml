@@ -1,0 +1,72 @@
+<view class="container">
+  <view class="card row" bindtap="showAddressSelectPopup">
+    <image class="address-icon" src="https://img.ubo.vip/mp/selection/goods-detail/order-check/address-icon.png" />
+    <view class="consignee">
+      <view class="person-info" wx:if="{{preOrderInfo.addressInfo}}">
+        <text class="consignee-name">{{preOrderInfo.addressInfo.name}}</text>
+        <text>{{preOrderInfo.addressInfo.mobile}}</text>
+      </view>
+      <view class="address-info" wx:if="{{preOrderInfo.addressInfo}}">{{preOrderInfo.addressInfo.regionDesc + ' ' + preOrderInfo.addressInfo.addressDetail}}</view>
+      <view wx:if="{{!preOrderInfo.addressInfo}}">请选择合适的寄件地址</view>
+    </view>
+    <image class="select-icon" src="https://img.ubo.vip/mp/selection/goods-detail/order-check/to-icon.png" />
+  </view>
+
+  <view 
+    class="card"
+    wx:for="{{preOrderInfo.goodsLists}}" wx:key="index"
+  >
+    <view class="order-header row">
+      <image class="shop-icon" wx:if="{{item.shopInfo}}" src="{{item.shopInfo.avatar}}" />
+      <view>{{item.shopInfo ? item.shopInfo.name : '官方自营'}}</view>
+    </view>
+    <view class="goods-item row" wx:for="{{item.goodsList}}" wx:key="index" wx:for-item="goods">
+      <image class="goods-img" src="{{goods.goodsImage}}" mode="aspectFill" lazy-load />
+      <view class="goods-content">
+        <view class="goods-name omit">{{goods.goodsName}}</view>
+        <view class="goods-sku omit single-line" wx:if="{{goods.selectedSkuName}}">规格：{{goods.selectedSkuName}}</view>
+        <view class="goods-price-wrap">
+          <price-unit price="{{goods.price || 0}}" />
+          <view class="count-wrap">
+            <text>x</text>
+            <text class="count">{{goods.number}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">价格明细</view>
+    <view class="list row between">
+      <view class="list-title">
+        <text>商品总价</text>
+        <text class="list-tips"> 共{{preOrderInfo.totalNumber}}件宝贝</text>
+      </view>
+      <price-unit price="{{preOrderInfo.totalPrice || 0}}" color="#333" />
+    </view>
+    <view class="list row between">
+      <view class="list-title">
+        <text>运费</text>
+      </view>
+      <price-unit price="{{preOrderInfo.freightPrice || 0}}" color="#333" />
+    </view>
+    <view class="list row between">
+      <view class="list-title">
+        <text>合计</text>
+      </view>
+      <price-unit price="{{preOrderInfo.paymentAmount || 0}}" color="#333" />
+    </view>
+  </view>
+</view>
+
+<view class="bottom-bar row">
+  <view class="total-price-wrap row baseline">
+    <text class="count-desc">共{{preOrderInfo.totalNumber}}件</text>
+    <text>合计：</text>
+    <price-unit price="{{preOrderInfo.paymentAmount || 0}}" fontSize="28rpx" integerFontSize="42rpx" />
+  </view>
+  <button class="submit-btn {{preOrderInfo.addressInfo ? 'active' : ''}}" bindtap="submit">提交订单</button>
+</view>
+
+<address-select-popup addressId="{{preOrderInfo.addressInfo.id || 0}}" show="{{addressSelectPopupVisible}}" bind:hide="hideAddressSelectPopup" />
