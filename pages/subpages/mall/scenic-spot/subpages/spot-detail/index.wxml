@@ -85,7 +85,7 @@
   </view>
 
   <view class="info-list-wrap">
-    <view class="info-list row between">
+    <navigator class="info-list row between" url="./subpages/more-info/index?id={{spotInfo.id}}" hover-class="none">
       <view class="row">
         <image class="clock-icon" src="./images/time.png" />
         <view class="opening-status row {{spotInfo.status !== 1 ? 'closed' : ''}}">{{spotInfo.status !== 1 ? '今日已闭园' : '开园中'}}</view>
@@ -95,7 +95,7 @@
         <view class="more-detail">详情</view>
         <image class="more-icon" src="./images/more.png" />
       </view>
-    </view>
+    </navigator>
     <view class="info-list row between">
       <view class="row">
         <image class="position-icon" src="./images/position.png" />
