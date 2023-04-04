@@ -79,9 +79,9 @@
     </view>
   </view>
 
-  <view class="title-wrap row between">
-    <view class="title">景点门票</view>
-    <view class="title-tips row">
+  <view class="content-title-wrap row between">
+    <view class="content-title">景点门票</view>
+    <view class="content-title-tips row">
       <text>优待政策</text>
       <image class="more-icon" src="./images/more-blue.png" />
     </view>
@@ -142,8 +142,8 @@
     </view>
   </view>
 
-  <view class="title-wrap">
-    <view class="title">多景点联票</view>
+  <view class="content-title-wrap">
+    <view class="content-title">多景点联票</view>
   </view>
   <scroll-view class="ticket-type-menu" scroll-x>
     <view 
@@ -201,8 +201,8 @@
     </view>
   </view>
 
-  <view class="title-wrap">
-    <view class="title">点评</view>
+  <view class="content-title-wrap">
+    <view class="content-title">点评</view>
   </view>
   <view class="comment-list">
     <comment-item wx:for="{{commentList}}" wx:key="index" item="{{item}}" />
@@ -212,8 +212,8 @@
     <image class="more-icon" src="./images/more.png" />
   </view>
 
-  <view class="title-wrap">
-    <view class="title">问答</view>
+  <view class="content-title-wrap">
+    <view class="content-title">问答</view>
   </view>
   <view class="qa-list">
     <view class="qa-item">
@@ -255,8 +255,8 @@
     <image class="more-icon" src="./images/more.png" />
   </view>
 
-  <view class="title-wrap row between">
-    <view class="title">附近酒店</view>
+  <view class="content-title-wrap row between">
+    <view class="content-title">附近酒店</view>
     <view class="row">
       <view class="more-detail">共10个推荐</view>
       <image class="more-icon" src="./images/more.png" />
@@ -266,8 +266,8 @@
     <hotel-item wx:for="{{nearbyHotelList}}" wx:key="index" info="{{item}}" />
   </scroll-view>
 
-  <view class="title-wrap row between">
-    <view class="title">附近景点</view>
+  <view class="content-title-wrap row between">
+    <view class="content-title">附近景点</view>
     <view class="row">
       <view class="more-detail">共10个推荐</view>
       <image class="more-icon" src="./images/more.png" />
@@ -277,8 +277,11 @@
     <scenic-spot-item wx:for="{{nearbyScenicSpotList}}" wx:key="index" info="{{item}}" />
   </scroll-view>
 
-  <view class="title-wrap">
-    <view class="title">达人打卡</view>
+  <view class="content-title-wrap">
+    <view class="content-title">达人打卡</view>
   </view>
-
+  <view class="media-wrap">
+    <fall-flow list="{{mediaList}}" generic:item="media-item" />
+    <view class="no-more-tips">～没有更多了～</view>
+  </view>
 </view>

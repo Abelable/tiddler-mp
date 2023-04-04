@@ -7,6 +7,9 @@
     "price-unit": "/components/price-unit/index",
     "comment-item": "./components/comment-item/index",
     "hotel-item": "./components/hotel-item/index",
-    "scenic-spot-item": "./components/scenic-spot-item/index"
+    "scenic-spot-item": "./components/scenic-spot-item/index",
+    "empty-illus": "/components/empty-illus/index",
+    "fall-flow": "/components/fall-flow/index",
+    "media-item": "/components/media-item/index"
   }
 }
