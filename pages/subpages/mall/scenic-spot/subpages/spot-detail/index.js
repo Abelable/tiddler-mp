@@ -496,7 +496,7 @@ Page({
     );
   },
 
-  onPageScroll: debounce(function ({ scrollTop }) {
+  onPageScroll({ scrollTop }) {
     this.scrollTop = scrollTop;
 
     if (scrollTop >= this.navBarVisibleLimit) {
@@ -547,7 +547,7 @@ Page({
     } else if (menuLimit >= this.menuChangeLimitList[6]) {
       if (this.data.curMenuIdx !== 6) this.setData({ curMenuIdx: 6 });
     }
-  }, 50),
+  },
 
   onReachBottom() {
     console.log("onReachBottom");
