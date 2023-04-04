@@ -16,7 +16,7 @@
         <text>距景点{{info.distance}}</text>
       </view>
       <view class="price-wrap row">
-        <price-unit price="{{info.basePrice}}" fontSize="20rpx" integerFontSize="28rpx" />
+        <price-unit price="{{info.basePrice || 0}}" fontSize="20rpx" integerFontSize="28rpx" />
         <text>起</text>
       </view>
     </view>

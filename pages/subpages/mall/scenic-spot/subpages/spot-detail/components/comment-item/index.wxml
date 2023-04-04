@@ -8,7 +8,7 @@
       <view class="comment-date">{{TIME.timeDiff(item.createdAt)}}</view>
     </view>
     <view class="row">
-      <van-rate value="{{item.rate}}" size="16" gutter="0" color="#ffd21e" void-icon="star" void-color="#eee" allow-half />
+      <van-rate value="{{item.rate || 0}}" size="16" gutter="0" color="#ffd21e" void-icon="star" void-color="#eee" allow-half />
       <view class="comment-rate">{{item.rate}}分</view>
     </view>
   </view>

@@ -4,6 +4,7 @@ Page({
   data: {
     statusBarHeight,
     navBarVisible: false,
+    curMenuIdx: -1,
     spotInfo: {
       name: "千岛湖森林氧吧",
       status: 1,
@@ -407,7 +408,8 @@ Page({
   },
 
   onLoad(options) {
-    this.setNavBarVisibleLimit()
+    this.setNavBarVisibleLimit();
+    this.setMenuChangeLimitList();
   },
 
   setNavBarVisibleLimit() {
@@ -415,6 +417,14 @@ Page({
     query.select(".scenic-spot-name").boundingClientRect();
     query.exec((res) => {
       this.navBarVisibleLimit = res[0].bottom;
+    });
+  },
+
+  setMenuChangeLimitList() {
+    const query = wx.createSelectorQuery();
+    query.selectAll(".content-title").boundingClientRect();
+    query.exec((res) => {
+      this.menuChangeLimitList = res[0].map((item) => item.bottom);
     });
   },
 
@@ -471,8 +481,8 @@ Page({
     });
   },
 
-  onPageScroll(e) {
-    if (e.scrollTop >= this.navBarVisibleLimit) {
+  onPageScroll({ scrollTop }) {
+    if (scrollTop >= this.navBarVisibleLimit) {
       !this.data.navBarVisible &&
         this.setData({
           navBarVisible: true,
@@ -484,21 +494,46 @@ Page({
         });
     }
 
-    // if (e.scrollTop >= this.menuFixedLimit) {
-    //   !this.data.menuFixed &&
-    //     this.setData({
-    //       menuFixed: true,
-    //     });
-    // } else {
-    //   this.data.menuFixed &&
-    //     this.setData({
-    //       menuFixed: false,
-    //     });
-    // }
+    const menuLimit = scrollTop + statusBarHeight + 88;
+    if (menuLimit < this.menuChangeLimitList[0]) {
+      if (this.data.curMenuIdx !== -1) this.setData({ curMenuIdx: -1 });
+    } else if (
+      menuLimit >= this.menuChangeLimitList[0] &&
+      menuLimit < this.menuChangeLimitList[1]
+    ) {
+      if (this.data.curMenuIdx !== 0) this.setData({ curMenuIdx: 0 });
+    } else if (
+      menuLimit >= this.menuChangeLimitList[1] &&
+      menuLimit < this.menuChangeLimitList[2]
+    ) {
+      if (this.data.curMenuIdx !== 1) this.setData({ curMenuIdx: 1 });
+    } else if (
+      menuLimit >= this.menuChangeLimitList[2] &&
+      menuLimit < this.menuChangeLimitList[3]
+    ) {
+      if (this.data.curMenuIdx !== 2) this.setData({ curMenuIdx: 2 });
+    } else if (
+      menuLimit >= this.menuChangeLimitList[3] &&
+      menuLimit < this.menuChangeLimitList[4]
+    ) {
+      if (this.data.curMenuIdx !== 3) this.setData({ curMenuIdx: 3 });
+    } else if (
+      menuLimit >= this.menuChangeLimitList[4] &&
+      menuLimit < this.menuChangeLimitList[5]
+    ) {
+      if (this.data.curMenuIdx !== 4) this.setData({ curMenuIdx: 4 });
+    } else if (
+      menuLimit >= this.menuChangeLimitList[5] &&
+      menuLimit < this.menuChangeLimitList[6]
+    ) {
+      if (this.data.curMenuIdx !== 5) this.setData({ curMenuIdx: 5 });
+    } else if (menuLimit >= this.menuChangeLimitList[6]) {
+      if (this.data.curMenuIdx !== 6) this.setData({ curMenuIdx: 6 });
+    }
   },
 
   onReachBottom() {
-    console.log('onReachBottom')
+    console.log("onReachBottom");
   },
 
   onShareAppMessage() {},

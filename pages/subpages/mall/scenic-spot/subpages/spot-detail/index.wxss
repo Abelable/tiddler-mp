@@ -64,6 +64,22 @@
   font-size: 14px;
   white-space: nowrap;
 }
+.menu-item.active {
+  position: relative;
+  color: #333;
+  font-weight: bold;
+}
+.menu-item.active::after {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 24rpx;
+  height: 6rpx;
+  content: '';
+  background: #f476b4;
+  border-radius: 6rpx 0 6rpx 0;
+}
 .share-btn {
   position: relative;
   width: 50px;

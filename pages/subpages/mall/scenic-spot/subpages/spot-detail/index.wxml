@@ -16,7 +16,7 @@
   <view class="menu-wrap row" wx:if="{{navBarVisible}}">
     <scroll-view class="menu" scroll-x enable-flex>
       <view 
-        class="menu-item row" 
+        class="menu-item row {{curMenuIdx === index ? 'active' : ''}}" 
         wx:for="{{['景点门票', '多景点联票', '点评', '问答', '附近酒店', '附近景点', '达人打卡']}}"
         wx:key="index"
       >{{item}}</view>
