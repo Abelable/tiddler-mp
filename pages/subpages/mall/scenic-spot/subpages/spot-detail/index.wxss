@@ -1,11 +1,14 @@
-.nav-bar {
+.nav-bar-wrap {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
+  z-index: 100;
+}
+.nav-bar {
+  position: relative;
   height: 44px;
   box-sizing: initial;
-  z-index: 100;
 }
 .nav-bg {
   position: absolute;
@@ -40,6 +43,42 @@
 }
 .grade-wrap {
   font-size: 8px;
+}
+
+.menu-wrap {
+  height: 44px;
+  background: #fff;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.05);
+}
+.menu {
+  display: flex;
+  flex-wrap: nowrap;
+  flex: 1;
+  height: 44px;
+  overflow-x: scroll;
+}
+.menu-item {
+  padding: 0 12px;
+  height: 44px;
+  color: #999;
+  font-size: 14px;
+  white-space: nowrap;
+}
+.share-btn {
+  position: relative;
+  width: 50px;
+  height: 44rpx;
+}
+.share-btn::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 32px;
+  content: "";
+  background: linear-gradient(#fff, #ddd, #fff);
+  border-radius: 16px;
 }
 
 .banner-wrap {
@@ -125,8 +164,6 @@
 }
 
 .score-wrap {
-  display: flex;
-  align-items: center;
   margin-top: 10rpx;
 }
 .score {

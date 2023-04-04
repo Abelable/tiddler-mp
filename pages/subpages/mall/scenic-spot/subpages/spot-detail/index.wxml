@@ -1,14 +1,29 @@
-<view class="nav-bar row" style="padding-top: {{statusBarHeight}}px;">
-  <image class="nav-bg" wx:if="{{navBarVisible}}" src="{{spotInfo.imageList[0]}}" mode="aspectFill" />
-  <view class="bg-cover" wx:if="{{navBarVisible}}" />
-  <back-icon style="margin-left: 8px;" noBorder="{{navBarVisible}}" />
-  <image class="spot-image" wx:if="{{navBarVisible}}" src="{{spotInfo.imageList[0]}}" mode="aspectFill" />
-  <view class="spot-info" wx:if="{{navBarVisible}}">
-    <view class="spot-name">{{spotInfo.name}}</view>
-    <view class="grade-wrap row">
-      <van-rate value="{{spotInfo.grade}}" size="8" gutter="0" color="#ffd21e" void-icon="star" void-color="#eee" allow-half />
-      <text class="spot-grade">{{spotInfo.grade}}</text>
+<view class="nav-bar-wrap">
+  <view class="nav-bar row" style="padding-top: {{statusBarHeight}}px;">
+    <image class="nav-bg" wx:if="{{navBarVisible}}" src="{{spotInfo.imageList[0]}}" mode="aspectFill" />
+    <view class="bg-cover" wx:if="{{navBarVisible}}" />
+    <back-icon style="margin-left: 8px;" noBorder="{{navBarVisible}}" />
+    <image class="spot-image" wx:if="{{navBarVisible}}" src="{{spotInfo.imageList[0]}}" mode="aspectFill" />
+    <view class="spot-info" wx:if="{{navBarVisible}}">
+      <view class="spot-name">{{spotInfo.name}}</view>
+      <view class="grade-wrap row">
+        <van-rate value="{{spotInfo.grade}}" size="8" gutter="0" color="#ffd21e" void-icon="star" void-color="#eee" allow-half />
+        <text class="spot-grade">{{spotInfo.grade}}</text>
+      </view>
     </view>
+  </view>
+
+  <view class="menu-wrap row" wx:if="{{navBarVisible}}">
+    <scroll-view class="menu" scroll-x enable-flex>
+      <view 
+        class="menu-item row" 
+        wx:for="{{['景点门票', '多景点联票', '点评', '问答', '附近酒店', '附近景点', '达人打卡']}}"
+        wx:key="index"
+      >{{item}}</view>
+    </scroll-view>
+    <button class="share-btn">
+      <image class="share-icon" src="./images/share.png" />
+    </button>
   </view>
 </view>
 
@@ -56,7 +71,7 @@
     <image class="share-icon" src="./images/share.png" />
   </view>
 
-  <view class="score-wrap">
+  <view class="score-wrap row">
     <van-rate value="{{spotInfo.grade}}" size="18" gutter="0" color="#ffd21e" void-icon="star" void-color="#eee" allow-half />
     <text class="score">{{spotInfo.grade}}分</text>
   </view>
