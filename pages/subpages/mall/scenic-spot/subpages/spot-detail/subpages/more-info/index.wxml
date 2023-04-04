@@ -1,0 +1,19 @@
+<scroll-view class="menu" scroll-x enable-flex>
+  <view 
+    class="menu-item row {{curMenuIdx === index ? 'active' : ''}}" 
+    wx:for="{{['景点简介', '开放时间', '优待政策', '咨询热线', '景区项目', '景区设施', '交通信息', '游玩贴士']}}" 
+    wx:key="index"
+    bindtap="selectMenu"
+    data-index="{{index}}"
+  >{{item}}</view>
+</scroll-view>
+
+<view class="container">
+  <view class="card">
+    <view class="title">景点简介</view>
+    <view class="introduction">
+      <text>{{introduction}}</text>
+      <text class="toggle-fold-btn" bindtap="toggleIntroductionFold">{{introductionFold ? '展开' : '收起'}}</text>
+    </view>
+  </view>
+</view>
