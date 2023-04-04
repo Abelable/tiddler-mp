@@ -318,7 +318,7 @@ Page({
         authorInfo: {
           id: 2,
           avatar:
-            "https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKi…J9ar1HbPxQ1DV5kzKhQKTTuum4BaZ6EvgOspTaNDIkUQg/132",
+            "https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKiakPc4hxfvs8nTgLkh3jhN6B8jP2oz5J9ar1HbPxQ1DV5kzKhQKTTuum4BaZ6EvgOspTaNDIkUQg/132",
           nickname: "徐九爷_",
         },
         collectionTimes: 0,
@@ -340,7 +340,7 @@ Page({
         authorInfo: {
           id: 2,
           avatar:
-            "https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKi…J9ar1HbPxQ1DV5kzKhQKTTuum4BaZ6EvgOspTaNDIkUQg/132",
+            "https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKiakPc4hxfvs8nTgLkh3jhN6B8jP2oz5J9ar1HbPxQ1DV5kzKhQKTTuum4BaZ6EvgOspTaNDIkUQg/132",
           nickname: "徐九爷_",
         },
         collectionTimes: 0,
@@ -363,7 +363,7 @@ Page({
         authorInfo: {
           id: 2,
           avatar:
-            "https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKi…J9ar1HbPxQ1DV5kzKhQKTTuum4BaZ6EvgOspTaNDIkUQg/132",
+            "https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKiakPc4hxfvs8nTgLkh3jhN6B8jP2oz5J9ar1HbPxQ1DV5kzKhQKTTuum4BaZ6EvgOspTaNDIkUQg/132",
           nickname: "徐九爷_",
         },
         collectionTimes: 0,
@@ -385,7 +385,7 @@ Page({
         authorInfo: {
           id: 2,
           avatar:
-            "https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKi…J9ar1HbPxQ1DV5kzKhQKTTuum4BaZ6EvgOspTaNDIkUQg/132",
+            "https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKiakPc4hxfvs8nTgLkh3jhN6B8jP2oz5J9ar1HbPxQ1DV5kzKhQKTTuum4BaZ6EvgOspTaNDIkUQg/132",
           nickname: "徐九爷_",
         },
         collectionTimes: 0,
