@@ -55,7 +55,7 @@
 }
 
 .introduction {
-  margin-top: 24rpx;
+  margin-top: 18rpx;
   color: #666;
   font-size: 24rpx;
 }
