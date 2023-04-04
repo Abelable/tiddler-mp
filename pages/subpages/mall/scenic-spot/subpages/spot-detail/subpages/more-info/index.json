@@ -1,1 +1,5 @@
-{}
+{
+  "usingComponents": {
+    "project-item": "./components/project-item/index"
+  }
+}
