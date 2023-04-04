@@ -171,3 +171,25 @@
   margin-top: 8rpx;
   color: #666;
 }
+
+.tips-list {
+  font-size: 24rpx;
+}
+.tips-item {
+  display: flex;
+  padding: 24rpx 0;
+  border-bottom: 1px solid #f5f6f7;
+}
+.tips-item:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+.tips-title {
+  flex: 1;
+  color: #333;
+  font-weight: bold;
+}
+.tips-content {
+  flex: 4;
+  color: #666;
+}

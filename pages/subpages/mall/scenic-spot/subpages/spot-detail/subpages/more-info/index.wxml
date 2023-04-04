@@ -7,7 +7,7 @@
 >
   <view 
     class="menu-item row {{curMenuIdx === index ? 'active' : ''}}" 
-    wx:for="{{['景点简介', '开放时间', '优待政策', '咨询热线', '景区项目', '景区设施', '交通信息', '游玩贴士']}}" 
+    wx:for="{{['景点简介', '开放时间', '优待政策', '咨询热线', '景区项目', '景区设施', '游玩贴士']}}" 
     wx:key="index"
     bindtap="selectMenu"
     data-index="{{index}}"
@@ -103,6 +103,20 @@
       <view class="facility-info">
         <view class="facility-name">{{facilityList[curFacilityIdx].name}}</view>
         <view class="facility-content">{{facilityList[curFacilityIdx].content}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">游玩贴士</view>
+    <view class="tips-list">
+      <view class="tips-item">
+        <view class="tips-title">交通建议</view>
+        <view class="tips-content">暂无从城区出发直达的公交，建议自驾前往</view>
+      </view>
+      <view class="tips-item">
+        <view class="tips-title">游玩时长</view>
+        <view class="tips-content">景区不大，建议1-3小时，一般不建议在景区内用餐，自带少许水和食物即可</view>
       </view>
     </view>
   </view>
