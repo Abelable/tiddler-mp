@@ -1,5 +1,3 @@
-import { debounce } from "../../../../../../utils/index";
-
 const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Page({
