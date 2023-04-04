@@ -1,3 +1,5 @@
+import { debounce } from "../../../../../../utils/index";
+
 const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Page({
@@ -425,7 +427,7 @@ Page({
     query.selectAll(".content-title").boundingClientRect();
     query.exec((res) => {
       this.menuChangeLimitList = res[0].map(
-        (item) => item.bottom + (this.scrollTop || 0)
+        (item) => item.top + (this.scrollTop || 0)
       );
     });
   },
@@ -449,9 +451,10 @@ Page({
     wx.previewImage({ current, urls });
   },
 
-  onChange(event) {
-    this.setData({
-      activeNames: event.detail,
+  selectMenu(e) {
+    const { index } = e.currentTarget.dataset;
+    wx.pageScrollTo({
+      scrollTop: this.menuChangeLimitList[index] - statusBarHeight - 100,
     });
   },
 
@@ -493,9 +496,9 @@ Page({
     );
   },
 
-  onPageScroll({ scrollTop }) {
+  onPageScroll: debounce(function ({ scrollTop }) {
     this.scrollTop = scrollTop;
-    
+
     if (scrollTop >= this.navBarVisibleLimit) {
       !this.data.navBarVisible &&
         this.setData({
@@ -508,7 +511,7 @@ Page({
         });
     }
 
-    const menuLimit = scrollTop + statusBarHeight + 88;
+    const menuLimit = scrollTop + statusBarHeight + 108;
     if (menuLimit < this.menuChangeLimitList[0]) {
       if (this.data.curMenuIdx !== -1) this.setData({ curMenuIdx: -1 });
     } else if (
@@ -544,7 +547,7 @@ Page({
     } else if (menuLimit >= this.menuChangeLimitList[6]) {
       if (this.data.curMenuIdx !== 6) this.setData({ curMenuIdx: 6 });
     }
-  },
+  }, 100),
 
   onReachBottom() {
     console.log("onReachBottom");
