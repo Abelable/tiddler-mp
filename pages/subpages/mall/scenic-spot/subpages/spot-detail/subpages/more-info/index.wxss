@@ -9,6 +9,7 @@
   background: #fff;
   border-top: 1px solid #f5f6f7;
   box-shadow: 0 1px 1px 0 rgba(0,0,0,0.05);
+  z-index: 100;
 }
 .menu-item {
   padding: 0 24rpx;
@@ -37,6 +38,7 @@
 .container {
   margin-top: 88rpx;
   padding: 24rpx;
+  padding-bottom: calc(24rpx + env(safe-area-inset-bottom));
 }
 
 .card {
@@ -135,4 +137,37 @@
   flex-wrap: nowrap;
   margin-top: 24rpx;
   height: 180rpx;
+}
+
+.facility-wrap {
+  margin-top: 24rpx;
+}
+.facility-btn {
+  margin-right: 24rpx;
+  padding: 12rpx;
+  border: 1px solid #ddd;
+  border-radius: 8rpx;
+}
+.facility-btn.active {
+  background: #EEF2F5;
+  border: 1px solid #9abaf0;
+}
+.facility-icon {
+  width: 42rpx;
+  height: 42rpx;
+}
+.facility-info {
+  margin-top: 24rpx;
+  padding: 18rpx;
+  font-size: 24rpx;
+  background: #f5f6f7;
+  border-radius: 8rpx;
+}
+.facility-name {
+  color: #333;
+  font-weight: bold;
+}
+.facility-content {
+  margin-top: 8rpx;
+  color: #666;
 }

@@ -84,4 +84,26 @@
       <project-item  wx:for="{{projectList}}" wx:key="index" info="{{item}}" />
     </scroll-view>
   </view>
+
+  <view class="card">
+    <view class="card-title">景区设施</view>
+    <view class="facility-wrap">
+      <view class="facility-btns-wrap row">
+        <button 
+          class="facility-btn {{curFacilityIdx === index ? 'active' : ''}}" 
+          wx:for="{{facilityList}}" 
+          wx:key="index"
+          bindtap="selectFacility"
+          data-index="{{index}}"
+          hover-class="none"
+        >
+          <image class="facility-icon" src="./images/{{item.image}}.png" />
+        </button>
+      </view>
+      <view class="facility-info">
+        <view class="facility-name">{{facilityList[curFacilityIdx].name}}</view>
+        <view class="facility-content">{{facilityList[curFacilityIdx].content}}</view>
+      </view>
+    </view>
+  </view>
 </view>

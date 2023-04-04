@@ -30,6 +30,29 @@ Page({
         name: "凝翠潭",
       },
     ],
+    facilityList: [
+      {
+        name: '停车场',
+        image: "park",
+        content: "库位：500，私家车10元（不限时间），大巴20元（不限时间）"
+      },
+      {
+        name: '卫生间',
+        image: "toilet",
+        content: "景区内有多个卫生间，售票大厅、景区入口等附近均标有醒目的指示牌"
+      },
+      {
+        name: '商店',
+        image: "shop",
+        content: "景区内有多个商店，售票大厅、景区入口等附近均标有醒目的指示牌"
+      },
+      {
+        name: '餐厅',
+        image: "food",
+        content: "景区内有多个餐厅，售票大厅、景区入口等附近均标有醒目的指示牌"
+      },
+    ],
+    curFacilityIdx: 0,
   },
 
   async onLoad({ id }) {
@@ -58,5 +81,10 @@ Page({
         ? this.introduction
         : `${this.introduction.slice(0, 68)}...`,
     });
+  },
+
+  selectFacility(e) {
+    const curFacilityIdx = Number(e.currentTarget.dataset.index);
+    this.setData({ curFacilityIdx });
   },
 });
