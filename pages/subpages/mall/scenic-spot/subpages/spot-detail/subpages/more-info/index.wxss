@@ -8,6 +8,7 @@
   height: 88rpx;
   background: #fff;
   border-top: 1px solid #f5f6f7;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.05);
 }
 .menu-item {
   padding: 0 24rpx;
@@ -65,10 +66,15 @@
 .grid {
   margin-top: 24rpx;
   border-radius: 18rpx;
-  border: 1px solid #EEF2F5;
+  border: 1px solid #ddecf6;
+  overflow: hidden;
 }
 .grid-line {
   display: flex;
+  border-bottom: 1px solid #ddecf6;
+}
+.grid-line:last-child {
+  border-bottom: none;
 }
 .grid-line.title {
   background: #EEF2F5;
@@ -77,8 +83,49 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 18rpx;
   flex: 1;
-  height: 80rpx;
   color: #333;
   font-size: 24rpx;
+  border-right: 1px solid #ddecf6;
+}
+.grid-item:last-child {
+  border-right: none;
+}
+.grid-item.main {
+  flex: 3;
+}
+.grid-item.content {
+  justify-content: flex-start;
+}
+
+.warning-tips {
+  position: relative;
+  margin-top: 24rpx;
+  padding-left: 12rpx;
+  color: #999;
+  font-size: 20rpx;
+}
+.warning-tips::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "*";
+  font-size: 18rpx;
+  color: #999;
+}
+
+.tel {
+  padding: 24rpx 0;
+  color: #333;
+  font-size: 24rpx;
+  border-bottom: 1px solid #f5f6f7;
+}
+.tel:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+.tel-icon {
+  width: 48rpx;
+  height: 48rpx;
 }
