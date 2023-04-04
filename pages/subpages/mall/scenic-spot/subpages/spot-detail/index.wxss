@@ -72,7 +72,7 @@
 .menu-item.active::after {
   position: absolute;
   left: 50%;
-  bottom: 0;
+  bottom: 8px;
   transform: translateX(-50%);
   width: 24rpx;
   height: 6rpx;

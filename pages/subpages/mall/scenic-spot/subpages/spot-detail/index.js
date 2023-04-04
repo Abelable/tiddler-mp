@@ -424,7 +424,9 @@ Page({
     const query = wx.createSelectorQuery();
     query.selectAll(".content-title").boundingClientRect();
     query.exec((res) => {
-      this.menuChangeLimitList = res[0].map((item) => item.bottom);
+      this.menuChangeLimitList = res[0].map(
+        (item) => item.bottom + (this.scrollTop || 0)
+      );
     });
   },
 
@@ -462,9 +464,14 @@ Page({
   toggleTicketsFold(e) {
     const { index } = e.currentTarget.dataset;
     const { ticketList } = this.data;
-    this.setData({
-      [`ticketList[${index}].fold`]: !ticketList[index].fold,
-    });
+    this.setData(
+      {
+        [`ticketList[${index}].fold`]: !ticketList[index].fold,
+      },
+      () => {
+        this.setMenuChangeLimitList();
+      }
+    );
   },
 
   selectCombinedTicketType(e) {
@@ -476,12 +483,19 @@ Page({
   toggleCombinedTicketsFold(e) {
     const { index } = e.currentTarget.dataset;
     const { combinedTicketList } = this.data;
-    this.setData({
-      [`combinedTicketList[${index}].fold`]: !combinedTicketList[index].fold,
-    });
+    this.setData(
+      {
+        [`combinedTicketList[${index}].fold`]: !combinedTicketList[index].fold,
+      },
+      () => {
+        this.setMenuChangeLimitList();
+      }
+    );
   },
 
   onPageScroll({ scrollTop }) {
+    this.scrollTop = scrollTop;
+    
     if (scrollTop >= this.navBarVisibleLimit) {
       !this.data.navBarVisible &&
         this.setData({
