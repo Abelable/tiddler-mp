@@ -29,7 +29,7 @@
         data-index="{{index}}"
       >{{item}}</view>
     </scroll-view>
-    <button class="share-btn">
+    <button class="share-btn" hover-class="none">
       <image class="share-icon" src="./images/share.png" />
     </button>
   </view>

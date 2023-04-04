@@ -547,7 +547,7 @@ Page({
     } else if (menuLimit >= this.menuChangeLimitList[6]) {
       if (this.data.curMenuIdx !== 6) this.setData({ curMenuIdx: 6 });
     }
-  }, 100),
+  }, 50),
 
   onReachBottom() {
     console.log("onReachBottom");
