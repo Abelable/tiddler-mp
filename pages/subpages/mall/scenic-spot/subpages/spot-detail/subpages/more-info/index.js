@@ -32,24 +32,25 @@ Page({
     ],
     facilityList: [
       {
-        name: '停车场',
+        name: "停车场",
         image: "park",
-        content: "库位：500，私家车10元（不限时间），大巴20元（不限时间）"
+        content: "库位：500，私家车10元（不限时间），大巴20元（不限时间）",
       },
       {
-        name: '卫生间',
+        name: "卫生间",
         image: "toilet",
-        content: "景区内有多个卫生间，售票大厅、景区入口等附近均标有醒目的指示牌"
+        content:
+          "景区内有多个卫生间，售票大厅、景区入口等附近均标有醒目的指示牌",
       },
       {
-        name: '商店',
+        name: "商店",
         image: "shop",
-        content: "景区内有多个商店，售票大厅、景区入口等附近均标有醒目的指示牌"
+        content: "景区内有多个商店，售票大厅、景区入口等附近均标有醒目的指示牌",
       },
       {
-        name: '餐厅',
+        name: "餐厅",
         image: "food",
-        content: "景区内有多个餐厅，售票大厅、景区入口等附近均标有醒目的指示牌"
+        content: "景区内有多个餐厅，售票大厅、景区入口等附近均标有醒目的指示牌",
       },
     ],
     curFacilityIdx: 0,
@@ -66,11 +67,25 @@ Page({
     this.setData({
       introduction: `${this.introduction.slice(0, 68)}...`,
     });
+
+    this.setMenuChangeLimitList();
+  },
+
+  setMenuChangeLimitList() {
+    const query = wx.createSelectorQuery();
+    query.selectAll(".card").boundingClientRect();
+    query.exec((res) => {
+      this.menuChangeLimitList = res[0].map(
+        (item) => item.top + (this.scrollTop || 0)
+      );
+    });
   },
 
   selectMenu(e) {
-    const curMenuIdx = Number(e.currentTarget.dataset.index);
-    this.setData({ curMenuIdx });
+    const { index } = e.currentTarget.dataset;
+    wx.pageScrollTo({
+      scrollTop: this.menuChangeLimitList[index] - 56,
+    });
   },
 
   toggleIntroductionFold() {
@@ -81,10 +96,47 @@ Page({
         ? this.introduction
         : `${this.introduction.slice(0, 68)}...`,
     });
+    this.setMenuChangeLimitList();
   },
 
   selectFacility(e) {
     const curFacilityIdx = Number(e.currentTarget.dataset.index);
     this.setData({ curFacilityIdx });
+  },
+
+  onPageScroll({ scrollTop }) {
+    this.scrollTop = scrollTop;
+
+    const menuLimit = scrollTop + 56;
+    if (menuLimit < this.menuChangeLimitList[1]) {
+      if (this.data.curMenuIdx !== 0) this.setData({ curMenuIdx: 0 });
+    } else if (
+      menuLimit >= this.menuChangeLimitList[1] &&
+      menuLimit < this.menuChangeLimitList[2]
+    ) {
+      if (this.data.curMenuIdx !== 1) this.setData({ curMenuIdx: 1 });
+    } else if (
+      menuLimit >= this.menuChangeLimitList[2] &&
+      menuLimit < this.menuChangeLimitList[3]
+    ) {
+      if (this.data.curMenuIdx !== 2) this.setData({ curMenuIdx: 2 });
+    } else if (
+      menuLimit >= this.menuChangeLimitList[3] &&
+      menuLimit < this.menuChangeLimitList[4]
+    ) {
+      if (this.data.curMenuIdx !== 3) this.setData({ curMenuIdx: 3 });
+    } else if (
+      menuLimit >= this.menuChangeLimitList[4] &&
+      menuLimit < this.menuChangeLimitList[5]
+    ) {
+      if (this.data.curMenuIdx !== 4) this.setData({ curMenuIdx: 4 });
+    } else if (
+      menuLimit >= this.menuChangeLimitList[5] &&
+      menuLimit < this.menuChangeLimitList[6]
+    ) {
+      if (this.data.curMenuIdx !== 5) this.setData({ curMenuIdx: 5 });
+    } else if (menuLimit >= this.menuChangeLimitList[6]) {
+      if (this.data.curMenuIdx !== 6) this.setData({ curMenuIdx: 6 });
+    }
   },
 });
