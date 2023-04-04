@@ -1,9 +1,15 @@
 <view class="nav-bar row" style="padding-top: {{statusBarHeight}}px;">
-  <image class="nav-bg" wx:if="{{navBarVisible}}" src="{{spotInfo.bg || 'https://img.ubo.vip/tiddler/bg.jpg'}}" />
+  <image class="nav-bg" wx:if="{{navBarVisible}}" src="{{spotInfo.imageList[0]}}" mode="aspectFill" />
   <view class="bg-cover" wx:if="{{navBarVisible}}" />
   <back-icon style="margin-left: 8px;" noBorder="{{navBarVisible}}" />
-  <image class="spot-image" wx:if="{{navBarVisible}}" src="{{spotInfo.avatar}}" />
-  <view class="spot-name" wx:if="{{navBarVisible}}">{{spotInfo.nickname}}</view>
+  <image class="spot-image" wx:if="{{navBarVisible}}" src="{{spotInfo.imageList[0]}}" mode="aspectFill" />
+  <view class="spot-info" wx:if="{{navBarVisible}}">
+    <view class="spot-name">{{spotInfo.name}}</view>
+    <view class="grade-wrap row">
+      <van-rate value="{{spotInfo.grade}}" size="8" gutter="0" color="#ffd21e" void-icon="star" void-color="#eee" allow-half />
+      <text class="spot-grade">{{spotInfo.grade}}</text>
+    </view>
+  </view>
 </view>
 
 <view class="banner-wrap">
@@ -44,7 +50,7 @@
 <view class="container">
   <view class="row between">
     <view class="row">
-      <view class="name">千岛湖森林氧吧</view>
+      <view class="scenic-spot-name">{{spotInfo.name}}</view>
       <view class="level-tag row">3A</view>
     </view>
     <image class="share-icon" src="./images/share.png" />

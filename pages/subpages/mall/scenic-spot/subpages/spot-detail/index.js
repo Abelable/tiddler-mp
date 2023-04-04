@@ -5,6 +5,7 @@ Page({
     statusBarHeight,
     navBarVisible: false,
     spotInfo: {
+      name: "千岛湖森林氧吧",
       status: 1,
       grade: 4.5,
       video:
@@ -405,7 +406,17 @@ Page({
     ],
   },
 
-  onLoad(options) {},
+  onLoad(options) {
+    this.setNavBarVisibleLimit()
+  },
+
+  setNavBarVisibleLimit() {
+    const query = wx.createSelectorQuery();
+    query.select(".scenic-spot-name").boundingClientRect();
+    query.exec((res) => {
+      this.navBarVisibleLimit = res[0].bottom;
+    });
+  },
 
   bannerChange(e) {
     this.setData({
@@ -458,6 +469,36 @@ Page({
     this.setData({
       [`combinedTicketList[${index}].fold`]: !combinedTicketList[index].fold,
     });
+  },
+
+  onPageScroll(e) {
+    if (e.scrollTop >= this.navBarVisibleLimit) {
+      !this.data.navBarVisible &&
+        this.setData({
+          navBarVisible: true,
+        });
+    } else {
+      this.data.navBarVisible &&
+        this.setData({
+          navBarVisible: false,
+        });
+    }
+
+    // if (e.scrollTop >= this.menuFixedLimit) {
+    //   !this.data.menuFixed &&
+    //     this.setData({
+    //       menuFixed: true,
+    //     });
+    // } else {
+    //   this.data.menuFixed &&
+    //     this.setData({
+    //       menuFixed: false,
+    //     });
+    // }
+  },
+
+  onReachBottom() {
+    console.log('onReachBottom')
   },
 
   onShareAppMessage() {},

@@ -25,15 +25,21 @@
   z-index: -1;
 }
 .spot-image {
+  margin-left: 8px;
   width: 30px;
   height: 30px;
-  border-radius: 2px;
+  border-radius: 4px;
 }
-.spot-name {
+.spot-info {
   margin-left: 8px;
   color: #fff;
-  font-size: 16px;
   font-weight: bold;
+}
+.spot-name {
+  font-size: 14px;
+}
+.grade-wrap {
+  font-size: 8px;
 }
 
 .banner-wrap {
@@ -97,7 +103,7 @@
   background: #fff;
   border-radius: 24rpx 24rpx 0 0;
 }
-.name {
+.scenic-spot-name {
   color: #333;
   font-size: 38rpx;
   font-weight: bold;
@@ -210,7 +216,7 @@
   background: #f476b4;
   border-radius: 6rpx 0 6rpx 0;
 }
-.title-tips {
+.content-title-tips {
   margin-left: 12rpx;
   color: #529AFE;
   font-size: 24rpx;
@@ -421,4 +427,11 @@
 
 .media-wrap {
   margin-top: 24rpx;
+}
+
+.no-more-tips {
+  padding: 16rpx 0 24rpx;
+  color: #999;
+  font-size: 24rpx;
+  text-align: center;
 }
