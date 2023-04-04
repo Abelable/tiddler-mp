@@ -26,7 +26,7 @@
   left: 50%;
   bottom: 12rpx;
   transform: translateX(-50%);
-  width: 40rpx;
+  width: 50rpx;
   height: 6rpx;
   content: "";
   border-radius: 3rpx;
@@ -39,17 +39,20 @@
 }
 
 .card {
+  margin-bottom: 24rpx;
   padding: 24rpx;
   background: #fff;
   border-radius: 18rpx;
 }
-.title {
+.card-title {
   color: #333;
   font-size: 28rpx;
   font-weight: bold;
+  line-height: 1;
 }
+
 .introduction {
-  margin-top: 12rpx;
+  margin-top: 24rpx;
   color: #666;
   font-size: 24rpx;
 }
@@ -57,4 +60,25 @@
   margin-left: 12rpx;
   color: #77a9fd;
   font-weight: bold;
+}
+
+.grid {
+  margin-top: 24rpx;
+  border-radius: 18rpx;
+  border: 1px solid #EEF2F5;
+}
+.grid-line {
+  display: flex;
+}
+.grid-line.title {
+  background: #EEF2F5;
+}
+.grid-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  height: 80rpx;
+  color: #333;
+  font-size: 24rpx;
 }

@@ -1,4 +1,9 @@
-<scroll-view class="menu" scroll-x enable-flex>
+<scroll-view 
+  class="menu" 
+  scroll-left="{{curMenuIdx > 2 ? (curMenuIdx - 1) * 80 : 0}}" 
+  scroll-with-animation 
+  scroll-x enable-flex
+>
   <view 
     class="menu-item row {{curMenuIdx === index ? 'active' : ''}}" 
     wx:for="{{['景点简介', '开放时间', '优待政策', '咨询热线', '景区项目', '景区设施', '交通信息', '游玩贴士']}}" 
@@ -10,10 +15,28 @@
 
 <view class="container">
   <view class="card">
-    <view class="title">景点简介</view>
+    <view class="card-title">景点简介</view>
     <view class="introduction">
       <text>{{introduction}}</text>
       <text class="toggle-fold-btn" bindtap="toggleIntroductionFold">{{introductionFold ? '展开' : '收起'}}</text>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">开放时间</view>
+    <view class="grid">
+      <view class="grid-line title">
+        <view class="grid-item">3月1日 - 10月14日</view>
+      </view>
+      <view class="grid-line">
+        <view class="grid-item">08:00 - 17:00 (17:00停止入园)</view>
+      </view>
+      <view class="grid-line title">
+        <view class="grid-item">10月15日 - 次年2月28日</view>
+      </view>
+      <view class="grid-line">
+        <view class="grid-item">08:30 - 16:30 (16:30停止入园)</view>
+      </view>
     </view>
   </view>
 </view>

@@ -5,7 +5,7 @@ Page({
     introduction: "",
   },
 
-  async onLoad(options) {
+  async onLoad({ id }) {
     wx.setNavigationBarTitle({
       title: "千岛湖森林氧吧",
     });
@@ -16,6 +16,11 @@ Page({
     this.setData({
       introduction: `${this.introduction.slice(0, 68)}...`
     })
+  },
+
+  selectMenu(e) {
+    const curMenuIdx = Number(e.currentTarget.dataset.index)
+    this.setData({ curMenuIdx })
   },
 
   toggleIntroductionFold() {
