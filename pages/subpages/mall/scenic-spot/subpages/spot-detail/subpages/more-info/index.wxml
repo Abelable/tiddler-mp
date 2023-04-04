@@ -2,7 +2,8 @@
   class="menu" 
   scroll-left="{{curMenuIdx > 2 ? (curMenuIdx - 1) * 80 : 0}}" 
   scroll-with-animation 
-  scroll-x enable-flex
+  scroll-x 
+  enable-flex
 >
   <view 
     class="menu-item row {{curMenuIdx === index ? 'active' : ''}}" 
@@ -75,5 +76,31 @@
         <image class="tel-icon" src="./images/tel.png" />
       </veiw>
     </view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">景区项目</view>
+    <scroll-view class="project-list" scroll-x enable-flex>
+      <view class="project-item">
+        <image class="project-image" src="https://img.ubo.vip/images/202208/thumb_img/0_thumb_P_1660717847911.jpg" />
+        <view class="project-name omit single-line">森林滑道</view>
+      </view>
+      <view class="project-item">
+        <image class="project-image" src="https://img.ubo.vip/images/202208/thumb_img/_thumb_P_1660717980300.jpg" />
+        <view class="project-name omit single-line">红叶滩</view>
+      </view>
+      <view class="project-item">
+        <image class="project-image" src="https://img.ubo.vip/images/202208/thumb_img/_thumb_P_1660717983502.jpg" />
+        <view class="project-name omit single-line">叠瀑欢歌</view>
+      </view>
+      <view class="project-item">
+        <image class="project-image" src="https://img.ubo.vip/images/202208/thumb_img/0_thumb_P_1660717847911.jpg" />
+        <view class="project-name omit single-line">七彩滑道</view>
+      </view>
+      <view class="project-item">
+        <image class="project-image" src="https://img.ubo.vip/images/202208/thumb_img/0_thumb_P_1660717847911.jpg" />
+        <view class="project-name omit single-line">凝翠潭</view>
+      </view>
+    </scroll-view>
   </view>
 </view>
