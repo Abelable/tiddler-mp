@@ -126,9 +126,9 @@
   </scroll-view>
   <view class="collapse">
     <view class="collapse-item" wx:for="{{ticketList}}" wx:key="index">
-      <view class="collapse-trunk row between">
+      <view class="collapse-trunk row between" bindtap="toggleTicketsFold" data-index="{{index}}">
         <view class="collapse-trunk-title omit single-line">{{item.name}}</view>
-        <view class="collapse-trunk-content row" bindtap="toggleTicketsFold" data-index="{{index}}">
+        <view class="collapse-trunk-content row">
           <block wx:if="{{item.fold}}">
             <text class="base-price">¥{{item.basePrice}}起</text>
             <image class="arrow" src="./images/arrow-down.png" />
@@ -185,9 +185,9 @@
   </scroll-view>
   <view class="collapse">
     <view class="collapse-item" wx:for="{{combinedTicketList}}" wx:key="index">
-      <view class="collapse-trunk row between">
+      <view class="collapse-trunk row between" bindtap="toggleCombinedTicketsFold" data-index="{{index}}">
         <view class="collapse-trunk-title omit single-line">{{item.name}}</view>
-        <view class="collapse-trunk-content row" bindtap="toggleCombinedTicketsFold" data-index="{{index}}">
+        <view class="collapse-trunk-content row">
           <block wx:if="{{item.fold}}">
             <text class="base-price">¥{{item.basePrice}}起</text>
             <image class="arrow" src="./images/arrow-down.png" />
