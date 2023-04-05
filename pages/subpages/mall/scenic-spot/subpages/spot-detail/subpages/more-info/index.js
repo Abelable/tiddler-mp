@@ -56,7 +56,7 @@ Page({
     curFacilityIdx: 0,
   },
 
-  async onLoad({ id }) {
+  async onLoad({ id, menuIdx }) {
     wx.setNavigationBarTitle({
       title: "千岛湖森林氧吧",
     });
@@ -68,16 +68,22 @@ Page({
       introduction: `${this.introduction.slice(0, 68)}...`,
     });
 
-    this.setMenuChangeLimitList();
+    this.setMenuChangeLimitList(menuIdx);
   },
 
-  setMenuChangeLimitList() {
+  setMenuChangeLimitList(menuIdx) {
     const query = wx.createSelectorQuery();
     query.selectAll(".card").boundingClientRect();
     query.exec((res) => {
       this.menuChangeLimitList = res[0].map(
         (item) => item.top + (this.scrollTop || 0)
       );
+
+      if (menuIdx) {
+        wx.pageScrollTo({
+          scrollTop: this.menuChangeLimitList[menuIdx] - 56,
+        });
+      }
     });
   },
 

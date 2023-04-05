@@ -110,10 +110,10 @@
 
   <view class="content-title-wrap row between">
     <view class="content-title">景点门票</view>
-    <view class="content-title-tips row">
+    <navigator class="content-title-tips row" url="./subpages/more-info/index?id={{spotInfo.id}}&menuIdx=2" hover-class="none">
       <text>优待政策</text>
       <image class="more-icon" src="./images/more-blue.png" />
-    </view>
+    </navigator>
   </view>
   <scroll-view class="ticket-type-menu" scroll-x>
     <view 
