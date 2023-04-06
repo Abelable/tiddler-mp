@@ -239,7 +239,7 @@ Page({
   submit(){
     if (this.data.selectedCount) {
       wx.navigateTo({ 
-        url: `//pages/subpages/mall/goods/subpages/order-check/index?cartIds=${JSON.stringify(this.selectedCartIdArr)}` 
+        url: `/pages/subpages/mall/goods/subpages/order-check/index?cartIds=${JSON.stringify(this.selectedCartIdArr)}` 
       })
     }
   },
