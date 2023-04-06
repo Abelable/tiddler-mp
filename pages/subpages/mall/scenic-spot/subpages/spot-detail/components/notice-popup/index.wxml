@@ -1,0 +1,105 @@
+<van-popup show="{{show}}" bind:close="hide" round position="bottom">
+  <view class="notice-popup">
+    <view class="pop-title row center">预定须知</view>
+    <scroll-view class="notice-list" scroll-y>
+      <view class="notice-item">
+        <view class="notice-title">费用说明</view>
+        <view class="notice-info-list">
+          <view class="notice-info-item">
+            <view class="notice-info-title">费用包含</view>
+            <view class="notice-info-content">森林氧吧成人票1张</view>
+          </view>
+          <view class="notice-info-item">
+            <view class="notice-info-title">费用不含</view>
+            <view class="notice-info-content">一切个人消费即费用包含中未提及的任何费用</view>
+          </view>
+        </view>
+      </view>
+
+      <view class="notice-item">
+        <view class="notice-title">预定说明</view>
+        <view class="notice-info-list">
+          <view class="notice-info-item">
+            <view class="notice-info-title">预定时间</view>
+            <view class="notice-info-content">
+              <text class="notice-info-tag">可订今日</text>
+              <text>13:00前可订当天门票</text>
+            </view>
+          </view>
+          <view class="notice-info-item">
+            <view class="notice-info-title">生效时间</view>
+            <view class="notice-info-content">出票3小时后生效</view>
+          </view>
+          <view class="notice-info-item">
+            <view class="notice-info-title">有效期</view>
+            <view class="notice-info-content">指定出行日期3日内有效</view>
+          </view>
+          <view class="notice-info-item">
+            <view class="notice-info-title">限购说明</view>
+            <view class="notice-info-content">同一身份证1天内，最多可购买5张</view>
+          </view>
+          <view class="notice-info-item">
+            <view class="notice-info-title">退票说明</view>
+            <view class="notice-info-content">
+              <text class="notice-info-tag">随时可退</text>
+              <text>未使用可随时申请退款，无需支付手续费</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="notice-item">
+        <view class="notice-title">使用说明</view>
+        <view class="notice-info-list">
+          <view class="notice-info-item">
+            <view class="notice-info-title">入园方式</view>
+            <view class="notice-info-content">
+              <text class="notice-info-tag">无需换票</text>
+              <text>凭二维码或商家短信直接入园</text>
+            </view>
+          </view>
+          <view class="notice-info-item">
+            <view class="notice-info-title">入园时间</view>
+            <view class="notice-info-content">09:00-17:00</view>
+          </view>
+           <view class="notice-info-item">
+            <view class="notice-info-title">入园地址</view>
+            <view class="notice-info-content">浙江省杭州市淳安县千岛湖镇淡竹王子山千岛湖森林氧吧</view>
+          </view>
+        </view>
+      </view>
+
+      <view class="notice-item">
+        <view class="notice-title">其他说明</view>
+        <view class="notice-info-list">
+          <view class="notice-info-item">
+            <view class="notice-info-title">发票说明</view>
+            <view class="notice-info-content">游玩次日，可至订单详情页申请发票</view>
+          </view>
+          <view class="notice-info-item">
+            <view class="notice-info-title">特别提醒</view>
+            <view class="notice-info-content">严禁携带宠物进入景区</view>
+          </view>
+        </view>
+      </view>
+
+      <view class="notice-item">
+        <view class="notice-title">服务商家</view>
+        <view class="supplier-info row between">
+          <view class="row">
+            <view class="supplier-type row">官方</view>
+            <view class="supplier-name">千岛湖旅行</view>
+          </view>
+          <view class="contact-btn row">
+            <image class="contact-icon" src="./images/contact-icon.png" />
+            <text>联系商家</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+
+    <view class="btn-wrap">
+      <button class="confirm-btn" bindtap="confirm">立即预定</button>
+    </view>
+  </view>
+</van-popup>

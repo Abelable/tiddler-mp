@@ -1,3 +1,5 @@
+<page-meta page-style="{{ noticePopupVisible ? 'overflow: hidden;' : '' }}" />
+
 <view class="nav-bar-wrap">
   <view class="nav-bar row" style="padding-top: {{statusBarHeight}}px;">
     <image class="nav-bg" wx:if="{{navBarVisible}}" src="{{spotInfo.imageList[0]}}" mode="aspectFill" />
@@ -140,7 +142,14 @@
         </view>
       </view>
       <view class="collapse-subitems" wx:if="{{!item.fold}}">
-        <view class="collapse-subitem row between" wx:for="{{item.list}}" wx:key="ticketIndex" wx:for-index="ticketIndex" wx:for-item="ticket">
+        <view 
+          class="collapse-subitem row between" 
+          wx:for="{{item.list}}" 
+          wx:key="ticketIndex" 
+          wx:for-index="ticketIndex" 
+          wx:for-item="ticket"
+          bindtap="showNoticePopup"
+        >
           <view class="ticket-info">
             <view class="shop-info row">
               <view class="shop-type row" wx:if="{{ticket.shopType !== 3}}">{{ticket.shopType === 1 ? '官方' : '自营'}}</view>
@@ -164,7 +173,7 @@
           </view>
           <view class="booking-wrap">
             <price-unit price="{{ticket.price}}" />
-            <button class="booking-btn">预定</button>
+            <button class="booking-btn" catchtap="book">预定</button>
           </view>
         </view>
       </view>
@@ -199,8 +208,15 @@
         </view>
       </view>
       <view class="collapse-subitems" wx:if="{{!item.fold}}">
-        <view class="collapse-subitem row between" wx:for="{{item.list}}" wx:key="ticketIndex" wx:for-index="ticketIndex" wx:for-item="ticket">
-          <view class="ticket-info">
+        <view 
+          class="collapse-subitem row between" 
+          wx:for="{{item.list}}" 
+          wx:key="ticketIndex" 
+          wx:for-index="ticketIndex" 
+          wx:for-item="ticket"
+          bindtap="showNoticePopup"
+        >
+          <view class="ticket-info" >
             <view class="shop-info row">
               <view class="shop-type row" wx:if="{{ticket.shopType !== 3}}">{{ticket.shopType === 1 ? '官方' : '自营'}}</view>
               <view class="shop-name">{{ticket.shopName}}</view>
@@ -223,7 +239,7 @@
           </view>
           <view class="booking-wrap">
             <price-unit price="{{ticket.price}}" />
-            <button class="booking-btn">预定</button>
+            <button class="booking-btn" catchtap="book">预定</button>
           </view>
         </view>
       </view>
@@ -314,3 +330,5 @@
     <view class="no-more-tips">～没有更多了～</view>
   </view>
 </view>
+
+<notice-popup show="{{noticePopupVisible}}" bind:hide="hideNoticePopup" bind:confim="confirmBook" />
