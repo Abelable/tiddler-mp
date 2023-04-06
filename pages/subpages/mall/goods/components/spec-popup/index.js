@@ -114,7 +114,7 @@ Component({
           const { goodsInfo, selectedSkuIndex, count } = this.data
           const cartId = await goodsService.fastAddCart(goodsInfo.id, selectedSkuIndex, count)
           const cartIds = JSON.stringify([cartId])
-          const url = `/pages/mall/subpages/goods/subpages/order-check/index?cartIds=${cartIds}`
+          const url = `/pages/subpages/mall/goods/subpages/order-check/index?cartIds=${cartIds}`
           wx.navigateTo({ url })
         })
       }
