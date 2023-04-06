@@ -333,10 +333,7 @@
 }
 .collapse-subitem {
   padding: 24rpx 0;
-  border-bottom: 1px solid #eee;
-}
-.collapse-subitem:last-child {
-  border-bottom: none;
+  border-top: 1px solid #eee;
 }
 
 .shop-type {
