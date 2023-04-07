@@ -1,65 +1,45 @@
-import SpotService from '../../utils/spotService'
+import SpotService from "../../utils/spotService";
 
-const spotService = new SpotService()
-const { statusBarHeight } = getApp().globalData.systemInfo
+const spotService = new SpotService();
 
 Page({
   data: {
-    statusBarHeight,
-    preOrderInfo: null,
-    addressSelectPopupVisible: false
+    preOrderInfo: {
+      paymentAmount: 67.5
+    },
+    priceDetailPopupVisible: false
   },
 
-  onLoad({ cartIds }) {
-    this.cartIds = JSON.parse(cartIds) 
-    this.setPreOrderInfo()
-  },
-
-  async setPreOrderInfo() {
-    const preOrderInfo = await spotService.getPreOrderInfo(this.cartIds, this.addressId)
-    this.setData({ preOrderInfo })
-  },
-
-  showAddressSelectPopup() {
-    this.setData({
-      addressSelectPopupVisible: true
-    })
-  },
-
-  hideAddressSelectPopup(e) {
-    this.setData({
-      addressSelectPopupVisible: false
-    })
-    if (e.detail) {
-      this.addressId = e.detail
-      this.setPreOrderInfo()
-    }
+  onLoad({ id }) {
+    this.ticketId = +id;
   },
 
   // 提交订单
   async submit() {
-    const addressId = this.data.preOrderInfo.addressInfo.id
-    if (!addressId) {
-      return
-    }
-    const orderIds = await spotService.submitOrder(this.cartIds, addressId)
-    this.pay(orderIds)
+    const orderId = await spotService.submitOrder(this.cartIds, addressId);
+    this.pay(orderId);
   },
 
-  async pay(orderIds) {
-    const payParams = await spotService.getPayParams(orderIds)
+  async pay(orderId) {
+    const payParams = await spotService.getPayParams(orderId);
     wx.requestPayment({
       ...payParams,
       success: () => {
-        wx.navigateTo({ 
-          url: '/pages/mine/suppages/order-list/index?status=2'
-        })
+        wx.navigateTo({
+          url: "/pages/mine/suppages/order-list/index?status=2",
+        });
       },
       fail: () => {
-        wx.navigateTo({ 
-          url: '/pages/mine/suppages/order-list/index?status=1'
-        })
-      }
+        wx.navigateTo({
+          url: "/pages/mine/suppages/order-list/index?status=1",
+        });
+      },
+    });
+  },
+
+  togglePriceDetailPopupVisible() {
+    this.setData({
+      priceDetailPopupVisible: !this.data.priceDetailPopupVisible
     })
   },
-})
+});

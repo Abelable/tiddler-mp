@@ -173,7 +173,7 @@
           </view>
           <view class="booking-wrap">
             <price-unit price="{{ticket.price}}" />
-            <button class="booking-btn" catchtap="book">预定</button>
+            <button class="booking-btn" catchtap="book" data-id="{{ticket.id}}">预定</button>
           </view>
         </view>
       </view>

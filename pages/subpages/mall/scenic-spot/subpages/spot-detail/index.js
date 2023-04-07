@@ -405,7 +405,7 @@ Page({
           "http://1301400133.vod2.myqcloud.com/d9ed72b2vodcq1301400133/cf27f5ad5285890814604444619/61lKaPKWj4cA.mp4",
       },
     ],
-    noticePopupVisible: false
+    noticePopupVisible: false,
   },
 
   onLoad(options) {
@@ -554,18 +554,20 @@ Page({
 
   showNoticePopup() {
     this.setData({
-      noticePopupVisible: true
-    })
+      noticePopupVisible: true,
+    });
   },
 
   hideNoticePopup() {
     this.setData({
-      noticePopupVisible: false
-    })
+      noticePopupVisible: false,
+    });
   },
 
-  book() {
-    console.log('book')
+  book(e) {
+    const { id } = e.currentTarget.dataset;
+    const url = `/pages/subpages/mall/scenic-spot/subpages/order-check/index?id=${id}`;
+    wx.navigateTo({ url });
   },
 
   onShareAppMessage() {},

@@ -1,11 +1,9 @@
 import GoodsService from '../../utils/goodsService'
 
 const goodsService = new GoodsService()
-const { statusBarHeight } = getApp().globalData.systemInfo
 
 Page({
   data: {
-    statusBarHeight,
     preOrderInfo: null,
     addressSelectPopupVisible: false
   },

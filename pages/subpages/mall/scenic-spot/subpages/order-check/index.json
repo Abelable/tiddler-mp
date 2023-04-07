@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "确认订单",
   "usingComponents": {
-    "price-unit": "/components/price-unit/index"
+    "price-unit": "/components/price-unit/index",
+    "price-detail-popup": "./components/price-detail-popup/index"
   }
 }

@@ -110,6 +110,13 @@
           "query": "id=",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "门票订单确认",
+          "pathName": "pages/subpages/mall/scenic-spot/subpages/order-check/index",
+          "query": "id=undefined",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }
