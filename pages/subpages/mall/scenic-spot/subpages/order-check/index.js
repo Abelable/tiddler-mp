@@ -5,13 +5,33 @@ const spotService = new SpotService();
 Page({
   data: {
     preOrderInfo: {
-      paymentAmount: 67.5
+      paymentAmount: 67.5,
     },
-    priceDetailPopupVisible: false
+    recentlyDataList: [
+      {
+        date: "今天 04-06",
+        price: 40,
+      },
+      {
+        date: "明天 04-07",
+        price: 40,
+      },
+      {
+        date: "周一 04-08",
+        price: 40,
+      },
+    ],
+    curDateIdx: 0,
+    priceDetailPopupVisible: false,
   },
 
   onLoad({ id }) {
     this.ticketId = +id;
+  },
+
+  selectDate(e) {
+    const curDateIdx = Number(e.currentTarget.dataset.index);
+    this.setData({ curDateIdx });
   },
 
   // 提交订单
@@ -39,7 +59,7 @@ Page({
 
   togglePriceDetailPopupVisible() {
     this.setData({
-      priceDetailPopupVisible: !this.data.priceDetailPopupVisible
-    })
+      priceDetailPopupVisible: !this.data.priceDetailPopupVisible,
+    });
   },
 });

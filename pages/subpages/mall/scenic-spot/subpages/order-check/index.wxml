@@ -1,5 +1,30 @@
 <view class="container">
-  
+  <view class="ticket">
+    <view class="ticket-name row">千岛湖森林氧吧 成人票</view>
+    <view class="split-line" />
+    <view class="date-picker">
+      <view class="date-picker-title">选择日期</view>
+      <view class="date-picker-list row">
+        <view 
+          class="date-picker-item {{curDateIdx === index ? 'active' : ''}}" 
+          wx:for="{{recentlyDataList}}" 
+          wx:key="index"
+          bindtap="selectDate"
+          data-index="{{index}}"
+        >
+          <view class="date">{{item.date}}</view>
+          <price-unit price="{{item.price}}" color="#333" fontSize="22rpx" integerFontSize="28rpx" />
+        </view>
+        <view class="more-date-btn row">
+          <view class="btn-desc">
+            <view>更多</view>
+            <view>日期</view>
+          </view>
+          <image class="more-icon" src="./images/arrow-right.png" />
+        </view>
+      </view>
+    </view>
+  </view>
 </view>
 
 <view class="bottom-bar row">

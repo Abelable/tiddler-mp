@@ -6,10 +6,6 @@
         <view class="price-name">成人票</view>
         <view class="price-detail">¥40.00 x 1</view>
       </view>
-      <view class="price-item row between">
-        <view class="price-name">儿童票</view>
-        <view class="price-detail">¥27.50 x 1</view>
-      </view>
     </view>
   </view>
 </popup>

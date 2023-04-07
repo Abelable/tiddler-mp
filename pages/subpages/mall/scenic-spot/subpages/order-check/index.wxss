@@ -1,9 +1,96 @@
+page {
+  background: #f1f1f1;
+}
+
 .container {
   padding: 24rpx 24rpx calc(150rpx + env(safe-area-inset-bottom));
 }
 
+.ticket {
+  background-color: #fff;
+  border-radius: 16rpx;
+}
+
+.ticket-name {
+  padding: 24rpx;
+  height: 100rpx;
+  color: #333;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.split-line {
+  position: relative;
+  border: 1px dashed #eee;
+  overflow: inherit;
+}
+.split-line::before, .split-line::after {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32rpx;
+  height: 32rpx;
+  content: "";
+  border-radius: 50%;
+  background: #f1f1f1;
+}
+.split-line::before {
+  left: -16rpx;
+}
+.split-line::after {
+  right: -16rpx;
+}
+
+.date-picker {
+  padding: 24rpx;
+}
+.date-picker-title {
+  color: #333;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+.date-picker-list {
+  margin-top: 12rpx;
+}
+.date-picker-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12rpx;
+  flex: 1;
+  height: 88rpx;
+  border: 1px solid #eee;
+  border-radius: 8rpx;
+}
+.date-picker-item.active {
+  border: 1px solid #1986F8;
+  background: #EFF0FF;
+}
+.date {
+  color: #666;
+  font-size: 24rpx;
+}
+.date-picker-item.active .date {
+  color: #1986F8;
+}
+.more-date-btn {
+  width: 100rpx;
+  height: 88rpx;
+  border: 1px solid #eee;
+  border-radius: 8rpx;
+}
+.btn-desc {
+  margin-left: 16rpx;
+  color: #666;
+  font-size: 24rpx;
+}
+.more-icon {
+  width: 28rpx;
+  height: 28rpx;
+}
+
 .card {
-  margin: 24rpx;
   padding: 24rpx;
   background-color: #fff;
   border-radius: 16rpx;
@@ -30,8 +117,8 @@
 }
 .price-detail-tips {
   margin-left: 18rpx;
-  color: #666;
-  font-size: 26rpx;
+  color: #999;
+  font-size: 24rpx;
 }
 .arrow {
   margin-left: 4rpx;
