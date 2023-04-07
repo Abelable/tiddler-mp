@@ -5,7 +5,7 @@ const spotService = new SpotService();
 Page({
   data: {
     preOrderInfo: {
-      paymentAmount: 67.5,
+      paymentAmount: 40,
     },
     recentlyDataList: [
       {

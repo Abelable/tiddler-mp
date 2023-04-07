@@ -1,7 +1,3 @@
-page {
-  background: #f1f1f1;
-}
-
 .container {
   padding: 24rpx 24rpx calc(150rpx + env(safe-area-inset-bottom));
 }
@@ -11,12 +7,47 @@ page {
   border-radius: 16rpx;
 }
 
-.ticket-name {
+.ticket-info {
   padding: 24rpx;
-  height: 100rpx;
+}
+.ticket-name {
   color: #333;
-  font-size: 30rpx;
+  font-size: 32rpx;
   font-weight: bold;
+}
+
+.ticket-tips {
+  margin-top: 18rpx;
+}
+.tips-wrap {
+  margin-bottom: 8rpx;
+}
+.tips-wrap:last-child {
+  margin-bottom: 0;
+}
+.tips-icon {
+  margin-right: 8rpx;
+  width: 32rpx;
+  height: 32rpx;
+}
+.tips {
+  padding-right: 12rpx;
+  border-right: 1px solid #ddd;
+  margin-right: 12rpx;
+  color: #666;
+  font-size: 22rpx;
+  line-height: 1;
+}
+.tips:last-child {
+  border-right: none;
+}
+.tips.stress {
+  color: #529AFE;
+}
+.right-arrow {
+  margin-left: 2rpx;
+  width: 20rpx;
+  height: 20rpx;
 }
 
 .split-line {
@@ -32,7 +63,7 @@ page {
   height: 32rpx;
   content: "";
   border-radius: 50%;
-  background: #f1f1f1;
+  background: #f5f6f7;
 }
 .split-line::before {
   left: -16rpx;
@@ -42,9 +73,10 @@ page {
 }
 
 .date-picker {
-  padding: 24rpx;
+  margin-top: 24rpx;
+  padding: 0 24rpx;
 }
-.date-picker-title {
+.date-picker-title, .count-control-title {
   color: #333;
   font-size: 28rpx;
   font-weight: bold;
@@ -88,6 +120,10 @@ page {
 .more-icon {
   width: 28rpx;
   height: 28rpx;
+}
+
+.count-control {
+  padding: 24rpx;
 }
 
 .card {
