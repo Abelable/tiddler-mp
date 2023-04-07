@@ -3,17 +3,91 @@
 }
 
 .ticket {
-  background-color: #fff;
-  border-radius: 16rpx;
+  background: #fff;
+  border-radius: 18rpx;
 }
 
-.ticket-info {
-  padding: 24rpx;
-}
 .ticket-name {
+  padding: 24rpx;
   color: #333;
   font-size: 32rpx;
   font-weight: bold;
+}
+
+.split-line {
+  position: relative;
+  border: 1rpx dashed #eee;
+  overflow: inherit;
+}
+.split-line::before, .split-line::after {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32rpx;
+  height: 32rpx;
+  content: "";
+  border-radius: 50%;
+  background: #f5f6f7;
+}
+.split-line::before {
+  left: -20rpx;
+}
+.split-line::after {
+  right: -20rpx;
+}
+
+.ticket-more {
+  padding: 24rpx;
+}
+
+.date-picker-title, .count-control-title {
+  color: #333;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+.date-picker-list {
+  margin-top: 12rpx;
+}
+.date-picker-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12rpx;
+  flex: 1;
+  height: 88rpx;
+  border: 1px solid #E1E3E5;
+  border-radius: 8rpx;
+}
+.date-picker-item.active {
+  border: 1px solid #1986F8;
+  background: #EFF0FF;
+}
+.date {
+  color: #666;
+  font-size: 24rpx;
+}
+.date-picker-item.active .date {
+  color: #1986F8;
+}
+.more-date-btn {
+  width: 100rpx;
+  height: 88rpx;
+  border: 1px solid #eee;
+  border-radius: 8rpx;
+}
+.btn-desc {
+  margin-left: 16rpx;
+  color: #666;
+  font-size: 24rpx;
+}
+.more-icon {
+  width: 28rpx;
+  height: 28rpx;
+}
+
+.count-control {
+  margin-top: 24rpx;
 }
 
 .ticket-tips {
@@ -50,84 +124,9 @@
   height: 20rpx;
 }
 
-.split-line {
-  position: relative;
-  border: 1px dashed #eee;
-  overflow: inherit;
-}
-.split-line::before, .split-line::after {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 32rpx;
-  height: 32rpx;
-  content: "";
-  border-radius: 50%;
-  background: #f5f6f7;
-}
-.split-line::before {
-  left: -16rpx;
-}
-.split-line::after {
-  right: -16rpx;
-}
-
-.date-picker {
-  margin-top: 24rpx;
-  padding: 0 24rpx;
-}
-.date-picker-title, .count-control-title {
-  color: #333;
-  font-size: 28rpx;
-  font-weight: bold;
-}
-.date-picker-list {
-  margin-top: 12rpx;
-}
-.date-picker-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-right: 12rpx;
-  flex: 1;
-  height: 88rpx;
-  border: 1px solid #eee;
-  border-radius: 8rpx;
-}
-.date-picker-item.active {
-  border: 1px solid #1986F8;
-  background: #EFF0FF;
-}
-.date {
-  color: #666;
-  font-size: 24rpx;
-}
-.date-picker-item.active .date {
-  color: #1986F8;
-}
-.more-date-btn {
-  width: 100rpx;
-  height: 88rpx;
-  border: 1px solid #eee;
-  border-radius: 8rpx;
-}
-.btn-desc {
-  margin-left: 16rpx;
-  color: #666;
-  font-size: 24rpx;
-}
-.more-icon {
-  width: 28rpx;
-  height: 28rpx;
-}
-
-.count-control {
-  padding: 24rpx;
-}
-
 .card {
-  padding: 24rpx;
+  margin-top: 24rpx;
+  padding: 24rpx 24rpx 0;
   background-color: #fff;
   border-radius: 16rpx;
 }
@@ -135,6 +134,27 @@
   color: #333;
   font-size: 30rpx;
   font-weight: 500;
+}
+.title-tips {
+  margin-left: 12rpx;
+  color: #999;
+  font-size: 22rpx;
+}
+
+.tourist-info-item {
+  padding: 24rpx 0;
+  font-size: 26rpx;
+  border-bottom: 1px solid #eee;
+}
+.tourist-info-item:last-child {
+  border-bottom: none;
+}
+.tourist-info-label {
+  margin-right: 24rpx;
+  color: #333;
+}
+.tourist-info-input {
+  flex: 1;
 }
 
 .bottom-bar {
