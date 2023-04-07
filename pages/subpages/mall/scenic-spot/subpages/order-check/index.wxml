@@ -62,7 +62,7 @@
     <view class="tourist-info-list">
       <view class="tourist-info-item row">
         <view class="tourist-info-label">出游人</view>
-        <input class="tourist-info-input" placeholder="请输入游客姓名" />
+        <input class="tourist-info-input" placeholder="请输入姓名" />
       </view>
       <view class="tourist-info-item row">
         <view class="tourist-info-label">手机号</view>
@@ -70,7 +70,7 @@
       </view>
       <view class="tourist-info-item row">
         <view class="tourist-info-label">身份证</view>
-        <input class="tourist-info-input" type="idcard" placeholder="请输入游客身份证" />
+        <input class="tourist-info-input" type="idcard" placeholder="请输入身份证号" />
       </view>
     </view>
   </view>
