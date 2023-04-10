@@ -3,6 +3,10 @@
     <view class="title">编辑个人信息</view>
     <image class="arrow" src="./images/arrow.png" />
   </view>
+  <view class="list row between">
+    <view class="title">实名认证</view>
+    <image class="arrow" src="./images/arrow.png" />
+  </view>
 </view>
 
 <view class="list-wrap">
