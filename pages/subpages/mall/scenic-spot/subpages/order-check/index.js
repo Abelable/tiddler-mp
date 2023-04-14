@@ -1,6 +1,6 @@
-import SpotService from "../../utils/spotService";
+import ScenicService from "../../utils/scenicService";
 
-const spotService = new SpotService();
+const scenicService = new ScenicService();
 
 Page({
   data: {
@@ -36,12 +36,12 @@ Page({
 
   // 提交订单
   async submit() {
-    const orderId = await spotService.submitOrder(this.cartIds, addressId);
+    const orderId = await scenicService.submitOrder(this.cartIds, addressId);
     this.pay(orderId);
   },
 
   async pay(orderId) {
-    const payParams = await spotService.getPayParams(orderId);
+    const payParams = await scenicService.getPayParams(orderId);
     wx.requestPayment({
       ...payParams,
       success: () => {

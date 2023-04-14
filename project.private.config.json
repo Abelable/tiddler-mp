@@ -117,6 +117,13 @@
           "query": "id=undefined",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "景点",
+          "pathName": "pages/subpages/mall/scenic-spot/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

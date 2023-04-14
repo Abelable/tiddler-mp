@@ -1,6 +1,8 @@
 {
   "navigationStyle": "custom",
+  "enablePullDownRefresh": true,
   "usingComponents": {
-    "scenic-spot-item": "./components/scenic-spot-item/index"
+    "empty-illus": "/components/empty-illus/index",
+    "scenic-spot-list": "./components/scenic-spot-list/index"
   }
 }

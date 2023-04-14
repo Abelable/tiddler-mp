@@ -1,8 +1,9 @@
 .scenic-spot {
   display: flex;
   align-items: center;
-  padding: 20rpx 0;
+  padding: 24rpx;
   font-size: 0;
+  background: #fff;
   border-bottom: 1px solid #f5f6f8;
 }
 .cover {

@@ -1,5 +1,3 @@
-<wxs module="DROPDOWN" src="/utils/filters/dropdownVisible.wxs" />
-
 <view class="nav-bar" style="padding-top: {{statusBarHeight}}px;">
   <view class="search-bar-wrap">
     <image class="back-icon" src="/images/back.png" bindtap="navBack" />
@@ -8,26 +6,25 @@
       <text class="placeholder">搜索景点</text>
     </view>
   </view>
-  <view class="search-filter">
-    <view wx:for="{{filterList}}" wx:key="index" class="filter-item {{item.visible ? 'active' : ''}}" bindtap="showDropdown" data-index="{{index}}">
-      <text>{{(item.curIndex === 0 && item.title) ? item.title : item.options[item.curIndex]}}</text>
-      <image class="filter-icon {{item.visible ? 'active' : ''}}" src="/images/arrow.png" />
-    </view>
-  </view>
-</view>
-
-<view class="mask" wx:if="{{DROPDOWN.visible(filterList)}}" bindtap="hideDropdown"/>
-<view wx:for="{{filterList}}" wx:key="index" class="filter-options {{item.visible ? 'show' : ''}}" style="top: {{statusBarHeight + 88}}px;">
-  <view class="option" wx:for="{{item.options}}" wx:key="index" wx:for-index="_index" wx:for-item="option" bindtap="selectOption" data-filter-index="{{index}}" data-option-index="{{_index}}">
-    <view class="option-name {{item.curIndex === _index ? 'active' : ''}}">{{option}}</view>
-    <image class="selected-icon" wx:if="{{item.curIndex === _index}}" src="/images/selected.png" />
-  </view>
+  <scroll-view 
+    class="category-tabs" 
+    scroll-left="{{tabScroll}}"
+    scroll-x
+    enable-flex
+    scroll-with-animation
+  >
+    <view 
+      wx:for="{{categoryOptions}}" 
+      wx:key="index" 
+      class="category-tab {{activeTabIdx === index ? 'active' : ''}}" 
+      bindtap="selectCate" 
+      data-idx="{{index}}"
+      >{{item.name}}</view>
+  </scroll-view>
 </view>
 
 <view class="container" style="padding-top: {{statusBarHeight + 88}}px;">
-  <view class="scenic-spots" >
-    <scenic-spot-item />
-    <scenic-spot-item />
-    <scenic-spot-item />
-  </view>
+  <scenic-spot-list list="{{scenicList}}" />
+  <empty-illus wx:if="{{finished && !scenicList.length}}" desc="暂无列表" />
+  <view class="no-more-tips" wx:if="{{finished && scenicList.length}}">～没有更多了～</view>
 </view>

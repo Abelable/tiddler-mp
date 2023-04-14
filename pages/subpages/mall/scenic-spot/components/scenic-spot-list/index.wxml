@@ -1,7 +1,13 @@
-<view class="scenic-spot" bindtap="navToDetail">
-  <image class="cover" src="http://img.ubo.vip/youlian/temporary/item_cover_4.jpg" />
+<navigator 
+  class="scenic-spot"
+  wx:for="{{list}}"
+  wx:key="index"
+  url="/pages/subpages/mall/scenic-spot/subpages/spot-detail/index?id={{item.id}}"
+  bindtap="navToDetail"
+  >
+  <image class="cover" src="{{item.image}}" mode="aspectFill" lazy-load />
   <view class="content">
-    <view class="title omit">大岷山万松林滑雪场</view>
+    <view class="title omit">{{item.name}}</view>
     <view class="labels">
       <view class="label">杭州亲子滑雪好去处</view>
       <view class="label">5千平方米的戏雪区</view>
@@ -27,4 +33,4 @@
       </view>
     </view>
   </view>
-</view>
+</navigator>

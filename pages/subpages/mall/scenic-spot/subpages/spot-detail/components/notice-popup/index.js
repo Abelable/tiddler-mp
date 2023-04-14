@@ -1,6 +1,6 @@
-import SpotService from "../../../../utils/spotService";
+import ScenicService from "../../../../utils/scenicService";
 
-const spotService = new SpotService();
+const scenicService = new ScenicService();
 
 Component({
   options: {

@@ -1,63 +1,77 @@
+import { customBack } from '../../../../utils/index'
+import ScenicService from './utils/scenicService'
+
+const scenicService = new ScenicService()
 const { statusBarHeight } = getApp().globalData.systemInfo
 
 Page({
   data: {
     statusBarHeight,
-    filterList: [
-      {
-        title: '',
-        curIndex: 0,
-        options: ['全部景点', '乘船游湖', '文化演出', '水上娱乐', '网红景点', '其他景点'],
-        visible: false
-      },
-      {
-        title: '',
-        curIndex: 0,
-        options: ['推荐排序', '好评排序', '销量排序'],
-        visible: false
-      }
-    ]
+    categoryOptions: [],
+    activeTabIdx: 0,
+    tabScroll: 0,
+    scenicList: [],
+    finished: false
   },
 
-  onLoad() {},
+  async onLoad() {
+    await this.setCategoryOptions()
+    this.setScenicList(true)
+  },
 
-  showDropdown(e) {
-    const curIndex = Number(e.currentTarget.dataset.index)
-    this.data.filterList.forEach((item, index) => {
-      if (item.visible && curIndex !== index) {
-        this.setData({
-          [`filterList[${index}].visible`]: false
-        })
-      }
-      if (curIndex === index) {
-        this.setData({
-          [`filterList[${index}].visible`]: !item.visible
-        })
-      }
+  async setCategoryOptions() {
+    const options = await scenicService.getScenicCategoryOptions()
+    this.setData({ 
+      categoryOptions: [
+        { id: 0, name: '推荐'},
+        ...options
+      ]
     })
   },
 
-  selectOption(e) {
-    const { filterIndex, optionIndex } = e.currentTarget.dataset
+  selectCate(e) {
+    const { idx } = e.currentTarget.dataset
+    this.setData({ 
+      activeTabIdx: idx, 
+      tabScroll: (idx - 2) * 80
+    })
+    this.setScenicList(true)
+  },
+
+  async setScenicList(init = false) {
+    const limit = 10
+    if (init) {
+      this.page = 0
+      this.setData({
+        finished: false
+      })
+    }
+    const { categoryOptions, activeTabIdx, scenicList } = this.data
+    const list = await scenicService.getScenicList({
+      categoryId: categoryOptions[activeTabIdx].id,
+      page: ++this.page,
+      limit
+    }) || []
     this.setData({
-      [`filterList[${filterIndex}].curIndex`]: Number(optionIndex),
-      [`filterList[${filterIndex}].visible`]: false
+      scenicList: init ? list : [...scenicList, ...list]
     })
+    if (list.length < limit) {
+      this.setData({
+        finished: true
+      })
+    }
   },
 
-  hideDropdown() {
-    this.data.filterList.forEach((item, index) => {
-      if (item.visible) {
-        this.setData({
-          [`filterList[${index}].visible`]: false
-        })
-      }
-    })
+  onReachBottom() {
+    this.setScenicList()
+  },
+  
+  onPullDownRefresh() {
+    this.setScenicList(true)
+    wx.stopPullDownRefresh() 
   },
 
   navBack() {
-    wx.navigateBack({
-      delta: 1
-    })
-  }
+    customBack()
+  },
 })
