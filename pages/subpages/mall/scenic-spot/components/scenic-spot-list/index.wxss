@@ -50,16 +50,12 @@
 .score-wrap {
   display: flex;
   align-items: baseline;
-  margin-top: 4rpx;
-}
-.star {
-  width: 26rpx;
-  height: 26rpx;
+  margin-top: 6rpx;
 }
 .score {
   margin-left: 10rpx;
   color: #666;
-  font-size: 20rpx;
+  font-size: 18rpx;
 }
 .position-wrap {
   display: flex;
