@@ -3,8 +3,8 @@
   wx:for="{{list}}"
   wx:key="index"
   url="/pages/subpages/mall/scenic-spot/subpages/spot-detail/index?id={{item.id}}"
-  bindtap="navToDetail"
-  >
+  hover-class="none"
+>
   <image class="cover" src="{{item.image}}" mode="aspectFill" lazy-load />
   <view class="content">
     <view class="row">

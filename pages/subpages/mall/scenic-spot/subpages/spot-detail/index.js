@@ -1,3 +1,6 @@
+import ScenicService from '../../utils/scenicService'
+
+const scenicService = new ScenicService()
 const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Page({
@@ -5,19 +8,7 @@ Page({
     statusBarHeight,
     navBarVisible: false,
     curMenuIdx: -1,
-    spotInfo: {
-      name: "千岛湖森林氧吧",
-      status: 1,
-      grade: 4.5,
-      video:
-        "http://1301400133.vod2.myqcloud.com/d9ed72b2vodcq1301400133/b617ca2a5285890819220454346/SrPypYJizP4A.mp4",
-      imageList: [
-        "https://img.ubo.vip/images/202208/thumb_img/0_thumb_P_1660717847911.jpg",
-        "https://img.ubo.vip/images/202208/thumb_img/_thumb_P_1660717980300.jpg",
-        "https://img.ubo.vip/images/202208/thumb_img/_thumb_P_1660717983502.jpg",
-        "https://img.ubo.vip/images/202208/thumb_img/_thumb_P_1660717985198.jpg",
-      ],
-    },
+    scenicInfo: null,
     curDot: 1,
     muted: true,
     ticketTypeList: ["成人票", "儿童票", "老人票", "学生票"],
@@ -408,9 +399,16 @@ Page({
     noticePopupVisible: false,
   },
 
-  onLoad(options) {
+  async onLoad({ id }) {
+    this.scenicId = +id
+    await this.setScenicInfo()
     this.setNavBarVisibleLimit();
     this.setMenuChangeLimitList();
+  },
+
+  async setScenicInfo() {
+    const scenicInfo = await scenicService.getScenicInfo(this.scenicId)
+    this.setData({ scenicInfo })
   },
 
   setNavBarVisibleLimit() {

@@ -2,15 +2,15 @@
 
 <view class="nav-bar-wrap">
   <view class="nav-bar row" style="padding-top: {{statusBarHeight}}px;">
-    <image class="nav-bg" wx:if="{{navBarVisible}}" src="{{spotInfo.imageList[0]}}" mode="aspectFill" />
+    <image class="nav-bg" wx:if="{{navBarVisible}}" src="{{scenicInfo.imageList[0]}}" mode="aspectFill" />
     <view class="bg-cover" wx:if="{{navBarVisible}}" />
     <back-icon style="margin-left: 8px;" noBorder="{{navBarVisible}}" />
-    <image class="spot-image" wx:if="{{navBarVisible}}" src="{{spotInfo.imageList[0]}}" mode="aspectFill" />
+    <image class="spot-image" wx:if="{{navBarVisible}}" src="{{scenicInfo.imageList[0]}}" mode="aspectFill" />
     <view class="spot-info" wx:if="{{navBarVisible}}">
-      <view class="spot-name">{{spotInfo.name}}</view>
+      <view class="spot-name">{{scenicInfo.name}}</view>
       <view class="grade-wrap row">
-        <van-rate value="{{spotInfo.grade}}" size="8" gutter="0" color="#ffd21e" void-icon="star" void-color="#eee" allow-half />
-        <text class="spot-grade">{{spotInfo.grade}}</text>
+        <van-rate value="{{scenicInfo.rate}}" size="8" gutter="0" color="#ffd21e" void-icon="star" void-color="#eee" allow-half />
+        <text class="spot-grade">{{scenicInfo.rate || '暂无评分'}}</text>
       </view>
     </view>
   </view>
@@ -39,11 +39,11 @@
 
 <view class="banner-wrap">
   <swiper style="height: 420rpx;" circular bindchange="bannerChange">
-    <swiper-item wx:if="{{spotInfo.video}}">
+    <swiper-item wx:if="{{scenicInfo.video}}">
       <view class="video-wrap" bindtap="fullScreenPlay">
         <video
           class="video-player"
-          src="{{spotInfo.video}}"
+          src="{{scenicInfo.video}}"
           autoplay
           loop
           muted="{{muted}}"
@@ -54,43 +54,43 @@
       </view>
     </swiper-item>
     <swiper-item 
-      wx:for="{{spotInfo.imageList}}" 
+      wx:for="{{scenicInfo.imageList}}" 
       wx:key="index" 
       bindtap="previewImage" 
       data-current="{{item}}" 
-      data-urls="{{spotInfo.imageList}}"
+      data-urls="{{scenicInfo.imageList}}"
     >
       <image style="width:100%; height:100%;" src="{{item}}" mode='aspectFill' lazy-load />
     </swiper-item>
   </swiper>
-  <view class="mute-icon-wrap row center" wx:if="{{spotInfo.video && curDot === 1}}" catchtap="toggleMuted">
+  <view class="mute-icon-wrap row center" wx:if="{{scenicInfo.video && curDot === 1}}" catchtap="toggleMuted">
     <image class="mute-icon" src="./images/{{muted ? 'muted' : 'unmuted'}}.png" />
   </view>
   <view class="banner-dots row">
-    <image class="dot-icon" src="{{(spotInfo.video && curDot === 1) ? './images/video.png' : './images/photo.png'}}" />
-    <text>{{curDot}}/{{spotInfo.imageList.length + (spotInfo.video ? 1 : 0)}}</text>
+    <image class="dot-icon" src="{{(scenicInfo.video && curDot === 1) ? './images/video.png' : './images/photo.png'}}" />
+    <text>{{curDot}}/{{scenicInfo.imageList.length + (scenicInfo.video ? 1 : 0)}}</text>
   </view>
 </view>
 
 <view class="container">
   <view class="row between">
     <view class="row">
-      <view class="scenic-spot-name">{{spotInfo.name}}</view>
+      <view class="scenic-spot-name">{{scenicInfo.name}}</view>
       <view class="level-tag row">3A</view>
     </view>
     <image class="share-icon" src="./images/share.png" />
   </view>
 
   <view class="score-wrap row">
-    <van-rate value="{{spotInfo.grade}}" size="18" gutter="0" color="#ffd21e" void-icon="star" void-color="#eee" allow-half />
-    <text class="score">{{spotInfo.grade}}分</text>
+    <van-rate value="{{scenicInfo.rate}}" size="18" gutter="0" color="#ffd21e" void-icon="star" void-color="#eee" allow-half />
+    <text class="score">{{scenicInfo.rate || '暂无评'}}分</text>
   </view>
 
   <view class="info-list-wrap">
-    <navigator class="info-list row between" url="./subpages/more-info/index?id={{spotInfo.id}}" hover-class="none">
+    <navigator class="info-list row between" url="./subpages/more-info/index?id={{scenicInfo.id}}" hover-class="none">
       <view class="row">
         <image class="clock-icon" src="./images/time.png" />
-        <view class="opening-status row {{spotInfo.status !== 1 ? 'closed' : ''}}">{{spotInfo.status !== 1 ? '今日已闭园' : '开园中'}}</view>
+        <view class="opening-status row {{scenicInfo.status !== 1 ? 'closed' : ''}}">{{scenicInfo.status !== 1 ? '今日已闭园' : '开园中'}}</view>
         <view class="opening-hours">08:00-17:00开放（17:00停止入园）</view>
       </view>
       <view class="row">
@@ -112,7 +112,7 @@
 
   <view class="content-title-wrap row between">
     <view class="content-title">景点门票</view>
-    <navigator class="content-title-tips row" url="./subpages/more-info/index?id={{spotInfo.id}}&menuIdx=2" hover-class="none">
+    <navigator class="content-title-tips row" url="./subpages/more-info/index?id={{scenicInfo.id}}&menuIdx=2" hover-class="none">
       <text>优待政策</text>
       <image class="more-icon" src="./images/more-blue.png" />
     </navigator>
