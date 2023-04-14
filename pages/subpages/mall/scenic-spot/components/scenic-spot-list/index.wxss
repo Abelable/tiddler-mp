@@ -38,8 +38,8 @@
 }
 .score-wrap {
   display: flex;
-  align-items: center;
-  margin-top: 10rpx;
+  align-items: baseline;
+  margin-top: 4rpx;
 }
 .star {
   width: 26rpx;

@@ -13,16 +13,12 @@
       <view class="label">5千平方米的戏雪区</view>
     </view>
     <view class="score-wrap">
-      <image class="star" src="./images/star-active.png" />
-      <image class="star" src="./images/star-active.png" />
-      <image class="star" src="./images/star-active.png" />
-      <image class="star" src="./images/star-active.png" />
-      <image class="star" src="./images/star.png" />
-      <text class="score">4.2分</text>
+      <van-rate value="{{item.rate}}" size="12" gutter="0" color="#ffd21e" void-icon="star" void-color="#eee" allow-half />
+      <text class="score">{{item.rate}}分</text>
     </view>
     <view class="position-wrap">
       <image class="position-icon" src="./images/position.png" />
-      <text>杭州千岛湖，据您86km</text>
+      <text>{{item.address}}，据您86km</text>
     </view>
     <view class="price-info">
       <view class="sales">已售 13506</view>
