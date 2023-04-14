@@ -7,7 +7,10 @@
   >
   <image class="cover" src="{{item.image}}" mode="aspectFill" lazy-load />
   <view class="content">
-    <view class="title omit">{{item.name}}</view>
+    <view class="row">
+      <view class="title omit single-line">{{item.name}}</view>
+      <view class="level-tag row" wx:if="{{item.level}}">{{item.level}}</view>
+    </view>
     <view class="labels">
       <view class="label">杭州亲子滑雪好去处</view>
       <view class="label">5千平方米的戏雪区</view>

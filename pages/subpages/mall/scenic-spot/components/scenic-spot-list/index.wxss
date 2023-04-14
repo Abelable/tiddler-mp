@@ -24,6 +24,17 @@
   font-size: 26rpx;
   font-weight: bold;
 }
+.level-tag {
+  margin-left: 8rpx;
+  padding: 0 12rpx;
+  height: 32rpx;
+  color: #5dce86;
+  font-size: 20rpx;
+  font-weight: bold;
+  line-height: 1;
+  border-radius: 8rpx;
+  background: #d1f7e5;
+}
 .labels {
   display: flex;
   margin-top: 10rpx;
