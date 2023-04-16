@@ -10,7 +10,7 @@
       <view class="spot-name">{{scenicInfo.name}}</view>
       <view class="grade-wrap row">
         <van-rate value="{{scenicInfo.rate}}" size="8" gutter="0" color="#ffd21e" void-icon="star" void-color="#eee" allow-half />
-        <text class="spot-grade">{{scenicInfo.rate || '暂无评分'}}</text>
+        <text class="spot-grade">{{scenicInfo.rate}}</text>
       </view>
     </view>
   </view>
@@ -83,7 +83,8 @@
 
   <view class="score-wrap row">
     <van-rate value="{{scenicInfo.rate}}" size="18" gutter="0" color="#ffd21e" void-icon="star" void-color="#eee" allow-half />
-    <text class="score">{{scenicInfo.rate || '暂无评'}}分</text>
+    <text class="score" wx:if="{{scenicInfo.rate}}">{{scenicInfo.rate}}分</text>
+    <text class="no-score" wx:if="{{!scenicInfo.rate}}">暂无评分</text>
   </view>
 
   <view class="info-list-wrap">
@@ -101,7 +102,7 @@
     <view class="info-list row between">
       <view class="row">
         <image class="position-icon" src="./images/position.png" />
-        <view class="opening-hours">杭州市淳安县千岛湖镇淡竹王子山</view>
+        <view class="opening-hours">{{scenicInfo.address}}</view>
       </view>
       <button class="navigation-btn" hover-class="none">
         <image class="navigation-icon" src="./images/navigation.png" />

@@ -189,6 +189,12 @@
   margin-left: 10rpx;
   color: #333;
   font-size: 26rpx;
+  font-weight: bold;
+}
+.no-score {
+  margin-left: 10rpx;
+  color: #333;
+  font-size: 20rpx;
 }
 
 .info-list-wrap {
