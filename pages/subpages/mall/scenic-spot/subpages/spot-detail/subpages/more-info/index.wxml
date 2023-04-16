@@ -1,3 +1,5 @@
+<wxs module="TIME" src="/utils/filters/time.wxs" />
+
 <scroll-view 
   class="menu" 
   scroll-left="{{curMenuIdx > 2 ? (curMenuIdx - 1) * 80 : 0}}" 
@@ -7,42 +9,38 @@
 >
   <view 
     class="menu-item row {{curMenuIdx === index ? 'active' : ''}}" 
-    wx:for="{{['景点简介', '开放时间', '优待政策', '咨询热线', '景区项目', '景区设施', '游玩贴士']}}" 
+    wx:for="{{menuList}}" 
     wx:key="index"
     bindtap="selectMenu"
     data-index="{{index}}"
-  >{{item}}</view>
+  >{{item.name}}</view>
 </scroll-view>
 
 <view class="container">
   <view class="card">
     <view class="card-title">景点简介</view>
     <view class="introduction">
-      <text>{{introduction}}</text>
-      <text class="toggle-fold-btn" bindtap="toggleIntroductionFold">{{introductionFold ? '展开' : '收起'}}</text>
+      <text>{{scenicInfo.brief}}</text>
+      <text class="toggle-fold-btn" bindtap="toggleBriefFold">{{briefFold ? '展开' : '收起'}}</text>
     </view>
   </view>
 
-  <view class="card">
+  <view class="card" wx:if="{{scenicInfo.openTimeList.length}}">
     <view class="card-title">开放时间</view>
     <view class="grid">
-      <view class="grid-line title">
-        <view class="grid-item">3月1日 - 10月14日</view>
-      </view>
-      <view class="grid-line">
-        <view class="grid-item">08:00 - 17:00 (17:00停止入园)</view>
-      </view>
-      <view class="grid-line title">
-        <view class="grid-item">10月15日 - 次年2月28日</view>
-      </view>
-      <view class="grid-line">
-        <view class="grid-item">08:30 - 16:30 (16:30停止入园)</view>
-      </view>
+      <block wx:for="{{scenicInfo.openTimeList}}" wx:key="index">
+        <view class="grid-line title">
+          <view class="grid-item">{{item.openMonth}}月-{{item.closeMonth}}月</view>
+        </view>
+        <view class="grid-line">
+          <view class="grid-item">{{TIME.transform(item.openTime, 'hh:mm')}}-{{TIME.transform(item.closeTime, 'hh:mm')}}{{item.tips ? '(' + item.tips + ')' : ''}}</view>
+        </view>
+      </block>
     </view>
     <view class="warning-tips">以上信息仅供参考，具体以景点当日实际公告信息为准</view>
   </view>
 
-  <view class="card">
+  <view class="card" wx:if="{{scenicInfo.policyList.length}}">
     <view class="card-title">优待政策</view>
     <view class="grid">
       <view class="grid-line title">
@@ -50,48 +48,37 @@
         <view class="grid-item main">适用条件</view>
         <view class="grid-item">优待政策</view>
       </view>
-      <view class="grid-line">
-        <view class="grid-item">婴幼儿</view>
-        <view class="grid-item main content">身高：1.2米（不含）以下</view>
-        <view class="grid-item">免费</view>
-      </view>
-      <view class="grid-line">
-        <view class="grid-item">老人</view>
-        <view class="grid-item content main">年龄：70周岁（含）以上</view>
-        <view class="grid-item">免费</view>
+      <view class="grid-line" wx:for="{{scenicInfo.policyList}}" wx:key="index">
+        <view class="grid-item">{{item.crowd}}</view>
+        <view class="grid-item main content">{{item.condition}}</view>
+        <view class="grid-item">{{item.content}}</view>
       </view>
     </view>
     <view class="warning-tips">以上信息仅供参考，具体以景点当日实际公告信息为准</view>
   </view>
 
-  <view class="card">
+  <view class="card" wx:if="{{scenicInfo.hotlineList.length}}">
     <view class="card-title">咨询热线</view>
     <view class="tel-list">
-      <veiw class="tel row between">
-        <view>0571-64877126</view>
-        <image class="tel-icon" src="./images/tel.png" />
-      </veiw>
-      <veiw class="tel row between">
-        <view>0571-64832828</view>
+      <veiw class="tel row between" wx:for="{{scenicInfo.hotlineList}}" wx:key="index">
+        <view>{{item}}</view>
         <image class="tel-icon" src="./images/tel.png" />
       </veiw>
     </view>
   </view>
 
-  <view class="card">
+  <view class="card" wx:if="{{scenicInfo.projectList.length}}">
     <view class="card-title">景区项目</view>
-    <scroll-view class="project-list" scroll-x enable-flex>
-      <project-item  wx:for="{{projectList}}" wx:key="index" info="{{item}}" />
-    </scroll-view>
+    <project-list list="{{scenicInfo.projectList}}" />
   </view>
 
-  <view class="card">
+  <view class="card" wx:if="{{scenicInfo.facilityList.length}}">
     <view class="card-title">景区设施</view>
     <view class="facility-wrap">
       <view class="facility-btns-wrap row">
         <button 
           class="facility-btn {{curFacilityIdx === index ? 'active' : ''}}" 
-          wx:for="{{facilityList}}" 
+          wx:for="{{scenicInfo.facilityList}}" 
           wx:key="index"
           bindtap="selectFacility"
           data-index="{{index}}"
@@ -101,22 +88,18 @@
         </button>
       </view>
       <view class="facility-info">
-        <view class="facility-name">{{facilityList[curFacilityIdx].name}}</view>
-        <view class="facility-content">{{facilityList[curFacilityIdx].content}}</view>
+        <view class="facility-name">{{scenicInfo.facilityList[curFacilityIdx].name}}</view>
+        <view class="facility-content">{{scenicInfo.facilityList[curFacilityIdx].content}}</view>
       </view>
     </view>
   </view>
 
-  <view class="card">
+  <view class="card" wx:if="{{scenicInfo.tipsList.length}}">
     <view class="card-title">游玩贴士</view>
     <view class="tips-list">
-      <view class="tips-item">
-        <view class="tips-title">交通建议</view>
-        <view class="tips-content">暂无从城区出发直达的公交，建议自驾前往</view>
-      </view>
-      <view class="tips-item">
-        <view class="tips-title">游玩时长</view>
-        <view class="tips-content">建议1-3小时，景区不大，一般不建议在景区内用餐，自带少许水和食物即可</view>
+      <view class="tips-item" wx:for="{{scenicInfo.tipsList}}" wx:key="index">
+        <view class="tips-title">{{item.title}}</view>
+        <view class="tips-content">{{item.content}}</view>
       </view>
     </view>
   </view>

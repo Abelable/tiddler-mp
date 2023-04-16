@@ -1,6 +1,6 @@
-import ScenicService from '../../utils/scenicService'
+import ScenicService from "../../utils/scenicService";
 
-const scenicService = new ScenicService()
+const scenicService = new ScenicService();
 const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Page({
@@ -400,15 +400,15 @@ Page({
   },
 
   async onLoad({ id }) {
-    this.scenicId = +id
-    await this.setScenicInfo()
+    this.scenicId = +id;
+    await this.setScenicInfo();
     this.setNavBarVisibleLimit();
     this.setMenuChangeLimitList();
   },
 
   async setScenicInfo() {
-    const scenicInfo = await scenicService.getScenicInfo(this.scenicId)
-    this.setData({ scenicInfo })
+    const scenicInfo = await scenicService.getScenicInfo(this.scenicId);
+    this.setData({ scenicInfo });
   },
 
   setNavBarVisibleLimit() {
@@ -565,6 +565,20 @@ Page({
   book(e) {
     const { id } = e.currentTarget.dataset;
     const url = `/pages/subpages/mall/scenic-spot/subpages/order-check/index?id=${id}`;
+    wx.navigateTo({ url });
+  },
+
+  checkMoreInfo() {
+    const url = `./subpages/more-info/index?info=${JSON.stringify(
+      this.data.scenicInfo
+    )}`;
+    wx.navigateTo({ url });
+  },
+
+  checkPolicy() {
+    const url = `./subpages/more-info/index?info=${JSON.stringify(
+      this.data.scenicInfo
+    )}&scene=policy`;
     wx.navigateTo({ url });
   },
 
