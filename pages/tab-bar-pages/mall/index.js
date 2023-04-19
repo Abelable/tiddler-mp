@@ -1,4 +1,7 @@
 import { store } from "../../../store/index";
+import MallService from "./utils/mallService";
+
+const mallService = new MallService();
 const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Component({

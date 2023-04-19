@@ -3,6 +3,6 @@
   "enablePullDownRefresh": true,
   "usingComponents": {
     "empty-illus": "/components/empty-illus/index",
-    "scenic-spot-list": "./components/scenic-spot-list/index"
+    "scenic-spot-item": "./components/scenic-spot-item/index"
   }
 }

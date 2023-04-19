@@ -24,7 +24,7 @@
 </view>
 
 <view class="container" style="padding-top: {{statusBarHeight + 88}}px;">
-  <scenic-spot-list list="{{scenicList}}" />
+  <scenic-spot-item wx:for="{{scenicList}}" wx:key="index" item="{{item}}" />
   <empty-illus wx:if="{{finished && !scenicList.length}}" desc="暂无列表" />
   <view class="no-more-tips" wx:if="{{finished && scenicList.length}}">～没有更多了～</view>
 </view>

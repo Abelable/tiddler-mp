@@ -1,3 +1,4 @@
+import { store } from '../../../../store/index'
 import { customBack } from '../../../../utils/index'
 import ScenicService from './utils/scenicService'
 
@@ -15,8 +16,17 @@ Page({
   },
 
   async onLoad() {
+    await this.setLocationInfo()
     await this.setCategoryOptions()
     this.setScenicList(true)
+  },
+
+  async setLocationInfo() {
+    const { authSetting } = await scenicService.getSetting();
+    if (authSetting["scope.userLocation"] !== false) {
+      const { longitude, latitude } = await scenicService.getLocation();
+      store.setLocationInfo({ longitude, latitude });
+    }
   },
 
   async setCategoryOptions() {
