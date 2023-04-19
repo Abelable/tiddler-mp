@@ -44,9 +44,9 @@
         <video
           class="video-player"
           src="{{scenicInfo.video}}"
+          muted="{{muted}}"
           autoplay
           loop
-          muted="{{muted}}"
           controls="{{false}}"
           show-center-play-btn="{{false}}" 
           show-fullscreen-btn="{{false}}"

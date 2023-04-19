@@ -441,7 +441,11 @@ Page({
     });
   },
 
-  fullScreenPlay() {},
+  fullScreenPlay() {
+    const { video } = this.data.scenicInfo;
+    const url = `/pages/subpages/common/video-play/index?url=${video}`;
+    wx.navigateTo({ url });
+  },
 
   previewImage(e) {
     const { current, urls } = e.currentTarget.dataset;
