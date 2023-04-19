@@ -1,3 +1,5 @@
+<wxs module="TIME" src="/utils/filters/time.wxs" />
+
 <page-meta page-style="{{ noticePopupVisible ? 'overflow: hidden;' : '' }}" />
 
 <view class="nav-bar-wrap">
@@ -91,8 +93,8 @@
     <view class="info-list row between" bindtap="checkMoreInfo">
       <view class="row">
         <image class="clock-icon" src="./images/time.png" />
-        <view class="opening-status row {{scenicInfo.status !== 1 ? 'closed' : ''}}">{{scenicInfo.status !== 1 ? '今日已闭园' : '开园中'}}</view>
-        <view class="opening-hours">08:00-17:00开放（17:00停止入园）</view>
+        <view class="opening-status row {{!isOpen ? 'closed' : ''}}">{{!isOpen ? '已闭园' : '开园中'}}</view>
+        <view class="opening-hours">{{TIME.transform(curOpenTime.openTime, 'hh:mm')}}-{{TIME.transform(curOpenTime.closeTime, 'hh:mm')}}开放{{curOpenTime.tips ? ('（' + curOpenTime.tips + '）') : ''}}</view>
       </view>
       <view class="row">
         <view class="more-detail">详情</view>

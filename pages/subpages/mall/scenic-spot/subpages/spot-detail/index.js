@@ -9,6 +9,8 @@ Page({
     navBarVisible: false,
     curMenuIdx: -1,
     scenicInfo: null,
+    curOpenTime: null,
+    isOpen: true,
     curDot: 1,
     muted: true,
     ticketTypeList: ["成人票", "儿童票", "老人票", "学生票"],
@@ -409,6 +411,23 @@ Page({
   async setScenicInfo() {
     const scenicInfo = await scenicService.getScenicInfo(this.scenicId);
     this.setData({ scenicInfo });
+    this.setCurOpenTime(scenicInfo.openTimeList)
+  },
+
+  setCurOpenTime(openTimeList) {
+    const date = new Date()
+    const curMonth = date.getMonth() + 1
+    const curOpenTime = openTimeList.find(item => (curMonth >= item.openMonth && curMonth <= item.closeMonth))
+
+    const { openTime, closeTime } = curOpenTime
+    const openDate = new Date(openTime)
+    const closeDate = new Date(closeTime)
+    const openTimeUnit = Number(`${openDate.getHours()}`.padStart(2, '0') + `${openDate.getMinutes()}`.padStart(2, '0'))
+    const closeTimeUnit = Number(`${closeDate.getHours()}`.padStart(2, '0') + `${closeDate.getMinutes()}`.padStart(2, '0'))
+    const curTime = Number(`${date.getHours()}`.padStart(2, '0') + `${date.getMinutes()}`.padStart(2, '0'))
+    const isOpen = curTime >= openTimeUnit && curTime <= closeTimeUnit
+    
+    this.setData({ curOpenTime, isOpen })
   },
 
   setNavBarVisibleLimit() {
