@@ -99,7 +99,7 @@
         <image class="more-icon" src="./images/more.png" />
       </view>
     </view>
-    <view class="info-list row between">
+    <view class="info-list row between" bindtap="navigation">
       <view class="row">
         <image class="position-icon" src="./images/position.png" />
         <view class="opening-hours">{{scenicInfo.address}}</view>

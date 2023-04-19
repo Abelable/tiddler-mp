@@ -582,5 +582,15 @@ Page({
     wx.navigateTo({ url });
   },
 
+  navigation() {
+    const { name, address, latitude, longitude } = this.data.scenicInfo;
+    wx.openLocation({
+      latitude,
+      longitude,
+      name,
+      address,
+    });
+  },
+
   onShareAppMessage() {},
 });
