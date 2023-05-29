@@ -1,16 +1,16 @@
-import dayjs from 'dayjs'
+import dayjs from "dayjs";
 
 class Log {
   static error(log) {
-    const logs = wx.getStorageSync('errLogs')
-    const logList = logs ? JSON.parse(logs) : []
+    const logs = wx.getStorageSync("errLogs");
+    const logList = logs ? JSON.parse(logs) : [];
     logList.unshift({
       ...log,
       page: getCurrentPages()[getCurrentPages().length - 1].route,
-      time: dayjs().format('YYYY-MM-DD HH:mm:ss')
-    })
-    wx.setStorage({ key: 'errLogs', data: JSON.stringify(logList) })
+      time: dayjs().format("YYYY-MM-DD HH:mm:ss"),
+    });
+    wx.setStorage({ key: "errLogs", data: JSON.stringify(logList) });
   }
 }
 
-export default Log
+export default Log;
