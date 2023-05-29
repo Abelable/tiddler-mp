@@ -4,7 +4,7 @@ class Log {
   static error(log) {
     const logs = wx.getStorageSync('errLogs')
     const logList = logs ? JSON.parse(logs) : []
-    logList.push({
+    logList.unshift({
       ...log,
       page: getCurrentPages()[getCurrentPages().length - 1].route,
       time: dayjs().format('YYYY-MM-DD HH:mm:ss')
