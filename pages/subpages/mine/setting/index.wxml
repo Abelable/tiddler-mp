@@ -10,19 +10,19 @@
 </view>
 
 <view class="list-wrap">
-  <view class="list row between" bindtap="navToSettleIn">
+  <view class="list row between" bindtap="navToScenicProviderSettleIn">
     <view class="title">景区服务商入驻</view>
     <image class="arrow" src="./images/arrow.png" />
   </view>
-  <view class="list row between" bindtap="navToSettleIn">
+  <view class="list row between" bindtap="navToMerchantSettleIn">
     <view class="title">酒店入驻</view>
     <image class="arrow" src="./images/arrow.png" />
   </view>
-  <view class="list row between" bindtap="navToSettleIn">
+  <view class="list row between" bindtap="navToMerchantSettleIn">
     <view class="title">餐馆入驻</view>
     <image class="arrow" src="./images/arrow.png" />
   </view>
-  <view class="list row between" bindtap="navToSettleIn">
+  <view class="list row between" bindtap="navToMerchantSettleIn">
     <view class="title">商家入驻</view>
     <image class="arrow" src="./images/arrow.png" />
   </view>
