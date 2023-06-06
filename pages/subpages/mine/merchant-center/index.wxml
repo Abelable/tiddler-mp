@@ -1,0 +1,37 @@
+<view class="list-wrap">
+  <navigator class="list row between" wx:if="{{userInfo.scenicShopId}}" url="./subpages/my-shop/index" hover-class="none">
+    <view class="title">景区管理</view>
+    <image class="arrow" src="./images/arrow.png" />
+  </navigator>
+  <navigator class="list row between" wx:if="{{userInfo.hotelId}}" url="./subpages/my-shop/index" hover-class="none">
+    <view class="title">酒店管理</view>
+    <image class="arrow" src="./images/arrow.png" />
+  </navigator>
+  <navigator class="list row between" wx:if="{{userInfo.restaurantId}}" url="./subpages/my-shop/index" hover-class="none">
+    <view class="title">餐馆管理</view>
+    <image class="arrow" src="./images/arrow.png" />
+  </navigator>
+  <navigator class="list row between" wx:if="{{userInfo.shopId}}" url="./subpages/my-shop/index" hover-class="none">
+    <view class="title">店铺管理</view>
+    <image class="arrow" src="./images/arrow.png" />
+  </navigator>
+</view>
+
+<view class="list-wrap">
+  <view class="list row between" wx:if="{{!userInfo.scenicShopId}}" bindtap="navToScenicProviderSettleIn">
+    <view class="title">景区服务商入驻</view>
+    <image class="arrow" src="./images/arrow.png" />
+  </view>
+  <view class="list row between" wx:if="{{!userInfo.hotelId}}" bindtap="navToMerchantSettleIn">
+    <view class="title">酒店入驻</view>
+    <image class="arrow" src="./images/arrow.png" />
+  </view>
+  <view class="list row between" wx:if="{{!userInfo.restaurantId}}" bindtap="navToMerchantSettleIn">
+    <view class="title">餐馆入驻</view>
+    <image class="arrow" src="./images/arrow.png" />
+  </view>
+  <view class="list row between" wx:if="{{!userInfo.shopId}}" bindtap="navToMerchantSettleIn">
+    <view class="title">商家入驻</view>
+    <image class="arrow" src="./images/arrow.png" />
+  </view>
+</view>

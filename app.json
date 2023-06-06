@@ -47,10 +47,10 @@
       "mine/order-list/subpages/order-detail/index",
       "mine/order-list/subpages/comment/index",
       "mine/order-list/subpages/shipping/index",
-      "mine/merchant-management/index",
-      "mine/merchant-management/subpages/my-shop/index",
-      "mine/merchant-management/subpages/my-shop/subpages/order-detail/index",
-      "mine/merchant-management/subpages/my-shop/subpages/shipping/index",
+      "mine/merchant-center/index",
+      "mine/merchant-center/subpages/shop-management/index",
+      "mine/merchant-center/subpages/shop-management/subpages/order-detail/index",
+      "mine/merchant-center/subpages/shop-management/subpages/shipping/index",
       "mine/create-video/index",
       "mine/create-note/index"
     ]
