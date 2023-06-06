@@ -49,7 +49,7 @@
         <image class="function-icon" src="./images/live.png" />
         <view class="function-desc">我的直播</view>
       </view>
-      <navigator class="function-item" wx:if="{{userInfo.shopId || userInfo.scenicShopId}}" url="/pages/subpages/mine/merchant-management/index" hover-class="none">
+      <navigator class="function-item" wx:if="{{userInfo.shopId || userInfo.scenicShopId}}" url="/pages/subpages/mine/merchant-center/index" hover-class="none">
         <image class="function-icon" src="./images/shop.png" />
         <view class="function-desc">商家中心</view>
       </navigator>
