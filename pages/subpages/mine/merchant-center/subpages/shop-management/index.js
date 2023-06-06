@@ -1,4 +1,4 @@
-import { WEBVIEW_BASE_URL } from '../../../../config'
+import { WEBVIEW_BASE_URL } from '../../../../../../config'
 import ShopService from './utils/shopService'
 
 const shopService = new ShopService()
