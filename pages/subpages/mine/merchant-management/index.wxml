@@ -1,0 +1,47 @@
+<view class="list-wrap">
+  <view class="list row between">
+    <view class="title">编辑个人信息</view>
+    <image class="arrow" src="./images/arrow.png" />
+  </view>
+  <view class="list row between">
+    <view class="title">实名认证</view>
+    <image class="arrow" src="./images/arrow.png" />
+  </view>
+</view>
+
+<view class="list-wrap">
+  <view class="list row between" bindtap="navToScenicProviderSettleIn">
+    <view class="title">景区服务商入驻</view>
+    <image class="arrow" src="./images/arrow.png" />
+  </view>
+  <view class="list row between" bindtap="navToMerchantSettleIn">
+    <view class="title">酒店入驻</view>
+    <image class="arrow" src="./images/arrow.png" />
+  </view>
+  <view class="list row between" bindtap="navToMerchantSettleIn">
+    <view class="title">餐馆入驻</view>
+    <image class="arrow" src="./images/arrow.png" />
+  </view>
+  <view class="list row between" bindtap="navToMerchantSettleIn">
+    <view class="title">商家入驻</view>
+    <image class="arrow" src="./images/arrow.png" />
+  </view>
+</view>
+
+<view class="list-wrap">
+  <view class="list row between">
+    <view class="title">常见问题与反馈</view>
+    <image class="arrow" src="./images/arrow.png" />
+  </view>
+  <view class="list row between">
+    <view class="title">推荐给好友</view>
+    <image class="arrow" src="./images/arrow.png" />
+  </view>
+  <view class="list row between">
+    <view class="title">关于小鱼游</view>
+    <view class="row">
+      <view class="content">v1.0.0</view>
+      <image class="arrow" src="./images/arrow.png" />
+    </view>
+  </view>
+</view>
