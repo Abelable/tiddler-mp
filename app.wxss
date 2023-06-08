@@ -64,6 +64,9 @@ switch {
 .row.between {
   justify-content: space-between;
 }
+.row.around {
+  justify-content: space-around;
+}
 .row.end {
   justify-content: flex-end;
 }

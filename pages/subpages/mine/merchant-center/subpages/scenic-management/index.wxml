@@ -45,7 +45,7 @@
     <button class="withdraw-btn">提现</button>
   </view>
   
-  <view class="btns-wrap row between">
+  <view class="btns-wrap row around">
     <view class="btn">
       <view class="btn-icon-wrap">
         <image class="btn-icon" src="./images/shop.png" />
@@ -54,21 +54,15 @@
     </view>
     <view class="btn">
       <view class="btn-icon-wrap" bindtap="navToGoodsManagement">
-        <image class="btn-icon" src="./images/goods.png" />
+        <image class="btn-icon" src="./images/scenic.png" />
       </view>
-      <view class="btn-title">商品管理</view>
+      <view class="btn-title">景区管理</view>
     </view>
     <view class="btn">
       <view class="btn-icon-wrap" bindtap="navToReturnAddressManagement">
-        <image class="btn-icon" src="./images/address.png" />
+        <image class="btn-icon" src="./images/ticket.png" />
       </view>
-      <view class="btn-title">寄回地址</view>
-    </view>
-    <view class="btn">
-      <view class="btn-icon-wrap" bindtap="navToFreightTemplateManagement">
-        <image class="btn-icon" src="./images/freight.png" />
-      </view>
-      <view class="btn-title">运费模板</view>
+      <view class="btn-title">门票管理</view>
     </view>
   </view>
 </view>
