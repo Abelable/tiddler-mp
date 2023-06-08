@@ -53,16 +53,16 @@
       <view class="btn-title">店铺管理</view>
     </view>
     <view class="btn">
-      <view class="btn-icon-wrap" bindtap="navToGoodsManagement">
-        <image class="btn-icon" src="./images/scenic.png" />
-      </view>
-      <view class="btn-title">景区管理</view>
-    </view>
-    <view class="btn">
       <view class="btn-icon-wrap" bindtap="navToReturnAddressManagement">
         <image class="btn-icon" src="./images/ticket.png" />
       </view>
       <view class="btn-title">门票管理</view>
+    </view>
+    <view class="btn">
+      <view class="btn-icon-wrap" bindtap="navToGoodsManagement">
+        <image class="btn-icon" src="./images/scenic.png" />
+      </view>
+      <view class="btn-title">景区管理</view>
     </view>
   </view>
 </view>
