@@ -14,7 +14,7 @@
     </view>
     <view class="info">
       <view class="shop-name omit single-line">{{shopInfo.name}}</view>
-      <view class="authentication row">{{shopInfo.type === 2 ? '企业店铺' : '个人店铺'}}</view>
+      <view class="authentication row">{{['官方', '旅行社', '自营'][shopInfo.type - 1]}}</view>
     </view>
   </view>
   <view class="data-card">

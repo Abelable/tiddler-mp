@@ -1,6 +1,6 @@
-import ShopService from '../../utils/shopService'
+import ScenicService from '../../utils/scenicService'
 
-const shopService = new ShopService()
+const scenicService = new ScenicService()
 
 Component({
   options: {
@@ -14,14 +14,14 @@ Component({
   methods: {
     cancelOrder(e) {
       const { id, index } = e.currentTarget.dataset
-      shopService.cancelOrder(id, () => {
+      scenicService.cancelOrder(id, () => {
         this.triggerEvent('update', { type: 'cancel', index })
       })
     },
 
     deliverOrder(e) {
       const { id, index } = e.currentTarget.dataset
-      shopService.deleteOrder(id, () => {
+      scenicService.deleteOrder(id, () => {
         this.triggerEvent('update', { type: 'deliver', index })
       })
     },

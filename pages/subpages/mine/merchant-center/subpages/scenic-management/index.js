@@ -1,7 +1,7 @@
 import { WEBVIEW_BASE_URL } from '../../../../../../config'
-import ShopService from './utils/shopService'
+import ScenicService from './utils/scenicService'
 
-const shopService = new ShopService()
+const scenicService = new ScenicService()
 const { statusBarHeight } = getApp().globalData.systemInfo
 
 Page({
@@ -43,7 +43,7 @@ Page({
   },
 
   async setShopInfo() {
-    const shopInfo = await shopService.getShopInfo()
+    const shopInfo = await scenicService.getShopInfo()
     this.setData({ shopInfo })
   },
 
@@ -57,7 +57,7 @@ Page({
     const limit = 10
     const { shopInfo, menuList, curMenuIndex, orderList } = this.data
     if (init) this.page = 0
-    const list = await shopService.getOrderList({ 
+    const list = await scenicService.getOrderList({ 
       shopId: shopInfo.id, 
       status: menuList[curMenuIndex].status, 
       page:  ++this.page, 

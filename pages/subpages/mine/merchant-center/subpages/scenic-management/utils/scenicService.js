@@ -1,9 +1,9 @@
 import BaseService from '../../../../../../../services/baseService'
 
-class ShopService extends BaseService {
+class ScenicService extends BaseService {
   async getShopInfo() {
     return await this.get({
-      url: `${this.baseUrl}/shop/my_shop_info`
+      url: `${this.baseUrl}/scenic/shop/my_shop_info`
     })
   }
 
@@ -37,4 +37,4 @@ class ShopService extends BaseService {
   }
 }
 
-export default ShopService
+export default ScenicService
