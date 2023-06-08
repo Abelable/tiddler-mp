@@ -51,6 +51,7 @@
       "mine/merchant-center/subpages/shop-management/index",
       "mine/merchant-center/subpages/shop-management/subpages/order-detail/index",
       "mine/merchant-center/subpages/shop-management/subpages/shipping/index",
+      "mine/merchant-center/subpages/scenic-management/index",
       "mine/create-video/index",
       "mine/create-note/index"
     ]

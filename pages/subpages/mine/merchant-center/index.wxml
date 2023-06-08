@@ -1,5 +1,5 @@
 <view class="list-wrap">
-  <navigator class="list row between" wx:if="{{userInfo.scenicShopId}}" url="./subpages/shop-management/index" hover-class="none">
+  <navigator class="list row between" wx:if="{{userInfo.scenicShopId}}" url="./subpages/scenic-management/index" hover-class="none">
     <view class="title">景区管理</view>
     <image class="arrow" src="./images/arrow.png" />
   </navigator>
