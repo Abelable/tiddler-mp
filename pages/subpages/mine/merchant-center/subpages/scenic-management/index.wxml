@@ -62,7 +62,7 @@
       <view class="btn-icon-wrap" bindtap="navToScenicManagement">
         <image class="btn-icon" src="./images/scenic.png" />
       </view>
-      <view class="btn-title">景区管理</view>
+      <view class="btn-title">景点管理</view>
     </view>
   </view>
 </view>
