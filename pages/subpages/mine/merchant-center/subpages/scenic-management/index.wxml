@@ -59,7 +59,7 @@
       <view class="btn-title">门票管理</view>
     </view>
     <view class="btn">
-      <view class="btn-icon-wrap" bindtap="navToGoodsManagement">
+      <view class="btn-icon-wrap" bindtap="navToScenicManagement">
         <image class="btn-icon" src="./images/scenic.png" />
       </view>
       <view class="btn-title">景区管理</view>

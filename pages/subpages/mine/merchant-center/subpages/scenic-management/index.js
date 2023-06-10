@@ -89,18 +89,8 @@ Page({
     }
   },
 
-  navToGoodsManagement() {
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/goods/list`
-    wx.navigateTo({ url })
-  },
-
-  navToReturnAddressManagement() {
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/goods_return_address/list`
-    wx.navigateTo({ url })
-  },
-
-  navToFreightTemplateManagement() {
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/freight_template/list`
+  navToScenicManagement() {
+    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/scenic/provider/scenic_spot_list`
     wx.navigateTo({ url })
   },
 })
