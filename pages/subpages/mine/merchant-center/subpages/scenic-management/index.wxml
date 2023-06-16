@@ -53,7 +53,7 @@
       <view class="btn-title">店铺管理</view>
     </view>
     <view class="btn">
-      <view class="btn-icon-wrap" bindtap="navToReturnAddressManagement">
+      <view class="btn-icon-wrap" bindtap="navToTicketManagement">
         <image class="btn-icon" src="./images/ticket.png" />
       </view>
       <view class="btn-title">门票管理</view>

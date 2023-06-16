@@ -89,6 +89,11 @@ Page({
     }
   },
 
+  navToTicketManagement() {
+    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/scenic/ticket/list`
+    wx.navigateTo({ url })
+  },
+
   navToScenicManagement() {
     const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/scenic/spot_list`
     wx.navigateTo({ url })
