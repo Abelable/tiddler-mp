@@ -219,7 +219,7 @@
   color: #37B766;
   font-size: 20rpx;
   font-weight: bold;
-  line-height: 1;
+  line-height: 30rpx;
   border: 1px solid #37B766;
   border-radius: 4rpx;
 }
@@ -384,7 +384,7 @@
   color: #fff;
   font-size: 20rpx;
   font-weight: bold;
-  line-height: 1;
+  line-height: 30rpx;
   background: #1986F8;
   border-radius: 0 6rpx 6rpx 6rpx;
 }

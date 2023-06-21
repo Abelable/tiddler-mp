@@ -7,6 +7,7 @@ Page({
   data: {
     statusBarHeight,
     navBarVisible: false,
+    menuList: [],
     curMenuIdx: -1,
     scenicInfo: null,
     curOpenTime: null,
@@ -276,8 +277,7 @@ Page({
     await this.setScenicCategoryOptions();
     await this.setScenicInfo();
     await this.setSourceTicketList();
-    this.setNavBarVisibleLimit();
-    this.setMenuChangeLimitList();
+    this.setMenuList()
   },
 
   async setScenicCategoryOptions() {
@@ -416,6 +416,32 @@ Page({
       }
     });
     return ticketList;
+  },
+
+  setMenuList() {
+    const { combinedTicketTypeList } = this.data;
+    const menuList = combinedTicketTypeList.length
+      ? [
+          "景点门票",
+          "多景点联票",
+          "用户点评",
+          "热门问答",
+          "附近酒店",
+          "附近景点",
+          "达人打卡",
+        ]
+      : [
+          "景点门票",
+          "用户点评",
+          "热门问答",
+          "附近酒店",
+          "附近景点",
+          "达人打卡",
+        ];
+    this.setData({ menuList }, () => {
+      this.setNavBarVisibleLimit();
+      this.setMenuChangeLimitList();
+    });
   },
 
   setNavBarVisibleLimit() {
@@ -576,7 +602,6 @@ Page({
   showNoticePopup(e) {
     this.setData({
       noticePopupVisible: true,
-
     });
   },
 

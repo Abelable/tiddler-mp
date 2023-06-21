@@ -27,7 +27,7 @@
     >
       <view 
         class="menu-item row {{curMenuIdx === index ? 'active' : ''}}" 
-        wx:for="{{['景点门票', '多景点联票', '用户点评', '热门问答', '附近酒店', '附近景点', '达人打卡']}}"
+        wx:for="{{menuList}}"
         wx:key="index"
         bindtap="selectMenu"
         data-index="{{index}}"
@@ -141,10 +141,10 @@
   </view>
   <empty-illus wx:if="{{!ticketTypeList.length}}" desc="暂无景点门票" height="520rpx" />
 
-  <view class="content-title-wrap">
+  <view class="content-title-wrap" wx:if="{{combinedTicketTypeList.length}}">
     <view class="content-title">多景点联票</view>
   </view>
-  <scroll-view class="ticket-type-menu" scroll-x>
+  <scroll-view class="ticket-type-menu" scroll-x wx:if="{{combinedTicketTypeList.length}}">
     <view 
       class="ticket-type-item {{curCombinedTicketTypeIdx === index ? 'active' : ''}}" 
       wx:for="{{combinedTicketTypeList}}" 
@@ -153,7 +153,7 @@
       data-index="{{index}}"
     >{{item}}</view>
   </scroll-view>
-  <view class="collapse">
+  <view class="collapse" wx:if="{{combinedTicketTypeList.length}}">
     <collapse-item 
       wx:for="{{combinedTicketList}}" 
       wx:key="index" 
@@ -164,7 +164,6 @@
       bind:booking="booking"
     />
   </view>
-  <empty-illus wx:if="{{!combinedTicketTypeList.length}}" desc="暂无多景点联票" height="520rpx" />
 
   <view class="content-title-wrap">
     <view class="content-title">用户点评</view>
