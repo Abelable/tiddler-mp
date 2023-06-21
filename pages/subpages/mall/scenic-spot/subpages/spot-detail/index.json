@@ -11,6 +11,7 @@
     "empty-illus": "/components/empty-illus/index",
     "fall-flow": "/components/fall-flow/index",
     "media-item": "/components/media-item/index",
-    "notice-popup": "./components/notice-popup/index"
+    "notice-popup": "./components/notice-popup/index",
+    "collapse-item": "./components/collapse-item/index"
   }
 }

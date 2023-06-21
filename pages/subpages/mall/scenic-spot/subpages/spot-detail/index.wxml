@@ -130,58 +130,9 @@
     >{{item.name}}</view>
   </scroll-view>
   <view class="collapse">
-    <view class="collapse-item" wx:for="{{ticketList}}" wx:key="index">
-      <view class="collapse-trunk row between" bindtap="toggleTicketsFold" data-index="{{index}}">
-        <view class="collapse-trunk-title omit single-line">{{item.name}}</view>
-        <view class="collapse-trunk-content row">
-          <block wx:if="{{item.fold}}">
-            <text class="base-price">¥{{item.basePrice}}起</text>
-            <image class="arrow" src="./images/arrow-down.png" />
-          </block>
-          <block wx:else>
-            <text>收起</text>
-            <image class="arrow" src="./images/arrow-up.png" />
-          </block>
-        </view>
-      </view>
-      <view class="collapse-subitems" wx:if="{{!item.fold}}">
-        <view 
-          class="collapse-subitem row between" 
-          wx:for="{{item.list}}" 
-          wx:key="ticketIndex" 
-          wx:for-index="ticketIndex" 
-          wx:for-item="ticket"
-          bindtap="showNoticePopup"
-        >
-          <view class="ticket-info">
-            <view class="shop-info row">
-              <view class="shop-type row" wx:if="{{ticket.shopInfo.type !== 2}}">{{ticket.shopInfo.type === 1 ? '官方' : '自营'}}</view>
-              <view class="shop-name">{{ticket.shopInfo.name}}</view>
-            </view>
-            <view class="tips-wrap row">
-              <view class="tips stress">{{ticket.bookingTips}}</view>
-              <view class="tips">{{ticket.tips}}</view>
-            </view>
-            <view class="tips-wrap row">
-              <view class="tips stress">{{ticket.isRefundable ? '随时可退' : '有条件退'}}</view>
-              <view class="tips" wx:if="{{!ticket.needChange}}">无需换票</view>
-            </view>
-            <view class="tips-wrap row">
-              <view class="tips">已售{{ticket.salesVolume}}</view>
-              <view class="tips stress row" wx:if="{{!ticket.needChange}}">
-                <text>预定须知</text>
-                <image class="more-icon" src="./images/more-blue.png" />
-              </view>
-            </view>
-          </view>
-          <view class="booking-wrap">
-            <price-unit price="{{ticket.price}}" />
-            <button class="booking-btn" catchtap="book" data-id="{{ticket.id}}">预定</button>
-          </view>
-        </view>
-      </view>
-    </view>
+    <collapse-item wx:for="{{ticketList}}" wx:key="index" item="{{item}}" index="{{index}}" />
   </view>
+  <empty-illus wx:if="{{!ticketTypeList.length}}" desc="暂无景点门票" height="520rpx" />
 
   <view class="content-title-wrap">
     <view class="content-title">多景点联票</view>
@@ -196,58 +147,9 @@
     >{{item}}</view>
   </scroll-view>
   <view class="collapse">
-    <view class="collapse-item" wx:for="{{combinedTicketList}}" wx:key="index">
-      <view class="collapse-trunk row between" bindtap="toggleCombinedTicketsFold" data-index="{{index}}">
-        <view class="collapse-trunk-title omit single-line">{{item.name}}</view>
-        <view class="collapse-trunk-content row">
-          <block wx:if="{{item.fold}}">
-            <text class="base-price">¥{{item.basePrice}}起</text>
-            <image class="arrow" src="./images/arrow-down.png" />
-          </block>
-          <block wx:else>
-            <text>收起</text>
-            <image class="arrow" src="./images/arrow-up.png" />
-          </block>
-        </view>
-      </view>
-      <view class="collapse-subitems" wx:if="{{!item.fold}}">
-        <view 
-          class="collapse-subitem row between" 
-          wx:for="{{item.list}}" 
-          wx:key="ticketIndex" 
-          wx:for-index="ticketIndex" 
-          wx:for-item="ticket"
-          bindtap="showNoticePopup"
-        >
-          <view class="ticket-info" >
-            <view class="shop-info row">
-              <view class="shop-type row" wx:if="{{ticket.shopType !== 3}}">{{ticket.shopType === 1 ? '官方' : '自营'}}</view>
-              <view class="shop-name">{{ticket.shopName}}</view>
-            </view>
-            <view class="tips-wrap row">
-              <view class="tips stress">{{ticket.bookingTips}}</view>
-              <view class="tips">{{ticket.tips}}</view>
-            </view>
-            <view class="tips-wrap row">
-              <view class="tips stress">{{ticket.isRefundable ? '随时可退' : '有条件退'}}</view>
-              <view class="tips" wx:if="{{!ticket.needChange}}">无需换票</view>
-            </view>
-            <view class="tips-wrap row">
-              <view class="tips">已售{{ticket.salesVolume}}</view>
-              <view class="tips stress row" wx:if="{{!ticket.needChange}}">
-                <text>预定须知</text>
-                <image class="more-icon" src="./images/more-blue.png" />
-              </view>
-            </view>
-          </view>
-          <view class="booking-wrap">
-            <price-unit price="{{ticket.price}}" />
-            <button class="booking-btn" catchtap="book">预定</button>
-          </view>
-        </view>
-      </view>
-    </view>
+    <collapse-item wx:for="{{combinedTicketList}}" wx:key="index" item="{{item}}" index="{{index}}" />
   </view>
+  <empty-illus wx:if="{{!combinedTicketTypeList.length}}" desc="暂无多景点联票" height="520rpx" />
 
   <view class="content-title-wrap">
     <view class="content-title">用户点评</view>
