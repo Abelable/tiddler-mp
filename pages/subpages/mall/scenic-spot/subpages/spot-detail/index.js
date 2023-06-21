@@ -479,7 +479,7 @@ Page({
   },
 
   toggleTicketsFold(e) {
-    const { index } = e.currentTarget.dataset;
+    const index = e.detail;
     const { ticketList } = this.data;
     this.setData(
       {
@@ -504,7 +504,7 @@ Page({
   },
 
   toggleCombinedTicketsFold(e) {
-    const { index } = e.currentTarget.dataset;
+    const index = e.detail;
     const { combinedTicketList } = this.data;
     this.setData(
       {
@@ -573,9 +573,10 @@ Page({
     console.log("onReachBottom");
   },
 
-  showNoticePopup() {
+  showNoticePopup(e) {
     this.setData({
       noticePopupVisible: true,
+
     });
   },
 
@@ -585,7 +586,7 @@ Page({
     });
   },
 
-  book(e) {
+  booking(e) {
     const { id } = e.currentTarget.dataset;
     const url = `/pages/subpages/mall/scenic-spot/subpages/order-check/index?id=${id}`;
     wx.navigateTo({ url });

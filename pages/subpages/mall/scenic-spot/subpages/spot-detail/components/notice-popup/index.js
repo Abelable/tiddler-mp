@@ -1,30 +1,20 @@
-import ScenicService from "../../../../utils/scenicService";
-
-const scenicService = new ScenicService();
-
 Component({
   options: {
     addGlobalClass: true,
   },
 
   properties: {
-    show: {
-      type: Boolean,
-      observer(truthy) {
-        if (truthy) {
-        }
-      },
-    },
-  },
-
-  data: {
+    show: Boolean,
+    info: Object,
   },
 
   methods: {
+    contact() {
+      console.log("contact");
+    },
+
     confirm() {
-      const { goodsList, selectedIndex } = this.data;
-      const { id, name } = goodsList[selectedIndex];
-      this.triggerEvent("confirm", { id, name });
+      console.log("confirm");
     },
 
     hide() {

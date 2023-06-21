@@ -1,5 +1,5 @@
 <view class="collapse-item">
-  <view class="collapse-trunk row between" bindtap="toggleCombinedTicketsFold" data-index="{{index}}">
+  <view class="collapse-trunk row between" bindtap="toggleFold">
     <view class="collapse-trunk-title omit single-line">{{item.name}}</view>
     <view class="collapse-trunk-content row">
       <block wx:if="{{item.fold}}">
@@ -20,6 +20,7 @@
       wx:for-index="ticketIndex" 
       wx:for-item="ticket"
       bindtap="showNoticePopup"
+      data-info="{{ticket}}"
     >
       <view class="ticket-info" >
         <view class="shop-info row">
@@ -31,8 +32,8 @@
           <view class="tips">{{ticket.tips}}</view>
         </view>
         <view class="tips-wrap row">
-          <view class="tips stress">{{ticket.isRefundable ? '随时可退' : '有条件退'}}</view>
-          <view class="tips" wx:if="{{!ticket.needChange}}">无需换票</view>
+          <view class="tips stress">{{['随时可退', '有条件退', '不可退'][ticket.refundStatus - 1]}}</view>
+          <view class="tips" wx:if="{{!ticket.needExchange}}">无需换票</view>
         </view>
         <view class="tips-wrap row">
           <view class="tips">已售{{ticket.salesVolume}}</view>
@@ -44,7 +45,7 @@
       </view>
       <view class="booking-wrap">
         <price-unit price="{{ticket.price}}" />
-        <button class="booking-btn" catchtap="book">预定</button>
+        <button class="booking-btn" catchtap="booking">预定</button>
       </view>
     </view>
   </view>

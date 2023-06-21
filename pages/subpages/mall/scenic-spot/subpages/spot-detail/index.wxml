@@ -130,7 +130,15 @@
     >{{item.name}}</view>
   </scroll-view>
   <view class="collapse">
-    <collapse-item wx:for="{{ticketList}}" wx:key="index" item="{{item}}" index="{{index}}" />
+    <collapse-item 
+      wx:for="{{ticketList}}" 
+      wx:key="index" 
+      item="{{item}}" 
+      index="{{index}}"
+      bind:toggleFold="toggleTicketsFold"
+      bind:showNoticePopup="showNoticePopup"
+      bind:booking="booking"
+    />
   </view>
   <empty-illus wx:if="{{!ticketTypeList.length}}" desc="暂无景点门票" height="520rpx" />
 
@@ -147,7 +155,15 @@
     >{{item}}</view>
   </scroll-view>
   <view class="collapse">
-    <collapse-item wx:for="{{combinedTicketList}}" wx:key="index" item="{{item}}" index="{{index}}" />
+    <collapse-item 
+      wx:for="{{combinedTicketList}}" 
+      wx:key="index" 
+      item="{{item}}" 
+      index="{{index}}"
+      bind:toggleFold="toggleCombinedTicketsFold"
+      bind:showNoticePopup="showNoticePopup"
+      bind:booking="booking"
+    />
   </view>
   <empty-illus wx:if="{{!combinedTicketTypeList.length}}" desc="暂无多景点联票" height="520rpx" />
 
@@ -236,4 +252,8 @@
   </view>
 </view>
 
-<notice-popup show="{{noticePopupVisible}}" bind:hide="hideNoticePopup" bind:confim="confirmBook" />
+<notice-popup 
+  show="{{noticePopupVisible}}" 
+  bind:confim="booking" 
+  bind:hide="hideNoticePopup" 
+/>

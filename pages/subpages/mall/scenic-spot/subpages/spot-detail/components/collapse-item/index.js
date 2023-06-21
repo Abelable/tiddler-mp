@@ -5,9 +5,20 @@ Component({
 
   properties: {
     item: Object,
-    index: Number
+    index: Number,
   },
-  
+
   methods: {
+    toggleFold() {
+      this.triggerEvent("toggleFold", this.properties.index);
+    },
+
+    showNoticePopup(e) {
+      this.triggerEvent("showNoticePopup", e.currentTarget.dataset.info);
+    },
+
+    booking() {
+      this.triggerEvent("booking");
+    },
   },
 });

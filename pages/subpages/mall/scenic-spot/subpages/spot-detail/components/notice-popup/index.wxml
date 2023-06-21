@@ -90,7 +90,7 @@
             <view class="supplier-type row">官方</view>
             <view class="supplier-name">千岛湖旅行</view>
           </view>
-          <view class="contact-btn row">
+          <view class="contact-btn row" bindtap="contact">
             <image class="contact-icon" src="./images/contact-icon.png" />
             <text>联系商家</text>
           </view>
