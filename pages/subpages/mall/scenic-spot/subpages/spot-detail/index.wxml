@@ -127,7 +127,7 @@
       wx:key="index"
       bindtap="selectTicketType"
       data-index="{{index}}"
-    >{{item}}</view>
+    >{{item.name}}</view>
   </scroll-view>
   <view class="collapse">
     <view class="collapse-item" wx:for="{{ticketList}}" wx:key="index">
@@ -155,8 +155,8 @@
         >
           <view class="ticket-info">
             <view class="shop-info row">
-              <view class="shop-type row" wx:if="{{ticket.shopType !== 3}}">{{ticket.shopType === 1 ? '官方' : '自营'}}</view>
-              <view class="shop-name">{{ticket.shopName}}</view>
+              <view class="shop-type row" wx:if="{{ticket.shopInfo.type !== 2}}">{{ticket.shopInfo.type === 1 ? '官方' : '自营'}}</view>
+              <view class="shop-name">{{ticket.shopInfo.name}}</view>
             </view>
             <view class="tips-wrap row">
               <view class="tips stress">{{ticket.bookingTips}}</view>

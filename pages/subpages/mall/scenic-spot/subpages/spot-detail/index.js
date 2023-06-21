@@ -13,142 +13,12 @@ Page({
     isOpen: true,
     curDot: 1,
     muted: true,
-    ticketTypeList: ["成人票", "儿童票", "老人票", "学生票"],
+    ticketTypeList: [],
     curTicketTypeIdx: 0,
-    ticketList: [
-      {
-        name: "门票",
-        basePrice: 40,
-        fold: true,
-        list: [
-          {
-            shopType: 1,
-            shopName: "千岛湖旅游",
-            tips: "出票3小时后可用",
-            bookingTips: "可订今日",
-            needChange: false,
-            isRefundable: true,
-            salesVolume: 3000,
-            price: 40,
-          },
-          {
-            shopType: 2,
-            shopName: "小鱼度假",
-            tips: "出票3小时后可用",
-            bookingTips: "可订今日",
-            needChange: false,
-            isRefundable: true,
-            salesVolume: 10,
-            price: 40,
-          },
-          {
-            shopType: 3,
-            shopName: "浙风旅行社",
-            tips: "出票3小时后可用",
-            bookingTips: "可订今日",
-            needChange: false,
-            isRefundable: true,
-            salesVolume: 10,
-            price: 40,
-          },
-        ],
-      },
-      {
-        name: "门票+项目",
-        basePrice: 60,
-        fold: true,
-        list: [
-          {
-            shopType: 1,
-            shopName: "千岛湖旅游",
-            tips: "出票3小时后可用",
-            bookingTips: "可订今日",
-            needChange: false,
-            isRefundable: true,
-            salesVolume: 3000,
-            price: 60,
-          },
-          {
-            shopType: 2,
-            shopName: "小鱼度假",
-            tips: "出票3小时后可用",
-            bookingTips: "可订今日",
-            needChange: false,
-            isRefundable: true,
-            salesVolume: 10,
-            price: 60,
-          },
-        ],
-      },
-    ],
-    combinedTicketTypeList: ["成人票", "儿童票", "老人票", "学生票"],
+    ticketList: [],
+    combinedTicketTypeList: [],
     curCombinedTicketTypeIdx: 0,
-    combinedTicketList: [
-      {
-        name: "森林氧吧+钓鱼岛观光游船",
-        basePrice: 90,
-        fold: true,
-        list: [
-          {
-            shopType: 1,
-            shopName: "千岛湖旅游",
-            tips: "出票3小时后可用",
-            bookingTips: "可订今日",
-            needChange: false,
-            isRefundable: true,
-            salesVolume: 3000,
-            price: 90,
-          },
-          {
-            shopType: 2,
-            shopName: "小鱼度假",
-            tips: "出票3小时后可用",
-            bookingTips: "可订今日",
-            needChange: false,
-            isRefundable: true,
-            salesVolume: 10,
-            price: 90,
-          },
-          {
-            shopType: 3,
-            shopName: "浙风旅行社",
-            tips: "出票3小时后可用",
-            bookingTips: "可订今日",
-            needChange: false,
-            isRefundable: true,
-            salesVolume: 10,
-            price: 90,
-          },
-        ],
-      },
-      {
-        name: "森林氧吧+水之灵剧场(嘉宾席)",
-        basePrice: 210,
-        fold: true,
-        list: [
-          {
-            shopType: 1,
-            shopName: "千岛湖旅游",
-            tips: "出票3小时后可用",
-            bookingTips: "可订今日",
-            needChange: false,
-            isRefundable: true,
-            salesVolume: 3000,
-            price: 210,
-          },
-          {
-            shopType: 2,
-            shopName: "小鱼度假",
-            tips: "出票3小时后可用",
-            bookingTips: "可订今日",
-            needChange: false,
-            isRefundable: true,
-            salesVolume: 10,
-            price: 210,
-          },
-        ],
-      },
-    ],
+    combinedTicketList: [],
     commentList: [
       {
         userInfo: {
@@ -403,9 +273,15 @@ Page({
 
   async onLoad({ id }) {
     this.scenicId = +id;
+    await this.setScenicCategoryOptions();
     await this.setScenicInfo();
+    await this.setSourceTicketList();
     this.setNavBarVisibleLimit();
     this.setMenuChangeLimitList();
+  },
+
+  async setScenicCategoryOptions() {
+    this.categoryOptions = await scenicService.getTicketCategoryOptions();
   },
 
   async setScenicInfo() {
@@ -439,6 +315,107 @@ Page({
     const isOpen = curTime >= openTimeUnit && curTime <= closeTimeUnit;
 
     this.setData({ curOpenTime, isOpen });
+  },
+
+  async setSourceTicketList() {
+    const list = await scenicService.getScenicTicketList(this.scenicId);
+
+    const ticketCategoryIds = [];
+    const combinedTicketCategoryIds = [];
+    this.ticketList = [];
+    this.combinedTicketList = [];
+
+    list.forEach(({ type, specList, ...rest }) => {
+      const item = {
+        ...rest,
+        type,
+        specList: specList.map(({ categoryId, priceList }) => {
+          if (type === 1) {
+            ticketCategoryIds.push(categoryId);
+          } else {
+            combinedTicketCategoryIds.push(categoryId);
+          }
+          return {
+            categoryId,
+            priceList: JSON.parse(priceList),
+          };
+        }),
+      };
+      if (type === 1) {
+        this.ticketList.push(item);
+      } else {
+        this.combinedTicketList.push(item);
+      }
+    });
+
+    if (ticketCategoryIds.length) {
+      const ticketTypeList = Array.from(new Set(ticketCategoryIds))
+        .sort()
+        .map((categoryId) =>
+          this.categoryOptions.find((item) => item.id === categoryId)
+        );
+      this.setData({ ticketTypeList });
+      this.setTicketList();
+    }
+
+    if (combinedTicketCategoryIds.length) {
+      const combinedTicketTypeList = Array.from(
+        new Set(combinedTicketCategoryIds)
+      )
+        .sort()
+        .map((categoryId) =>
+          this.categoryOptions.find((item) => item.id === categoryId)
+        );
+      this.setData({ combinedTicketTypeList });
+      this.setCombinedTicketList();
+    }
+  },
+
+  setTicketList() {
+    const { ticketTypeList, curTicketTypeIdx } = this.data;
+    const curCategoryId = ticketTypeList[curTicketTypeIdx].id;
+    const ticketList = this._setTicketList(curCategoryId, this.ticketList);
+    this.setData({ ticketList });
+  },
+
+  setCombinedTicketList() {
+    const { combinedTicketTypeList, curCombinedTicketTypeIdx } = this.data;
+    const curCategoryId = combinedTicketTypeList[curCombinedTicketTypeIdx].id;
+    const combinedTicketList = this._setTicketList(
+      curCategoryId,
+      this.combinedTicketList
+    );
+    this.setData({ combinedTicketList });
+  },
+
+  _setTicketList(curCategoryId, sourceTicketList) {
+    const ticketList = [];
+    sourceTicketList.forEach((item) => {
+      if (
+        item.specList.findIndex((spec) => spec.categoryId === curCategoryId) !==
+        -1
+      ) {
+        const curTicketIndex = ticketList.findIndex(
+          (ticket) => ticket.name === item.name
+        );
+        if (curTicketIndex === -1) {
+          ticketList.push({
+            name: item.name,
+            basePrice: item.price,
+            fold: true,
+            list: [item],
+          });
+        } else {
+          const { basePrice, list, ...rest } = ticketList[curCategoryId];
+          ticketList[curCategoryId] = {
+            ...rest,
+            basePrice: item.price < basePrice ? item.price : basePrice,
+            list: [...list, item],
+          };
+        }
+      }
+    });
+    return ticketList;
   },
 
   setNavBarVisibleLimit() {
@@ -490,9 +467,15 @@ Page({
   },
 
   selectTicketType(e) {
-    this.setData({
-      curTicketTypeIdx: Number(e.currentTarget.dataset.index),
-    });
+    this.setData(
+      {
+        curTicketTypeIdx: Number(e.currentTarget.dataset.index),
+      },
+      () => {
+        this.setTicketList();
+        this.setMenuChangeLimitList();
+      }
+    );
   },
 
   toggleTicketsFold(e) {
@@ -509,9 +492,15 @@ Page({
   },
 
   selectCombinedTicketType(e) {
-    this.setData({
-      curCombinedTicketTypeIdx: Number(e.currentTarget.dataset.index),
-    });
+    this.setData(
+      {
+        curCombinedTicketTypeIdx: Number(e.currentTarget.dataset.index),
+      },
+      () => {
+        this.setCombinedTicketList();
+        this.setMenuChangeLimitList();
+      }
+    );
   },
 
   toggleCombinedTicketsFold(e) {

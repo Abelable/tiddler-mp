@@ -22,6 +22,18 @@ class ScenicService extends BaseService {
       loadingTitle: '加载中...'
     })
   }
+
+  async getTicketCategoryOptions() {
+    return await this.get({ url: `${this.baseUrl}/scenic/ticket/category_options` })
+  }
+
+  async getScenicTicketList(scenicId) {
+    return await this.get({
+      url: `${this.baseUrl}/scenic/ticket/list_of_scenic`,
+      data: { scenicId },
+      loadingTitle: '加载中...'
+    })
+  }
 }
 
 export default ScenicService
