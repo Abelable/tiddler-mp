@@ -14,7 +14,9 @@ Component({
     },
 
     confirm() {
-      console.log("confirm");
+      const { id } = this.properties.info
+      const url = `/pages/subpages/mall/scenic-spot/subpages/order-check/index?id=${id}`;
+      wx.navigateTo({ url });
     },
 
     hide() {

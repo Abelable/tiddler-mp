@@ -137,7 +137,6 @@
       index="{{index}}"
       bind:toggleFold="toggleTicketsFold"
       bind:showNoticePopup="showNoticePopup"
-      bind:booking="booking"
     />
   </view>
   <empty-illus wx:if="{{!ticketTypeList.length}}" desc="暂无景点门票" height="520rpx" />
@@ -252,8 +251,4 @@
   </view>
 </view>
 
-<notice-popup 
-  show="{{noticePopupVisible}}" 
-  bind:confim="booking" 
-  bind:hide="hideNoticePopup" 
-/>
+<notice-popup show="{{noticePopupVisible}}" bind:hide="hideNoticePopup" />

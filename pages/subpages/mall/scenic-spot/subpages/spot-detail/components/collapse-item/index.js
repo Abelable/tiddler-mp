@@ -14,11 +14,7 @@ Component({
     },
 
     showNoticePopup(e) {
-      this.triggerEvent("showNoticePopup", e.currentTarget.dataset.info);
-    },
-
-    booking() {
-      this.triggerEvent("booking");
+      this.triggerEvent("showNoticePopup", e.detail);
     },
   },
 });

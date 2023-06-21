@@ -586,12 +586,6 @@ Page({
     });
   },
 
-  booking(e) {
-    const { id } = e.currentTarget.dataset;
-    const url = `/pages/subpages/mall/scenic-spot/subpages/order-check/index?id=${id}`;
-    wx.navigateTo({ url });
-  },
-
   checkMoreInfo() {
     const url = `./subpages/more-info/index?info=${JSON.stringify(
       this.data.scenicInfo

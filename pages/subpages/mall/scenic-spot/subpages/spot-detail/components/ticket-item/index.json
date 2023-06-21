@@ -1,6 +1,6 @@
 {
   "component": true,
   "usingComponents": {
-    "ticket-item": "../ticket-item/index"
+    "price-unit": "/components/price-unit/index"
   }
 }
