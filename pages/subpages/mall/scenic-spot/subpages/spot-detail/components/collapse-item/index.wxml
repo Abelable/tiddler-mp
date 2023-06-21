@@ -22,7 +22,7 @@
       bindtap="showNoticePopup"
       data-info="{{ticket}}"
     >
-      <view class="ticket-info" >
+      <view class="ticket-info">
         <view class="shop-info row">
           <view class="shop-type row" wx:if="{{ticket.shopInfo.type !== 2}}">{{ticket.shopInfo.type === 1 ? '官方' : '自营'}}</view>
           <view class="shop-name">{{ticket.shopInfo.name}}</view>
@@ -44,7 +44,7 @@
         </view>
       </view>
       <view class="booking-wrap">
-        <price-unit price="{{ticket.price}}" />
+        <price-unit price="{{ticket.price}}" isStartPrice />
         <button class="booking-btn" catchtap="booking">预定</button>
       </view>
     </view>

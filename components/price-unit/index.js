@@ -29,6 +29,11 @@ Component({
       type: String,
       value: "¥",
     },
+    isStartPrice: Boolean,
+    startFontSize: {
+      type: String,
+      value: "22rpx",
+    },
   },
 
   data: {

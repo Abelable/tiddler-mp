@@ -1,5 +1,6 @@
-<view class="row baseline" style="color: {{color}}; font-size: {{fontSize}};">
+<view class="price-unit row baseline" style="color: {{color}}; font-size: {{fontSize}};">
   <text>{{symbol}}</text>
   <text style="margin-left: 1px; font-size: {{integerFontSize}}; font-weight: bold;">{{integerPart}}</text>
   <text wx:if="{{floatPart}}">.{{floatPart}}</text>
+  <text wx:if="{{isStartPrice}}" style="font-size: {{startFontSize}}">起</text>
 </view>
