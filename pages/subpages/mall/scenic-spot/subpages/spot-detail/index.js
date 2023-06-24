@@ -277,7 +277,7 @@ Page({
     await this.setScenicCategoryOptions();
     await this.setScenicInfo();
     await this.setSourceTicketList();
-    this.setMenuList()
+    this.setMenuList();
   },
 
   async setScenicCategoryOptions() {
@@ -325,10 +325,17 @@ Page({
     this.ticketList = [];
     this.combinedTicketList = [];
 
-    list.forEach(({ type, specList, ...rest }) => {
+    const curDate = new Date();
+    const curHour = `${curDate.getHours()}`.padStart(2, "0");
+    const curMinute = `${curDate.getMinutes()}`.padStart(2, "0");
+    const curTime = +`${curHour}${curMinute}`;
+
+    list.forEach(({ type, bookingTime, specList, ...rest }) => {
       const item = {
         ...rest,
         type,
+        bookingTips:
+          curTime <= +bookingTime.replace(":", "") ? "可定今日" : "可定明日",
         specList: specList.map(({ categoryId, priceList }) => {
           if (type === 1) {
             ticketCategoryIds.push(categoryId);

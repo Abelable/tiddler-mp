@@ -8,7 +8,7 @@
       <view class="shop-name">{{ticket.shopInfo.name}}</view>
     </view>
     <view class="tips-wrap row">
-      <view class="tips stress">{{bookingTips}}</view>
+      <view class="tips stress">{{ticket.bookingTips}}</view>
       <view class="tips" wx:if="{{ticket.effectiveTime}}">出票{{ticket.effectiveTime}}小时后可用</view>
     </view>
     <view class="tips-wrap row">
