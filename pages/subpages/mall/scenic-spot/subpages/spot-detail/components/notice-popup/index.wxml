@@ -2,16 +2,16 @@
   <view class="notice-popup">
     <view class="pop-title row center">预定须知</view>
     <scroll-view class="notice-list" scroll-y>
-      <view class="notice-item">
+      <view class="notice-item" wx:if="{{info.feeIncludeTips || info.feeNotIncludeTips}}">
         <view class="notice-title">费用说明</view>
         <view class="notice-info-list">
-          <view class="notice-info-item">
+          <view class="notice-info-item" wx:if="{{info.feeIncludeTips}}">
             <view class="notice-info-title">费用包含</view>
-            <view class="notice-info-content">森林氧吧成人票1张</view>
+            <view class="notice-info-content">{{info.feeIncludeTips}}</view>
           </view>
-          <view class="notice-info-item">
+          <view class="notice-info-item" wx:if="{{info.feeNotIncludeTips}}">
             <view class="notice-info-title">费用不含</view>
-            <view class="notice-info-content">一切个人消费即费用包含中未提及的任何费用</view>
+            <view class="notice-info-content">{{info.feeNotIncludeTips}}</view>
           </view>
         </view>
       </view>
@@ -22,27 +22,33 @@
           <view class="notice-info-item">
             <view class="notice-info-title">预定时间</view>
             <view class="notice-info-content">
-              <text class="notice-info-tag">可订今日</text>
-              <text>13:00前可订当天门票</text>
+              <text class="notice-info-tag">{{info.bookingTips}}</text>
+              <text>{{info.bookingTime}}前可订当天门票</text>
             </view>
           </view>
           <view class="notice-info-item">
             <view class="notice-info-title">生效时间</view>
-            <view class="notice-info-content">出票3小时后生效</view>
+            <view class="notice-info-content">
+              {{info.effectiveTime ? ('出票' + info.effectiveTime + '小时后生效') : '出票后立即生效'}}
+            </view>
           </view>
           <view class="notice-info-item">
             <view class="notice-info-title">有效期</view>
-            <view class="notice-info-content">指定出行日期3日内有效</view>
+            <view class="notice-info-content">
+              {{info.validityTime ? ('指定出行日期' + info.validityTime +'日内有效') : '永久有效'}}
+            </view>
           </view>
           <view class="notice-info-item">
             <view class="notice-info-title">限购说明</view>
-            <view class="notice-info-content">同一身份证1天内，最多可购买5张</view>
+            <view class="notice-info-content">
+              {{info.limitNumber ? ('同一身份证1天内，最多可购买' + info.limitNumber + '张') : '不限购买数量'}}
+            </view>
           </view>
           <view class="notice-info-item">
             <view class="notice-info-title">退票说明</view>
             <view class="notice-info-content">
-              <text class="notice-info-tag">随时可退</text>
-              <text>未使用可随时申请退款，无需支付手续费</text>
+              <text class="notice-info-tag">{{['随时可退', '有条件退', '不可退'][info.refundStatus - 1]}}</text>
+              <text>{{info.refundTips}}</text>
             </view>
           </view>
         </view>
@@ -54,31 +60,39 @@
           <view class="notice-info-item">
             <view class="notice-info-title">入园方式</view>
             <view class="notice-info-content">
-              <text class="notice-info-tag">无需换票</text>
-              <text>凭二维码或商家短信直接入园</text>
+              <text class="notice-info-tag">{{info.needExchange ? '需换票' : '无需换票'}}</text>
+              <text>{{info.exchangeTips}}</text>
             </view>
           </view>
-          <view class="notice-info-item">
-            <view class="notice-info-title">入园时间</view>
-            <view class="notice-info-content">09:00-17:00</view>
+          <view class="notice-info-item" wx:if="{{info.exchangeTime}}">
+            <view class="notice-info-title">换票时间</view>
+            <view class="notice-info-content">{{info.exchangeTime}}</view>
           </view>
-           <view class="notice-info-item">
+           <view class="notice-info-item" wx:if="{{info.exchangeLocation}}">
+            <view class="notice-info-title">换票地址</view>
+            <view class="notice-info-content">{{info.exchangeLocation}}</view>
+          </view>
+          <view class="notice-info-item" wx:if="{{info.enterTime}}">
+            <view class="notice-info-title">入园时间</view>
+            <view class="notice-info-content">{{info.enterTime}}</view>
+          </view>
+           <view class="notice-info-item" wx:if="{{info.enterLocation}}">
             <view class="notice-info-title">入园地址</view>
-            <view class="notice-info-content">浙江省杭州市淳安县千岛湖镇淡竹王子山千岛湖森林氧吧</view>
+            <view class="notice-info-content">{{info.enterLocation}}</view>
           </view>
         </view>
       </view>
 
-      <view class="notice-item">
+      <view class="notice-item" wx:if="{{info.invoiceTips || info.reminderTips}}">
         <view class="notice-title">其他说明</view>
         <view class="notice-info-list">
-          <view class="notice-info-item">
+          <view class="notice-info-item" wx:if="{{info.invoiceTips}}">
             <view class="notice-info-title">发票说明</view>
-            <view class="notice-info-content">游玩次日，可至订单详情页申请发票</view>
+            <view class="notice-info-content">{{info.invoiceTips}}</view>
           </view>
-          <view class="notice-info-item">
+          <view class="notice-info-item" wx:if="{{info.reminderTips}}">
             <view class="notice-info-title">特别提醒</view>
-            <view class="notice-info-content">严禁携带宠物进入景区</view>
+            <view class="notice-info-content">{{info.reminderTips}}</view>
           </view>
         </view>
       </view>
@@ -87,8 +101,10 @@
         <view class="notice-title">服务商家</view>
         <view class="supplier-info row between">
           <view class="row">
-            <view class="supplier-type row">官方</view>
-            <view class="supplier-name">千岛湖旅行</view>
+            <view class="supplier-type row" wx:if="{{info.shopInfo.type !== 2}}">
+              {{info.shopInfo.type === 1 ? '官方' : '自营'}}
+            </view>
+            <view class="supplier-name">{{ info.shopInfo.name }}</view>
           </view>
           <view class="contact-btn row" bindtap="contact">
             <image class="contact-icon" src="./images/contact-icon.png" />

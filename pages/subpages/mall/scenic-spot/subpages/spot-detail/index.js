@@ -335,6 +335,7 @@ Page({
       const item = {
         ...rest,
         type,
+        bookingTime,
         bookingTips:
           curTime <= +bookingTime.replace(":", "") ? "可定今日" : "可定明日",
         specList: specList.map(({ categoryId, priceList }) => {
