@@ -269,6 +269,7 @@ Page({
           "http://1301400133.vod2.myqcloud.com/d9ed72b2vodcq1301400133/cf27f5ad5285890814604444619/61lKaPKWj4cA.mp4",
       },
     ],
+    curTicketInfo: null,
     noticePopupVisible: false,
   },
 
@@ -608,6 +609,7 @@ Page({
 
   showNoticePopup(e) {
     this.setData({
+      curTicketInfo: e.detail,
       noticePopupVisible: true,
     });
   },

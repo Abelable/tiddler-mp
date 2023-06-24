@@ -250,4 +250,4 @@
   </view>
 </view>
 
-<notice-popup show="{{noticePopupVisible}}" bind:hide="hideNoticePopup" />
+<notice-popup show="{{noticePopupVisible}}" info="{{curTicketInfo}}" bind:hide="hideNoticePopup" />

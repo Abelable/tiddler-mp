@@ -19,7 +19,7 @@
       wx:for-index="ticketIndex" 
       wx:for-item="ticket"
       ticket="{{ticket}}"
-      bindtap="showNoticePopup"
+      bind:showNoticePopup="showNoticePopup"
     />
   </view>
 </view>
