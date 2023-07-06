@@ -338,16 +338,13 @@ Page({
         bookingTime,
         bookingTips:
           curTime <= +bookingTime.replace(":", "") ? "可定今日" : "可定明日",
-        specList: specList.map(({ categoryId, priceList }) => {
+        categoryIds: specList.map(({ categoryId }) => {
           if (type === 1) {
             ticketCategoryIds.push(categoryId);
           } else {
             combinedTicketCategoryIds.push(categoryId);
           }
-          return {
-            categoryId,
-            priceList: JSON.parse(priceList),
-          };
+          return categoryId;
         }),
       };
       if (type === 1) {
@@ -401,7 +398,7 @@ Page({
     const ticketList = [];
     sourceTicketList.forEach((item) => {
       if (
-        item.specList.findIndex((spec) => spec.categoryId === curCategoryId) !==
+        item.categoryIds.findIndex((categoryId) => categoryId === curCategoryId) !==
         -1
       ) {
         const curTicketIndex = ticketList.findIndex(
