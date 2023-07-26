@@ -166,7 +166,6 @@
   width: 100%;
   background: #fff;
   border-top: 1px solid #f5f6f7;
-  z-index: 200;
 }
 .total-price-wrap {
   margin-right: 32rpx;

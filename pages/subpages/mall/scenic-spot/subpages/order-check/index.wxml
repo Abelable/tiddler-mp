@@ -1,6 +1,6 @@
 <view class="container">
   <view class="ticket">
-    <view class="ticket-name">千岛湖森林氧吧 成人票</view>
+    <view class="ticket-name">{{ticketInfo.name}} {{categoryName}}</view>
     <view class="split-line" />
     <view class="ticket-more">
       <view class="date-picker">
@@ -29,7 +29,7 @@
         <view class="count-control-title">购买数量</view>
         <view class="step-wrap row">
           <price-unit style="margin-right: 24rpx;" price="{{40}}" fontSize="22rpx" integerFontSize="28rpx" />
-          <van-stepper integer />
+          <van-stepper value="{{ count }}" bind:change="countChange" max="{{ticketInfo ? ticketInfo.limitNumber : 1}}" integer />
         </view>
       </view>
       <view class="ticket-tips">
@@ -39,12 +39,12 @@
         </view>
         <view class="tips-wrap row">
           <image class="tips-icon" src="./images/time.png" />
-          <view class="tips">出票3小时后可用</view>
+          <view class="tips">{{ticketInfo.effectiveTime ? ('出票' + ticketInfo.effectiveTime + '小时后可用') : '出票后立即可用'}}</view>
         </view>
-        <view class="tips-wrap row">
+        <view class="tips-wrap row" bindtap="showNoticePopup">
           <image class="tips-icon" src="./images/tips.png" />
-          <view class="tips stress">随时可退</view>
-          <view class="tips">无需换票</view>
+          <view class="tips stress">{{['随时可退', '有条件退', '不可退'][ticketInfo.refundStatus - 1]}}</view>
+          <view class="tips" wx:if="{{!ticketInfo.needExchange}}">无需换票</view>
           <view class="tips stress row">
             <text>预定须知</text>
             <image class="right-arrow" src="./images/more-blue.png" />
@@ -76,15 +76,16 @@
   </view>
 </view>
 
-<view class="bottom-bar row">
+<view class="bottom-bar row" style="z-index: {{ priceDetailPopupVisible ? 100 : 'auto' }}">
   <view class="total-price-wrap row baseline">
-    <price-unit price="{{preOrderInfo.paymentAmount || 0}}" fontSize="28rpx" integerFontSize="42rpx" />
+    <price-unit price="{{paymentAmount}}" fontSize="28rpx" integerFontSize="42rpx" />
     <view class="price-detail-tips row" bindtap="togglePriceDetailPopupVisible">
       <text>明细</text>
       <image class="arrow" src="{{priceDetailPopupVisible ? './images/arrow-down.png' : './images/arrow-up.png'}}" />
     </view>
   </view>
-  <button class="submit-btn {{preOrderInfo.addressInfo ? 'active' : ''}}" bindtap="submit">提交订单</button>
+  <button class="submit-btn {{addressInfo ? 'active' : ''}}" bindtap="submit">提交订单</button>
 </view>
 
 <price-detail-popup wx:if="{{priceDetailPopupVisible}}" bind:hide="togglePriceDetailPopupVisible" />
+<notice-popup show="{{noticePopupVisible}}" info="{{ticketInfo}}" bind:hide="hideNoticePopup" onlyCheck />

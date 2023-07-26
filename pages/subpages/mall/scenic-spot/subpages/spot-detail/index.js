@@ -331,29 +331,31 @@ Page({
     const curMinute = `${curDate.getMinutes()}`.padStart(2, "0");
     const curTime = +`${curHour}${curMinute}`;
 
-    list.forEach(({ type, name, briefName, bookingTime, specList, ...rest }) => {
-      const item = {
-        ...rest,
-        type,
-        bookingTime,
-        bookingTips:
-          curTime <= +bookingTime.replace(":", "") ? "可定今日" : "可定明日",
-        name: type === 1 ? briefName : name,
-        categoryIds: specList.map(({ categoryId }) => {
-          if (type === 1) {
-            ticketCategoryIds.push(categoryId);
-          } else {
-            combinedTicketCategoryIds.push(categoryId);
-          }
-          return categoryId;
-        }),
-      };
-      if (type === 1) {
-        this.ticketList.push(item);
-      } else {
-        this.combinedTicketList.push(item);
+    list.forEach(
+      ({ type, name, briefName, bookingTime, specList, ...rest }) => {
+        const item = {
+          ...rest,
+          type,
+          bookingTime,
+          bookingTips:
+            curTime <= +bookingTime.replace(":", "") ? "可定今日" : "可定明日",
+          name: type === 1 ? briefName : name,
+          categoryIds: specList.map(({ categoryId }) => {
+            if (type === 1) {
+              ticketCategoryIds.push(categoryId);
+            } else {
+              combinedTicketCategoryIds.push(categoryId);
+            }
+            return categoryId;
+          }),
+        };
+        if (type === 1) {
+          this.ticketList.push(item);
+        } else {
+          this.combinedTicketList.push(item);
+        }
       }
-    });
+    );
 
     if (ticketCategoryIds.length) {
       const ticketTypeList = Array.from(new Set(ticketCategoryIds))
@@ -397,9 +399,9 @@ Page({
 
   _setTicketList(curCategoryId, sourceTicketList) {
     const ticketList = [];
-    sourceTicketList.forEach((item) => {
+    sourceTicketList.forEach(({ categoryIds, ...item }) => {
       if (
-        item.categoryIds.findIndex((categoryId) => categoryId === curCategoryId) !==
+        categoryIds.findIndex((categoryId) => categoryId === curCategoryId) !==
         -1
       ) {
         const curTicketIndex = ticketList.findIndex(
@@ -410,14 +412,14 @@ Page({
             name: item.name,
             basePrice: item.price,
             fold: true,
-            list: [item],
+            list: [{ categoryId: curCategoryId, ...item }],
           });
         } else {
-          const { basePrice, list, ...rest } = ticketList[curCategoryId];
-          ticketList[curCategoryId] = {
+          const { basePrice, list, ...rest } = ticketList[curTicketIndex];
+          ticketList[curTicketIndex] = {
             ...rest,
             basePrice: item.price < basePrice ? item.price : basePrice,
-            list: [...list, item],
+            list: [...list, { categoryId: curCategoryId, ...item }],
           };
         }
       }

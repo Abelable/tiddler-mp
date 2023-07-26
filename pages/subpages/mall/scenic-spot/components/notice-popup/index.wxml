@@ -115,7 +115,7 @@
     </scroll-view>
 
     <view class="btn-wrap">
-      <button class="confirm-btn" bindtap="confirm">立即预定</button>
+      <button class="confirm-btn" bindtap="confirm">{{onlyCheck ? '确定' : '立即预定'}}</button>
     </view>
   </view>
 </van-popup>

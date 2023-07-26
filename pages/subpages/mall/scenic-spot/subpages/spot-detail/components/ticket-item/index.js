@@ -13,8 +13,8 @@ Component({
     },
 
     booking() {
-      const { id } = this.properties.ticket;
-      const url = `/pages/subpages/mall/scenic-spot/subpages/order-check/index?id=${id}`;
+      const { id, categoryId } = this.properties.ticket;
+      const url = `/pages/subpages/mall/scenic-spot/subpages/order-check/index?ticketId=${id}&categoryId=${categoryId}`;
       wx.navigateTo({ url });
     },
   },
