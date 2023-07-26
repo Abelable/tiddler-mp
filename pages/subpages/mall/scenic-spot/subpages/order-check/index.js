@@ -13,17 +13,41 @@ Component({
   },
 
   data: {
+    minDate: 0,
+    maxDate: 0,
+    formatter(day) {
+      const timeStamp = day.date / 1000;
+      const { price } =
+        store.scenicPreOrderInfo.priceList.find(
+          (item) => timeStamp >= item.startDate && timeStamp <= item.endDate
+        ) || {};
+      if (price) {
+        day.bottomInfo = `¥${price}`;
+      }
+      return day;
+    },
     paymentAmount: 0,
     recentlyDateList: [],
     curDateIdx: 0,
     num: 1,
     priceDetailPopupVisible: false,
     noticePopupVisible: false,
+    calendarPopupVisible: false,
   },
 
   observers: {
     scenicPreOrderInfo: function (info) {
-      info && this.setRecentlyDateList();
+      if (info) {
+        this.setRecentlyDateList();
+
+        const { todayBookable, priceList } = info;
+        let minDate = new Date(new Date().setHours(0, 0, 0, 0)).getTime();
+        if (!todayBookable) {
+          minDate = minDate + 86400 * 1000;
+        }
+        const maxDate = priceList[priceList.length - 1].endDate * 1000;
+        this.setData({ minDate, maxDate });
+      }
     },
   },
 
@@ -118,6 +142,59 @@ Component({
           });
         },
       });
+    },
+
+    showCalendarPopup() {
+      this.setData({
+        calendarPopupVisible: true,
+      });
+    },
+
+    hideCalendarPopup() {
+      this.setData({
+        calendarPopupVisible: false,
+      });
+    },
+
+    onCalendarConfirm({ detail: timeStamp }) {
+      timeStamp = timeStamp / 1000;
+      const { recentlyDateList, scenicPreOrderInfo } = this.data;
+      const curDateIdx = recentlyDateList.findIndex(
+        (item) => item.timeStamp === timeStamp
+      );
+      if (curDateIdx !== -1) {
+        this.setData({ curDateIdx }, () => {
+          this.setPaymentAmount();
+        });
+      } else {
+        const { price } =
+          scenicPreOrderInfo.priceList.find(
+            (item) => timeStamp >= item.startDate && timeStamp <= item.endDate
+          ) || {};
+        const curDate = new Date(timeStamp * 1000);
+        const curMonth = `${curDate.getMonth() + 1}`.padStart(2, "0");
+        const curDay = `${curDate.getDate()}`.padStart(2, "0");
+        const curWeekDay = `周${
+          ["日", "一", "二", "三", "四", "五", "六"][curDate.getDay()]
+        }`;
+        this.setData(
+          {
+            recentlyDateList: [
+              ...recentlyDateList.slice(0, 2),
+              {
+                date: `${curWeekDay} ${curMonth}-${curDay}`,
+                timeStamp,
+                price,
+              },
+            ],
+            curDateIdx: 2,
+          },
+          () => {
+            this.setPaymentAmount();
+          }
+        );
+      }
+      this.setData({ calendarPopupVisible: false });
     },
 
     togglePriceDetailPopupVisible() {

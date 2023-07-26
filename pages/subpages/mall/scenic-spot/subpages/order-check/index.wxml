@@ -19,7 +19,7 @@
               <price-unit wx:else price="{{item.price}}" color="#333" fontSize="22rpx" integerFontSize="28rpx" />
             </block>
           </view>
-          <view class="more-date-btn row">
+          <view class="more-date-btn row" bindtap="showCalendarPopup">
             <view class="btn-desc">
               <view>更多</view>
               <view>日期</view>
@@ -92,3 +92,12 @@
 
 <price-detail-popup wx:if="{{priceDetailPopupVisible}}" bind:hide="togglePriceDetailPopupVisible" />
 <notice-popup show="{{noticePopupVisible}}" info="{{scenicPreOrderInfo}}" bind:hide="hideNoticePopup" onlyCheck />
+<van-calendar 
+  show="{{ calendarPopupVisible }}"
+  min-date="{{ minDate }}"
+  max-date="{{ maxDate }}"
+  formatter="{{ formatter }}"
+  bind:close="hideCalendarPopup" 
+  bind:confirm="onCalendarConfirm" 
+  color="#1986F8" 
+/>

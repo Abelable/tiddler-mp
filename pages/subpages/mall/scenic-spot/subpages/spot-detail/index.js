@@ -332,7 +332,7 @@ Page({
     const curTime = +`${curHour}${curMinute}`;
 
     list.forEach(
-      ({ type, name, briefName, bookingTime, specList, ...rest }) => {
+      ({ type, bookingTime, specList, ...rest }) => {
         const todayBookable = curTime <= +bookingTime.replace(":", "");
         const item = {
           ...rest,
@@ -341,7 +341,6 @@ Page({
           bookingTime,
           todayBookable,
           bookingTips: todayBookable ? "可定今日" : "可定明日",
-          name: type === 1 ? briefName : name,
           categoryIds: specList.map(({ categoryId }) => {
             if (type === 1) {
               ticketCategoryIds.push(categoryId);
@@ -408,7 +407,7 @@ Page({
 
   _setTicketList(curCategoryId, curCategoryName, sourceTicketList) {
     const ticketList = [];
-    sourceTicketList.forEach(({ categoryIds, specList, ...item }) => {
+    sourceTicketList.forEach(({ type, name, briefName, categoryIds, specList, ...item }) => {
       if (
         categoryIds.findIndex((categoryId) => categoryId === curCategoryId) !==
         -1
@@ -421,7 +420,7 @@ Page({
         );
         if (curTicketIndex === -1) {
           ticketList.push({
-            name: item.name,
+            name: type === 1 ? briefName : name,
             basePrice: item.price,
             fold: true,
             list: [
@@ -429,6 +428,9 @@ Page({
                 categoryId: curCategoryId,
                 categoryName: curCategoryName,
                 priceList,
+                type,
+                name, 
+                briefName,
                 ...item,
               },
             ],
@@ -444,6 +446,9 @@ Page({
                 categoryId: curCategoryId,
                 categoryName: curCategoryName,
                 priceList,
+                type,
+                name, 
+                briefName,
                 ...item,
               },
             ],
