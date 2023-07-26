@@ -1,3 +1,5 @@
+import { store } from "../../../../../../store/index";
+
 Component({
   options: {
     addGlobalClass: true,
@@ -6,7 +8,7 @@ Component({
   properties: {
     show: Boolean,
     info: Object,
-    onlyCheck: Boolean
+    onlyCheck: Boolean,
   },
 
   methods: {
@@ -16,11 +18,12 @@ Component({
 
     confirm() {
       if (this.properties.onlyCheck) {
-        this.hide()
+        this.hide();
       } else {
-        const { id, categoryId } = this.properties.info;
-        const url = `/pages/subpages/mall/scenic-spot/subpages/order-check/index?ticketId=${id}&categoryId=${categoryId}`;
-        wx.navigateTo({ url });
+        store.setScenicPreOrderInfo(this.properties.info);
+        wx.navigateTo({
+          url: "/pages/subpages/mall/scenic-spot/subpages/order-check/index",
+        });
       }
     },
 

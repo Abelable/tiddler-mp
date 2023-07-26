@@ -10,6 +10,7 @@ export const store = observable({
   activeMediaItem: null,
   croppedImagePath: '',
   locationInfo: null,
+  scenicPreOrderInfo: null,
   
   setTabType: action(function (type) {
     this.tabType = type
@@ -25,6 +26,9 @@ export const store = observable({
   }),
   setLocationInfo: action(function (info) {
     this.locationInfo = info
+  }),
+  setScenicPreOrderInfo: action(function (info) {
+    this.scenicPreOrderInfo = info
   }),
 
   ...tim,

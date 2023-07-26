@@ -1,3 +1,5 @@
+import { store } from "../../../../../../../../store/index";
+
 Component({
   options: {
     addGlobalClass: true,
@@ -13,9 +15,10 @@ Component({
     },
 
     booking() {
-      const { id, categoryId } = this.properties.ticket;
-      const url = `/pages/subpages/mall/scenic-spot/subpages/order-check/index?ticketId=${id}&categoryId=${categoryId}`;
-      wx.navigateTo({ url });
+      store.setScenicPreOrderInfo(this.properties.ticket);
+      wx.navigateTo({
+        url: "/pages/subpages/mall/scenic-spot/subpages/order-check/index",
+      });
     },
   },
 });

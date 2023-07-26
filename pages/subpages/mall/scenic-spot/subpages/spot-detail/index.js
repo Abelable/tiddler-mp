@@ -333,12 +333,14 @@ Page({
 
     list.forEach(
       ({ type, name, briefName, bookingTime, specList, ...rest }) => {
+        const todayBookable = curTime <= +bookingTime.replace(":", "");
         const item = {
           ...rest,
           type,
+          specList,
           bookingTime,
-          bookingTips:
-            curTime <= +bookingTime.replace(":", "") ? "可定今日" : "可定明日",
+          todayBookable,
+          bookingTips: todayBookable ? "可定今日" : "可定明日",
           name: type === 1 ? briefName : name,
           categoryIds: specList.map(({ categoryId }) => {
             if (type === 1) {
@@ -382,28 +384,38 @@ Page({
 
   setTicketList() {
     const { ticketTypeList, curTicketTypeIdx } = this.data;
-    const curCategoryId = ticketTypeList[curTicketTypeIdx].id;
-    const ticketList = this._setTicketList(curCategoryId, this.ticketList);
+    const { id: curCategoryId, name: curCategoryName } =
+      ticketTypeList[curTicketTypeIdx];
+    const ticketList = this._setTicketList(
+      curCategoryId,
+      curCategoryName,
+      this.ticketList
+    );
     this.setData({ ticketList });
   },
 
   setCombinedTicketList() {
     const { combinedTicketTypeList, curCombinedTicketTypeIdx } = this.data;
-    const curCategoryId = combinedTicketTypeList[curCombinedTicketTypeIdx].id;
+    const { id: curCategoryId, name: curCategoryName } =
+      combinedTicketTypeList[curCombinedTicketTypeIdx];
     const combinedTicketList = this._setTicketList(
       curCategoryId,
+      curCategoryName,
       this.combinedTicketList
     );
     this.setData({ combinedTicketList });
   },
 
-  _setTicketList(curCategoryId, sourceTicketList) {
+  _setTicketList(curCategoryId, curCategoryName, sourceTicketList) {
     const ticketList = [];
-    sourceTicketList.forEach(({ categoryIds, ...item }) => {
+    sourceTicketList.forEach(({ categoryIds, specList, ...item }) => {
       if (
         categoryIds.findIndex((categoryId) => categoryId === curCategoryId) !==
         -1
       ) {
+        const priceList = JSON.parse(
+          specList.find((spec) => spec.categoryId === curCategoryId).priceList
+        );
         const curTicketIndex = ticketList.findIndex(
           (ticket) => ticket.name === item.name
         );
@@ -412,14 +424,29 @@ Page({
             name: item.name,
             basePrice: item.price,
             fold: true,
-            list: [{ categoryId: curCategoryId, ...item }],
+            list: [
+              {
+                categoryId: curCategoryId,
+                categoryName: curCategoryName,
+                priceList,
+                ...item,
+              },
+            ],
           });
         } else {
           const { basePrice, list, ...rest } = ticketList[curTicketIndex];
           ticketList[curTicketIndex] = {
             ...rest,
             basePrice: item.price < basePrice ? item.price : basePrice,
-            list: [...list, { categoryId: curCategoryId, ...item }],
+            list: [
+              ...list,
+              {
+                categoryId: curCategoryId,
+                categoryName: curCategoryName,
+                priceList,
+                ...item,
+              },
+            ],
           };
         }
       }
@@ -502,9 +529,10 @@ Page({
   },
 
   selectTicketType(e) {
+    const { index } = e.currentTarget.dataset;
     this.setData(
       {
-        curTicketTypeIdx: Number(e.currentTarget.dataset.index),
+        curTicketTypeIdx: Number(index),
       },
       () => {
         this.setTicketList();
@@ -527,9 +555,10 @@ Page({
   },
 
   selectCombinedTicketType(e) {
+    const { index } = e.currentTarget.dataset;
     this.setData(
       {
-        curCombinedTicketTypeIdx: Number(e.currentTarget.dataset.index),
+        curCombinedTicketTypeIdx: Number(index),
       },
       () => {
         this.setCombinedTicketList();
