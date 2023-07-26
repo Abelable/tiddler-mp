@@ -331,13 +331,14 @@ Page({
     const curMinute = `${curDate.getMinutes()}`.padStart(2, "0");
     const curTime = +`${curHour}${curMinute}`;
 
-    list.forEach(({ type, bookingTime, specList, ...rest }) => {
+    list.forEach(({ type, name, briefName, bookingTime, specList, ...rest }) => {
       const item = {
         ...rest,
         type,
         bookingTime,
         bookingTips:
           curTime <= +bookingTime.replace(":", "") ? "可定今日" : "可定明日",
+        name: type === 1 ? briefName : name,
         categoryIds: specList.map(({ categoryId }) => {
           if (type === 1) {
             ticketCategoryIds.push(categoryId);
