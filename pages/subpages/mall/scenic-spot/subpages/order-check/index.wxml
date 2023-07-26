@@ -7,14 +7,17 @@
         <view class="date-picker-title">选择日期</view>
         <view class="date-picker-list row">
           <view 
-            class="date-picker-item {{curDateIdx === index ? 'active' : ''}}" 
-            wx:for="{{recentlyDataList}}" 
+            class="date-picker-item {{curDateIdx === index ? 'active' : ''}} {{index === 0 && !bookable ? 'unvalid' : ''}}" 
+            wx:for="{{recentlyDateList}}" 
             wx:key="index"
             bindtap="selectDate"
             data-index="{{index}}"
           >
             <view class="date">{{item.date}}</view>
-            <price-unit price="{{item.price}}" color="#333" fontSize="22rpx" integerFontSize="28rpx" />
+            <block>
+              <view class="unvalid-tips" wx:if="{{index === 0 && !bookable}}">不可定</view>
+              <price-unit wx:else price="{{item.price}}" color="#333" fontSize="22rpx" integerFontSize="28rpx" />
+            </block>
           </view>
           <view class="more-date-btn row">
             <view class="btn-desc">
@@ -29,7 +32,7 @@
         <view class="count-control-title">购买数量</view>
         <view class="step-wrap row">
           <price-unit style="margin-right: 24rpx;" price="{{40}}" fontSize="22rpx" integerFontSize="28rpx" />
-          <van-stepper value="{{ count }}" bind:change="countChange" max="{{ticketInfo ? ticketInfo.limitNumber : 1}}" integer />
+          <van-stepper value="{{ num }}" bind:change="numChange" max="{{ticketInfo ? ticketInfo.limitNumber : 1}}" integer />
         </view>
       </view>
       <view class="ticket-tips">

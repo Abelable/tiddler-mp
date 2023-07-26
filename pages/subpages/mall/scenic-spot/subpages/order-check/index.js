@@ -8,62 +8,82 @@ Page({
     categoryName: "",
     priceList: [],
     paymentAmount: 0,
-    recentlyDataList: [
-      {
-        date: "今天 04-06",
-        price: 40,
-      },
-      {
-        date: "明天 04-07",
-        price: 40,
-      },
-      {
-        date: "周一 04-08",
-        price: 40,
-      },
-    ],
-    pickedDate: "",
+    recentlyDateList: [],
+    curDateIdx: 0,
+    bookable: true,
     num: 1,
     priceDetailPopupVisible: false,
     noticePopupVisible: false,
   },
 
-  onLoad({ ticketId, categoryId }) {
+  async onLoad({ ticketId, categoryId }) {
     this.ticketId = ticketId;
     this.categoryId = categoryId;
-    this.setPreOrderInfo();
+    await this.setPreOrderInfo();
+    this.setRecentlyDateList();
   },
 
   async setPreOrderInfo() {
-    const { pickedDate, num } = this.data;
-    const { ticketInfo, categoryName, priceList, paymentAmount } =
+    const { recentlyDateList, curDateIdx, num } = this.data;
+    const { ticketInfo, categoryName, priceList, bookable, paymentAmount } =
       await scenicService.getScenicPreOrderInfo(
         this.ticketId,
         this.categoryId,
-        pickedDate,
+        recentlyDateList.length
+          ? recentlyDateList[curDateIdx].timeStamp
+          : undefined,
         num
       );
-
-    const curDate = new Date();
-    const curHour = `${curDate.getHours()}`.padStart(2, "0");
-    const curMinute = `${curDate.getMinutes()}`.padStart(2, "0");
-    const curTime = +`${curHour}${curMinute}`;
 
     this.setData({
       ticketInfo: {
         ...ticketInfo,
-        bookingTips:
-          curTime <= +ticketInfo.bookingTime.replace(":", "") ? "可定今日" : "可定明日",
+        bookingTips: bookable ? "可定今日" : "可定明日",
       },
+      curDateIdx: bookable ? 0 : 1,
+      bookable,
       categoryName,
       priceList,
       paymentAmount,
     });
   },
 
+  setRecentlyDateList() {
+    const timeStamp = new Date(new Date().setHours(0, 0, 0, 0)) / 1000;
+    const timeStampList = [timeStamp, timeStamp + 86400, timeStamp + 86400 * 2];
+    const recentlyDateList = timeStampList.map((timeStamp, index) => {
+      const { price } =
+        this.data.priceList.find(
+          (item) => timeStamp >= item.startDate && timeStamp <= item.endDate
+        ) || {};
+      const curDate = new Date(timeStamp * 1000);
+      const curMonth = `${curDate.getMonth() + 1}`.padStart(2, "0");
+      const curDay = `${curDate.getDate()}`.padStart(2, "0");
+      const curWeekDay =
+        index === 2
+          ? `周${["日", "一", "二", "三", "四", "五", "六"][curDate.getDay()]}`
+          : index === 0
+          ? "今天"
+          : "明天";
+      return {
+        date: `${curWeekDay} ${curMonth}-${curDay}`,
+        timeStamp,
+        price,
+      };
+    });
+    this.setData({ recentlyDateList });
+  },
+
   selectDate(e) {
     const curDateIdx = Number(e.currentTarget.dataset.index);
+    if (curDateIdx === 0 && !this.data.bookable) {
+      return;
+    }
     this.setData({ curDateIdx });
+  },
+
+  numChange({ detail: num }) {
+    this.setData({ num });
   },
 
   // 提交订单

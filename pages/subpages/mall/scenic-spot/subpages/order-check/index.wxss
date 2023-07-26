@@ -63,12 +63,19 @@
   border: 1px solid #1986F8;
   background: #EFF0FF;
 }
+.date-picker-item.unvalid {
+  opacity: 0.5;
+}
 .date {
   color: #666;
   font-size: 24rpx;
 }
 .date-picker-item.active .date {
   color: #1986F8;
+}
+.unvalid-tips {
+  font-size: 26rpx;
+  font-weight: bold;
 }
 .more-date-btn {
   width: 100rpx;

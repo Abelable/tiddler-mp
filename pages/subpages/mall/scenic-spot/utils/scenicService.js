@@ -38,10 +38,10 @@ class ScenicService extends BaseService {
     });
   }
 
-  async getScenicPreOrderInfo(ticketId, categoryId, date, num) {
+  async getScenicPreOrderInfo(ticketId, categoryId, timeStamp, num) {
     return await this.get({
       url: `${this.baseUrl}/scenic/order/pre_order_info`,
-      data: cleanObject({ ticketId, categoryId, date, num }),
+      data: cleanObject({ ticketId, categoryId, timeStamp, num }),
       loadingTitle: "加载中...",
     });
   }
