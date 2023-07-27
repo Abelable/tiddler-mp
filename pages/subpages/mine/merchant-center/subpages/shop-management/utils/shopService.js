@@ -7,6 +7,16 @@ class ShopService extends BaseService {
     })
   }
 
+  async getOrderList({ shopId, status, page, limit = 10 }) {
+    const { list = [] } =
+      (await this.get({
+        url: `${this.baseUrl}/order/shop_list`,
+        data: { status, page, limit, shopId },
+        loadingTitle: "加载中...",
+      })) || {};
+    return list;
+  }
+
   async getOrderDetail(id) {
     return await this.get({
       url: `${this.baseUrl}/order/detail`,

@@ -1,6 +1,16 @@
 import BaseService from '../../../../../../../services/baseService'
 
 class OrderService extends BaseService {
+  async getOrderList(status, page, limit = 10) {
+    const { list = [] } =
+      (await this.get({
+        url: `${this.baseUrl}/scenic/order/list`,
+        data: { status, page, limit },
+        loadingTitle: "加载中...",
+      })) || {};
+    return list;
+  }
+
   async getOrderDetail(id) {
     return await this.get({
       url: `${this.baseUrl}/order/detail`,

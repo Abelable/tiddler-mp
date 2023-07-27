@@ -87,16 +87,6 @@ class BaseService extends Base {
     });
   }
 
-  async getOrderList({ shopId, status, page, limit = 10 }) {
-    const { list = [] } =
-      (await this.get({
-        url: `${this.baseUrl}/order/list`,
-        data: cleanObject({ status, page, limit, shopId }),
-        loadingTitle: "加载中...",
-      })) || {};
-    return list;
-  }
-
   async followAuthor(authorId, success) {
     return await this.post({
       url: `${this.baseUrl}/fan/follow`,
