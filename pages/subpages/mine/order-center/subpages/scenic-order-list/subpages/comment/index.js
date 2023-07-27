@@ -1,4 +1,3 @@
-// pages/mine/suppages/order-list/subpages/comment/index.js
 Page({
 
   /**

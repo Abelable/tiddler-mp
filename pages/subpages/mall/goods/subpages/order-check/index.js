@@ -50,12 +50,12 @@ Page({
       ...payParams,
       success: () => {
         wx.navigateTo({ 
-          url: '/pages/mine/suppages/order-list/index?status=2'
+          url: '/pages/subpages/mine/order-center/subpages/goods-order-list/index?status=2'
         })
       },
       fail: () => {
         wx.navigateTo({ 
-          url: '/pages/mine/suppages/order-list/index?status=1'
+          url: '/pages/subpages/mine/order-center/subpages/goods-order-list/index?status=1'
         })
       }
     })

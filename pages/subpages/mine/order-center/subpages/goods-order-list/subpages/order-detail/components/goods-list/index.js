@@ -17,7 +17,7 @@ Component({
 
     afterSale(e) {
       const id = e.currentTarget.dataset.id
-      const url = `/pages/mine/suppages/order-list/subpages/detail/index?id=${id}`
+      const url = `/pages/subpages/mine/order-center/subpages/goods-order-list/subpages/detail/index?id=${id}`
       wx.navigateTo({ url })
     },
   }
