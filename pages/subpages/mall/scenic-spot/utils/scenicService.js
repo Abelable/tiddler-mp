@@ -45,6 +45,37 @@ class ScenicService extends BaseService {
       loadingTitle: "加载中...",
     });
   }
+
+  async submitOrder(
+    ticketId,
+    categoryId,
+    timeStamp,
+    num,
+    consignee,
+    mobile,
+    idCardNumber
+  ) {
+    return await this.post({
+      url: `${this.baseUrl}/scenic/order/submit`,
+      data: {
+        ticketId,
+        categoryId,
+        timeStamp,
+        num,
+        consignee,
+        mobile,
+        idCardNumber,
+      },
+      loadingTitle: "订单提交中...",
+    });
+  }
+
+  async getPayParams(orderId) {
+    return await this.post({
+      url: `${this.baseUrl}/scenic/order/pay_params`,
+      data: { orderId },
+    });
+  }
 }
 
 export default ScenicService;

@@ -30,6 +30,9 @@ Component({
     recentlyDateList: [],
     curDateIdx: 0,
     num: 1,
+    consignee: "",
+    mobile: "",
+    idCardNumber: "",
     priceDetailPopupVisible: false,
     noticePopupVisible: false,
     calendarPopupVisible: false,
@@ -142,9 +145,62 @@ Component({
       });
     },
 
+    setConsignee(e) {
+      const consignee = e.detail.value;
+      this.setData({ consignee });
+    },
+
+    setMobile(e) {
+      const mobile = e.detail.value;
+      this.setData({ mobile });
+    },
+
+    setIdCardNumber(e) {
+      const idCardNumber = e.detail.value;
+      this.setData({ idCardNumber });
+    },
+
     // 提交订单
     async submit() {
-      const orderId = await scenicService.submitOrder(this.cartIds, addressId);
+      const {
+        scenicPreOrderInfo,
+        recentlyDateList,
+        curDateIdx,
+        num,
+        consignee,
+        mobile,
+        idCardNumber,
+      } = this.data;
+      if (!consignee || !mobile || !idCardNumber) {
+        return;
+      }
+      if (!/^1[345789][0-9]{9}$/.test(mobile)) {
+        wx.showToast({
+          title: "请输入正确手机号",
+          icon: "none",
+        });
+        return
+      }
+      if (!/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(idCardNumber)) {
+        wx.showToast({
+          title: "请输入正确身份证号",
+          icon: "none",
+        });
+        return
+      }
+
+      const { id, categoryId } = scenicPreOrderInfo;
+      const { timeStamp } = recentlyDateList[curDateIdx];
+
+      const orderId = await scenicService.submitOrder(
+        id,
+        categoryId,
+        timeStamp,
+        num,
+        consignee,
+        mobile,
+        idCardNumber
+      );
       this.pay(orderId);
     },
 

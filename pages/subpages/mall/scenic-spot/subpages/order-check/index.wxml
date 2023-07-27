@@ -65,15 +65,15 @@
     <view class="tourist-info-list">
       <view class="tourist-info-item row">
         <view class="tourist-info-label">出游人</view>
-        <input class="tourist-info-input" placeholder="请输入姓名" />
+        <input class="tourist-info-input" bindinput="setConsignee" placeholder="请输入姓名" />
       </view>
       <view class="tourist-info-item row">
         <view class="tourist-info-label">手机号</view>
-        <input class="tourist-info-input" type="number" placeholder="请输入手机号" />
+        <input class="tourist-info-input" bindinput="setMobile" type="number" placeholder="请输入手机号" />
       </view>
       <view class="tourist-info-item row">
         <view class="tourist-info-label">身份证</view>
-        <input class="tourist-info-input" type="idcard" placeholder="请输入身份证号" />
+        <input class="tourist-info-input" bindinput="setIdCardNumber" type="idcard" placeholder="请输入身份证号" />
       </view>
     </view>
   </view>
@@ -87,7 +87,7 @@
       <image class="arrow" src="{{priceDetailPopupVisible ? './images/arrow-down.png' : './images/arrow-up.png'}}" />
     </view>
   </view>
-  <button class="submit-btn {{addressInfo ? 'active' : ''}}" bindtap="submit">提交订单</button>
+  <button class="submit-btn {{consignee && mobile && idCardNumber ? 'active' : ''}}" bindtap="submit">提交订单</button>
 </view>
 
 <price-detail-popup 
