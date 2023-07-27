@@ -50,6 +50,7 @@
       "mine/order-center/subpages/goods-order-list/subpages/shipping/index",
       "mine/order-center/subpages/scenic-order-list/index",
       "mine/order-center/subpages/scenic-order-list/subpages/order-detail/index",
+      "mine/order-center/subpages/scenic-order-list/subpages/comment/index",
       "mine/merchant-center/index",
       "mine/merchant-center/subpages/shop-management/index",
       "mine/merchant-center/subpages/shop-management/subpages/order-detail/index",
