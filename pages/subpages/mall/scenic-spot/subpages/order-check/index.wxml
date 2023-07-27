@@ -38,7 +38,7 @@
       <view class="ticket-tips">
         <view class="tips-wrap row">
           <image class="tips-icon" src="./images/limit.png" />
-          <view class="tips">04月06日至04月09日内有效</view>
+          <view class="tips">{{validityTimeDesc}}</view>
         </view>
         <view class="tips-wrap row">
           <image class="tips-icon" src="./images/time.png" />
@@ -90,7 +90,13 @@
   <button class="submit-btn {{addressInfo ? 'active' : ''}}" bindtap="submit">提交订单</button>
 </view>
 
-<price-detail-popup wx:if="{{priceDetailPopupVisible}}" bind:hide="togglePriceDetailPopupVisible" />
+<price-detail-popup 
+  wx:if="{{priceDetailPopupVisible}}" 
+  category="{{scenicPreOrderInfo.categoryName}}" 
+  price="{{recentlyDateList[curDateIdx].price}}" 
+  num="{{num}}" 
+  bind:hide="togglePriceDetailPopupVisible" 
+/>
 <notice-popup show="{{noticePopupVisible}}" info="{{scenicPreOrderInfo}}" bind:hide="hideNoticePopup" onlyCheck />
 <van-calendar 
   show="{{ calendarPopupVisible }}"

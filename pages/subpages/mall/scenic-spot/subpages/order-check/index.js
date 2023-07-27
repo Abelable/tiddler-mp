@@ -33,6 +33,7 @@ Component({
     priceDetailPopupVisible: false,
     noticePopupVisible: false,
     calendarPopupVisible: false,
+    validityTimeDesc: "",
   },
 
   observers: {
@@ -65,6 +66,24 @@ Component({
         num
       );
       this.setData({ paymentAmount });
+    },
+
+    async setValidityTimeDesc() {
+      const { scenicPreOrderInfo, recentlyDateList, curDateIdx } = this.data;
+      const { validityTime } = scenicPreOrderInfo;
+      const { timeStamp } = recentlyDateList[curDateIdx];
+
+      const startDate = new Date(timeStamp * 1000);
+      const startMonth = `${startDate.getMonth() + 1}`.padStart(2, "0");
+      const startDay = `${startDate.getDate()}`.padStart(2, "0");
+
+      const endDate = new Date((timeStamp + 86400 * validityTime) * 1000);
+      const endMonth = `${endDate.getMonth() + 1}`.padStart(2, "0");
+      const endDay = `${endDate.getDate()}`.padStart(2, "0");
+
+      const validityTimeDesc = `${startMonth}月${startDay}日至${endMonth}月${endDay}日内有效`;
+
+      this.setData({ validityTimeDesc });
     },
 
     setRecentlyDateList() {
@@ -100,6 +119,7 @@ Component({
       this.setData(
         { recentlyDateList, curDateIdx: todayBookable ? 0 : 1 },
         () => {
+          this.setValidityTimeDesc();
           this.setPaymentAmount();
         }
       );
@@ -107,10 +127,11 @@ Component({
 
     selectDate(e) {
       const curDateIdx = Number(e.currentTarget.dataset.index);
-      if (curDateIdx === 0 && !this.data.todayBookable) {
+      if (curDateIdx === 0 && !this.data.scenicPreOrderInfo.todayBookable) {
         return;
       }
       this.setData({ curDateIdx }, () => {
+        this.setValidityTimeDesc();
         this.setPaymentAmount();
       });
     },
