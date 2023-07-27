@@ -1,4 +1,4 @@
-<nav-bar title="我的订单" custom="{{true}}" bind:navigateBack="navigateBack">
+<nav-bar title="景点门票订单" custom="{{true}}" bind:navigateBack="navigateBack">
   <view class="menu-wrap">
     <view 
       class="menu-item {{curMenuIndex === index ? 'selected' : ''}} row center" 

@@ -5,6 +5,7 @@
   height: 40px;
   background: #fff;
   border-top: 1px solid #f5f6f8;
+  z-index: 100;
 }
 .menu-item {
   flex: 1;
