@@ -14,7 +14,7 @@ Component({
   methods: {
     async payOrder(e) {
       const { id, index } = e.currentTarget.dataset
-      const params = await orderService.getPayParams([id])
+      const params = await orderService.getScenicOrderPayParams(id)
       wx.requestPayment({ ...params,
         success: () => {
           this.triggerEvent('update', { type: 'pay', index })

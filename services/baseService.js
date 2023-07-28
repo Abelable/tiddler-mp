@@ -87,6 +87,13 @@ class BaseService extends Base {
     });
   }
 
+  async getScenicOrderPayParams(orderId) {
+    return await this.post({
+      url: `${this.baseUrl}/scenic/order/pay_params`,
+      data: { orderId },
+    });
+  }
+
   async followAuthor(authorId, success) {
     return await this.post({
       url: `${this.baseUrl}/fan/follow`,

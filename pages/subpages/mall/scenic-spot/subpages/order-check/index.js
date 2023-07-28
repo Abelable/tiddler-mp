@@ -205,7 +205,7 @@ Component({
     },
 
     async pay(orderId) {
-      const payParams = await scenicService.getPayParams(orderId);
+      const payParams = await scenicService.getScenicOrderPayParams(orderId);
       wx.requestPayment({
         ...payParams,
         success: () => {

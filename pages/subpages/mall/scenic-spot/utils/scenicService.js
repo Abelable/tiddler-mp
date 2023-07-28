@@ -69,13 +69,6 @@ class ScenicService extends BaseService {
       loadingTitle: "订单提交中...",
     });
   }
-
-  async getPayParams(orderId) {
-    return await this.post({
-      url: `${this.baseUrl}/scenic/order/pay_params`,
-      data: { orderId },
-    });
-  }
 }
 
 export default ScenicService;
