@@ -6,14 +6,12 @@
   background: #fff;
   border-radius: 18rpx;
 }
-
 .ticket-name {
   padding: 24rpx;
   color: #333;
   font-size: 32rpx;
   font-weight: bold;
 }
-
 .split-line {
   position: relative;
   border: 1rpx dashed #eee;
