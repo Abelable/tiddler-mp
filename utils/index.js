@@ -53,14 +53,15 @@ export const customBack = (needInitPrePageData = false) => {
   const registerPageRoute = "pages/subpages/common/register/index";
   const minePageRoute = "pages/tab-bar-pages/mine/index";
 
-  const pagesLength = getCurrentPages().length;
-  const curPage = getCurrentPages()[pagesLength - 1];
+  const curPages = getCurrentPages();
+  const curPage = curPages[curPages.length - 1];
   const curPageRoute = curPage.route;
-  const prePage = getCurrentPages()[pagesLength - 2];
-  const prePageRoute = prePage ? prePage.route : "";
+  const prePage = curPages[curPages.length - 2];
+  const prePageRoute = prePage.route;
 
-  if (needInitPrePageData && typeof prePage.initData === "function")
+  if (needInitPrePageData && typeof prePage.initData === "function") {
     prePage.initData();
+  }
 
   if (
     pagesLength === 1 ||

@@ -83,8 +83,8 @@ Page({
 
   navigateBack() {
     const orderCenterPageRoute = "pages/subpages/mine/order-center/index";
-    const pagesLength = getCurrentPages().length;
-    const prePage = getCurrentPages()[pagesLength - 2];
+    const curPages = getCurrentPages();
+    const prePage = curPages[curPages.length - 2];
     const prePageRoute = prePage ? prePage.route : "";
     if (prePageRoute === orderCenterPageRoute) {
       wx.navigateBack();
