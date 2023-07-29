@@ -1,3 +1,4 @@
+import { navigateBack } from "../../utils/index";
 import OrderService from "./utils/orderService";
 
 const orderService = new OrderService();
@@ -80,17 +81,5 @@ Page({
     }
   },
 
-  navigateBack() {
-    const orderCenterPageRoute = "pages/subpages/mine/order-center/index";
-    const pagesLength = getCurrentPages().length;
-    const prePage = getCurrentPages()[pagesLength - 2];
-    const prePageRoute = prePage ? prePage.route : "";
-    if (prePageRoute === orderCenterPageRoute) {
-      wx.navigateBack();
-    } else {
-      wx.switchTab({
-        url: "/pages/tab-bar-pages/mine/index",
-      });
-    }
-  },
+  navigateBack,
 });

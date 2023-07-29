@@ -64,7 +64,7 @@ export const customBack = (needInitPrePageData = false) => {
   }
 
   if (
-    pagesLength === 1 ||
+    curPages.length === 1 ||
     (curPageRoute === registerPageRoute && prePageRoute === minePageRoute)
   ) {
     wx.switchTab({ url: "/pages/tab-bar-pages/home/index" });
