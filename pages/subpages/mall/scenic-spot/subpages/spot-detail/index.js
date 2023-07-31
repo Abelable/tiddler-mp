@@ -331,32 +331,30 @@ Page({
     const curMinute = `${curDate.getMinutes()}`.padStart(2, "0");
     const curTime = +`${curHour}${curMinute}`;
 
-    list.forEach(
-      ({ type, bookingTime, specList, ...rest }) => {
-        const todayBookable = curTime <= +bookingTime.replace(":", "");
-        const item = {
-          ...rest,
-          type,
-          specList,
-          bookingTime,
-          todayBookable,
-          bookingTips: todayBookable ? "可定今日" : "可定明日",
-          categoryIds: specList.map(({ categoryId }) => {
-            if (type === 1) {
-              ticketCategoryIds.push(categoryId);
-            } else {
-              combinedTicketCategoryIds.push(categoryId);
-            }
-            return categoryId;
-          }),
-        };
-        if (type === 1) {
-          this.ticketList.push(item);
-        } else {
-          this.combinedTicketList.push(item);
-        }
+    list.forEach(({ type, bookingTime, specList, ...rest }) => {
+      const todayBookable = curTime <= +bookingTime.replace(":", "");
+      const item = {
+        ...rest,
+        type,
+        specList,
+        bookingTime,
+        todayBookable,
+        bookingTips: todayBookable ? "可定今日" : "可定明日",
+        categoryIds: specList.map(({ categoryId }) => {
+          if (type === 1) {
+            ticketCategoryIds.push(categoryId);
+          } else {
+            combinedTicketCategoryIds.push(categoryId);
+          }
+          return categoryId;
+        }),
+      };
+      if (type === 1) {
+        this.ticketList.push(item);
+      } else {
+        this.combinedTicketList.push(item);
       }
-    );
+    });
 
     if (ticketCategoryIds.length) {
       const ticketTypeList = Array.from(new Set(ticketCategoryIds))
@@ -407,55 +405,58 @@ Page({
 
   _setTicketList(curCategoryId, curCategoryName, sourceTicketList) {
     const ticketList = [];
-    sourceTicketList.forEach(({ type, name, briefName, categoryIds, specList, ...item }) => {
-      if (
-        categoryIds.findIndex((categoryId) => categoryId === curCategoryId) !==
-        -1
-      ) {
-        const priceList = JSON.parse(
-          specList.find((spec) => spec.categoryId === curCategoryId).priceList
-        );
-        const curTicketIndex = ticketList.findIndex(
-          (ticket) => ticket.name === item.name
-        );
-        if (curTicketIndex === -1) {
-          ticketList.push({
-            name: type === 1 ? briefName : name,
-            basePrice: item.price,
-            fold: true,
-            list: [
-              {
-                categoryId: curCategoryId,
-                categoryName: curCategoryName,
-                priceList,
-                type,
-                name, 
-                briefName,
-                ...item,
-              },
-            ],
-          });
-        } else {
-          const { basePrice, list, ...rest } = ticketList[curTicketIndex];
-          ticketList[curTicketIndex] = {
-            ...rest,
-            basePrice: item.price < basePrice ? item.price : basePrice,
-            list: [
-              ...list,
-              {
-                categoryId: curCategoryId,
-                categoryName: curCategoryName,
-                priceList,
-                type,
-                name, 
-                briefName,
-                ...item,
-              },
-            ],
-          };
+    sourceTicketList.forEach(
+      ({ type, name, briefName, categoryIds, specList, ...item }) => {
+        if (
+          categoryIds.findIndex(
+            (categoryId) => categoryId === curCategoryId
+          ) !== -1
+        ) {
+          const priceList = JSON.parse(
+            specList.find((spec) => spec.categoryId === curCategoryId).priceList
+          );
+          const curTicketIndex = ticketList.findIndex(
+            (ticket) => ticket.name === item.name
+          );
+          if (curTicketIndex === -1) {
+            ticketList.push({
+              name: type === 1 ? briefName : name,
+              basePrice: item.price,
+              fold: true,
+              list: [
+                {
+                  categoryId: curCategoryId,
+                  categoryName: curCategoryName,
+                  priceList,
+                  type,
+                  name,
+                  briefName,
+                  ...item,
+                },
+              ],
+            });
+          } else {
+            const { basePrice, list, ...rest } = ticketList[curTicketIndex];
+            ticketList[curTicketIndex] = {
+              ...rest,
+              basePrice: item.price < basePrice ? item.price : basePrice,
+              list: [
+                ...list,
+                {
+                  categoryId: curCategoryId,
+                  categoryName: curCategoryName,
+                  priceList,
+                  type,
+                  name,
+                  briefName,
+                  ...item,
+                },
+              ],
+            };
+          }
         }
       }
-    });
+    );
     return ticketList;
   },
 
@@ -587,55 +588,29 @@ Page({
 
   onPageScroll({ scrollTop }) {
     this.scrollTop = scrollTop;
+    const { navBarVisible, curMenuIdx } = this.data;
 
     if (scrollTop >= this.navBarVisibleLimit) {
-      !this.data.navBarVisible &&
-        this.setData({
-          navBarVisible: true,
-        });
+      !navBarVisible && this.setData({ navBarVisible: true });
     } else {
-      this.data.navBarVisible &&
-        this.setData({
-          navBarVisible: false,
-        });
+      navBarVisible && this.setData({ navBarVisible: false });
     }
 
     const menuLimit = scrollTop + statusBarHeight + 108;
-    if (menuLimit < this.menuChangeLimitList[0]) {
-      if (this.data.curMenuIdx !== -1) this.setData({ curMenuIdx: -1 });
-    } else if (
-      menuLimit >= this.menuChangeLimitList[0] &&
-      menuLimit < this.menuChangeLimitList[1]
-    ) {
-      if (this.data.curMenuIdx !== 0) this.setData({ curMenuIdx: 0 });
-    } else if (
-      menuLimit >= this.menuChangeLimitList[1] &&
-      menuLimit < this.menuChangeLimitList[2]
-    ) {
-      if (this.data.curMenuIdx !== 1) this.setData({ curMenuIdx: 1 });
-    } else if (
-      menuLimit >= this.menuChangeLimitList[2] &&
-      menuLimit < this.menuChangeLimitList[3]
-    ) {
-      if (this.data.curMenuIdx !== 2) this.setData({ curMenuIdx: 2 });
-    } else if (
-      menuLimit >= this.menuChangeLimitList[3] &&
-      menuLimit < this.menuChangeLimitList[4]
-    ) {
-      if (this.data.curMenuIdx !== 3) this.setData({ curMenuIdx: 3 });
-    } else if (
-      menuLimit >= this.menuChangeLimitList[4] &&
-      menuLimit < this.menuChangeLimitList[5]
-    ) {
-      if (this.data.curMenuIdx !== 4) this.setData({ curMenuIdx: 4 });
-    } else if (
-      menuLimit >= this.menuChangeLimitList[5] &&
-      menuLimit < this.menuChangeLimitList[6]
-    ) {
-      if (this.data.curMenuIdx !== 5) this.setData({ curMenuIdx: 5 });
-    } else if (menuLimit >= this.menuChangeLimitList[6]) {
-      if (this.data.curMenuIdx !== 6) this.setData({ curMenuIdx: 6 });
-    }
+    this.menuChangeLimitList.forEach((item, index) => {
+      const preItem = this.menuChangeLimitList[index - 1];
+      const nextItem = this.menuChangeLimitList[index + 1];
+      if (menuLimit < item && (!preItem || menuLimit >= preItem)) {
+        if (curMenuIdx !== index - 1) {
+          this.setData({ curMenuIdx: index - 1 });
+        }
+      }
+      if (menuLimit >= item && !nextItem) {
+        if (curMenuIdx !== index) {
+          this.setData({ curMenuIdx: index });
+        }
+      }
+    });
   },
 
   onReachBottom() {
