@@ -19,7 +19,7 @@ class ScenicService extends BaseService {
 
   async getOrderDetail(id) {
     return await this.get({
-      url: `${this.baseUrl}/order/detail`,
+      url: `${this.baseUrl}/scenic/order/detail`,
       data: { id },
       loadingTitle: '加载中...'
     })
@@ -27,19 +27,15 @@ class ScenicService extends BaseService {
 
   async cancelOrder(id, success) {
     await this.post({ 
-      url: `${this.baseUrl}/order/cancel`, 
+      url: `${this.baseUrl}/scenic/order/cancel`, 
       data: { id },
       success
     })
   }
 
-  async getShippingTracker(order_id) {
-    return await this.get({ url: `${this.baseUrl}/order/tracker-order-id`, data: { order_id } })
-  }
-
   async publishComment(order_id, comment_type, commentLists, success) {
     return await this.post({ 
-      url: `${this.baseUrl}/order/comment`, 
+      url: `${this.baseUrl}/scenic/order/comment`, 
       data: { order_id, comment_type, json_data: JSON.stringify(commentLists) }, 
       success, 
       loadingTitle: '发布中...' 
