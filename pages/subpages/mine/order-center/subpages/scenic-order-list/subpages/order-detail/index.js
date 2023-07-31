@@ -21,12 +21,11 @@ Page({
       102: '交易关闭',
       103: '交易关闭',
       104: '交易关闭',
-      201: '等待卖家发货',
+      201: '出行确认中',
       202: '退款申请中',
       203: '退款成功',
-      301: '待收货',
-      401: '交易成功',
-      402: '交易成功',
+      301: '交易成功',
+      302: '交易成功',
     }
     wx.setNavigationBarTitle({
       title: titleEnums[orderInfo.status],
@@ -81,12 +80,6 @@ Page({
         ['orderInfo.status']: 102
       })
     })
-  },
-
-  navToShipping(e) {
-    const id = e.currentTarget.dataset.id
-    const url = `/pages/subpages/mine/order-center/subpages/goods-order-list/subpages/shipping/index?id=${id}`
-    wx.navigateTo({ url })
   },
 
   navToComment(e) {
