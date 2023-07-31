@@ -1,4 +1,4 @@
-<wxs module="ORDER" src="../../../../../utils/order.wxs" />
+<wxs module="ORDER" src="../../../../../utils/scenicOrder.wxs" />
 
 <view class="order-list">
   <view class="order-item" wx:for="{{list}}" wx:key="index" catchtap="navToDetail" data-id="{{item.id}}">
@@ -22,12 +22,7 @@
       <view class="btn-wrap">
         <button 
           class="btn" 
-          wx:if="{{item.status === 301}}" 
-          catchtap="navToShipping" data-id="{{item.id}}"
-        >查看物流</button>
-        <button 
-          class="btn" 
-          wx:if="{{item.status === 102 || item.status === 103 || item.status === 104 || item.status === 401 || item.status === 402}}" 
+          wx:if="{{item.status === 102 || item.status === 103 || item.status === 104 || item.status === 301 || item.status === 302}}" 
           catchtap="deleteOrder" data-id="{{item.id}}" data-index="{{index}}"
         >删除订单</button>
         <button 
@@ -38,22 +33,17 @@
         <button class="btn" catchtap="navToDetail" data-id="{{item.id}}">查看详情</button>
         <button 
           class="btn active" 
-          wx:if="{{item.status === 301}}" 
-          catchtap="confirmOrder" data-id="{{item.id}}" data-index="{{index}}"
-        >确认收货</button>
-        <button 
-          class="btn active" 
           wx:if="{{item.status === 101}}" 
           catchtap="payOrder" data-id="{{item.id}}" data-index="{{index}}"
         >继续付款</button>
         <button 
           class="btn active" 
-          wx:if="{{item.status === 202}}"
+          wx:if="{{item.status === 201}}"
           catchtap="refundOrder" data-id="{{item.id}}" data-index="{{index}}"
         >申请退款</button>
         <button 
           class="btn active" 
-          wx:if="{{item.status === 401 || item.status === 402}}" 
+          wx:if="{{item.status === 301 || item.status === 302}}" 
           catchtap="navToComment" data-id="{{item.id}}"
         >评价</button>
       </view>
