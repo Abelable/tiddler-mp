@@ -1,106 +1,170 @@
-const { statusBarHeight } = getApp().globalData.systemInfo
+import { store } from "../../../../store/index";
+import { debounce } from "../../../../utils/index";
+import HotelService from "./utils/hotelService";
+
+const hotelService = new HotelService();
+const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Page({
   data: {
     statusBarHeight,
-    filterList: [
-      {
-        title: '',
-        curIndex: 0,
-        options: ['推荐排序', '好评排序', '销量排序', '价格排序'],
-        visible: false
-      },
-      {
-        title: '酒店类型',
-        curIndex: 0,
-        options: ['不限类型', '星级酒店', '特色民宿', '房车营地'],
-        visible: false
-      }
+    curSortIndex: 0,
+    sortOptions: [
+      { icon: "", text: "综合排序", value: 0 },
+      { icon: "", text: "好评排序", value: 1 },
+      { icon: "", text: "价格降序", value: 2 },
+      { icon: "", text: "价格升序", value: 3 },
     ],
+    curCategoryId: 0,
+    categoryOptions: [],
     calendarPopupVisibel: false,
-    startDate: '',
-    endDate: ''
+    startDate: "",
+    endDate: "",
+    keywords: "",
+    hotelList: [],
+    finished: false,
   },
 
-  onLoad() {
-    this.initCalendar()
+  async onLoad() {
+    this.initCalendar();
+    await this.setLocationInfo();
+    await this.setCategoryOptions();
+    this.setHotelList(true);
   },
 
   initCalendar() {
-    const endDate = new Date()
-    endDate.setDate(endDate.getDate() + 1)
+    const endDate = new Date();
+    endDate.setDate(endDate.getDate() + 1);
 
     this.setData({
       startDate: this.formatDate(),
-      endDate: this.formatDate(endDate)
-    })
+      endDate: this.formatDate(endDate),
+    });
   },
 
-  showDropdown(e) {
-    const curIndex = Number(e.currentTarget.dataset.index)
-    this.data.filterList.forEach((item, index) => {
-      if (item.visible && curIndex !== index) {
-        this.setData({
-          [`filterList[${index}].visible`]: false
-        })
-      }
-      if (curIndex === index) {
-        this.setData({
-          [`filterList[${index}].visible`]: !item.visible
-        })
-      }
-    })
+  async setLocationInfo() {
+    const { authSetting } = await hotelService.getSetting();
+    if (authSetting["scope.userLocation"] !== false) {
+      const { longitude, latitude } = await hotelService.getLocation();
+      store.setLocationInfo({ longitude, latitude });
+    }
   },
 
-  selectOption(e) {
-    const { filterIndex, optionIndex } = e.currentTarget.dataset
+  async setCategoryOptions() {
+    const options = await hotelService.getHotelCategoryOptions();
+    const categoryOptions = [
+      { icon: "", text: "全部分类", value: 0 },
+      ...options.map((item) => ({ icon: "", text: item.name, value: item.id })),
+    ];
+    this.setData({ categoryOptions });
+  },
+
+  setSortIndex(e) {
+    const curSortIndex = Number(e.detail);
+    this.setData({ curSortIndex }, () => {
+      this.setHotelList(true);
+    });
+  },
+
+  setCategoryId(e) {
+    const curCategoryId = Number(e.detail);
+    this.setData({ curCategoryId }, () => {
+      this.setHotelList(true);
+    });
+  },
+
+  setKeywords: debounce(function (e) {
     this.setData({
-      [`filterList[${filterIndex}].curIndex`]: Number(optionIndex),
-      [`filterList[${filterIndex}].visible`]: false
-    })
+      keywords: e.detail.value,
+    });
+  }, 500),
+
+  clearKeywords() {
+    this.setData({
+      keywords: "",
+    }, () => {
+      this.setHotelList(true);
+    });
   },
 
-  hideDropdown() {
-    this.data.filterList.forEach((item, index) => {
-      if (item.visible) {
-        this.setData({
-          [`filterList[${index}].visible`]: false
-        })
-      }
-    })
+  search() {
+    if (!this.data.keywords) {
+      return
+    }
+    this.setHotelList(true);
+  },
+
+  async setHotelList(init = false) {
+    const limit = 10;
+    if (init) {
+      this.page = 0;
+      this.setData({
+        finished: false,
+      });
+    }
+    const { keywords, curSortIndex, curCategoryId, hotelList } = this.data;
+    let sort = "";
+    let order = "desc";
+    switch (curSortIndex) {
+      case 1:
+        sort = "rate";
+        break;
+      case 2:
+        sort = "price";
+        break;
+      case 3:
+        sort = "price";
+        order = "asc";
+        break;
+    }
+    const list =
+      (await hotelService.getHotelList({
+        name: keywords,
+        categoryId: curCategoryId,
+        sort,
+        order,
+        page: ++this.page,
+        limit,
+      })) || [];
+    this.setData({
+      hotelList: init ? list : [...hotelList, ...list],
+    });
+    if (list.length < limit) {
+      this.setData({
+        finished: true,
+      });
+    }
   },
 
   showCalendarPopup() {
     this.setData({
-      calendarPopupVisibel: true
-    })
+      calendarPopupVisibel: true,
+    });
   },
 
   hideCalendarPopup() {
     this.setData({
-      calendarPopupVisibel: false
-    })
+      calendarPopupVisibel: false,
+    });
   },
 
   setCalendar(e) {
-    const [start, end] = e.detail
+    const [start, end] = e.detail;
     this.setData({
       startDate: this.formatDate(start),
       endDate: this.formatDate(end),
-      calendarPopupVisibel: false
-    })
+      calendarPopupVisibel: false,
+    });
   },
 
   formatDate(date) {
-    date = date ? new Date(date) : new Date()
-    const month = `${date.getMonth() + 1}`.padStart(2, '0')
-    const day = `${date.getDate()}`.padStart(2, '0')
-    return `${month}-${day}`
+    date = date ? new Date(date) : new Date();
+    const month = `${date.getMonth() + 1}`.padStart(2, "0");
+    const day = `${date.getDate()}`.padStart(2, "0");
+    return `${month}-${day}`;
   },
 
   navBack() {
-    wx.navigateBack({
-      delta: 1
-    })
-  }
-})
+    wx.navigateBack();
+  },
+});

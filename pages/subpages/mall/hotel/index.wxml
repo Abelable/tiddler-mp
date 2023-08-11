@@ -15,31 +15,26 @@
         </view>
       </view>
       <image class="search-icon" src="/images/search.png" />
-      <text class="placeholder">搜索酒店/民宿</text>
+      <input class="search-input" value="{{keywords}}" bindinput="setKeywords" bindconfirm="search" placeholder="搜索酒店/民宿" confirm-type="search" />
+      <view class="cancel-btn" wx:if="{{keywords}}" bindtap="clearKeywords">
+        <image class="cancel-icon" src="https://img.ubo.vip/mp/search/clear-search.png" />
+      </view>
     </view>
   </view>
-  <view class="search-filter">
-    <view wx:for="{{filterList}}" wx:key="index" class="filter-item {{item.visible ? 'active' : ''}}" bindtap="showDropdown" data-index="{{index}}">
-      <text>{{(item.curIndex === 0 && item.title) ? item.title : item.options[item.curIndex]}}</text>
-      <image class="filter-icon {{item.visible ? 'active' : ''}}" src="/images/arrow.png" />
-    </view>
-  </view>
+
+  <van-dropdown-menu active-color="#1989fa">
+    <van-dropdown-item value="{{ curSortIndex }}" options="{{ sortOptions }}" bind:change="setSortIndex" />
+    <van-dropdown-item value="{{ curCategoryId }}" options="{{ categoryOptions }}" bind:change="setCategoryId" />
+  </van-dropdown-menu>
 </view>
 
-<view class="mask" wx:if="{{DROPDOWN.visible(filterList)}}" bindtap="hideDropdown"/>
-<view wx:for="{{filterList}}" wx:key="index" class="filter-options {{item.visible ? 'show' : ''}}" style="top: {{statusBarHeight + 88}}px;">
-  <view class="option" wx:for="{{item.options}}" wx:key="index" wx:for-index="_index" wx:for-item="option" bindtap="selectOption" data-filter-index="{{index}}" data-option-index="{{_index}}">
-    <view class="option-name {{item.curIndex === _index ? 'active' : ''}}">{{option}}</view>
-    <image class="selected-icon" wx:if="{{item.curIndex === _index}}" src="/images/selected.png" />
-  </view>
-</view>
-
-<view class="container" style="padding-top: {{statusBarHeight + 88}}px;">
+<view class="container" style="padding-top: {{statusBarHeight + 94}}px;">
   <view class="hotel-list" >
-    <hotel-item />
-    <hotel-item />
-    <hotel-item />
+    <hotel-item wx:for="{{hotelList}}" wx:key="index" item="{{item}}" />
   </view>
+
+  <empty-illus wx:if="{{finished && !hotelList.length}}" desc="没有找到相关酒店" />
+  <view class="no-more-tips" wx:if="{{finished && hotelList.length}}">～没有更多了～</view>
 </view>
 
 <van-calendar type="range" color="#77a9fd" show="{{calendarPopupVisibel}}" bind:close="hideCalendarPopup" bind:confirm="setCalendar" />
