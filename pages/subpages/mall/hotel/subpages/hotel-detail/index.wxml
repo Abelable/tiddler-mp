@@ -1,0 +1,253 @@
+<wxs module="TIME" src="/utils/filters/time.wxs" />
+
+<page-meta page-style="{{ noticePopupVisible ? 'overflow: hidden;' : '' }}" />
+
+<view class="nav-bar-wrap">
+  <view class="nav-bar row" style="padding-top: {{statusBarHeight}}px;">
+    <image class="nav-bg" wx:if="{{navBarVisible}}" src="{{hotelInfo.imageList[0]}}" mode="aspectFill" />
+    <view class="bg-cover" wx:if="{{navBarVisible}}" />
+    <back-icon style="margin-left: 8px;" noBorder="{{navBarVisible}}" />
+    <image class="spot-image" wx:if="{{navBarVisible}}" src="{{hotelInfo.imageList[0]}}" mode="aspectFill" />
+    <view class="spot-info" wx:if="{{navBarVisible}}">
+      <view class="spot-name">{{hotelInfo.name}}</view>
+      <view class="grade-wrap row">
+        <van-rate value="{{hotelInfo.rate || 0}}" size="8" gutter="0" color="#ffd21e" void-icon="star" void-color="#eee" allow-half readonly />
+        <text class="spot-grade">{{hotelInfo.rate}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="menu-wrap row" wx:if="{{navBarVisible}}">
+    <scroll-view 
+      class="menu" 
+      scroll-left="{{curMenuIdx > 2 ? (curMenuIdx - 1) * 80 : 0}}" 
+      scroll-with-animation 
+      scroll-x 
+      enable-flex
+    >
+      <view 
+        class="menu-item row {{curMenuIdx === index ? 'active' : ''}}" 
+        wx:for="{{menuList}}"
+        wx:key="index"
+        bindtap="selectMenu"
+        data-index="{{index}}"
+      >{{item}}</view>
+    </scroll-view>
+    <button class="share-btn" hover-class="none">
+      <image class="share-icon" src="./images/share.png" />
+    </button>
+  </view>
+</view>
+
+<view class="banner-wrap">
+  <swiper style="height: 420rpx;" circular bindchange="bannerChange">
+    <swiper-item wx:if="{{hotelInfo.video}}">
+      <view class="video-wrap" bindtap="fullScreenPlay">
+        <video
+          class="video-player"
+          src="{{hotelInfo.video}}"
+          muted="{{muted}}"
+          autoplay
+          loop
+          controls="{{false}}"
+          show-center-play-btn="{{false}}" 
+          show-fullscreen-btn="{{false}}"
+        />
+      </view>
+    </swiper-item>
+    <swiper-item 
+      wx:for="{{hotelInfo.imageList}}" 
+      wx:key="index" 
+      bindtap="previewImage" 
+      data-current="{{item}}" 
+      data-urls="{{hotelInfo.imageList}}"
+    >
+      <image style="width:100%; height:100%;" src="{{item}}" mode='aspectFill' lazy-load />
+    </swiper-item>
+  </swiper>
+  <view class="mute-icon-wrap row center" wx:if="{{hotelInfo.video && curDot === 1}}" catchtap="toggleMuted">
+    <image class="mute-icon" src="./images/{{muted ? 'muted' : 'unmuted'}}.png" />
+  </view>
+  <view class="banner-dots row">
+    <image class="dot-icon" src="{{(hotelInfo.video && curDot === 1) ? './images/video.png' : './images/photo.png'}}" />
+    <text>{{curDot}}/{{hotelInfo.imageList.length + (hotelInfo.video ? 1 : 0)}}</text>
+  </view>
+</view>
+
+<view class="container">
+  <view class="row between">
+    <view class="row">
+      <view class="hotel-spot-name">{{hotelInfo.name}}</view>
+      <view class="level-tag row">3A</view>
+    </view>
+    <image class="share-icon" src="./images/share.png" />
+  </view>
+
+  <view class="score-wrap row">
+    <van-rate value="{{hotelInfo.rate || 0}}" size="18" gutter="0" color="#ffd21e" void-icon="star" void-color="#eee" allow-half readonly />
+    <text class="score" wx:if="{{hotelInfo.rate}}">{{hotelInfo.rate}}分</text>
+    <text class="no-score" wx:if="{{!hotelInfo.rate}}">暂无评分</text>
+  </view>
+
+  <view class="info-list-wrap">
+    <view class="info-list row between" bindtap="checkMoreInfo">
+      <view class="row">
+        <image class="clock-icon" src="./images/time.png" />
+        <view class="opening-status row {{!isOpen ? 'closed' : ''}}">{{!isOpen ? '已闭园' : '开园中'}}</view>
+        <view class="opening-hours">{{TIME.transform(curOpenTime.openTime, 'hh:mm')}}-{{TIME.transform(curOpenTime.closeTime, 'hh:mm')}}开放{{curOpenTime.tips ? ('（' + curOpenTime.tips + '）') : ''}}</view>
+      </view>
+      <view class="row">
+        <view class="more-detail">详情</view>
+        <image class="more-icon" src="./images/more.png" />
+      </view>
+    </view>
+    <view class="info-list row between" bindtap="navigation">
+      <view class="row">
+        <image class="position-icon" src="./images/position.png" />
+        <view class="opening-hours">{{hotelInfo.address}}</view>
+      </view>
+      <button class="navigation-btn" hover-class="none">
+        <image class="navigation-icon" src="./images/navigation.png" />
+        <view>导航</view>
+      </button>
+    </view>
+  </view>
+
+  <view class="content-title-wrap row between">
+    <view class="content-title">景点门票</view>
+    <view class="content-title-tips row" wx:if="{{hotelInfo.policyList.length}}" bindtap="checkPolicy">
+      <text>优待政策</text>
+      <image class="more-icon" src="./images/more-blue.png" />
+    </view>
+  </view>
+  <scroll-view class="ticket-type-menu" scroll-x>
+    <view 
+      class="ticket-type-item {{curTicketTypeIdx === index ? 'active' : ''}}" 
+      wx:for="{{ticketTypeList}}" 
+      wx:key="index"
+      bindtap="selectTicketType"
+      data-index="{{index}}"
+    >{{item.name}}</view>
+  </scroll-view>
+  <view class="collapse">
+    <collapse-item 
+      wx:for="{{ticketList}}" 
+      wx:key="index" 
+      item="{{item}}" 
+      index="{{index}}"
+      bind:toggleFold="toggleTicketsFold"
+      bind:showNoticePopup="showNoticePopup"
+    />
+  </view>
+  <empty-illus wx:if="{{!ticketTypeList.length}}" desc="暂无景点门票" height="520rpx" />
+
+  <view class="content-title-wrap" wx:if="{{combinedTicketTypeList.length}}">
+    <view class="content-title">多景点联票</view>
+  </view>
+  <scroll-view class="ticket-type-menu" scroll-x wx:if="{{combinedTicketTypeList.length}}">
+    <view 
+      class="ticket-type-item {{curCombinedTicketTypeIdx === index ? 'active' : ''}}" 
+      wx:for="{{combinedTicketTypeList}}" 
+      wx:key="index"
+      bindtap="selectCombinedTicketType"
+      data-index="{{index}}"
+    >{{item}}</view>
+  </scroll-view>
+  <view class="collapse" wx:if="{{combinedTicketTypeList.length}}">
+    <collapse-item 
+      wx:for="{{combinedTicketList}}" 
+      wx:key="index" 
+      item="{{item}}" 
+      index="{{index}}"
+      bind:toggleFold="toggleCombinedTicketsFold"
+      bind:showNoticePopup="showNoticePopup"
+      bind:booking="booking"
+    />
+  </view>
+
+  <view class="content-title-wrap">
+    <view class="content-title">用户点评</view>
+  </view>
+  <view class="comment-list">
+    <comment-item wx:for="{{commentList}}" wx:key="index" item="{{item}}" />
+  </view>
+  <view class="total-tips row center">
+    <text>共1000条点评</text>
+    <image class="more-icon" src="./images/more.png" />
+  </view>
+
+  <view class="content-title-wrap">
+    <view class="content-title">热门问答</view>
+  </view>
+  <view class="qa-list">
+    <view class="qa-item">
+      <view class="qa-question">千岛湖森林氧吧什么季节最适合去？</view>
+      <view class="answer-user row">
+        <image class="answer-user-avatar" src="http://img.ubo.vip/uploads/15099395_642329416d5f9/i0hX323HiYx8uIbCsHISlbbDATrzieNfFUgcfhHf.jpeg" />
+        <view class="answer-user-name">小绿女孩</view>
+      </view>
+      <view class="qa-answer omit single-line">建议5-9月份去呀～那时候森林氧吧是最好的时候了，我是去年的6月份去得，正值酷夏来临之前，天气偏暖，去森林氧吧，空气中都弥漫着大自然的味道</view>
+      <view class="qa-label">问</view>
+    </view>
+    <view class="qa-item">
+      <view class="qa-question">千岛湖森林氧吧需要玩多久？</view>
+      <view class="qa-answers row">
+        <view class="qa-answers-avatars row">
+          <image class="answer-user-avatar" src="http://img.ubo.vip/uploads/15099395_642329416d5f9/i0hX323HiYx8uIbCsHISlbbDATrzieNfFUgcfhHf.jpeg" />
+          <image class="answer-user-avatar" src="http://img.ubo.vip/uploads/1112018_6093656e613a3/oY6sVTNFk6komid6RUNI25Z5HT6iptFWUAeQRVZZ.jpeg" />
+          <image class="answer-user-avatar" src="http://img.ubo.vip/uploads/6050889_62839505814e0/NBY9RpALyiHVsO41LRMGZKqqzxjjrkcul5o91iEw.jpeg" />
+        </view>
+        <view class="qa-answers-number">13人回答</view>
+      </view>
+      <view class="qa-label">问</view>
+    </view>
+    <view class="qa-item">
+      <view class="qa-question">千岛湖森林氧吧好玩吗？</view>
+      <view class="qa-answers row">
+        <view class="qa-answers-avatars row">
+          <image class="answer-user-avatar" src="http://img.ubo.vip/uploads/15099395_642329416d5f9/i0hX323HiYx8uIbCsHISlbbDATrzieNfFUgcfhHf.jpeg" />
+          <image class="answer-user-avatar" src="http://img.ubo.vip/uploads/1112018_6093656e613a3/oY6sVTNFk6komid6RUNI25Z5HT6iptFWUAeQRVZZ.jpeg" />
+          <image class="answer-user-avatar" src="http://img.ubo.vip/uploads/6050889_62839505814e0/NBY9RpALyiHVsO41LRMGZKqqzxjjrkcul5o91iEw.jpeg" />
+        </view>
+        <view class="qa-answers-number">4人回答</view>
+      </view>
+      <view class="qa-label">问</view>
+    </view>
+  </view>
+  <view class="total-tips row center">
+    <text>共100条问答</text>
+    <image class="more-icon" src="./images/more.png" />
+  </view>
+
+  <view class="content-title-wrap row between">
+    <view class="content-title">附近酒店</view>
+    <view class="row">
+      <view class="more-detail">共10个推荐</view>
+      <image class="more-icon" src="./images/more.png" />
+    </view>
+  </view>
+  <scroll-view class="hotel-list" scroll-x enable-flex>
+    <hotel-item wx:for="{{nearbyHotelList}}" wx:key="index" info="{{item}}" />
+  </scroll-view>
+
+  <view class="content-title-wrap row between">
+    <view class="content-title">附近景点</view>
+    <view class="row">
+      <view class="more-detail">共10个推荐</view>
+      <image class="more-icon" src="./images/more.png" />
+    </view>
+  </view>
+  <scroll-view class="hotel-spot-list" scroll-x enable-flex>
+    <hotel-spot-item wx:for="{{nearbyScenicSpotList}}" wx:key="index" info="{{item}}" />
+  </scroll-view>
+
+  <view class="content-title-wrap">
+    <view class="content-title">达人打卡</view>
+  </view>
+  <view class="media-wrap">
+    <fall-flow list="{{mediaList}}" generic:item="media-item" />
+    <view class="no-more-tips">～没有更多了～</view>
+  </view>
+</view>
+
+<notice-popup show="{{noticePopupVisible}}" info="{{curTicketInfo}}" bind:hide="hideNoticePopup" />

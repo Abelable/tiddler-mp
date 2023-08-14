@@ -1,0 +1,3 @@
+<scroll-view class="project-list" scroll-x enable-flex>
+  <project-item wx:for="{{list}}" wx:key="index" info="{{item}}" />
+</scroll-view>
