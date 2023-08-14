@@ -1,4 +1,4 @@
-<view class="hotel-item">
+<view class="hotel-item" bindtap="checkDetail">
   <image class="cover" src="{{ item.cover }}" mode="aspectFill" lazy-load />
   <view class="content">
     <view class="title omit">{{ item.name }}</view>

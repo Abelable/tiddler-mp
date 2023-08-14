@@ -1,15 +1,15 @@
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
 import { store } from "../../../../../../store/index";
-import ScenicService from "../../utils/scenicService";
+import HotelService from "../../utils/hotelService";
 
-const scenicService = new ScenicService();
+const hotelService = new HotelService();
 
 Component({
   behaviors: [storeBindingsBehavior],
 
   storeBindings: {
     store,
-    fields: ["scenicPreOrderInfo"],
+    fields: ["hotelPreOrderInfo"],
   },
 
   data: {
@@ -18,7 +18,7 @@ Component({
     formatter(day) {
       const timeStamp = day.date / 1000;
       const { price } =
-        store.scenicPreOrderInfo.priceList.find(
+        store.hotelPreOrderInfo.priceList.find(
           (item) => timeStamp >= item.startDate && timeStamp <= item.endDate
         ) || {};
       if (price) {
@@ -40,7 +40,7 @@ Component({
   },
 
   observers: {
-    scenicPreOrderInfo: function (info) {
+    hotelPreOrderInfo: function (info) {
       if (info) {
         this.setRecentlyDateList();
 
@@ -57,12 +57,12 @@ Component({
 
   methods: {
     async setPaymentAmount() {
-      const { scenicPreOrderInfo, recentlyDateList, curDateIdx, num } =
+      const { hotelPreOrderInfo, recentlyDateList, curDateIdx, num } =
         this.data;
-      const { id: ticketId, categoryId } = scenicPreOrderInfo;
+      const { id: ticketId, categoryId } = hotelPreOrderInfo;
       const { timeStamp } = recentlyDateList[curDateIdx];
 
-      const paymentAmount = await scenicService.getPaymentAmount(
+      const paymentAmount = await hotelService.getPaymentAmount(
         ticketId,
         categoryId,
         timeStamp,
@@ -72,8 +72,8 @@ Component({
     },
 
     async setValidityTimeDesc() {
-      const { scenicPreOrderInfo, recentlyDateList, curDateIdx } = this.data;
-      const { validityTime } = scenicPreOrderInfo;
+      const { hotelPreOrderInfo, recentlyDateList, curDateIdx } = this.data;
+      const { validityTime } = hotelPreOrderInfo;
       const { timeStamp } = recentlyDateList[curDateIdx];
 
       const startDate = new Date(timeStamp * 1000);
@@ -90,7 +90,7 @@ Component({
     },
 
     setRecentlyDateList() {
-      const { priceList, todayBookable } = this.data.scenicPreOrderInfo;
+      const { priceList, todayBookable } = this.data.hotelPreOrderInfo;
       const timeStamp = new Date(new Date().setHours(0, 0, 0, 0)) / 1000;
       const timeStampList = [
         timeStamp,
@@ -130,7 +130,7 @@ Component({
 
     selectDate(e) {
       const curDateIdx = Number(e.currentTarget.dataset.index);
-      if (curDateIdx === 0 && !this.data.scenicPreOrderInfo.todayBookable) {
+      if (curDateIdx === 0 && !this.data.hotelPreOrderInfo.todayBookable) {
         return;
       }
       this.setData({ curDateIdx }, () => {
@@ -163,7 +163,7 @@ Component({
     // 提交订单
     async submit() {
       const {
-        scenicPreOrderInfo,
+        hotelPreOrderInfo,
         recentlyDateList,
         curDateIdx,
         num,
@@ -189,10 +189,10 @@ Component({
         return
       }
 
-      const { id, categoryId } = scenicPreOrderInfo;
+      const { id, categoryId } = hotelPreOrderInfo;
       const { timeStamp } = recentlyDateList[curDateIdx];
 
-      const orderId = await scenicService.submitOrder(
+      const orderId = await hotelService.submitOrder(
         id,
         categoryId,
         timeStamp,
@@ -205,17 +205,17 @@ Component({
     },
 
     async pay(orderId) {
-      const payParams = await scenicService.getScenicOrderPayParams(orderId);
+      const payParams = await hotelService.getHotelOrderPayParams(orderId);
       wx.requestPayment({
         ...payParams,
         success: () => {
           wx.navigateTo({
-            url: "/pages/subpages/mine/order-center/subpages/scenic-order-list/index?status=2",
+            url: "/pages/subpages/mine/order-center/subpages/hotel-order-list/index?status=2",
           });
         },
         fail: () => {
           wx.navigateTo({
-            url: "/pages/subpages/mine/order-center/subpages/scenic-order-list/index?status=1",
+            url: "/pages/subpages/mine/order-center/subpages/hotel-order-list/index?status=1",
           });
         },
       });
@@ -235,7 +235,7 @@ Component({
 
     onCalendarConfirm({ detail: timeStamp }) {
       timeStamp = timeStamp / 1000;
-      const { recentlyDateList, scenicPreOrderInfo } = this.data;
+      const { recentlyDateList, hotelPreOrderInfo } = this.data;
       const curDateIdx = recentlyDateList.findIndex(
         (item) => item.timeStamp === timeStamp
       );
@@ -245,7 +245,7 @@ Component({
         });
       } else {
         const { price } =
-          scenicPreOrderInfo.priceList.find(
+          hotelPreOrderInfo.priceList.find(
             (item) => timeStamp >= item.startDate && timeStamp <= item.endDate
           ) || {};
         const curDate = new Date(timeStamp * 1000);

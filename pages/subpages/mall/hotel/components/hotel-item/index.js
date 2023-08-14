@@ -23,4 +23,12 @@ Component({
   data: {
     distance: 0,
   },
+
+  methods: {
+    checkDetail() {
+      const { id } = this.properties.item;
+      const url = `/pages/subpages/mall/hotel/subpages/hotel-detail/index?id=${id}`;
+      wx.navigateTo({ url });
+    },
+  },
 });

@@ -282,9 +282,6 @@ Page({
   async setHotelInfo() {
     const hotelInfo = await hotelService.getHotelInfo(this.hotelId);
     this.setData({ hotelInfo });
-
-    const { openTimeList } = hotelInfo;
-    openTimeList.length && this.setCurOpenTime(openTimeList);
   },
 
   setMenuList() {
