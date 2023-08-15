@@ -40,12 +40,12 @@
 </view>
 
 <view class="banner-wrap">
-  <swiper style="height: 420rpx;" circular bindchange="bannerChange">
-    <swiper-item wx:if="{{hotelInfo.video}}">
+  <swiper style="height: 420rpx;" current="{{ curDot - 1 }}" circular bindchange="bannerChange">
+    <swiper-item wx:if="{{video}}">
       <view class="video-wrap" bindtap="fullScreenPlay">
         <video
           class="video-player"
-          src="{{hotelInfo.video}}"
+          src="{{video}}"
           muted="{{muted}}"
           autoplay
           loop
@@ -56,21 +56,29 @@
       </view>
     </swiper-item>
     <swiper-item 
-      wx:for="{{hotelInfo.imageList}}" 
+      wx:for="{{imageList}}" 
       wx:key="index" 
-      bindtap="previewImage" 
-      data-current="{{item}}" 
-      data-urls="{{hotelInfo.imageList}}"
+      bindtap="checkMoreImage"
     >
       <image style="width:100%; height:100%;" src="{{item}}" mode='aspectFill' lazy-load />
     </swiper-item>
   </swiper>
-  <view class="mute-icon-wrap row center" wx:if="{{hotelInfo.video && curDot === 1}}" catchtap="toggleMuted">
+  <view class="mute-icon-wrap row center" wx:if="{{video && curDot === 1}}" catchtap="toggleMuted">
     <image class="mute-icon" src="./images/{{muted ? 'muted' : 'unmuted'}}.png" />
   </view>
-  <view class="banner-dots row">
-    <image class="dot-icon" src="{{(hotelInfo.video && curDot === 1) ? './images/video.png' : './images/photo.png'}}" />
-    <text>{{curDot}}/{{hotelInfo.imageList.length + (hotelInfo.video ? 1 : 0)}}</text>
+  <view class="banner-menu-list">
+    <view 
+      class="banner-menu-item {{ curDot === index + (video ? 1 : 0) ? 'active' : '' }}" 
+      wx:for="{{imageMenuList}}" 
+      wx:key="index"
+      catchtap="swiperBanner"
+      data-index="{{index}}"
+    >{{ item }}</view>
+  </view>
+  <view class="more-media row" catchtap="checkMoreImage">
+    <image class="pic-icon" src="./images/photo.png" />
+    <text>{{ mediaCount }}</text>
+    <image class="more-media-icon" src="./images/more-white.png" />
   </view>
 </view>
 

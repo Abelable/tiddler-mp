@@ -1,0 +1,10 @@
+<view class="image-grid">
+  <image 
+    class="image-item" 
+    wx:for="{{imageList}}" 
+    wx:key="index" 
+    src="{{item}}" 
+    mode="aspectFill" 
+    lazy-load 
+  />
+</view>

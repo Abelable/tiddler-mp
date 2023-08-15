@@ -33,6 +33,7 @@
       "mall/scenic-spot/subpages/order-check/index",
       "mall/hotel/index",
       "mall/hotel/subpages/hotel-detail/index",
+      "mall/hotel/subpages/hotel-detail/subpages/more-image/index",
       "mall/hotel/subpages/hotel-detail/subpages/more-info/index",
       "mall/hotel/subpages/hotel-detail/subpages/comment-list/index",
       "mall/hotel/subpages/hotel-detail/subpages/qa-list/index",

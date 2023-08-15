@@ -10,6 +10,10 @@ Page({
     menuList: [],
     curMenuIdx: -1,
     hotelInfo: null,
+    video: "",
+    imageList: [],
+    imageMenuList: [],
+    mediaCount: 0,
     curOpenTime: null,
     isOpen: true,
     curDot: 1,
@@ -120,7 +124,7 @@ Page({
         basePrice: 500,
       },
     ],
-    nearbyHotelSpotList: [
+    nearbyScenicSpotList: [
       {
         image:
           "http://img.ubo.vip/uploads/15095212_63f83fc85e023/4uPSXbFzNsQt13bvyvURZtMj1YOqc7okLbSKdxSv.jpeg",
@@ -280,8 +284,58 @@ Page({
   },
 
   async setHotelInfo() {
-    const hotelInfo = await hotelService.getHotelInfo(this.hotelId);
-    this.setData({ hotelInfo });
+    const {
+      video,
+      cover,
+      appearanceImageList,
+      interiorImageList,
+      roomImageList,
+      restaurantImageList,
+      environmentImageList,
+      ...hotelInfo
+    } = await hotelService.getHotelInfo(this.hotelId);;
+    const imageList = [];
+    const imageMenuList = [];
+    let mediaCount = 0;
+    this.imagesList = [];
+    if (video) {
+      imageMenuList.push("视频");
+    } else {
+      imageList.push(cover);
+      imageMenuList.push("封面");
+    }
+    if (appearanceImageList.length) {
+      imageList.push(appearanceImageList[0]);
+      imageMenuList.push("外观");
+      mediaCount += appearanceImageList.length;
+      this.imagesList.push(appearanceImageList)
+    }
+    if (interiorImageList.length) {
+      imageList.push(interiorImageList[0]);
+      imageMenuList.push("内景");
+      mediaCount += interiorImageList.length;
+      this.imagesList.push(interiorImageList)
+    }
+    if (roomImageList.length) {
+      imageList.push(roomImageList[0]);
+      imageMenuList.push("房间");
+      mediaCount += roomImageList.length;
+      this.imagesList.push(roomImageList)
+    }
+    if (restaurantImageList.length) {
+      imageList.push(restaurantImageList[0]);
+      imageMenuList.push("餐厅");
+      mediaCount += restaurantImageList.length;
+      this.imagesList.push(restaurantImageList)
+    }
+    if (environmentImageList.length) {
+      imageList.push(environmentImageList[0]);
+      imageMenuList.push("环境");
+      mediaCount += environmentImageList.length;
+      this.imagesList.push(environmentImageList)
+    }
+
+    this.setData({ hotelInfo, imageList, imageMenuList, mediaCount });
   },
 
   setMenuList() {
@@ -334,6 +388,12 @@ Page({
     });
   },
 
+  swiperBanner(e) {
+    this.setData({
+      curDot: e.currentTarget.dataset.index + 1,
+    });
+  },
+
   toggleMuted() {
     this.setData({
       muted: !this.data.muted,
@@ -344,11 +404,6 @@ Page({
     const { video } = this.data.hotelInfo;
     const url = `/pages/subpages/common/video-play/index?url=${video}`;
     wx.navigateTo({ url });
-  },
-
-  previewImage(e) {
-    const { current, urls } = e.currentTarget.dataset;
-    wx.previewImage({ current, urls });
   },
 
   selectMenu(e) {
@@ -400,6 +455,13 @@ Page({
     this.setData({
       noticePopupVisible: false,
     });
+  },
+
+  checkMoreImage() {
+    const menuList = JSON.stringify(this.data.imageMenuList.slice(1))
+    const imagesList = JSON.stringify(this.imagesList)
+    const url = `./subpages/more-image/index?menuList=${menuList}&imagesList=${imagesList}`
+    wx.navigateTo({ url });
   },
 
   checkMoreInfo() {
