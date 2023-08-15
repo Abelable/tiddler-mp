@@ -27,25 +27,22 @@
   backdrop-filter: blur(4px);
   z-index: -1;
 }
-.spot-image {
+.hotel-image {
   margin-left: 8px;
   width: 30px;
   height: 30px;
   border-radius: 4px;
 }
-.spot-info {
+.hotel-info {
   margin-left: 8px;
   color: #fff;
   font-weight: bold;
 }
-.spot-name {
+.name {
   font-size: 14px;
 }
-.grade-wrap {
+.english-name {
   font-size: 8px;
-}
-.spot-grade {
-  margin-left: 4rpx;
 }
 
 .menu-wrap {
@@ -190,7 +187,7 @@
   background: #fff;
   border-radius: 24rpx 24rpx 0 0;
 }
-.hotel-spot-name {
+.hotel-name {
   color: #333;
   font-size: 38rpx;
   font-weight: bold;
@@ -218,7 +215,7 @@
   height: 42rpx;
 }
 .name-desc {
-  margin-top: 8rpx;
+  margin-top: 6rpx;
   color: #333;
   font-size: 26rpx;
   font-weight: bold;
@@ -239,63 +236,79 @@
   font-size: 20rpx;
 }
 
-.info-list-wrap {
-  margin-top: 8px;
+.labels-wrap {
+  margin-top: 24rpx;
 }
-.info-list {
-  height: 88rpx;
-  border-bottom: 1px solid #eee;
+.labels {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: 40rpx;
+  flex: 1;
 }
-.info-list:last-child {
-  border-bottom: none;
+.label {
+  margin: 6rpx 12rpx 6rpx 0;
+  color: #666;
+  font-size: 18rpx;
+  background: #f5f6f7;
+  padding: 6rpx 14rpx;
+  border-radius: 16rpx;
 }
-.clock-icon, .position-icon {
-  margin-right: 12rpx;
-  width: 26rpx;
-  height: 26rpx;
+.label.blue {
+  color: var(--theme-color);
+  background: #ebf2fd;
 }
-.opening-status {
-  margin-right: 12rpx;
-  padding: 0 8rpx;
-  height: 30rpx;
-  color: #37B766;
-  font-size: 20rpx;
-  font-weight: bold;
-  line-height: 30rpx;
-  border: 1px solid #37B766;
-  border-radius: 4rpx;
+
+.position-info-wrap {
+  position: relative;
+  margin-top: 24rpx;
+  height: 180rpx;
+  border-radius: 32rpx;
+  background: #2A254B;
+  overflow: hidden;
 }
-.opening-status.closed {
-  color: #999;
-  border: 1px solid #999;
+.position-bg {
+  margin-left: 12rpx;
+  width: 180rpx;
+  height: 180rpx;
 }
-.opening-hours {
-  color: #333;
+.position-info {
+  padding: 24rpx;
+  padding-left: 12rpx;
+  flex: 1;
+}
+.position {
+  color: #fff;
   font-size: 24rpx;
-  font-weight: bold;
+  font-weight: 550;
 }
+.distance {
+  margin-top: 12rpx;
+  color: #fff;
+  font-size: 20rpx;
+}
+.navigation-btn {
+  position: absolute;
+  right: 24rpx;
+  bottom: 24rpx;
+  padding-left: 16rpx;
+  padding-right: 10rpx;
+  height: 40rpx;
+  color: #fff;
+  font-size: 20rpx;
+  line-height: 1;
+  border-radius: 20rpx;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+}
+
 .more-detail {
   color: #666;
   font-size: 24rpx;
-}
+} 
 .more-icon {
   margin-left: 2rpx;
   width: 20rpx;
   height: 20rpx;
-}
-
-.navigation-btn {
-  padding: 0 16rpx;
-  height: 36rpx;
-  color: #666;
-  font-size: 20rpx;
-  border-radius: 18rpx;
-  background: #f1f1f1;
-}
-.navigation-icon {
-  margin-right: 4rpx;
-  width: 18rpx;
-  height: 18rpx;
 }
 
 .content-title-wrap {
@@ -438,7 +451,7 @@
   height: 380rpx;
 }
 
-.hotel-spot-list {
+.hotel-hotel-list {
   display: flex;
   flex-wrap: nowrap;
   margin-top: 24rpx;

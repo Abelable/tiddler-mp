@@ -4,16 +4,13 @@
 
 <view class="nav-bar-wrap">
   <view class="nav-bar row" style="padding-top: {{statusBarHeight}}px;">
-    <image class="nav-bg" wx:if="{{navBarVisible}}" src="{{hotelInfo.imageList[0]}}" mode="aspectFill" />
+    <image class="nav-bg" wx:if="{{navBarVisible}}" src="{{cover}}" mode="aspectFill" />
     <view class="bg-cover" wx:if="{{navBarVisible}}" />
     <back-icon style="margin-left: 8px;" noBorder="{{navBarVisible}}" />
-    <image class="spot-image" wx:if="{{navBarVisible}}" src="{{hotelInfo.imageList[0]}}" mode="aspectFill" />
-    <view class="spot-info" wx:if="{{navBarVisible}}">
-      <view class="spot-name">{{hotelInfo.name}}</view>
-      <view class="grade-wrap row">
-        <van-rate value="{{hotelInfo.rate || 0}}" size="8" gutter="0" color="#ffd21e" void-icon="star" void-color="#eee" allow-half readonly />
-        <text class="spot-grade">{{hotelInfo.rate}}</text>
-      </view>
+    <image class="hotel-image" wx:if="{{navBarVisible}}" src="{{cover}}" mode="aspectFill" />
+    <view class="hotel-info" wx:if="{{navBarVisible}}">
+      <view class="name">{{hotelInfo.name}}</view>
+      <view class="english-name">{{hotelInfo.englishName}}</view>
     </view>
   </view>
 
@@ -85,7 +82,7 @@
 <view class="container">
   <view class="row between">
     <view class="row">
-      <view class="hotel-spot-name">{{hotelInfo.name}}</view>
+      <view class="hotel-name">{{hotelInfo.name}}</view>
       <view class="hotel-score">4.2</view>
     </view>
     <image class="share-icon" src="./images/share.png" />
@@ -93,27 +90,24 @@
 
   <view class="name-desc omit single-line">{{['经济酒店', '舒适酒店', '高档酒店', '豪华酒店'][hotelInfo.grade - 1]}} ｜ {{hotelInfo.englishName}} </view>
 
-  <view class="info-list-wrap">
-    <view class="info-list row between" bindtap="checkMoreInfo">
-      <view class="row">
-        <image class="clock-icon" src="./images/time.png" />
-        <view class="opening-status row {{!isOpen ? 'closed' : ''}}">{{!isOpen ? '已闭园' : '开园中'}}</view>
-        <view class="opening-hours">{{TIME.transform(curOpenTime.openTime, 'hh:mm')}}-{{TIME.transform(curOpenTime.closeTime, 'hh:mm')}}开放{{curOpenTime.tips ? ('（' + curOpenTime.tips + '）') : ''}}</view>
-      </view>
-      <view class="row">
-        <view class="more-detail">详情</view>
-        <image class="more-icon" src="./images/more.png" />
-      </view>
+  <view class="labels-wrap row" bindtap="checkMoreInfo">
+    <view class="labels">
+      <view class="label blue">{{TIME.transform(hotelInfo.openingYear, 'YYYY年开业')}}</view>
+      <view class="label blue" wx:if="{{hotelInfo.lastDecorationYear}}">{{TIME.transform(hotelInfo.lastDecorationYear, 'YYYY年装修')}}</view>
+      <view class="label" wx:for="{{hotelInfo.featureTagList}}" wx:key="index" wx:for-item="tag">{{tag}}</view>
     </view>
-    <view class="info-list row between" bindtap="navigation">
-      <view class="row">
-        <image class="position-icon" src="./images/position.png" />
-        <view class="opening-hours">{{hotelInfo.address}}</view>
-      </view>
-      <button class="navigation-btn" hover-class="none">
-        <image class="navigation-icon" src="./images/navigation.png" />
-        <view>导航</view>
-      </button>
+    <image class="more-icon" src="./images/more.png" />
+  </view>
+
+  <view class="position-info-wrap row top">
+    <image class="position-bg" src="https://img.ubo.vip/tiddler/hotel/position-bg.jpg" />
+    <view class="position-info">
+      <view class="position">位于「国家森林公园」{{hotelInfo.address}}</view>
+      <view class="distance">距您{{distance}}km</view>
+    </view>
+    <view class="navigation-btn row">
+      <view>导航/周边</view>
+      <image class="more-icon" src="./images/more-white.png" />
     </view>
   </view>
 
@@ -224,6 +218,17 @@
   </view>
 
   <view class="content-title-wrap row between">
+    <view class="content-title">附近景点</view>
+    <view class="row">
+      <view class="more-detail">共10个推荐</view>
+      <image class="more-icon" src="./images/more.png" />
+    </view>
+  </view>
+  <scroll-view class="hotel-hotel-list" scroll-x enable-flex>
+    <scenic-spot-item wx:for="{{nearbyScenicSpotList}}" wx:key="index" info="{{item}}" />
+  </scroll-view>
+
+  <view class="content-title-wrap row between">
     <view class="content-title">附近酒店</view>
     <view class="row">
       <view class="more-detail">共10个推荐</view>
@@ -232,17 +237,6 @@
   </view>
   <scroll-view class="hotel-list" scroll-x enable-flex>
     <hotel-item wx:for="{{nearbyHotelList}}" wx:key="index" info="{{item}}" />
-  </scroll-view>
-
-  <view class="content-title-wrap row between">
-    <view class="content-title">附近景点</view>
-    <view class="row">
-      <view class="more-detail">共10个推荐</view>
-      <image class="more-icon" src="./images/more.png" />
-    </view>
-  </view>
-  <scroll-view class="hotel-spot-list" scroll-x enable-flex>
-    <hotel-spot-item wx:for="{{nearbyScenicSpotList}}" wx:key="index" info="{{item}}" />
   </scroll-view>
 
   <view class="content-title-wrap">

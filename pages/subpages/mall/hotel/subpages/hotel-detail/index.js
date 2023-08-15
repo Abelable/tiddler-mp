@@ -1,3 +1,5 @@
+import { store } from "../../../../../../store/index";
+import { calcDistance } from "../../../../../../utils/index";
 import HotelService from "../../utils/hotelService";
 
 const hotelService = new HotelService();
@@ -11,9 +13,11 @@ Page({
     curMenuIdx: -1,
     hotelInfo: null,
     video: "",
+    cover: "",
     imageList: [],
     imageMenuList: [],
     imageCount: 0,
+    distance: 0,
     curOpenTime: null,
     isOpen: true,
     curDot: 1,
@@ -60,6 +64,64 @@ Page({
           "http://img.ubo.vip/uploads/15099395_642329267e4f8/ISOiz9t2EvRE6qVtFZ2xjh32jZClfYnArgw6hzIZ.jpeg",
           "http://img.ubo.vip/uploads/15099395_64232926ec7c3/P8vDwhVWkc2mhCcYBkGc7gQC0gTAfgXSFXm9s19D.jpeg",
         ],
+      },
+    ],
+    nearbyScenicSpotList: [
+      {
+        image:
+          "http://img.ubo.vip/uploads/15095212_63f83fc85e023/4uPSXbFzNsQt13bvyvURZtMj1YOqc7okLbSKdxSv.jpeg",
+        name: "千岛湖啤酒小镇",
+        rate: 4.6,
+        distance: "4.5km",
+      },
+      {
+        image:
+          "http://img.ubo.vip/uploads/15095212_63f83fc80e25d/uF2jdRqXSBtSAxRdX4cdLJvvApNreExaVw51LU5t.jpeg",
+        name: "千岛湖欢乐水世界",
+        rate: 4.2,
+        distance: "4.1km",
+      },
+      {
+        image:
+          "http://img.ubo.vip/uploads/15095212_63f83fc85e023/4uPSXbFzNsQt13bvyvURZtMj1YOqc7okLbSKdxSv.jpeg",
+        name: "千岛湖啤酒小镇",
+        rate: 4.6,
+        distance: "4.5km",
+      },
+      {
+        image:
+          "http://img.ubo.vip/uploads/15095212_63f83fc80e25d/uF2jdRqXSBtSAxRdX4cdLJvvApNreExaVw51LU5t.jpeg",
+        name: "千岛湖欢乐水世界",
+        rate: 4.2,
+        distance: "4.1km",
+      },
+      {
+        image:
+          "http://img.ubo.vip/uploads/15095212_63f83fc85e023/4uPSXbFzNsQt13bvyvURZtMj1YOqc7okLbSKdxSv.jpeg",
+        name: "千岛湖啤酒小镇",
+        rate: 4.6,
+        distance: "4.5km",
+      },
+      {
+        image:
+          "http://img.ubo.vip/uploads/15095212_63f83fc80e25d/uF2jdRqXSBtSAxRdX4cdLJvvApNreExaVw51LU5t.jpeg",
+        name: "千岛湖欢乐水世界",
+        rate: 4.2,
+        distance: "4.1km",
+      },
+      {
+        image:
+          "http://img.ubo.vip/uploads/15095212_63f83fc85e023/4uPSXbFzNsQt13bvyvURZtMj1YOqc7okLbSKdxSv.jpeg",
+        name: "千岛湖啤酒小镇",
+        rate: 4.6,
+        distance: "4.5km",
+      },
+      {
+        image:
+          "http://img.ubo.vip/uploads/15095212_63f83fc80e25d/uF2jdRqXSBtSAxRdX4cdLJvvApNreExaVw51LU5t.jpeg",
+        name: "千岛湖欢乐水世界",
+        rate: 4.2,
+        distance: "4.1km",
       },
     ],
     nearbyHotelList: [
@@ -122,64 +184,6 @@ Page({
         tag: "商务出行",
         distance: "4.1km",
         basePrice: 500,
-      },
-    ],
-    nearbyScenicSpotList: [
-      {
-        image:
-          "http://img.ubo.vip/uploads/15095212_63f83fc85e023/4uPSXbFzNsQt13bvyvURZtMj1YOqc7okLbSKdxSv.jpeg",
-        name: "千岛湖啤酒小镇",
-        rate: 4.6,
-        distance: "4.5km",
-      },
-      {
-        image:
-          "http://img.ubo.vip/uploads/15095212_63f83fc80e25d/uF2jdRqXSBtSAxRdX4cdLJvvApNreExaVw51LU5t.jpeg",
-        name: "千岛湖欢乐水世界",
-        rate: 4.2,
-        distance: "4.1km",
-      },
-      {
-        image:
-          "http://img.ubo.vip/uploads/15095212_63f83fc85e023/4uPSXbFzNsQt13bvyvURZtMj1YOqc7okLbSKdxSv.jpeg",
-        name: "千岛湖啤酒小镇",
-        rate: 4.6,
-        distance: "4.5km",
-      },
-      {
-        image:
-          "http://img.ubo.vip/uploads/15095212_63f83fc80e25d/uF2jdRqXSBtSAxRdX4cdLJvvApNreExaVw51LU5t.jpeg",
-        name: "千岛湖欢乐水世界",
-        rate: 4.2,
-        distance: "4.1km",
-      },
-      {
-        image:
-          "http://img.ubo.vip/uploads/15095212_63f83fc85e023/4uPSXbFzNsQt13bvyvURZtMj1YOqc7okLbSKdxSv.jpeg",
-        name: "千岛湖啤酒小镇",
-        rate: 4.6,
-        distance: "4.5km",
-      },
-      {
-        image:
-          "http://img.ubo.vip/uploads/15095212_63f83fc80e25d/uF2jdRqXSBtSAxRdX4cdLJvvApNreExaVw51LU5t.jpeg",
-        name: "千岛湖欢乐水世界",
-        rate: 4.2,
-        distance: "4.1km",
-      },
-      {
-        image:
-          "http://img.ubo.vip/uploads/15095212_63f83fc85e023/4uPSXbFzNsQt13bvyvURZtMj1YOqc7okLbSKdxSv.jpeg",
-        name: "千岛湖啤酒小镇",
-        rate: 4.6,
-        distance: "4.5km",
-      },
-      {
-        image:
-          "http://img.ubo.vip/uploads/15095212_63f83fc80e25d/uF2jdRqXSBtSAxRdX4cdLJvvApNreExaVw51LU5t.jpeg",
-        name: "千岛湖欢乐水世界",
-        rate: 4.2,
-        distance: "4.1km",
       },
     ],
     mediaList: [
@@ -292,8 +296,10 @@ Page({
       roomImageList,
       restaurantImageList,
       environmentImageList,
+      longitude: lo2,
+      latitude: la2,
       ...hotelInfo
-    } = await hotelService.getHotelInfo(this.hotelId);;
+    } = await hotelService.getHotelInfo(this.hotelId);
     const imageList = [];
     const imageMenuList = [];
     let imageCount = 0;
@@ -308,34 +314,45 @@ Page({
       imageList.push(appearanceImageList[0]);
       imageMenuList.push("外观");
       imageCount += appearanceImageList.length;
-      this.imagesList.push(appearanceImageList)
+      this.imagesList.push(appearanceImageList);
     }
     if (interiorImageList.length) {
       imageList.push(interiorImageList[0]);
       imageMenuList.push("内景");
       imageCount += interiorImageList.length;
-      this.imagesList.push(interiorImageList)
+      this.imagesList.push(interiorImageList);
     }
     if (roomImageList.length) {
       imageList.push(roomImageList[0]);
       imageMenuList.push("房间");
       imageCount += roomImageList.length;
-      this.imagesList.push(roomImageList)
+      this.imagesList.push(roomImageList);
     }
     if (restaurantImageList.length) {
       imageList.push(restaurantImageList[0]);
       imageMenuList.push("餐厅");
       imageCount += restaurantImageList.length;
-      this.imagesList.push(restaurantImageList)
+      this.imagesList.push(restaurantImageList);
     }
     if (environmentImageList.length) {
       imageList.push(environmentImageList[0]);
       imageMenuList.push("环境");
       imageCount += environmentImageList.length;
-      this.imagesList.push(environmentImageList)
+      this.imagesList.push(environmentImageList);
     }
 
-    this.setData({ video, hotelInfo, imageList, imageMenuList, imageCount });
+    const { longitude: lo1, latitude: la1 } = store.locationInfo;
+    const distance = calcDistance(la1, lo1, la2, lo2);
+
+    this.setData({
+      video,
+      cover,
+      hotelInfo,
+      imageList,
+      imageMenuList,
+      imageCount,
+      distance,
+    });
   },
 
   setMenuList() {
@@ -346,16 +363,16 @@ Page({
           "多景点联票",
           "用户点评",
           "热门问答",
-          "附近酒店",
           "附近景点",
+          "附近酒店",
           "达人打卡",
         ]
       : [
           "景点门票",
           "用户点评",
           "热门问答",
-          "附近酒店",
           "附近景点",
+          "附近酒店",
           "达人打卡",
         ];
     this.setData({ menuList }, () => {
@@ -366,7 +383,7 @@ Page({
 
   setNavBarVisibleLimit() {
     const query = wx.createSelectorQuery();
-    query.select(".hotel-spot-name").boundingClientRect();
+    query.select(".hotel-name").boundingClientRect();
     query.exec((res) => {
       this.navBarVisibleLimit = res[0].bottom;
     });
@@ -458,9 +475,9 @@ Page({
   },
 
   checkMoreImage() {
-    const menuList = JSON.stringify(this.data.imageMenuList.slice(1))
-    const imagesList = JSON.stringify(this.imagesList)
-    const url = `./subpages/more-image/index?menuList=${menuList}&imagesList=${imagesList}`
+    const menuList = JSON.stringify(this.data.imageMenuList.slice(1));
+    const imagesList = JSON.stringify(this.imagesList);
+    const url = `./subpages/more-image/index?menuList=${menuList}&imagesList=${imagesList}`;
     wx.navigateTo({ url });
   },
 

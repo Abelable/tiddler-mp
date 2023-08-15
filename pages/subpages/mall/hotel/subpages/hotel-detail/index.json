@@ -3,7 +3,6 @@
   "navigationBarTextStyle": "white",
   "usingComponents": {
     "back-icon": "/components/back-icon-white/index",
-    "van-rate": "@vant/weapp/rate/index",
     "comment-item": "./components/comment-item/index",
     "hotel-item": "./components/hotel-item/index",
     "scenic-spot-item": "./components/scenic-spot-item/index",
