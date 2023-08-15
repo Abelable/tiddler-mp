@@ -335,7 +335,7 @@ Page({
       this.imagesList.push(environmentImageList)
     }
 
-    this.setData({ hotelInfo, imageList, imageMenuList, mediaCount });
+    this.setData({ video, hotelInfo, imageList, imageMenuList, mediaCount });
   },
 
   setMenuList() {
