@@ -4,10 +4,10 @@
 
 <view class="nav-bar-wrap">
   <view class="nav-bar row" style="padding-top: {{statusBarHeight}}px;">
-    <image class="nav-bg" wx:if="{{navBarVisible}}" src="{{cover}}" mode="aspectFill" />
+    <image class="nav-bg" wx:if="{{navBarVisible}}" src="{{hotelInfo.cover}}" mode="aspectFill" />
     <view class="bg-cover" wx:if="{{navBarVisible}}" />
     <back-icon style="margin-left: 8px;" noBorder="{{navBarVisible}}" />
-    <image class="hotel-image" wx:if="{{navBarVisible}}" src="{{cover}}" mode="aspectFill" />
+    <image class="hotel-image" wx:if="{{navBarVisible}}" src="{{hotelInfo.cover}}" mode="aspectFill" />
     <view class="hotel-info" wx:if="{{navBarVisible}}">
       <view class="name">{{hotelInfo.name}}</view>
       <view class="english-name">{{hotelInfo.englishName}}</view>
@@ -38,11 +38,11 @@
 
 <view class="banner-wrap">
   <swiper style="height: 420rpx;" current="{{ curDot - 1 }}" circular bindchange="bannerChange">
-    <swiper-item wx:if="{{video}}">
+    <swiper-item wx:if="{{hotelInfo.video}}">
       <view class="video-wrap" bindtap="fullScreenPlay">
         <video
           class="video-player"
-          src="{{video}}"
+          src="{{hotelInfo.video}}"
           muted="{{muted}}"
           autoplay
           loop
@@ -99,7 +99,7 @@
     <image class="more-icon" src="./images/more.png" />
   </view>
 
-  <view class="position-info-wrap row top">
+  <view class="position-info-wrap row top" bindtap="navigation">
     <image class="position-bg" src="https://img.ubo.vip/tiddler/hotel/position-bg.jpg" />
     <view class="position-info">
       <view class="position">位于「国家森林公园」{{hotelInfo.address}}</view>

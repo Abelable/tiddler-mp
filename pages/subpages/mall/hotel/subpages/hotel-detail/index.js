@@ -286,6 +286,7 @@ Page({
   },
 
   async setHotelInfo() {
+    const hotelInfo = await hotelService.getHotelInfo(this.hotelId);
     const {
       video,
       cover,
@@ -296,8 +297,7 @@ Page({
       environmentImageList,
       longitude: lo2,
       latitude: la2,
-      ...hotelInfo
-    } = await hotelService.getHotelInfo(this.hotelId);
+    } = hotelInfo
     const imageList = [];
     const imageMenuList = [];
     let imageCount = 0;
@@ -343,8 +343,6 @@ Page({
     const distance = calcDistance(la1, lo1, la2, lo2);
 
     this.setData({
-      video,
-      cover,
       hotelInfo,
       imageList,
       imageMenuList,
