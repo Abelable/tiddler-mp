@@ -37,4 +37,11 @@
   <view class="no-more-tips" wx:if="{{finished && hotelList.length}}">～没有更多了～</view>
 </view>
 
-<van-calendar type="range" color="#77a9fd" show="{{calendarPopupVisibel}}" bind:close="hideCalendarPopup" bind:confirm="setCalendar" />
+<van-calendar 
+  show="{{calendarPopupVisibel}}" 
+  formatter="{{ formatter }}" 
+  bind:close="hideCalendarPopup" 
+  bind:confirm="setCalendar" 
+  type="range" 
+  color="#77a9fd" 
+/>
