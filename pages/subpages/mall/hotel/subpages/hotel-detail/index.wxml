@@ -77,7 +77,7 @@
   </view>
   <view class="more-media row" catchtap="checkMoreImage">
     <image class="pic-icon" src="./images/photo.png" />
-    <text>{{ mediaCount }}</text>
+    <text>{{ imageCount }}</text>
     <image class="more-media-icon" src="./images/more-white.png" />
   </view>
 </view>
@@ -86,16 +86,12 @@
   <view class="row between">
     <view class="row">
       <view class="hotel-spot-name">{{hotelInfo.name}}</view>
-      <view class="level-tag row">3A</view>
+      <view class="hotel-score">4.2</view>
     </view>
     <image class="share-icon" src="./images/share.png" />
   </view>
 
-  <view class="score-wrap row">
-    <van-rate value="{{hotelInfo.rate || 0}}" size="18" gutter="0" color="#ffd21e" void-icon="star" void-color="#eee" allow-half readonly />
-    <text class="score" wx:if="{{hotelInfo.rate}}">{{hotelInfo.rate}}分</text>
-    <text class="no-score" wx:if="{{!hotelInfo.rate}}">暂无评分</text>
-  </view>
+  <view class="name-desc omit single-line">{{['经济酒店', '舒适酒店', '高档酒店', '豪华酒店'][hotelInfo.grade - 1]}} ｜ {{hotelInfo.englishName}} </view>
 
   <view class="info-list-wrap">
     <view class="info-list row between" bindtap="checkMoreInfo">

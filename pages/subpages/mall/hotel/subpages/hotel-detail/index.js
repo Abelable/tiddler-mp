@@ -13,7 +13,7 @@ Page({
     video: "",
     imageList: [],
     imageMenuList: [],
-    mediaCount: 0,
+    imageCount: 0,
     curOpenTime: null,
     isOpen: true,
     curDot: 1,
@@ -296,7 +296,7 @@ Page({
     } = await hotelService.getHotelInfo(this.hotelId);;
     const imageList = [];
     const imageMenuList = [];
-    let mediaCount = 0;
+    let imageCount = 0;
     this.imagesList = [];
     if (video) {
       imageMenuList.push("视频");
@@ -307,35 +307,35 @@ Page({
     if (appearanceImageList.length) {
       imageList.push(appearanceImageList[0]);
       imageMenuList.push("外观");
-      mediaCount += appearanceImageList.length;
+      imageCount += appearanceImageList.length;
       this.imagesList.push(appearanceImageList)
     }
     if (interiorImageList.length) {
       imageList.push(interiorImageList[0]);
       imageMenuList.push("内景");
-      mediaCount += interiorImageList.length;
+      imageCount += interiorImageList.length;
       this.imagesList.push(interiorImageList)
     }
     if (roomImageList.length) {
       imageList.push(roomImageList[0]);
       imageMenuList.push("房间");
-      mediaCount += roomImageList.length;
+      imageCount += roomImageList.length;
       this.imagesList.push(roomImageList)
     }
     if (restaurantImageList.length) {
       imageList.push(restaurantImageList[0]);
       imageMenuList.push("餐厅");
-      mediaCount += restaurantImageList.length;
+      imageCount += restaurantImageList.length;
       this.imagesList.push(restaurantImageList)
     }
     if (environmentImageList.length) {
       imageList.push(environmentImageList[0]);
       imageMenuList.push("环境");
-      mediaCount += environmentImageList.length;
+      imageCount += environmentImageList.length;
       this.imagesList.push(environmentImageList)
     }
 
-    this.setData({ video, hotelInfo, imageList, imageMenuList, mediaCount });
+    this.setData({ video, hotelInfo, imageList, imageMenuList, imageCount });
   },
 
   setMenuList() {
