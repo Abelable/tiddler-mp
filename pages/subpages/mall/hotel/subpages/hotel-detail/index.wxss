@@ -260,7 +260,7 @@
 
 .position-info-wrap {
   position: relative;
-  margin-top: 24rpx;
+  margin: 24rpx 0;
   height: 180rpx;
   border-radius: 32rpx;
   background: #2A254B;
@@ -301,6 +301,48 @@
   backdrop-filter: blur(8px);
 }
 
+.condition-picker {
+  padding-top: 24rpx;
+  padding-bottom: 16rpx;
+}
+.date-picker {
+  position: relative;
+  padding: 0 16rpx;
+  height: 80rpx;
+  border: 1px solid #ddd;
+  border-radius: 20rpx;
+}
+.date {
+  color: #333;
+  font-size: 30rpx;
+  font-weight: 550;
+}
+.week {
+  margin-left: 6rpx;
+  color: #999;
+  font-size: 20rpx;
+}
+.date-picker-type {
+  position: absolute;
+  top: -12rpx;
+  left: 24rpx;
+  padding: 0 6rpx;
+  color: #333;
+  font-size: 20rpx;
+  line-height: 1;
+  background: #fff;
+}
+.night-num {
+  margin: 0 24rpx;
+  color: #333;
+  font-size: 20rpx;
+}
+.tenant-picker {
+  color: #333;
+  font-size: 28rpx;
+  font-weight: 550;
+}
+
 .more-detail {
   color: #666;
   font-size: 24rpx;
@@ -312,7 +354,7 @@
 }
 
 .content-title-wrap {
-  margin-top: 48rpx;
+  margin-top: 32rpx;
 }
 .content-title {
   position: relative;

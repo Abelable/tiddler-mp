@@ -111,8 +111,25 @@
     </view>
   </view>
 
+  <view class="condition-picker row between">
+    <view class="date-picker-wrap row">
+      <view class="date-picker row">
+        <view class="date">08月22日</view>
+        <view class="week">周二</view>
+        <view class="date-picker-type">入住日期</view>
+      </view>
+      <view class="night-num">1晚</view>
+      <view class="date-picker row">
+        <view class="date">08月23日</view>
+        <view class="week">周三</view>
+        <view class="date-picker-type">退房日期</view>
+      </view>
+    </view>
+    <view class="tenant-picker row">2成人 0儿童</view>
+  </view>
+
   <view class="content-title-wrap row between">
-    <view class="content-title">景点门票</view>
+    <view class="content-title">酒店房间</view>
     <view class="content-title-tips row" wx:if="{{hotelInfo.policyList.length}}" bindtap="checkPolicy">
       <text>优待政策</text>
       <image class="more-icon" src="./images/more-blue.png" />
@@ -137,10 +154,10 @@
       bind:showNoticePopup="showNoticePopup"
     />
   </view>
-  <empty-illus wx:if="{{!ticketTypeList.length}}" desc="暂无景点门票" height="520rpx" />
+  <empty-illus wx:if="{{!ticketTypeList.length}}" desc="暂无房间列表" height="520rpx" />
 
   <view class="content-title-wrap" wx:if="{{combinedTicketTypeList.length}}">
-    <view class="content-title">多景点联票</view>
+    <view class="content-title">酒店套餐</view>
   </view>
   <scroll-view class="ticket-type-menu" scroll-x wx:if="{{combinedTicketTypeList.length}}">
     <view 
@@ -240,7 +257,7 @@
   </scroll-view>
 
   <view class="content-title-wrap">
-    <view class="content-title">达人打卡</view>
+    <view class="content-title">达人入住</view>
   </view>
   <view class="media-wrap">
     <fall-flow list="{{mediaList}}" generic:item="media-item" />

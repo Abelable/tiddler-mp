@@ -18,8 +18,6 @@ Page({
     imageMenuList: [],
     imageCount: 0,
     distance: 0,
-    curOpenTime: null,
-    isOpen: true,
     curDot: 1,
     muted: true,
     ticketTypeList: [],
@@ -359,21 +357,21 @@ Page({
     const { combinedTicketTypeList } = this.data;
     const menuList = combinedTicketTypeList.length
       ? [
-          "景点门票",
-          "多景点联票",
+          "酒店房间",
+          "酒店套餐",
           "用户点评",
           "热门问答",
           "附近景点",
           "附近酒店",
-          "达人打卡",
+          "达人入住",
         ]
       : [
-          "景点门票",
+          "酒店房间",
           "用户点评",
           "热门问答",
           "附近景点",
           "附近酒店",
-          "达人打卡",
+          "达人入住",
         ];
     this.setData({ menuList }, () => {
       this.setNavBarVisibleLimit();
