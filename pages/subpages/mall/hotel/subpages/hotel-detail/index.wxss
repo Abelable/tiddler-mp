@@ -388,7 +388,124 @@
   font-size: 24rpx;
 }
 
+.room-list-wrap {
+  margin-top: 20rpx;
+}
+.room-type-item {
+  position: relative;
+  padding: 20rpx;
+  background: #fff;
+}
+.room-img {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 28rpx;
+}
+.room-type-info {
+  margin-left: 20rpx;
+  flex: 1;
+  line-height: 1.5;
+  font-weight: normal;
+}
+.room-type-name {
+  color: #333;
+  font-size: 28rpx;
+  font-weight: 550;
+}
+.room-type-desc {
+  margin-top: 12rpx;
+  color: #333;
+  font-size: 24rpx;
+}
+.room-type-status {
+  margin-top: 8rpx;
+  color: #999;
+  font-size: 24rpx;
+}
+.price-wrap {
+  position: absolute;
+  right: 20rpx;
+  bottom: 0;
+}
+.toggle-fold-icon {
+  margin-left: 12rpx;
+  width: 36rpx;
+  height: 36rpx;
+}
 
+.room-list {
+  margin: 0 20rpx;
+  padding: 0 20rpx;
+  background: #f5f6f7;
+  border-radius: 0 0 32rpx 32rpx;
+}
+.room-item {
+  position: relative;
+  padding: 20rpx 0;
+  height: 200rpx;
+  border-bottom: 1px solid #ddd;
+}
+.room-item:last-child {
+  border-bottom: none;
+}
+.room-info-wrap {
+  font-size: 28rpx;
+  font-weight: 550;
+}
+.breakfast-status {
+  color: #1dc3c1;
+}
+.room-info {
+  margin-left: 12rpx;
+  color: #333;
+}
+.cancellabel-status {
+  margin-top: 12rpx;
+  color: #1dc3c1;
+  font-size: 24rpx;
+}
+.cancellabel-icon {
+  margin-right: 8rpx;
+  width: 26rpx;
+  height: 26rpx;
+}
+.shop-name {
+  margin-top: 12rpx;
+  color: #999;
+  font-size: 22rpx;
+}
+.room-price-wrap {
+  position: absolute;
+  right: 0;
+  bottom: 20rpx;
+}
+.order-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 24rpx;
+  width: 90rpx;
+  height: 90rpx;
+  background: #F8D95A;
+  border: 2px solid #F8D95A;
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+.order-btn-title {
+  flex: 1;
+  color: #333;
+  font-size: 36rpx;
+  font-weight: 600;
+}
+.order-btn-desc {
+  padding: 6rpx 0;
+  width: 100%;
+  color: #333;
+  font-size: 18rpx;
+  text-align: center;
+  line-height: 1;
+  background: #fff;
+}
 
 .total-tips {
   margin-top: 24rpx;
@@ -500,5 +617,8 @@
   padding: 0 !important;
 }
 .condition-picker-wrap-index-anchor .van-index-anchor {
-  z-index: 100 !important;
+  z-index: 10 !important;
+}
+.last-line .van-index-anchor::after {
+  opacity: 0 !important;
 }

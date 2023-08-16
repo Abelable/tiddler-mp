@@ -8,9 +8,17 @@ const { statusBarHeight } = getApp().globalData.systemInfo;
 Page({
   data: {
     statusBarHeight,
+    formatter(day) {
+      if (day.type === "start") {
+        day.bottomInfo = "入住";
+      } else if (day.type === "end") {
+        day.bottomInfo = "退房";
+      }
+      return day;
+    },
     navBarVisible: false,
     menuList: [],
-    curMenuIdx: -1,
+    curMenuIdx: 0,
     hotelInfo: null,
     video: "",
     cover: "",
@@ -277,6 +285,9 @@ Page({
     ],
     curTicketInfo: null,
     noticePopupVisible: false,
+    startDate: "",
+    endDate: "",
+    calendarPopupVisibel: false,
   },
 
   async onLoad({ id }) {
@@ -441,6 +452,9 @@ Page({
       const preItem = this.menuChangeLimitList[index - 1];
       const nextItem = this.menuChangeLimitList[index + 1];
       if (menuLimit < item && (!preItem || menuLimit >= preItem)) {
+        if (index === 0) {
+          return
+        }
         if (curMenuIdx !== index - 1) {
           this.setData({ curMenuIdx: index - 1 });
         }
@@ -498,6 +512,27 @@ Page({
       longitude,
       name,
       address,
+    });
+  },
+
+  showCalendarPopup() {
+    this.setData({
+      calendarPopupVisibel: true,
+    });
+  },
+
+  hideCalendarPopup() {
+    this.setData({
+      calendarPopupVisibel: false,
+    });
+  },
+
+  setCalendar(e) {
+    const [start, end] = e.detail;
+    this.setData({
+      startDate: this.formatDate(start),
+      endDate: this.formatDate(end),
+      calendarPopupVisibel: false,
     });
   },
 

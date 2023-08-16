@@ -76,6 +76,9 @@ switch {
 .row.top {
   align-items: flex-start;
 }
+.row.bottom {
+  align-items: flex-end;
+}
 
 .omit {
   overflow: hidden;
