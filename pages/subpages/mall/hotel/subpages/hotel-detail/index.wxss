@@ -181,12 +181,16 @@
   position: absolute;
   left: 0;
   top: 396rpx;
-  padding: 20rpx;
-  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+  padding-bottom: env(safe-area-inset-bottom);
   width: 100%;
   background: #fff;
   border-radius: 24rpx 24rpx 0 0;
 }
+.content-wrap {
+  padding: 20rpx;
+  padding-bottom: 0;
+}
+
 .hotel-name {
   color: #333;
   font-size: 38rpx;
@@ -301,45 +305,49 @@
   backdrop-filter: blur(8px);
 }
 
+.condition-picker-wrap {
+  padding-top: 12px;
+  padding-bottom: 8px;
+  background: #fff;
+}
 .condition-picker {
-  padding-top: 24rpx;
-  padding-bottom: 16rpx;
+  width: 710rpx;
 }
 .date-picker {
   position: relative;
-  padding: 0 16rpx;
-  height: 80rpx;
+  padding: 0 8px;
+  height: 40px;
   border: 1px solid #ddd;
-  border-radius: 20rpx;
+  border-radius: 10px;
 }
 .date {
   color: #333;
-  font-size: 30rpx;
+  font-size: 15px;
   font-weight: 550;
 }
 .week {
-  margin-left: 6rpx;
+  margin-left: 3px;
   color: #999;
-  font-size: 20rpx;
+  font-size: 10px;
 }
 .date-picker-type {
   position: absolute;
-  top: -12rpx;
-  left: 24rpx;
-  padding: 0 6rpx;
+  top: -6px;
+  left: 12px;
+  padding: 0 3px;
   color: #333;
-  font-size: 20rpx;
+  font-size: 10px;
   line-height: 1;
   background: #fff;
 }
 .night-num {
-  margin: 0 24rpx;
+  margin: 0 12px;
   color: #333;
-  font-size: 20rpx;
+  font-size: 10px;
 }
 .tenant-picker {
   color: #333;
-  font-size: 28rpx;
+  font-size: 14px;
   font-weight: 550;
 }
 
@@ -354,7 +362,7 @@
 }
 
 .content-title-wrap {
-  margin-top: 32rpx;
+  margin-top: 12rpx;
 }
 .content-title {
   position: relative;
@@ -509,4 +517,11 @@
   color: #999;
   font-size: 24rpx;
   text-align: center;
+}
+
+.van-index-bar__sidebar {
+  display: none !important;
+}
+.van-index-anchor {
+  padding: 0 !important;
 }
