@@ -498,13 +498,6 @@ Page({
     wx.navigateTo({ url });
   },
 
-  checkPolicy() {
-    const url = `./subpages/more-info/index?info=${JSON.stringify(
-      this.data.hotelInfo
-    )}&scene=policy`;
-    wx.navigateTo({ url });
-  },
-
   navigation() {
     const { name, address, latitude, longitude } = this.data.hotelInfo;
     wx.openLocation({

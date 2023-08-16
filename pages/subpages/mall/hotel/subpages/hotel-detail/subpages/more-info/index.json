@@ -1,4 +1,5 @@
 {
+  "navigationBarTitleText": "酒店详情",
   "usingComponents": {
     "project-list": "./components/project-list/index"
   }
