@@ -89,7 +89,7 @@
   
   <van-index-bar index-list="{{ [1, 2] }}" sticky-offset-top="{{ statusBarHeight + 88 }}">
     <view>
-      <van-index-anchor index="1" use-slot>
+      <van-index-anchor class="condition-picker-wrap-index-anchor" index="1" use-slot>
         <view class="condition-picker-wrap row center">
           <view class="condition-picker row between">
             <view class="date-picker-wrap row">
@@ -111,35 +111,41 @@
       </van-index-anchor>
 
       <view class="content-wrap">
-        <view class="content-title-wrap row between">
+        <view class="content-title-wrap">
           <view class="content-title">酒店房间</view>
-          <view class="content-title-tips row" wx:if="{{hotelInfo.policyList.length}}" bindtap="checkPolicy">
-            <text>优待政策</text>
-            <image class="more-icon" src="./images/more-blue.png" />
-          </view>
         </view>
-        <scroll-view class="ticket-type-menu" scroll-x>
-          <view class="ticket-type-item {{curTicketTypeIdx === index ? 'active' : ''}}" wx:for="{{ticketTypeList}}" wx:key="index" bindtap="selectTicketType" data-index="{{index}}">
-            {{item.name}}
-          </view>
-        </scroll-view>
-        <view class="collapse">
-          <collapse-item wx:for="{{ticketList}}" wx:key="index" item="{{item}}" index="{{index}}" bind:toggleFold="toggleTicketsFold" bind:showNoticePopup="showNoticePopup" />
-        </view>
-        <empty-illus wx:if="{{!ticketTypeList.length}}" desc="暂无房间列表" height="520rpx" />
       </view>
+      <van-index-bar index-list="{{ [1, 2, 3] }}" sticky-offset-top="{{ statusBarHeight + 148 }}">
+        <view>
+          <van-index-anchor index="1" use-slot>
+            <view class="room-type-item row">
+              <image class="room-img" src="{{ hotelInfo.cover }}" />
+              <view class="room-type-info">
+                <view class="room-type-name">标准双床房</view>
+                <view class="room-type-desc">2张单人床</view>
+                <view class="room-type-status">2个可定价格</view>
+              </view>
+              <price-unit class="room-base-price" price="{{hotelInfo.price || 0}}" isStartPrice />
+            </view>
+          </van-index-anchor>
+          <van-cell title="文本" />
+          <van-cell title="文本" />
+          <van-cell title="文本" />
+        </view>
+        <view>
+          <van-index-anchor index="2" use-slot>标题2</van-index-anchor>
+          <van-cell title="文本" />
+          <van-cell title="文本" />
+          <van-cell title="文本" />
+        </view>
+        <view>
+          <van-index-anchor index="3" use-slot />
+        </view>
+      </van-index-bar>
 
       <view class="content-wrap">
         <view class="content-title-wrap" wx:if="{{combinedTicketTypeList.length}}">
           <view class="content-title">酒店套餐</view>
-        </view>
-        <scroll-view class="ticket-type-menu" scroll-x wx:if="{{combinedTicketTypeList.length}}">
-          <view class="ticket-type-item {{curCombinedTicketTypeIdx === index ? 'active' : ''}}" wx:for="{{combinedTicketTypeList}}" wx:key="index" bindtap="selectCombinedTicketType" data-index="{{index}}">
-            {{item}}
-          </view>
-        </scroll-view>
-        <view class="collapse" wx:if="{{combinedTicketTypeList.length}}">
-          <collapse-item wx:for="{{combinedTicketList}}" wx:key="index" item="{{item}}" index="{{index}}" bind:toggleFold="toggleCombinedTicketsFold" bind:showNoticePopup="showNoticePopup" bind:booking="booking" />
         </view>
       </view>
     </view>

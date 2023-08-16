@@ -6,13 +6,12 @@
     "van-index-anchor": "@vant/weapp/index-anchor/index",
     "van-cell": "@vant/weapp/cell/index",
     "back-icon": "/components/back-icon-white/index",
-    "comment-item": "./components/comment-item/index",
-    "hotel-item": "./components/hotel-item/index",
-    "scenic-spot-item": "./components/scenic-spot-item/index",
-    "empty-illus": "/components/empty-illus/index",
+    "price-unit": "/components/price-unit/index",
+    "comment-item": "../../../components/comment-item/index",
+    "hotel-item": "../../../components/hotel-item/index",
+    "scenic-spot-item": "../../../components/scenic-spot-item/index",
     "fall-flow": "/components/fall-flow/index",
     "media-item": "/components/media-item/index",
-    "notice-popup": "../../components/notice-popup/index",
-    "collapse-item": "./components/collapse-item/index"
+    "notice-popup": "../../components/notice-popup/index"
   }
 }
