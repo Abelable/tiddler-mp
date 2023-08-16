@@ -29,15 +29,106 @@
 
   <view class="card-title">酒店设施</view>
   <view class="card">
+    <view class="feature-list">
+      <view class="feature-item row top" wx:if="{{hotelInfo.recreationFacility.length}}">
+        <view class="feature-label">娱乐设施</view>
+        <view class="feature-content-list row">
+          <view class="feature-content" wx:for="{{hotelInfo.recreationFacility}}" wx:key="index">{{ item }}</view>
+        </view>
+      </view>
+      <view class="feature-item row top" wx:if="{{hotelInfo.healthFacility.length}}">
+        <view class="feature-label">康体设施</view>
+        <view class="feature-content-list row">
+          <view class="feature-content" wx:for="{{hotelInfo.healthFacility}}" wx:key="index">{{ item }}</view>
+        </view>
+      </view>
+      <view class="feature-item row top" wx:if="{{hotelInfo.childrenFacility.length}}">
+        <view class="feature-label">儿童设施</view>
+        <view class="feature-content-list row">
+          <view class="feature-content" wx:for="{{hotelInfo.childrenFacility}}" wx:key="index">{{ item }}</view>
+        </view>
+      </view>
+      <view class="feature-item row top" wx:if="{{hotelInfo.commonFacility.length}}">
+        <view class="feature-label">通用设施</view>
+        <view class="feature-content-list row">
+          <view class="feature-content" wx:for="{{hotelInfo.commonFacility}}" wx:key="index">{{ item }}</view>
+        </view>
+      </view>
+      <view class="feature-item row top" wx:if="{{hotelInfo.publicAreaFacility.length}}">
+        <view class="feature-label">公共区</view>
+        <view class="feature-content-list row">
+          <view class="feature-content" wx:for="{{hotelInfo.publicAreaFacility}}" wx:key="index">{{ item }}</view>
+        </view>
+      </view>
+    </view>
     <view class="warning-tips">以上信息仅供参考，具体请联系酒店咨询</view>
   </view>
 
   <view class="card-title">酒店服务</view>
   <view class="card">
+    <view class="feature-list">
+      <view class="feature-item row top" wx:if="{{hotelInfo.trafficService.length}}">
+        <view class="feature-label">交通服务</view>
+        <view class="feature-content-list row">
+          <view class="feature-content" wx:for="{{hotelInfo.trafficService}}" wx:key="index">{{ item }}</view>
+        </view>
+      </view>
+      <view class="feature-item row top" wx:if="{{hotelInfo.cateringService.length}}">
+        <view class="feature-label">餐饮服务</view>
+        <view class="feature-content-list row">
+          <view class="feature-content" wx:for="{{hotelInfo.cateringService}}" wx:key="index">{{ item }}</view>
+        </view>
+      </view>
+      <view class="feature-item row top" wx:if="{{hotelInfo.receptionService.length}}">
+        <view class="feature-label">前台服务</view>
+        <view class="feature-content-list row">
+          <view class="feature-content" wx:for="{{hotelInfo.receptionService}}" wx:key="index">{{ item }}</view>
+        </view>
+      </view>
+      <view class="feature-item row top" wx:if="{{hotelInfo.cleanService.length}}">
+        <view class="feature-label">清洁服务</view>
+        <view class="feature-content-list row">
+          <view class="feature-content" wx:for="{{hotelInfo.cleanService}}" wx:key="index">{{ item }}</view>
+        </view>
+      </view>
+      <view class="feature-item row top" wx:if="{{hotelInfo.businessService.length}}">
+        <view class="feature-label">商务服务</view>
+        <view class="feature-content-list row">
+          <view class="feature-content" wx:for="{{hotelInfo.businessService}}" wx:key="index">{{ item }}</view>
+        </view>
+      </view>
+      <view class="feature-item row top" wx:if="{{hotelInfo.otherService.length}}">
+        <view class="feature-label">其他服务</view>
+        <view class="feature-content-list row">
+          <view class="feature-content" wx:for="{{hotelInfo.otherService}}" wx:key="index">{{ item }}</view>
+        </view>
+      </view>
+    </view>
     <view class="warning-tips">以上信息仅供参考，具体请联系酒店咨询</view>
   </view>
 
   <view class="card-title">酒店政策</view>
   <view class="card">
+    <view class="policy-list">
+      <view class="policy-item" wx:if="{{hotelInfo.remindList.length}}">
+        <view class="policy-label">重要提醒</view>
+        <view class="policy-content-list">
+          <view class="policy-content" wx:for="{{hotelInfo.remindList}}" wx:key="index">{{ item }}</view>
+        </view>
+      </view>
+      <view class="policy-item" wx:if="{{hotelInfo.checkInTipList.length}}">
+        <view class="policy-label">入住必读</view>
+        <view class="policy-content-list">
+          <view class="policy-content" wx:for="{{hotelInfo.checkInTipList}}" wx:key="index">{{ item }}</view>
+        </view>
+      </view>
+      <view class="policy-item" wx:if="{{hotelInfo.preorderTipList.length}}">
+        <view class="policy-label">预定须知</view>
+        <view class="policy-content-list">
+          <view class="policy-content" wx:for="{{hotelInfo.preorderTipList}}" wx:key="index">{{ item }}</view>
+        </view>
+      </view>
+    </view>
+    <view class="warning-tips">以上信息仅供参考，具体请联系酒店咨询</view>
   </view>
 </view>

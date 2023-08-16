@@ -6,13 +6,14 @@ Page({
 
   onLoad({ info }) {
     const hotelInfo = JSON.parse(info);
-    this.setData({ hotelInfo });
-    this.setMenuChangeLimitList();
+    this.setData({ hotelInfo }, () => {
+      this.setMenuChangeLimitList();
+    });
   },
 
   setMenuChangeLimitList() {
     const query = wx.createSelectorQuery();
-    query.selectAll(".card").boundingClientRect();
+    query.selectAll(".card-title").boundingClientRect();
     query.exec((res) => {
       this.menuChangeLimitList = res[0].map(
         (item) => item.top + (this.scrollTop || 0)
