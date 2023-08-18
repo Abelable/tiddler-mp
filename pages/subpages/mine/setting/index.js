@@ -1,11 +1,13 @@
 import { WEBVIEW_BASE_URL } from "../../../../config"
 
 Page({
-  data: {
-  },
-
   navToScenicProviderSettleIn() {
     const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/scenic/provider/settle_in`
+    wx.navigateTo({ url })
+  },
+
+  navToHotelProviderSettleIn() {
+    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/hotel/provider/settle_in`
     wx.navigateTo({ url })
   },
 
