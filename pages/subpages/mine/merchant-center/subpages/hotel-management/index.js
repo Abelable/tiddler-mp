@@ -29,7 +29,7 @@ Page({
     if (!this.data.shopInfo) {
       await this.setShopInfo()
     }
-    this.setOrderList(true)
+    // this.setOrderList(true)
   },
 
   setMenuTop() {
@@ -95,7 +95,7 @@ Page({
   },
 
   navToHotelManagement() {
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/hotel/hotel_list`
+    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/hotel/list`
     wx.navigateTo({ url })
   },
 })
