@@ -24,30 +24,31 @@ class HotelService extends BaseService {
     });
   }
 
-  async getTicketCategoryOptions() {
+  async getRoomTypeOptions(hotelId) {
     return await this.get({
-      url: `${this.baseUrl}/hotel/ticket/category_options`,
+      url: `${this.baseUrl}/hotel/room/type_options`,
+      data: { hotelId }
     });
   }
 
-  async getHotelTicketList(hotelId) {
+  async getHotelRoomList(hotelId) {
     return await this.get({
-      url: `${this.baseUrl}/hotel/ticket/list_of_hotel`,
+      url: `${this.baseUrl}/hotel/room/list_of_hotel`,
       data: { hotelId },
       loadingTitle: "加载中...",
     });
   }
 
-  async getPaymentAmount(ticketId, categoryId, timeStamp, num) {
+  async getPaymentAmount(roomId, categoryId, timeStamp, num) {
     return await this.get({
       url: `${this.baseUrl}/hotel/order/calc_payment_amount`,
-      data: { ticketId, categoryId, timeStamp, num },
+      data: { roomId, categoryId, timeStamp, num },
       loadingTitle: "加载中...",
     });
   }
 
   async submitOrder(
-    ticketId,
+    roomId,
     categoryId,
     timeStamp,
     num,
@@ -58,7 +59,7 @@ class HotelService extends BaseService {
     return await this.post({
       url: `${this.baseUrl}/hotel/order/submit`,
       data: {
-        ticketId,
+        roomId,
         categoryId,
         timeStamp,
         num,

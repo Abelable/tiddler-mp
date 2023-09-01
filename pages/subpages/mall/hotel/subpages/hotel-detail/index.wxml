@@ -116,72 +116,14 @@
         </view>
       </view>
       <view class="room-list-wrap">
-        <van-index-bar index-list="{{ [1, 2, 3] }}" sticky-offset-top="{{ statusBarHeight + 148 }}">
-          <view>
-            <van-index-anchor index="1" use-slot>
+        <van-index-bar index-list="{{ roomTypeIndexList }}" sticky-offset-top="{{ statusBarHeight + 148 }}">
+          <view wx:for="{{roomTypeList}}" wx:key="index">
+            <van-index-anchor index="{{ item.id }}" use-slot>
               <view class="room-type-item row top">
-                <image class="room-img" src="{{ hotelInfo.cover }}" />
+                <image class="room-img" src="{{ item.imageList[0] }}" mode="aspectFill" lazy-load />
                 <view class="room-type-info">
-                  <view class="room-type-name">标准双床房</view>
-                  <view class="room-type-desc">2张单人床</view>
-                  <view class="room-type-status">2个可订价格</view>
-                </view>
-                <view class="price-wrap row">
-                  <price-unit price="{{hotelInfo.price || 0}}" isStartPrice />
-                  <image class="toggle-fold-icon" src="./images/down-btn-fill.png" />
-                </view>
-              </view>
-            </van-index-anchor>
-            <view class="room-list">
-              <view class="room-item">
-                <view class="room-info-wrap row">
-                  <view class="breakfast-status">2份早餐</view>
-                  <view class="room-info">双床</view>
-                  <view class="room-info">2人入住</view>
-                  <image class="more-icon" src="./images/more.png" />
-                </view>
-                <view class="cancellabel-status row">
-                  <image class="cancellabel-icon" src="./images/cancelable.png" />
-                  <view>8月16日16点前取消扣除10%手续费</view>
-                </view>
-                <view class="shop-name">来自酒店代理</view>
-                <view class="room-price-wrap row bottom">
-                  <price-unit price="{{hotelInfo.price || 0}}" />
-                  <view class="order-btn">
-                    <view class="order-btn-title">订</view>
-                    <view class="order-btn-desc">在线付</view>
-                  </view>
-                </view>
-              </view>
-              <view class="room-item">
-                <view class="room-info-wrap row">
-                  <view class="breakfast-status">2份早餐</view>
-                  <view class="room-info">双床</view>
-                  <view class="room-info">2人入住</view>
-                  <image class="more-icon" src="./images/more.png" />
-                </view>
-                <view class="cancellabel-status row">
-                  <image class="cancellabel-icon" src="./images/cancelable.png" />
-                  <view>8月16日16点前取消扣除10%手续费</view>
-                </view>
-                <view class="shop-name">来自酒店代理</view>
-                <view class="room-price-wrap row bottom">
-                  <price-unit price="{{hotelInfo.price || 0}}" />
-                  <view class="order-btn">
-                    <view class="order-btn-title">订</view>
-                    <view class="order-btn-desc">在线付</view>
-                  </view>
-                </view>
-              </view>
-            </view>
-          </view>
-          <view>
-            <van-index-anchor index="2" use-slot>
-              <view class="room-type-item row top">
-                <image class="room-img" src="{{ hotelInfo.cover }}" />
-                <view class="room-type-info">
-                  <view class="room-type-name">标准双床房</view>
-                  <view class="room-type-desc">2张单人床</view>
+                  <view class="room-type-name">{{ item.name }}</view>
+                  <view class="room-type-desc">{{ item.bedDesc }}</view>
                   <view class="room-type-status">2个可订价格</view>
                 </view>
                 <view class="price-wrap row">

@@ -28,6 +28,8 @@ Page({
     distance: 0,
     curDot: 1,
     muted: true,
+    roomTypeList: [],
+    roomTypeIndexList: [],
     ticketTypeList: [],
     curTicketTypeIdx: 0,
     ticketList: [],
@@ -293,6 +295,7 @@ Page({
   async onLoad({ id }) {
     this.hotelId = +id;
     await this.setHotelInfo();
+    await this.setRoomTypeList();
     this.setMenuList();
   },
 
@@ -308,7 +311,7 @@ Page({
       environmentImageList,
       longitude: lo2,
       latitude: la2,
-    } = hotelInfo
+    } = hotelInfo;
     const imageList = [];
     const imageMenuList = [];
     let imageCount = 0;
@@ -360,6 +363,16 @@ Page({
       imageCount,
       distance,
     });
+  },
+
+  async setRoomTypeList() {
+    const list = await hotelService.getRoomTypeOptions(this.hotelId);
+    const roomTypeIndexList = [];
+    const roomTypeList = list.map((item) => {
+      roomTypeIndexList.push(item.id);
+      return { ...item, fold: true };
+    });
+    this.setData({ roomTypeIndexList, roomTypeList });
   },
 
   setMenuList() {
@@ -453,7 +466,7 @@ Page({
       const nextItem = this.menuChangeLimitList[index + 1];
       if (menuLimit < item && (!preItem || menuLimit >= preItem)) {
         if (index === 0) {
-          return
+          return;
         }
         if (curMenuIdx !== index - 1) {
           this.setData({ curMenuIdx: index - 1 });
