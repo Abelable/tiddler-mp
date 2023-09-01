@@ -366,12 +366,14 @@ Page({
   },
 
   async setRoomTypeList() {
-    const list = await hotelService.getRoomTypeOptions(this.hotelId);
-    const roomTypeIndexList = [];
-    const roomTypeList = list.map((item) => {
-      roomTypeIndexList.push(item.id);
-      return { ...item, fold: true };
+    const hotelRoomList = await hotelService.getHotelRoomList(this.hotelId);
+    const typeList = await hotelService.getRoomTypeOptions(this.hotelId);
+    const roomTypeList = typeList.map((item) => {
+      const roomList = hotelRoomList.filter((room) => room.typeId === item.id);
+      const roomIndexList = roomList.map((item, index) => index + 1);
+      return { ...item, roomList, roomIndexList, fold: true };
     });
+    const roomTypeIndexList = new Array(roomTypeList.length + 1).fill("").map((item, index) => index + 1);
     this.setData({ roomTypeIndexList, roomTypeList });
   },
 
@@ -448,6 +450,16 @@ Page({
     wx.pageScrollTo({
       scrollTop: this.menuChangeLimitList[index] - statusBarHeight - 100,
     });
+  },
+
+  toggleFold(e) {
+    const { index } = e.currentTarget.dataset
+    const { fold } = this.data.roomTypeList[index]
+    this.setData({
+      [`roomTypeList[${index}].fold`]: !fold
+    }, () => {
+      this.setMenuChangeLimitList();
+    })
   },
 
   onPageScroll({ scrollTop }) {

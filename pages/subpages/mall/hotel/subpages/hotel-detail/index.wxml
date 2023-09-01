@@ -124,49 +124,28 @@
                 <view class="room-type-info">
                   <view class="room-type-name">{{ item.name }}</view>
                   <view class="room-type-desc">{{ item.bedDesc }}</view>
-                  <view class="room-type-status">2个可订价格</view>
+                  <view class="room-type-status">{{ item.roomList.length }}个可订价格</view>
                 </view>
-                <view class="price-wrap row">
+                <view class="price-wrap row" catchtap="toggleFold" data-index="{{ index }}">
                   <price-unit price="{{hotelInfo.price || 0}}" isStartPrice />
-                  <image class="toggle-fold-icon" src="./images/down-btn-fill.png" />
+                  <image class="toggle-fold-icon" src="./images/{{item.fold ? 'down' : 'up'}}-btn-fill.png" />
                 </view>
               </view>
             </van-index-anchor>
-            <view class="room-list">
-              <view class="room-item">
+            <view class="room-list" wx:if="{{!item.fold}}">
+              <view class="room-item" wx:for="{{item.roomList}}" wx:key="roomIdx" wx:for-index="roomIdx" wx:for-item="room">
                 <view class="room-info-wrap row">
-                  <view class="breakfast-status">2份早餐</view>
-                  <view class="room-info">双床</view>
-                  <view class="room-info">2人入住</view>
+                  <view class="breakfast-status">{{room.breakfastNum ? room.breakfastNum + '份早餐' : '无早餐'}}</view>
+                  <view class="room-info">{{room.guestNum}}人入住</view>
                   <image class="more-icon" src="./images/more.png" />
                 </view>
-                <view class="cancellabel-status row">
-                  <image class="cancellabel-icon" src="./images/cancelable.png" />
-                  <view>8月16日16点前取消扣除10%手续费</view>
+                <view class="cancellable-status row {{ room.cancellable ? '' : 'uncancellable' }}">
+                  <image class="cancellable-icon" src="./images/{{room.cancellable ? '' : 'un'}}cancellable.png" />
+                  <view>{{room.cancellable ? "8月16日16点前取消扣除10%手续费" : "不可取消"}}</view>
                 </view>
-                <view class="shop-name">来自酒店代理</view>
+                <view class="shop-name">来自{{room.shopInfo.name}}</view>
                 <view class="room-price-wrap row bottom">
-                  <price-unit price="{{hotelInfo.price || 0}}" />
-                  <view class="order-btn">
-                    <view class="order-btn-title">订</view>
-                    <view class="order-btn-desc">在线付</view>
-                  </view>
-                </view>
-              </view>
-              <view class="room-item">
-                <view class="room-info-wrap row">
-                  <view class="breakfast-status">2份早餐</view>
-                  <view class="room-info">双床</view>
-                  <view class="room-info">2人入住</view>
-                  <image class="more-icon" src="./images/more.png" />
-                </view>
-                <view class="cancellabel-status row">
-                  <image class="cancellabel-icon" src="./images/cancelable.png" />
-                  <view>8月16日16点前取消扣除10%手续费</view>
-                </view>
-                <view class="shop-name">来自酒店代理</view>
-                <view class="room-price-wrap row bottom">
-                  <price-unit price="{{hotelInfo.price || 0}}" />
+                  <price-unit price="{{room.price || 0}}" />
                   <view class="order-btn">
                     <view class="order-btn-title">订</view>
                     <view class="order-btn-desc">在线付</view>
@@ -176,7 +155,7 @@
             </view>
           </view>
           <view class="last-line">
-            <van-index-anchor index="3" use-slot />
+            <van-index-anchor index="{{ roomTypeIndexList.length }}" use-slot />
           </view>
         </van-index-bar>
       </view>

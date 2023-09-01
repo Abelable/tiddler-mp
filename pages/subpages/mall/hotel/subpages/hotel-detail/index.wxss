@@ -459,12 +459,15 @@
   margin-left: 12rpx;
   color: #333;
 }
-.cancellabel-status {
+.cancellable-status {
   margin-top: 12rpx;
   color: #1dc3c1;
   font-size: 24rpx;
 }
-.cancellabel-icon {
+.cancellable-status.uncancellable {
+  color: #333;
+}
+.cancellable-icon {
   margin-right: 8rpx;
   width: 26rpx;
   height: 26rpx;
