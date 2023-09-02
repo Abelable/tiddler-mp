@@ -115,7 +115,7 @@
           <view class="content-title">酒店房间</view>
         </view>
       </view>
-      <view class="room-list-wrap">
+      <view class="room-list-wrap" wx:if="{{roomTypeIndexList.length}}">
         <van-index-bar index-list="{{ roomTypeIndexList }}" sticky-offset-top="{{ statusBarHeight + 148 }}">
           <view wx:for="{{roomTypeList}}" wx:key="index">
             <van-index-anchor index="{{ item.id }}" use-slot>
@@ -159,6 +159,7 @@
           </view>
         </van-index-bar>
       </view>
+      <empty-illus wx:if="{{!roomTypeIndexList.length}}" desc="暂无相关房间信息" height="520rpx" />
 
       <view class="content-wrap" wx:if="{{combinedTicketTypeList.length}}">
         <view class="content-title-wrap">
