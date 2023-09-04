@@ -87,7 +87,7 @@
     </view>
   </view>
   
-  <van-index-bar index-list="{{ [1, 2] }}" sticky-offset-top="{{ statusBarHeight + 88 }}">
+  <van-index-bar id="index-bar-wrap" wx:if="{{indexList.length}}" index-list="{{ indexList }}" sticky-offset-top="{{ statusBarHeight + 88 }}">
     <view>
       <van-index-anchor class="condition-picker-wrap-index-anchor" index="1" use-slot>
         <view class="condition-picker-wrap row center">
@@ -115,8 +115,9 @@
           <view class="content-title">酒店房间</view>
         </view>
       </view>
+
       <view class="room-list-wrap" wx:if="{{roomTypeIndexList.length}}">
-        <van-index-bar index-list="{{ roomTypeIndexList }}" sticky-offset-top="{{ statusBarHeight + 148 }}">
+        <van-index-bar id="index-bar" index-list="{{ roomTypeIndexList }}" sticky-offset-top="{{ statusBarHeight + 148 }}">
           <view wx:for="{{roomTypeList}}" wx:key="index">
             <van-index-anchor index="{{ item.id }}" use-slot>
               <view class="room-type-item row top">
@@ -168,7 +169,7 @@
       </view>
     </view>
     <view class="last-line">
-      <van-index-anchor index="2"  use-slot />
+      <van-index-anchor index="{{indexList.length}}"  use-slot />
     </view>
   </van-index-bar>
 

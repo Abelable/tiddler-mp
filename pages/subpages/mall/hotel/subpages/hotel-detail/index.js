@@ -28,6 +28,7 @@ Page({
     distance: 0,
     curDot: 1,
     muted: true,
+    indexList: [],
     roomTypeList: [],
     roomTypeIndexList: [],
     ticketTypeList: [],
@@ -370,11 +371,12 @@ Page({
     const typeList = await hotelService.getRoomTypeOptions(this.hotelId);
     const roomTypeList = typeList.map((item) => {
       const roomList = hotelRoomList.filter((room) => room.typeId === item.id);
-      const roomIndexList = roomList.map((item, index) => index + 1);
-      return { ...item, roomList, roomIndexList, fold: true };
+      return { ...item, roomList, fold: true };
     });
-    const roomTypeIndexList = new Array(roomTypeList.length + 1).fill("").map((item, index) => index + 1);
-    this.setData({ roomTypeIndexList, roomTypeList });
+    const roomTypeIndexList = new Array(roomTypeList.length + 1)
+      .fill("")
+      .map((item, index) => index + 1);
+    this.setData({ roomTypeIndexList, roomTypeList, indexList: [1, 2] });
   },
 
   setMenuList() {
@@ -453,13 +455,18 @@ Page({
   },
 
   toggleFold(e) {
-    const { index } = e.currentTarget.dataset
-    const { fold } = this.data.roomTypeList[index]
-    this.setData({
-      [`roomTypeList[${index}].fold`]: !fold
-    }, () => {
-      this.setMenuChangeLimitList();
-    })
+    const { index } = e.currentTarget.dataset;
+    const { fold } = this.data.roomTypeList[index];
+    this.setData(
+      {
+        [`roomTypeList[${index}].fold`]: !fold,
+      },
+      () => {
+        this.selectComponent("#index-bar-wrap").updateData();
+        this.selectComponent("#index-bar").updateData();
+        this.setMenuChangeLimitList();
+      }
+    );
   },
 
   onPageScroll({ scrollTop }) {
