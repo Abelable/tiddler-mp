@@ -94,14 +94,14 @@
           <view class="condition-picker row between">
             <view class="date-picker-wrap row" bindtap="showCalendarPopup">
               <view class="date-picker row">
-                <view class="date">08月22日</view>
-                <view class="week">周二</view>
+                <view class="date">{{TIME.transform(checkInDate, 'MM月DD日')}}</view>
+                <view class="week">{{TIME.week(checkInDate)}}</view>
                 <view class="date-picker-type">入住日期</view>
               </view>
-              <view class="night-num">1晚</view>
+              <view class="night-num">{{TIME.countDown((checkOutDate - checkInDate) / 1000, 'dd')}}晚</view>
               <view class="date-picker row">
-                <view class="date">08月23日</view>
-                <view class="week">周三</view>
+                <view class="date">{{TIME.transform(checkOutDate, 'MM月DD日')}}</view>
+                <view class="week">{{TIME.week(checkOutDate)}}</view>
                 <view class="date-picker-type">退房日期</view>
               </view>
             </view>
@@ -273,6 +273,7 @@
 <notice-popup show="{{noticePopupVisible}}" info="{{curTicketInfo}}" bind:hide="hideNoticePopup" />
 
 <van-calendar 
+  default-date="{{[checkInDate, checkOutDate]}}"
   show="{{calendarPopupVisibel}}" 
   formatter="{{ formatter }}" 
   bind:close="hideCalendarPopup" 

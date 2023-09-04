@@ -1,3 +1,4 @@
+import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { store } from "../../../../store/index";
 import { debounce } from "../../../../utils/index";
 import HotelService from "./utils/hotelService";
@@ -26,28 +27,21 @@ Page({
     curCategoryId: 0,
     categoryOptions: [],
     calendarPopupVisibel: false,
-    startDate: "",
-    endDate: "",
     keywords: "",
     hotelList: [],
     finished: false,
   },
 
   async onLoad() {
+    this.storeBindings = createStoreBindings(this, {
+      store,
+      fields: ["checkInDate", "checkOutDate"],
+    });
+
     this.initCalendar();
     await this.setLocationInfo();
     await this.setCategoryOptions();
     this.setHotelList(true);
-  },
-
-  initCalendar() {
-    const endDate = new Date();
-    endDate.setDate(endDate.getDate() + 1);
-
-    this.setData({
-      startDate: this.formatDate(),
-      endDate: this.formatDate(endDate),
-    });
   },
 
   async setLocationInfo() {
@@ -159,23 +153,28 @@ Page({
     });
   },
 
+  initCalendar() {
+    store.setCheckInDate(new Date().getTime());
+
+    const endDate = new Date();
+    endDate.setDate(endDate.getDate() + 1);
+    store.setCheckOutDate(endDate.getTime());
+  },
+
   setCalendar(e) {
     const [start, end] = e.detail;
+    store.setCheckInDate(start.getTime());
+    store.setCheckOutDate(end.getTime());
     this.setData({
-      startDate: this.formatDate(start),
-      endDate: this.formatDate(end),
       calendarPopupVisibel: false,
     });
   },
 
-  formatDate(date) {
-    date = date ? new Date(date) : new Date();
-    const month = `${date.getMonth() + 1}`.padStart(2, "0");
-    const day = `${date.getDate()}`.padStart(2, "0");
-    return `${month}-${day}`;
-  },
-
   navBack() {
     wx.navigateBack();
+  },
+
+  onUnload() {
+    this.storeBindings.destroyStoreBindings();
   },
 });

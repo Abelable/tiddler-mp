@@ -1,3 +1,4 @@
+import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { store } from "../../../../../../store/index";
 import { calcDistance } from "../../../../../../utils/index";
 import HotelService from "../../utils/hotelService";
@@ -31,12 +32,7 @@ Page({
     indexList: [],
     roomTypeList: [],
     roomTypeIndexList: [],
-    ticketTypeList: [],
-    curTicketTypeIdx: 0,
-    ticketList: [],
-    combinedTicketTypeList: [],
-    curCombinedTicketTypeIdx: 0,
-    combinedTicketList: [],
+    roomPackageList: [],
     commentList: [
       {
         userInfo: {
@@ -288,12 +284,15 @@ Page({
     ],
     curTicketInfo: null,
     noticePopupVisible: false,
-    startDate: "",
-    endDate: "",
     calendarPopupVisibel: false,
   },
 
   async onLoad({ id }) {
+    this.storeBindings = createStoreBindings(this, {
+      store,
+      fields: ["checkInDate", "checkOutDate"],
+    });
+
     this.hotelId = +id;
     await this.setHotelInfo();
     await this.setRoomTypeList();
@@ -380,8 +379,8 @@ Page({
   },
 
   setMenuList() {
-    const { combinedTicketTypeList } = this.data;
-    const menuList = combinedTicketTypeList.length
+    const { roomPackageList } = this.data;
+    const menuList = roomPackageList.length
       ? [
           "酒店房间",
           "酒店套餐",
@@ -554,11 +553,15 @@ Page({
 
   setCalendar(e) {
     const [start, end] = e.detail;
+    store.setCheckInDate(start.getTime());
+    store.setCheckOutDate(end.getTime());
     this.setData({
-      startDate: this.formatDate(start),
-      endDate: this.formatDate(end),
       calendarPopupVisibel: false,
     });
+  },
+
+  onUnload() {
+    this.storeBindings.destroyStoreBindings();
   },
 
   onShareAppMessage() {},

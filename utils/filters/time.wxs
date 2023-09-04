@@ -21,8 +21,37 @@ function transform(timeStamp, statement) {
   }
 }
 
+function week(timeStamp) {
+  if (timeStamp) {
+    var todayDateString = getDate().toLocaleDateString();
+
+    var tomorrowDate = getDate();
+    tomorrowDate.setDate(tomorrowDate.getDate() + 1);
+    var tomorrowDateString = tomorrowDate.toLocaleDateString();
+
+    var thirdDate = getDate();
+    thirdDate.setDate(thirdDate.getDate() + 2);
+    var thirdDateString = thirdDate.toLocaleDateString();
+
+    var curDateString = getDate(timeStamp).toLocaleDateString();
+
+    if (curDateString === todayDateString) {
+      return "今天";
+    }
+    if (curDateString === tomorrowDateString) {
+      return "明天";
+    }
+    if (curDateString === thirdDateString) {
+      return "后天";
+    }
+    return ["周一", "周二", "周三", "周四", "周五", "周六", "周日"][
+      getDate(timeStamp).getDay() - 1
+    ];
+  }
+}
+
 function countDown(timeStamp, statement) {
-  var days = format(Math.floor(timeStamp / (24 * 60 * 60)));
+  var days = Math.floor(timeStamp / (24 * 60 * 60));
   var hours = format(Math.floor((timeStamp % (24 * 60 * 60)) / (60 * 60)));
   var minutes = format(Math.floor((timeStamp % (60 * 60)) / 60));
   var seconds = format(Math.floor(timeStamp % 60));
@@ -91,6 +120,7 @@ function calculateDuration(startTimeStamp, statement, endTimeStamp = 0) {
 module.exports = {
   format: format,
   transform: transform,
+  week: week,
   countDown: countDown,
   timeDiff: timeDiff,
   calculateDuration: calculateDuration,

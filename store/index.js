@@ -1,36 +1,38 @@
-import { configure, observable, action } from 'mobx-miniprogram'
-import tim from './modules/tim'
-import live from './modules/live/index'
+import { configure, observable, action } from "mobx-miniprogram";
+import tim from "./modules/tim";
+import live from "./modules/live/index";
+import hotel from "./modules/hotel";
 
-configure({ enforceActions: 'observed' }) // 不允许在动作外部修改状态
+configure({ enforceActions: "observed" }); // 不允许在动作外部修改状态
 
 export const store = observable({
-  tabType: 'home',
+  tabType: "home",
   userInfo: null,
   activeMediaItem: null,
-  croppedImagePath: '',
+  croppedImagePath: "",
   locationInfo: null,
   scenicPreOrderInfo: null,
-  
+
   setTabType: action(function (type) {
-    this.tabType = type
+    this.tabType = type;
   }),
   setUserInfo: action(function (info) {
-    this.userInfo = info
+    this.userInfo = info;
   }),
   setActiveMediaItem: action(function (info) {
-    this.activeMediaItem = info
+    this.activeMediaItem = info;
   }),
   setCroppedImagePath: action(function (path) {
-    this.croppedImagePath = path
+    this.croppedImagePath = path;
   }),
   setLocationInfo: action(function (info) {
-    this.locationInfo = info
+    this.locationInfo = info;
   }),
   setScenicPreOrderInfo: action(function (info) {
-    this.scenicPreOrderInfo = info
+    this.scenicPreOrderInfo = info;
   }),
 
   ...tim,
-  ...live
-})
+  ...live,
+  ...hotel,
+});

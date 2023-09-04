@@ -1,4 +1,4 @@
-<wxs module="DROPDOWN" src="/utils/filters/dropdownVisible.wxs" />
+<wxs module="TIME" src="/utils/filters/time.wxs" />
 
 <view class="nav-bar" style="padding-top: {{statusBarHeight}}px;">
   <view class="search-bar-wrap">
@@ -7,11 +7,11 @@
       <view class="calendar-bar" bindtap="showCalendarPopup">
         <view class="calendar-item">
           <text style="color: #999;">住</text>
-          <text>{{startDate}}</text>
+          <text>{{TIME.transform(checkInDate, 'MM-DD')}}</text>
         </view>
         <view class="calendar-item">
           <text style="color: #999;">离</text>
-          <text>{{endDate}}</text>
+          <text>{{TIME.transform(checkOutDate, 'MM-DD')}}</text>
         </view>
       </view>
       <image class="search-icon" src="/images/search.png" />
@@ -38,6 +38,7 @@
 </view>
 
 <van-calendar 
+  default-date="{{[checkInDate, checkOutDate]}}"
   show="{{calendarPopupVisibel}}" 
   formatter="{{ formatter }}" 
   bind:close="hideCalendarPopup" 
