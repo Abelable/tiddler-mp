@@ -345,10 +345,14 @@
   color: #333;
   font-size: 10px;
 }
-.tenant-picker {
+/* .tenant-picker {
   color: #333;
   font-size: 14px;
   font-weight: 550;
+} */
+.date-picker-arrow {
+  color: #666;
+  font-size: 10px;
 }
 
 .more-detail {

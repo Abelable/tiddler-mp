@@ -91,8 +91,8 @@
     <view>
       <van-index-anchor class="condition-picker-wrap-index-anchor" index="1" use-slot>
         <view class="condition-picker-wrap row center">
-          <view class="condition-picker row between">
-            <view class="date-picker-wrap row" bindtap="showCalendarPopup">
+          <view class="condition-picker row between" bindtap="showCalendarPopup">
+            <view class="date-picker-wrap row">
               <view class="date-picker row">
                 <view class="date">{{TIME.transform(checkInDate, 'MM月DD日')}}</view>
                 <view class="week">{{TIME.week(checkInDate)}}</view>
@@ -105,7 +105,11 @@
                 <view class="date-picker-type">退房日期</view>
               </view>
             </view>
-            <view class="tenant-picker row">2成人 0儿童</view>
+            <!-- <view class="tenant-picker row">2成人 0儿童</view> -->
+            <view class="date-picker-arrow row">
+              <view>选择住/离日期</view>
+              <image class="more-icon" src="./images/more.png" />
+            </view>
           </view>
         </view>
       </van-index-anchor>
