@@ -1,6 +1,7 @@
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { store } from "../../../../store/index";
 import { debounce } from "../../../../utils/index";
+import { formatter } from "./utils/index";
 import HotelService from "./utils/hotelService";
 
 const hotelService = new HotelService();
@@ -9,14 +10,7 @@ const { statusBarHeight } = getApp().globalData.systemInfo;
 Page({
   data: {
     statusBarHeight,
-    formatter(day) {
-      if (day.type === "start") {
-        day.bottomInfo = "入住";
-      } else if (day.type === "end") {
-        day.bottomInfo = "退房";
-      }
-      return day;
-    },
+    formatter,
     curSortIndex: 0,
     sortOptions: [
       { icon: "", text: "综合排序", value: 0 },
