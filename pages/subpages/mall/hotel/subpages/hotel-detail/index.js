@@ -37,6 +37,7 @@ Component({
     roomTypeList: [],
     roomTypeIndexList: [],
     roomPackageList: [],
+    nightNum: 1,
     commentList,
     nearbyScenicSpotList,
     nearbyHotelList,
@@ -47,7 +48,15 @@ Component({
   },
 
   observers: {
-    "checkInDate, checkOutDate": function (checkInDate, checkOutDate) {},
+    "checkInDate, checkOutDate": function (checkInDate, checkOutDate) {
+      const nightNum = Number(
+        ((checkOutDate - checkInDate) / (1000 * 60 * 60 * 24)).toFixed()
+      );
+      this.dateList = new Array(nightNum)
+        .fill("")
+        .map((item, index) => checkInDate + 1000 * 60 * 60 * 24 * index);
+      this.setData({ nightNum });
+    },
   },
 
   methods: {
@@ -127,16 +136,40 @@ Component({
     async setRoomTypeList() {
       const hotelRoomList = await hotelService.getHotelRoomList(this.hotelId);
       const typeList = await hotelService.getRoomTypeOptions(this.hotelId);
-      const roomTypeList = typeList.map((item) => {
-        const roomList = hotelRoomList.filter(
-          (room) => room.typeId === item.id
-        );
-        return { ...item, roomList, fold: true };
-      });
+
+      const roomTypeList = typeList
+        .map((item) => {
+          const roomList = hotelRoomList
+            .filter((room) => room.typeId === item.id)
+            .map((room) => ({
+              ...room,
+              price: this.dateList
+                .map(
+                  (date) =>
+                    room.priceList.find(
+                      (priceUnit) =>
+                        date >= priceUnit.startDate * 1000 &&
+                        date <= priceUnit.endDate * 1000
+                    ).price
+                )
+                .reduce((a, b) => Number(a) + Number(b), 0),
+            }));
+          const { price = 0 } =
+            roomList.sort((a, b) => a.price - b.price)[0] || {};
+          return { ...item, roomList, price, fold: true };
+        })
+        .filter((item) => item.roomList.length);
+
       const roomTypeIndexList = new Array(roomTypeList.length + 1)
         .fill("")
         .map((item, index) => index + 1);
-      this.setData({ roomTypeIndexList, roomTypeList, indexList: [1, 2] });
+
+      this.setData(
+        { roomTypeIndexList, roomTypeList, indexList: [1, 2] },
+        () => {
+          this.redraw();
+        }
+      );
     },
 
     setMenuList() {
@@ -222,11 +255,15 @@ Component({
           [`roomTypeList[${index}].fold`]: !fold,
         },
         () => {
-          this.selectComponent("#index-bar-wrap").updateData();
-          this.selectComponent("#index-bar").updateData();
-          this.setMenuChangeLimitList();
+          this.redraw();
         }
       );
+    },
+
+    redraw() {
+      this.selectComponent("#index-bar-wrap").updateData();
+      this.selectComponent("#index-bar").updateData();
+      this.setMenuChangeLimitList();
     },
 
     onPageScroll({ scrollTop }) {
@@ -316,6 +353,7 @@ Component({
       const [start, end] = e.detail;
       store.setCheckInDate(start.getTime());
       store.setCheckOutDate(end.getTime());
+      this.setRoomTypeList();
       this.setData({
         calendarPopupVisibel: false,
       });

@@ -27,7 +27,8 @@ class HotelService extends BaseService {
   async getRoomTypeOptions(hotelId) {
     return await this.get({
       url: `${this.baseUrl}/hotel/room/type_options`,
-      data: { hotelId }
+      data: { hotelId },
+      loadingTitle: "加载中...",
     });
   }
 
