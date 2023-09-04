@@ -353,10 +353,10 @@ Component({
       const [start, end] = e.detail;
       store.setCheckInDate(start.getTime());
       store.setCheckOutDate(end.getTime());
-      this.setRoomTypeList();
       this.setData({
         calendarPopupVisibel: false,
       });
+      this.setRoomTypeList();
     },
 
     onShareAppMessage() {},
