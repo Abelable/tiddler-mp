@@ -24,7 +24,7 @@
     </view>
   </view>
   <view class="booking-wrap">
-    <price-unit price="{{ticket.price || 0}}" isStartPrice />
+    <price-unit price="{{ticket.price || 0}}" unit="起" />
     <button class="booking-btn" catchtap="booking">预订</button>
   </view>
 </view>

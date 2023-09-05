@@ -29,10 +29,14 @@ Component({
       type: String,
       value: "¥",
     },
-    isStartPrice: Boolean,
-    startFontSize: {
+    unit: String,
+    unitFontSize: {
       type: String,
       value: "22rpx",
+    },
+    unitColor: {
+      type: String,
+      value: "#EE0D23",
     },
   },
 

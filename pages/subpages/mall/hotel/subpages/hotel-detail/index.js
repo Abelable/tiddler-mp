@@ -49,8 +49,8 @@ Component({
 
   observers: {
     "checkInDate, checkOutDate": function (checkInDate, checkOutDate) {
-      const nightNum = Number(
-        ((checkOutDate - checkInDate) / (1000 * 60 * 60 * 24)).toFixed()
+      const nightNum = Math.floor(
+        (checkOutDate - checkInDate) / (1000 * 60 * 60 * 24)
       );
       this.dateList = new Array(nightNum)
         .fill("")
@@ -143,16 +143,19 @@ Component({
             .filter((room) => room.typeId === item.id)
             .map((room) => ({
               ...room,
-              price: this.dateList
-                .map(
-                  (date) =>
-                    room.priceList.find(
-                      (priceUnit) =>
-                        date >= priceUnit.startDate * 1000 &&
-                        date <= priceUnit.endDate * 1000
-                    ).price
-                )
-                .reduce((a, b) => Number(a) + Number(b), 0),
+              price: Math.floor(
+                this.dateList
+                  .map(
+                    (date) =>
+                      room.priceList.find(
+                        (priceUnit) =>
+                          date >= priceUnit.startDate * 1000 &&
+                          date <= priceUnit.endDate * 1000
+                      ).price
+                  )
+                  .reduce((a, b) => Number(a) + Number(b), 0) /
+                  this.dateList.length
+              ),
             }));
           const { price = 0 } =
             roomList.sort((a, b) => a.price - b.price)[0] || {};
@@ -304,7 +307,7 @@ Component({
       const { typeIndex, roomIndex } = e.currentTarget.dataset;
       const { roomTypeList } = this.data;
       const { id, price, roomList, ...roomTypeInfo } = roomTypeList[typeIndex];
-      const { priceList, ...roomInfo } = roomList[roomIndex]
+      const { priceList, ...roomInfo } = roomList[roomIndex];
       this.setData({
         curRoomInfo: { ...roomTypeInfo, ...roomInfo },
         noticePopupVisible: true,

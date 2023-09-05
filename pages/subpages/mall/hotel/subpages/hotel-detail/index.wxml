@@ -132,7 +132,7 @@
                   <view class="room-type-status">{{ item.roomList.length }}个可订价格</view>
                 </view>
                 <view class="price-wrap row" catchtap="toggleFold" data-index="{{ index }}">
-                  <price-unit price="{{item.price || 0}}" isStartPrice />
+                  <price-unit price="{{item.price || 0}}" unit="起" />
                   <image class="toggle-fold-icon" src="./images/{{item.fold ? 'down' : 'up'}}-btn-fill.png" />
                 </view>
               </view>
@@ -159,7 +159,7 @@
                 </view>
                 <view class="shop-name">来自{{room.shopInfo.name}}</view>
                 <view class="room-price-wrap row bottom" catchtap="">
-                  <price-unit price="{{room.price || 0}}" />
+                  <price-unit price="{{room.price || 0}}" unit="/晚" />
                   <view class="order-btn">
                     <view class="order-btn-title">订</view>
                     <view class="order-btn-desc">在线付</view>

@@ -2,5 +2,5 @@
   <text>{{symbol}}</text>
   <text style="margin-left: 1px; font-size: {{integerFontSize}}; font-weight: bold;">{{integerPart}}</text>
   <text wx:if="{{floatPart}}">.{{floatPart}}</text>
-  <text wx:if="{{isStartPrice}}" style="font-size: {{startFontSize}}">起</text>
+  <text wx:if="{{unit}}" style="color: {{unitColor}}; font-size: {{unitFontSize}}">{{unit}}</text>
 </view>
