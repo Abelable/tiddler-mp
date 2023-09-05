@@ -1,7 +1,20 @@
-<view class="container">
+
+<view class="nav-bar row {{ navBarActive ? 'active' : '' }}" style="padding-top: {{statusBarHeight}}px;">
+  <view class="nav-bar-unit">
+    <back-icon />
+  </view>
+  <view class="hotel-name">
+    <view>{{hotelPreOrderInfo.hotelName}}</view>
+    <view class="english-name">{{hotelPreOrderInfo.hotelEnglishName}}</view>
+  </view>
+  <view class="nav-bar-unit" />
+</view>
+
+<view class="container" style="padding-top: {{statusBarHeight + 56}}px;">
+  <view class="bg" />
+
   <view class="ticket">
     <view class="ticket-name">{{hotelPreOrderInfo.name}} {{hotelPreOrderInfo.categoryName}}</view>
-    <view class="split-line" />
     <view class="ticket-more">
       <view class="date-picker">
         <view class="date-picker-title">选择日期</view>
@@ -56,21 +69,23 @@
 
   <view class="card">
     <view class="card-title row baseline">
-      <view>游客信息</view>
-      <view class="title-tips">需添加1位游客用于接受出票信息</view>
+      <view>入住信息</view>
+      <view class="title-tips">姓名需与证件一致，只需填1位入住人</view>
     </view>
     <view class="tourist-info-list">
       <view class="tourist-info-item row">
-        <view class="tourist-info-label">出游人</view>
+        <view class="tourist-info-label">房间数</view>
+        <view class="num-setpper row end">
+          <van-stepper value="{{ num }}" bind:change="numChange" max="{{1}}" integer />
+        </view>
+      </view>
+      <view class="tourist-info-item row">
+        <view class="tourist-info-label">入住人</view>
         <input class="tourist-info-input" bindinput="setConsignee" placeholder="请输入姓名" />
       </view>
       <view class="tourist-info-item row">
         <view class="tourist-info-label">手机号</view>
         <input class="tourist-info-input" bindinput="setMobile" type="number" placeholder="请输入手机号" />
-      </view>
-      <view class="tourist-info-item row">
-        <view class="tourist-info-label">身份证</view>
-        <input class="tourist-info-input" bindinput="setIdCardNumber" type="idcard" placeholder="请输入身份证号" />
       </view>
     </view>
   </view>
@@ -95,12 +110,3 @@
   bind:hide="togglePriceDetailPopupVisible" 
 />
 <notice-popup show="{{noticePopupVisible}}" info="{{hotelPreOrderInfo}}" bind:hide="hideNoticePopup" onlyCheck />
-<van-calendar 
-  show="{{ calendarPopupVisible }}"
-  min-date="{{ minDate }}"
-  max-date="{{ maxDate }}"
-  formatter="{{ formatter }}"
-  bind:close="hideCalendarPopup" 
-  bind:confirm="onCalendarConfirm" 
-  color="#1986F8" 
-/>

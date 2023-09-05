@@ -3,6 +3,7 @@ import { store } from "../../../../../../store/index";
 import HotelService from "../../utils/hotelService";
 
 const hotelService = new HotelService();
+const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Component({
   behaviors: [storeBindingsBehavior],
@@ -13,26 +14,16 @@ Component({
   },
 
   data: {
+    statusBarHeight,
+    navBarActive: false,
     minDate: 0,
     maxDate: 0,
-    formatter(day) {
-      const timeStamp = day.date / 1000;
-      const { price } =
-        store.hotelPreOrderInfo.priceList.find(
-          (item) => timeStamp >= item.startDate && timeStamp <= item.endDate
-        ) || {};
-      if (price) {
-        day.bottomInfo = `¥${price}`;
-      }
-      return day;
-    },
     paymentAmount: 0,
     recentlyDateList: [],
     curDateIdx: 0,
     num: 1,
     consignee: "",
     mobile: "",
-    idCardNumber: "",
     priceDetailPopupVisible: false,
     noticePopupVisible: false,
     calendarPopupVisible: false,
@@ -42,15 +33,15 @@ Component({
   observers: {
     hotelPreOrderInfo: function (info) {
       if (info) {
-        this.setRecentlyDateList();
+        // this.setRecentlyDateList();
 
-        const { todayBookable, priceList } = info;
-        let minDate = new Date(new Date().setHours(0, 0, 0, 0)).getTime();
-        if (!todayBookable) {
-          minDate = minDate + 86400 * 1000;
-        }
-        const maxDate = priceList[priceList.length - 1].endDate * 1000;
-        this.setData({ minDate, maxDate });
+        // const { todayBookable, priceList } = info;
+        // let minDate = new Date(new Date().setHours(0, 0, 0, 0)).getTime();
+        // if (!todayBookable) {
+        //   minDate = minDate + 86400 * 1000;
+        // }
+        // const maxDate = priceList[priceList.length - 1].endDate * 1000;
+        // this.setData({ minDate, maxDate });
       }
     },
   },
@@ -155,11 +146,6 @@ Component({
       this.setData({ mobile });
     },
 
-    setIdCardNumber(e) {
-      const idCardNumber = e.detail.value;
-      this.setData({ idCardNumber });
-    },
-
     // 提交订单
     async submit() {
       const {
@@ -169,21 +155,13 @@ Component({
         num,
         consignee,
         mobile,
-        idCardNumber,
       } = this.data;
-      if (!consignee || !mobile || !idCardNumber) {
+      if (!consignee || !mobile) {
         return;
       }
       if (!/^1[345789][0-9]{9}$/.test(mobile)) {
         wx.showToast({
           title: "请输入正确手机号",
-          icon: "none",
-        });
-        return
-      }
-      if (!/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(idCardNumber)) {
-        wx.showToast({
-          title: "请输入正确身份证号",
           icon: "none",
         });
         return
@@ -199,7 +177,6 @@ Component({
         num,
         consignee,
         mobile,
-        idCardNumber
       );
       this.pay(orderId);
     },
@@ -291,5 +268,17 @@ Component({
         noticePopupVisible: false,
       });
     },
+
+    onPageScroll({ scrollTop }) {
+      if (scrollTop > 10) {
+        if (!this.data.navBarActive) {
+          this.setData({ navBarActive: true })
+        }
+      } else {
+        if (this.data.navBarActive) {
+          this.setData({ navBarActive: false })
+        }
+      }
+    }
   },
 });
