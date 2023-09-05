@@ -21,6 +21,12 @@ Component({
       wx.previewImage({ current, urls });
     },
 
+    bannerChange(e) {
+      this.setData({
+        curDot: e.detail.current + 1,
+      });
+    },
+
     contact() {
       console.log("contact");
     },

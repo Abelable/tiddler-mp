@@ -2,132 +2,152 @@
   <view class="notice-popup">
     <view class="pop-title row center">预订须知</view>
     <scroll-view class="notice-info-wrap" scroll-y>
-      <view class="room-info-wrap">
-        <view class="banner-wrap">
-          <swiper style="height: 420rpx;" circular>
-            <swiper-item 
-              wx:for="{{info.imageList}}" 
-              wx:key="index" 
-              bindtap="previewImage" 
-              data-current="{{item}}" 
-              data-urls="{{info.imageList}}"
-            >
-              <image style="width:100%; height:100%;" src="{{item}}" mode='aspectFill' lazy-load />
-            </swiper-item>
-          </swiper>
-          <view class="banner-dots row">
-            <image class="dot-icon" src="./images/photo.png" />
-            <text>{{curDot}}/{{info.imageList.length}}</text>
+      <view class="notice-main">
+        <view class="room-info-wrap">
+          <view class="banner-wrap">
+            <swiper style="height: 380rpx;" bindchange="bannerChange" circular>
+              <swiper-item 
+                style="border-radius: 24rpx;"
+                wx:for="{{info.imageList}}" 
+                wx:key="index" 
+                bindtap="previewImage" 
+                data-current="{{item}}" 
+                data-urls="{{info.imageList}}"
+              >
+                <image style="width:100%; height:100%;" src="{{item}}" mode='aspectFill' lazy-load />
+              </swiper-item>
+            </swiper>
+            <view class="banner-dots row">
+              <image class="dot-icon" src="./images/photo.png" />
+              <text>{{curDot}}/{{info.imageList.length}}</text>
+            </view>
           </view>
-        </view>
-      </view>
-      <view class="notice-item" wx:if="{{info.feeIncludeTips || info.feeNotIncludeTips}}">
-        <view class="notice-title">费用说明</view>
-        <view class="notice-info-list">
-          <view class="notice-info-item" wx:if="{{info.feeIncludeTips}}">
-            <view class="notice-info-title">费用包含</view>
-            <view class="notice-info-content">{{info.feeIncludeTips}}</view>
-          </view>
-          <view class="notice-info-item" wx:if="{{info.feeNotIncludeTips}}">
-            <view class="notice-info-title">费用不含</view>
-            <view class="notice-info-content">{{info.feeNotIncludeTips}}</view>
-          </view>
-        </view>
-      </view>
 
-      <view class="notice-item">
-        <view class="notice-title">预订说明</view>
-        <view class="notice-info-list">
-          <view class="notice-info-item">
-            <view class="notice-info-title">预订时间</view>
-            <view class="notice-info-content">
-              <text class="notice-info-tag">{{info.bookingTips}}</text>
-              <text>{{info.bookingTime}}前可订当天门票</text>
-            </view>
+          <view class="room-type-name">{{ info.name }}</view>
+          <view class="room-info-detail">
+            <view class="info-label">床铺：</view>
+            <view class="info-content">{{ info.bedDesc }}</view>
           </view>
-          <view class="notice-info-item">
-            <view class="notice-info-title">生效时间</view>
-            <view class="notice-info-content">
-              {{info.effectiveTime ? ('出票' + info.effectiveTime + '小时后生效') : '出票后立即生效'}}
-            </view>
+          <view class="room-info-detail">
+            <view class="info-label">楼层：</view>
+            <view class="info-content">{{ info.floorDesc }}</view>
           </view>
-          <view class="notice-info-item">
-            <view class="notice-info-title">有效期</view>
-            <view class="notice-info-content">
-              {{info.validityTime ? ('指定出行日期' + info.validityTime +'日内有效') : '永久有效'}}
-            </view>
-          </view>
-          <view class="notice-info-item">
-            <view class="notice-info-title">限购说明</view>
-            <view class="notice-info-content">
-              {{info.limitNumber ? ('同一身份证1天内，最多可购买' + info.limitNumber + '张') : '不限购买数量'}}
-            </view>
-          </view>
-          <view class="notice-info-item">
-            <view class="notice-info-title">退票说明</view>
-            <view class="notice-info-content">
-              <text class="notice-info-tag">{{['随时可退', '有条件退', '不可退'][info.refundStatus - 1]}}</text>
-              <text>{{info.refundTips}}</text>
+          <view class="room-info-detail">
+            <view class="info-label">设施：</view>
+            <view class="room-facility-list">
+              <view class="room-facility-item" wx:for="{{info.facilityList}}" wx:key="index">{{item}}</view>
             </view>
           </view>
         </view>
-      </view>
 
-      <view class="notice-item">
-        <view class="notice-title">使用说明</view>
-        <view class="notice-info-list">
-          <view class="notice-info-item">
-            <view class="notice-info-title">入园方式</view>
-            <view class="notice-info-content">
-              <text class="notice-info-tag">{{info.needExchange ? '需换票' : '无需换票'}}</text>
-              <text>{{info.exchangeTips}}</text>
+        <view class="notice-item" wx:if="{{info.feeIncludeTips || info.feeNotIncludeTips}}">
+          <view class="notice-title">费用说明</view>
+          <view class="notice-info-list">
+            <view class="notice-info-item" wx:if="{{info.feeIncludeTips}}">
+              <view class="notice-info-title">费用包含</view>
+              <view class="notice-info-content">{{info.feeIncludeTips}}</view>
+            </view>
+            <view class="notice-info-item" wx:if="{{info.feeNotIncludeTips}}">
+              <view class="notice-info-title">费用不含</view>
+              <view class="notice-info-content">{{info.feeNotIncludeTips}}</view>
             </view>
           </view>
-          <view class="notice-info-item" wx:if="{{info.exchangeTime}}">
-            <view class="notice-info-title">换票时间</view>
-            <view class="notice-info-content">{{info.exchangeTime}}</view>
-          </view>
-           <view class="notice-info-item" wx:if="{{info.exchangeLocation}}">
-            <view class="notice-info-title">换票地址</view>
-            <view class="notice-info-content">{{info.exchangeLocation}}</view>
-          </view>
-          <view class="notice-info-item" wx:if="{{info.enterTime}}">
-            <view class="notice-info-title">入园时间</view>
-            <view class="notice-info-content">{{info.enterTime}}</view>
-          </view>
-           <view class="notice-info-item" wx:if="{{info.enterLocation}}">
-            <view class="notice-info-title">入园地址</view>
-            <view class="notice-info-content">{{info.enterLocation}}</view>
-          </view>
         </view>
-      </view>
-
-      <view class="notice-item" wx:if="{{info.invoiceTips || info.reminderTips}}">
-        <view class="notice-title">其他说明</view>
-        <view class="notice-info-list">
-          <view class="notice-info-item" wx:if="{{info.invoiceTips}}">
-            <view class="notice-info-title">发票说明</view>
-            <view class="notice-info-content">{{info.invoiceTips}}</view>
-          </view>
-          <view class="notice-info-item" wx:if="{{info.reminderTips}}">
-            <view class="notice-info-title">特别提醒</view>
-            <view class="notice-info-content">{{info.reminderTips}}</view>
-          </view>
-        </view>
-      </view>
-
-      <view class="notice-item">
-        <view class="notice-title">服务商家</view>
-        <view class="supplier-info row between">
-          <view class="row">
-            <view class="supplier-type row" wx:if="{{info.shopInfo.type !== 2}}">
-              {{info.shopInfo.type === 1 ? '官方' : '自营'}}
+  
+        <view class="notice-item">
+          <view class="notice-title">预订说明</view>
+          <view class="notice-info-list">
+            <view class="notice-info-item">
+              <view class="notice-info-title">预订时间</view>
+              <view class="notice-info-content">
+                <text class="notice-info-tag">{{info.bookingTips}}</text>
+                <text>{{info.bookingTime}}前可订当天门票</text>
+              </view>
             </view>
-            <view class="supplier-name">{{ info.shopInfo.name }}</view>
+            <view class="notice-info-item">
+              <view class="notice-info-title">生效时间</view>
+              <view class="notice-info-content">
+                {{info.effectiveTime ? ('出票' + info.effectiveTime + '小时后生效') : '出票后立即生效'}}
+              </view>
+            </view>
+            <view class="notice-info-item">
+              <view class="notice-info-title">有效期</view>
+              <view class="notice-info-content">
+                {{info.validityTime ? ('指定出行日期' + info.validityTime +'日内有效') : '永久有效'}}
+              </view>
+            </view>
+            <view class="notice-info-item">
+              <view class="notice-info-title">限购说明</view>
+              <view class="notice-info-content">
+                {{info.limitNumber ? ('同一身份证1天内，最多可购买' + info.limitNumber + '张') : '不限购买数量'}}
+              </view>
+            </view>
+            <view class="notice-info-item">
+              <view class="notice-info-title">退票说明</view>
+              <view class="notice-info-content">
+                <text class="notice-info-tag">{{['随时可退', '有条件退', '不可退'][info.refundStatus - 1]}}</text>
+                <text>{{info.refundTips}}</text>
+              </view>
+            </view>
           </view>
-          <view class="contact-btn row" bindtap="contact">
-            <image class="contact-icon" src="./images/contact-icon.png" />
-            <text>联系商家</text>
+        </view>
+  
+        <view class="notice-item">
+          <view class="notice-title">使用说明</view>
+          <view class="notice-info-list">
+            <view class="notice-info-item">
+              <view class="notice-info-title">入园方式</view>
+              <view class="notice-info-content">
+                <text class="notice-info-tag">{{info.needExchange ? '需换票' : '无需换票'}}</text>
+                <text>{{info.exchangeTips}}</text>
+              </view>
+            </view>
+            <view class="notice-info-item" wx:if="{{info.exchangeTime}}">
+              <view class="notice-info-title">换票时间</view>
+              <view class="notice-info-content">{{info.exchangeTime}}</view>
+            </view>
+             <view class="notice-info-item" wx:if="{{info.exchangeLocation}}">
+              <view class="notice-info-title">换票地址</view>
+              <view class="notice-info-content">{{info.exchangeLocation}}</view>
+            </view>
+            <view class="notice-info-item" wx:if="{{info.enterTime}}">
+              <view class="notice-info-title">入园时间</view>
+              <view class="notice-info-content">{{info.enterTime}}</view>
+            </view>
+             <view class="notice-info-item" wx:if="{{info.enterLocation}}">
+              <view class="notice-info-title">入园地址</view>
+              <view class="notice-info-content">{{info.enterLocation}}</view>
+            </view>
+          </view>
+        </view>
+  
+        <view class="notice-item" wx:if="{{info.invoiceTips || info.reminderTips}}">
+          <view class="notice-title">其他说明</view>
+          <view class="notice-info-list">
+            <view class="notice-info-item" wx:if="{{info.invoiceTips}}">
+              <view class="notice-info-title">发票说明</view>
+              <view class="notice-info-content">{{info.invoiceTips}}</view>
+            </view>
+            <view class="notice-info-item" wx:if="{{info.reminderTips}}">
+              <view class="notice-info-title">特别提醒</view>
+              <view class="notice-info-content">{{info.reminderTips}}</view>
+            </view>
+          </view>
+        </view>
+  
+        <view class="notice-item">
+          <view class="notice-title">服务商家</view>
+          <view class="supplier-info row between">
+            <view class="row">
+              <view class="supplier-type row" wx:if="{{info.shopInfo.type !== 2}}">
+                {{info.shopInfo.type === 1 ? '官方' : '自营'}}
+              </view>
+              <view class="supplier-name">{{ info.shopInfo.name }}</view>
+            </view>
+            <view class="contact-btn row" bindtap="contact">
+              <image class="contact-icon" src="./images/contact-icon.png" />
+              <text>联系商家</text>
+            </view>
           </view>
         </view>
       </view>
