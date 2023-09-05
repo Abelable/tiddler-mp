@@ -1,7 +1,7 @@
 <van-popup show="{{show}}" bind:close="hide" round position="bottom">
   <view class="notice-popup">
-    <view class="pop-title row center">预定须知</view>
-    <scroll-view class="notice-list" scroll-y>
+    <view class="pop-title row center">预订须知</view>
+    <scroll-view class="notice-info-wrap" scroll-y>
       <view class="notice-item" wx:if="{{info.feeIncludeTips || info.feeNotIncludeTips}}">
         <view class="notice-title">费用说明</view>
         <view class="notice-info-list">
@@ -17,10 +17,10 @@
       </view>
 
       <view class="notice-item">
-        <view class="notice-title">预定说明</view>
+        <view class="notice-title">预订说明</view>
         <view class="notice-info-list">
           <view class="notice-info-item">
-            <view class="notice-info-title">预定时间</view>
+            <view class="notice-info-title">预订时间</view>
             <view class="notice-info-content">
               <text class="notice-info-tag">{{info.bookingTips}}</text>
               <text>{{info.bookingTime}}前可订当天门票</text>
@@ -115,7 +115,7 @@
     </scroll-view>
 
     <view class="btn-wrap">
-      <button class="confirm-btn" bindtap="confirm">{{onlyCheck ? '确定' : '立即预定'}}</button>
+      <button class="confirm-btn" bindtap="confirm">{{onlyCheck ? '确定' : '立即预订'}}</button>
     </view>
   </view>
 </van-popup>

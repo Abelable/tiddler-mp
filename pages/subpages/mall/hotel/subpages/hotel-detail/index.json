@@ -13,6 +13,6 @@
     "comment-item": "../../../components/comment-item/index",
     "hotel-item": "../../../components/hotel-item/index",
     "scenic-spot-item": "../../../components/scenic-spot-item/index",
-    "notice-popup": "./components/notice-popup/index"
+    "notice-popup": "../../components/notice-popup/index"
   }
 }

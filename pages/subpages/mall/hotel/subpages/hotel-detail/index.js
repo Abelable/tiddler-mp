@@ -42,7 +42,7 @@ Component({
     nearbyScenicSpotList,
     nearbyHotelList,
     mediaList,
-    curTicketInfo: null,
+    curRoomInfo: null,
     noticePopupVisible: false,
     calendarPopupVisibel: false,
   },
@@ -301,8 +301,12 @@ Component({
     },
 
     showNoticePopup(e) {
+      const { typeIndex, roomIndex } = e.currentTarget.dataset;
+      const { roomTypeList } = this.data;
+      const { id, price, roomList, ...roomTypeInfo } = roomTypeList[typeIndex];
+      const { priceList, ...roomInfo } = roomList[roomIndex]
       this.setData({
-        curTicketInfo: e.detail,
+        curRoomInfo: { ...roomTypeInfo, ...roomInfo },
         noticePopupVisible: true,
       });
     },

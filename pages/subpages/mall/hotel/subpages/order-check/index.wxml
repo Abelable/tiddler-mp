@@ -46,7 +46,7 @@
           <view class="tips stress">{{['随时可退', '有条件退', '不可退'][hotelPreOrderInfo.refundStatus - 1]}}</view>
           <view class="tips" wx:if="{{!hotelPreOrderInfo.needExchange}}">无需换票</view>
           <view class="tips stress row">
-            <text>预定须知</text>
+            <text>预订须知</text>
             <image class="right-arrow" src="./images/more-blue.png" />
           </view>
         </view>

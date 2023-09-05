@@ -18,13 +18,13 @@
     <view class="tips-wrap row">
       <view class="tips">已售{{ticket.salesVolume}}</view>
       <view class="tips stress row">
-        <text>预定须知</text>
+        <text>预订须知</text>
         <image class="more-icon" src="./images/more-blue.png" />
       </view>
     </view>
   </view>
   <view class="booking-wrap">
     <price-unit price="{{ticket.price || 0}}" isStartPrice />
-    <button class="booking-btn" catchtap="booking">预定</button>
+    <button class="booking-btn" catchtap="booking">预订</button>
   </view>
 </view>

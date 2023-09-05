@@ -8,8 +8,8 @@
   font-weight: bold;
 }
 
-.notice-list {
-  height: 800rpx;
+.notice-info-wrap {
+  height: 1000rpx;
 }
 
 .notice-item {

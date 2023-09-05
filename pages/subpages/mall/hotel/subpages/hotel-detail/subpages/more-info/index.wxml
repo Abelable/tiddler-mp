@@ -123,7 +123,7 @@
         </view>
       </view>
       <view class="policy-item" wx:if="{{hotelInfo.preorderTipList.length}}">
-        <view class="policy-label">预定须知</view>
+        <view class="policy-label">预订须知</view>
         <view class="policy-content-list">
           <view class="policy-content" wx:for="{{hotelInfo.preorderTipList}}" wx:key="index">{{ item }}</view>
         </view>
