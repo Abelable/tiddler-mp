@@ -15,6 +15,10 @@
   padding: 0 32rpx;
 }
 
+.room-info-wrap {
+  padding-bottom: 32rpx;
+  border-bottom: 1px solid #eee;
+}
 .banner-wrap {
   position: relative;
 }
@@ -70,8 +74,24 @@
   color: #999;
 }
 
+.warning-tips {
+  position: relative;
+  margin-top: 24rpx;
+  padding-left: 12rpx;
+  color: #999;
+  font-size: 20rpx;
+}
+.warning-tips::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "*";
+  font-size: 18rpx;
+  color: #999;
+}
+
 .notice-item {
-  padding: 32rpx;
+  padding: 32rpx 0;
   border-bottom: 1px solid #eee;
 }
 .notice-item:first-child {
@@ -101,14 +121,8 @@
   flex: 1;
   color: #999;
 }
-.notice-info-tag {
-  margin-right: 8rpx;
-  padding: 0 6rpx;
-  color: #1986F8;
-  font-size: 20rpx;
-  line-height: 1;
-  border: 1px solid #1986F8;
-  border-radius: 6rpx;
+.notice-info-content.active {
+  color: #1dc3c1;
 }
 
 .supplier-info {
@@ -143,6 +157,8 @@
   border-top: 1px solid #f5f6f7;
 }
 .confirm-btn {
+  margin-left: 100rpx;
+  flex: 1;
   height: 88rpx;
   color: #fff;
   font-size: 32rpx;

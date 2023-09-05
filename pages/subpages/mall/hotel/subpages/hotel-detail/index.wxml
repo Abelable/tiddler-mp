@@ -155,7 +155,7 @@
                 </view>
                 <view class="cancellable-status row {{ room.cancellable ? '' : 'uncancellable' }}">
                   <image class="cancellable-icon" src="./images/{{room.cancellable ? '' : 'un'}}cancellable.png" />
-                  <view>{{room.cancellable ? "8月16日16点前取消扣除10%手续费" : "不可取消"}}</view>
+                  <view>{{room.cancellable ? TIME.transform(checkInDate, 'MM月DD日') + "16点前取消扣除10%手续费" : "不可取消"}}</view>
                 </view>
                 <view class="shop-name">来自{{room.shopInfo.name}}</view>
                 <view class="room-price-wrap row bottom" catchtap="">
