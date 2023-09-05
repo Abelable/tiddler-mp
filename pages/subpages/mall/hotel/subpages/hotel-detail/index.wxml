@@ -158,7 +158,7 @@
                   <view>{{room.cancellable ? TIME.transform(checkInDate, 'MM月DD日') + "16点前取消扣除10%手续费" : "不可取消"}}</view>
                 </view>
                 <view class="shop-name">来自{{room.shopInfo.name}}</view>
-                <view class="room-price-wrap row bottom" catchtap="">
+                <view class="room-price-wrap row bottom" catchtap="preorder" data-type-index="{{index}}" data-room-index="{{roomIdx}}">
                   <price-unit price="{{room.price || 0}}" unit="/晚" />
                   <view class="order-btn">
                     <view class="order-btn-title">订</view>

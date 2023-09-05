@@ -42,9 +42,9 @@ Component({
       if (this.properties.onlyCheck) {
         this.hide();
       } else {
-        store.setScenicPreOrderInfo(this.properties.info);
+        store.setHotelPreOrderInfo(this.properties.info);
         wx.navigateTo({
-          url: "/pages/subpages/mall/scenic-spot/subpages/order-check/index",
+          url: "/pages/subpages/mall/hotel/subpages/order-check/index",
         });
       }
     },

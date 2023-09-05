@@ -305,13 +305,24 @@ Component({
 
     showNoticePopup(e) {
       const { typeIndex, roomIndex } = e.currentTarget.dataset;
-      const { roomTypeList } = this.data;
-      const { id, price, roomList, ...roomTypeInfo } = roomTypeList[typeIndex];
-      const { priceList, ...roomInfo } = roomList[roomIndex];
+      const curRoomInfo = this.setCurRoomInfo(typeIndex, roomIndex);
       this.setData({
-        curRoomInfo: { ...roomTypeInfo, ...roomInfo },
+        curRoomInfo,
         noticePopupVisible: true,
       });
+    },
+
+    setCurRoomInfo(typeIndex, roomIndex) {
+      const { hotelInfo, roomTypeList } = this.data;
+      const { name: hotelName, englishName: hotelEnglishName } = hotelInfo;
+      const { id, price, roomList, ...roomTypeInfo } = roomTypeList[typeIndex];
+      const { priceList, ...roomInfo } = roomList[roomIndex];
+      return {
+        hotelName,
+        hotelEnglishName,
+        ...roomTypeInfo,
+        ...roomInfo,
+      }
     },
 
     hideNoticePopup() {
@@ -364,6 +375,15 @@ Component({
         calendarPopupVisibel: false,
       });
       this.setRoomTypeList();
+    },
+
+    preorder(e) {
+      const { typeIndex, roomIndex } = e.currentTarget.dataset;
+      const curRoomInfo = this.setCurRoomInfo(typeIndex, roomIndex);
+      store.setHotelPreOrderInfo(curRoomInfo);
+      wx.navigateTo({
+        url: "/pages/subpages/mall/hotel/subpages/order-check/index",
+      });
     },
 
     onShareAppMessage() {},

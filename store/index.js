@@ -12,6 +12,7 @@ export const store = observable({
   croppedImagePath: "",
   locationInfo: null,
   scenicPreOrderInfo: null,
+  hotelPreOrderInfo: null,
 
   setTabType: action(function (type) {
     this.tabType = type;
@@ -30,6 +31,9 @@ export const store = observable({
   }),
   setScenicPreOrderInfo: action(function (info) {
     this.scenicPreOrderInfo = info;
+  }),
+  setHotelPreOrderInfo: action(function (info) {
+    this.hotelPreOrderInfo = info;
   }),
 
   ...tim,
