@@ -11,7 +11,16 @@ Component({
     onlyCheck: Boolean,
   },
 
+  data: {
+    curDot: 1,
+  },
+
   methods: {
+    previewImage(e) {
+      const { current, urls } = e.currentTarget.dataset;
+      wx.previewImage({ current, urls });
+    },
+
     contact() {
       console.log("contact");
     },

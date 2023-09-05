@@ -2,6 +2,25 @@
   <view class="notice-popup">
     <view class="pop-title row center">预订须知</view>
     <scroll-view class="notice-info-wrap" scroll-y>
+      <view class="room-info-wrap">
+        <view class="banner-wrap">
+          <swiper style="height: 420rpx;" circular>
+            <swiper-item 
+              wx:for="{{info.imageList}}" 
+              wx:key="index" 
+              bindtap="previewImage" 
+              data-current="{{item}}" 
+              data-urls="{{info.imageList}}"
+            >
+              <image style="width:100%; height:100%;" src="{{item}}" mode='aspectFill' lazy-load />
+            </swiper-item>
+          </swiper>
+          <view class="banner-dots row">
+            <image class="dot-icon" src="./images/photo.png" />
+            <text>{{curDot}}/{{info.imageList.length}}</text>
+          </view>
+        </view>
+      </view>
       <view class="notice-item" wx:if="{{info.feeIncludeTips || info.feeNotIncludeTips}}">
         <view class="notice-title">费用说明</view>
         <view class="notice-info-list">

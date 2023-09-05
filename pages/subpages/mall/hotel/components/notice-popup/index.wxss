@@ -12,6 +12,31 @@
   height: 1000rpx;
 }
 
+.banner-wrap {
+  position: relative;
+}
+.banner-dots {
+  position: absolute;
+  right: 24rpx;
+  bottom: 48rpx;
+  padding: 0 12rpx;
+  height: 40rpx;
+  color: #fff;
+  font-size: 20rpx;
+  line-height: 1;
+  font-weight: 500;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 20rpx;
+}
+.dot-icon {
+  margin-right: 8rpx;
+  width: 20rpx;
+  height: 20rpx;
+}
+.cur-dot {
+  font-size: 24rpx;
+}
+
 .notice-item {
   padding: 32rpx;
   border-bottom: 1px solid #eee;
