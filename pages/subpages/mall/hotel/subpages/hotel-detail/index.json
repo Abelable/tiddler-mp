@@ -8,11 +8,11 @@
     "back-icon": "/components/back-icon-white/index",
     "price-unit": "/components/price-unit/index",
     "empty-illus": "/components/empty-illus/index",
+    "fall-flow": "/components/fall-flow/index",
+    "media-item": "/components/media-item/index",
     "comment-item": "../../../components/comment-item/index",
     "hotel-item": "../../../components/hotel-item/index",
     "scenic-spot-item": "../../../components/scenic-spot-item/index",
-    "fall-flow": "/components/fall-flow/index",
-    "media-item": "/components/media-item/index",
-    "notice-popup": "../../components/notice-popup/index"
+    "notice-popup": "./components/notice-popup/index"
   }
 }
