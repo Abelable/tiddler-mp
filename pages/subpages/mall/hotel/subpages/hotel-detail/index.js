@@ -141,7 +141,7 @@ Component({
             .filter((room) => room.typeId === item.id)
             .map((room) => ({
               ...room,
-              price: Math.floor(
+              price: Number((
                 this.dateList
                   .map(
                     (date) =>
@@ -153,7 +153,7 @@ Component({
                   )
                   .reduce((a, b) => Number(a) + Number(b), 0) /
                   this.dateList.length
-              ),
+              ).toFixed(2)),
             }));
           const { price = 0 } =
             roomList.sort((a, b) => a.price - b.price)[0] || {};

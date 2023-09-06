@@ -4,8 +4,10 @@ Component({
   },
 
   properties: {
-    category: String,
+    name: String,
     price: Number,
+    breakfastNum: Number,
+    night: Number,
     num: Number
   },
 

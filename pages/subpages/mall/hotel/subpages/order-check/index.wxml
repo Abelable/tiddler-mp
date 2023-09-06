@@ -83,8 +83,10 @@
 
 <price-detail-popup 
   wx:if="{{priceDetailPopupVisible}}" 
-  category="{{hotelPreOrderInfo.categoryName}}" 
-  price="{{recentlyDateList[curDateIdx].price}}" 
+  name="{{hotelPreOrderInfo.name}}" 
+  price="{{hotelPreOrderInfo.price}}"
+  breakfastNum="{{hotelPreOrderInfo.breakfastNum}}"
+  night="{{TIME.calculateDuration(checkInDate / 1000, 'd', checkOutDate / 1000)}}"
   num="{{num}}" 
   bind:hide="togglePriceDetailPopupVisible" 
 />
