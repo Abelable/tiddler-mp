@@ -98,7 +98,7 @@
                 <view class="week">{{TIME.week(checkInDate)}}</view>
                 <view class="date-picker-type">入住日期</view>
               </view>
-              <view class="night-num">{{nightNum}}晚</view>
+              <view class="night-num">{{TIME.calculateDuration(checkInDate / 1000, 'd', checkOutDate / 1000)}}晚</view>
               <view class="date-picker row">
                 <view class="date">{{TIME.transform(checkOutDate, 'MM月DD日')}}</view>
                 <view class="week">{{TIME.week(checkOutDate)}}</view>

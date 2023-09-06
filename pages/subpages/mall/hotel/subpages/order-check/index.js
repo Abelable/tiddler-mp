@@ -10,7 +10,7 @@ Component({
 
   storeBindings: {
     store,
-    fields: ["hotelPreOrderInfo"],
+    fields: ["hotelPreOrderInfo", "checkInDate", "checkOutDate"],
   },
 
   data: {
@@ -26,24 +26,7 @@ Component({
     mobile: "",
     priceDetailPopupVisible: false,
     noticePopupVisible: false,
-    calendarPopupVisible: false,
     validityTimeDesc: "",
-  },
-
-  observers: {
-    hotelPreOrderInfo: function (info) {
-      if (info) {
-        // this.setRecentlyDateList();
-
-        // const { todayBookable, priceList } = info;
-        // let minDate = new Date(new Date().setHours(0, 0, 0, 0)).getTime();
-        // if (!todayBookable) {
-        //   minDate = minDate + 86400 * 1000;
-        // }
-        // const maxDate = priceList[priceList.length - 1].endDate * 1000;
-        // this.setData({ minDate, maxDate });
-      }
-    },
   },
 
   methods: {
@@ -80,56 +63,6 @@ Component({
       this.setData({ validityTimeDesc });
     },
 
-    setRecentlyDateList() {
-      const { priceList, todayBookable } = this.data.hotelPreOrderInfo;
-      const timeStamp = new Date(new Date().setHours(0, 0, 0, 0)) / 1000;
-      const timeStampList = [
-        timeStamp,
-        timeStamp + 86400,
-        timeStamp + 86400 * 2,
-      ];
-      const recentlyDateList = timeStampList.map((timeStamp, index) => {
-        const { price } =
-          priceList.find(
-            (item) => timeStamp >= item.startDate && timeStamp <= item.endDate
-          ) || {};
-        const curDate = new Date(timeStamp * 1000);
-        const curMonth = `${curDate.getMonth() + 1}`.padStart(2, "0");
-        const curDay = `${curDate.getDate()}`.padStart(2, "0");
-        const curWeekDay =
-          index === 2
-            ? `周${
-                ["日", "一", "二", "三", "四", "五", "六"][curDate.getDay()]
-              }`
-            : index === 0
-            ? "今天"
-            : "明天";
-        return {
-          date: `${curWeekDay} ${curMonth}-${curDay}`,
-          timeStamp,
-          price,
-        };
-      });
-      this.setData(
-        { recentlyDateList, curDateIdx: todayBookable ? 0 : 1 },
-        () => {
-          this.setValidityTimeDesc();
-          this.setPaymentAmount();
-        }
-      );
-    },
-
-    selectDate(e) {
-      const curDateIdx = Number(e.currentTarget.dataset.index);
-      if (curDateIdx === 0 && !this.data.hotelPreOrderInfo.todayBookable) {
-        return;
-      }
-      this.setData({ curDateIdx }, () => {
-        this.setValidityTimeDesc();
-        this.setPaymentAmount();
-      });
-    },
-
     numChange({ detail: num }) {
       this.setData({ num }, () => {
         this.setPaymentAmount();
@@ -164,7 +97,7 @@ Component({
           title: "请输入正确手机号",
           icon: "none",
         });
-        return
+        return;
       }
 
       const { id, categoryId } = hotelPreOrderInfo;
@@ -176,7 +109,7 @@ Component({
         timeStamp,
         num,
         consignee,
-        mobile,
+        mobile
       );
       this.pay(orderId);
     },
@@ -196,59 +129,6 @@ Component({
           });
         },
       });
-    },
-
-    showCalendarPopup() {
-      this.setData({
-        calendarPopupVisible: true,
-      });
-    },
-
-    hideCalendarPopup() {
-      this.setData({
-        calendarPopupVisible: false,
-      });
-    },
-
-    onCalendarConfirm({ detail: timeStamp }) {
-      timeStamp = timeStamp / 1000;
-      const { recentlyDateList, hotelPreOrderInfo } = this.data;
-      const curDateIdx = recentlyDateList.findIndex(
-        (item) => item.timeStamp === timeStamp
-      );
-      if (curDateIdx !== -1) {
-        this.setData({ curDateIdx }, () => {
-          this.setPaymentAmount();
-        });
-      } else {
-        const { price } =
-          hotelPreOrderInfo.priceList.find(
-            (item) => timeStamp >= item.startDate && timeStamp <= item.endDate
-          ) || {};
-        const curDate = new Date(timeStamp * 1000);
-        const curMonth = `${curDate.getMonth() + 1}`.padStart(2, "0");
-        const curDay = `${curDate.getDate()}`.padStart(2, "0");
-        const curWeekDay = `周${
-          ["日", "一", "二", "三", "四", "五", "六"][curDate.getDay()]
-        }`;
-        this.setData(
-          {
-            recentlyDateList: [
-              ...recentlyDateList.slice(0, 2),
-              {
-                date: `${curWeekDay} ${curMonth}-${curDay}`,
-                timeStamp,
-                price,
-              },
-            ],
-            curDateIdx: 2,
-          },
-          () => {
-            this.setPaymentAmount();
-          }
-        );
-      }
-      this.setData({ calendarPopupVisible: false });
     },
 
     togglePriceDetailPopupVisible() {
@@ -272,13 +152,13 @@ Component({
     onPageScroll({ scrollTop }) {
       if (scrollTop > 10) {
         if (!this.data.navBarActive) {
-          this.setData({ navBarActive: true })
+          this.setData({ navBarActive: true });
         }
       } else {
         if (this.data.navBarActive) {
-          this.setData({ navBarActive: false })
+          this.setData({ navBarActive: false });
         }
       }
-    }
+    },
   },
 });

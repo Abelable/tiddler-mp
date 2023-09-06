@@ -60,10 +60,10 @@
   <view class="card" wx:if="{{scenicInfo.hotlineList.length}}">
     <view class="card-title">咨询热线</view>
     <view class="tel-list">
-      <veiw class="tel row between" wx:for="{{scenicInfo.hotlineList}}" wx:key="index">
+      <view class="tel row between" wx:for="{{scenicInfo.hotlineList}}" wx:key="index">
         <view>{{item}}</view>
         <image class="tel-icon" src="./images/tel.png" />
-      </veiw>
+      </view>
     </view>
   </view>
 

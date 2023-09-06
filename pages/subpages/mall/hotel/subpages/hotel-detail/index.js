@@ -37,7 +37,6 @@ Component({
     roomTypeList: [],
     roomTypeIndexList: [],
     roomPackageList: [],
-    nightNum: 1,
     commentList,
     nearbyScenicSpotList,
     nearbyHotelList,
@@ -55,7 +54,6 @@ Component({
       this.dateList = new Array(nightNum)
         .fill("")
         .map((item, index) => checkInDate + 1000 * 60 * 60 * 24 * index);
-      this.setData({ nightNum });
     },
   },
 

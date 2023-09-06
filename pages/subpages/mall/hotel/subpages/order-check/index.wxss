@@ -1,5 +1,3 @@
-
-
 .nav-bar {
   position: fixed;
   top: 0;
@@ -40,67 +38,18 @@
   z-index: -1;
 }
 
-.ticket {
+.room {
+  padding: 24rpx;
   background: #fff;
   border-radius: 18rpx;
 }
-.ticket-name {
-  padding: 24rpx;
+.room-name {
   color: #333;
   font-size: 32rpx;
   font-weight: bold;
 }
-
-.ticket-more {
-  padding: 24rpx;
-}
-
-.date-picker-title, .count-control-title {
+.more-info {
   color: #333;
-  font-size: 28rpx;
-  font-weight: bold;
-}
-.date-picker-list {
-  margin-top: 12rpx;
-}
-.date-picker-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-right: 12rpx;
-  flex: 1;
-  height: 88rpx;
-  border: 1px solid #E1E3E5;
-  border-radius: 8rpx;
-}
-.date-picker-item.active {
-  border: 1px solid #1986F8;
-  background: #EFF0FF;
-}
-.date-picker-item.unvalid {
-  opacity: 0.5;
-}
-.date {
-  color: #666;
-  font-size: 24rpx;
-}
-.date-picker-item.active .date {
-  color: #1986F8;
-}
-.unvalid-tips {
-  font-size: 26rpx;
-  font-weight: bold;
-}
-.more-date-btn {
-  width: 100rpx;
-  height: 88rpx;
-  border: 1px solid #eee;
-  border-radius: 8rpx;
-}
-.btn-desc {
-  margin-left: 16rpx;
-  color: #666;
   font-size: 24rpx;
 }
 .more-icon {
@@ -108,42 +57,71 @@
   height: 28rpx;
 }
 
-.count-control {
-  margin-top: 24rpx;
+.date-picker-wrap {
+  margin-top: 32rpx;
+}
+.date-picker {
+  position: relative;
+  padding: 0 8px;
+  height: 40px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+.date {
+  color: #333;
+  font-size: 15px;
+  font-weight: 550;
+}
+.week {
+  margin-left: 3px;
+  color: #999;
+  font-size: 10px;
+}
+.date-picker-type {
+  position: absolute;
+  top: -6px;
+  left: 12px;
+  padding: 0 3px;
+  color: #333;
+  font-size: 10px;
+  line-height: 1;
+  background: #fff;
+}
+.night-num {
+  margin: 0 12px;
+  color: #333;
+  font-size: 10px;
 }
 
-.ticket-tips {
-  margin-top: 18rpx;
+.room-label-list {
+  margin-top: 32rpx;
 }
-.tips-wrap {
-  margin-bottom: 8rpx;
-}
-.tips-wrap:last-child {
-  margin-bottom: 0;
-}
-.tips-icon {
-  margin-right: 8rpx;
-  width: 32rpx;
-  height: 32rpx;
-}
-.tips {
-  padding-right: 12rpx;
-  border-right: 1px solid #ddd;
-  margin-right: 12rpx;
-  color: #666;
-  font-size: 22rpx;
+.room-label {
+  padding: 0 24rpx;
+  color: #333;
+  font-size: 24rpx;
   line-height: 1;
+  border-right: 1px solid #ddd;
 }
-.tips:last-child {
+.room-label:first-child {
+  padding-left: 0;
+}
+.room-label:last-child {
   border-right: none;
 }
-.tips.stress {
-  color: #529AFE;
+
+.cancellable-status {
+  margin-top: 24rpx;
+  color: #1dc3c1;
+  font-size: 24rpx;
 }
-.right-arrow {
-  margin-left: 2rpx;
-  width: 20rpx;
-  height: 20rpx;
+.cancellable-status.uncancellable {
+  color: #333;
+}
+.cancellable-icon {
+  margin-right: 8rpx;
+  width: 26rpx;
+  height: 26rpx;
 }
 
 .card {

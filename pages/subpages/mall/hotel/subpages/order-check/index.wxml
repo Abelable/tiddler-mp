@@ -1,3 +1,4 @@
+<wxs module="TIME" src="/utils/filters/time.wxs" />
 
 <view class="nav-bar row {{ navBarActive ? 'active' : '' }}" style="padding-top: {{statusBarHeight}}px;">
   <view class="nav-bar-unit">
@@ -13,57 +14,35 @@
 <view class="container" style="padding-top: {{statusBarHeight + 56}}px;">
   <view class="bg" />
 
-  <view class="ticket">
-    <view class="ticket-name">{{hotelPreOrderInfo.name}} {{hotelPreOrderInfo.categoryName}}</view>
-    <view class="ticket-more">
-      <view class="date-picker">
-        <view class="date-picker-title">选择日期</view>
-        <view class="date-picker-list row">
-          <view 
-            class="date-picker-item {{curDateIdx === index ? 'active' : ''}} {{index === 0 && !hotelPreOrderInfo.todayBookable ? 'unvalid' : ''}}" 
-            wx:for="{{recentlyDateList}}" 
-            wx:key="index"
-            bindtap="selectDate"
-            data-index="{{index}}"
-          >
-            <view class="date">{{item.date}}</view>
-            <block>
-              <view class="unvalid-tips" wx:if="{{index === 0 && !hotelPreOrderInfo.todayBookable}}">不可定</view>
-              <price-unit wx:else price="{{item.price}}" color="#333" fontSize="22rpx" integerFontSize="28rpx" />
-            </block>
-          </view>
-          <view class="more-date-btn row" bindtap="showCalendarPopup">
-            <view class="btn-desc">
-              <view>更多</view>
-              <view>日期</view>
-            </view>
-            <image class="more-icon" src="./images/arrow-right.png" />
-          </view>
-        </view>
+  <view class="room">
+    <view class="room-name-wrap row between">
+      <view class="room-name">{{hotelPreOrderInfo.name}}</view>
+      <view class="more-info row" bindtap="showNoticePopup">
+        <view>房型详情</view>
+        <image class="more-icon" src="./images/arrow-right.png" />
       </view>
-      <view class="count-control row between">
-        <view class="count-control-title">购买数量</view>
-        <van-stepper value="{{ num }}" bind:change="numChange" max="{{hotelPreOrderInfo.limitNumber || 1}}" integer />
+    </view>
+    <view class="date-picker-wrap row">
+      <view class="date-picker row">
+        <view class="date">{{TIME.transform(checkInDate, 'MM月DD日')}}</view>
+        <view class="week">{{TIME.week(checkInDate)}}</view>
+        <view class="date-picker-type">入住日期</view>
       </view>
-      <view class="ticket-tips">
-        <view class="tips-wrap row">
-          <image class="tips-icon" src="./images/limit.png" />
-          <view class="tips">{{validityTimeDesc}}</view>
-        </view>
-        <view class="tips-wrap row">
-          <image class="tips-icon" src="./images/time.png" />
-          <view class="tips">{{hotelPreOrderInfo.effectiveTime ? ('出票' + hotelPreOrderInfo.effectiveTime + '小时后可用') : '出票后立即可用'}}</view>
-        </view>
-        <view class="tips-wrap row" bindtap="showNoticePopup">
-          <image class="tips-icon" src="./images/tips.png" />
-          <view class="tips stress">{{['随时可退', '有条件退', '不可退'][hotelPreOrderInfo.refundStatus - 1]}}</view>
-          <view class="tips" wx:if="{{!hotelPreOrderInfo.needExchange}}">无需换票</view>
-          <view class="tips stress row">
-            <text>预订须知</text>
-            <image class="right-arrow" src="./images/more-blue.png" />
-          </view>
-        </view>
+      <view class="night-num">{{TIME.calculateDuration(checkInDate / 1000, 'd', checkOutDate / 1000)}}晚</view>
+      <view class="date-picker row">
+        <view class="date">{{TIME.transform(checkOutDate, 'MM月DD日')}}</view>
+        <view class="week">{{TIME.week(checkOutDate)}}</view>
+        <view class="date-picker-type">退房日期</view>
       </view>
+    </view>
+    <view class="room-label-list row">
+      <view class="room-label" wx:if="{{hotelPreOrderInfo.breakfastNum}}">{{hotelPreOrderInfo.breakfastNum}}份早餐</view>
+      <view class="room-label">{{hotelPreOrderInfo.bedDesc}}</view>
+      <view class="room-label">{{hotelPreOrderInfo.areaSize}}m²</view>
+    </view>
+    <view class="cancellable-status row {{ hotelPreOrderInfo.cancellable ? '' : 'uncancellable' }}">
+      <image class="cancellable-icon" src="./images/{{hotelPreOrderInfo.cancellable ? '' : 'un'}}cancellable.png" />
+      <view>{{hotelPreOrderInfo.cancellable ? TIME.transform(checkInDate, 'MM月DD日') + "16点前取消扣除10%手续费" : "不可取消"}}</view>
     </view>
   </view>
 
@@ -99,7 +78,7 @@
       <image class="arrow" src="{{priceDetailPopupVisible ? './images/arrow-down.png' : './images/arrow-up.png'}}" />
     </view>
   </view>
-  <button class="submit-btn {{consignee && mobile && idCardNumber ? 'active' : ''}}" bindtap="submit">提交订单</button>
+  <button class="submit-btn {{consignee && mobile ? 'active' : ''}}" bindtap="submit">提交订单</button>
 </view>
 
 <price-detail-popup 
