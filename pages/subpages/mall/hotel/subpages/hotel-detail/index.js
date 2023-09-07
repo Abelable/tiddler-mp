@@ -139,22 +139,27 @@ Component({
         .map((item) => {
           const roomList = hotelRoomList
             .filter((room) => room.typeId === item.id)
-            .map((room) => ({
-              ...room,
-              price: Number((
-                this.dateList
-                  .map(
-                    (date) =>
-                      room.priceList.find(
-                        (priceUnit) =>
-                          date >= priceUnit.startDate * 1000 &&
-                          date <= priceUnit.endDate * 1000
-                      ).price
-                  )
-                  .reduce((a, b) => Number(a) + Number(b), 0) /
-                  this.dateList.length
-              ).toFixed(2)),
-            }));
+            .map((room) => {
+              const priceUnitList = this.dateList.map((date) =>
+                room.priceList.find(
+                  (priceUnit) =>
+                    date >= priceUnit.startDate * 1000 &&
+                    date <= priceUnit.endDate * 1000
+                )
+              );
+              return {
+                ...room,
+                price: Number(
+                  (
+                    priceUnitList
+                      .map((item) => item.price)
+                      .reduce((a, b) => Number(a) + Number(b), 0) /
+                    priceUnitList.length
+                  ).toFixed(2)
+                ),
+                roomNum: priceUnitList.sort((a, b) => a.num - b.num)[0].num,
+              };
+            });
           const { price = 0 } =
             roomList.sort((a, b) => a.price - b.price)[0] || {};
           return { ...item, roomList, price, fold: true };
@@ -320,7 +325,7 @@ Component({
         hotelEnglishName,
         ...roomTypeInfo,
         ...roomInfo,
-      }
+      };
     },
 
     hideNoticePopup() {
