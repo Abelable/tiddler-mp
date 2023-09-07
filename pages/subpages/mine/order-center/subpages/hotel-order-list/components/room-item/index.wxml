@@ -1,0 +1,20 @@
+<view class="room-item row">
+  <image class="room-img" src="{{info.imageList[0]}}" mode="aspectFill" lazy-load />
+  <view class="room-content">
+    <view class="room-name omit">{{info.typeName}}</view>
+    <view class="room-detail-wrap">
+      <view class="room-info-list row">
+        <view class="room-info" wx:if="{{info.breakfastNum}}">{{info.breakfastNum}}份早餐</view>
+        <view class="room-info">{{info.bedDesc}}</view>
+        <view class="room-info">{{info.areaSize}}m²</view>
+      </view>
+    </view>
+    <view class="room-price-wrap">
+      <price-unit price="{{info.price || 0}}" color="#333" unit="/晚" unitColor="#333" />
+      <view class="count-wrap">
+        <text>x</text>
+        <text class="count">{{info.number}}</text>
+      </view>
+    </view>
+  </view>
+</view>
