@@ -85,7 +85,7 @@
   >继续付款</button>
   <button 
     class="btn active" 
-    wx:if="{{orderInfo.status === 202}}"
+    wx:if="{{orderInfo.status === 201}}"
     bindtap="refundOrder" data-id="{{orderInfo.id}}" data-index="{{index}}"
   >申请退款</button>
   <button 

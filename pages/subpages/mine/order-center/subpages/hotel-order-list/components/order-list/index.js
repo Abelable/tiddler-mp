@@ -49,18 +49,10 @@ Component({
         this.triggerEvent('update', { type: 'cancel', index })
       })
     },
-
-    
   
     navToDetail(e) {
       const id = e.currentTarget.dataset.id
       const url = `/pages/subpages/mine/order-center/subpages/goods-order-list/subpages/order-detail/index?id=${id}`
-      wx.navigateTo({ url })
-    },
-  
-    navToShipping(e) {
-      const id = e.currentTarget.dataset.id
-      const url = `/pages/subpages/mine/order-center/subpages/goods-order-list/subpages/shipping/index?id=${id}`
       wx.navigateTo({ url })
     },
 

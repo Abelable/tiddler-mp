@@ -22,11 +22,6 @@
       <view class="btn-wrap">
         <button 
           class="btn" 
-          wx:if="{{item.status === 301}}" 
-          catchtap="navToShipping" data-id="{{item.id}}"
-        >查看物流</button>
-        <button 
-          class="btn" 
           wx:if="{{item.status === 102 || item.status === 103 || item.status === 104 || item.status === 401 || item.status === 402}}" 
           catchtap="deleteOrder" data-id="{{item.id}}" data-index="{{index}}"
         >删除订单</button>
@@ -38,19 +33,19 @@
         <button class="btn" catchtap="navToDetail" data-id="{{item.id}}">查看详情</button>
         <button 
           class="btn active" 
-          wx:if="{{item.status === 301}}" 
-          catchtap="confirmOrder" data-id="{{item.id}}" data-index="{{index}}"
-        >确认收货</button>
-        <button 
-          class="btn active" 
           wx:if="{{item.status === 101}}" 
           catchtap="payOrder" data-id="{{item.id}}" data-index="{{index}}"
         >继续付款</button>
         <button 
           class="btn active" 
-          wx:if="{{item.status === 202}}"
+          wx:if="{{item.status === 201 || (item.status === 301 && item.roomInfo.cancellable)}}"
           catchtap="refundOrder" data-id="{{item.id}}" data-index="{{index}}"
         >申请退款</button>
+        <button 
+          class="btn active" 
+          wx:if="{{item.status === 301}}" 
+          catchtap="confirmOrder" data-id="{{item.id}}" data-index="{{index}}"
+        >确认入住</button>
         <button 
           class="btn active" 
           wx:if="{{item.status === 401 || item.status === 402}}" 
