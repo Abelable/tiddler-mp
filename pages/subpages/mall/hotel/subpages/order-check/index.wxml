@@ -55,7 +55,7 @@
       <view class="tourist-info-item row">
         <view class="tourist-info-label">房间数</view>
         <view class="num-setpper row end">
-          <van-stepper value="{{ num }}" bind:change="numChange" max="{{1}}" integer />
+          <van-stepper value="{{ num }}" bind:change="numChange" max="{{hotelPreOrderInfo.roomNum || 1}}" integer />
         </view>
       </view>
       <view class="tourist-info-item row">
@@ -85,7 +85,6 @@
   wx:if="{{priceDetailPopupVisible}}" 
   name="{{hotelPreOrderInfo.name}}" 
   price="{{hotelPreOrderInfo.price}}"
-  breakfastNum="{{hotelPreOrderInfo.breakfastNum}}"
   night="{{TIME.calculateDuration(checkInDate / 1000, 'd', checkOutDate / 1000)}}"
   num="{{num}}" 
   bind:hide="togglePriceDetailPopupVisible" 

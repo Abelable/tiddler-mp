@@ -16,8 +16,6 @@ Component({
   data: {
     statusBarHeight,
     navBarActive: false,
-    minDate: 0,
-    maxDate: 0,
     paymentAmount: 0,
     recentlyDateList: [],
     curDateIdx: 0,
@@ -26,41 +24,22 @@ Component({
     mobile: "",
     priceDetailPopupVisible: false,
     noticePopupVisible: false,
-    validityTimeDesc: "",
   },
 
   methods: {
-    async setPaymentAmount() {
-      const { hotelPreOrderInfo, recentlyDateList, curDateIdx, num } =
-        this.data;
-      const { id: ticketId, categoryId } = hotelPreOrderInfo;
-      const { timeStamp } = recentlyDateList[curDateIdx];
+    onLoad() {
+      this.setPaymentAmount();
+    },
 
+    async setPaymentAmount() {
+      const { hotelPreOrderInfo, checkInDate, checkOutDate, num } = this.data;
       const paymentAmount = await hotelService.getPaymentAmount(
-        ticketId,
-        categoryId,
-        timeStamp,
+        hotelPreOrderInfo.id,
+        Math.floor(checkInDate / 1000),
+        Math.floor(checkOutDate / 1000),
         num
       );
       this.setData({ paymentAmount });
-    },
-
-    async setValidityTimeDesc() {
-      const { hotelPreOrderInfo, recentlyDateList, curDateIdx } = this.data;
-      const { validityTime } = hotelPreOrderInfo;
-      const { timeStamp } = recentlyDateList[curDateIdx];
-
-      const startDate = new Date(timeStamp * 1000);
-      const startMonth = `${startDate.getMonth() + 1}`.padStart(2, "0");
-      const startDay = `${startDate.getDate()}`.padStart(2, "0");
-
-      const endDate = new Date((timeStamp + 86400 * validityTime) * 1000);
-      const endMonth = `${endDate.getMonth() + 1}`.padStart(2, "0");
-      const endDay = `${endDate.getDate()}`.padStart(2, "0");
-
-      const validityTimeDesc = `${startMonth}月${startDay}日至${endMonth}月${endDay}日内有效`;
-
-      this.setData({ validityTimeDesc });
     },
 
     numChange({ detail: num }) {
@@ -83,8 +62,8 @@ Component({
     async submit() {
       const {
         hotelPreOrderInfo,
-        recentlyDateList,
-        curDateIdx,
+        checkInDate, 
+        checkOutDate,
         num,
         consignee,
         mobile,
@@ -100,18 +79,15 @@ Component({
         return;
       }
 
-      const { id, categoryId } = hotelPreOrderInfo;
-      const { timeStamp } = recentlyDateList[curDateIdx];
-
       const orderId = await hotelService.submitOrder(
-        id,
-        categoryId,
-        timeStamp,
+        hotelPreOrderInfo.id,
+        Math.floor(checkInDate / 1000),
+        Math.floor(checkOutDate / 1000),
         num,
         consignee,
         mobile
       );
-      this.pay(orderId);
+      orderId && this.pay(orderId);
     },
 
     async pay(orderId) {

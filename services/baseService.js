@@ -94,6 +94,13 @@ class BaseService extends Base {
     });
   }
 
+  async getHotelOrderPayParams(orderId) {
+    return await this.post({
+      url: `${this.baseUrl}/hotel/order/pay_params`,
+      data: { orderId },
+    });
+  }
+
   async followAuthor(authorId, success) {
     return await this.post({
       url: `${this.baseUrl}/fan/follow`,

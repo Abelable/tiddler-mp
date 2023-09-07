@@ -40,33 +40,24 @@ class HotelService extends BaseService {
     });
   }
 
-  async getPaymentAmount(roomId, categoryId, timeStamp, num) {
+  async getPaymentAmount(roomId, checkInDate, checkOutDate, num) {
     return await this.get({
       url: `${this.baseUrl}/hotel/order/calc_payment_amount`,
-      data: { roomId, categoryId, timeStamp, num },
+      data: { roomId, checkInDate, checkOutDate, num },
       loadingTitle: "加载中...",
     });
   }
 
-  async submitOrder(
-    roomId,
-    categoryId,
-    timeStamp,
-    num,
-    consignee,
-    mobile,
-    idCardNumber
-  ) {
+  async submitOrder(roomId, checkInDate, checkOutDate, num, consignee, mobile) {
     return await this.post({
       url: `${this.baseUrl}/hotel/order/submit`,
       data: {
         roomId,
-        categoryId,
-        timeStamp,
+        checkInDate,
+        checkOutDate,
         num,
         consignee,
         mobile,
-        idCardNumber,
       },
       loadingTitle: "订单提交中...",
     });

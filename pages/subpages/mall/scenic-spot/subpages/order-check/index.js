@@ -201,7 +201,7 @@ Component({
         mobile,
         idCardNumber
       );
-      this.pay(orderId);
+      orderId && this.pay(orderId);
     },
 
     async pay(orderId) {
