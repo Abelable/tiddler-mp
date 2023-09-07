@@ -1,5 +1,5 @@
 <wxs module="TIME" src="/utils/filters/time.wxs" />
-<wxs module="ORDER" src="../../../../../utils/order.wxs" />
+<wxs module="ORDER" src="../../../../../utils/hotelOrder.wxs" />
 
 <view class="container">
   <view class="card">
@@ -11,23 +11,15 @@
       </view>
       <view class="shop-name omit single-line" wx:if="{{!orderInfo.shopId}}">官方自营</view>
     </view>
-    <goods-list list="{{orderInfo.goodsList}}" status="{{orderInfo.status}}" />
-    <view class="list row between">
-      <view class="title">商品总价</view>
-      <price-unit price="{{orderInfo.goodsPrice}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />
-    </view>
-    <view class="list row between">
-      <view class="title">运费</view>
-      <price-unit price="{{orderInfo.freightPrice}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />
-    </view>
+    <room-item info="{{orderInfo.roomInfo}}" />
     <view class="list row between">
       <view class="title">{{ORDER.paymentDesc(orderInfo.status)}}</view>
       <price-unit price="{{orderInfo.paymentAmount}}" />
     </view>
     <view class="more-info-wrap">
       <view class="list row top">
-        <view class="title">收货信息：</view>
-        <view class="content">{{orderInfo.consignee}}，{{orderInfo.mobile}}，{{orderInfo.address}}</view>
+        <view class="title">宾客信息：</view>
+        <view class="content">{{orderInfo.consignee}}，{{orderInfo.mobile}}</view>
       </view>
       <view class="list row between">
         <view class="title">订单编号：</view>
@@ -44,10 +36,6 @@
       <view class="list row between" wx:if="{{orderInfo.payTime}}">
         <view class="title">付款时间：</view>
         <text>{{TIME.transform(orderInfo.payTime, 'YYYY-MM-DD hh:mm:ss')}}</text>
-      </view>
-      <view class="list row between" wx:if="{{orderInfo.shipTime}}">
-        <view class="title">发货时间：</view>
-        <text>{{TIME.transform(orderInfo.shipTime, 'YYYY-MM-DD hh:mm:ss')}}</text>
       </view>
       <view class="list row between" wx:if="{{orderInfo.confirmTime}}">
         <view class="title">成交时间：</view>
