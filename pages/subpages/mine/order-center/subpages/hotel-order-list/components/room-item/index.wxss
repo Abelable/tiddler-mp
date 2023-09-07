@@ -1,5 +1,4 @@
 .room-img {
-  margin-left: 8rpx;
   margin-right: 18rpx;
   width: 184rpx;
   height: 184rpx;
@@ -8,7 +7,6 @@
 .room-content {
   display: flex;
   flex-direction: column;
-  padding-right: 18rpx;
   flex: 1; 
   height: 190rpx;
 }
@@ -51,8 +49,6 @@
   width: 26rpx;
   height: 26rpx;
 }
-
-
 
 .additional-info {
   margin-top: 24rpx;
