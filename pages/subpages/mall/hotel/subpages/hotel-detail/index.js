@@ -147,19 +147,20 @@ Component({
                     date <= priceUnit.endDate * 1000
                 )
               );
-              return {
-                ...room,
-                price: Number(
-                  (
-                    priceUnitList
-                      .map((item) => item.price)
-                      .reduce((a, b) => Number(a) + Number(b), 0) /
-                    priceUnitList.length
-                  ).toFixed(2)
-                ),
-                roomNum: priceUnitList.sort((a, b) => a.num - b.num)[0].num,
-              };
-            });
+              const price = Number(
+                (
+                  priceUnitList
+                    .map((item) => item.price)
+                    .reduce((a, b) => Number(a) + Number(b), 0) /
+                  priceUnitList.length
+                ).toFixed(2)
+              );
+              const roomNum = Number(
+                priceUnitList.sort((a, b) => a.num - b.num)[0].num
+              );
+              return { ...room, price, roomNum };
+            })
+            .filter((room) => room.roomNum);
           const { price = 0 } =
             roomList.sort((a, b) => a.price - b.price)[0] || {};
           return { ...item, roomList, price, fold: true };
