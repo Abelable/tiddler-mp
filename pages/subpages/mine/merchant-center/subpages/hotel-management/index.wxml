@@ -67,7 +67,7 @@
   </view>
 </view>
 
-<view class="menu-wrap {{ menuFixed ? 'fixed' : '' }}" style="top: {{statusBarHeight + 44}}px;">
+<view class="menu-wrap row {{ menuFixed ? 'fixed' : '' }}" style="top: {{statusBarHeight + 44}}px;">
   <view 
     class="menu-item {{curMenuIndex === index ? 'selected' : ''}} row center" 
     wx:for="{{menuList}}" wx:key="index" 
