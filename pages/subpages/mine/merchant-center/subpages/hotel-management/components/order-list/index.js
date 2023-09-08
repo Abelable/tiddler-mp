@@ -19,10 +19,10 @@ Component({
       })
     },
 
-    deliverOrder(e) {
+    checkedOrder(e) {
       const { id, index } = e.currentTarget.dataset
-      scenicService.deleteOrder(id, () => {
-        this.triggerEvent('update', { type: 'deliver', index })
+      scenicService.checkedOrder(id, () => {
+        this.triggerEvent('update', { type: 'checked', index })
       })
     },
   

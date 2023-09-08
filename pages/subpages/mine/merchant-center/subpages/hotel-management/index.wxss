@@ -180,7 +180,7 @@
 
 .menu-wrap {
   justify-content: space-around;
-  padding: 0 12px;
+  padding: 0 8px;
   width: 100%;
   background: #fff;
   border-top: 1px solid #f5f6f8;

@@ -39,7 +39,7 @@
         <button 
           class="btn active" 
           wx:if="{{item.status === 201}}"
-          catchtap="deliverOrder" data-id="{{item.id}}" data-index="{{index}}"
+          catchtap="checkedOrder" data-id="{{item.id}}" data-index="{{index}}"
         >确认订单</button>
       </view>
     </view>
