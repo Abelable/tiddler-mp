@@ -34,10 +34,7 @@ class BaseService extends Base {
   }
 
   async getUserInfo() {
-    const userInfo = await this.get({
-      url: `${this.baseUrl}/user_info`,
-      loadingTitle: "加载中...",
-    });
+    const userInfo = await this.get({ url: `${this.baseUrl}/user_info` });
     store.setUserInfo(userInfo);
     return userInfo;
   }
@@ -47,7 +44,10 @@ class BaseService extends Base {
   }
 
   async getAuthorInfo(authorId) {
-    return await this.get({ url: `${this.baseUrl}/author_info`, data: { authorId } });
+    return await this.get({
+      url: `${this.baseUrl}/author_info`,
+      data: { authorId },
+    });
   }
 
   async getRoomStatus() {
