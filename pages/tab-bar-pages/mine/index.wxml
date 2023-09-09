@@ -4,7 +4,7 @@
   <image class="nav-bg" wx:if="{{navBarVisible}}" src="{{userInfo.bg || 'https://img.ubo.vip/tiddler/temp/bg.jpg'}}" />
   <view class="bg-cover" wx:if="{{navBarVisible}}" />
   <view class="setting-wrap row center" bindtap="navToSetting">
-    <image class="setting" src="./images/setting.png" />
+    <image class="setting" src="https://img.ubo.vip/tiddler/mine/setting.png" />
   </view>
   <image class="mine-avatar" wx:if="{{navBarVisible}}" src="{{userInfo.avatar}}" />
   <view class="mine-name" wx:if="{{navBarVisible}}">{{userInfo.nickname}}</view>
@@ -33,20 +33,20 @@
     <view class="name">{{userInfo.nickname}}</view>
     <view class="introduce row">
       <text>来一段简短的自我介绍吧～</text>
-      <image class="edit-icon" src="./images/edit.png" />
+      <image class="edit-icon" src="https://img.ubo.vip/tiddler/mine/edit.png" />
     </view>
 
     <view class="function-wrap">
       <navigator class="function-item" url="/pages/subpages/mine/order-center/index" hover-class="none">
-        <image class="function-icon" src="./images/order.png" />
+        <image class="function-icon" src="https://img.ubo.vip/tiddler/mine/order.png" />
         <view class="function-desc">订单中心</view>
       </navigator>
       <navigator class="function-item" url="/pages/subpages/mine/address-list/index" hover-class="none">
-        <image class="function-icon" src="./images/address.png" />
+        <image class="function-icon" src="https://img.ubo.vip/tiddler/mine/address.png" />
         <view class="function-desc">收货地址</view>
       </navigator>
       <view class="function-item" bindtap="navToLive">
-        <image class="function-icon" src="./images/live.png" />
+        <image class="function-icon" src="https://img.ubo.vip/tiddler/mine/live.png" />
         <view class="function-desc">我的直播</view>
       </view>
       <navigator 
@@ -55,7 +55,7 @@
         url="/pages/subpages/mine/merchant-center/index" 
         hover-class="none"
       >
-        <image class="function-icon" src="./images/shop.png" />
+        <image class="function-icon" src="https://img.ubo.vip/tiddler/mine/shop.png" />
         <view class="function-desc">商家中心</view>
       </navigator>
     </view>
@@ -71,7 +71,7 @@
             <view class="total-info row between">
               <view class="total-tips">共{{videoListTotal}}条短视频</view>
               <button class="add-btn" bindtap="navToVideoCreate">
-                <image class="add-icon" src="./images/add.png" />
+                <image class="add-icon" src="https://img.ubo.vip/tiddler/mine/add.png" />
                 <text>短视频</text>
               </button>
             </view>
@@ -85,7 +85,7 @@
             <view class="total-info row between">
               <view class="total-tips">共{{noteListTotal}}条游记</view>
               <button class="add-btn" bindtap="navToNoteCreate">
-                <image class="add-icon" src="./images/add.png" />
+                <image class="add-icon" src="https://img.ubo.vip/tiddler/mine/add.png" />
                 <text>游记</text>
               </button>
             </view>
