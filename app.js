@@ -30,8 +30,9 @@ App({
     tim.init(Number(sdkAppId), String(userId), userSig)
   },
 
-  async setSystemInfo() {
-    this.globalData.systemInfo = await baseService.getSystemInfo()
+  setSystemInfo() {
+    const systemInfo = wx.getSystemInfoSync();
+    this.globalData.systemInfo = systemInfo;
   },
 
   update() {

@@ -106,10 +106,6 @@ class Base {
     }
   }
 
-  async getSystemInfo() {
-    return api.getSystemInfo()
-  }
-
   async getSetting() {
     return api.getSetting()
   }
