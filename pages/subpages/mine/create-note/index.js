@@ -4,7 +4,7 @@ import { debounce } from "../../../../utils/index";
 import { QQ_MAP_KEY } from "../../../../config";
 import NoteService from "./utils/noteService";
 
-const Map = require("../../../../utils/libs/qqmap-wx-jssdk.min");
+const Map = require("../../utils/libs/qqmap-wx-jssdk.min");
 const noteService = new NoteService();
 
 Page({

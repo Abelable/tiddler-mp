@@ -6,7 +6,7 @@ import {
   nearbyScenicSpotList,
   nearbyHotelList,
   mediaList,
-} from "../../../../../../utils/tempData";
+} from "../../../../utils/tempData";
 import { formatter } from "../../utils/index";
 import HotelService from "../../utils/hotelService";
 

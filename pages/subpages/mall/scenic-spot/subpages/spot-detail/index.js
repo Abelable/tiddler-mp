@@ -3,7 +3,7 @@ import {
   nearbyScenicSpotList,
   nearbyHotelList,
   mediaList,
-} from "../../../../../../utils/tempData";
+} from "../.../../../../../utils/tempData";
 import ScenicService from "../../utils/scenicService";
 
 const scenicService = new ScenicService();
