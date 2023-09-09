@@ -20,7 +20,7 @@
       <image class="anchor-avatar avatar-default" src="{{item.anchorInfo.avatar}}" lazy-load mode="aspectFill" />
       <view class="anchor-name omit single-line">{{item.anchorInfo.nickname}}</view>
       <view class="praise-info row" wx:if="{{item.status === 1}}">
-        <image class="praise-icon" src="https://img.ubo.vip/tiddler/fire.png" />
+        <image class="praise-icon" src="https://img.ubo.vip/tiddler/media-item/fire.png" />
         <text>{{NUM.over(item.praiseNumber, 100000)}}</text>
       </view>
       <button class="notice-btn" wx:if="{{item.status === 3}}" bindtap="subscribe">预约</button>
