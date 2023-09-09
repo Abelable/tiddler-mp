@@ -2,7 +2,7 @@
   <back-icon noBorder />
   <view class="search-bar row between" bindtap="search">
     <text class="placeholder">搜索订单</text>
-    <image class="search-icon" src="/images/search.png" />
+    <image class="search-icon" src="https://img.ubo.vip/tiddler/search.png" />
   </view>
 </view>
 

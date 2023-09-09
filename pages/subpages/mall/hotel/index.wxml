@@ -14,7 +14,7 @@
           <text>{{TIME.transform(checkOutDate, 'MM-DD')}}</text>
         </view>
       </view>
-      <image class="search-icon" src="/images/search.png" />
+      <image class="search-icon" src="https://img.ubo.vip/tiddler/search.png" />
       <input class="search-input" value="{{keywords}}" bindinput="setKeywords" bindconfirm="search" placeholder="搜索酒店/民宿" confirm-type="search" />
       <view class="cancel-btn" wx:if="{{keywords}}" bindtap="clearKeywords">
         <image class="cancel-icon" src="https://img.ubo.vip/mp/search/clear-search.png" />
