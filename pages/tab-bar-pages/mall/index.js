@@ -8,10 +8,10 @@ Component({
   data: {
     statusBarHeight,
     categoryList: [
-      { name: "景点玩乐", icon: "./images/scenic-spot.png" },
-      { name: "酒店民宿", icon: "./images/hotel.png" },
-      { name: "美食小吃", icon: "./images/food.png" },
-      { name: "特色商品", icon: "./images/shopping.png" },
+      { name: "景点玩乐", icon: "https://img.ubo.vip/tiddler/mall/scenic.png" },
+      { name: "酒店民宿", icon: "https://img.ubo.vip/tiddler/mall/hotel.png" },
+      { name: "美食小吃", icon: "https://img.ubo.vip/tiddler/mall/food.png" },
+      { name: "特色商品", icon: "https://img.ubo.vip/tiddler/mall/shopping.png" },
     ],
     navBarActive: false,
   },
