@@ -4,14 +4,14 @@
   <view class="cover-wrap">
     <image class="cover" src="{{item.cover}}" mode="widthFix" lazy-load />
     <view class="private-tag row" wx:if="{{item.isPrivate}}">
-      <image class="private-icon" src="https://img.ubo.vip/tiddler/private-icon.png" />
+      <image class="private-icon" src="https://img.ubo.vip/tiddler/media-item/private-icon.png" />
       <text>私密</text>
     </view>
     <view class="video-symbol">
-      <image class="video-icon" src="https://img.ubo.vip/tiddler/play.png" />
+      <image class="video-icon" src="https://img.ubo.vip/tiddler/media-item/play.png" />
     </view>
     <view class="address-info" wx:if="{{item.address}}">
-      <image class="address-icon" src="https://img.ubo.vip/tiddler/address.png" />
+      <image class="address-icon" src="https://img.ubo.vip/tiddler/media-item/address.png" />
       <text class="address-detail omit single-line">{{item.address}}</text>
     </view>
   </view>
@@ -22,7 +22,7 @@
       <text class="author-name omit single-line">{{item.authorInfo.nickname}}</text>
     </view>
     <view class="praise-info">
-      <image class="praise-icon" src="https://img.ubo.vip/tiddler/heart.png" />
+      <image class="praise-icon" src="https://img.ubo.vip/tiddler/media-item/heart.png" />
       <text>{{NUM.over(item.likeNumber, 100000)}}</text>
     </view>
   </view>
