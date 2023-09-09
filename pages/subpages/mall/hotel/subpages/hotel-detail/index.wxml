@@ -75,7 +75,7 @@
       <image class="more-icon" src="./images/more.png" />
     </view>
     <view class="position-info-wrap row top" bindtap="navigation">
-      <image class="position-bg" src="https://img.ubo.vip/tiddler/hotel/position-bg.jpg" />
+      <image class="position-bg" src="https://img.ubo.vip/tiddler/temp/hotel/position-bg.jpg" />
       <view class="position-info">
         <view class="position">位于「国家森林公园」{{hotelInfo.address}}</view>
         <view class="distance">距您{{distance}}km</view>

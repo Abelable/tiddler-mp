@@ -1,7 +1,7 @@
 <wxs module="NUM" src="/utils/filters/num.wxs" />
 
 <view class="nav-bar row" style="padding-top: {{statusBarHeight}}px;">
-  <image class="nav-bg" wx:if="{{navBarVisible}}" src="{{userInfo.bg || 'https://img.ubo.vip/tiddler/bg.jpg'}}" />
+  <image class="nav-bg" wx:if="{{navBarVisible}}" src="{{userInfo.bg || 'https://img.ubo.vip/tiddler/temp/bg.jpg'}}" />
   <view class="bg-cover" wx:if="{{navBarVisible}}" />
   <view class="setting-wrap row center" bindtap="navToSetting">
     <image class="setting" src="./images/setting.png" />
@@ -11,7 +11,7 @@
 </view>
 
 <view class="container">
-  <image class="bg" src="https://img.ubo.vip/tiddler/bg.jpg" />
+  <image class="bg" src="https://img.ubo.vip/tiddler/temp/bg.jpg" />
   <view class="content">
     <view class="avatar-wrap">
       <image class="avatar" src="{{userInfo.avatar}}" />
