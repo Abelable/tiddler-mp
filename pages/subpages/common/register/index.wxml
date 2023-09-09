@@ -13,7 +13,7 @@
     </view>
     <button class="register-btn" open-type="getPhoneNumber" bindgetphonenumber="getMobile" hover-class="none">
       <view>开启旅途</view>
-      <image class="arrow" src="./images/arrow.png" />
+      <image class="arrow" src="https://img.ubo.vip/tiddler/arrow.png" />
     </button>
     <view class="agreement-tips">
       <text>开启旅途即表明您同意</text>
