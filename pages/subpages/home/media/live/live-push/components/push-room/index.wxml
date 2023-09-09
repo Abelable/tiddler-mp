@@ -11,7 +11,7 @@
   >
     <view class="nav-bar row">
       <view class="close-icon row center" bindtap="confirmStopLive">
-        <image style="width: 18px; height: 18px;" src="/images/close.png" />
+        <image style="width: 18px; height: 18px;" src="https://img.ubo.vip/tiddler/close.png" />
       </view>
       <anchor-capsule anchorInfo="{{userInfo}}" isLivePush />
     </view>

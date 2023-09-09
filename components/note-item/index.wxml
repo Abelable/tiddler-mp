@@ -19,7 +19,7 @@
       <text class="author-name omit single-line">{{item.authorInfo.nickname}}</text>
     </view>
     <view class="praise-info">
-      <image class="praise-icon" src="/images/heart.png" />
+      <image class="praise-icon" src="https://img.ubo.vip/tiddler/heart.png" />
       <text>{{NUM.over(item.likeNumber, 100000)}}</text>
     </view>
   </view>
