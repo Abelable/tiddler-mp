@@ -1,6 +1,6 @@
 <view class="nav-bar {{navBarActive ? 'active': ''}}" style="padding-top: {{statusBarHeight}}px">
   <view class="menu-tabs-wrap">
-    <image class="notice-center-icon" src="./images/notice.png" bindtap="navToNoticeCenter" />
+    <image class="notice-center-icon" src="https://img.ubo.vip/tiddler/nav-icon/msg_center.png" bindtap="navToNoticeCenter" />
     <view class="menu-tabs">
       <view wx:for="{{['关注', '发现']}}" wx:key="index" class="menu-tab {{curMenuIndex === index ? 'active' : ''}}" bindtap="switchMenu" data-index="{{index}}">{{item}}</view>
     </view>
@@ -8,7 +8,7 @@
   <view class="search-bar {{navBarActive ? 'active': ''}}" bindtap="search">
     <view class="placeholder">搜索攻略、游记等</view>
     <view class="search-btn">
-      <image style="width: 20px; height: 20px;" src="./images/search.png" />
+      <image style="width: 20px; height: 20px;" src="https://img.ubo.vip/tiddler/nav-icon/search_white.png" />
     </view>
   </view>
 </view>
