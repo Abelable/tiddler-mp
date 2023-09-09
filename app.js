@@ -25,8 +25,7 @@ App({
   },
 
   async init() {
-    const { id: userId } = await baseService.getUserInfo()
-    const { sdkAppId, userSig } = await baseService.getTimLoginInfo()
+    const { userId, sdkAppId, userSig } = await baseService.getTimLoginInfo()
     tim.init(Number(sdkAppId), String(userId), userSig)
   },
 
