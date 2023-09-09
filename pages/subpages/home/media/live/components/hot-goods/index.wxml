@@ -4,7 +4,7 @@
     <view>讲解中</view>
   </view>
   <view class="close-btn row center" catchtap="hide">
-    <image class="close-icon" src="https://img.ubo.vip/tiddler/close.png" />
+    <image class="close-icon" src="https://img.ubo.vip/tiddler/nav-icon/close.png" />
   </view>
   <image class="goods-image" src="{{goodsInfo.image}}" mode="aspectFill" />
   <view class="goods-name omit">{{goodsInfo.name}}</view>

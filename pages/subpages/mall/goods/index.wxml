@@ -1,8 +1,8 @@
 <view class="nav-bar" style="padding-top: {{statusBarHeight}}px;">
   <view class="search-bar-wrap">
-    <image class="back-icon" src="https://img.ubo.vip/tiddler/back.png" bindtap="navBack" />
+    <image class="back-icon" src="https://img.ubo.vip/tiddler/nav-icon/back.png" bindtap="navBack" />
     <view class="search-bar" bindtap="search">
-      <image class="search-icon" src="https://img.ubo.vip/tiddler/search.png" />
+      <image class="search-icon" src="https://img.ubo.vip/tiddler/nav-icon/search.png" />
       <text class="placeholder">搜索商品</text>
     </view>
     <navigator class="cart-icon-wrap" url="./subpages/cart/index" hover-class="none">
