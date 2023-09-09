@@ -2,7 +2,7 @@
   <view class="cover-wrap">
     <image class="cover" mode="widthFix" src="http://img.ubo.vip/youlian/temporary/item_cover_4.jpg" />
     <view class="address-info">
-      <image class="address-icon" src="./images/address.png" />
+      <image class="address-icon" src="https://img.ubo.vip/tiddler/media-item/address.png" />
       <text class="address-detail omit single-line">千岛湖绿城度假酒店千岛湖绿城度假酒店</text>
     </view>
   </view>
