@@ -92,9 +92,6 @@
     "navigationBarTextStyle": "black",
     "backgroundColor": "#f5f6f8"
   },
-  "networkTimeout": {
-    "request": 20000
-  },
   "permission": {
     "scope.userLocation": {
       "desc": "你的位置信息将用于定位效果展示"
@@ -103,6 +100,7 @@
   "requiredPrivateInfos": [
     "getLocation"
   ],
+  "style": "v2",
   "sitemapLocation": "sitemap.json",
   "lazyCodeLoading": "requiredComponents"
 }
