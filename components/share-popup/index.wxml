@@ -2,13 +2,13 @@
   <view class="share-popup row between">
     <view class="share-btn">
       <button class="icon-wrap wechat" open-type='share' hover-class="none">
-        <image class="icon" src="./images/wechat.png" />
+        <image class="icon" src="https://img.ubo.vip/tiddler/wechat.png" />
       </button>
       <view class="desc">分享好友</view>
     </view>
     <view class="share-btn">
       <view class="icon-wrap qrcode row center" catchtap="showPosterModal">
-        <image class="icon" src="./images/qrcode.png" />
+        <image class="icon" src="https://img.ubo.vip/tiddler/qrcode.png" />
       </view>
       <view class="desc">生成海报</view>
     </view>
