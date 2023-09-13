@@ -18,8 +18,8 @@
     <view class="title">酒店入驻</view>
     <image class="arrow" src="./images/arrow.png" />
   </view>
-  <view class="list row between" bindtap="navToMerchantSettleIn">
-    <view class="title">餐馆入驻</view>
+  <view class="list row between" bindtap="navToCateringSettleIn">
+    <view class="title">餐饮入驻</view>
     <image class="arrow" src="./images/arrow.png" />
   </view>
   <view class="list row between" bindtap="navToMerchantSettleIn">

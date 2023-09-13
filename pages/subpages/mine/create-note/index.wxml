@@ -23,7 +23,7 @@
       <view class="title row">游记标题</view>
       <input class="list-input" placeholder="有趣的标题更吸引人哦～" bindinput="setTitle" />
     </view>
-    <view class="list row between" wx:if="{{userInfo.shopId}}">
+    <view class="list row between" wx:if="{{userInfo.merchantId}}">
       <view class="title">添加商品</view>
       <view class="list-picker row" bindtap="showGoodsPickerPopup">
         <text class="list-picker-desc omit single-line">{{pickedGoodsName? ('已选：' + pickedGoodsName) : '请选择商品'}}</text>
