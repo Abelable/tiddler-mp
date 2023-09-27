@@ -55,7 +55,7 @@ Component({
       const pageList = [
         "/pages/subpages/mall/scenic-spot/index",
         "/pages/subpages/mall/hotel/index",
-        "/pages/subpages/mall/foot/index",
+        "/pages/subpages/mall/catering/index",
         "/pages/subpages/mall/goods/index",
       ];
       wx.navigateTo({
