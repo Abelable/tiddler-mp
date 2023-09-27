@@ -1,5 +1,7 @@
 import dayjs from "dayjs";
+import { store } from "../../../../../../store/index";
 import { commentList, mediaList } from "../.../../../../../utils/tempData";
+import { calcDistance } from "../../../../../../utils/index";
 import CateringService from "../../utils/cateringService";
 
 const cateringService = new CateringService();
@@ -18,39 +20,95 @@ Page({
   data: {
     statusBarHeight,
     navBarVisible: false,
-    menuList: [],
+    menuList: [
+      "优惠券",
+      "套餐",
+      "用户点评",
+      "热门问答",
+      "达人品鉴",
+    ],
     curMenuIdx: -1,
     restaurantInfo: null,
     openStatus: false,
     openTimeDescList: [],
     curDot: 1,
     muted: true,
-    ticketTypeList: [],
-    curTicketTypeIdx: 0,
-    ticketList: [],
-    combinedTicketTypeList: [],
-    curCombinedTicketTypeIdx: 0,
-    combinedTicketList: [],
+    imageList: [],
+    imageMenuList: [],
+    imageCount: 0,
+    distance: 0,
+    mealTicketList: [],
+    setMealList: [],
+    curMealTicketInfo: null,
+    curSetMealInfo: null,
     commentList,
     mediaList,
-    curTicketInfo: null,
     noticePopupVisible: false,
   },
 
   async onLoad({ id }) {
     this.restaurantId = +id;
     await this.setRestaurantInfo();
-    this.setMenuList();
+    this.setNavBarVisibleLimit();
+    this.setMenuChangeLimitList();
   },
 
   async setRestaurantInfo() {
     const restaurantInfo = await cateringService.getRestaurantInfo(
       this.restaurantId
     );
-    this.setData({ restaurantInfo });
+    const {
+      openTimeList,
+      video,
+      cover,
+      environmentImageList,
+      foodImageList,
+      priceImageList,
+      longitude: lo2,
+      latitude: la2,
+    } = restaurantInfo;
 
-    const { openTimeList } = restaurantInfo;
     openTimeList.length && this.setCurOpenTime(openTimeList);
+
+    const imageList = [];
+    const imageMenuList = [];
+    let imageCount = 0;
+    this.imagesList = [];
+    if (video) {
+      imageMenuList.push("视频");
+    } else {
+      imageList.push(cover);
+      imageMenuList.push("封面");
+    }
+    if (foodImageList.length) {
+      imageList.push(foodImageList[0]);
+      imageMenuList.push("菜品");
+      imageCount += foodImageList.length;
+      this.imagesList.push(foodImageList);
+    }
+    if (environmentImageList.length) {
+      imageList.push(environmentImageList[0]);
+      imageMenuList.push("环境");
+      imageCount += environmentImageList.length;
+      this.imagesList.push(environmentImageList);
+    }
+    if (priceImageList.length) {
+      imageList.push(priceImageList[0]);
+      imageMenuList.push("价目表");
+      imageCount += priceImageList.length;
+      this.imagesList.push(priceImageList);
+    }
+
+    const { longitude: lo1, latitude: la1 } = store.locationInfo;
+    const distance = calcDistance(la1, lo1, la2, lo2);
+
+    this.setData({
+      restaurantInfo,
+      imageList,
+      imageMenuList,
+      imageCount,
+      distance,
+    });
   },
 
   setCurOpenTime(openTimeList) {
@@ -223,35 +281,9 @@ Page({
     return ticketList;
   },
 
-  setMenuList() {
-    const { combinedTicketTypeList } = this.data;
-    const menuList = combinedTicketTypeList.length
-      ? [
-          "景点门票",
-          "多景点联票",
-          "用户点评",
-          "热门问答",
-          "附近酒店",
-          "附近景点",
-          "达人打卡",
-        ]
-      : [
-          "景点门票",
-          "用户点评",
-          "热门问答",
-          "附近酒店",
-          "附近景点",
-          "达人打卡",
-        ];
-    this.setData({ menuList }, () => {
-      this.setNavBarVisibleLimit();
-      this.setMenuChangeLimitList();
-    });
-  },
-
   setNavBarVisibleLimit() {
     const query = wx.createSelectorQuery();
-    query.select(".catering-spot-name").boundingClientRect();
+    query.select(".restaurant-name").boundingClientRect();
     query.exec((res) => {
       this.navBarVisibleLimit = res[0].bottom;
     });
@@ -285,9 +317,11 @@ Page({
     wx.navigateTo({ url });
   },
 
-  previewImage(e) {
-    const { current, urls } = e.currentTarget.dataset;
-    wx.previewImage({ current, urls });
+  checkMoreImage() {
+    const menuList = JSON.stringify(this.data.imageMenuList.slice(1));
+    const imagesList = JSON.stringify(this.imagesList);
+    const url = `./subpages/more-image/index?menuList=${menuList}&imagesList=${imagesList}`;
+    wx.navigateTo({ url });
   },
 
   selectMenu(e) {

@@ -42,6 +42,7 @@
       "mall/hotel/subpages/order-check/index",
       "mall/catering/index",
       "mall/catering/subpages/restaurant-detail/index",
+      "mall/catering/subpages/restaurant-detail/subpages/more-image/index",
       "mall/goods/index",
       "mall/goods/subpages/goods-detail/index",
       "mall/goods/subpages/shop/index",

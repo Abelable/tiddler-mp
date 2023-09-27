@@ -106,7 +106,34 @@
 .banner-video {
   position: relative;
 }
-.banner-dots {
+
+.banner-menu-list {
+  position: absolute;
+  left: 24rpx;
+  bottom: 48rpx;
+  display: flex;
+  align-items: center;
+  height: 40rpx;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 20rpx;
+}
+.banner-menu-item {
+  display: flex;
+  align-items: center;
+  padding: 0 16rpx;
+  height: 40rpx;
+  color: #fff;
+  font-size: 20rpx;
+  font-weight: 550;
+  line-height: 1;
+  border-radius: 20rpx;
+}
+.banner-menu-item.active {
+  color: #333;
+  background: #fff;
+}
+
+.more-media {
   position: absolute;
   right: 24rpx;
   bottom: 48rpx;
@@ -115,17 +142,19 @@
   color: #fff;
   font-size: 20rpx;
   line-height: 1;
-  font-weight: 500;
+  font-weight: 550;
   background: rgba(0, 0, 0, 0.3);
   border-radius: 20rpx;
 }
-.dot-icon {
+.video-icon, .pic-icon {
   margin-right: 8rpx;
   width: 20rpx;
   height: 20rpx;
 }
-.cur-dot {
-  font-size: 24rpx;
+.more-media-icon {
+  margin-left: 6rpx;
+  width: 18rpx;
+  height: 18rpx;
 }
 
 .video-wrap {
@@ -140,7 +169,7 @@
 .mute-icon-wrap {
   position: absolute;
   left: 24rpx;
-  bottom: 48rpx;
+  bottom: 108rpx;
   width: 50rpx;
   height: 50rpx;
   border-radius: 50%;
@@ -161,7 +190,7 @@
   background: #fff;
   border-radius: 24rpx 24rpx 0 0;
 }
-.scenic-spot-name {
+.restaurant-name {
   color: #333;
   font-size: 38rpx;
   font-weight: bold;

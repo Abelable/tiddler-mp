@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "餐饮门店图片",
+  "usingComponents": {
+    "image-grid": "./components/image-grid/index"
+  }
+}
