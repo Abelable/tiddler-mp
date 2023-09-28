@@ -45,7 +45,7 @@
   border-radius: 18rpx;
   background: rgba(255, 255, 255, 0.68);
 }
-.video-icon {
+.play-icon {
   width: 20rpx;
   height: 20rpx;
 }
