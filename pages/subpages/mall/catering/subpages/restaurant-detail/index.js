@@ -442,8 +442,8 @@ Page({
   navigation() {
     const { name, address, latitude, longitude } = this.data.restaurantInfo;
     wx.openLocation({
-      latitude,
-      longitude,
+      latitude: +latitude,
+      longitude: +longitude,
       name,
       address,
     });
