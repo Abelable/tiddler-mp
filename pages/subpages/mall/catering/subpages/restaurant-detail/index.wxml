@@ -100,29 +100,22 @@
     </view>
   </view>
 
-  <view class="position-info-wrap row">
+  <view class="position-info-wrap row between">
     <view class="position-info">
       <view class="address">{{restaurantInfo.address}}</view>
-      <view class="distance row">
-        <image class="position-icon" src="./images/position.png" />
-        <view>距您{{ distance }}公里</view>
+      <view class="distance">距您{{ distance }}公里</view>
+    </view>
+    <view class="position-btns-wrap row">
+      <view class="position-btn row" bindtap="navigation">
+        <image class="position-icon" src="./images/navigate.png" />
+        <view class="position-btn-desc">导航</view>
+      </view>
+       <view class="position-btn row" bindtap="showTelPopup">
+        <image class="position-icon" src="./images/tel.png" />
+        <view class="position-btn-desc">电话</view>
       </view>
     </view>
   </view>
-  
-
-  <!-- <view class="info-list-wrap">
-    <view class="info-list row between" bindtap="navigation">
-      <view class="row">
-        <image class="position-icon" src="./images/position.png" />
-        <view class="opening-hours">{{restaurantInfo.address}}</view>
-      </view>
-      <button class="navigation-btn" hover-class="none">
-        <image class="navigation-icon" src="./images/navigation.png" />
-        <view>导航</view>
-      </button>
-    </view>
-  </view> -->
 
   <view class="content-title-wrap">
     <view class="content-title">优惠券</view>
@@ -237,3 +230,11 @@
 </view>
 
 <notice-popup show="{{noticePopupVisible}}" info="{{curTicketInfo}}" bind:hide="hideNoticePopup" />
+<van-action-sheet
+  show="{{ telPopupVisible }}"
+  actions="{{ telList }}"
+  bind:select="callTel"
+  bind:cancel="hideTelVisible"
+  bind:close="hideTelVisible"
+  cancel-text="取消"
+/>

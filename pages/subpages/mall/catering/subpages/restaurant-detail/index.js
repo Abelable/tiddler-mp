@@ -20,19 +20,14 @@ Page({
   data: {
     statusBarHeight,
     navBarVisible: false,
-    menuList: [
-      "优惠券",
-      "套餐",
-      "用户点评",
-      "热门问答",
-      "达人品鉴",
-    ],
+    menuList: ["优惠券", "套餐", "用户点评", "热门问答", "达人品鉴"],
     curMenuIdx: -1,
     restaurantInfo: null,
     openStatus: false,
     openTimeDescList: [],
     curDot: 1,
     muted: true,
+    telList: [],
     facilityList: [],
     imageList: [],
     imageMenuList: [],
@@ -45,6 +40,7 @@ Page({
     commentList,
     mediaList,
     noticePopupVisible: false,
+    telPopupVisible: false,
   },
 
   async onLoad({ id }) {
@@ -59,6 +55,7 @@ Page({
       this.restaurantId
     );
     const {
+      telList,
       openTimeList,
       facilityList,
       video,
@@ -106,6 +103,7 @@ Page({
 
     this.setData({
       restaurantInfo,
+      telList: telList.map((item) => ({ name: item, color: "#1989fa" })),
       facilityList: facilityList.slice(0, 4),
       imageList,
       imageMenuList,
@@ -458,6 +456,18 @@ Page({
       name,
       address,
     });
+  },
+
+  callTel(e) {
+    wx.makePhoneCall({ phoneNumber: e.detail.name });
+  },
+
+  showTelPopup() {
+    this.setData({ telPopupVisible: true });
+  },
+
+  hideTelVisible() {
+    this.setData({ telPopupVisible: false });
   },
 
   onShareAppMessage() {},

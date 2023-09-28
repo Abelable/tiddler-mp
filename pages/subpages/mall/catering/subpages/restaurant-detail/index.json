@@ -2,13 +2,14 @@
   "navigationStyle": "custom",
   "navigationBarTextStyle": "white",
   "usingComponents": {
-    "back-icon": "/components/back-icon-white/index",
     "van-rate": "@vant/weapp/rate/index",
-    "comment-item": "../../../components/comment-item/index",
+    "van-action-sheet": "@vant/weapp/action-sheet/index",
+    "back-icon": "/components/back-icon-white/index",
     "empty-illus": "/components/empty-illus/index",
     "fall-flow": "/components/fall-flow/index",
     "media-item": "/components/media-item/index",
+    "collapse-item": "./components/collapse-item/index",
     "notice-popup": "../../components/notice-popup/index",
-    "collapse-item": "./components/collapse-item/index"
+    "comment-item": "../../../components/comment-item/index"
   }
 }
