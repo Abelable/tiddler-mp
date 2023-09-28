@@ -35,7 +35,7 @@ Component({
                 curWeekDay >= time.startWeekDay &&
                 curWeekDay <= time.endWeekDay
               ) {
-                const timeFrameIdx = time.timeFrameList.find((timeFrame) => {
+                const timeFrameIdx = time.timeFrameList.findIndex((timeFrame) => {
                   const _curTime = +(curTime.replace(":", ""));
                   const _openTime = +(timeFrame.openTime.replace(":", ""));
                   const _closeTime = +(timeFrame.closeTime.replace(":", ""));

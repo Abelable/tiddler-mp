@@ -33,6 +33,7 @@ Page({
     openTimeDescList: [],
     curDot: 1,
     muted: true,
+    facilityList: [],
     imageList: [],
     imageMenuList: [],
     imageCount: 0,
@@ -59,6 +60,7 @@ Page({
     );
     const {
       openTimeList,
+      facilityList,
       video,
       cover,
       environmentImageList,
@@ -104,6 +106,7 @@ Page({
 
     this.setData({
       restaurantInfo,
+      facilityList: facilityList.slice(0, 4),
       imageList,
       imageMenuList,
       imageCount,
@@ -116,7 +119,7 @@ Page({
     const curTime = dayjs().format("HH:mm");
     const openTimeDescList = openTimeList.map((time) => {
       if (curWeekDay >= time.startWeekDay && curWeekDay <= time.endWeekDay) {
-        const timeFrameIdx = time.timeFrameList.find((timeFrame) => {
+        const timeFrameIdx = time.timeFrameList.findIndex((timeFrame) => {
           const _curTime = +curTime.replace(":", "");
           const _openTime = +timeFrame.openTime.replace(":", "");
           const _closeTime = +timeFrame.closeTime.replace(":", "");
@@ -302,6 +305,12 @@ Page({
   bannerChange(e) {
     this.setData({
       curDot: e.detail.current + 1,
+    });
+  },
+
+  swiperBanner(e) {
+    this.setData({
+      curDot: e.currentTarget.dataset.index + 1,
     });
   },
 

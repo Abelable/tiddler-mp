@@ -69,29 +69,49 @@
   <view class="row between">
     <view class="row">
       <view class="restaurant-name">{{restaurantInfo.name}}</view>
-      <view class="level-tag row">3A</view>
+      <view class="category-tag row">{{restaurantInfo.categoryName}}</view>
     </view>
     <image class="share-icon" src="./images/share.png" />
   </view>
 
   <view class="score-wrap row">
-    <van-rate value="{{restaurantInfo.rate || 0}}" size="18" gutter="0" color="#ffd21e" void-icon="star" void-color="#eee" allow-half readonly />
-    <text class="score" wx:if="{{restaurantInfo.rate}}">{{restaurantInfo.rate}}分</text>
-    <text class="no-score" wx:if="{{!restaurantInfo.rate}}">暂无评分</text>
+    <van-rate value="{{restaurantInfo.rate || 0}}" size="16" gutter="0" color="#ffd21e" void-icon="star" void-color="#eee" allow-half readonly />
+    <view class="score {{ restaurantInfo.rate ? 'active' : '' }}">{{restaurantInfo.rate || '暂无评分'}}</view>
+    <view class="price">¥{{restaurantInfo.price}}/人</view>
+    <view class="row">
+      <view class="more-detail">2031人评</view>
+      <image class="more-icon" src="./images/more.png" />
+    </view>
   </view>
 
-  <view class="info-list-wrap">
-    <view class="info-list row between" bindtap="checkMoreInfo">
-      <view class="row">
-        <image class="clock-icon" src="./images/time.png" />
-        <view class="opening-status row {{!isOpen ? 'closed' : ''}}">{{!isOpen ? '已闭园' : '开园中'}}</view>
-        <view class="opening-hours">{{TIME.transform(curOpenTime.openTime, 'hh:mm')}}-{{TIME.transform(curOpenTime.closeTime, 'hh:mm')}}开放{{curOpenTime.tips ? ('（' + curOpenTime.tips + '）') : ''}}</view>
-      </view>
-      <view class="row">
-        <view class="more-detail">详情</view>
-        <image class="more-icon" src="./images/more.png" />
+  <view class="open-time-wrap row top">
+    <view class="open-status row {{openStatus ? 'active' : ''}}">{{openStatus ? '营业中' : '休息中'}}</view>
+    <view class="open-time-list">
+      <view class="open-time" wx:for="{{openTimeDescList}}" wx:for-item="desc" wx:for-index="descIdx" wx:key="descIdx">{{desc}}</view>
+    </view>
+  </view>
+  <view class="facility-list-wrap row between" bindtap="checkMoreInfo">
+    <view class="facility-list row">
+      <view class="facility" wx:for="{{facilityList}}" wx:for-item="facility" wx:for-index="facilityIdx" wx:key="facilityIdx">{{facility}}</view>
+    </view>
+    <view class="row">
+      <view class="more-detail">详情</view>
+      <image class="more-icon" src="./images/more.png" />
+    </view>
+  </view>
+
+  <view class="position-info-wrap row">
+    <view class="position-info">
+      <view class="address">{{restaurantInfo.address}}</view>
+      <view class="distance row">
+        <image class="position-icon" src="./images/position.png" />
+        <view>距您{{ distance }}公里</view>
       </view>
     </view>
+  </view>
+  
+
+  <!-- <view class="info-list-wrap">
     <view class="info-list row between" bindtap="navigation">
       <view class="row">
         <image class="position-icon" src="./images/position.png" />
@@ -102,7 +122,7 @@
         <view>导航</view>
       </button>
     </view>
-  </view>
+  </view> -->
 
   <view class="content-title-wrap">
     <view class="content-title">优惠券</view>

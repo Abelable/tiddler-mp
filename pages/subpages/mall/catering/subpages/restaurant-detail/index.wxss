@@ -192,19 +192,18 @@
 }
 .restaurant-name {
   color: #333;
-  font-size: 38rpx;
+  font-size: 36rpx;
   font-weight: bold;
 }
-.level-tag {
-  margin-left: 8rpx;
+.category-tag {
+  margin-left: 12rpx;
   padding: 0 12rpx;
-  height: 32rpx;
-  color: #5dce86;
-  font-size: 20rpx;
+  height: 36rpx;
+  color: #77a9fd;
+  font-size: 22rpx;
   font-weight: bold;
-  line-height: 1;
   border-radius: 8rpx;
-  background: #d1f7e5;
+  background: #ebf2fd;
 }
 .share-icon {
   width: 42rpx;
@@ -216,51 +215,80 @@
 }
 .score {
   margin-left: 10rpx;
-  color: #333;
+  color: #999;
+  font-size: 20rpx;
+}
+.score.active {
+  color: #ffd21e;
   font-size: 26rpx;
   font-weight: bold;
 }
-.no-score {
-  margin-left: 10rpx;
+
+.price {
+  flex: 1;
+  margin-left: 18rpx;
   color: #333;
-  font-size: 20rpx;
+  font-size: 24rpx;
 }
 
-.info-list-wrap {
-  margin-top: 8px;
+.open-time-wrap {
+  margin-top: 24rpx;
 }
-.info-list {
-  height: 88rpx;
-  border-bottom: 1px solid #eee;
-}
-.info-list:last-child {
-  border-bottom: none;
-}
-.clock-icon, .position-icon {
-  margin-right: 12rpx;
-  width: 26rpx;
-  height: 26rpx;
-}
-.opening-status {
-  margin-right: 12rpx;
-  padding: 0 8rpx;
-  height: 30rpx;
-  color: #37B766;
+.open-status {
+  padding: 0 12rpx;
+  height: 32rpx;
+  color: #faad14;
   font-size: 20rpx;
   font-weight: bold;
-  line-height: 30rpx;
-  border: 1px solid #37B766;
-  border-radius: 4rpx;
+  line-height: 1;
+  border-radius: 8rpx;
+  background: #f8f2d3;
 }
-.opening-status.closed {
+.open-status.active {
+  color: #5dce86;
+  background: #d1f7e5;
+}
+.open-time-list {
+  margin-left: 12rpx;
+}
+.open-time {
+  color: #333;
+  font-size: 22rpx;
+}
+
+.facility-list-wrap {
+  margin-top: 12rpx;
+}
+.facility {
+  margin-right: 10rpx;
   color: #999;
-  border: 1px solid #999;
+  font-size: 20rpx;
+  background: #f2f2f2;
+  padding: 2rpx 10rpx;
+  border-radius: 10rpx;
 }
-.opening-hours {
+
+.position-info {
+  margin-top: 24rpx;
+  padding-top: 20rpx;
+  border-top: 1px solid #eee;
+}
+.address {
   color: #333;
   font-size: 24rpx;
   font-weight: bold;
 }
+.distance {
+  margin-top: 8rpx;
+  color: #666;
+  font-size: 22rpx;
+}
+.position-icon {
+  margin-right: 8rpx;
+  width: 24rpx;
+  height: 24rpx;
+}
+
 .more-detail {
   color: #666;
   font-size: 24rpx;
