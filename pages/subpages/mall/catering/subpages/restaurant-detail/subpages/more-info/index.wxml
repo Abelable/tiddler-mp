@@ -16,7 +16,10 @@
 
 <view class="container">
   <view class="card">
-    <view class="card-title">营业时间</view>
+    <view class="card-title row">
+      <view>营业时间</view>
+      <view class="open-status row {{openStatus ? 'active' : ''}}">{{openStatus ? '营业中' : '休息中'}}</view>
+    </view>
     <view class="grid">
       <block wx:for="{{openTimeList}}" wx:key="index">
         <view class="grid-line title">
@@ -36,6 +39,13 @@
         <view>{{item}}</view>
         <image class="tel-icon" src="./images/tel.png" />
       </view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">设施及服务</view>
+    <view class="facility-list row">
+      <view class="facility" wx:for="{{facilityList}}" wx:key="index">{{item}}</view>
     </view>
   </view>
 </view>
