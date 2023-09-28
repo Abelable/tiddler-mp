@@ -99,3 +99,13 @@ export const calcDistance = (la1, lo1, la2, lo2) => {
   s = Math.floor(Math.round(s * 10000) / 10000);
   return s;
 };
+
+export const weekDayList = [
+  { text: "周一", value: 1 },
+  { text: "周二", value: 2 },
+  { text: "周三", value: 3 },
+  { text: "周四", value: 4 },
+  { text: "周五", value: 5 },
+  { text: "周六", value: 6 },
+  { text: "周日", value: 7 },
+];

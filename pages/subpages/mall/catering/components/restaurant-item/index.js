@@ -1,16 +1,6 @@
 import dayjs from "dayjs";
 import { store } from "../../../../../../store/index";
-import { calcDistance } from "../../../../../../utils/index";
-
-const weekDayList = [
-  { text: "周一", value: 1 },
-  { text: "周二", value: 2 },
-  { text: "周三", value: 3 },
-  { text: "周四", value: 4 },
-  { text: "周五", value: 5 },
-  { text: "周六", value: 6 },
-  { text: "周日", value: 7 },
-];
+import { weekDayList, calcDistance } from "../../../../../../utils/index";
 
 Component({
   options: {

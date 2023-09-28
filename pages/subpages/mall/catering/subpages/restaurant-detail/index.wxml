@@ -94,7 +94,7 @@
     <view class="facility-list row">
       <view class="facility" wx:for="{{facilityList}}" wx:for-item="facility" wx:for-index="facilityIdx" wx:key="facilityIdx">{{facility}}</view>
     </view>
-    <view class="row">
+    <view class="row" bindtap="checkMoreInfo">
       <view class="more-detail">详情</view>
       <image class="more-icon" src="./images/more.png" />
     </view>
