@@ -17,7 +17,7 @@ Component({
 
           const distance = calcDistance(la1, lo1, la2, lo2);
 
-          const curWeekDay = dayjs().day();
+          const curWeekDay = dayjs().day() + 1;
           const curTime = dayjs().format("HH:mm");
           const openTimeDescList = openTimeList
             .map((time) => {

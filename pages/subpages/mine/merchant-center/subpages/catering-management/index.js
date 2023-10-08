@@ -94,8 +94,8 @@ Page({
     wx.navigateTo({ url })
   },
 
-  navToReturnAddressManagement() {
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/goods_return_address/list`
+  navToMealTicketManagement() {
+    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/catering/meal_ticket/list`
     wx.navigateTo({ url })
   },
 

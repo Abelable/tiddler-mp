@@ -104,7 +104,7 @@ Page({
   },
 
   setCurOpenTime(openTimeList) {
-    const curWeekDay = dayjs().day();
+    const curWeekDay = dayjs().day() + 1;
     const curTime = dayjs().format("HH:mm");
     const openTimeDescList = openTimeList.map((time) => {
       if (curWeekDay >= time.startWeekDay && curWeekDay <= time.endWeekDay) {

@@ -19,7 +19,7 @@ Page({
     const { name, openTimeList, telList, facilityList } = JSON.parse(info);
     wx.setNavigationBarTitle({ title: name });
 
-    const curWeekDay = dayjs().day();
+    const curWeekDay = dayjs().day() + 1;
     const curTime = dayjs().format("HH:mm");
     this.setData({
       openTimeList: openTimeList.map((item) => {

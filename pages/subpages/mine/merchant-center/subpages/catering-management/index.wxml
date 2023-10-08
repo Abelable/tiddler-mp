@@ -49,7 +49,7 @@
       <view class="btn-title">门店管理</view>
     </view>
     <view class="btn">
-      <view class="btn-icon-wrap" bindtap="navToReturnAddressManagement">
+      <view class="btn-icon-wrap" bindtap="navToMealTicketManagement">
         <image class="btn-icon" src="./images/coupon.png" />
       </view>
       <view class="btn-title">代金券管理</view>
