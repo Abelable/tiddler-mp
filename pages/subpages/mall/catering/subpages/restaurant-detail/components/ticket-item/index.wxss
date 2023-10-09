@@ -1,5 +1,6 @@
 .ticket-item {
   position: relative;
+  margin-bottom: 24rpx;
   padding: 18rpx 24rpx;
   background: #fcf8f7;
   border: 1px solid #fed9cc;
@@ -21,7 +22,7 @@
   border-left-color: #fff;
 }
 .right-circle {
-  right: -1px;
+  right: -1.5px;
   border-top-left-radius: 14rpx;
   border-bottom-left-radius: 14rpx;
   border-right-color: #fff;
