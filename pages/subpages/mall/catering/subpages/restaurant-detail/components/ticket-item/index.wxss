@@ -1,51 +1,91 @@
-.collapse-subitem {
-  padding: 24rpx 0;
-  border-top: 1px solid #eee;
+.ticket-item {
+  position: relative;
+  padding: 18rpx 24rpx;
+  background: #fcf8f7;
+  border: 1px solid #fed9cc;
+  border-radius: 8rpx;
+}
+.left-circle, .right-circle {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14rpx;
+  height: 28rpx;
+  border: 1px solid #fed9cc;
+  background: #fff;
+}
+.left-circle {
+  left: -1px;
+  border-top-right-radius: 14rpx;
+  border-bottom-right-radius: 14rpx;
+  border-left-color: #fff;
+}
+.right-circle {
+  right: -1px;
+  border-top-left-radius: 14rpx;
+  border-bottom-left-radius: 14rpx;
+  border-right-color: #fff;
 }
 
-.shop-type {
-  margin-right: 8rpx;
-  padding: 0 8rpx;
-  height: 32rpx;
-  color: #FFE5BD;
-  font-size: 22rpx;
-  line-height: 1;
-  background: linear-gradient(270deg, #404A5C 0%, #0F131A 100%);
-  border-radius: 6rpx;
+.ticket-info {
+  margin-right: 24rpx;
+  flex: 1;
+  overflow: hidden;
 }
-.shop-name {
+.ticket-name {
   color: #333;
-  font-size: 26rpx;
-  font-weight: bold;
+  font-size: 30rpx;
+  font-weight: 550;
 }
-.tips-wrap {
-  margin-top: 18rpx;
-}
+
 .tips {
-  padding-right: 12rpx;
-  border-right: 1px solid #ddd;
-  margin-right: 12rpx;
-  color: #666;
-  font-size: 22rpx;
-  line-height: 1;
+  margin-top: 12rpx;
 }
-.tips:last-child {
+.tip {
+  padding: 0 12rpx;
+  height:  24rpx;
+  color: #666;
+  font-size: 24rpx;
+  white-space: nowrap;
+  line-height: 1;
+  border-right: 1px solid #ddd;
+}
+.tip:first-child {
+  padding-left: 0;
+}
+.tip:last-child {
   border-right: none;
 }
-.tips.stress {
-  color: #529AFE;
+
+.price-wrap {
+  margin-top: 12rpx;
 }
-.booking-wrap {
+.discount {
+  margin-top: 4rpx;
+  margin-left: 12rpx;
+  padding: 0 6rpx;
+  color: #F66B38;
+  font-size: 20rpx;
+  border: 1px solid #fed9cc;
+  border-radius: 6rpx;
+}
+
+.buy-btn-wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.booking-btn {
+.buy-btn {
   margin-top: 8rpx;
   width: 100rpx;
-  height: 60rpx;
+  height: 56rpx;
   color: #fff;
   font-size: 24rpx;
-  border-radius: 30rpx;
-  background: #1986F8;
+  border-radius: 28rpx;
+  background: #F66B38;
+}
+.sales {
+  margin-top: 6rpx;
+  color: #666;
+  font-size: 22rpx;
 }

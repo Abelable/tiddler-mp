@@ -6,18 +6,44 @@ Component({
   },
 
   properties: {
-    ticket: Object,
+    ticket: {
+      type: Object,
+      observer({ price, originalPrice, includingDrink, boxAvailable }) {
+        const discount = parseFloat(((price / originalPrice) * 10).toFixed(1));
+
+        // let useRangeDesc = ''
+        // if (!includingDrink) {
+        //   useRangeDesc = '部分商品可用'
+        // } else {
+
+        // }
+        // if (includingDrink && boxAvailable) {
+        //   useRangeDesc = '全场通用'
+        // } else if (includingDrink && !boxAvailable) {
+        //   useRangeDesc = ''
+        // } else if (!includingDrink && boxAvailable) {
+        //   useRangeDesc = '部分商品可用'
+        // }
+        
+        this.setData({ discount });
+      },
+    },
+  },
+
+  data: {
+    discount: 0,
   },
 
   methods: {
-    showNoticePopup() {
-      this.triggerEvent("showNoticePopup", this.properties.ticket);
+    checkDetail() {
+      const url = `/pages/subpages/mall/catering/subpages/restaurant-detail/subpages/meal-ticket-detail/index?id=${this.properties.ticket.id}`;
+      wx.navigateTo({ url });
     },
 
-    booking() {
-      store.setScenicPreOrderInfo(this.properties.ticket);
+    buy() {
+      store.setMealTicketPreOrderInfo(this.properties.ticket);
       wx.navigateTo({
-        url: "/pages/subpages/mall/scenic-spot/subpages/order-check/index",
+        url: "/pages/subpages/mall/catering/subpages/order-check/index",
       });
     },
   },

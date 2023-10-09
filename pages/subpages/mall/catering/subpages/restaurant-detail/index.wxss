@@ -356,32 +356,8 @@
   font-size: 24rpx;
 }
 
-.ticket-type-menu {
-  margin-top: 18rpx;
-  white-space: nowrap;
-  overflow-x: scroll;
-}
-.ticket-type-item {
-  display: inline-block;
-  margin-right: 18rpx;
-  padding: 0 18rpx;
-  height: 44rpx;
-  color: #999;
-  font-size: 22rpx;
-  line-height: 40rpx;
-  border-radius: 22rpx;
-  background: #f5f6f7;
-  border: 2rpx solid #f5f6f7;
-}
-.ticket-type-item.active {
-  color: #333;
-  border: 2rpx solid #ddd;
-}
-
-.collapse {
+.meal-ticket-list {
   margin-top: 24rpx;
-  background: #f8f8f8;
-  border-radius: 18rpx;
 }
 
 .total-tips {

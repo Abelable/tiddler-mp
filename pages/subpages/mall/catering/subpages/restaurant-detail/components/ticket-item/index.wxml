@@ -1,30 +1,23 @@
 <view 
-  class="collapse-subitem row between" 
+  class="ticket-item row between" 
   bindtap="showNoticePopup"
 >
   <view class="ticket-info">
-    <view class="shop-info row">
-      <view class="shop-type row" wx:if="{{ticket.shopInfo.type !== 2}}">{{ticket.shopInfo.type === 1 ? '官方' : '自营'}}</view>
-      <view class="shop-name">{{ticket.shopInfo.name}}</view>
+    <view class="ticket-name">{{ ticket.price + '代' + ticket.originalPrice + '元代金券' }}</view>
+    <view class="tips row">
+      <view class="tip">{{ ticket.useTimeList.length ? '部分时段可用' : '营业时间内可用' }}</view>
+      <view class="tip">{{ !ticket.overlayUsageLimit ? '不限张数' : ('单次可用' + ticket.overlayUsageLimit + '张') }}</view>
+      <view class="tip" wx:if="{{ticket.needPreBook}}">需预约</view>
     </view>
-    <view class="tips-wrap row">
-      <view class="tips stress">{{ticket.bookingTips}}</view>
-      <view class="tips" wx:if="{{ticket.effectiveTime}}">出票{{ticket.effectiveTime}}小时后可用</view>
-    </view>
-    <view class="tips-wrap row">
-      <view class="tips stress">{{['随时可退', '有条件退', '不可退'][ticket.refundStatus - 1]}}</view>
-      <view class="tips" wx:if="{{!ticket.needExchange}}">无需换票</view>
-    </view>
-    <view class="tips-wrap row">
-      <view class="tips">已售{{ticket.salesVolume}}</view>
-      <view class="tips stress row">
-        <text>预订须知</text>
-        <image class="more-icon" src="./images/more-blue.png" />
-      </view>
+    <view class="price-wrap row">
+      <price-unit price="{{ticket.price || 0}}" color="#F66B38" unitColor="#F66B38" />
+      <view class="discount">{{discount}}折</view>
     </view>
   </view>
-  <view class="booking-wrap">
-    <price-unit price="{{ticket.price || 0}}" unit="起" />
-    <button class="booking-btn" catchtap="booking">预订</button>
+  <view class="buy-btn-wrap">
+    <button class="buy-btn" catchtap="buy">抢购</button>
+     <view class="sales">已售 {{ticket.salesVolume}}</view>
   </view>
+  <view class="left-circle"></view>
+  <view class="right-circle"></view>
 </view>

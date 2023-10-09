@@ -8,8 +8,8 @@
     "empty-illus": "/components/empty-illus/index",
     "fall-flow": "/components/fall-flow/index",
     "media-item": "/components/media-item/index",
-    "collapse-item": "./components/collapse-item/index",
     "notice-popup": "../../components/notice-popup/index",
-    "comment-item": "../../../components/comment-item/index"
+    "comment-item": "../../../components/comment-item/index",
+    "ticket-item": "./components/ticket-item/index"
   }
 }

@@ -13,6 +13,7 @@ export const store = observable({
   locationInfo: null,
   scenicPreOrderInfo: null,
   hotelPreOrderInfo: null,
+  mealTicketPreOrderInfo: null,
 
   setTabType: action(function (type) {
     this.tabType = type;
@@ -34,6 +35,9 @@ export const store = observable({
   }),
   setHotelPreOrderInfo: action(function (info) {
     this.hotelPreOrderInfo = info;
+  }),
+  setMealTicketPreOrderInfo: action(function (info) {
+    this.mealTicketPreOrderInfo = info;
   }),
 
   ...tim,

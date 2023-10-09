@@ -118,51 +118,15 @@
   </view>
 
   <view class="content-title-wrap">
-    <view class="content-title">优惠券</view>
+    <view class="content-title">代金券</view>
   </view>
-  <scroll-view class="ticket-type-menu" scroll-x>
-    <view 
-      class="ticket-type-item {{curTicketTypeIdx === index ? 'active' : ''}}" 
-      wx:for="{{mealTicketList}}" 
-      wx:key="index"
-      bindtap="selectTicketType"
-      data-index="{{index}}"
-    >{{item.name}}</view>
-  </scroll-view>
-  <view class="collapse">
-    <collapse-item 
-      wx:for="{{ticketList}}" 
-      wx:key="index" 
-      item="{{item}}" 
-      index="{{index}}"
-      bind:toggleFold="toggleTicketsFold"
-      bind:showNoticePopup="showNoticePopup"
-    />
+  <view class="meal-ticket-list">
+    <ticket-item wx:for="{{restaurantInfo.mealTicketList}}" wx:key="index" ticket="{{item}}" />
   </view>
-  <empty-illus wx:if="{{!mealTicketList.length}}" desc="暂无优惠券" height="520rpx" />
+  <empty-illus wx:if="{{!restaurantInfo.mealTicketList.length}}" desc="暂无代金券" height="520rpx" />
 
   <view class="content-title-wrap">
     <view class="content-title">套餐</view>
-  </view>
-  <scroll-view class="ticket-type-menu" scroll-x wx:if="{{setMealList.length}}">
-    <view 
-      class="ticket-type-item {{curCombinedTicketTypeIdx === index ? 'active' : ''}}" 
-      wx:for="{{setMealList}}" 
-      wx:key="index"
-      bindtap="selectCombinedTicketType"
-      data-index="{{index}}"
-    >{{item}}</view>
-  </scroll-view>
-  <view class="collapse" wx:if="{{setMealList.length}}">
-    <collapse-item 
-      wx:for="{{combinedTicketList}}" 
-      wx:key="index" 
-      item="{{item}}" 
-      index="{{index}}"
-      bind:toggleFold="toggleCombinedTicketsFold"
-      bind:showNoticePopup="showNoticePopup"
-      bind:booking="booking"
-    />
   </view>
   <empty-illus wx:if="{{!setMealList.length}}" desc="暂无套餐" height="520rpx" />
 
