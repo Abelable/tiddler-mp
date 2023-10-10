@@ -40,6 +40,14 @@ class CateringService extends BaseService {
     });
   }
 
+  async getMealTicketInfo(id) {
+    return await this.get({
+      url: `${this.baseUrl}/catering/meal_ticket/detail`,
+      data: { id },
+      loadingTitle: "加载中...",
+    });
+  }
+
   async getPaymentAmount(roomId, checkInDate, checkOutDate, num) {
     return await this.get({
       url: `${this.baseUrl}/catering/restaurant/order/calc_payment_amount`,

@@ -44,6 +44,7 @@
       "mall/catering/subpages/restaurant-detail/index",
       "mall/catering/subpages/restaurant-detail/subpages/more-image/index",
       "mall/catering/subpages/restaurant-detail/subpages/more-info/index",
+      "mall/catering/subpages/restaurant-detail/subpages/meal-ticket-detail/index",
       "mall/goods/index",
       "mall/goods/subpages/goods-detail/index",
       "mall/goods/subpages/shop/index",

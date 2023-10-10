@@ -1,6 +1,6 @@
 <view 
   class="ticket-item row between" 
-  bindtap="showNoticePopup"
+  bindtap="checkDetail"
 >
   <view class="ticket-info">
     <view class="ticket-name">{{ ticket.price + '代' + ticket.originalPrice + '元代金券' }}</view>

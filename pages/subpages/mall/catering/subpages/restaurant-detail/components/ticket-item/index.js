@@ -43,6 +43,7 @@ Component({
         this.setData({ discount, tips: tips.slice(0, 3) });
       },
     },
+    restaurantName: String,
   },
 
   data: {
@@ -52,7 +53,8 @@ Component({
 
   methods: {
     checkDetail() {
-      const url = `/pages/subpages/mall/catering/subpages/restaurant-detail/subpages/meal-ticket-detail/index?id=${this.properties.ticket.id}`;
+      const { ticket, restaurantName } = this.properties;
+      const url = `/pages/subpages/mall/catering/subpages/restaurant-detail/subpages/meal-ticket-detail/index?ticketId=${ticket.id}&restaurantName=${restaurantName}`;
       wx.navigateTo({ url });
     },
 

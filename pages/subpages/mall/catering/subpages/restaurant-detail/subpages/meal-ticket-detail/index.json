@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "代金券详情",
+  "usingComponents": {
+    "price-unit": "/components/price-unit/index"
+  }
+}
