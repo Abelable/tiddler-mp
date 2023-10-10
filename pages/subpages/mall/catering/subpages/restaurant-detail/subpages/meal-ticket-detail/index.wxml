@@ -48,7 +48,7 @@
       <view class="rule">
         <view class="rule-title">适用范围</view>
         <view class="rule-content">
-          <view class="content">{{ inapplicableProductsDesc ? ('除以' + inapplicableProductsDesc + '外全场通用') : '全场菜品、酒水饮料通用' }}</view>
+          <view class="content">{{ inapplicableProductsDesc ? ('除' + inapplicableProductsDesc + '以外全场通用') : '全场菜品、酒水饮料通用' }}</view>
           <view class="content">{{ ticketInfo.boxAvailable ? '' : '不' }}可用于包间消费</view>
         </view>
       </view>
