@@ -1,5 +1,6 @@
 <view class="ticket">
   <view class="main-info">
+    <view class="restaurant-name" wx:if="{{restaurantName}}">{{ restaurantName }}</view>
     <view class="ticket-name">{{ticketInfo.price}}代{{ticketInfo.originalPrice}}元代金券</view>
     <view class="row between">
       <price-unit price="{{ticketInfo.price || 0}}" />

@@ -8,6 +8,11 @@
   padding: 24rpx;
   padding-bottom: 8rpx;
 }
+.restaurant-name {
+  margin-bottom: 12rpx;
+  color: #333;
+  font-size: 24rpx;
+}
 .ticket-name {
   margin-bottom: 12rpx;
   color: #333;
