@@ -1,6 +1,6 @@
-import ShopService from '../../utils/shopService'
+import ScenicService from '../../utils/scenicService'
 
-const shopService = new ShopService()
+const scenicService = new ScenicService()
 
 Page({
   data: {
@@ -13,7 +13,7 @@ Page({
   },
 
   async setOrderInfo() {
-    const orderInfo = await shopService.getOrderDetail(this.orderId)
+    const orderInfo = await scenicService.getOrderDetail(this.orderId)
     this.setData({ orderInfo })
 
     const titleEnums = {
@@ -53,7 +53,7 @@ Page({
   },
 
   deliverOrder() {
-    shopService.deliverOrder(id, () => {
+    scenicService.deliverOrder(id, () => {
       this.setData({
         ['orderInfo.status']: 301
       })
@@ -61,17 +61,11 @@ Page({
   },
 
   cancelOrder() {
-    shopService.cancelOrder(this.orderId, () => {
+    scenicService.cancelOrder(this.orderId, () => {
       this.setData({
         ['orderInfo.status']: 102
       })
     })
-  },
-
-  navToShipping(e) {
-    const id = e.currentTarget.dataset.id
-    const url = `/pages/subpages/mine/order-center/subpages/goods-order-list/subpages/shipping/index?id=${id}`
-    wx.navigateTo({ url })
   },
 
   contact() {

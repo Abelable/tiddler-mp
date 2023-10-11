@@ -9,10 +9,6 @@
       <price-unit price="{{orderInfo.goodsPrice}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />
     </view>
     <view class="list row between">
-      <view class="title">运费</view>
-      <price-unit price="{{orderInfo.freightPrice}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />
-    </view>
-    <view class="list row between">
       <view class="title">{{ORDER.paymentDesc(orderInfo.status)}}</view>
       <price-unit price="{{orderInfo.paymentAmount}}" />
     </view>
@@ -41,10 +37,6 @@
         <view class="title">付款时间：</view>
         <text>{{TIME.transform(orderInfo.payTime, 'YYYY-MM-DD hh:mm:ss')}}</text>
       </view>
-      <view class="list row between" wx:if="{{orderInfo.shipTime}}">
-        <view class="title">发货时间：</view>
-        <text>{{TIME.transform(orderInfo.shipTime, 'YYYY-MM-DD hh:mm:ss')}}</text>
-      </view>
       <view class="list row between" wx:if="{{orderInfo.confirmTime}}">
         <view class="title">成交时间：</view>
         <text>{{TIME.transform(orderInfo.confirmTime, 'YYYY-MM-DD hh:mm:ss')}}</text>
@@ -54,11 +46,6 @@
 </view>
 
 <view class="bottom-bar">
-  <button 
-    class="btn" 
-    wx:if="{{orderInfo.status === 301}}" 
-    bindtap="navToShipping" data-id="{{orderInfo.id}}"
-  >查看物流</button>
   <button 
     class="btn" 
     wx:if="{{orderInfo.status === 101}}" 

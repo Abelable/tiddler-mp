@@ -14,14 +14,14 @@ Component({
   methods: {
     cancelOrder(e) {
       const { id, index } = e.currentTarget.dataset
-      cateringService.cancelOrder(id, () => {
+      cateringService.cancelMealTicketOrder(id, () => {
         this.triggerEvent('update', { type: 'cancel', index })
       })
     },
 
     deliverOrder(e) {
       const { id, index } = e.currentTarget.dataset
-      cateringService.deleteOrder(id, () => {
+      cateringService.deleteMealTicketOrder(id, () => {
         this.triggerEvent('update', { type: 'deliver', index })
       })
     },
