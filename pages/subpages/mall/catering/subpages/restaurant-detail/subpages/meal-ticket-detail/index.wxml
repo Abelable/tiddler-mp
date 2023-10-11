@@ -68,5 +68,5 @@
     <image class="shortcut-icon" src="./images/share-icon.png"/>
     <view>分享</view>
   </view>
-  <button class="buy-btn">立即抢购</button>
+  <button class="buy-btn" bindtap="buy">立即抢购</button>
 </view>

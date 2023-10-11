@@ -1,11 +1,11 @@
-import { store } from "../../../../../../../../store/index";
-
 Component({
   options: {
     addGlobalClass: true,
   },
 
   properties: {
+    restaurantId: Number,
+    restaurantName: String,
     ticket: {
       type: Object,
       observer({
@@ -43,7 +43,6 @@ Component({
         this.setData({ discount, tips: tips.slice(0, 3) });
       },
     },
-    restaurantName: String,
   },
 
   data: {
@@ -59,10 +58,9 @@ Component({
     },
 
     buy() {
-      store.setMealTicketPreOrderInfo(this.properties.ticket);
-      wx.navigateTo({
-        url: "/pages/subpages/mall/catering/subpages/order-check/index",
-      });
+      const { restaurantId, restaurantName, ticket } = this.properties;
+      const url = `/pages/subpages/mall/catering/subpages/order-check/index?restaurantId=${restaurantId}&restaurantName=${restaurantName}&ticketId=${ticket.id}`;
+      wx.navigateTo({ url });
     },
   },
 });

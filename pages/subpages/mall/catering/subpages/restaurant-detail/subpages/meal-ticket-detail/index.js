@@ -12,9 +12,12 @@ Page({
     inapplicableProductsDesc: "",
   },
 
-  onLoad({ ticketId, restaurantName }) {
-    this.setMealTicketInfo(ticketId);
+  onLoad({ restaurantId, restaurantName, ticketId }) {
+    this.restaurantId = restaurantId;
+    this.restaurantName = restaurantName;
+    this.ticketId = ticketId;
     this.setData({ restaurantName });
+    this.setMealTicketInfo(ticketId);
   },
 
   async setMealTicketInfo(id) {
@@ -68,5 +71,10 @@ Page({
     });
 
     this.setData({ useTimeDescList });
+  },
+
+  buy() {
+    const url = `/pages/subpages/mall/catering/subpages/order-check/index?restaurantId=${this.restaurantId}&restaurantName=${this.restaurantName}&ticketId=${this.ticketId}`;
+    wx.navigateTo({ url });
   },
 });

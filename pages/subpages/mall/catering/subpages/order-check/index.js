@@ -1,43 +1,86 @@
-import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
-import { store } from "../../../../../../store/index";
-import HotelService from "../../utils/hotelService";
+import CateringService from "../../utils/cateringService";
 
-const hotelService = new HotelService();
-const { statusBarHeight } = getApp().globalData.systemInfo;
+const cateringService = new CateringService();
 
 Component({
-  behaviors: [storeBindingsBehavior],
-
-  storeBindings: {
-    store,
-    fields: ["hotelPreOrderInfo", "checkInDate", "checkOutDate"],
-  },
-
   data: {
-    statusBarHeight,
-    navBarActive: false,
+    ticketInfo: null,
     paymentAmount: 0,
-    recentlyDateList: [],
-    curDateIdx: 0,
     num: 1,
-    consignee: "",
-    mobile: "",
-    priceDetailPopupVisible: false,
     noticePopupVisible: false,
+    ticketInfo: null,
+    discount: 0,
+    limitTips: "",
+    useTimeDescList: [],
+    inapplicableProductsDesc: "",
   },
 
   methods: {
-    onLoad() {
+    onLoad({ restaurantId, restaurantName, ticketId }) {
+      this.restaurantId = restaurantId;
+      this.restaurantName = restaurantName;
+      this.ticketId = ticketId;
+      this.setMealTicketInfo();
       this.setPaymentAmount();
     },
 
+    async setMealTicketInfo() {
+      const ticketInfo = await cateringService.getMealTicketInfo(this.ticketId);
+      const {
+        price,
+        originalPrice,
+        buyLimit,
+        perTableUsageLimit,
+        overlayUsageLimit,
+        useTimeList,
+        inapplicableProducts,
+      } = ticketInfo;
+
+      const discount = parseFloat(((price / originalPrice) * 10).toFixed(1));
+
+      const limitTipList = [];
+      if (buyLimit) {
+        limitTipList.push(`每人每日限购${buyLimit}张`);
+      }
+      if (perTableUsageLimit) {
+        limitTipList.push(`每桌限用${buyLimit}张`);
+      }
+      if (overlayUsageLimit) {
+        limitTipList.push(`单次可用${buyLimit}张`);
+      }
+
+      this.setUseTimeDescList(useTimeList);
+
+      if (inapplicableProducts)
+        this.setData({
+          ticketInfo,
+          discount,
+          limitTips: limitTipList.join("，"),
+          inapplicableProductsDesc: inapplicableProducts.join("、"),
+        });
+    },
+
+    setUseTimeDescList(useTimeList) {
+      const useTimeDescList = useTimeList.map((time) => {
+        const startWeekDay = weekDayList.find(
+          (week) => week.value == time.startWeekDay
+        ).text;
+        const endWeekDay = weekDayList.find(
+          (week) => week.value == time.endWeekDay
+        ).text;
+        const timeFrameDesc = time.timeFrameList
+          .map((timeFrame) => `${timeFrame.openTime}-${timeFrame.closeTime}`)
+          .join();
+        return `${startWeekDay}至${endWeekDay}: ${timeFrameDesc}`;
+      });
+
+      this.setData({ useTimeDescList });
+    },
+
     async setPaymentAmount() {
-      const { hotelPreOrderInfo, checkInDate, checkOutDate, num } = this.data;
-      const paymentAmount = await hotelService.getPaymentAmount(
-        hotelPreOrderInfo.id,
-        Math.floor(checkInDate / 1000),
-        Math.floor(checkOutDate / 1000),
-        num
+      const paymentAmount = await cateringService.getMealTicketPaymentAmount(
+        this.ticketId,
+        this.data.num
       );
       this.setData({ paymentAmount });
     },
@@ -48,21 +91,11 @@ Component({
       });
     },
 
-    setConsignee(e) {
-      const consignee = e.detail.value;
-      this.setData({ consignee });
-    },
-
-    setMobile(e) {
-      const mobile = e.detail.value;
-      this.setData({ mobile });
-    },
-
     // 提交订单
     async submit() {
       const {
         hotelPreOrderInfo,
-        checkInDate, 
+        checkInDate,
         checkOutDate,
         num,
         consignee,
@@ -107,12 +140,6 @@ Component({
       });
     },
 
-    togglePriceDetailPopupVisible() {
-      this.setData({
-        priceDetailPopupVisible: !this.data.priceDetailPopupVisible,
-      });
-    },
-
     showNoticePopup() {
       this.setData({
         noticePopupVisible: true,
@@ -123,18 +150,6 @@ Component({
       this.setData({
         noticePopupVisible: false,
       });
-    },
-
-    onPageScroll({ scrollTop }) {
-      if (scrollTop > 10) {
-        if (!this.data.navBarActive) {
-          this.setData({ navBarActive: true });
-        }
-      } else {
-        if (this.data.navBarActive) {
-          this.setData({ navBarActive: false });
-        }
-      }
     },
   },
 });

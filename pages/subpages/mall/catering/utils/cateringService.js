@@ -3,7 +3,9 @@ import BaseService from "../../../../../services/baseService";
 
 class CateringService extends BaseService {
   async getRestaurantCategoryOptions() {
-    return await this.get({ url: `${this.baseUrl}/catering/restaurant/category_options` });
+    return await this.get({
+      url: `${this.baseUrl}/catering/restaurant/category_options`,
+    });
   }
 
   async getRestaurantList({ name, categoryId, sort, order, page, limit = 10 }) {
@@ -48,25 +50,18 @@ class CateringService extends BaseService {
     });
   }
 
-  async getPaymentAmount(roomId, checkInDate, checkOutDate, num) {
+  async getMealTicketPaymentAmount(ticketId, num) {
     return await this.get({
-      url: `${this.baseUrl}/catering/restaurant/order/calc_payment_amount`,
-      data: { roomId, checkInDate, checkOutDate, num },
+      url: `${this.baseUrl}/catering/meal_ticket/order/calc_payment_amount`,
+      data: { ticketId, num },
       loadingTitle: "加载中...",
     });
   }
 
-  async submitOrder(roomId, checkInDate, checkOutDate, num, consignee, mobile) {
+  async submitMealTicketOrder(restaurantId, restaurantName, ticketId, num) {
     return await this.post({
-      url: `${this.baseUrl}/catering/restaurant/order/submit`,
-      data: {
-        roomId,
-        checkInDate,
-        checkOutDate,
-        num,
-        consignee,
-        mobile,
-      },
+      url: `${this.baseUrl}/catering/meal_ticket/order/submit`,
+      data: { restaurantId, restaurantName, ticketId, num },
       loadingTitle: "订单提交中...",
     });
   }
