@@ -9,7 +9,7 @@
         <image style="width: 20rpx; height: 20rpx;" src="https://img.ubo.vip/mp/to-icon.png" />
       </view>
     </view>
-    <meal-ticket-item restaurantName="{{orderInfo.restaurantName}}" ticketInfo="{{orderInfo.ticketInfo}}" />
+    <meal-ticket-item ticketInfo="{{orderInfo.ticketInfo}}" />
     <view class="list row between">
       <view class="title">{{ORDER.paymentDesc(orderInfo.status)}}</view>
       <price-unit price="{{orderInfo.paymentAmount}}" />

@@ -1,6 +1,6 @@
-import CateringService from '../../utils/cateringService'
+import ScenicService from '../../utils/scenicService'
 
-const cateringService = new CateringService()
+const scenicService = new ScenicService()
 
 Component({
   options: {
@@ -14,14 +14,14 @@ Component({
   methods: {
     cancelOrder(e) {
       const { id, index } = e.currentTarget.dataset
-      cateringService.cancelMealTicketOrder(id, () => {
+      scenicService.cancelOrder(id, () => {
         this.triggerEvent('update', { type: 'cancel', index })
       })
     },
 
     deliverOrder(e) {
       const { id, index } = e.currentTarget.dataset
-      cateringService.deleteMealTicketOrder(id, () => {
+      scenicService.deleteOrder(id, () => {
         this.triggerEvent('update', { type: 'deliver', index })
       })
     },
