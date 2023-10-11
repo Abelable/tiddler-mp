@@ -4,27 +4,60 @@ Component({
   },
 
   properties: {
+    restaurantName: String,
     ticketInfo: {
       type: Object,
-      observer({ validityTime, selectedDateTimestamp: timeStamp }) {
-        const startDate = new Date(timeStamp * 1000);
-        const startYear = startDate.getFullYear();
-        const startMonth = `${startDate.getMonth() + 1}`.padStart(2, "0");
-        const startDay = `${startDate.getDate()}`.padStart(2, "0");
+      observer({
+        buyLimit,
+        perTableUsageLimit,
+        overlayUsageLimit,
+        useTimeList,
+        inapplicableProducts,
+        boxAvailable,
+        needPreBook,
+      }) {
+        const limitTipList = [];
+        if (buyLimit) {
+          limitTipList.push(`每人每日限购${buyLimit}张`);
+        }
+        if (perTableUsageLimit) {
+          limitTipList.push(`每桌限用${buyLimit}张`);
+        }
+        if (overlayUsageLimit) {
+          limitTipList.push(`单次可用${buyLimit}张`);
+        }
 
-        const endDate = new Date((+timeStamp + 86400 * validityTime) * 1000);
-        const endYear = endDate.getFullYear();
-        const endMonth = `${endDate.getMonth() + 1}`.padStart(2, "0");
-        const endDay = `${endDate.getDate()}`.padStart(2, "0");
+        const usageTipsList = [];
+        if (useTimeList.length) {
+          usageTipsList.push("部分时段可用");
+        }
+        if (overlayUsageLimit) {
+          usageTipsList.push(`单次可用${overlayUsageLimit}张`);
+        } else {
+          usageTipsList.push("不限张数");
+        }
+        if (inapplicableProducts.length) {
+          usageTipsList.push("部分商品可用");
+        } else {
+          usageTipsList.push("全场通用");
+        }
+        if (boxAvailable) {
+          usageTipsList.push("可用于包间消费");
+        }
+        if (needPreBook) {
+          usageTipsList.push("需预约");
+        }
 
-        const validityTimeDesc = `${startYear}年${startMonth}月${startDay}日至${endYear}年${endMonth}月${endDay}日内有效`;
-
-        this.setData({ validityTimeDesc });
+        this.setData({
+          limitTips: limitTipList.join("，"),
+          usageTips: usageTipsList.slice(0, 3).join("｜"),
+        });
       },
     },
   },
 
   data: {
-    validityTimeDesc: "",
+    limitTips: "",
+    usageTips: "",
   },
 });

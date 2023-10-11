@@ -62,9 +62,9 @@ Component({
       wx.navigateTo({ url })
     },
 
-    navToShop(e) {
+    navToRestaurant(e) {
       const { id } = e.currentTarget.dataset
-      const url = `/pages/subpages/mall/goods/subpages/shop/index?id=${id}`
+      const url = `/pages/subpages/mall/catering/subpages/restaurant-detail/index?id=${id}`
       wx.navigateTo({ url })
     },
   }
