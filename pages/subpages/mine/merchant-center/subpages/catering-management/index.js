@@ -1,7 +1,7 @@
 import { WEBVIEW_BASE_URL } from "../../../../../../config";
-import ShopService from "./utils/shopService";
+import CateringService from "./utils/cateringService";
 
-const shopService = new ShopService();
+const cateringService = new CateringService();
 const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Page({
@@ -11,12 +11,10 @@ Page({
     menuList: [
       { name: "全部", status: 0 },
       { name: "待付款", status: 1 },
-      { name: "待发货", status: 2 },
-      { name: "待收货", status: 3 },
-      { name: "售后", status: 5 },
+      { name: "待使用", status: 2 },
+      { name: "售后", status: 4 },
     ],
     curMenuIndex: 0,
-    shopInfo: null,
     orderType: 1,
     orderList: [],
     finished: false,
@@ -26,10 +24,7 @@ Page({
     this.setMenuTop();
   },
 
-  async onShow() {
-    if (!this.data.shopInfo) {
-      await this.setShopInfo();
-    }
+  onShow() {
     this.setOrderList(true);
   },
 
@@ -43,14 +38,10 @@ Page({
     });
   },
 
-  async setShopInfo() {
-    const shopInfo = await shopService.getShopInfo();
-    this.setData({ shopInfo });
-  },
-
   switchOrderType() {
-    this.setData({
-      orderType: this.data.orderType === 1 ? 2 : 1,
+    const orderType = this.data.orderType === 1 ? 2 : 1;
+    this.setData({ orderType }, () => {
+      this.setOrderList(true);
     });
   },
 
@@ -61,11 +52,35 @@ Page({
   },
 
   async setOrderList(init = false) {
+    if (this.data.orderType === 1) {
+      this.setMealTicketOrderList(init);
+    } else {
+      this.setSetMealOrderList(init);
+    }
+  },
+
+  async setMealTicketOrderList(init = false) {
     const limit = 10;
-    const { shopInfo, menuList, curMenuIndex, orderList } = this.data;
+    const { menuList, curMenuIndex, orderList } = this.data;
     if (init) this.page = 0;
-    const list = await shopService.getOrderList({
-      shopId: shopInfo.id,
+    const list = await cateringService.getMealTicketOrderList({
+      status: menuList[curMenuIndex].status,
+      page: ++this.page,
+      limit,
+    });
+    this.setData({
+      orderList: init ? list : [...orderList, ...list],
+    });
+    if (list.length < limit) {
+      this.setData({ finished: true });
+    }
+  },
+
+  async setSetMealOrderList(init = false) {
+    const limit = 10;
+    const { menuList, curMenuIndex, orderList } = this.data;
+    if (init) this.page = 0;
+    const list = await cateringService.getSetMealOrderList({
       status: menuList[curMenuIndex].status,
       page: ++this.page,
       limit,
