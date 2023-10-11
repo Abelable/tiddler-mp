@@ -45,9 +45,8 @@
   margin-left: 12rpx;
 }
 .more-icon {
-  margin-left: 6rpx;
-  width: 28rpx;
-  height: 28rpx;
+  width: 24rpx;
+  height: 24rpx;
 }
 
 .split-line {
@@ -104,6 +103,8 @@
   border-top: 1px solid #f5f6f7;
 }
 .price-label {
+  margin-top: 8rpx;
+  margin-right: 8rpx;
   color: #666;
   font-size: 24rpx;
 }

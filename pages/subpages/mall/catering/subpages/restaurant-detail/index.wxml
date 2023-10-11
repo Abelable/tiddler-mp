@@ -1,6 +1,6 @@
 <wxs module="TIME" src="/utils/filters/time.wxs" />
 
-<page-meta page-style="{{ noticePopupVisible ? 'overflow: hidden;' : '' }}" />
+<page-meta page-style="{{ telPopupVisible ? 'overflow: hidden;' : '' }}" />
 
 <view class="nav-bar-wrap">
   <view class="nav-bar row" style="padding-top: {{statusBarHeight}}px;">
@@ -193,7 +193,6 @@
   </view>
 </view>
 
-<notice-popup show="{{noticePopupVisible}}" info="{{curTicketInfo}}" bind:hide="hideNoticePopup" />
 <van-action-sheet
   show="{{ telPopupVisible }}"
   actions="{{ telList }}"

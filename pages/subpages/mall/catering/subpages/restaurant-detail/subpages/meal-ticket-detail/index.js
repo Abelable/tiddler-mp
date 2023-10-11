@@ -47,13 +47,12 @@ Page({
 
     this.setUseTimeDescList(useTimeList);
 
-    if (inapplicableProducts)
-      this.setData({
-        ticketInfo,
-        discount,
-        limitTips: limitTipList.join("，"),
-        inapplicableProductsDesc: inapplicableProducts.join("、"),
-      });
+    this.setData({
+      ticketInfo,
+      discount,
+      limitTips: limitTipList.join("，"),
+      inapplicableProductsDesc: inapplicableProducts.join("、"),
+    });
   },
 
   setUseTimeDescList(useTimeList) {

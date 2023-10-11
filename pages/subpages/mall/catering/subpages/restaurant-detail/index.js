@@ -26,8 +26,6 @@ Page({
     distance: 0,
     mealTicketList: [],
     setMealList: [],
-    curMealTicketInfo: null,
-    curSetMealInfo: null,
     commentList,
     mediaList,
     noticePopupVisible: false,
@@ -410,19 +408,6 @@ Page({
 
   onReachBottom() {
     console.log("onReachBottom");
-  },
-
-  showNoticePopup(e) {
-    this.setData({
-      curTicketInfo: e.detail,
-      noticePopupVisible: true,
-    });
-  },
-
-  hideNoticePopup() {
-    this.setData({
-      noticePopupVisible: false,
-    });
   },
 
   checkMoreInfo() {

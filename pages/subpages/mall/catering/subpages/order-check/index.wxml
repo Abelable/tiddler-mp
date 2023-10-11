@@ -8,7 +8,7 @@
           <view class="tips-title">限制</view>
           <view class="tips-content">{{limitTips}}</view>
         </view>
-        <view class="ticket-tips row">
+        <view class="ticket-tips row" bindtap="showNoticePopup">
           <view class="tips-title">须知</view>
           <view class="tips-content">{{ usageTips }}</view>
           <image class="more-icon" src="./images/arrow-right.png" />
@@ -43,4 +43,4 @@
   <button class="submit-btn {{consignee && mobile ? 'active' : ''}}" bindtap="submit">提交订单</button>
 </view>
 
-<notice-popup show="{{noticePopupVisible}}" info="{{ticketInfo}}" bind:hide="hideNoticePopup" onlyCheck />
+<notice-popup show="{{noticePopupVisible}}" ticketInfo="{{ticketInfo}}" bind:hide="hideNoticePopup" />

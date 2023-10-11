@@ -13,8 +13,6 @@ Component({
     discount: 0,
     limitTips: "",
     usageTips: "",
-    useTimeDescList: [],
-    inapplicableProductsDesc: "",
   },
 
   methods: {
@@ -38,6 +36,8 @@ Component({
         overlayUsageLimit,
         useTimeList,
         inapplicableProducts,
+        boxAvailable,
+        needPreBook,
       } = ticketInfo;
 
       const discount = parseFloat(((price / originalPrice) * 10).toFixed(1));
@@ -74,33 +74,12 @@ Component({
         usageTipsList.push("需预约");
       }
 
-      this.setUseTimeDescList(useTimeList);
-
-      if (inapplicableProducts)
-        this.setData({
-          ticketInfo,
-          discount,
-          limitTips: limitTipList.join("，"),
-          usageTips: usageTipsList.slice(0, 3).join("｜"),
-          inapplicableProductsDesc: inapplicableProducts.join("、"),
-        });
-    },
-
-    setUseTimeDescList(useTimeList) {
-      const useTimeDescList = useTimeList.map((time) => {
-        const startWeekDay = weekDayList.find(
-          (week) => week.value == time.startWeekDay
-        ).text;
-        const endWeekDay = weekDayList.find(
-          (week) => week.value == time.endWeekDay
-        ).text;
-        const timeFrameDesc = time.timeFrameList
-          .map((timeFrame) => `${timeFrame.openTime}-${timeFrame.closeTime}`)
-          .join();
-        return `${startWeekDay}至${endWeekDay}: ${timeFrameDesc}`;
+      this.setData({
+        ticketInfo,
+        discount,
+        limitTips: limitTipList.join("，"),
+        usageTips: usageTipsList.slice(0, 3).join("｜"),
       });
-
-      this.setData({ useTimeDescList });
     },
 
     async setPaymentAmount() {

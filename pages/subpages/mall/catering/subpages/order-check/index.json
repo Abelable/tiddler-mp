@@ -3,6 +3,6 @@
   "usingComponents": {
     "van-stepper": "@vant/weapp/stepper/index",
     "price-unit": "/components/price-unit/index",
-    "notice-popup": "../../components/notice-popup/index"
+    "notice-popup": "./components/notice-popup/index"
   }
 }
