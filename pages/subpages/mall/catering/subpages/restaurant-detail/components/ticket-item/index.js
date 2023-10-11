@@ -59,9 +59,7 @@ Component({
 
     buy() {
       const { restaurantId, restaurantName, ticket } = this.properties;
-      console.log('restaurantId', restaurantId)
-      console.log('restaurantName', restaurantName)
-      const url = `/pages/subpages/mall/catering/subpages/order-check/index?restaurantId=${restaurantId}&restaurantName=${restaurantName}&ticketId=${ticket.id}`;
+      const url = `/pages/subpages/mall/catering/subpages/order-check/index?ticketId=${ticket.id}&restaurantId=${restaurantId}&restaurantName=${restaurantName}`;
       wx.navigateTo({ url });
     },
   },
