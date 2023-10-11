@@ -98,48 +98,29 @@ Component({
 
     // 提交订单
     async submit() {
-      const {
-        hotelPreOrderInfo,
-        checkInDate,
-        checkOutDate,
-        num,
-        consignee,
-        mobile,
-      } = this.data;
-      if (!consignee || !mobile) {
-        return;
-      }
-      if (!/^1[345789][0-9]{9}$/.test(mobile)) {
-        wx.showToast({
-          title: "请输入正确手机号",
-          icon: "none",
-        });
-        return;
-      }
-
-      const orderId = await hotelService.submitOrder(
-        hotelPreOrderInfo.id,
-        Math.floor(checkInDate / 1000),
-        Math.floor(checkOutDate / 1000),
-        num,
-        consignee,
-        mobile
+      const orderId = await cateringService.submitMealTicketOrder(
+        this.restaurantId,
+        this.restaurantName,
+        this.ticketId,
+        this.data.num
       );
       orderId && this.pay(orderId);
     },
 
     async pay(orderId) {
-      const payParams = await hotelService.getHotelOrderPayParams(orderId);
+      const payParams = await cateringService.getMealTicketOrderPayParams(
+        orderId
+      );
       wx.requestPayment({
         ...payParams,
         success: () => {
           wx.navigateTo({
-            url: "/pages/subpages/mine/order-center/subpages/hotel-order-list/index?status=2",
+            url: "/pages/subpages/mine/order-center/subpages/meal-ticket-order-list/index?status=2",
           });
         },
         fail: () => {
           wx.navigateTo({
-            url: "/pages/subpages/mine/order-center/subpages/hotel-order-list/index?status=1",
+            url: "/pages/subpages/mine/order-center/subpages/meal-ticket-order-list/index?status=1",
           });
         },
       });

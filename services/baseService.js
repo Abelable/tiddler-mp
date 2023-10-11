@@ -101,6 +101,13 @@ class BaseService extends Base {
     });
   }
 
+  async getMealTicketOrderPayParams(orderId) {
+    return await this.post({
+      url: `${this.baseUrl}/catering/meal_ticket/order/pay_params`,
+      data: { orderId },
+    });
+  }
+
   async followAuthor(authorId, success) {
     return await this.post({
       url: `${this.baseUrl}/fan/follow`,
