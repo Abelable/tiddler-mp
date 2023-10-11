@@ -40,14 +40,14 @@ Component({
           tips.push("需预约");
         }
 
-        this.setData({ discount, tips: tips.slice(0, 3) });
+        this.setData({ discount, tips: tips.slice(0, 3).join("｜") });
       },
     },
   },
 
   data: {
     discount: 0,
-    tips: [],
+    tips: "",
   },
 
   methods: {
@@ -59,6 +59,8 @@ Component({
 
     buy() {
       const { restaurantId, restaurantName, ticket } = this.properties;
+      console.log('restaurantId', restaurantId)
+      console.log('restaurantName', restaurantName)
       const url = `/pages/subpages/mall/catering/subpages/order-check/index?restaurantId=${restaurantId}&restaurantName=${restaurantName}&ticketId=${ticket.id}`;
       wx.navigateTo({ url });
     },

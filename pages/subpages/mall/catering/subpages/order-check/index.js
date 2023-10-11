@@ -4,6 +4,7 @@ const cateringService = new CateringService();
 
 Component({
   data: {
+    restaurantName: "",
     ticketInfo: null,
     paymentAmount: 0,
     num: 1,
@@ -11,6 +12,7 @@ Component({
     ticketInfo: null,
     discount: 0,
     limitTips: "",
+    usageTips: "",
     useTimeDescList: [],
     inapplicableProductsDesc: "",
   },
@@ -20,6 +22,8 @@ Component({
       this.restaurantId = restaurantId;
       this.restaurantName = restaurantName;
       this.ticketId = ticketId;
+
+      this.setData({ restaurantName });
       this.setMealTicketInfo();
       this.setPaymentAmount();
     },
@@ -49,6 +53,27 @@ Component({
         limitTipList.push(`单次可用${buyLimit}张`);
       }
 
+      const usageTipsList = [];
+      if (useTimeList.length) {
+        usageTipsList.push("部分时段可用");
+      }
+      if (overlayUsageLimit) {
+        usageTipsList.push(`单次可用${overlayUsageLimit}张`);
+      } else {
+        usageTipsList.push("不限张数");
+      }
+      if (inapplicableProducts.length) {
+        usageTipsList.push("部分商品可用");
+      } else {
+        usageTipsList.push("全场通用");
+      }
+      if (boxAvailable) {
+        usageTipsList.push("可用于包间消费");
+      }
+      if (needPreBook) {
+        usageTipsList.push("需预约");
+      }
+
       this.setUseTimeDescList(useTimeList);
 
       if (inapplicableProducts)
@@ -56,6 +81,7 @@ Component({
           ticketInfo,
           discount,
           limitTips: limitTipList.join("，"),
+          usageTips: usageTipsList.slice(0, 3).join("｜"),
           inapplicableProductsDesc: inapplicableProducts.join("、"),
         });
     },

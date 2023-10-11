@@ -44,6 +44,11 @@
 .tips-content {
   margin-left: 12rpx;
 }
+.more-icon {
+  margin-left: 6rpx;
+  width: 28rpx;
+  height: 28rpx;
+}
 
 .split-line {
   position: absolute;
@@ -98,8 +103,9 @@
   background: #fff;
   border-top: 1px solid #f5f6f7;
 }
-.total-price-wrap {
-  margin-right: 32rpx;
+.price-label {
+  color: #666;
+  font-size: 24rpx;
 }
 .submit-btn {
   height: 80rpx;

@@ -121,7 +121,7 @@
     <view class="content-title">代金券</view>
   </view>
   <view class="meal-ticket-list">
-    <ticket-item wx:for="{{restaurantInfo.mealTicketList}}" wx:key="index" ticket="{{item}}" restaurantName="{{restaurantInfo.name}}" />
+    <ticket-item wx:for="{{restaurantInfo.mealTicketList}}" wx:key="index" ticket="{{item}}" restaurantId="{{restaurantInfo.id}}" restaurantName="{{restaurantInfo.name}}" />
   </view>
   <empty-illus wx:if="{{!restaurantInfo.mealTicketList.length}}" desc="暂无代金券" height="520rpx" />
 

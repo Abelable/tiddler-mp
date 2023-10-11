@@ -30,7 +30,7 @@
       </view>
       <view class="count-control row between">
         <view class="count-control-title">购买数量</view>
-        <van-stepper value="{{ num }}" bind:change="numChange" max="{{scenicPreOrderInfo.limitNumber || 1}}" integer />
+        <van-stepper value="{{ num }}" bind:change="numChange" max="{{scenicPreOrderInfo.limitNumber || 10000}}" integer />
       </view>
       <view class="ticket-tips">
         <view class="tips-wrap row">

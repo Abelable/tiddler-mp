@@ -9,6 +9,11 @@
           <view class="tips-content">{{limitTips}}</view>
         </view>
         <view class="ticket-tips row">
+          <view class="tips-title">须知</view>
+          <view class="tips-content">{{ usageTips }}</view>
+          <image class="more-icon" src="./images/arrow-right.png" />
+        </view>
+        <view class="ticket-tips row">
           <view class="tips-title">保障</view>
           <view class="tips-content">随时退·过期自动退</view>
         </view>
@@ -25,17 +30,17 @@
         <price-unit price="{{ticketInfo.price || 0}}" fontSize="28rpx" integerFontSize="42rpx" color="#F66B38" unitColor="#F66B38" />
         <view class="discount">{{ discount }}折</view>
       </view>
-      <view class="sales-volume">已售{{ ticketInfo.salesVolume }}</view>
+      <van-stepper value="{{ num }}" bind:change="numChange" max="{{ticketInfo.buyLimit || 10000}}" integer />
     </view>
   </view>
 </view>
 
 <view class="bottom-bar row between">
-  <view class="total-price-wrap row">
+  <view class="row">
     <view class="price-label">合计</view>
-    <price-unit price="{{paymentAmount}}" fontSize="28rpx" integerFontSize="42rpx" />
+    <price-unit price="{{paymentAmount}}" fontSize="28rpx" integerFontSize="42rpx" color="#F66B38" unitColor="#F66B38" />
   </view>
   <button class="submit-btn {{consignee && mobile ? 'active' : ''}}" bindtap="submit">提交订单</button>
 </view>
 
-<notice-popup show="{{noticePopupVisible}}" info="{{hotelPreOrderInfo}}" bind:hide="hideNoticePopup" onlyCheck />
+<notice-popup show="{{noticePopupVisible}}" info="{{ticketInfo}}" bind:hide="hideNoticePopup" onlyCheck />
