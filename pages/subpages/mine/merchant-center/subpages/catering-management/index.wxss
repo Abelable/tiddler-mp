@@ -18,13 +18,27 @@
   background: #f5f6f7;
 }
 .search-icon {
-  margin-left: 12px;
+  margin-left: 8px;
   width: 13px;
   height: 13px;
 }
 .placeholder {
   color: #999;
   font-size: 14px;
+}
+
+.order-type-switch {
+  margin-left: 14px;
+}
+.order-type {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 550;
+}
+.switch-icon {
+  margin-left: 2px;
+  width: 14px;
+  height: 14px;
 }
 
 .header {

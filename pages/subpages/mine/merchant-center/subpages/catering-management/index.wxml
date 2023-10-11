@@ -4,6 +4,10 @@
     <text class="placeholder">搜索订单</text>
     <image class="search-icon" src="https://img.ubo.vip/tiddler/nav-icon/search.png" />
   </view>
+  <view class="order-type-switch row" bindtap="switchOrderType">
+    <view class="order-type">{{ orderType === 1 ? '代金券订单' : '套餐订单' }}</view>
+    <image class="switch-icon" src="./images/switch-icon.png" />
+  </view>
 </view>
 
 <view class="header" style="margin-top: {{statusBarHeight + 44}}px">
