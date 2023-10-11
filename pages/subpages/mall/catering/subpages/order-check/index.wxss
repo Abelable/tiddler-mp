@@ -8,12 +8,6 @@
   background: #fff;
   border-radius: 24rpx;
 }
-.title {
-  margin-bottom: 24rpx;
-  color: #333;
-  font-size: 32rpx;
-  font-weight: 550;
-}
 
 .ticket {
   position: relative;
