@@ -10,13 +10,9 @@ Component({
       observer({ useTimeList, inapplicableProducts }) {
         this.setUseTimeDescList(useTimeList);
         this.setData({
-          ticketInfo,
-          discount,
-          limitTips: limitTipList.join("，"),
-          usageTips: usageTipsList.slice(0, 3).join("｜"),
           inapplicableProductsDesc: inapplicableProducts.join("、"),
         });
-      }
+      },
     },
   },
 

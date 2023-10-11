@@ -9,7 +9,7 @@
 }
 
 .notice-info-wrap {
-  height: 1000rpx;
+  height: 800rpx;
 }
 .notice-main {
   padding: 0 32rpx;
