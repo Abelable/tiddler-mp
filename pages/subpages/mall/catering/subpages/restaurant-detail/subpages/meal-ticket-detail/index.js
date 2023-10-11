@@ -73,7 +73,7 @@ Page({
   },
 
   buy() {
-    const url = `/pages/subpages/mall/catering/subpages/order-check/index?ticketId=${this.ticketId}&restaurantId=${this.restaurantId}&restaurantName=${this.restaurantName}`;
+    const url = `/pages/subpages/mall/catering/subpages/meal-ticket-order-check/index?ticketId=${this.ticketId}&restaurantId=${this.restaurantId}&restaurantName=${this.restaurantName}`;
     wx.navigateTo({ url });
   },
 });
