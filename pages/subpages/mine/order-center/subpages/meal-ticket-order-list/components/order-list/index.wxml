@@ -7,7 +7,6 @@
         <view class="restaurant-name omit single-line">{{item.restaurantName}}</view>
         <image style="width: 20rpx; height: 20rpx;" src="https://img.ubo.vip/mp/to-icon.png" />
       </view>
-      <view class="shop-name omit single-line" wx:if="{{!item.shopId}}">官方自营</view>
       <view class="order-status">{{ORDER.statusDesc(item.status)}}</view>
     </view>
     <view class="list-content">

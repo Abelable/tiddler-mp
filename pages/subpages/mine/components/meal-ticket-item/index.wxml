@@ -1,6 +1,19 @@
 <view class="ticket">
-  <view class="ticket-title">{{restaurantName}}代金券</view>
-  <view class="ticket-name">{{ticketInfo.price}}代{{ticketInfo.originalPrice}}元代金券</view>
+  <view class="main-info">
+    <view class="ticket-name">{{ticketInfo.price}}代{{ticketInfo.originalPrice}}元代金券</view>
+    <view class="row between">
+      <price-unit price="{{ticketInfo.price || 0}}" />
+      <view class="count-wrap">
+        <text>x</text>
+        <text class="count">{{ticketInfo.number}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="split-line">
+    <view class="line"></view>
+    <view class="left-circle"></view>
+    <view class="right-circle"></view>
+  </view>
   <view class="ticket-tips-wrap">
     <view class="ticket-tips row" wx:if="{{limitTips}}">
       <view class="tips-title">限制</view>
@@ -14,10 +27,5 @@
       <view class="tips-title">保障</view>
       <view class="tips-content">随时退·过期自动退</view>
     </view>
-  </view>
-  <view class="split-line row">
-    <view class="line"></view>
-    <view class="left-circle"></view>
-    <view class="right-circle"></view>
   </view>
 </view>
