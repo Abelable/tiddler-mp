@@ -36,11 +36,6 @@
           catchtap="cancelOrder" data-id="{{item.id}}" data-index="{{index}}"
         >取消订单</button>
         <button class="btn" catchtap="navToDetail" data-id="{{item.id}}">查看详情</button>
-        <button 
-          class="btn active" 
-          wx:if="{{item.status === 201}}"
-          catchtap="deliverOrder" data-id="{{item.id}}" data-index="{{index}}"
-        >去发货</button>
       </view>
     </view>
   </view>
