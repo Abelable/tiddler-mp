@@ -52,8 +52,8 @@ Component({
 
   methods: {
     checkDetail() {
-      const { ticket, restaurantName } = this.properties;
-      const url = `/pages/subpages/mall/catering/subpages/restaurant-detail/subpages/meal-ticket-detail/index?ticketId=${ticket.id}&restaurantName=${restaurantName}`;
+      const { ticket, restaurantId, restaurantName } = this.properties;
+      const url = `/pages/subpages/mall/catering/subpages/restaurant-detail/subpages/meal-ticket-detail/index?ticketId=${ticket.id}&restaurantId=${restaurantId}&restaurantName=${restaurantName}`;
       wx.navigateTo({ url });
     },
 
