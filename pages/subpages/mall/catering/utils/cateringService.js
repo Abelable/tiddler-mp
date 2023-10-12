@@ -50,6 +50,14 @@ class CateringService extends BaseService {
     });
   }
 
+  async getSetMealInfo(id) {
+    return await this.get({
+      url: `${this.baseUrl}/catering/set_meal/detail`,
+      data: { id },
+      loadingTitle: "加载中...",
+    });
+  }
+
   async getMealTicketPaymentAmount(ticketId, num) {
     return await this.get({
       url: `${this.baseUrl}/catering/meal_ticket/order/calc_payment_amount`,
@@ -62,6 +70,22 @@ class CateringService extends BaseService {
     return await this.post({
       url: `${this.baseUrl}/catering/meal_ticket/order/submit`,
       data: { restaurantId, restaurantName, ticketId, num },
+      loadingTitle: "订单提交中...",
+    });
+  }
+
+  async getSetMealPaymentAmount(setMealId, num) {
+    return await this.get({
+      url: `${this.baseUrl}/catering/set_meal/order/calc_payment_amount`,
+      data: { setMealId, num },
+      loadingTitle: "加载中...",
+    });
+  }
+
+  async submitSetMealOrder(restaurantId, restaurantName, setMealId, num) {
+    return await this.post({
+      url: `${this.baseUrl}/catering/set_meal/order/submit`,
+      data: { restaurantId, restaurantName, setMealId, num },
       loadingTitle: "订单提交中...",
     });
   }

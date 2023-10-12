@@ -8,7 +8,7 @@
     <view class="tips">{{ tips }}</view>
     <view class="price-wrap row">
       <price-unit price="{{info.price || 0}}" color="#F66B38" unitColor="#F66B38" />
-      <view class="original-price">{{ info.originalPrice }}</view>
+      <view class="original-price">¥{{ info.originalPrice }}</view>
       <view class="discount">{{discount}}折</view>
     </view>
   </view>

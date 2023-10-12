@@ -34,11 +34,11 @@
   margin-top: 4rpx;
   margin-left: 12rpx;
   color: #999;
-  font-size: 22rpx;
+  font-size: 24rpx;
   text-decoration: line-through;
 }
 .discount {
-  margin-top: 4rpx;
+  margin-top: 2rpx;
   margin-left: 12rpx;
   padding: 0 6rpx;
   color: #F66B38;
