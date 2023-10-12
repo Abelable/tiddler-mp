@@ -6,15 +6,14 @@ Component({
   properties: {
     restaurantId: Number,
     restaurantName: String,
-    ticket: {
+    info: {
       type: Object,
       observer({
         price,
         originalPrice,
         useTimeList,
-        overlayUsageLimit,
-        inapplicableProducts,
-        boxAvailable,
+        buyLimit,
+        perTabelUsageLimit,
         needPreBook,
       }) {
         const discount = parseFloat(((price / originalPrice) * 10).toFixed(1));
@@ -25,18 +24,11 @@ Component({
         } else {
           tips.push("营业时间可用");
         }
-        if (overlayUsageLimit) {
-          tips.push(`单次可用${overlayUsageLimit}张`);
-        } else {
-          tips.push("不限张数");
+        if (buyLimit) {
+          tips.push(`每人每日限购${buyLimit}张`);
         }
-        if (inapplicableProducts.length) {
-          tips.push("部分商品可用");
-        } else {
-          tips.push("全场通用");
-        }
-        if (boxAvailable) {
-          tips.push("可用于包间消费");
+        if (perTabelUsageLimit) {
+          tips.push(`每桌限用${buyLimit}张`);
         }
         if (needPreBook) {
           tips.push("需预约");

@@ -24,8 +24,6 @@ Page({
     imageMenuList: [],
     imageCount: 0,
     distance: 0,
-    mealTicketList: [],
-    setMealList: [],
     commentList,
     mediaList,
     noticePopupVisible: false,

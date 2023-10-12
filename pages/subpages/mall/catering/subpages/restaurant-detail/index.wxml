@@ -121,14 +121,29 @@
     <view class="content-title">代金券</view>
   </view>
   <view class="meal-ticket-list">
-    <ticket-item wx:for="{{restaurantInfo.mealTicketList}}" wx:key="index" ticket="{{item}}" restaurantId="{{restaurantInfo.id}}" restaurantName="{{restaurantInfo.name}}" />
+    <ticket-item 
+      wx:for="{{restaurantInfo.mealTicketList}}" 
+      wx:key="index" 
+      ticket="{{item}}" 
+      restaurantId="{{restaurantInfo.id}}" 
+      restaurantName="{{restaurantInfo.name}}"
+    />
   </view>
   <empty-illus wx:if="{{!restaurantInfo.mealTicketList.length}}" desc="暂无代金券" height="520rpx" />
 
   <view class="content-title-wrap">
     <view class="content-title">套餐</view>
   </view>
-  <empty-illus wx:if="{{!setMealList.length}}" desc="暂无套餐" height="520rpx" />
+  <view class="meal-ticket-list">
+    <set-meal-item 
+      wx:for="{{restaurantInfo.setMealList}}" 
+      wx:key="index" 
+      info="{{item}}" 
+      restaurantId="{{restaurantInfo.id}}" 
+      restaurantName="{{restaurantInfo.name}}"
+    />
+  </view>
+  <empty-illus wx:if="{{!restaurantInfo.setMealList.length}}" desc="暂无套餐" height="520rpx" />
 
   <view class="content-title-wrap">
     <view class="content-title">用户点评</view>

@@ -9,6 +9,7 @@
     "fall-flow": "/components/fall-flow/index",
     "media-item": "/components/media-item/index",
     "comment-item": "../../../components/comment-item/index",
-    "ticket-item": "./components/ticket-item/index"
+    "ticket-item": "./components/ticket-item/index",
+    "set-meal-item": "./components/set-meal-item/index"
   }
 }
