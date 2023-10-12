@@ -121,8 +121,8 @@ Page({
     wx.navigateTo({ url });
   },
 
-  navToFreightTemplateManagement() {
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/freight_template/list`;
+  navToSetMealManagement() {
+    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/catering/set_meal/list`;
     wx.navigateTo({ url });
   },
 });

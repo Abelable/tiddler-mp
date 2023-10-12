@@ -59,7 +59,7 @@
       <view class="btn-title">代金券管理</view>
     </view>
     <view class="btn">
-      <view class="btn-icon-wrap" bindtap="navToFreightTemplateManagement">
+      <view class="btn-icon-wrap" bindtap="navToSetMealManagement">
         <image class="btn-icon" src="./images/delicacy.png" />
       </view>
       <view class="btn-title">套餐管理</view>
