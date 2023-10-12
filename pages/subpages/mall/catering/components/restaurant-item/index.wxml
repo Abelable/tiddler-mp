@@ -42,15 +42,15 @@
         <view class="ticket-desc">{{item.mealTicketList[0].originalPrice}}元代金券</view>
       </view>
     </view>
-    <view class="meal-ticket row">
+    <view class="meal-ticket row" wx:if="{{item.setMealList.length}}">
       <view class="ticket-lebal-wrap row end">
         <view class="ticket-lebal row">剩余01:29:58</view>
       </view>
       <view class="ticket-content row">
         <view class="ticket-icon row center">惠</view>
-        <view class="ticket-price">¥398</view>
-        <view class="ticket-discount row">5.9折</view>
-        <view class="ticket-desc">双人精选套餐</view>
+        <view class="ticket-price">¥{{item.setMealList[0].price}}</view>
+        <view class="ticket-discount row">{{setMealDiscount}}折</view>
+        <view class="ticket-desc">{{item.setMealList[0].name}}</view>
       </view>
     </view>
   </view>

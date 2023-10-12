@@ -13,7 +13,7 @@ Component({
       observer(info) {
         if (info) {
           const { longitude: lo1, latitude: la1 } = store.locationInfo;
-          const { longitude: lo2, latitude: la2, openTimeList, facilityList } = info;
+          const { longitude: lo2, latitude: la2, openTimeList, facilityList, setMealList } = info;
 
           const distance = calcDistance(la1, lo1, la2, lo2);
 
@@ -47,6 +47,12 @@ Component({
               return `${startWeekDay}至${endWeekDay}: ${timeFrameDesc}`;
             });
 
+          if (setMealList.length) {
+            const { price, originalPrice } =  setMealList[0]
+            const setMealDiscount = parseFloat(((price / originalPrice) * 10).toFixed(1));
+            this.setData({ setMealDiscount })
+          }
+
           this.setData({ distance, openTimeDescList, facilityList: facilityList.slice(0, 3) });
         }
       },
@@ -57,6 +63,7 @@ Component({
     distance: 0,
     openStatus: false,
     openTimeDescList: [],
-    facilityList: []
+    facilityList: [],
+    setMealDiscount: 0
   },
 });
