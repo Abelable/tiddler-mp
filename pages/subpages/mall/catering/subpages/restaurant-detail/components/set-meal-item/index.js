@@ -25,7 +25,7 @@ Component({
           tips.push("营业时间可用");
         }
         if (buyLimit) {
-          tips.push(`每人每日限购${buyLimit}张`);
+          tips.push(`限购${buyLimit}张`);
         }
         if (perTabelUsageLimit) {
           tips.push(`每桌限用${buyLimit}张`);
@@ -48,14 +48,14 @@ Component({
 
   methods: {
     checkDetail() {
-      const { ticket, restaurantId, restaurantName } = this.properties;
-      const url = `/pages/subpages/mall/catering/subpages/restaurant-detail/subpages/meal-ticket-detail/index?ticketId=${ticket.id}&restaurantId=${restaurantId}&restaurantName=${restaurantName}`;
+      const { info, restaurantId, restaurantName } = this.properties;
+      const url = `/pages/subpages/mall/catering/subpages/restaurant-detail/subpages/set-meal-detail/index?setMealId=${info.id}&restaurantId=${restaurantId}&restaurantName=${restaurantName}`;
       wx.navigateTo({ url });
     },
 
     buy() {
-      const { restaurantId, restaurantName, ticket } = this.properties;
-      const url = `/pages/subpages/mall/catering/subpages/meal-ticket-order-check/index?ticketId=${ticket.id}&restaurantId=${restaurantId}&restaurantName=${restaurantName}`;
+      const { restaurantId, restaurantName, info } = this.properties;
+      const url = `/pages/subpages/mall/catering/subpages/set-meal-order-check/index?setMealId=${info.id}&restaurantId=${restaurantId}&restaurantName=${restaurantName}`;
       wx.navigateTo({ url });
     },
   },

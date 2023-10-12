@@ -1,35 +1,17 @@
 .set-meal-item {
   position: relative;
-  margin-bottom: 18rpx;
-  padding: 18rpx 24rpx;
-  background: #fcf8f7;
-  border: 1px solid #fed9cc;
-  border-radius: 8rpx;
+  padding: 20rpx 0;
+  border-bottom: 1px solid #eee;
 }
-.left-circle, .right-circle {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 14rpx;
-  height: 28rpx;
-  border: 1px solid #fed9cc;
-  background: #fff;
-}
-.left-circle {
-  left: -1px;
-  border-top-right-radius: 14rpx;
-  border-bottom-right-radius: 14rpx;
-  border-left-color: #fff;
-}
-.right-circle {
-  right: -1.5px;
-  border-top-left-radius: 14rpx;
-  border-bottom-left-radius: 14rpx;
-  border-right-color: #fff;
+
+.cover {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 12rpx;
 }
 
 .set-meal-info {
-  margin-right: 24rpx;
+  margin: 0 24rpx;
   flex: 1;
   overflow: hidden;
 }
@@ -42,11 +24,18 @@
 .tips {
   margin-top: 12rpx;
   color: #666;
-  font-size: 24rpx;
+  font-size: 22rpx;
 }
 
 .price-wrap {
   margin-top: 12rpx;
+}
+.original-price {
+  margin-top: 4rpx;
+  margin-left: 12rpx;
+  color: #999;
+  font-size: 22rpx;
+  text-decoration: line-through;
 }
 .discount {
   margin-top: 4rpx;

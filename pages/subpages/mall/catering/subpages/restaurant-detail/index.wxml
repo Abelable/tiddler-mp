@@ -134,7 +134,7 @@
   <view class="content-title-wrap">
     <view class="content-title">套餐</view>
   </view>
-  <view class="meal-ticket-list">
+  <view class="set-meal-list">
     <set-meal-item 
       wx:for="{{restaurantInfo.setMealList}}" 
       wx:key="index" 

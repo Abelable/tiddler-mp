@@ -359,6 +359,9 @@
 .meal-ticket-list {
   margin-top: 24rpx;
 }
+.set-meal-list {
+  margin-top: 12rpx;
+}
 
 .total-tips {
   margin-top: 24rpx;
