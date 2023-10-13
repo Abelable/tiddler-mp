@@ -5,39 +5,37 @@ const cateringService = new CateringService();
 Component({
   data: {
     restaurantName: "",
-    ticketInfo: null,
+    setMealInfo: null,
     paymentAmount: 0,
     num: 1,
     discount: 0,
     limitTips: "",
     usageTips: "",
+    detailPopupVisible: false,
     noticePopupVisible: false,
   },
 
   methods: {
-    onLoad({ restaurantId, restaurantName, ticketId }) {
+    onLoad({ restaurantId, restaurantName, setMealId }) {
       this.restaurantId = restaurantId;
       this.restaurantName = restaurantName;
-      this.ticketId = ticketId;
+      this.setMealId = setMealId;
 
       this.setData({ restaurantName });
-      this.setMealTicketInfo();
+      this.setSetMealInfo();
       this.setPaymentAmount();
     },
 
-    async setMealTicketInfo() {
-      const ticketInfo = await cateringService.getMealTicketInfo(this.ticketId);
+    async setSetMealInfo() {
+      const setMealInfo = await cateringService.getSetMealInfo(this.setMealId);
       const {
         price,
         originalPrice,
         buyLimit,
         perTableUsageLimit,
-        overlayUsageLimit,
         useTimeList,
-        inapplicableProducts,
-        boxAvailable,
         needPreBook,
-      } = ticketInfo;
+      } = setMealInfo;
 
       const discount = parseFloat(((price / originalPrice) * 10).toFixed(1));
 
@@ -48,33 +46,27 @@ Component({
       if (perTableUsageLimit) {
         limitTipList.push(`每桌限用${buyLimit}张`);
       }
-      if (overlayUsageLimit) {
-        limitTipList.push(`单次可用${buyLimit}张`);
-      }
 
       const usageTipsList = [];
       if (useTimeList.length) {
         usageTipsList.push("部分时段可用");
-      }
-      if (overlayUsageLimit) {
-        usageTipsList.push(`单次可用${overlayUsageLimit}张`);
       } else {
-        usageTipsList.push("不限张数");
+        usageTipsList.push("营业时间可用");
       }
-      if (inapplicableProducts.length) {
-        usageTipsList.push("部分商品可用");
-      } else {
-        usageTipsList.push("全场通用");
+      if (buyLimit) {
+        tips.push(`限购${buyLimit}张`);
       }
-      if (boxAvailable) {
-        usageTipsList.push("可用于包间消费");
+      if (perTableUsageLimit) {
+        tips.push(`每桌限用${buyLimit}张`);
       }
       if (needPreBook) {
         usageTipsList.push("需预约");
+      } else {
+        usageTipsList.push("免预约");
       }
 
       this.setData({
-        ticketInfo,
+        setMealInfo,
         discount,
         limitTips: limitTipList.join("，"),
         usageTips: usageTipsList.slice(0, 3).join("｜"),
@@ -82,8 +74,8 @@ Component({
     },
 
     async setPaymentAmount() {
-      const paymentAmount = await cateringService.getMealTicketPaymentAmount(
-        this.ticketId,
+      const paymentAmount = await cateringService.getSetMealPaymentAmount(
+        this.setMealId,
         this.data.num
       );
       this.setData({ paymentAmount });
@@ -97,31 +89,43 @@ Component({
 
     // 提交订单
     async submit() {
-      const orderId = await cateringService.submitMealTicketOrder(
+      const orderId = await cateringService.submitSetMealOrder(
         this.restaurantId,
         this.restaurantName,
-        this.ticketId,
+        this.setMealId,
         this.data.num
       );
       orderId && this.pay(orderId);
     },
 
     async pay(orderId) {
-      const payParams = await cateringService.getMealTicketOrderPayParams(
+      const payParams = await cateringService.getSetMealOrderPayParams(
         orderId
       );
       wx.requestPayment({
         ...payParams,
         success: () => {
           wx.navigateTo({
-            url: "/pages/subpages/mine/order-center/subpages/meal-ticket-order-list/index?status=2",
+            url: "/pages/subpages/mine/order-center/subpages/set-meal-order-list/index?status=2",
           });
         },
         fail: () => {
           wx.navigateTo({
-            url: "/pages/subpages/mine/order-center/subpages/meal-ticket-order-list/index?status=1",
+            url: "/pages/subpages/mine/order-center/subpages/set-meal-order-list/index?status=1",
           });
         },
+      });
+    },
+
+    showDetailPopup() {
+      this.setData({
+        detailPopupVisible: true,
+      });
+    },
+
+    hideDetailPopup() {
+      this.setData({
+        detailPopupVisible: false,
       });
     },
 

@@ -7,7 +7,7 @@
           <view class="rule">
             <view class="rule-title">有效期</view>
             <view class="rule-content">
-              {{ ticketInfo.validityDays ? ('购买后' + ticketInfo.validityDays + '天有效') : (ticketInfo.validityStartTime + '至' + ticketInfo.validityEndTime) }}
+              {{ info.validityDays ? ('购买后' + info.validityDays + '天有效') : (info.validityStartTime + '至' + info.validityEndTime) }}
             </view>
           </view>
           <view class="rule">
@@ -18,16 +18,9 @@
             </view>
           </view>
           <view class="rule">
-            <view class="rule-title">适用范围</view>
-            <view class="rule-content">
-              <view class="content">{{ inapplicableProductsDesc ? ('除' + inapplicableProductsDesc + '以外全场通用') : '全场菜品、酒水饮料通用' }}</view>
-              <view class="content">{{ ticketInfo.boxAvailable ? '' : '不' }}可用于包间消费</view>
-            </view>
-          </view>
-          <view class="rule">
             <view class="rule-title">使用规则</view>
             <view class="rule-content">
-              <view class="content" wx:for="{{ticketInfo.useRules}}" wx:key="index">{{ item }}</view>
+              <view class="content" wx:for="{{info.useRules}}" wx:key="index">{{ item }}</view>
             </view>
           </view>
         </view>

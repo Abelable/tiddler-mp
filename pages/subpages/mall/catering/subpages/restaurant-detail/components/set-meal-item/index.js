@@ -13,7 +13,7 @@ Component({
         originalPrice,
         useTimeList,
         buyLimit,
-        perTabelUsageLimit,
+        perTableUsageLimit,
         needPreBook,
       }) {
         const discount = parseFloat(((price / originalPrice) * 10).toFixed(1));
@@ -27,7 +27,7 @@ Component({
         if (buyLimit) {
           tips.push(`限购${buyLimit}张`);
         }
-        if (perTabelUsageLimit) {
+        if (perTableUsageLimit) {
           tips.push(`每桌限用${buyLimit}张`);
         }
         if (needPreBook) {
