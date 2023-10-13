@@ -1,5 +1,6 @@
 .container {
   padding: 24rpx;
+  padding-bottom: calc(60px + env(safe-area-inset-bottom));
 }
   
 .card {
@@ -11,13 +12,22 @@
 
 .restaurant-name {
   color: #333;
-  font-size: 24rpx;
+  font-size: 26rpx;
 }
 
+.set-meal-name-wrap {
+  margin-top: 12rpx;
+}
 .set-meal-name {
+  margin-right: 24rpx;
+  flex: 1;
   color: #333;
   font-size: 36rpx;
   font-weight: 550;
+}
+.detail-tips {
+  color: #0095fa;
+  font-size: 24rpx;
 }
 
 .cover {

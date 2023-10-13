@@ -2,9 +2,12 @@
   <view class="card">
     <view class="restaurant-name">{{restaurantName}}</view>
 
-    <view class="row baseline">
-      <view class="set-meal-name">{{setMealInfo.name}}</view>
-      <view class="detail-tips" bindtap="showDetailPopup">详情</view>
+    <view class="set-meal-name-wrap row between">
+      <view class="set-meal-name omit single-line">{{setMealInfo.name}}</view>
+      <view class="check-detail row">
+        <view class="detail-tips" bindtap="showDetailPopup">详情</view>
+        <image class="more-icon" src="./images/more-blue.png" />
+      </view>
     </view>
     <image class="cover" src="{{setMealInfo.cover}}" mode="widthFix" />
 
@@ -44,4 +47,4 @@
 </view>
 
 <detail-popup show="{{detailPopupVisible}}" details="{{setMealInfo.packageDetails}}" bind:hide="hideDetailPopup" />
-<notice-popup show="{{noticePopupVisible}}" setMealInfo="{{setMealInfo}}" bind:hide="hideNoticePopup" />
+<notice-popup show="{{noticePopupVisible}}" info="{{setMealInfo}}" bind:hide="hideNoticePopup" />
