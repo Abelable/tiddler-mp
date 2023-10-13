@@ -1,0 +1,13 @@
+<view class="set-meal-item row" wx:for="{{list}}" wx:key="index" >
+  <image class="set-meal-img" src="{{info.cover}}" mode="aspectFill" lazy-load />
+  <view class="set-meal-content">
+    <view class="set-meal-name omit">{{info.name}}</view>
+    <view class="set-meal-price-wrap">
+      <price-unit price="{{info.price || 0}}" color="#333" />
+      <view class="count-wrap">
+        <text>x</text>
+        <text class="count">{{info.number}}</text>
+      </view>
+    </view>
+  </view>
+</view>

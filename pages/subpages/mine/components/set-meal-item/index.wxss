@@ -1,0 +1,34 @@
+.set-meal-img {
+  margin-left: 8rpx;
+  margin-right: 18rpx;
+  width: 184rpx;
+  height: 184rpx;
+  border-radius: 16rpx;
+}
+.set-meal-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+  padding-right: 18rpx;
+  flex: 1; 
+  height: 190rpx;
+}
+.set-meal-name {
+  color: #333;
+  font-size: 28rpx;
+  font-weight: 500;
+}
+.set-meal-price-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.count-wrap {
+  font-size: 24rpx;
+  color: #3979BE;
+}
+.count {
+  margin-left: 5rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+}
