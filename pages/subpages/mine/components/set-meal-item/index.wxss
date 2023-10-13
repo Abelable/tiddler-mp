@@ -15,13 +15,30 @@
 }
 .set-meal-name {
   color: #333;
-  font-size: 28rpx;
-  font-weight: 500;
+  font-size: 30rpx;
+  font-weight: 550;
 }
-.set-meal-price-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.tips {
+  margin-top: 8rpx;
+  flex: 1;
+  color: #666;
+  font-size: 22rpx;
+}
+.original-price {
+  margin-top: 4rpx;
+  margin-left: 12rpx;
+  color: #999;
+  font-size: 24rpx;
+  text-decoration: line-through;
+}
+.discount {
+  margin-top: 2rpx;
+  margin-left: 12rpx;
+  padding: 0 6rpx;
+  color: #F66B38;
+  font-size: 20rpx;
+  border: 1px solid #fed9cc;
+  border-radius: 6rpx;
 }
 .count-wrap {
   font-size: 24rpx;
