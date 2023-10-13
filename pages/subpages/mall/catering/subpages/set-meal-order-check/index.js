@@ -53,12 +53,6 @@ Component({
       } else {
         usageTipsList.push("营业时间可用");
       }
-      if (buyLimit) {
-        tips.push(`限购${buyLimit}张`);
-      }
-      if (perTableUsageLimit) {
-        tips.push(`每桌限用${buyLimit}张`);
-      }
       if (needPreBook) {
         usageTipsList.push("需预约");
       } else {
