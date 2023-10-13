@@ -43,4 +43,10 @@ Component({
     discount: 0,
     tips: "",
   },
+
+  methods: {
+    checkDetail() {
+      this.triggerEvent("checkDetail", this.properties.info.setMealId);
+    },
+  },
 });

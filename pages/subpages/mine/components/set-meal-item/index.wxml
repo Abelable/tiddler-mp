@@ -1,4 +1,4 @@
-<view class="set-meal-item row">
+<view class="set-meal-item row" bindtap="checkDetail">
   <image class="set-meal-img" src="{{info.cover}}" mode="aspectFill" lazy-load />
   <view class="set-meal-content">
     <view class="set-meal-name omit">{{info.name}}</view>

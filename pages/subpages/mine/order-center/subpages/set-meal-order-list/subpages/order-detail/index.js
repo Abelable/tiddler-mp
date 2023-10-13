@@ -96,4 +96,10 @@ Page({
     const url = `/pages/subpages/mall/catering/subpages/restaurant-detail/index?id=${id}`
     wx.navigateTo({ url })
   },
+
+  navToSetMealDetail(e) {
+    const { restaurantId, restaurantName } = this.data.orderInfo;
+    const url = `/pages/subpages/mall/catering/subpages/restaurant-detail/subpages/set-meal-detail/index?setMealId=${e.detail}&restaurantId=${restaurantId}&restaurantName=${restaurantName}`;
+    wx.navigateTo({ url });
+  },
 })

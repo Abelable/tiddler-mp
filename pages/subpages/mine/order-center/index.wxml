@@ -8,7 +8,7 @@
     <image class="arrow" src="./images/arrow.png" />
   </navigator>
   <navigator class="list row between" url="./subpages/hotel-order-list/index" hover-class="none">
-    <view class="title">酒店订单</view>
+    <view class="title">酒店房间订单</view>
     <image class="arrow" src="./images/arrow.png" />
   </navigator>
   <navigator class="list row between" url="./subpages/meal-ticket-order-list/index" hover-class="none">

@@ -12,13 +12,9 @@
     <meal-ticket-item ticketInfo="{{orderInfo.ticketInfo}}" />
     <view class="list row between">
       <view class="title">{{ORDER.paymentDesc(orderInfo.status)}}</view>
-      <price-unit price="{{orderInfo.paymentAmount}}" />
+      <price-unit price="{{orderInfo.paymentAmount || 0}}" />
     </view>
     <view class="more-info-wrap">
-      <view class="list row top">
-        <view class="title">游客信息：</view>
-        <view class="content">{{orderInfo.consignee}}，{{orderInfo.mobile}}</view>
-      </view>
       <view class="list row between">
         <view class="title">订单编号：</view>
         <view>
