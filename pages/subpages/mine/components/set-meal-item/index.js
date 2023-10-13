@@ -4,6 +4,7 @@ Component({
   },
 
   properties: {
+    restaurantName: String,
     info: {
       type: Object,
       observer({

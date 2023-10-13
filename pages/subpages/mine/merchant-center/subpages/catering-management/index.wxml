@@ -77,6 +77,7 @@
 
 <view class="order-list-wrap {{ menuFixed ? 'fixed' : '' }}">
   <meal-ticket-order-list wx:if="{{orderType === 1}}" list="{{orderList}}" bind:update="updateOrderList" />
+  <set-meal-order-list wx:if="{{orderType === 2}}" list="{{orderList}}" bind:update="updateOrderList" />
   <empty-illus wx:if="{{finished && !orderList.length}}" desc="暂无订单列表" />
   <view class="no-more-tips" wx:if="{{finished && orderList.length}}">～没有更多了～</view>
 </view>

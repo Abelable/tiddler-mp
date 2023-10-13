@@ -14,27 +14,14 @@ Component({
   methods: {
     cancelOrder(e) {
       const { id, index } = e.currentTarget.dataset
-      cateringService.cancelOrder(id, () => {
+      cateringService.cancelSetMealOrder(id, () => {
         this.triggerEvent('update', { type: 'cancel', index })
-      })
-    },
-
-    deliverOrder(e) {
-      const { id, index } = e.currentTarget.dataset
-      cateringService.deleteOrder(id, () => {
-        this.triggerEvent('update', { type: 'deliver', index })
       })
     },
   
     navToDetail(e) {
       const id = e.currentTarget.dataset.id
-      const url = `/pages/mine/suppages/shop-management/subpages/order-detail/index?id=${id}`
-      wx.navigateTo({ url })
-    },
-  
-    navToShipping(e) {
-      const id = e.currentTarget.dataset.id
-      const url = `/pages/mine/suppages/shop-management/subpages/shipping/index?id=${id}`
+      const url = `/pages/subpages/mine/merchant-center/subpages/catering-management/subpages/set-meal-order-detail/index?id=${id}`
       wx.navigateTo({ url })
     },
 
