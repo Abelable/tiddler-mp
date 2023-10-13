@@ -83,6 +83,7 @@
       "mine/merchant-center/subpages/shop-management/subpages/shipping/index",
       "mine/merchant-center/subpages/catering-management/index",
       "mine/merchant-center/subpages/catering-management/subpages/meal-ticket-order-detail/index",
+      "mine/merchant-center/subpages/catering-management/subpages/set-meal-order-detail/index",
       "mine/create-video/index",
       "mine/create-note/index"
     ]

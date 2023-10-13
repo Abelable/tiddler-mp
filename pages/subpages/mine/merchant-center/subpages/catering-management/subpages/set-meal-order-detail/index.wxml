@@ -1,10 +1,10 @@
 <wxs module="TIME" src="/utils/filters/time.wxs" />
-<wxs module="ORDER" src="../../../../../utils/mealTicketOrder.wxs" />
+<wxs module="ORDER" src="../../../../../utils/setMealOrder.wxs" />
 
 <view class="container">
   <view class="card">
     <view class="restaurant-name omit single-line">{{orderInfo.restaurantName}}</view>
-    <meal-ticket-item ticketInfo="{{orderInfo.ticketInfo}}" />
+    <set-meal-item info="{{orderInfo.setMealInfo}}" bind:checkDetail="navToSetMealDetail" />
     <view class="list row between">
       <view class="title">{{ORDER.paymentDesc(orderInfo.status)}}</view>
       <price-unit price="{{orderInfo.paymentAmount}}" />

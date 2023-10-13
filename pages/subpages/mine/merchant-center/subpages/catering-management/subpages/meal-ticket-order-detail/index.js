@@ -68,12 +68,6 @@ Page({
     })
   },
 
-  navToShipping(e) {
-    const id = e.currentTarget.dataset.id
-    const url = `/pages/subpages/mine/order-center/subpages/goods-order-list/subpages/shipping/index?id=${id}`
-    wx.navigateTo({ url })
-  },
-
   contact() {
   },
 })
