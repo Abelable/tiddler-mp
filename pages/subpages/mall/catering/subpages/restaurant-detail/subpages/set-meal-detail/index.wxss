@@ -15,26 +15,24 @@
   font-weight: 550;
 }
 
-.ticket {
-  position: relative;
-  padding: 24rpx;
-  background: #feede6;
-  border-radius: 24rpx;
-}
-.ticket-title {
+.set-meal-name {
   color: #333;
-  font-size: 24rpx;
-}
-.ticket-name {
-  margin-top: 12rpx;
-  color: #333;
-  font-size: 38rpx;
+  font-size: 36rpx;
   font-weight: 550;
 }
-.ticket-tips-wrap {
-  margin-top: 48rpx;
+
+.cover {
+  margin-top: 20rpx;
+  width: 100%;
+  border-radius: 20rpx;
 }
-.ticket-tips {
+
+.set-meal-tips-wrap {
+  margin-top: 20rpx;
+  padding-top: 12rpx;
+  border-top: 1px solid #eee;
+}
+.set-meal-tips {
   margin-top: 12rpx;
   font-size: 24rpx;
 }
@@ -45,42 +43,19 @@
   margin-left: 12rpx;
 }
 
-.split-line {
-  position: absolute;
-  left: 0;
-  top: 132rpx;
-  width: 100%;
-  height: 24rpx;
-}
-.line {
-  margin: 0 24rpx;
-  width: 100%;
-  border-top: 1px dashed #ccc;
-}
-.left-circle, .right-circle {
-  position: absolute;
-  top: 0;
-  width: 12rpx;
-  height: 24rpx;
-  background: #fff;
-}
-.left-circle {
-  left: -1px;
-  border-top-right-radius: 12rpx;
-  border-bottom-right-radius: 12rpx;
-}
-.right-circle {
-  right: -1px;
-  border-top-left-radius: 12rpx;
-  border-bottom-left-radius: 12rpx;
-}
-
 .price-wrap {
-  margin-top: 24rpx;
+  margin-top: 12rpx;
+}
+.original-price {
+  margin-top: 6rpx;
+  margin-left: 14rpx;
+  color: #999;
+  font-size: 26rpx;
+  text-decoration: line-through;
 }
 .discount {
   margin-top: 6rpx;
-  margin-left: 8rpx;
+  margin-left: 14rpx;
   padding: 0 6rpx;
   color: #F66B38;
   font-size: 20rpx;
@@ -90,6 +65,28 @@
 .sales-volume {
   color: #999;
   font-size: 24rpx;
+}
+
+.food-type-item {
+  margin-bottom: 24rpx;
+}
+.food-type-item:last-child {
+  margin-bottom: 0;
+}
+.food-type {
+  color: #333;
+  font-size: 26rpx;
+  font-weight: 550;
+}
+.food-item {
+  margin-top: 12rpx;
+  font-size: 24rpx;
+}
+.food-name, .food-price {
+  color: #333;
+}
+.food-num {
+  color: #999;
 }
 
 .rule {

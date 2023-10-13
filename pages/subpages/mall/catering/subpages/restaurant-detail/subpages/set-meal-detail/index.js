@@ -8,7 +8,6 @@ Page({
     discount: 0,
     limitTips: "",
     useTimeDescList: [],
-    inapplicableProductsDesc: "",
   },
 
   onLoad({ restaurantId, restaurantName, setMealId }) {
@@ -29,9 +28,7 @@ Page({
       originalPrice,
       buyLimit,
       perTableUsageLimit,
-      overlayUsageLimit,
       useTimeList,
-      inapplicableProducts,
     } = setMealInfo;
 
     const discount = parseFloat(((price / originalPrice) * 10).toFixed(1));
@@ -43,9 +40,6 @@ Page({
     if (perTableUsageLimit) {
       limitTipList.push(`每桌限用${buyLimit}张`);
     }
-    if (overlayUsageLimit) {
-      limitTipList.push(`单次可用${buyLimit}张`);
-    }
 
     this.setUseTimeDescList(useTimeList);
 
@@ -53,7 +47,6 @@ Page({
       setMealInfo,
       discount,
       limitTips: limitTipList.join("，"),
-      inapplicableProductsDesc: inapplicableProducts.join("、"),
     });
   },
 
