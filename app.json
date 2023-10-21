@@ -55,6 +55,7 @@
       "mall/goods/subpages/search/index",
       "mall/goods/subpages/order-check/index",
       "mine/setting/index",
+      "mine/setting/subpages/user-info-setting/index",
       "mine/address-list/index",
       "mine/address-list/subpages/add/index",
       "mine/address-list/subpages/edit/index",

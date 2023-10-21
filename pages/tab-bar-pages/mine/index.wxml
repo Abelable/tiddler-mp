@@ -11,7 +11,7 @@
 </view>
 
 <view class="container">
-  <image class="bg" src="https://img.ubo.vip/tiddler/temp/bg.jpg" />
+  <image class="bg" src="{{userInfo.bg || 'https://img.ubo.vip/tiddler/temp/bg.jpg'}}" mode="aspectFill" />
   <view class="content">
     <view class="avatar-wrap">
       <image class="avatar" src="{{userInfo.avatar}}" />
