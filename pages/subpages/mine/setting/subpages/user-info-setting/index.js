@@ -1,6 +1,8 @@
 import { store } from "../../../../../../store/index";
 import { debounce } from "../../../../../../utils/index";
+import SettingService from "../../utils/settingService";
 
+const settingService = new SettingService();
 const constellationOptions = [
   "水瓶座",
   "双鱼座",
@@ -33,10 +35,76 @@ Page({
     this.setData({ userInfo: store.userInfo, constellationIndex });
   },
 
-  setNickname: debounce(function(e) {
+  onShow() {
+    if (this.uploadingAvatar) {
+      this.uploadAvatar();
+    }
+
+    if (this.uploadingBg) {
+      this.uploadBg();
+    }
+  },
+
+  cropAvatar() {
+    this.uploadingAvatar = true;
+    wx.navigateTo({
+      url: "/pages/subpages/common/cropper/index",
+    });
+  },
+
+  cropBg() {
+    this.uploadingBg = true;
+    wx.navigateTo({
+      url: "/pages/subpages/common/cropper/index?height=107",
+    });
+  },
+
+  async uploadAvatar() {
+    if (!this.data.uploadAvatarLoading) {
+      this.setData({ uploadAvatarLoading: true });
+      if (store.croppedImagePath) {
+        const avatar = await settingService.uploadFile(store.croppedImagePath);
+        this.setData({
+          ['userInfo.avatar']: avatar
+        });
+        if (!this.data.saveBtnActive) {
+          this.setData({
+            saveBtnActive: true,
+          });
+        }
+        store.setCroppedImagePath("");
+        this.uploadingAvatar = false;
+      }
+      this.setData({ uploadAvatarLoading: false });
+    }
+  },
+
+  async uploadBg() {
+    if (!this.data.uploadBgLoading) {
+      this.setData({ uploadBgLoading: true });
+      if (store.croppedImagePath) {
+        const bg = await settingService.uploadFile(
+          store.croppedImagePath
+        );
+        this.setData({
+          ['userInfo.bg']: bg
+        });
+        if (!this.data.saveBtnActive) {
+          this.setData({
+            saveBtnActive: true,
+          });
+        }
+        store.setCroppedImagePath("");
+        this.uploadingBg = false;
+      }
+      this.setData({ uploadBgLoading: false });
+    }
+  },
+
+  setNickname: debounce(function (e) {
     this.setData({
-      ["userInfo.nickname"]: e.detail.value
-    })
+      ["userInfo.nickname"]: e.detail.value,
+    });
     if (!this.data.saveBtnActive) {
       this.setData({
         saveBtnActive: true,
@@ -79,10 +147,10 @@ Page({
     }
   },
 
-  setCareer: debounce(function(e) {
+  setCareer: debounce(function (e) {
     this.setData({
-      ["userInfo.career"]: e.detail.value
-    })
+      ["userInfo.career"]: e.detail.value,
+    });
     if (!this.data.saveBtnActive) {
       this.setData({
         saveBtnActive: true,
@@ -90,10 +158,10 @@ Page({
     }
   }),
 
-  setSignature: debounce(function(e) {
+  setSignature: debounce(function (e) {
     this.setData({
-      ["userInfo.signature"]: e.detail.value
-    })
+      ["userInfo.signature"]: e.detail.value,
+    });
     if (!this.data.saveBtnActive) {
       this.setData({
         saveBtnActive: true,
@@ -110,13 +178,13 @@ Page({
   cancel() {
     if (this.data.saveBtnActive) {
       wx.showModal({
-        title: '信息已修改',
-        content: '确定放弃修改吗？',
+        title: "信息已修改",
+        content: "确定放弃修改吗？",
         success: (result) => {
-          if(result.confirm){
+          if (result.confirm) {
             wx.navigateBack();
           }
-        }
+        },
       });
     } else {
       wx.navigateBack();

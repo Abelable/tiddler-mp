@@ -1,13 +1,13 @@
 <view class="container">
   <view class="header row center">
     <image class="bg" src="{{userInfo.bg || 'https://img.ubo.vip/tiddler/temp/bg.jpg'}}" mode="aspectFill" />
-    <view class="avatar-wrap">
-      <image class="avatar" src="{{userInfo.avatar}}" />
+    <view class="avatar-wrap" bindtap="cropAvatar">
+      <image class="avatar" src="{{userInfo.avatar}}" mode="aspectFill" />
       <view class="avatar-edit-btn row center">
         <image class="edit-icon" src="./images/edit.png" />
       </view>
     </view>
-    <view class="bg-edit-btn row center">设置背景</view>
+    <view class="bg-edit-btn row center" bindtap="cropBg">设置背景</view>
   </view>
   
   <view class="form-list">
