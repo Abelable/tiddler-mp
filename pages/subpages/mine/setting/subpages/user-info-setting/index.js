@@ -65,7 +65,7 @@ Page({
       if (store.croppedImagePath) {
         const avatar = await settingService.uploadFile(store.croppedImagePath);
         this.setData({
-          ['userInfo.avatar']: avatar
+          ["userInfo.avatar"]: avatar,
         });
         if (!this.data.saveBtnActive) {
           this.setData({
@@ -83,11 +83,9 @@ Page({
     if (!this.data.uploadBgLoading) {
       this.setData({ uploadBgLoading: true });
       if (store.croppedImagePath) {
-        const bg = await settingService.uploadFile(
-          store.croppedImagePath
-        );
+        const bg = await settingService.uploadFile(store.croppedImagePath);
         this.setData({
-          ['userInfo.bg']: bg
+          ["userInfo.bg"]: bg,
         });
         if (!this.data.saveBtnActive) {
           this.setData({
@@ -170,9 +168,20 @@ Page({
   }),
 
   save() {
-    if (!this.data.saveBtnActive) {
+    const { saveBtnActive, userInfo } = this.data;
+    if (!saveBtnActive) {
       return;
     }
+    if (!userInfo.nickname) {
+      wx.showToast({
+        title: "昵称不能为空哦～",
+      });
+      return;
+    }
+    settingService.updateUserInfo(userInfo, () => {
+      store.setUserInfo({ ...store.userInfo, ...userInfo });
+      wx.navigateBack();
+    });
   },
 
   cancel() {

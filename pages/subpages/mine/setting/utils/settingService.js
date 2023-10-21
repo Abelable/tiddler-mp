@@ -2,9 +2,9 @@ import BaseService from '../../../../../services/baseService'
 import { cleanObject } from '../../../../../utils/index'
 
 class SettingService extends BaseService {
-  async editUserInfo(userInfo, success) {
+  async updateUserInfo(userInfo, success) {
     return await this.post({ 
-      url: `${this.baseUrl}/user/user_info_update`, 
+      url: `${this.baseUrl}/update_user_info`, 
       data: cleanObject(userInfo),
       success
     })
