@@ -51,7 +51,7 @@
       </view>
       <navigator 
         class="function-item" 
-        wx:if="{{userInfo.merchantId || userInfo.scenicProviderId || userInfo.hotelId || userInfo.cateringProviderId}}" 
+        wx:if="{{userInfo.merchantId || userInfo.scenicProviderId || userInfo.hotelProviderId || userInfo.cateringProviderId}}" 
         url="/pages/subpages/mine/merchant-center/index" 
         hover-class="none"
       >

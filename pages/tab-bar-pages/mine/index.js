@@ -316,6 +316,34 @@ Component({
     },
 
     async navToLive() {
+      const {
+        userInfoId,
+        merchantId,
+        scenicProviderId,
+        hotelProviderId,
+        cateringProviderId,
+      } = store.userInfo;
+      if (
+        !userInfoId &&
+        !merchantId &&
+        !scenicProviderId &&
+        !hotelProviderId &&
+        !cateringProviderId
+      ) {
+        wx.showModal({
+          title: "温馨提示",
+          content: "直播需要认证您的真实身份，请先完成实名认证",
+          showCancel: false,
+          confirmText: "确定",
+          success: (result) => {
+            if (result.confirm) {
+              const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/auth`;
+              wx.navigateTo({ url });
+            }
+          },
+        });
+      }
+
       const statusInfo = await mineService.getRoomStatus();
       if (!statusInfo) {
         wx.navigateTo({
@@ -347,7 +375,8 @@ Component({
     },
 
     navToUserInfoSetting() {
-      const url = "/pages/subpages/mine/setting/subpages/user-info-setting/index";
+      const url =
+        "/pages/subpages/mine/setting/subpages/user-info-setting/index";
       wx.navigateTo({ url });
     },
   },
