@@ -1,3 +1,7 @@
+.container {
+  padding-bottom: calc(152rpx + env(safe-area-inset-bottom));
+}
+
 .header {
   position: relative;
   flex-direction: column;
@@ -65,4 +69,32 @@
 }
 .form-content.empty {
   color: #999;
+}
+
+.btn-wrap {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 24rpx 32rpx calc(24rpx + env(safe-area-inset-bottom));
+  background: #fff;
+}
+.cancel-btn, .save-btn {
+  flex: 1;
+  height: 80rpx;
+  font-size: 30rpx;
+  border-radius: 40rpx;
+}
+.cancel-btn {
+  margin-right: 32rpx;
+  color: #333;
+  border: 1px solid #333;
+}
+.save-btn {
+  color: #999;
+  border: 1px solid #999;
+}
+.save-btn.active {
+  color: #0095fa;
+  border: 1px solid #0095fa;
 }

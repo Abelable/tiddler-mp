@@ -1,37 +1,44 @@
-<view class="header row center">
-  <image class="bg" src="{{userInfo.bg || 'https://img.ubo.vip/tiddler/temp/bg.jpg'}}" mode="aspectFill" />
-  <view class="avatar-wrap">
-    <image class="avatar" src="{{userInfo.avatar}}" />
-    <view class="avatar-edit-btn row center">
-      <image class="edit-icon" src="./images/edit.png" />
+<view class="container">
+  <view class="header row center">
+    <image class="bg" src="{{userInfo.bg || 'https://img.ubo.vip/tiddler/temp/bg.jpg'}}" mode="aspectFill" />
+    <view class="avatar-wrap">
+      <image class="avatar" src="{{userInfo.avatar}}" />
+      <view class="avatar-edit-btn row center">
+        <image class="edit-icon" src="./images/edit.png" />
+      </view>
+    </view>
+    <view class="bg-edit-btn row center">设置背景</view>
+  </view>
+  
+  <view class="form-list">
+    <view class="form-item row">
+      <view class="form-label">昵 称：</view>
+      <input class="form-input" value="{{ userInfo.nickname }}" placeholder="未设置" />
+    </view>
+    <view class="form-item row">
+      <view class="form-label">性 别：</view>
+      <view class="form-content">{{ ['保密', '男', '女'][userInfo.gender] }}</view>
+    </view>
+    <view class="form-item row">
+      <view class="form-label">生 日：</view>
+      <view class="form-content {{ !userInfo.birthday ? 'empty' : '' }}">{{ userInfo.birthday || '--/--/--' }}</view>
+    </view>
+    <view class="form-item row">
+      <view class="form-label">星 座：</view>
+      <view class="form-content {{ !userInfo.constellation ? 'empty' : '' }}">{{ userInfo.constellation || '未设置' }}</view>
+    </view>
+    <view class="form-item row">
+      <view class="form-label">职 业：</view>
+      <input class="form-input" value="{{ userInfo.career }}" placeholder="未设置" />
+    </view>
+    <view class="form-item row">
+      <view class="form-label">签 名：</view>
+      <input class="form-input" value="{{ userInfo.signature }}" placeholder="未设置" />
     </view>
   </view>
-  <view class="bg-edit-btn row center">设置背景</view>
 </view>
 
-<view class="form-list">
-  <view class="form-item row">
-    <view class="form-label">昵 称：</view>
-    <input class="form-input" value="{{ userInfo.nickname }}" placeholder="未设置" />
-  </view>
-  <view class="form-item row">
-    <view class="form-label">性 别：</view>
-    <view class="form-content">{{ ['保密', '男', '女'][userInfo.gender] }}</view>
-  </view>
-  <view class="form-item row">
-    <view class="form-label">生 日：</view>
-    <view class="form-content {{ !userInfo.birthday ? 'empty' : '' }}">{{ userInfo.birthday || '--/--/--' }}</view>
-  </view>
-  <view class="form-item row">
-    <view class="form-label">星 座：</view>
-    <view class="form-content {{ !userInfo.constellation ? 'empty' : '' }}">{{ userInfo.constellation || '未设置' }}</view>
-  </view>
-  <view class="form-item row">
-    <view class="form-label">职 业：</view>
-    <input class="form-input" value="{{ userInfo.career }}" placeholder="未设置" />
-  </view>
-  <view class="form-item row">
-    <view class="form-label">签 名：</view>
-    <input class="form-input" value="{{ userInfo.signature }}" placeholder="未设置" />
-  </view>
+<view class="btn-wrap row between">
+  <view class="cancel-btn row center">取消</view>
+  <view class="save-btn row center active">保存</view>
 </view>

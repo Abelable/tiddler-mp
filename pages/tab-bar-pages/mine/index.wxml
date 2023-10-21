@@ -32,8 +32,8 @@
     </view>
     <view class="name">{{userInfo.nickname}}</view>
     <view class="introduce row">
-      <text>来一段简短的自我介绍吧～</text>
-      <image class="edit-icon" src="https://img.ubo.vip/tiddler/mine/edit.png" />
+      <text>{{ userInfo.signature || '点击添加签名，让大家了解你～'}}</text>
+      <image class="edit-icon" wx:if="{{!userInfo.signature}}" src="https://img.ubo.vip/tiddler/mine/edit.png" />
     </view>
 
     <view class="function-wrap">
