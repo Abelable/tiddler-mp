@@ -341,8 +341,13 @@ Component({
       }
     },
 
-    async navToNoteCreate() {
+    navToNoteCreate() {
       const url = "/pages/subpages/mine/create-note/index";
+      wx.navigateTo({ url });
+    },
+
+    navToUserInfoSetting() {
+      const url = "/pages/subpages/mine/setting/subpages/user-info-setting/index";
       wx.navigateTo({ url });
     },
   },

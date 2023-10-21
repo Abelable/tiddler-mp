@@ -18,12 +18,12 @@
 }
 .avatar-wrap {
   position: relative;
-  width: 120rpx;
-  height: 120rpx;
+  width: 140rpx;
+  height: 140rpx;
 }
 .avatar {
-  width: 120rpx;
-  height: 120rpx;
+  width: 140rpx;
+  height: 140rpx;
   border-radius: 50%;
 }
 .avatar-edit-btn {
@@ -43,11 +43,11 @@
 .bg-edit-btn {
   margin-top: 32rpx;
   width: 200rpx;
-  height: 80rpx;
+  height: 72rpx;
   color: #333;
-  font-size: 28rpx;
+  font-size: 26rpx;
   background: #fff;
-  border-radius: 40rpx;
+  border-radius: 36rpx;
 }
 
 .form-list {
@@ -64,7 +64,7 @@
 .form-label {
   margin-right: 24rpx;
 }
-.form-input {
+.form-input, .form-content {
   flex: 1;
 }
 .form-content.empty {
@@ -82,7 +82,7 @@
 .cancel-btn, .save-btn {
   flex: 1;
   height: 80rpx;
-  font-size: 30rpx;
+  font-size: 28rpx;
   border-radius: 40rpx;
 }
 .cancel-btn {
