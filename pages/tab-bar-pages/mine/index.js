@@ -342,6 +342,7 @@ Component({
             }
           },
         });
+        return;
       }
 
       const statusInfo = await mineService.getRoomStatus();
