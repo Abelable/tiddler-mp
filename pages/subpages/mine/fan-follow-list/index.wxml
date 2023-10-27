@@ -19,7 +19,7 @@
 <view class="container" style="padding-top: {{ statusBarHeight + 44 }}px;">
   <view wx:if="{{curMenuIdx === 0}}">
     <view class="list">
-      <view class="item" wx:for="{{followList}}" wx:key="index">
+      <view class="item row" wx:for="{{followList}}" wx:key="index">
         <image class="avatar" src="{{ item.avatar }}" lazy-load />
         <view class="user-info">
           <view class="name">{{ item.nickname }}</view>
@@ -37,7 +37,7 @@
 
   <view wx:else>
     <view class="list">
-      <view class="item" wx:for="{{fanList}}" wx:key="index">
+      <view class="item row" wx:for="{{fanList}}" wx:key="index">
         <image class="avatar" src="{{ item.avatar }}" lazy-load />
         <view class="user-info">
           <view class="name">{{ item.nickname }}</view>

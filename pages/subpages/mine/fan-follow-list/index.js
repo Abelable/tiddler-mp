@@ -22,7 +22,15 @@ Page({
 
   selectMenu(e) {
     const curMenuIdx = Number(e.currentTarget.dataset.index);
-    this.setData({ curMenuIdx });
+    this.setData({ curMenuIdx }, () => {
+      const { followFinished, fanFinished } = this.data;
+      if (
+        (curMenuIdx === 0 && !followFinished) ||
+        (curMenuIdx === 1 && !fanFinished)
+      ) {
+        this.setList(true);
+      }
+    });
   },
 
   onPullDownRefresh() {
