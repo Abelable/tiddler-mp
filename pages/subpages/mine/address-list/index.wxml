@@ -1,5 +1,3 @@
-<wxs module="STRING" src="/utils/filters/string.wxs" />
-
 <view class="address-list" wx:if="{{addressList.length}}">
   <view class="address" class="address" wx:for="{{addressList}}" wx:key="index">
     <van-swipe-cell 

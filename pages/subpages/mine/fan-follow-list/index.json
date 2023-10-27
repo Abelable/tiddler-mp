@@ -1,0 +1,6 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "empty-illus": "/components/empty-illus/index"
+  }
+}
