@@ -19,13 +19,21 @@
 <view class="container" style="padding-top: {{ statusBarHeight + 44 }}px;">
   <view wx:if="{{curMenuIdx === 0}}">
     <view class="list">
-      <view class="item row" wx:for="{{followList}}" wx:key="index">
+      <view class="item row" wx:for="{{followList}}" wx:key="index" bindtap="navToUserCenter" data-id="{{ item.id }}">
         <image class="avatar" src="{{ item.avatar }}" lazy-load />
         <view class="user-info">
           <view class="name">{{ item.nickname }}</view>
           <view class="signature" wx:if="{{item.signature}}">{{ item.signature }}</view>
         </view>
-        <view class="btn row center {{ item.status === 0 ? 'active' : '' }}">{{ ['关注', '已关注', '相互关注'][item.status] }}</view>
+        <view 
+          class="btn row center {{ item.status === 0 ? 'active' : '' }}" 
+          catchtap="toggleFollowStatus" 
+          data-id="{{ item.id }}"
+          data-status="{{ item.status }}"
+          data-index="{{ index }}"
+        >
+          {{ ['关注', '已关注', '相互关注'][item.status] }}
+        </view>
       </view>
     </view>
     <empty-illus 
@@ -37,13 +45,21 @@
 
   <view wx:else>
     <view class="list">
-      <view class="item row" wx:for="{{fanList}}" wx:key="index">
+      <view class="item row" wx:for="{{fanList}}" wx:key="index" bindtap="navToUserCenter" data-id="{{ item.id }}">
         <image class="avatar" src="{{ item.avatar }}" lazy-load />
         <view class="user-info">
           <view class="name">{{ item.nickname }}</view>
           <view class="signature" wx:if="{{item.signature}}">{{ item.signature }}</view>
         </view>
-        <view class="btn row center {{ item.status === 1 ? 'active' : '' }}">{{ item.status === 1 ? '回关' : '相互关注'}}</view>
+        <view 
+          class="btn row center {{ item.status === 1 ? 'active' : '' }}"
+          catchtap="toggleFanStatus" 
+          data-id="{{ item.id }}"
+          data-status="{{ item.status }}"
+          data-index="{{ index }}"
+        >
+          {{ item.status === 1 ? '回关' : '相互关注'}}
+        </view>
       </view>
     </view>
     <empty-illus 

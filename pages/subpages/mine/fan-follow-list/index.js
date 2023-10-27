@@ -95,4 +95,43 @@ Page({
       }
     }
   },
+
+  toggleFollowStatus(e) {
+    const { id, status, index } = e.currentTarget.dataset
+    if (status == 0) {
+      fanService.followAuthor(id, () => {
+        this.setData({
+          [`followList[${index}].status`]: 1
+        });
+      })
+    } else {
+      fanService.cancelFollowAuthor(id, () => {
+        this.setData({
+          [`followList[${index}].status`]: 0
+        });
+      })
+    }
+  },
+
+  toggleFanStatus(e) {
+    const { id, status, index } = e.currentTarget.dataset
+    if (status == 1) {
+      fanService.followAuthor(id, () => {
+        this.setData({
+          [`fanList[${index}].status`]: 2
+        });
+      })
+    } else {
+      fanService.cancelFollowAuthor(id, () => {
+        this.setData({
+          [`fanList[${index}].status`]: 1
+        });
+      })
+    }
+  },
+
+  navToUserCenter(e) {
+    const url = `/pages/subpages/home/media/author-center/index?id=${e.currentTarget.dataset.id}`;
+    wx.navigateTo({ url });
+  },
 });
