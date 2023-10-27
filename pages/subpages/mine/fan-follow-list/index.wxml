@@ -16,7 +16,6 @@
   </view>
 </view>
 
-
 <empty-illus 
   wx:if="{{(curMenuIdx === 0 && !followList.length) || (curMenuIdx === 1 && !fanList.length)}}" 
   desc="{{curMenuIdx === 0 ? '暂未关注任何人' : '你还没有粉丝哦'}}"
