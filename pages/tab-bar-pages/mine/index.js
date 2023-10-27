@@ -381,5 +381,15 @@ Component({
         "/pages/subpages/mine/setting/subpages/user-info-setting/index";
       wx.navigateTo({ url });
     },
+
+    checkFollowList() {
+      const url = "/pages/subpages/mine/fan-follow-list/index?scene=1"
+      wx.navigateTo({ url });
+    },
+
+    checkFanList() {
+      const url = "/pages/subpages/mine/fan-follow-list/index?scene=2"
+      wx.navigateTo({ url });
+    }
   },
 });

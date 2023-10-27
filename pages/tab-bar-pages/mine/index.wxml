@@ -20,11 +20,11 @@
           <view class="data-title">获赞</view>
           <view class="data">{{NUM.over(userInfo.beLikedTimes, 100000)}}</view>
         </view>
-        <view class="data-item">
+        <view class="data-item" bindtap="checkFollowList">
           <view class="data-title">关注</view>
           <view class="data">{{NUM.over(userInfo.followedAuthorNumber, 100000)}}</view>
         </view>
-        <view class="data-item">
+        <view class="data-item" bindtap="checkFanList">
           <view class="data-title">粉丝</view>
           <view class="data">{{NUM.over(userInfo.fansNumber, 100000)}}</view>
         </view>

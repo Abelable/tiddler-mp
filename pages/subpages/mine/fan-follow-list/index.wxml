@@ -3,20 +3,53 @@
     <view style="flex: 1;">
       <back-icon custom="{{custom}}" bind:navigateBack="navigateBack" />
     </view>
-    <view class="menu-tabs">
+    <view class="menu-tabs row">
       <view 
-        class="menu-tab {{ curMenuIdx === index ? 'active' : '' }}" 
+        class="menu-tab row {{ curMenuIdx === index ? 'active' : '' }}" 
         wx:for="{{['关注', '粉丝']}}" 
         wx:key="index" 
         bindtap="selectMenu" 
         data-index="{{ index }}"
-      >{{ item }}{{ index === 0 ? '' : '' }}</view>
+      >{{ item }}</view>
     </view>
     <view style="flex: 1;"></view>
   </view>
 </view>
 
-<empty-illus 
-  wx:if="{{(curMenuIdx === 0 && !followList.length) || (curMenuIdx === 1 && !fanList.length)}}" 
-  desc="{{curMenuIdx === 0 ? '暂未关注任何人' : '你还没有粉丝哦'}}"
-/>
+<view class="container" style="padding-top: {{ statusBarHeight + 44 }}px;">
+  <view wx:if="{{curMenuIdx === 0}}">
+    <view class="list">
+      <view class="item" wx:for="{{followList}}" wx:key="index">
+        <image class="avatar" src="{{ item.avatar }}" lazy-load />
+        <view class="user-info">
+          <view class="name">{{ item.nickname }}</view>
+          <view class="signature" wx:if="{{item.signature}}">{{ item.signature }}</view>
+        </view>
+        <view class="btn row center {{ item.status === 0 ? 'active' : '' }}">{{ ['关注', '已关注', '相互关注'][item.status] }}</view>
+      </view>
+    </view>
+    <empty-illus 
+      wx:if="{{!followList.length}}" 
+      desc="暂未关注任何人"
+    />
+    <view class="no-more-tips" wx:if="{{followFinished && followList.length}}">～没有更多了～</view>
+  </view>
+
+  <view wx:else>
+    <view class="list">
+      <view class="item" wx:for="{{fanList}}" wx:key="index">
+        <image class="avatar" src="{{ item.avatar }}" lazy-load />
+        <view class="user-info">
+          <view class="name">{{ item.nickname }}</view>
+          <view class="signature" wx:if="{{item.signature}}">{{ item.signature }}</view>
+        </view>
+        <view class="btn row center {{ item.status === 1 ? 'active' : '' }}">{{ item.status === 1 ? '回关' : '相互关注'}}</view>
+      </view>
+    </view>
+    <empty-illus 
+      wx:if="{{!fanList.length}}" 
+      desc="您还没有粉丝哦"
+    />
+    <view class="no-more-tips" wx:if="{{fanFinished && fanList.length}}">～没有更多了～</view>
+  </view>
+</view>
