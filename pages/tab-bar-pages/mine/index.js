@@ -54,12 +54,17 @@ Component({
           scrollTop: 0,
           duration: 0,
         });
+        this.updateUserInfo();
         this.setList(SCENE_REFRESH);
       });
     },
   },
 
   methods: {
+    updateUserInfo() {
+      mineService.getUserInfo();
+    },
+
     switchMenu(e) {
       this.handleMenuChange(Number(e.currentTarget.dataset.index));
     },
