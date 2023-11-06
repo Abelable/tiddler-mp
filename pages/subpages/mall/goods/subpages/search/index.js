@@ -118,8 +118,8 @@ Page({
         order = 'asc'
         break
     }
-    const list = await goodsService.getGoodsList({
-      name: keywords,
+    const list = await goodsService.seachGoodsList({
+      keywords,
       categoryId: curCategoryId,
       sort,
       order,

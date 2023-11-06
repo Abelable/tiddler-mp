@@ -6,10 +6,19 @@ class GoodsService extends BaseService {
     return await this.get({ url: `${this.baseUrl}/goods/category_options` })
   }
 
-  async getGoodsList({ name, categoryId, sort, order, page, limit = 10 }) {
+  async getGoodsList({ categoryId, sort, order, page, limit = 10 }) {
     const { list = [] } = await this.get({ 
       url: `${this.baseUrl}/goods/list`, 
-      data: cleanObject({ name, categoryId, sort, order, page, limit }) ,
+      data: cleanObject({ categoryId, sort, order, page, limit }) ,
+      loadingTitle: '加载中...'
+    }) || {}
+    return list
+  }
+
+  async seachGoodsList({ keywords, categoryId, sort, order, page, limit = 10 }) {
+    const { list = [] } = await this.get({ 
+      url: `${this.baseUrl}/goods/search`, 
+      data: cleanObject({ keywords, categoryId, sort, order, page, limit }) ,
       loadingTitle: '加载中...'
     }) || {}
     return list
