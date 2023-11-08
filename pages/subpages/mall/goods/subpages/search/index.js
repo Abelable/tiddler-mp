@@ -25,9 +25,9 @@ Page({
 
   onLoad() {
     this.setCategoryOptions()
-    if (wx.getStorageSync('historyKeywordsList')) {
+    if (wx.getStorageSync('goodsKeywordsList')) {
       this.setData({
-        historyKeywordsList: JSON.parse(wx.getStorageSync('historyKeywordsList'))
+        historyKeywordsList: JSON.parse(wx.getStorageSync('goodsKeywordsList'))
       })
     }
   },
@@ -154,7 +154,7 @@ Page({
           this.setData({
             historyKeywordsList: []
           })
-          wx.removeStorage({ key: 'historyKeywordsList' })
+          wx.removeStorage({ key: 'goodsKeywordsList' })
         }
       }
     })
@@ -166,7 +166,7 @@ Page({
 
   onUnload() {
     wx.setStorage({
-      key: 'historyKeywordsList',
+      key: 'goodsKeywordsList',
       data: JSON.stringify(this.data.historyKeywordsList)
     })
   }

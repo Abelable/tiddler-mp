@@ -8,39 +8,23 @@ Page({
   data: {
     statusBarHeight,
     historyKeywordsList: [],
-    curSortIndex: 0,
-    sortOptions: [
-      { icon: "", text: "综合排序", value: 0 },
-      { icon: "", text: "销量排序", value: 1 },
-      { icon: "", text: "价格降序", value: 2 },
-      { icon: "", text: "价格升序", value: 3 },
-    ],
-    curCategoryId: 0,
-    categoryOptions: [],
     keywords: "",
     isSearching: false,
-    goodsList: [],
+    curMenuIdx: 0,
+    shortVideoList: [],
+    tourismNoteList: [],
+    liveRoomList: [],
     finished: false,
   },
 
   onLoad() {
-    this.setCategoryOptions();
-    if (wx.getStorageSync("historyKeywordsList")) {
+    if (wx.getStorageSync("mediaKeywordsList")) {
       this.setData({
         historyKeywordsList: JSON.parse(
-          wx.getStorageSync("historyKeywordsList")
+          wx.getStorageSync("mediaKeywordsList")
         ),
       });
     }
-  },
-
-  async setCategoryOptions() {
-    const options = await goodsService.getGoodsCategoryOptions();
-    const categoryOptions = [
-      { icon: "", text: "全部分类", value: 0 },
-      ...options.map((item) => ({ icon: "", text: item.name, value: item.id })),
-    ];
-    this.setData({ categoryOptions });
   },
 
   setKeywords: debounce(function (e) {
@@ -67,20 +51,6 @@ Page({
       isSearching: true,
     });
     this.setGoodsList(true);
-  },
-
-  setSortIndex(e) {
-    this.setData({
-      curSortIndex: e.detail,
-    });
-    this.search();
-  },
-
-  setCategoryId(e) {
-    this.setData({
-      curCategoryId: e.detail,
-    });
-    this.search();
   },
 
   search() {
@@ -159,7 +129,7 @@ Page({
           this.setData({
             historyKeywordsList: [],
           });
-          wx.removeStorage({ key: "historyKeywordsList" });
+          wx.removeStorage({ key: "mediaKeywordsList" });
         }
       },
     });
@@ -171,7 +141,7 @@ Page({
 
   onUnload() {
     wx.setStorage({
-      key: "historyKeywordsList",
+      key: "mediaKeywordsList",
       data: JSON.stringify(this.data.historyKeywordsList),
     });
   },

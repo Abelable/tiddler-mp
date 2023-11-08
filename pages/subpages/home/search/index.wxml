@@ -18,7 +18,7 @@
 
   <view class="menu-tab-list row" wx:if="{{isSearching}}">
     <view 
-      class="menu-tab {{curMenuTabIdx === index ? 'active' : '' }} row center" 
+      class="menu-tab {{curMenuIdx === index ? 'active' : '' }} row center" 
       wx:for="{{['短视频', '游记', '直播']}}" 
       wx:key="index" 
       bindtap="selectMenu" 

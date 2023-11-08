@@ -13,7 +13,15 @@ class LiveService extends BaseService {
     return await this.get({
       url: `${this.baseUrl}/media/short_video/list`,
       data: cleanObject({ id, authorId, page, limit }),
-      loadingTitle
+      loadingTitle,
+    });
+  }
+
+  async searchVideoList({ keywords, page, limit = 10 }) {
+    return await this.get({
+      url: `${this.baseUrl}/media/short_video/search`,
+      data: { keywords, page, limit },
+      loadingTitle: "加载中...",
     });
   }
 
@@ -53,11 +61,26 @@ class LiveService extends BaseService {
     });
   }
 
-  async getNoteList({ id, authorId, withComments = 0, page, limit = 10, loadingTitle }) {
+  async getNoteList({
+    id,
+    authorId,
+    withComments = 0,
+    page,
+    limit = 10,
+    loadingTitle,
+  }) {
     return await this.get({
       url: `${this.baseUrl}/media/tourism_note/list`,
       data: cleanObject({ id, authorId, withComments, page, limit }),
       loadingTitle,
+    });
+  }
+
+  async searchNoteList({ keywords, page, limit = 10 }) {
+    return await this.get({
+      url: `${this.baseUrl}/media/tourism_note/search`,
+      data: { keywords, page, limit },
+      loadingTitle: "加载中...",
     });
   }
 
@@ -126,6 +149,14 @@ class LiveService extends BaseService {
       url: `${this.baseUrl}/media/tourism_note/delete`,
       data: { id },
       success,
+    });
+  }
+
+  async searchLiveRoomList({ keywords, page, limit = 10 }) {
+    return await this.get({
+      url: `${this.baseUrl}/media/live/search`,
+      data: { keywords, page, limit },
+      loadingTitle: "加载中...",
     });
   }
 }
