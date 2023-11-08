@@ -1,7 +1,7 @@
 import { store } from "../../../../../../store/index";
 import tim from "../../../../../../utils/tim/index";
 import { LIVE, VIDEO, NOTE } from "../../../../utils/emuns/mediaType";
-import MediaService from "../../utils/mediaService";
+import MediaService from "../../../utils/mediaService";
 
 const mediaService = new MediaService();
 
