@@ -17,7 +17,7 @@ class LiveService extends BaseService {
     });
   }
 
-  async searchVideoList({ keywords, page, limit = 10 }) {
+  async searchVideoList(keywords, page, limit = 10) {
     return await this.get({
       url: `${this.baseUrl}/media/short_video/search`,
       data: { keywords, page, limit },
@@ -76,7 +76,7 @@ class LiveService extends BaseService {
     });
   }
 
-  async searchNoteList({ keywords, page, limit = 10 }) {
+  async searchNoteList(keywords, page, limit = 10) {
     return await this.get({
       url: `${this.baseUrl}/media/tourism_note/search`,
       data: { keywords, page, limit },
@@ -152,7 +152,7 @@ class LiveService extends BaseService {
     });
   }
 
-  async searchLiveRoomList({ keywords, page, limit = 10 }) {
+  async searchLiveRoomList(keywords, page, limit = 10) {
     return await this.get({
       url: `${this.baseUrl}/media/live/search`,
       data: { keywords, page, limit },

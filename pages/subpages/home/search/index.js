@@ -11,18 +11,18 @@ Page({
     keywords: "",
     isSearching: false,
     curMenuIdx: 0,
-    shortVideoList: [],
-    tourismNoteList: [],
-    liveRoomList: [],
-    finished: false,
+    videoList: [],
+    videoFinished: false,
+    noteList: [],
+    noteFinished: false,
+    liveList: [],
+    liveFinished: false,
   },
 
   onLoad() {
     if (wx.getStorageSync("mediaKeywordsList")) {
       this.setData({
-        historyKeywordsList: JSON.parse(
-          wx.getStorageSync("mediaKeywordsList")
-        ),
+        historyKeywordsList: JSON.parse(wx.getStorageSync("mediaKeywordsList")),
       });
     }
   },
@@ -34,11 +34,7 @@ Page({
   }, 500),
 
   cancelSearch() {
-    this.setData({
-      keywords: "",
-      curSortIndex: 0,
-      curCategoryId: 0,
-    });
+    this.setData({ keywords: "" });
     if (this.data.isSearching) {
       this.setData({ isSearching: false });
     }
@@ -50,11 +46,24 @@ Page({
       keywords,
       isSearching: true,
     });
-    this.setGoodsList(true);
+    switch (this.data.curMenuIdx) {
+      case 0:
+        this.setVideoList(true);
+        break;
+
+      case 1:
+        this.setNoteList(true);
+        break;
+
+      case 2:
+        this.setLiveList(true);
+        break;
+    }
   },
 
   search() {
-    const { keywords, isSearching, historyKeywordsList } = this.data;
+    const { curMenuIdx, keywords, isSearching, historyKeywordsList } =
+      this.data;
     if (!keywords) {
       return;
     }
@@ -66,57 +75,130 @@ Page({
     if (!isSearching) {
       this.setData({ isSearching: true });
     }
-    this.setGoodsList(true);
+    switch (curMenuIdx) {
+      case 0:
+        this.setVideoList(true);
+        break;
+
+      case 1:
+        this.setNoteList(true);
+        break;
+
+      case 2:
+        this.setLiveList(true);
+        break;
+    }
   },
 
-  async setGoodsList(init = false) {
+  selectMenu(e) {
+    const curMenuIdx = Number(e.currentTarget.dataset.index);
+    this.setData({ curMenuIdx });
+    const { videoList, noteList, liveList } = this.data;
+    switch (curMenuIdx) {
+      case 0:
+        if (!videoList.length) {
+          this.setVideoList(true);
+        }
+        break;
+
+      case 1:
+        if (!noteList.length) {
+          this.setNoteList(true);
+        }
+        break;
+
+      case 2:
+        if (!liveList.length) {
+          this.setLiveList(true);
+        }
+        break;
+    }
+  },
+
+  async setVideoList(init = false) {
     const limit = 10;
     if (init) {
-      this.page = 0;
-      this.setData({
-        finished: false,
-      });
+      this.videoPage = 0;
+      this.setData({ videoFinished: false });
     }
-    const { keywords, curSortIndex, curCategoryId, goodsList } = this.data;
-    let sort = "";
-    let order = "desc";
-    switch (curSortIndex) {
-      case 1:
-        sort = "sales_volume";
-        break;
-      case 2:
-        sort = "price";
-        break;
-      case 3:
-        sort = "price";
-        order = "asc";
-        break;
-    }
-    const list =
-      (await goodsService.seachGoodsList({
-        keywords,
-        categoryId: curCategoryId,
-        sort,
-        order,
-        page: ++this.page,
-        limit,
-      })) || [];
+    const { keywords, videoList } = this.data;
+    const { list = [] } =
+      (await mediaService.searchVideoList(keywords, ++this.videoPage, limit)) ||
+      {};
     this.setData({
-      goodsList: init ? list : [...goodsList, ...list],
+      videoList: init ? list : [...videoList, ...list],
     });
     if (list.length < limit) {
-      this.setData({
-        finished: true,
-      });
+      this.setData({ videoFinished: true });
+    }
+  },
+
+  async setNoteList(init = false) {
+    const limit = 10;
+    if (init) {
+      this.notePage = 0;
+      this.setData({ noteFinished: false });
+    }
+    const { keywords, noteList } = this.data;
+    const { list = [] } =
+      (await mediaService.searchNoteList(keywords, ++this.notePage, limit)) ||
+      {};
+    this.setData({
+      noteList: init ? list : [...noteList, ...list],
+    });
+    if (list.length < limit) {
+      this.setData({ noteFinished: true });
+    }
+  },
+
+  async setLiveList(init = false) {
+    const limit = 10;
+    if (init) {
+      this.livePage = 0;
+      this.setData({ liveFinished: false });
+    }
+    const { keywords, liveList } = this.data;
+    const { list = [] } =
+      (await mediaService.searchLiveRoomList(keywords, ++this.livePage, limit)) ||
+      {};
+    this.setData({
+      liveList: init ? list : [...liveList, ...list],
+    });
+    if (list.length < limit) {
+      this.setData({ liveFinished: true });
     }
   },
 
   onReachBottom() {
-    this.setGoodsList();
+    switch (curMenuIdx) {
+      case 0:
+        this.setVideoList();
+        break;
+
+      case 1:
+        this.setNoteList();
+        break;
+
+      case 2:
+        this.setLiveList();
+        break;
+    }
   },
 
   onPullDownRefresh() {
-    this.setGoodsList(true);
+    switch (curMenuIdx) {
+      case 0:
+        this.setVideoList(true);
+        break;
+
+      case 1:
+        this.setNoteList(true);
+        break;
+
+      case 2:
+        this.setLiveList(true);
+        break;
+    }
     wx.stopPullDownRefresh();
   },
 
