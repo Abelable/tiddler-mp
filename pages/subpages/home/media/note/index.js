@@ -55,7 +55,11 @@ Page({
       let res;
       switch (this.mediaScene) {
         case SCENE_MINE:
-          res = await noteService.getUserNoteList(++this.page, this.noteId);
+          res = await noteService.getUserNoteList({
+            id: this.noteId,
+            page: ++this.page,
+            withComments: 1,
+          });
           break;
 
         case SCENE_COLLECT:
@@ -73,7 +77,7 @@ Page({
           res = await noteService.getNoteList({
             id: this.noteId,
             authorId: this.authorId,
-            withCommnets: true,
+            withComments: 1,
             page: ++this.page,
           });
           break;

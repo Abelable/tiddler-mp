@@ -201,7 +201,7 @@ Component({
 
       if (!noteFinished) {
         const { list = [], total = 0 } =
-          (await mineService.getUserNoteList(++this.notePage)) || {};
+          (await mineService.getUserNoteList({ page: ++this.notePage })) || {};
         this.setData({
           noteList: init ? list : [...noteList, ...list],
         });
@@ -383,13 +383,13 @@ Component({
     },
 
     checkFollowList() {
-      const url = "/pages/subpages/mine/fan-follow-list/index?scene=1"
+      const url = "/pages/subpages/mine/fan-follow-list/index?scene=1";
       wx.navigateTo({ url });
     },
 
     checkFanList() {
-      const url = "/pages/subpages/mine/fan-follow-list/index?scene=2"
+      const url = "/pages/subpages/mine/fan-follow-list/index?scene=2";
       wx.navigateTo({ url });
-    }
+    },
   },
 });

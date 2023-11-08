@@ -154,10 +154,10 @@ class BaseService extends Base {
     });
   }
 
-  async getUserNoteList(page, id = 0, limit = 10) {
+  async getUserNoteList({ id, page, limit = 10, withComments = 0 }) {
     return await this.get({
       url: `${this.baseUrl}/media/tourism_note/user_list`,
-      data: { page, limit, id },
+      data: cleanObject({ id, page, limit, withComments }),
       loadingTitle: "加载中...",
     });
   }
