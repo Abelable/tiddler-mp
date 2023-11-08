@@ -73,6 +73,7 @@ Page({
           res = await noteService.getNoteList({
             id: this.noteId,
             authorId: this.authorId,
+            withCommnets: true,
             page: ++this.page,
           });
           break;

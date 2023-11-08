@@ -53,10 +53,10 @@ class LiveService extends BaseService {
     });
   }
 
-  async getNoteList({ id, authorId, page, limit = 10, loadingTitle }) {
+  async getNoteList({ id, authorId, withCommnets = false, page, limit = 10, loadingTitle }) {
     return await this.get({
       url: `${this.baseUrl}/media/tourism_note/list`,
-      data: cleanObject({ id, authorId, page, limit }),
+      data: cleanObject({ id, authorId, withCommnets, page, limit }),
       loadingTitle,
     });
   }
