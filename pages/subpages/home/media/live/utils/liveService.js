@@ -1,6 +1,6 @@
-import BaseService from "../../../../../../services/baseService";
+import MediaService from "../../../utils/mediaService";
 
-class LiveService extends BaseService {
+class LiveService extends MediaService {
   async createLive(roomInfo, success) {
     return await this.post({
       url: `${this.baseUrl}/media/live/create`,

@@ -6,7 +6,7 @@
     </view>
   </view>
   <view class="search-bar {{navBarActive ? 'active': ''}}" bindtap="search">
-    <view class="placeholder">搜索攻略、游记等</view>
+    <view class="placeholder">搜索短视频、游记、直播</view>
     <view class="search-btn">
       <image style="width: 20px; height: 20px;" src="https://img.ubo.vip/tiddler/nav-icon/search_white.png" />
     </view>

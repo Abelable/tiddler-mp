@@ -1,5 +1,5 @@
-import { cleanObject } from "../../../../../utils/index";
-import BaseService from "../../../../../services/baseService";
+import { cleanObject } from "../../../../utils/index";
+import BaseService from "../../../../services/baseService";
 
 class LiveService extends BaseService {
   async saveLiveChatMsg(id, content, identity) {

@@ -1,5 +1,5 @@
 import { VIDEO, NOTE } from "../../../../utils/emuns/mediaType";
-import MediaService from "../../utils/mediaService";
+import MediaService from "../../../utils/mediaService";
 
 const mediaService = new MediaService();
 

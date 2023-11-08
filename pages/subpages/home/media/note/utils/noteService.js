@@ -1,4 +1,4 @@
-import MediaService from "../../utils/mediaService";
+import MediaService from "../../../utils/mediaService";
 
 class NoteService extends MediaService {
   async toggleLikeStatus(id, success) {

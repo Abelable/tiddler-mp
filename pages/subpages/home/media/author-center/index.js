@@ -1,5 +1,5 @@
 import { checkLogin } from "../../../../../utils/index";
-import MediaService from "../utils/mediaService";
+import MediaService from "../../utils/mediaService";
 import {
   SCENE_SWITCH_TAB,
   SCENE_REFRESH,
