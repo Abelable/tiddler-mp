@@ -19,12 +19,18 @@ page {
   background: #fff;
 }
 
+.notice-center-icon {
+  margin-left: 8px;
+  width: 24px;
+  height: 24px;
+}
+
 .search-bar {
   display: flex;
   align-items: center;
   margin-left: 8px;
   padding-left: 12px;
-  width: 240px;
+  width: 200px;
   height: 36px;
   border-radius: 18px;
   background: #fff;
