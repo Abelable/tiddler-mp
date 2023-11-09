@@ -2,18 +2,26 @@ import { SCENE_AUTHOR } from "../../utils/emuns/mediaScene";
 
 Component({
   options: {
-    addGlobalClass: true
+    addGlobalClass: true,
   },
 
   properties: {
     item: Object,
     mediaScene: {
       type: Number,
-      value: 1
+      value: 1,
     },
   },
 
+  data: {
+    visible: false,
+  },
+
   methods: {
+    onCoverLoaded() {
+      this.setData({ visible: true });
+    },
+
     navToNoteDetail() {
       const { item, mediaScene } = this.properties;
       const { id, authorInfo } = item;
@@ -23,5 +31,5 @@ Component({
       }`;
       wx.navigateTo({ url });
     },
-  }
-})
+  },
+});

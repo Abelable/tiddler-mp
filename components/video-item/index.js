@@ -9,11 +9,24 @@ Component({
     item: Object,
     mediaScene: {
       type: Number,
-      value: 1
+      value: 1,
     },
   },
-  
+
+  data: {
+    coverMode: "widthFix",
+    visible: false,
+  },
+
   methods: {
+    onCoverLoaded(e) {
+      const { width, height } = e.detail;
+      if (height * (350 / width) > 480) {
+        this.setData({ coverMode: "aspectFill" });
+      }
+      this.setData({ visible: true });
+    },
+
     navToVideoDetail() {
       const { item, mediaScene } = this.properties;
       const { id, authorInfo } = item;

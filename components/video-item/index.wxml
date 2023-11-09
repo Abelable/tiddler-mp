@@ -1,8 +1,14 @@
 <wxs module="NUM" src="/utils/filters/num.wxs" />
 
-<view class="video-item" bindtap="navToVideoDetail">
+<view class="video-item {{visible ? 'show' : ''}}" bindtap="navToVideoDetail">
   <view class="cover-wrap">
-    <image class="cover" src="{{item.cover}}" mode="widthFix" lazy-load />
+    <image 
+      class="cover {{ coverMode !== 'widthFix' ? 'over-size' : '' }}"
+      src="{{item.cover}}" 
+      mode="{{ coverMode }}" 
+      bindload="onCoverLoaded"
+      lazy-load 
+    />
     <view class="private-tag row" wx:if="{{item.isPrivate}}">
       <image class="private-icon" src="https://img.ubo.vip/tiddler/media-item/private-icon.png" />
       <text>私密</text>

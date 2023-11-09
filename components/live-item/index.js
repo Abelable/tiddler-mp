@@ -22,6 +22,7 @@ Component({
   },
 
   data: {
+    visible: false,
     active: false,
     activeBgVisible: false,
   },
@@ -46,6 +47,10 @@ Component({
   },
 
   methods: {
+    onCoverLoaded() {
+      this.setData({ visible: true });
+    },
+
     statechange(e) {
       if (e.detail.code == 2004) {
         setTimeout(() => {

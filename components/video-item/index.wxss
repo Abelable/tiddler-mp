@@ -1,6 +1,11 @@
 .video-item {
   margin-bottom: 30rpx;
   width: 350rpx;
+  opacity: 0;
+}
+.video-item.show {
+  opacity: 1;
+  transition: opacity .2s ease;
 }
 .cover-wrap {
   position: relative;

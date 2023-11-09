@@ -6,6 +6,11 @@
   font-size: 0;
   border-radius: 18rpx;
   overflow: hidden;
+  opacity: 0;
+}
+.live-item.show {
+  opacity: 1;
+  transition: opacity .2s ease;
 }
 
 .bg,
