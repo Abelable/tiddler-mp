@@ -179,7 +179,7 @@ Page({
   },
 
   onReachBottom() {
-    switch (curMenuIdx) {
+    switch (this.data.curMenuIdx) {
       case 0:
         this.setVideoList();
         break;
@@ -195,7 +195,7 @@ Page({
   },
 
   onPullDownRefresh() {
-    switch (curMenuIdx) {
+    switch (this.data.curMenuIdx) {
       case 0:
         this.setVideoList(true);
         break;
