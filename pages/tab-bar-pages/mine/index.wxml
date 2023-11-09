@@ -3,8 +3,8 @@
 <view class="nav-bar row" style="padding-top: {{statusBarHeight}}px;">
   <image class="nav-bg" wx:if="{{navBarVisible}}" src="{{userInfo.bg || 'https://img.ubo.vip/tiddler/temp/bg.jpg'}}" />
   <view class="bg-cover" wx:if="{{navBarVisible}}" />
-  <view class="setting-wrap row center" bindtap="navToSetting">
-    <image class="setting" src="https://img.ubo.vip/tiddler/mine/setting.png" />
+  <view class="notice-icon-wrap row center" bindtap="navToSetting">
+    <image class="notice-icon" src="https://img.ubo.vip/tiddler/nav-icon/msg_center.png" bindtap="navToNoticeCenter" />
   </view>
   <image class="mine-avatar" wx:if="{{navBarVisible}}" src="{{userInfo.avatar}}" />
   <view class="mine-name" wx:if="{{navBarVisible}}">{{userInfo.nickname}}</view>
@@ -58,6 +58,10 @@
         <image class="function-icon" src="https://img.ubo.vip/tiddler/mine/shop.png" />
         <view class="function-desc">商家中心</view>
       </navigator>
+      <view class="function-item" bindtap="navToSetting">
+        <image class="function-icon" src="https://img.ubo.vip/tiddler/mine/setting.png" />
+        <view class="function-desc">更多设置</view>
+      </view>
     </view>
 
     <view class="works-wrap {{menuFixed ? 'fixed' : '' }}">

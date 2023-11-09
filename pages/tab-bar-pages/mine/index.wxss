@@ -24,7 +24,8 @@
   backdrop-filter: blur(4px);
   z-index: -1;
 }
-.setting-wrap {
+
+.notice-icon-wrap {
   margin-left: 8px;
   font-size: 0;
   width: 32px;
@@ -33,10 +34,11 @@
   background: rgba(0, 0, 0, 0.3);
   border: 0.5px solid rgba(255,255,255,0.3);
 }
-.setting {
+.notice-icon {
   width: 24px;
   height: 24px;
 }
+
 .mine-avatar {
   margin-left: 8px;
   width: 30px;
