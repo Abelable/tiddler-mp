@@ -3,7 +3,9 @@
   "enablePullDownRefresh": true,
   "usingComponents": {
     "fall-flow": "/components/fall-flow/index",
-    "goods-item": "/components/goods-item/index",
+    "video-item": "/components/video-item/index",
+    "note-item": "/components/note-item/index",
+    "live-item": "/components/live-item/index",
     "empty-illus": "/components/empty-illus/index"
   }
 }

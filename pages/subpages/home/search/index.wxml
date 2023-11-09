@@ -45,8 +45,20 @@
   </view>
 </view>
 
-<view class="goods-list-wrap" wx:if="{{isSearching}}" style="padding-top: {{statusBarHeight + 104}}px">
-  <fall-flow wx:if="{{goodsList}}" list="{{goodsList}}" generic:item="goods-item" />
-  <empty-illus wx:if="{{finished && !goodsList.length}}" desc="没有找到相关商品" />
-  <view class="no-more-tips" wx:if="{{finished && goodsList.length}}">～没有更多了～</view>
+<view class="list-wrap" wx:if="{{isSearching && curMenuIdx === 0}}" style="padding-top: {{statusBarHeight + 104}}px">
+  <fall-flow wx:if="{{videoList}}" list="{{videoList}}" generic:item="video-item" />
+  <empty-illus wx:if="{{videoFinished && !videoList.length}}" desc="没有找到相关短视频" />
+  <view class="no-more-tips" wx:if="{{videoFinished && videoList.length}}">～没有更多了～</view>
+</view>
+
+<view class="list-wrap" wx:if="{{isSearching && curMenuIdx === 1}}" style="padding-top: {{statusBarHeight + 104}}px">
+  <fall-flow wx:if="{{noteList}}" list="{{noteList}}" generic:item="note-item" />
+  <empty-illus wx:if="{{noteFinished && !noteList.length}}" desc="没有找到相关游记" />
+  <view class="no-more-tips" wx:if="{{noteFinished && noteList.length}}">～没有更多了～</view>
+</view>
+
+<view class="list-wrap" wx:if="{{isSearching && curMenuIdx === 2}}" style="padding-top: {{statusBarHeight + 104}}px">
+  <fall-flow wx:if="{{liveList}}" list="{{liveList}}" generic:item="live-item" />
+  <empty-illus wx:if="{{liveFinished && !liveList.length}}" desc="没有找到相关直播" />
+  <view class="no-more-tips" wx:if="{{liveFinished && liveList.length}}">～没有更多了～</view>
 </view>

@@ -34,10 +34,16 @@ Page({
   }, 500),
 
   cancelSearch() {
-    this.setData({ keywords: "" });
-    if (this.data.isSearching) {
-      this.setData({ isSearching: false });
-    }
+    this.setData({ 
+      keywords: "",
+      isSearching: false,
+      videoList: [],
+      videoFinished: false,
+      noteList: [],
+      noteFinished: false,
+      liveList: [],
+      liveFinished: false,
+    });
   },
 
   selectKeywords(e) {
@@ -159,8 +165,11 @@ Page({
     }
     const { keywords, liveList } = this.data;
     const { list = [] } =
-      (await mediaService.searchLiveRoomList(keywords, ++this.livePage, limit)) ||
-      {};
+      (await mediaService.searchLiveRoomList(
+        keywords,
+        ++this.livePage,
+        limit
+      )) || {};
     this.setData({
       liveList: init ? list : [...liveList, ...list],
     });

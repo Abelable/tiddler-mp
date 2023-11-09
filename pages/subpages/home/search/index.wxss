@@ -112,7 +112,7 @@
   background: #efefef;
 }
 
-.goods-list-wrap {
+.list-wrap {
   padding: 20rpx;
 }
 
