@@ -17,11 +17,32 @@
 .cover {
   width: 350rpx;
 }
+
+.type-label {
+  position: absolute;
+  top: 10rpx;
+  left: 10rpx;
+  padding: 0 12rpx;
+  height: 34rpx;
+  color: #fff;
+  font-size: 20rpx;
+  border-radius: 8rpx;
+}
+.type-label.scenic {
+  background: rgb(184, 64, 211);
+}
+.type-label.hotel {
+  background: rgb(98, 97, 238);
+}
+.type-label.restaurant {
+  background: rgb(251, 49, 105);
+}
+
 .address-info {
   position: absolute;
   left: 0;
   bottom: 0;
-  padding: 20rpx;
+  padding: 10rpx;
   width: 100%;
   display: flex;
   align-items: center;
@@ -38,6 +59,7 @@
   font-size: 20rpx;
   font-weight: 500;
 }
+
 .title {
   margin-top: 12rpx;
   padding: 0 10rpx;
