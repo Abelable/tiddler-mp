@@ -11,18 +11,44 @@ Component({
       { name: "景点玩乐", icon: "https://img.ubo.vip/tiddler/mall/scenic.png" },
       { name: "酒店民宿", icon: "https://img.ubo.vip/tiddler/mall/hotel.png" },
       { name: "美食小吃", icon: "https://img.ubo.vip/tiddler/mall/food.png" },
-      { name: "特色商品", icon: "https://img.ubo.vip/tiddler/mall/shopping.png" },
+      {
+        name: "特色商品",
+        icon: "https://img.ubo.vip/tiddler/mall/shopping.png",
+      },
     ],
     navBarActive: false,
+    commodityList: [],
+    finished: false,
   },
 
   pageLifetimes: {
     show() {
       store.setTabType("mall");
+
+      if (!this.data.commodityList.length) {
+        this.setCommodityList(true);
+      }
     },
   },
 
   methods: {
+    async setCommodityList(init = false) {
+      const limit = 10;
+      if (init) {
+        this.page = 0;
+        this.setData({ finished: false });
+      }
+      const { commodityList } = this.data;
+      const { list = [] } =
+        (await mallService.getCommodityList(++this.page, limit)) || {};
+      this.setData({
+        commodityList: init ? list : [...commodityList, ...list],
+      });
+      if (list.length < limit) {
+        this.setData({ finished: true });
+      }
+    },
+
     onPageScroll(e) {
       if (e.scrollTop >= 10) {
         if (!this.data.navBarActive) {
@@ -39,9 +65,12 @@ Component({
       }
     },
 
-    onReachBottom() {},
+    onReachBottom() {
+      this.setCommodityList();
+    },
 
     onPullDownRefresh() {
+      this.setCommodityList(true);
       wx.stopPullDownRefresh();
     },
 

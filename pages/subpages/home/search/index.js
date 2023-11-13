@@ -34,7 +34,7 @@ Page({
   }, 500),
 
   cancelSearch() {
-    this.setData({ 
+    this.setData({
       keywords: "",
       isSearching: false,
       videoList: [],
@@ -173,7 +173,10 @@ Page({
     this.setData({
       liveList: init ? list : [...liveList, ...list],
     });
-    if (list.length < limit) {
+    // if (list.length < limit) {
+    //   this.setData({ liveFinished: true });
+    // }
+    if (!list.length) {
       this.setData({ liveFinished: true });
     }
   },

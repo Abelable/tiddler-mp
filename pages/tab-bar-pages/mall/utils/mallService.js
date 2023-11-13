@@ -1,17 +1,9 @@
 import BaseService from "../../../../services/baseService";
 
 class MallService extends BaseService {
-  async getMediaList(page, limit = 10) {
+  async getCommodityList(page, limit = 10) {
     return await this.get({
-      url: `${this.baseUrl}/media/list`,
-      data: { page, limit },
-      loadingTitle: '加载中...'
-    });
-  }
-
-  async getFollowMediaList(page, limit = 10) {
-    return await this.get({
-      url: `${this.baseUrl}/media/follow_list`,
+      url: `${this.baseUrl}/mall/commodity_list`,
       data: { page, limit },
       loadingTitle: '加载中...'
     });
