@@ -7,7 +7,15 @@ Component({
     item: Object
   },
 
+  data: {
+    visible: false,
+  },
+
   methods: {
+    onCoverLoaded() {
+      this.setData({ visible: true });
+    },
+    
     navToGoodsDetail() {
       wx.navigateTo({
         url: `/pages/subpages/mall/goods/subpages/goods-detail/index?id=${this.properties.item.id}`

@@ -1,6 +1,6 @@
-<view class="commodity-item" wx:if="{{item.type !== 4}}">
+<view class="commodity-item {{visible ? 'show' : ''}}" wx:if="{{item.type !== 4}}">
   <view class="cover-wrap">
-    <image class="cover" mode="widthFix" src="{{ item.cover || item.imageList[0] }}" />
+    <image class="cover" mode="widthFix" src="{{ item.cover || item.imageList[0] }}" bindload="onCoverLoaded" lazy-load />
     <view class="address-info">
       <image class="address-icon" src="https://img.ubo.vip/tiddler/media-item/address.png" />
       <text class="address-detail omit single-line">{{ item.address }}</text>

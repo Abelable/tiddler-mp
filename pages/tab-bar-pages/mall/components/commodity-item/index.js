@@ -8,8 +8,12 @@ Component({
   },
 
   data: {
+    visible: false,
   },
 
   methods: {
+    onCoverLoaded() {
+      this.setData({ visible: true });
+    },
   }
 })
