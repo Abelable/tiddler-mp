@@ -3,6 +3,8 @@
   "enablePullDownRefresh": true,
   "backgroundColor": "#ffffff",
   "usingComponents": {
-    "goods-item": "./components/goods-item/index"
+    "fall-flow": "/components/fall-flow/index",
+    "commodity-item": "./components/commodity-item/index",
+    "empty-illus": "/components/empty-illus/index"
   }
 }

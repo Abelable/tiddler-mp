@@ -1,0 +1,27 @@
+<view class="commodity-item" wx:if="{{item.type !== 4}}">
+  <view class="cover-wrap">
+    <image class="cover" mode="widthFix" src="{{ item.cover || item.imageList[0] }}" />
+    <view class="address-info">
+      <image class="address-icon" src="https://img.ubo.vip/tiddler/media-item/address.png" />
+      <text class="address-detail omit single-line">{{ item.address }}</text>
+    </view>
+  </view>
+  <view class="title omit">{{ item.name }}</view>
+  <view class="label-list">
+    <view class="label">体验慢生活</view>
+    <view class="label">纯玩0购物</view>
+  </view>
+  <view class="info-wrap">
+    <view class="price">
+      <text style="margin-right: 4rpx; color: #EE0D23;">¥</text>
+      <text class="num" style="color: #EE0D23; font-size: 32rpx;">{{ item.price || 0 }}</text>
+      <text style="margin-left: 2rpx;">起</text>
+    </view>
+    <view class="sales">
+      <text>已售</text>
+      <text style="font-weight: bold;">{{ item.salesVolumns || 0 }}</text>
+    </view>
+  </view>
+</view>
+
+<goods-item wx:if="{{item.type === 4}}" item="{{item}}" />

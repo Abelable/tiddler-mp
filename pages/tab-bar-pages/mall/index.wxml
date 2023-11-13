@@ -23,7 +23,9 @@
     </view>
   </view>
   
-  <view class="goods-list">
-    <goods-item />
+  <view class="commodity-list">
+    <fall-flow list="{{commodityList}}" generic:item="commodity-item" />
+    <empty-illus wx:if="{{finished && !commodityList.length}}" desc="暂无列表" />
+    <view class="no-more-tips" wx:if="{{finished && commodityList.length}}">～没有更多了～</view>
   </view>
 </view>
