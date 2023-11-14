@@ -20,7 +20,7 @@ class MallService extends BaseService {
   }) {
     return await this.get({
       url: `${this.baseUrl}/scenic/nearby_list`,
-      data: { id, longitude, latitude, radius, page, limit },
+      data: cleanObject({ id, longitude, latitude, radius, page, limit }),
       loadingTitle: "加载中...",
     });
   }
@@ -43,7 +43,7 @@ class MallService extends BaseService {
   }) {
     return await this.get({
       url: `${this.baseUrl}/hotel/nearby_list`,
-      data: { id, longitude, latitude, radius, page, limit },
+      data: cleanObject({ id, longitude, latitude, radius, page, limit }),
       loadingTitle: "加载中...",
     });
   }
