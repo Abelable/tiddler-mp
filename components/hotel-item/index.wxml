@@ -1,4 +1,4 @@
-<view class="hotel-item {{visible ? 'show' : ''}}">
+<view class="hotel-item {{visible ? 'show' : ''}}" bindtap="checkDetail">
   <view class="cover-wrap">
     <image class="cover" mode="widthFix" src="{{ item.cover }}" bindload="onCoverLoaded" lazy-load />
     <view class="type-label row">酒店</view>
