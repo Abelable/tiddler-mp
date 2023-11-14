@@ -25,6 +25,8 @@ Component({
     show() {
       store.setTabType("mall");
 
+      this.setLocationInfo();
+      this.initCalendar();
       if (!this.data.commodityList.length) {
         this.setCommodityList(true);
       }
@@ -32,6 +34,22 @@ Component({
   },
 
   methods: {
+    async setLocationInfo() {
+      const { authSetting } = await mallService.getSetting();
+      if (authSetting["scope.userLocation"] !== false) {
+        const { longitude, latitude } = await mallService.getLocation();
+        store.setLocationInfo({ longitude, latitude });
+      }
+    },
+
+    initCalendar() {
+      store.setCheckInDate(new Date().getTime());
+  
+      const endDate = new Date();
+      endDate.setDate(endDate.getDate() + 1);
+      store.setCheckOutDate(endDate.getTime());
+    },
+
     async setCommodityList(init = false) {
       const limit = 10;
       if (init) {
