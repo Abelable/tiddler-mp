@@ -18,7 +18,7 @@ class MallService extends BaseService {
     });
   }
 
-  async searchHotelList(keywords, page, limit = 10) {
+  async searchRestaurantList(keywords, page, limit = 10) {
     return await this.get({
       url: `${this.baseUrl}/catering/restaurant/search`,
       data: { keywords, page, limit },
