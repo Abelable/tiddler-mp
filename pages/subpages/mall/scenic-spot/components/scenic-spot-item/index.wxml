@@ -4,7 +4,7 @@
   url="/pages/subpages/mall/scenic-spot/subpages/spot-detail/index?id={{item.id}}"
   hover-class="none"
 >
-  <image class="cover" src="{{item.image}}" mode="aspectFill" lazy-load />
+  <image class="cover" src="{{item.cover}}" mode="aspectFill" lazy-load />
   <view class="content">
     <view class="row">
       <view class="title omit single-line">{{item.name}}</view>
