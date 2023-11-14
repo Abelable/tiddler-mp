@@ -37,6 +37,7 @@
 .labels {
   display: flex;
   margin-top: 18rpx;
+  overflow: hidden;
 }
 .label {
   margin-right: 10rpx;
@@ -45,6 +46,7 @@
   color: #ed547c;
   font-size: 19rpx;
   font-weight: bold;
+  white-space: nowrap;
   background: #f6edf1;
   border-radius: 6rpx;
 }

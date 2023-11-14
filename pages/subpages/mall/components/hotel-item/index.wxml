@@ -10,7 +10,7 @@
       <view class="hotel-type">{{['经济酒店', '舒适酒店', '高档酒店', '豪华酒店'][info.grade - 1]}}</view>
     </view>
     <view class="labels">
-      <view class="label row" wx:for="{{info.featureTagList}}" wx:key="index" wx:for-item="tag">{{tag}}</view>
+      <view class="label row" wx:for="{{featureTagList}}" wx:key="index" wx:for-item="tag">{{tag}}</view>
     </view>
     <view class="hotel-distance-wrap row between">
       <view class="hotel-distance row">

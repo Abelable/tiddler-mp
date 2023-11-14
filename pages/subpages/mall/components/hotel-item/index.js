@@ -14,13 +14,18 @@ Component({
           const { longitude: lo1, latitude: la1 } = store.locationInfo;
           const { longitude: lo2, latitude: la2 } = info;
           const distance = calcDistance(la1, lo1, la2, lo2);
-          this.setData({ distance });
+
+          const featureTagList = info.featureTagList.slice(0, 2);
+          this.setData({ distance, featureTagList });
+
+
         }
       },
     },
   },
 
   data: {
+    featureTagList: [],
     distance: 0,
   },
 

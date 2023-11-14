@@ -18,8 +18,12 @@
   font-size: 24rpx;
   font-weight: bold;
 }
+.scenic-spot-rate-wrap {
+  margin-top: 6rpx;
+}
 .scenic-spot-rate {
-  margin-top: 10rpx;
+  margin-left: 4rpx;
+  margin-top: -1rpx;
   color: #333;
   font-size: 20rpx;
 }
