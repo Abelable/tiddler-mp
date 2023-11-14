@@ -14,7 +14,7 @@ class MallService extends BaseService {
     id,
     longitude,
     latitude,
-    radius = 100,
+    radius = 10,
     page,
     limit = 10,
   }) {
@@ -37,7 +37,7 @@ class MallService extends BaseService {
     id,
     longitude,
     latitude,
-    radius = 100,
+    radius = 10,
     page,
     limit = 10,
   }) {
