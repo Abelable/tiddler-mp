@@ -188,7 +188,7 @@ Page({
     }
     const { keywords, goodsList } = this.data;
     const list =
-      (await goodsService.seachGoodsList({
+      (await mallService.seachGoodsList({
         keywords,
         page: ++this.goodsPage,
         limit,
