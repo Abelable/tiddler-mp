@@ -18,7 +18,7 @@ Component({
 
     checkDetail() {
       const { id } = this.properties.item;
-      const url = `/pages/subpages/mall/hotel/index?id=${id}`;
+      const url = `/pages/subpages/mall/hotel/subpages/hotel-detail/index?id=${id}`;
       wx.navigateTo({ url });
     },
   },

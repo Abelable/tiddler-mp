@@ -18,7 +18,7 @@ Component({
 
     checkDetail() {
       const { id } = this.properties.item;
-      const url = `/pages/subpages/mall/catering/index?id=${id}`;
+      const url = `/pages/subpages/mall/catering/subpages/restaurant-detail/index?id=${id}`;
       wx.navigateTo({ url });
     },
   },
