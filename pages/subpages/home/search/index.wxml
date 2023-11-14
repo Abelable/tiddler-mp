@@ -7,7 +7,7 @@
       <image class="search-icon" src="https://img.ubo.vip/mp/index/search/index-search.png" />
       <input class="search-input"
         value="{{keywords}}" bindinput="setKeywords" bindconfirm="search" 
-        placeholder="请输入搜索内容" type="text" confirm-type="search" 
+        placeholder="请输入搜索关键字" type="text" confirm-type="search" 
       />
       <view class="cancel-btn" wx:if="{{keywords}}" bindtap="cancelSearch">
         <image class="cancel-icon" src="https://img.ubo.vip/mp/search/clear-search.png" />

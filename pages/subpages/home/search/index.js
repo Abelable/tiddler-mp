@@ -68,8 +68,7 @@ Page({
   },
 
   search() {
-    const { curMenuIdx, keywords, isSearching, historyKeywordsList } =
-      this.data;
+    const { keywords, isSearching, historyKeywordsList } = this.data;
     if (!keywords) {
       return;
     }
@@ -81,42 +80,44 @@ Page({
     if (!isSearching) {
       this.setData({ isSearching: true });
     }
-    switch (curMenuIdx) {
-      case 0:
-        this.setVideoList(true);
-        break;
-
-      case 1:
-        this.setNoteList(true);
-        break;
-
-      case 2:
-        this.setLiveList(true);
-        break;
-    }
+    this.setList(true);
   },
 
   selectMenu(e) {
     const curMenuIdx = Number(e.currentTarget.dataset.index);
     this.setData({ curMenuIdx });
     const { videoList, noteList, liveList } = this.data;
-    switch (curMenuIdx) {
+
+    if (
+      (curMenuIdx === 0 && !videoList.length) ||
+      (curMenuIdx === 1 && !noteList.length) ||
+      (curMenuIdx === 2 && !liveList.length)
+    ) {
+      this.setList(true);
+    }
+  },
+
+  onReachBottom() {
+    this.setList();
+  },
+
+  onPullDownRefresh() {
+    this.setList(true);
+    wx.stopPullDownRefresh();
+  },
+
+  setList(init = false) {
+    switch (this.data.curMenuIdx) {
       case 0:
-        if (!videoList.length) {
-          this.setVideoList(true);
-        }
+        this.setVideoList(init);
         break;
 
       case 1:
-        if (!noteList.length) {
-          this.setNoteList(true);
-        }
+        this.setNoteList(init);
         break;
 
       case 2:
-        if (!liveList.length) {
-          this.setLiveList(true);
-        }
+        this.setLiveList(init);
         break;
     }
   },
@@ -179,39 +180,6 @@ Page({
     if (!list.length) {
       this.setData({ liveFinished: true });
     }
-  },
-
-  onReachBottom() {
-    switch (this.data.curMenuIdx) {
-      case 0:
-        this.setVideoList();
-        break;
-
-      case 1:
-        this.setNoteList();
-        break;
-
-      case 2:
-        this.setLiveList();
-        break;
-    }
-  },
-
-  onPullDownRefresh() {
-    switch (this.data.curMenuIdx) {
-      case 0:
-        this.setVideoList(true);
-        break;
-
-      case 1:
-        this.setNoteList(true);
-        break;
-
-      case 2:
-        this.setLiveList(true);
-        break;
-    }
-    wx.stopPullDownRefresh();
   },
 
   clearHistoryKeywords() {

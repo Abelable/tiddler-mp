@@ -1,7 +1,7 @@
 import { cleanObject } from "../../../../utils/index";
 import BaseService from "../../../../services/baseService";
 
-class LiveService extends BaseService {
+class MediaService extends BaseService {
   async saveLiveChatMsg(id, content, identity) {
     return await this.post({
       url: `${this.baseUrl}/media/live/comment`,
@@ -161,4 +161,4 @@ class LiveService extends BaseService {
   }
 }
 
-export default LiveService;
+export default MediaService;
