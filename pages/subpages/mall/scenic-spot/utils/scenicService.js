@@ -1,7 +1,7 @@
 import { cleanObject } from "../../../../../utils/index";
-import BaseService from "../../../../../services/baseService";
+import MallService from "../../utils/mallService";
 
-class ScenicService extends BaseService {
+class ScenicService extends MallService {
   async getScenicCategoryOptions() {
     return await this.get({ url: `${this.baseUrl}/scenic/category_options` });
   }

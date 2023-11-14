@@ -1,12 +1,7 @@
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
 import { store } from "../../../../../../store/index";
 import { calcDistance } from "../../../../../../utils/index";
-import {
-  commentList,
-  nearbyScenicSpotList,
-  nearbyHotelList,
-  mediaList,
-} from "../../../../utils/tempData";
+import { commentList, mediaList } from "../../../../utils/tempData";
 import { formatter } from "../../utils/index";
 import HotelService from "../../utils/hotelService";
 
@@ -38,8 +33,10 @@ Component({
     roomTypeIndexList: [],
     roomPackageList: [],
     commentList,
-    nearbyScenicSpotList,
-    nearbyHotelList,
+    nearbyScenicList: [],
+    nearbyScenicTotal: 0,
+    nearbyHotelList: [],
+    nearbyHotelTotal: 0,
     mediaList,
     curRoomInfo: null,
     noticePopupVisible: false,
@@ -62,6 +59,8 @@ Component({
       this.hotelId = +id;
       await this.setHotelInfo();
       await this.setRoomTypeList();
+      await this.setNearbyScenicList();
+      await this.setNearbyHotelList();
       this.setMenuList();
     },
 
@@ -305,6 +304,29 @@ Component({
 
     onReachBottom() {
       console.log("onReachBottom");
+    },
+
+    async setNearbyScenicList() {
+      const { longitude, latitude } = this.data.hotelInfo;
+      const { list: nearbyScenicList = [], total: nearbyScenicTotal } =
+        await hotelService.getNearbyScenicList({
+          longitude,
+          latitude,
+          page: 1,
+        });
+      this.setData({ nearbyScenicList, nearbyScenicTotal });
+    },
+
+    async setNearbyHotelList() {
+      const { id, longitude, latitude } = this.data.hotelInfo;
+      const { list: nearbyHotelList = [], total: nearbyHotelTotal } =
+        await hotelService.getNearbyHotelList({
+          id,
+          longitude,
+          latitude,
+          page: 1,
+        });
+      this.setData({ nearbyHotelList, nearbyHotelTotal });
     },
 
     showNoticePopup(e) {

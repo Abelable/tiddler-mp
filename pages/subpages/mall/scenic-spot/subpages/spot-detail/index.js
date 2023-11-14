@@ -1,9 +1,4 @@
-import {
-  commentList,
-  nearbyScenicSpotList,
-  nearbyHotelList,
-  mediaList,
-} from "../.../../../../../utils/tempData";
+import { commentList, mediaList } from "../.../../../../../utils/tempData";
 import ScenicService from "../../utils/scenicService";
 
 const scenicService = new ScenicService();
@@ -27,8 +22,10 @@ Page({
     curCombinedTicketTypeIdx: 0,
     combinedTicketList: [],
     commentList,
-    nearbyHotelList,
-    nearbyScenicSpotList,
+    nearbyHotelList: [],
+    nearbyHotelTotal: 0,
+    nearbyScenicList: [],
+    nearbyScenicTotal: 0,
     mediaList,
     curTicketInfo: null,
     noticePopupVisible: false,
@@ -39,6 +36,8 @@ Page({
     await this.setScenicCategoryOptions();
     await this.setScenicInfo();
     await this.setSourceTicketList();
+    await this.setNearbyHotelList();
+    await this.setNearbyScenicList();
     this.setMenuList();
   },
 
@@ -376,6 +375,29 @@ Page({
 
   onReachBottom() {
     console.log("onReachBottom");
+  },
+
+  async setNearbyHotelList() {
+    const { longitude, latitude } = this.data.scenicInfo;
+    const { list: nearbyHotelList = [], total: nearbyHotelTotal } =
+      await scenicService.getNearbyHotelList({
+        longitude,
+        latitude,
+        page: 1,
+      });
+    this.setData({ nearbyHotelList, nearbyHotelTotal });
+  },
+
+  async setNearbyScenicList() {
+    const { id, longitude, latitude } = this.data.scenicInfo;
+    const { list: nearbyScenicList = [], total: nearbyScenicTotal } =
+      await scenicService.getNearbyScenicList({
+        id,
+        longitude,
+        latitude,
+        page: 1,
+      });
+    this.setData({ nearbyScenicList, nearbyScenicTotal });
   },
 
   showNoticePopup(e) {

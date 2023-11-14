@@ -10,10 +10,40 @@ class MallService extends BaseService {
     });
   }
 
+  async getNearbyScenicList({
+    id,
+    longitude,
+    latitude,
+    radius = 10,
+    page,
+    limit = 10,
+  }) {
+    return await this.get({
+      url: `${this.baseUrl}/scenic/nearby_list`,
+      data: { id, longitude, latitude, radius, page, limit },
+      loadingTitle: "加载中...",
+    });
+  }
+
   async searchHotelList(keywords, page, limit = 10) {
     return await this.get({
       url: `${this.baseUrl}/hotel/search`,
       data: { keywords, page, limit },
+      loadingTitle: "加载中...",
+    });
+  }
+
+  async getNearbyHotelList({
+    id,
+    longitude,
+    latitude,
+    radius = 10,
+    page,
+    limit = 10,
+  }) {
+    return await this.get({
+      url: `${this.baseUrl}/hotel/nearby_list`,
+      data: { id, longitude, latitude, radius, page, limit },
       loadingTitle: "加载中...",
     });
   }
@@ -26,13 +56,21 @@ class MallService extends BaseService {
     });
   }
 
-  async seachGoodsList({ keywords, categoryId, sort, order, page, limit = 10 }) {
-    const { list = [] } = await this.get({ 
-      url: `${this.baseUrl}/goods/search`, 
-      data: cleanObject({ keywords, categoryId, sort, order, page, limit }) ,
-      loadingTitle: '加载中...'
-    }) || {}
-    return list
+  async seachGoodsList({
+    keywords,
+    categoryId,
+    sort,
+    order,
+    page,
+    limit = 10,
+  }) {
+    const { list = [] } =
+      (await this.get({
+        url: `${this.baseUrl}/goods/search`,
+        data: cleanObject({ keywords, categoryId, sort, order, page, limit }),
+        loadingTitle: "加载中...",
+      })) || {};
+    return list;
   }
 }
 

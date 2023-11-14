@@ -249,21 +249,21 @@
   <view class="content-wrap">
     <view class="content-title-wrap row between">
       <view class="content-title">附近景点</view>
-      <view class="row">
-        <view class="more-detail">共10个推荐</view>
+      <view class="row" wx:if="{{nearbyScenicTotal > 10}}">
+        <view class="more-detail">共{{nearbyScenicTotal}}个推荐</view>
         <image class="more-icon" src="./images/more.png" />
       </view>
     </view>
     <scroll-view class="hotel-hotel-list" scroll-x enable-flex>
-      <scenic-spot-item wx:for="{{nearbyScenicSpotList}}" wx:key="index" info="{{item}}" />
+      <scenic-spot-item wx:for="{{nearbyScenicList}}" wx:key="index" info="{{item}}" />
     </scroll-view>
   </view>
   
   <view class="content-wrap">
     <view class="content-title-wrap row between">
       <view class="content-title">附近酒店</view>
-      <view class="row">
-        <view class="more-detail">共10个推荐</view>
+      <view class="row" wx:if="{{nearbyHotelTotal > 10}}">
+        <view class="more-detail">共{{nearbyHotelTotal}}个推荐</view>
         <image class="more-icon" src="./images/more.png" />
       </view>
     </view>

@@ -33,18 +33,22 @@
   padding-left: 8rpx;
   border-left: 1px solid #ddd;
 }
-.hotel-tag {
+
+.labels {
+  display: flex;
   margin-top: 18rpx;
+}
+.label {
+  margin-right: 10rpx;
   padding: 0 8rpx;
-  width: fit-content;
   height: 30rpx;
   color: #ed547c;
   font-size: 19rpx;
   font-weight: bold;
-  line-height: 1;
   background: #f6edf1;
   border-radius: 6rpx;
 }
+
 .hotel-distance-wrap {
   margin-top: 12rpx;
 }

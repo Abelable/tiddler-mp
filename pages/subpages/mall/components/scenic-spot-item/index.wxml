@@ -1,5 +1,5 @@
-<view class="scenic-spot-item">
-  <image class="scenic-spot-image" mode="aspectFill" src="{{info.image}}" />
+<view class="scenic-spot-item" bindtap="checkDetail">
+  <image class="scenic-spot-image" mode="aspectFill" src="{{info.cover}}" />
   <view class="scenic-spot-info">
     <view class="scenic-spot-name omit single-line">{{info.name}}</view>
     <view class="scenic-spot-rate-wrap row">
@@ -11,7 +11,7 @@
     </view>
     <view class="scenic-spot-distance row">
       <image class="scenic-spot-distance-icon" src="./images/position.png" />
-      <text>距景点{{info.distance}}</text>
+      <text>相距{{distance}}km</text>
     </view>
   </view>
 </view>
