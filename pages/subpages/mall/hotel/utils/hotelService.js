@@ -1,7 +1,7 @@
 import { cleanObject } from "../../../../../utils/index";
-import BaseService from "../../../../../services/baseService";
+import MallService from "../../utils/mallService";
 
-class HotelService extends BaseService {
+class HotelService extends MallService {
   async getHotelCategoryOptions() {
     return await this.get({ url: `${this.baseUrl}/hotel/category_options` });
   }
