@@ -1,75 +1,84 @@
-import { cleanObject } from '../../../../../utils/index'
-import MallService from '../../utils/mallService'
+import { cleanObject } from "../../../../../utils/index";
+import MallService from "../../utils/mallService";
 
 class GoodsService extends MallService {
-  async getGoodsCategoryOptions() {
-    return await this.get({ url: `${this.baseUrl}/goods/category_options` })
+  async getShopCategoryOptions() {
+    return await this.get({ url: `${this.baseUrl}/shop/category_options` });
   }
 
-  async getGoodsList({ categoryId, sort, order, page, limit = 10 }) {
-    const { list = [] } = await this.get({ 
-      url: `${this.baseUrl}/goods/list`, 
-      data: cleanObject({ categoryId, sort, order, page, limit }) ,
-      loadingTitle: '加载中...'
-    }) || {}
-    return list
+  async getGoodsCategoryOptions(shopCategoryId) {
+    return await this.get({
+      url: `${this.baseUrl}/goods/category_options`,
+      data: { shopCategoryId },
+    });
+  }
+
+  async getGoodsList({ shopCategoryId, categoryId, sort, order, page, limit = 10 }) {
+    const { list = [] } =
+      (await this.get({
+        url: `${this.baseUrl}/goods/list`,
+        data: cleanObject({ shopCategoryId, categoryId, sort, order, page, limit }),
+        loadingTitle: "加载中...",
+      })) || {};
+    return list;
   }
 
   async getGoodsInfo(id) {
     return await this.get({
       url: `${this.baseUrl}/goods/detail`,
       data: { id },
-      loadingTitle: '加载中...'
-    })
+      loadingTitle: "加载中...",
+    });
   }
 
   async getShopInfo(id) {
     return await this.get({
       url: `${this.baseUrl}/shop/info`,
       data: { id },
-    })
+    });
   }
 
   async getShopGoodsList(shopId, page, limit = 10) {
-    const { list = [] } = await this.get({ 
-      url: `${this.baseUrl}/shop/goods_list`, 
-      data: { shopId, page, limit },
-      loadingTitle: '加载中...'
-    }) || {}
-    return list
+    const { list = [] } =
+      (await this.get({
+        url: `${this.baseUrl}/shop/goods_list`,
+        data: { shopId, page, limit },
+        loadingTitle: "加载中...",
+      })) || {};
+    return list;
   }
 
   async getCartGoodsNumber() {
-    return await this.get({ url: `${this.baseUrl}/cart/goods_number` })
+    return await this.get({ url: `${this.baseUrl}/cart/goods_number` });
   }
 
   async getCartList() {
     return await this.get({
       url: `${this.baseUrl}/cart/list`,
-      loadingTitle: "加载中..."
-    })
+      loadingTitle: "加载中...",
+    });
   }
 
   async fastAddCart(goodsId, selectedSkuIndex, number) {
     return await this.post({
       url: `${this.baseUrl}/cart/fast_add`,
       data: { goodsId, selectedSkuIndex, number },
-    })
+    });
   }
 
   async addCart(goodsId, selectedSkuIndex, number) {
     return await this.post({
       url: `${this.baseUrl}/cart/add`,
       data: { goodsId, selectedSkuIndex, number },
-    })
+    });
   }
 
   async editCart(id, goodsId, selectedSkuIndex, number, success) {
     return await this.post({
       url: `${this.baseUrl}/cart/edit`,
       data: { id, goodsId, selectedSkuIndex, number },
-      success
-    })
+      success,
+    });
   }
 
   async deleteCartList(ids, success) {
@@ -77,23 +86,23 @@ class GoodsService extends MallService {
       url: `${this.baseUrl}/cart/delete`,
       data: { ids },
       success,
-    })
+    });
   }
 
   async getPreOrderInfo(cartIds, addressId) {
     return await this.post({
       url: `${this.baseUrl}/order/pre_order_info`,
       data: cleanObject({ cartIds, addressId }),
-    })
+    });
   }
 
   async submitOrder(cartIds, addressId) {
     return await this.post({
       url: `${this.baseUrl}/order/submit`,
       data: { addressId, cartIds },
-      loadingTitle: '订单提交中...'
-    })
+      loadingTitle: "订单提交中...",
+    });
   }
 }
 
-export default GoodsService
+export default GoodsService;
