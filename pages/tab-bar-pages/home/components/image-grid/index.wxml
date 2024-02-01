@@ -35,7 +35,7 @@
   <view class="image-list row" wx:else>
     <image 
       class="image-item" 
-      wx:for="{{ARRAY.slice(list, 1, 4)}}" 
+      wx:for="{{ARRAY.slice(list, 0, 3)}}" 
       wx:key="index" 
       bindtap="previewImage"
       data-current="{{item}}"

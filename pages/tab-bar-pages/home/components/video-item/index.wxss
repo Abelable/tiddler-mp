@@ -76,7 +76,6 @@
 }
 .content {
   margin-top: 12rpx;
-  padding: 0 24rpx;
   color: #333;
   font-size: 28rpx;
 }
