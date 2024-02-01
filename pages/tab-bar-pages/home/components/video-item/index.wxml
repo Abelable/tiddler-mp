@@ -55,7 +55,7 @@
       <view class="btn-data">{{NUM.over(item.commentsNumber, 100000)}}</view>
     </view>
     <view class="other-btns">
-      <view class="btn-item" catchtap="like">
+      <view class="btn-item" style="margin-right: 68rpx;" catchtap="like">
         <image class="btn-icon" src="/images/media-item/heart{{item.isLike ? '-active' : ''}}.png" />
         <view class="btn-data">{{NUM.over(item.likeNumber, 100000)}}</view>
       </view>
