@@ -120,11 +120,15 @@ Component({
 
         if (!followFinished) {
           const { list = [] } =
-            (await homeService.getFollowMediaList(++this.followPage)) ||
-            {};
-          this.setData({
-            followMediaList: init ? list : [...followMediaList, ...list],
-          });
+            (await homeService.getFollowMediaList(++this.followPage)) || {};
+          this.setData(
+            {
+              followMediaList: init ? list : [...followMediaList, ...list],
+            },
+            () => {
+              this.setWrapHeight();
+            }
+          );
           if (!list.length) {
             this.setData({ followFinished: true });
           }
@@ -182,13 +186,13 @@ Component({
       }
 
       this.scrollTop = e.scrollTop;
-      this.setActiveMediaItem();
+      if (this.data.curMenuIndex === 1) {
+        this.setActiveMediaItem();
+      }
     },
 
     setActiveMediaItem: debounce(function () {
-      this.selectComponent(
-        `.fall-flow-${this.data.curMenuIndex}`
-      ).setActiveMediaItem();
+      this.selectComponent(".fall-flow").setActiveMediaItem();
     }, 1000),
 
     search() {

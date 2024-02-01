@@ -198,6 +198,38 @@ class BaseService extends Base {
       data: { page, limit },
     });
   }
+
+  async toggleTourismNoteLikeStatus(id, success) {
+    return await this.post({
+      url: `${this.baseUrl}/media/tourism_note/toggle_like`,
+      data: { id },
+      success,
+    });
+  }
+
+  async toggleTourismNoteCollectStatus(id, success) {
+    return await this.post({
+      url: `${this.baseUrl}/media/tourism_note/toggle_collect`,
+      data: { id },
+      success,
+    });
+  }
+
+  async toggleShortVideoLikeStatus(id, success) {
+    return await this.post({
+      url: `${this.baseUrl}/media/short_video/toggle_like`,
+      data: { id },
+      success
+    })
+  }
+
+  async toggleShortVideoCollectStatus(id, success) {
+    return await this.post({
+      url: `${this.baseUrl}/media/short_video/toggle_collect`,
+      data: { id },
+      success
+    })
+  }
 }
 
 export default BaseService;

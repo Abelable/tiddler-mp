@@ -82,7 +82,7 @@ function timeDiff(timeStamp) {
   var result;
   if (monthC >= 1) {
     if (monthC <= 12) {
-      result = parseInt(monthC) + "月前";
+      result = parseInt(monthC) + "个月前";
     } else {
       result = parseInt(monthC / 12) + "年前";
     }

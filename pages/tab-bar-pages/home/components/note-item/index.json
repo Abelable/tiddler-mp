@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "image-grid": "../image-grid/index",
+    "price-unit": "/components/price-unit/index"
+  }
+}

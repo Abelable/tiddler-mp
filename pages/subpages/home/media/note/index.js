@@ -32,7 +32,7 @@ Page({
     this.noteId =
       +id || decodedScene.split("-")[0] || getQueryString(decodedQ, "id");
     this.authorId = authorId ? +authorId : 0;
-    this.mediaScene = +mediaScene;
+    this.mediaScene = mediaScene ? +mediaScene : 0;
 
     this.setNoteList(true);
   },
@@ -204,7 +204,7 @@ Page({
   like(e) {
     const { curNoteIdx } = e.detail;
     let { id, isLike, likeNumber } = this.data.noteList[curNoteIdx];
-    noteService.toggleLikeStatus(id, () => {
+    noteService.toggleTourismNoteLikeStatus(id, () => {
       this.setData({
         [`noteList[${curNoteIdx}].isLike`]: !isLike,
         [`noteList[${curNoteIdx}].likeNumber`]: isLike
@@ -217,7 +217,7 @@ Page({
   collect(e) {
     const { curNoteIdx } = e.detail;
     let { id, isCollected, collectionTimes } = this.data.noteList[curNoteIdx];
-    noteService.toggleCollectStatus(id, () => {
+    noteService.toggleTourismNoteCollectStatus(id, () => {
       this.setData({
         [`noteList[${curNoteIdx}].isCollected`]: !isCollected,
         [`noteList[${curNoteIdx}].collectionTimes`]: isCollected

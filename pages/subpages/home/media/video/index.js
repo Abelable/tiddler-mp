@@ -31,7 +31,7 @@ Page({
     this.videoId =
       +id || decodedScene.split("-")[0] || getQueryString(decodedQ, "id");
     this.authorId = authorId ? +authorId : 0;
-    this.mediaScene = +mediaScene;
+    this.mediaScene = mediaScene ? +mediaScene : 0;
 
     this.setVideoList();
   },
@@ -107,7 +107,7 @@ Page({
   like() {
     const { videoList, curVideoIdx } = this.data;
     let { id, isLike, likeNumber } = videoList[curVideoIdx];
-    videoService.toggleLikeStatus(id, () => {
+    videoService.toggleShortVideoLikeStatus(id, () => {
       this.setData({
         [`videoList[${curVideoIdx}].isLike`]: !isLike,
         [`videoList[${curVideoIdx}].likeNumber`]: isLike
@@ -120,7 +120,7 @@ Page({
   collect() {
     const { videoList, curVideoIdx } = this.data;
     let { id, isCollected, collectionTimes } = videoList[curVideoIdx];
-    videoService.toggleCollectStatus(id, () => {
+    videoService.toggleShortVideoCollectStatus(id, () => {
       this.setData({
         [`videoList[${curVideoIdx}].isCollected`]: !isCollected,
         [`videoList[${curVideoIdx}].collectionTimes`]: isCollected

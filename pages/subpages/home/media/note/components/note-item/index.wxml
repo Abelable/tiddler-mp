@@ -11,13 +11,13 @@
         <view class="time">{{TIME.timeDiff(item.createdAt)}}</view>
         <view class="address row" wx:if="{{item.address}}">
           <text class="split-spot">·</text>
-          <image class="address-icon" src="./images/address.png" />
+          <image class="address-icon" src="/images/media-item/address.png" />
           <text class="address-detail omit single-line">{{item.address}}</text>
         </view>
       </view>
     </view>
     <view class="follow-btn" wx:if="{{!item.isFollow}}" catchtap="follow">+ 关注</view>
-    <image class="more-icon" wx:if="{{userInfo.id === item.authorInfo.id}}" catchtap="more" src="./images/more.png" />
+    <image class="more-icon" wx:if="{{userInfo.id === item.authorInfo.id}}" catchtap="more" src="/images/media-item/more.png" />
   </view>
   
   <swiper class="note-imgs small-dots" indicator-dots circular>
@@ -66,15 +66,15 @@
     </view>
     <view class="other-btns">
       <view class="btn-item" bindtap="share">
-        <image class="btn-icon" src="./images/share.png" />
+        <image class="btn-icon" src="/images/media-item/share.png" />
         <view class="btn-data">{{NUM.over(item.shareTimes, 100000)}}</view>
       </view>
       <view class="btn-item" bindtap="like">
-        <image class="btn-icon" src="./images/heart{{item.isLike ? '-active' : ''}}.png" />
+        <image class="btn-icon" src="/images/media-item/heart{{item.isLike ? '-active' : ''}}.png" />
         <view class="btn-data">{{NUM.over(item.likeNumber, 100000)}}</view>
       </view>
       <view class="btn-item" bindtap="collect">
-        <image class="btn-icon" src="./images/collection{{item.isCollected ? '-active' : ''}}.png" />
+        <image class="btn-icon" src="/images/media-item/collection{{item.isCollected ? '-active' : ''}}.png" />
         <view class="btn-data">{{NUM.over(item.collectionTimes, 100000)}}</view>
       </view>
     </view>

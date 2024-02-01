@@ -1,0 +1,10 @@
+function slice(array, startPoint, endPoint) {
+  if (!endPoint) {
+    endPoint = array.length;
+  }
+  return array.slice(startPoint, endPoint);
+}
+
+module.exports = {
+  slice: slice
+};
