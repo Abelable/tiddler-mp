@@ -94,7 +94,7 @@ Page({
   },
 
   navToScenicManagement() {
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/scenic/spot_list`
+    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/scenic/spot/list`
     wx.navigateTo({ url })
   },
 })
