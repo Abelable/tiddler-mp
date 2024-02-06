@@ -391,5 +391,11 @@ Component({
       const url = "/pages/subpages/mine/fan-follow-list/index?scene=2";
       wx.navigateTo({ url });
     },
+
+    navToMessageCenter() {
+      wx.navigateTo({
+        url: "/pages/subpages/message-center/index",
+      });
+    },
   },
 });

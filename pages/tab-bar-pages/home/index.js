@@ -201,6 +201,12 @@ Component({
       });
     },
 
+    navToMessageCenter() {
+      wx.navigateTo({
+        url: "/pages/subpages/message-center/index",
+      });
+    },
+
     onShareAppMessage() {},
 
     onShareTimeline() {},

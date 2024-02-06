@@ -1,5 +1,5 @@
 <view class="nav-bar {{navBarActive ? 'active': ''}}" style="padding-top: {{statusBarHeight}}px">
-  <image class="notice-center-icon" src="https://img.ubo.vip/tiddler/nav-icon/msg_center.png" bindtap="navToNoticeCenter" />
+  <image class="notice-center-icon" src="https://img.ubo.vip/tiddler/nav-icon/msg_center.png" bindtap="navToMessageCenter" />
   <view class="search-bar {{navBarActive ? 'active': ''}}" bindtap="search">
     <image class="search-icon" src="https://img.ubo.vip/tiddler/nav-icon/search.png" />
     <text class="placeholder">搜索景点、酒店等</text>

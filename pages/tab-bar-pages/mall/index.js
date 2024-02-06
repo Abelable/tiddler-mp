@@ -109,5 +109,11 @@ Component({
         url: pageList[Number(e.currentTarget.dataset.index)],
       });
     },
+
+    navToMessageCenter() {
+      wx.navigateTo({
+        url: "/pages/subpages/message-center/index",
+      });
+    },
   },
 });
