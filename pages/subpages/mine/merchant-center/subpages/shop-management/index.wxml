@@ -21,7 +21,7 @@
     <view class="bg" />
     <view class="main">
       <view class="balance-data-item">
-        <view class="balance-data-title">账户金额</view>
+        <view class="balance-data-title">累计收益</view>
         <view class="balance-data-amount">8828.92</view>
       </view>
       <view class="data-items-wrap row between">
@@ -42,7 +42,7 @@
         </view>
       </view>
     </view>
-    <button class="withdraw-btn">提现</button>
+    <button class="withdraw-btn">收益提现</button>
   </view>
   
   <view class="btns-wrap row between">

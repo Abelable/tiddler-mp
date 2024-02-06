@@ -144,7 +144,7 @@
   top: 32rpx;
   right: 32rpx;
   color: #fff;
-  font-size: 28rpx;
+  font-size: 26rpx;
   width: 160rpx;
   height: 60rpx;
   border-radius: 30rpx;
