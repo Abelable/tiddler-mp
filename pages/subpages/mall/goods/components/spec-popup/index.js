@@ -112,9 +112,9 @@ Component({
       if (this.data.btnActive) {
         checkLogin(async () => {
           const { goodsInfo, selectedSkuIndex, count } = this.data
-          const cartId = await goodsService.fastAddCart(goodsInfo.id, selectedSkuIndex, count)
-          const cartIds = JSON.stringify([cartId])
-          const url = `/pages/subpages/mall/goods/subpages/order-check/index?cartIds=${cartIds}`
+          const cartGoodsId = await goodsService.fastAddCart(goodsInfo.id, selectedSkuIndex, count)
+          const cartGoodsIds = JSON.stringify([cartGoodsId])
+          const url = `/pages/subpages/mall/goods/subpages/order-check/index?cartGoodsIds=${cartGoodsIds}`
           wx.navigateTo({ url })
         })
       }

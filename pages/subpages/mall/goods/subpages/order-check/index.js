@@ -8,13 +8,13 @@ Page({
     addressSelectPopupVisible: false
   },
 
-  onLoad({ cartIds }) {
-    this.cartIds = JSON.parse(cartIds) 
+  onLoad({ cartGoodsIds }) {
+    this.cartGoodsIds = JSON.parse(cartGoodsIds) 
     this.setPreOrderInfo()
   },
 
   async setPreOrderInfo() {
-    const preOrderInfo = await goodsService.getPreOrderInfo(this.cartIds, this.addressId)
+    const preOrderInfo = await goodsService.getPreOrderInfo(this.cartGoodsIds, this.addressId)
     this.setData({ preOrderInfo })
   },
 
@@ -40,7 +40,7 @@ Page({
     if (!addressId) {
       return
     }
-    const orderIds = await goodsService.submitOrder(this.cartIds, addressId)
+    const orderIds = await goodsService.submitOrder(this.cartGoodsIds, addressId)
     this.pay(orderIds)
   },
 
