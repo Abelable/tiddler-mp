@@ -63,6 +63,9 @@
 .history-keywords-wrap {
   padding: 0 30rpx;
 }
+.hot-keywords-wrap {
+  padding: 30rpx;
+}
 .title {
   margin-bottom: 30rpx;
   color: #111;
