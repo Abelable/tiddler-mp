@@ -152,6 +152,19 @@ class MediaService extends BaseService {
     });
   }
 
+  async getHistoryKeywords() {
+    return await this.get({
+      url: `${this.baseUrl}/keyword/list`,
+      loadingTitle: "加载中...",
+    });
+  }
+
+  async clearHistoryKeywords() {
+    return await this.post({
+      url: `${this.baseUrl}/keyword/clear`,
+    });
+  }
+
   async searchLiveRoomList(keywords, page, limit = 10) {
     return await this.get({
       url: `${this.baseUrl}/media/live/search`,

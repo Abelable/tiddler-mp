@@ -7,7 +7,7 @@ const { statusBarHeight } = getApp().globalData.systemInfo;
 Page({
   data: {
     statusBarHeight,
-    historyKeywordsList: [],
+    historyKeywords: [],
     keywords: "",
     isSearching: false,
     curMenuIdx: 0,
@@ -20,11 +20,7 @@ Page({
   },
 
   onLoad() {
-    if (wx.getStorageSync("mediaKeywordsList")) {
-      this.setData({
-        historyKeywordsList: JSON.parse(wx.getStorageSync("mediaKeywordsList")),
-      });
-    }
+    this.setHistoryKeywords();
   },
 
   setKeywords: debounce(function (e) {
@@ -34,6 +30,7 @@ Page({
   }, 500),
 
   cancelSearch() {
+    this.setHistoryKeywords();
     this.setData({
       keywords: "",
       isSearching: false,
@@ -68,13 +65,13 @@ Page({
   },
 
   search() {
-    const { keywords, isSearching, historyKeywordsList } = this.data;
+    const { keywords, isSearching, historyKeywords } = this.data;
     if (!keywords) {
       return;
     }
     this.setData({
-      historyKeywordsList: Array.from(
-        new Set([...historyKeywordsList, keywords])
+      historyKeywords: Array.from(
+        new Set([...historyKeywords, keywords])
       ),
     });
     if (!isSearching) {
@@ -104,6 +101,11 @@ Page({
   onPullDownRefresh() {
     this.setList(true);
     wx.stopPullDownRefresh();
+  },
+
+  async setHistoryKeywords() {
+    const historyKeywords = await mediaService.getHistoryKeywords();
+    this.setData({ historyKeywords })
   },
 
   setList(init = false) {
@@ -189,9 +191,9 @@ Page({
       success: (result) => {
         if (result.confirm) {
           this.setData({
-            historyKeywordsList: [],
+            historyKeywords: [],
           });
-          wx.removeStorage({ key: "mediaKeywordsList" });
+          mediaService.clearHistoryKeywords()
         }
       },
     });
@@ -199,12 +201,5 @@ Page({
 
   navBack() {
     customBack();
-  },
-
-  onUnload() {
-    wx.setStorage({
-      key: "mediaKeywordsList",
-      data: JSON.stringify(this.data.historyKeywordsList),
-    });
   },
 });
