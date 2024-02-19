@@ -31,7 +31,7 @@ Page({
   },
 
   async setCategoryOptions() {
-    const options = await goodsService.getGoodsCategoryOptions();
+    const options = await goodsService.getShopCategoryOptions();
     const categoryOptions = [
       { icon: "", text: "全部分类", value: 0 },
       ...options.map((item) => ({ icon: "", text: item.name, value: item.id })),
