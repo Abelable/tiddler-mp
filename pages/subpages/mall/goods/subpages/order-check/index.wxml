@@ -1,4 +1,9 @@
 <view class="container">
+  <view class="card err row" wx:if="{{preOrderInfo.errMsg}}">
+    <image class="err-icon" src="./images/err-icon.png" />
+    <view class="err-msg">{{preOrderInfo.errMsg}}</view>
+  </view>
+
   <view class="card row" bindtap="showAddressSelectPopup">
     <image class="address-icon" src="https://img.ubo.vip/mp/selection/goods-detail/order-check/address-icon.png" />
     <view class="consignee">
@@ -21,9 +26,9 @@
       <view>{{item.shopInfo ? item.shopInfo.name : '官方自营'}}</view>
     </view>
     <view class="goods-item row" wx:for="{{item.goodsList}}" wx:key="index" wx:for-item="goods">
-      <image class="goods-img" src="{{goods.goodsImage}}" mode="aspectFill" lazy-load />
+      <image class="goods-img" src="{{goods.image}}" mode="aspectFill" lazy-load />
       <view class="goods-content">
-        <view class="goods-name omit">{{goods.goodsName}}</view>
+        <view class="goods-name omit">{{goods.name}}</view>
         <view class="goods-sku omit single-line" wx:if="{{goods.selectedSkuName}}">规格：{{goods.selectedSkuName}}</view>
         <view class="goods-price-wrap">
           <price-unit price="{{goods.price || 0}}" />
@@ -66,7 +71,7 @@
     <text>合计：</text>
     <price-unit price="{{preOrderInfo.paymentAmount || 0}}" fontSize="28rpx" integerFontSize="42rpx" />
   </view>
-  <button class="submit-btn {{preOrderInfo.addressInfo ? 'active' : ''}}" bindtap="submit">提交订单</button>
+  <button class="submit-btn {{preOrderInfo.addressInfo && !preOrderInfo.errMsg ? 'active' : ''}}" bindtap="submit">提交订单</button>
 </view>
 
 <address-select-popup addressId="{{preOrderInfo.addressInfo.id || 0}}" show="{{addressSelectPopupVisible}}" bind:hide="hideAddressSelectPopup" />

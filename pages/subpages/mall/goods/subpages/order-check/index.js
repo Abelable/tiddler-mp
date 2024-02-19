@@ -36,8 +36,12 @@ Page({
 
   // 提交订单
   async submit() {
-    const addressId = this.data.preOrderInfo.addressInfo.id
+    const { addressInfo, errMsg } = this.data.preOrderInfo
+    const addressId = addressInfo.id
     if (!addressId) {
+      return
+    }
+    if (errMsg) {
       return
     }
     const orderIds = await goodsService.submitOrder(this.cartGoodsIds, addressId)

@@ -13,6 +13,21 @@
   font-size: 30rpx;
   font-weight: 500;
 }
+.card.err {
+  background: #fff2f0;
+  border: 1px solid #ffccc7;
+}
+
+.err-icon {
+  width: 36rpx;
+  height: 36rpx;
+}
+.err-msg {
+  margin-left: 20rpx;
+  flex: 1;
+  color: #333;
+  font-size: 26rpx;
+}
 
 /* 地址 */
 .address-icon {
