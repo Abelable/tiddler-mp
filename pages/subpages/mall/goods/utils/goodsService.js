@@ -103,6 +103,26 @@ class GoodsService extends MallService {
       loadingTitle: "订单提交中...",
     });
   }
+
+  async getHistoryKeywords() {
+    return await this.get({
+      url: `${this.baseUrl}/goods/keyword/list`,
+      loadingTitle: "加载中...",
+    });
+  }
+
+  async clearHistoryKeywords() {
+    return await this.post({
+      url: `${this.baseUrl}/goods/keyword/clear`,
+    });
+  }
+
+  async getHotKeywords() {
+    return await this.get({
+      url: `${this.baseUrl}/goods/keyword/hot_list`,
+      loadingTitle: "加载中...",
+    });
+  }
 }
 
 export default GoodsService;

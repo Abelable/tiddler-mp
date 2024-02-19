@@ -1,173 +1,178 @@
-import { customBack, debounce } from '../../../../../../utils/index'
-import GoodsService from '../../utils/goodsService'
+import { customBack, debounce } from "../../../../../../utils/index";
+import GoodsService from "../../utils/goodsService";
 
-const goodsService = new GoodsService()
-const { statusBarHeight } = getApp().globalData.systemInfo
+const goodsService = new GoodsService();
+const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Page({
   data: {
     statusBarHeight,
-    historyKeywordsList: [],
+    historyKeywords: [],
+    hotKeywords: [],
     curSortIndex: 0,
     sortOptions: [
-      { icon: '', text: '综合排序', value: 0 },
-      { icon: '', text: '销量排序', value: 1 },
-      { icon: '', text: '价格降序', value: 2 },
-      { icon: '', text: '价格升序', value: 3 },
+      { icon: "", text: "综合排序", value: 0 },
+      { icon: "", text: "销量排序", value: 1 },
+      { icon: "", text: "价格降序", value: 2 },
+      { icon: "", text: "价格升序", value: 3 },
     ],
     curCategoryId: 0,
     categoryOptions: [],
-    keywords: '',
+    keywords: "",
     isSearching: false,
     goodsList: [],
-    finished: false
+    finished: false,
   },
 
   onLoad() {
-    this.setCategoryOptions()
-    if (wx.getStorageSync('goodsKeywordsList')) {
-      this.setData({
-        historyKeywordsList: JSON.parse(wx.getStorageSync('goodsKeywordsList'))
-      })
-    }
+    this.setCategoryOptions();
+    this.setHistoryKeywords();
+    this.setHotKeywords();
   },
 
   async setCategoryOptions() {
-    const options = await goodsService.getGoodsCategoryOptions()
+    const options = await goodsService.getGoodsCategoryOptions();
     const categoryOptions = [
-      { icon: '', text: '全部分类', value: 0 }, 
-      ...options.map(item => ({ icon: '', text: item.name, value: item.id }))
-    ]
-    this.setData({ categoryOptions })
+      { icon: "", text: "全部分类", value: 0 },
+      ...options.map((item) => ({ icon: "", text: item.name, value: item.id })),
+    ];
+    this.setData({ categoryOptions });
   },
 
-  setKeywords: debounce(function(e) {
+  setKeywords(e) {
     this.setData({
       keywords: e.detail.value,
-    })
-  }, 500),
+    });
+  },
 
   cancelSearch() {
-    this.setData({ 
-      keywords: '',
+    this.setHistoryKeywords();
+    this.setData({
+      keywords: "",
       curSortIndex: 0,
       curCategoryId: 0,
-    })
+    });
     if (this.data.isSearching) {
-      this.setData({ isSearching: false })
+      this.setData({ isSearching: false });
     }
   },
 
   selectKeywords(e) {
-    const { keywords } = e.currentTarget.dataset
-    this.setData({ 
+    const { keywords } = e.currentTarget.dataset;
+    this.setData({
       keywords,
-      isSearching: true
-    })
-    this.setGoodsList(true)
+      isSearching: true,
+    });
+    this.setGoodsList(true);
   },
 
   setSortIndex(e) {
     this.setData({
-      curSortIndex: e.detail
-    })
-    this.search()
+      curSortIndex: e.detail,
+    });
+    this.search();
   },
 
   setCategoryId(e) {
     this.setData({
-      curCategoryId: e.detail
-    })
-    this.search()
+      curCategoryId: e.detail,
+    });
+    this.search();
   },
 
   search() {
-    const { keywords, isSearching, historyKeywordsList } = this.data
+    const { keywords, isSearching, historyKeywords } = this.data;
     if (!keywords) {
-      return
+      return;
     }
     this.setData({
-      historyKeywordsList: Array.from(new Set([...historyKeywordsList, keywords]))
-    })
+      historyKeywords: Array.from(
+        new Set([...historyKeywords, keywords])
+      ),
+    });
     if (!isSearching) {
-      this.setData({ isSearching: true })
+      this.setData({ isSearching: true });
     }
-    this.setGoodsList(true)
+    this.setGoodsList(true);
   },
 
   async setGoodsList(init = false) {
-    const limit = 10
+    const limit = 10;
     if (init) {
-      this.page = 0
+      this.page = 0;
       this.setData({
-        finished: false
-      })
+        finished: false,
+      });
     }
-    const { keywords, curSortIndex, curCategoryId, goodsList } = this.data
-    let sort = ''
-    let order = 'desc'
+    const { keywords, curSortIndex, curCategoryId, goodsList } = this.data;
+    let sort = "";
+    let order = "desc";
     switch (curSortIndex) {
       case 1:
-        sort = 'sales_volume'
-        break
+        sort = "sales_volume";
+        break;
       case 2:
-        sort = 'price'
-        break
+        sort = "price";
+        break;
       case 3:
-        sort = 'price'
-        order = 'asc'
-        break
+        sort = "price";
+        order = "asc";
+        break;
     }
-    const list = await goodsService.seachGoodsList({
-      keywords,
-      categoryId: curCategoryId,
-      sort,
-      order,
-      page: ++this.page,
-      limit,
-    }) || []
+    const list =
+      (await goodsService.seachGoodsList({
+        keywords,
+        categoryId: curCategoryId,
+        sort,
+        order,
+        page: ++this.page,
+        limit,
+      })) || [];
     this.setData({
-      goodsList: init ? list : [...goodsList, ...list]
-    })
+      goodsList: init ? list : [...goodsList, ...list],
+    });
     if (list.length < limit) {
       this.setData({
-        finished: true
-      })
+        finished: true,
+      });
     }
   },
 
-  onReachBottom() {
-    this.setGoodsList()
+  async setHistoryKeywords() {
+    const historyKeywords = await goodsService.getHistoryKeywords();
+    this.setData({ historyKeywords });
   },
   
+  async setHotKeywords() {
+    const hotKeywords = await goodsService.getHotKeywords();
+    this.setData({ hotKeywords });
+  },
+
+  onReachBottom() {
+    this.setGoodsList();
+  },
+
   onPullDownRefresh() {
-    this.setGoodsList(true)
-    wx.stopPullDownRefresh() 
+    this.setGoodsList(true);
+    wx.stopPullDownRefresh();
   },
 
   clearHistoryKeywords() {
     wx.showModal({
-      content: '确定清空历史搜索记录吗？',
+      content: "确定清空历史搜索记录吗？",
       showCancel: true,
       success: (result) => {
         if (result.confirm) {
           this.setData({
-            historyKeywordsList: []
-          })
-          wx.removeStorage({ key: 'goodsKeywordsList' })
+            historyKeywords: [],
+          });
+          goodsService.clearHistoryKeywords();
         }
-      }
-    })
+      },
+    });
   },
 
   navBack() {
-    customBack()
+    customBack();
   },
-
-  onUnload() {
-    wx.setStorage({
-      key: 'goodsKeywordsList',
-      data: JSON.stringify(this.data.historyKeywordsList)
-    })
-  }
-})
+});

@@ -23,14 +23,28 @@
 </view>
 
 <view class="history-keywords-wrap" wx:if="{{!isSearching}}" style="padding-top: {{statusBarHeight + 65}}px">
-  <view class="title row between" wx:if="{{historyKeywordsList.length}}">
+  <view class="title row between">
     <view>历史搜索</view>
-    <image class="delete-icon" src="https://img.ubo.vip/mp/selection/search/del-history.png" bindtap="clearHistoryKeywords" />
+    <image class="delete-icon" wx:if="{{historyKeywords.length}}" src="https://img.ubo.vip/mp/selection/search/del-history.png" bindtap="clearHistoryKeywords" />
   </view>
+  <view class="keywords-list" wx:if="{{historyKeywords.length}}">
+    <view 
+      class="keywords" 
+      wx:for="{{historyKeywords}}" wx:key="index" 
+      bindtap="selectKeywords" data-keywords="{{item}}"
+    >
+      {{item}}
+    </view>
+  </view>
+  <empty-illus wx:if="{{!historyKeywords.length}}" desc="暂无历史搜索" height="300rpx" />
+</view>
+
+<view class="hot-keywords-wrap" wx:if="{{!isSearching && hotKeywords.length}}">
+  <view class="title">热门搜索</view>
   <view class="keywords-list">
     <view 
       class="keywords" 
-      wx:for="{{historyKeywordsList}}" wx:key="index" 
+      wx:for="{{hotKeywords}}" wx:key="index" 
       bindtap="selectKeywords" data-keywords="{{item}}"
     >
       {{item}}

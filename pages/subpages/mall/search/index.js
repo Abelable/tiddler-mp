@@ -34,6 +34,7 @@ Page({
   },
 
   cancelSearch() {
+    this.setHistoryKeywords();
     this.setData({
       keywords: "",
       isSearching: false,
@@ -112,16 +113,6 @@ Page({
         this.setGoodsList(init);
         break;
     }
-  },
-
-  async setHistoryKeywords() {
-    const historyKeywords = await mallService.getHistoryKeywords();
-    this.setData({ historyKeywords });
-  },
-
-  async setHotKeywords() {
-    const hotKeywords = await mallService.getHotKeywords();
-    this.setData({ hotKeywords });
   },
 
   async setScenicList(init = false) {
@@ -207,6 +198,16 @@ Page({
         goodsFinished: true,
       });
     }
+  },
+
+  async setHistoryKeywords() {
+    const historyKeywords = await mallService.getHistoryKeywords();
+    this.setData({ historyKeywords });
+  },
+
+  async setHotKeywords() {
+    const hotKeywords = await mallService.getHotKeywords();
+    this.setData({ hotKeywords });
   },
 
   clearHistoryKeywords() {

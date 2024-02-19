@@ -103,16 +103,6 @@ Page({
     wx.stopPullDownRefresh();
   },
 
-  async setHistoryKeywords() {
-    const historyKeywords = await mediaService.getHistoryKeywords();
-    this.setData({ historyKeywords });
-  },
-  
-  async setHotKeywords() {
-    const hotKeywords = await mediaService.getHotKeywords();
-    this.setData({ hotKeywords });
-  },
-
   setList(init = false) {
     switch (this.data.curMenuIdx) {
       case 0:
@@ -187,6 +177,16 @@ Page({
     if (!list.length) {
       this.setData({ liveFinished: true });
     }
+  },
+
+  async setHistoryKeywords() {
+    const historyKeywords = await mediaService.getHistoryKeywords();
+    this.setData({ historyKeywords });
+  },
+  
+  async setHotKeywords() {
+    const hotKeywords = await mediaService.getHotKeywords();
+    this.setData({ hotKeywords });
   },
 
   clearHistoryKeywords() {
