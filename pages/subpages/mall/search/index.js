@@ -1,4 +1,4 @@
-import { customBack, debounce } from "../../../../utils/index";
+import { customBack } from "../../../../utils/index";
 import MallService from "../utils/mallService";
 
 const mallService = new MallService();
@@ -7,7 +7,8 @@ const { statusBarHeight } = getApp().globalData.systemInfo;
 Page({
   data: {
     statusBarHeight,
-    historyKeywordsList: [],
+    historyKeywords: [],
+    hotKeywords: [],
     keywords: "",
     isSearching: false,
     curMenuIdx: 0,
@@ -22,18 +23,15 @@ Page({
   },
 
   onLoad() {
-    if (wx.getStorageSync("mallKeywordsList")) {
-      this.setData({
-        historyKeywordsList: JSON.parse(wx.getStorageSync("mallKeywordsList")),
-      });
-    }
+    this.setHistoryKeywords();
+    this.setHotKeywords();
   },
 
-  setKeywords: debounce(function (e) {
+  setKeywords(e) {
     this.setData({
       keywords: e.detail.value,
     });
-  }, 500),
+  },
 
   cancelSearch() {
     this.setData({
@@ -60,14 +58,12 @@ Page({
   },
 
   search() {
-    const { keywords, isSearching, historyKeywordsList } = this.data;
+    const { keywords, isSearching, historyKeywords } = this.data;
     if (!keywords) {
       return;
     }
     this.setData({
-      historyKeywordsList: Array.from(
-        new Set([...historyKeywordsList, keywords])
-      ),
+      historyKeywords: Array.from(new Set([...historyKeywords, keywords])),
     });
     if (!isSearching) {
       this.setData({ isSearching: true });
@@ -116,6 +112,16 @@ Page({
         this.setGoodsList(init);
         break;
     }
+  },
+
+  async setHistoryKeywords() {
+    const historyKeywords = await mallService.getHistoryKeywords();
+    this.setData({ historyKeywords });
+  },
+
+  async setHotKeywords() {
+    const hotKeywords = await mallService.getHotKeywords();
+    this.setData({ hotKeywords });
   },
 
   async setScenicList(init = false) {
@@ -210,9 +216,9 @@ Page({
       success: (result) => {
         if (result.confirm) {
           this.setData({
-            historyKeywordsList: [],
+            historyKeywords: [],
           });
-          wx.removeStorage({ key: "mallKeywordsList" });
+          mallService.clearHistoryKeywords();
         }
       },
     });
@@ -220,12 +226,5 @@ Page({
 
   navBack() {
     customBack();
-  },
-
-  onUnload() {
-    wx.setStorage({
-      key: "mallKeywordsList",
-      data: JSON.stringify(this.data.historyKeywordsList),
-    });
   },
 });

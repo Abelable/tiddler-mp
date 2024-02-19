@@ -56,6 +56,26 @@ class MallService extends BaseService {
     });
   }
 
+  async getHistoryKeywords() {
+    return await this.get({
+      url: `${this.baseUrl}/mall/keyword/list`,
+      loadingTitle: "加载中...",
+    });
+  }
+
+  async clearHistoryKeywords() {
+    return await this.post({
+      url: `${this.baseUrl}/mall/keyword/clear`,
+    });
+  }
+
+  async getHotKeywords() {
+    return await this.get({
+      url: `${this.baseUrl}/mall/keyword/hot_list`,
+      loadingTitle: "加载中...",
+    });
+  }
+
   async seachGoodsList({
     keywords,
     categoryId,
