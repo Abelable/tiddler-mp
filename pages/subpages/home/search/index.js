@@ -1,4 +1,4 @@
-import { customBack, debounce } from "../../../../utils/index";
+import { customBack } from "../../../../utils/index";
 import MediaService from "../utils/mediaService";
 
 const mediaService = new MediaService();
@@ -23,11 +23,11 @@ Page({
     this.setHistoryKeywords();
   },
 
-  setKeywords: debounce(function (e) {
+  setKeywords(e) {
     this.setData({
       keywords: e.detail.value,
     });
-  }, 500),
+  },
 
   cancelSearch() {
     this.setHistoryKeywords();
@@ -70,9 +70,7 @@ Page({
       return;
     }
     this.setData({
-      historyKeywords: Array.from(
-        new Set([...historyKeywords, keywords])
-      ),
+      historyKeywords: Array.from(new Set([...historyKeywords, keywords])),
     });
     if (!isSearching) {
       this.setData({ isSearching: true });
@@ -105,7 +103,7 @@ Page({
 
   async setHistoryKeywords() {
     const historyKeywords = await mediaService.getHistoryKeywords();
-    this.setData({ historyKeywords })
+    this.setData({ historyKeywords });
   },
 
   setList(init = false) {
@@ -193,7 +191,7 @@ Page({
           this.setData({
             historyKeywords: [],
           });
-          mediaService.clearHistoryKeywords()
+          mediaService.clearHistoryKeywords();
         }
       },
     });
