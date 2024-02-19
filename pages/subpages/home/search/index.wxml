@@ -43,7 +43,20 @@
       {{item}}
     </view>
   </view>
-  <empty-illus wx:if="{{!historyKeywords.length}}" desc="暂无历史搜索" />
+  <empty-illus wx:if="{{!historyKeywords.length}}" desc="暂无历史搜索" height="300rpx" />
+</view>
+
+<view class="hot-keywords-wrap" wx:if="{{!isSearching && hotKeywords.length}}">
+  <view class="title">热门搜索</view>
+  <view class="keywords-list">
+    <view 
+      class="keywords" 
+      wx:for="{{hotKeywords}}" wx:key="index" 
+      bindtap="selectKeywords" data-keywords="{{item}}"
+    >
+      {{item}}
+    </view>
+  </view>
 </view>
 
 <view class="list-wrap" wx:if="{{isSearching && curMenuIdx === 0}}" style="padding-top: {{statusBarHeight + 104}}px">

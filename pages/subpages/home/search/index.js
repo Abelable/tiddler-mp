@@ -8,6 +8,7 @@ Page({
   data: {
     statusBarHeight,
     historyKeywords: [],
+    hotKeywords: [],
     keywords: "",
     isSearching: false,
     curMenuIdx: 0,
@@ -21,6 +22,7 @@ Page({
 
   onLoad() {
     this.setHistoryKeywords();
+    this.setHotKeywords();
   },
 
   setKeywords(e) {
@@ -104,6 +106,11 @@ Page({
   async setHistoryKeywords() {
     const historyKeywords = await mediaService.getHistoryKeywords();
     this.setData({ historyKeywords });
+  },
+  
+  async setHotKeywords() {
+    const hotKeywords = await mediaService.getHotKeywords();
+    this.setData({ hotKeywords });
   },
 
   setList(init = false) {

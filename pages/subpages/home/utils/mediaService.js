@@ -165,6 +165,13 @@ class MediaService extends BaseService {
     });
   }
 
+  async getHotKeywords() {
+    return await this.get({
+      url: `${this.baseUrl}/keyword/hot_list`,
+      loadingTitle: "加载中...",
+    });
+  }
+
   async searchLiveRoomList(keywords, page, limit = 10) {
     return await this.get({
       url: `${this.baseUrl}/media/live/search`,
