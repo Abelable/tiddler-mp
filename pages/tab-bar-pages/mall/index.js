@@ -1,3 +1,4 @@
+import { WEBVIEW_BASE_URL } from "../../../config";
 import { store } from "../../../store/index";
 import MallService from "./utils/mallService";
 
@@ -44,10 +45,15 @@ Component({
 
     initCalendar() {
       store.setCheckInDate(new Date().getTime());
-  
+
       const endDate = new Date();
       endDate.setDate(endDate.getDate() + 1);
       store.setCheckOutDate(endDate.getTime());
+    },
+
+    async setBannerList() {
+      const bannerList = await mallService.getBannerList();
+      this.setData({ bannerList });
     },
 
     async setCommodityList(init = false) {
@@ -114,6 +120,41 @@ Component({
       wx.navigateTo({
         url: "/pages/subpages/message-center/index",
       });
+    },
+
+    linkTo(e) {
+      const { scene, param } = e.currentTarget.dataset;
+      switch (scene) {
+        case 1:
+          wx.navigateTo({
+            url: `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}${param}`,
+          });
+          break;
+
+        case 2:
+          wx.navigateTo({
+            url: `/pages/subpages/mall/scenic-spot/subpages/spot-detail/index?id=${param}`,
+          });
+          break;
+
+        case 3:
+          wx.navigateTo({
+            url: `/pages/subpages/mall/hotel/subpages/hotel-detail/index?id=${param}`,
+          });
+          break;
+
+        case 4:
+          wx.navigateTo({
+            url: `/pages/subpages/mall/catering/subpages/restaurant-detail/index?id=${param}`,
+          });
+          break;
+
+        case 5:
+          wx.navigateTo({
+            url: `/pages/subpages/mall/goods/subpages/goods-detail/index?id=${param}`,
+          });
+          break;
+      }
     },
   },
 });
