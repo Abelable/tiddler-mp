@@ -28,6 +28,7 @@ Component({
 
       this.setLocationInfo();
       this.initCalendar();
+      this.setBannerList();
       if (!this.data.commodityList.length) {
         this.setCommodityList(true);
       }
