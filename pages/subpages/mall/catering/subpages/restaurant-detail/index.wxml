@@ -200,7 +200,7 @@
   </view>
 
   <view class="content-title-wrap">
-    <view class="content-title">达人品鉴</view>
+    <view class="content-title">达人打卡</view>
   </view>
   <view class="media-wrap">
     <fall-flow list="{{mediaList}}" generic:item="media-item" />

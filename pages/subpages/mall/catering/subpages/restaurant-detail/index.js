@@ -11,7 +11,7 @@ Page({
   data: {
     statusBarHeight,
     navBarVisible: false,
-    menuList: ["代金券", "套餐", "用户点评", "热门问答", "达人品鉴"],
+    menuList: ["代金券", "套餐", "用户点评", "热门问答", "达人打卡"],
     curMenuIdx: -1,
     restaurantInfo: null,
     openStatus: false,
