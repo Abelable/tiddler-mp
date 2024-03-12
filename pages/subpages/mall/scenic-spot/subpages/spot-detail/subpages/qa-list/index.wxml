@@ -1,2 +1,16 @@
-<empty-illus wx:if="{{!qaList.length}}" desc="您还没有粉丝哦" />
+<view class="qa-list">
+  <view class="qa-item" wx:for="{{qaList}}" wx:key="index">
+    <view class="qa-label">问</view>
+    <view class="qa-question">{{ item.content }}</view>
+    <view class="qa-answer">
+      <view class="answer-user row">
+        <image class="answer-user-avatar" src="{{ item.firstAnswer.userInfo.avatar }}" />
+        <view class="answer-user-name">{{ item.firstAnswer.userInfo.nickname }}</view>
+      </view>
+      <view class="answer-content omit single-line">{{ item.firstAnswer.content }}</view>
+    </view>
+  </view>
+</view>
+
+<empty-illus wx:if="{{!qaList.length}}" desc="暂无提问" />
 <view class="no-more-tips" wx:if="{{finished && qaList.length}}">～没有更多了～</view>

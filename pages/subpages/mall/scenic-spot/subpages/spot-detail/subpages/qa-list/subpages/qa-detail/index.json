@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "问答详情",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "empty-illus": "/components/empty-illus/index"
+  }
+}

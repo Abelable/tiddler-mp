@@ -93,10 +93,34 @@ class ScenicService extends MallService {
     });
   }
 
-  async deleteScenicQuestion(scenicId, success) {
+  async deleteScenicQuestion(questionId, success) {
     return await this.post({
       url: `${this.baseUrl}/scenic/question/delete`,
-      data: { scenicId },
+      data: { questionId },
+      success,
+    });
+  }
+
+  async getScenicAnswerList(questionId, page, limit = 10) {
+    return await this.get({
+      url: `${this.baseUrl}/scenic/answer/list`,
+      data: { questionId, page, limit },
+      loadingTitle: "加载中...",
+    });
+  }
+
+  async addScenicAnswer(questionId, content, success) {
+    return await this.post({
+      url: `${this.baseUrl}/scenic/answer/add`,
+      data: { questionId, content },
+      success,
+    });
+  }
+
+  async deleteScenicAnswer(answerId, success) {
+    return await this.post({
+      url: `${this.baseUrl}/scenic/question/delete`,
+      data: { answerId },
       success,
     });
   }
