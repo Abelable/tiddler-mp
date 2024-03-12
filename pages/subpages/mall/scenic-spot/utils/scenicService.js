@@ -84,6 +84,22 @@ class ScenicService extends MallService {
       loadingTitle: "加载中...",
     });
   }
+
+  async addScenicQuestion(scenicId, content, success) {
+    return await this.post({
+      url: `${this.baseUrl}/scenic/question/add`,
+      data: { scenicId, content },
+      success,
+    });
+  }
+
+  async deleteScenicQuestion(scenicId, success) {
+    return await this.post({
+      url: `${this.baseUrl}/scenic/question/delete`,
+      data: { scenicId },
+      success,
+    });
+  }
 }
 
 export default ScenicService;
