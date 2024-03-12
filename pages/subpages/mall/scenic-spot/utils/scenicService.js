@@ -69,6 +69,21 @@ class ScenicService extends MallService {
       loadingTitle: "订单提交中...",
     });
   }
+
+  async getScenicQaSummary() {
+    return await this.get({
+      url: `${this.baseUrl}/scenic/question/summary`,
+      data: { scenicId },
+    });
+  }
+
+  async getScenicQaList(scenicId, page, limit = 10) {
+    return await this.get({
+      url: `${this.baseUrl}/scenic/question/list`,
+      data: { scenicId, page, limit },
+      loadingTitle: "加载中...",
+    });
+  }
 }
 
 export default ScenicService;

@@ -1,8 +1,17 @@
+import ScenicService from "../../../../utils/scenicService";
+
+const scenicService = new ScenicService();
 
 Page({
   data: {
+    qaList: [],
   },
 
-  async onLoad(options) {
+  onLoad({ scenicId }) {
+    this.scenicId = scenicId;
   },
-})
+
+  async setQaList() {
+    
+  },
+});
