@@ -12,7 +12,6 @@ Page({
   onLoad({ scenicId, scenicName }) {
     this.scenicId = scenicId;
     this.scenicName = scenicName;
-    console.log('scenicName', scenicName)
   },
 
   onShow() {
