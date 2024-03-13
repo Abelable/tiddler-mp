@@ -13,7 +13,7 @@
       </view>
     </view>
   </view>
-  <view class="answer-list-wrap">
+  <view class="answer-list-wrap" wx:if="{{answerList.length}}">
     <view class="total-tips row">
       <view class="answer-tag">答</view>
       <view class="answer-total">共{{answerTotal}}条回答</view>

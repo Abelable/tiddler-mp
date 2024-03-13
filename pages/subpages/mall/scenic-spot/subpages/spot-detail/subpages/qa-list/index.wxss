@@ -60,7 +60,7 @@
   font-size: 22rpx;
 }
 .qa-more {
-  margin-top: 12rpx;
+  margin-top: 20rpx;
 }
 .qa-time {
   color: #999;
