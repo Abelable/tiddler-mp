@@ -224,7 +224,7 @@ Page({
 
   async setQaSummary() {
     const qaSummary = await scenicService.getScenicQaSummary(this.scenicId);
-    this.setData({ qaSummary: { list: [], total: 0 } });
+    this.setData({ qaSummary });
   },
 
   setMenuList() {
