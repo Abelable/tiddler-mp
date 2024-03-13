@@ -18,7 +18,12 @@
     <swiper-item>
       <view class="content-wrap" style="padding-top: {{statusBarHeight + 102}}px; background: #fff;">
         <follow-media-item wx:for="{{followMediaList}}" wx:key="index" item="{{item}}" />
-        <empty-illus wx:if="{{!userInfo || (followFinished && !followMediaList.length)}}" registerBtnVisible="{{!userInfo}}" desc="暂无关注列表" />
+        <empty-illus 
+          wx:if="{{!userInfo || (followFinished && !followMediaList.length)}}" 
+          btnContent="{{!userInfo ? '点击登录' : ''}}" 
+          desc="{{userInfo ? '暂无关注列表' : '您还未登录'}}" 
+          bind:btnClick="register"
+        />
         <view class="no-more-tips" wx:if="{{followFinished && followMediaList.length}}">～没有更多了～</view>
       </view>
     </swiper-item>

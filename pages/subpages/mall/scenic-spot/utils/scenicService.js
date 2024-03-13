@@ -70,7 +70,7 @@ class ScenicService extends MallService {
     });
   }
 
-  async getScenicQaSummary() {
+  async getScenicQaSummary(scenicId) {
     return await this.get({
       url: `${this.baseUrl}/scenic/question/summary`,
       data: { scenicId },

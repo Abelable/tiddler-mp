@@ -207,6 +207,12 @@ Component({
       });
     },
 
+    register() {
+      wx.navigateTo({
+        url: "/pages/subpages/common/register/index",
+      });
+    },
+
     onShareAppMessage() {},
 
     onShareTimeline() {},

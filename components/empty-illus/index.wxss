@@ -11,9 +11,9 @@
   width: 240rpx;
   height: 240rpx;
 }
-.register-btn {
+.btn {
   margin-top: 24rpx;
-  width: 180rpx;
+  padding: 0 28rpx;
   height: 60rpx;
   color: #fff;
   font-size: 26rpx;

@@ -22,6 +22,7 @@ Page({
     curCombinedTicketTypeIdx: 0,
     combinedTicketList: [],
     commentList,
+    qaSummary: null,
     nearbyHotelList: [],
     nearbyHotelTotal: 0,
     nearbyScenicList: [],
@@ -36,6 +37,7 @@ Page({
     await this.setScenicCategoryOptions();
     await this.setScenicInfo();
     await this.setSourceTicketList();
+    await this.setQaSummary();
     await this.setNearbyHotelList();
     await this.setNearbyScenicList();
     this.setMenuList();
@@ -218,6 +220,11 @@ Page({
       }
     );
     return ticketList;
+  },
+
+  async setQaSummary() {
+    const qaSummary = await scenicService.getScenicQaSummary(this.scenicId);
+    this.setData({ qaSummary: { list: [], total: 0 } });
   },
 
   setMenuList() {

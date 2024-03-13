@@ -1,7 +1,7 @@
 Component({
   properties: {
     desc: String,
-    registerBtnVisible: Boolean,
+    btnContent: String,
     height: {
       type: String,
       value: '800rpx'
@@ -9,10 +9,8 @@ Component({
   },
 
   methods: {
-    register() {
-      wx.navigateTo({
-        url: "/pages/subpages/common/register/index",
-      });
+    btnClick() {
+      this.triggerEvent('btnClick');
     },
   },
 });

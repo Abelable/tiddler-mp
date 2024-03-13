@@ -346,6 +346,7 @@
 }
 .qa-answers-avatars {
   margin-left: 8rpx;
+  margin-right: 8rpx;
 }
 .answer-user-avatar {
   margin-left: -8rpx;
@@ -368,7 +369,6 @@
   font-size: 22rpx;
 }
 .qa-answers-number {
-  margin-left: 8rpx;
   color: #666;
   font-size: 22rpx;
 }
