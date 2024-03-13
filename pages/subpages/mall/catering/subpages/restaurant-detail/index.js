@@ -25,6 +25,7 @@ Page({
     imageCount: 0,
     distance: 0,
     commentList,
+    qaSummary: null,
     mediaList,
     noticePopupVisible: false,
     telPopupVisible: false,
@@ -33,6 +34,7 @@ Page({
   async onLoad({ id }) {
     this.restaurantId = +id;
     await this.setRestaurantInfo();
+    await this.setQaSummary();
     this.setNavBarVisibleLimit();
     this.setMenuChangeLimitList();
   },
@@ -269,6 +271,13 @@ Page({
     return ticketList;
   },
 
+  async setQaSummary() {
+    const qaSummary = await cateringService.getCateringQaSummary(
+      this.restaurantId
+    );
+    this.setData({ qaSummary });
+  },
+
   setNavBarVisibleLimit() {
     const query = wx.createSelectorQuery();
     query.select(".restaurant-name").boundingClientRect();
@@ -430,6 +439,12 @@ Page({
       name,
       address,
     });
+  },
+
+  checkQa() {
+    const { id, name } = this.data.restaurantInfo;
+    const url = `./subpages/qa-list/index?restaurantId=${id}&restaurantName=${name}`;
+    wx.navigateTo({ url });
   },
 
   callTel(e) {

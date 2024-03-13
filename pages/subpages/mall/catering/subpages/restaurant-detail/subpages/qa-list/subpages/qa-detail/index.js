@@ -1,12 +1,12 @@
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { store } from "../../../../../../../../../../store/index";
-import HotelService from "../../../../../../utils/hotelService";
+import CateringService from "../../../../../../utils/cateringService";
 
-const hotelService = new HotelService();
+const cateringService = new CateringService();
 
 Page({
   data: {
-    hotelName: "",
+    restaurantName: "",
     questionInfo: {},
     answerList: [],
     answerTotal: 0,
@@ -14,14 +14,14 @@ Page({
     answerContent: "",
   },
 
-  onLoad({ hotelName, questionInfo }) {
+  onLoad({ restaurantName, questionInfo }) {
     this.storeBindings = createStoreBindings(this, {
       store,
       fields: ["userInfo"],
     });
 
     questionInfo = JSON.parse(questionInfo);
-    this.setData({ hotelName, questionInfo });
+    this.setData({ restaurantName, questionInfo });
     this.questionId = questionInfo.id;
     this.setAnswerList(true);
   },
@@ -40,7 +40,7 @@ Page({
       this.page = 0;
     }
     const { list = [], total } =
-      (await hotelService.getHotelAnswerList(this.questionId, ++this.page)) ||
+      (await cateringService.getCateringAnswerList(this.questionId, ++this.page)) ||
       {};
     this.setData({
       answerList: init ? list : [...this.data.answerList, ...list],
@@ -68,7 +68,7 @@ Page({
       return;
     }
 
-    hotelService.addHotelAnswer(
+    cateringService.addCateringAnswer(
       this.questionId,
       this.data.answerContent,
       () => {
@@ -83,7 +83,7 @@ Page({
       content: "确定删除该提问吗？",
       success: (result) => {
         if (result.confirm) {
-          hotelService.deleteHotelQuestion(this.questionId, () => {
+          cateringService.deleteCateringQuestion(this.questionId, () => {
             wx.navigateBack();
           });
         }
@@ -96,7 +96,7 @@ Page({
       content: "确定删除该回答吗？",
       success: (result) => {
         if (result.confirm) {
-          hotelService.deleteHotelAnswer(
+          cateringService.deleteCateringAnswer(
             this.questionId,
             e.currentTarget.dataset.id,
             () => {

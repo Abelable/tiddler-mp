@@ -159,45 +159,33 @@
   <view class="content-title-wrap">
     <view class="content-title">热门问答</view>
   </view>
-  <view class="qa-list">
-    <view class="qa-item">
-      <view class="qa-question">千岛湖森林氧吧什么季节最适合去？</view>
-      <view class="answer-user row">
-        <image class="answer-user-avatar" src="http://img.ubo.vip/uploads/15099395_642329416d5f9/i0hX323HiYx8uIbCsHISlbbDATrzieNfFUgcfhHf.jpeg" />
-        <view class="answer-user-name">小绿女孩</view>
-      </view>
-      <view class="qa-answer omit single-line">建议5-9月份去呀～那时候森林氧吧是最好的时候了，我是去年的6月份去得，正值酷夏来临之前，天气偏暖，去森林氧吧，空气中都弥漫着大自然的味道</view>
-      <view class="qa-label">问</view>
-    </view>
-    <view class="qa-item">
-      <view class="qa-question">千岛湖森林氧吧需要玩多久？</view>
-      <view class="qa-answers row">
-        <view class="qa-answers-avatars row">
-          <image class="answer-user-avatar" src="http://img.ubo.vip/uploads/15099395_642329416d5f9/i0hX323HiYx8uIbCsHISlbbDATrzieNfFUgcfhHf.jpeg" />
-          <image class="answer-user-avatar" src="http://img.ubo.vip/uploads/1112018_6093656e613a3/oY6sVTNFk6komid6RUNI25Z5HT6iptFWUAeQRVZZ.jpeg" />
-          <image class="answer-user-avatar" src="http://img.ubo.vip/uploads/6050889_62839505814e0/NBY9RpALyiHVsO41LRMGZKqqzxjjrkcul5o91iEw.jpeg" />
+  <view class="qa-list-wrap" bindtap="checkQa" wx:if="{{qaSummary.total}}">
+    <view class="qa-list">
+      <view class="qa-item" wx:for="{{qaSummary.list}}" wx:key="index">
+        <view class="qa-label">问</view>
+        <view class="qa-question">{{ item.content }}</view>
+        <view class="first-answer" wx:if="{{index === 0 && item.firstAnswer}}">
+          <view class="answer-user row">
+            <image class="answer-user-avatar" src="{{item.firstAnswer.userInfo.avatar}}" />
+            <view class="answer-user-name">{{item.firstAnswer.userInfo.nickname}}</view>
+          </view>
+          <view class="qa-answer omit single-line">{{item.firstAnswer.content}}</view>
         </view>
-        <view class="qa-answers-number">13人回答</view>
-      </view>
-      <view class="qa-label">问</view>
-    </view>
-    <view class="qa-item">
-      <view class="qa-question">千岛湖森林氧吧好玩吗？</view>
-      <view class="qa-answers row">
-        <view class="qa-answers-avatars row">
-          <image class="answer-user-avatar" src="http://img.ubo.vip/uploads/15099395_642329416d5f9/i0hX323HiYx8uIbCsHISlbbDATrzieNfFUgcfhHf.jpeg" />
-          <image class="answer-user-avatar" src="http://img.ubo.vip/uploads/1112018_6093656e613a3/oY6sVTNFk6komid6RUNI25Z5HT6iptFWUAeQRVZZ.jpeg" />
-          <image class="answer-user-avatar" src="http://img.ubo.vip/uploads/6050889_62839505814e0/NBY9RpALyiHVsO41LRMGZKqqzxjjrkcul5o91iEw.jpeg" />
+        <view class="qa-no-answer" wx:if="{{index === 0 && !item.firstAnswer}}">暂无回答</view>
+        <view class="qa-answers row" wx:if="{{index !== 0}}">
+          <view class="qa-answers-avatars row" wx:if="{{item.answerNum}}">
+            <image class="answer-user-avatar" wx:for="{{item.userList}}" wx:key="userIdx" wx:for-index="userIdx" wx:for-item="user" src="{{user.avatar}}" />
+          </view>
+          <view class="qa-answers-number">{{item.answerNum ? item.answerNum + '人回答' : '暂无回答'}}</view>
         </view>
-        <view class="qa-answers-number">4人回答</view>
       </view>
-      <view class="qa-label">问</view>
+    </view>
+    <view class="total-tips row center">
+      <text>共{{qaSummary.total}}条问答</text>
+      <image class="more-icon" src="./images/more.png" />
     </view>
   </view>
-  <view class="total-tips row center">
-    <text>共100条问答</text>
-    <image class="more-icon" src="./images/more.png" />
-  </view>
+  <empty-illus wx:if="{{!qaSummary.total}}" desc="暂无问答" btnContent="去提问" bind:btnClick="checkQa" height="520rpx" />
 
   <view class="content-title-wrap">
     <view class="content-title">达人打卡</view>

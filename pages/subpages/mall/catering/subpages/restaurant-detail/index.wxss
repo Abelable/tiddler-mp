@@ -396,6 +396,11 @@
   margin-top: 18rpx;
   margin-left: 8rpx;
 }
+.qa-no-answer {
+  margin-top: 12rpx;
+  color: #666;
+  font-size: 22rpx;
+}
 .qa-answers-avatars {
   margin-left: 8rpx;
 }

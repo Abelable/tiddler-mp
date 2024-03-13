@@ -26,18 +26,18 @@ class CateringService extends BaseService {
     });
   }
 
-  async getRoomTypeOptions(hotelId) {
+  async getRoomTypeOptions(cateringId) {
     return await this.get({
       url: `${this.baseUrl}/catering/restaurant/room/type_options`,
-      data: { hotelId },
+      data: { cateringId },
       loadingTitle: "加载中...",
     });
   }
 
-  async getRestaurantRoomList(hotelId) {
+  async getRestaurantRoomList(cateringId) {
     return await this.get({
-      url: `${this.baseUrl}/catering/restaurant/room/list_of_hotel`,
-      data: { hotelId },
+      url: `${this.baseUrl}/catering/restaurant/room/list_of_catering`,
+      data: { cateringId },
       loadingTitle: "加载中...",
     });
   }
@@ -87,6 +87,61 @@ class CateringService extends BaseService {
       url: `${this.baseUrl}/catering/set_meal/order/submit`,
       data: { restaurantId, restaurantName, setMealId, num },
       loadingTitle: "订单提交中...",
+    });
+  }
+
+  async getCateringQaSummary(restaurantId) {
+    return await this.get({
+      url: `${this.baseUrl}/catering/question/summary`,
+      data: { restaurantId },
+    });
+  }
+
+  async getCateringQaList(restaurantId, page, limit = 10) {
+    return await this.get({
+      url: `${this.baseUrl}/catering/question/list`,
+      data: { restaurantId, page, limit },
+      loadingTitle: "加载中...",
+    });
+  }
+
+  async addCateringQuestion(restaurantId, content, success) {
+    return await this.post({
+      url: `${this.baseUrl}/catering/question/add`,
+      data: { restaurantId, content },
+      success,
+    });
+  }
+
+  async deleteCateringQuestion(questionId, success) {
+    return await this.post({
+      url: `${this.baseUrl}/catering/question/delete`,
+      data: { questionId },
+      success,
+    });
+  }
+
+  async getCateringAnswerList(questionId, page, limit = 10) {
+    return await this.get({
+      url: `${this.baseUrl}/catering/answer/list`,
+      data: { questionId, page, limit },
+      loadingTitle: "加载中...",
+    });
+  }
+
+  async addCateringAnswer(questionId, content, success) {
+    return await this.post({
+      url: `${this.baseUrl}/catering/answer/add`,
+      data: { questionId, content },
+      success,
+    });
+  }
+
+  async deleteCateringAnswer(questionId, answerId, success) {
+    return await this.post({
+      url: `${this.baseUrl}/catering/answer/delete`,
+      data: { questionId, answerId },
+      success,
     });
   }
 }
