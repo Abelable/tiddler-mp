@@ -1,7 +1,12 @@
+.container {
+  margin: 24rpx 24rpx calc(104rpx + env(safe-area-inset-bottom));
+}
+
 .qa-item {
   position: relative;
-  margin-bottom: 8px;
-  padding: 24rpx 42rpx;
+  margin-bottom: 16rpx;
+  padding: 24rpx;
+  padding-left: 42rpx;
   background: #fff;
   box-shadow: 0 0 12rpx 6rpx #f5f6f7;
   border-radius: 18rpx;
@@ -48,4 +53,54 @@
   margin-top: 4rpx;
   color: #666;
   font-size: 22rpx;
+}
+.no-tips {
+  margin-top: 18rpx;
+  color: #666;
+  font-size: 22rpx;
+}
+.qa-more {
+  margin-top: 12rpx;
+}
+.qa-time {
+  color: #999;
+  font-size: 22rpx;
+}
+.more-check {
+  color: #1986F8;
+  font-size: 22rpx;
+}
+.more-icon {
+  margin-left: 4rpx;
+  width: 22rpx;
+  height: 22rpx;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  padding: 12rpx 24rpx calc(12rpx + env(safe-area-inset-bottom));
+  padding-top: 12rpx;
+  width: 100%;
+  background: #fff;
+  z-index: 100;
+}
+.question-input {
+  padding: 0 24rpx;
+  flex: 1;
+  height: 80rpx;
+  font-size: 26rpx;
+  border-radius: 40rpx;
+  background: #f5f6f7;
+}
+.submit-btn {
+  margin-left: 24rpx;
+  height: 80rpx;
+  width: 150rpx;
+  color: #fff;
+  font-size: 30rpx;
+  font-weight: 500;
+  border-radius: 40rpx;
+  background: var(--theme-color-btn-bg);
 }

@@ -28,6 +28,7 @@
       "mall/scenic-spot/subpages/spot-detail/subpages/more-info/index",
       "mall/scenic-spot/subpages/spot-detail/subpages/comment-list/index",
       "mall/scenic-spot/subpages/spot-detail/subpages/qa-list/index",
+      "mall/scenic-spot/subpages/spot-detail/subpages/qa-list/subpages/qa-detail/index",
       "mall/scenic-spot/subpages/spot-detail/subpages/nearby-hotels/index",
       "mall/scenic-spot/subpages/spot-detail/subpages/nearby-spots/index",
       "mall/scenic-spot/subpages/order-check/index",

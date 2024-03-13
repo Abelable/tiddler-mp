@@ -427,6 +427,12 @@ Page({
     wx.navigateTo({ url });
   },
 
+  checkQa() {
+    const { id, name } = this.data.scenicInfo;
+    const url = `./subpages/qa-list/index?scenicId=${id}&scenicName=${name}`;
+    wx.navigateTo({ url });
+  },
+
   navigation() {
     const { name, address, latitude, longitude } = this.data.scenicInfo;
     wx.openLocation({

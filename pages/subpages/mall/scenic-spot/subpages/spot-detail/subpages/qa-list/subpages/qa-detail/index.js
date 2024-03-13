@@ -1,3 +1,5 @@
+import { createStoreBindings } from "mobx-miniprogram-bindings";
+import { store } from "../../../../../../../../../../store/index";
 import ScenicService from "../../../../../../utils/scenicService";
 
 const scenicService = new ScenicService();
@@ -11,8 +13,14 @@ Page({
   },
 
   onLoad({ scenicName, questionInfo }) {
-    this.setData({ scenicName, questionInfo })
-    this.questionId = questionInfo.indexOf;
+    this.storeBindings = createStoreBindings(this, {
+      store,
+      fields: ["userInfo"],
+    });
+
+    questionInfo = JSON.parse(questionInfo);
+    this.setData({ scenicName, questionInfo });
+    this.questionId = questionInfo.id;
     this.setAnswerList(true);
   },
 
@@ -29,15 +37,31 @@ Page({
     if (init) {
       this.page = 1;
     }
-    const list = await scenicService.getScenicAnswerList(
-      this.questionId,
-      ++this.page
-    );
+    const { list = [] } =
+      (await scenicService.getScenicAnswerList(this.questionId, ++this.page)) ||
+      {};
     this.setData({
       answerList: init ? list : [...this.data.answerList, ...list],
     });
     if (!list.length) {
       this.setData({ finished: true });
     }
+  },
+
+  deleteQuestion() {
+    wx.showModal({
+      content: "确定删除该提问吗？",
+      success: (result) => {
+        if (result.confirm) {
+          scenicService.deleteScenicQuestion(this.questionId, () => {
+            wx.navigateBack();
+          });
+        }
+      },
+    });
+  },
+
+  onUnload() {
+    this.storeBindings.destroyStoreBindings();
   },
 });

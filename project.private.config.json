@@ -3,7 +3,26 @@
     "compileHotReLoad": true,
     "urlCheck": false
   },
-  "condition": {},
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "问答详情",
+          "pathName": "pages/subpages/mall/scenic-spot/subpages/spot-detail/subpages/qa-list/subpages/qa-detail/index",
+          "query": "scenicName=%E5%8D%83%E5%B2%9B%E6%B9%96%E6%A3%AE%E6%9E%97%E6%B0%A7%E5%90%A7&questionInfo=%7B%22id%22%3A3%2C%22userId%22%3A3%2C%22scenicId%22%3A1%2C%22content%22%3A%22%E5%8D%83%E5%B2%9B%E6%B9%96%E6%A3%AE%E6%9E%97%E6%B0%A7%E5%90%A7%E5%A5%BD%E7%8E%A9%E5%90%97%EF%BC%9F%22%2C%22answerNum%22%3A0%2C%22createdAt%22%3A%222024-03-13T07%3A12%3A30.000000Z%22%2C%22updatedAt%22%3A%222024-03-13T07%3A12%3A30.000000Z%22%7D",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "问答列表",
+          "pathName": "pages/subpages/mall/scenic-spot/subpages/spot-detail/subpages/qa-list/index",
+          "query": "scenicId=1&scenicName=%E5%8D%83%E5%B2%9B%E6%B9%96%E6%A3%AE%E6%9E%97%E6%B0%A7%E5%90%A7",
+          "launchMode": "default",
+          "scene": null
+        }
+      ]
+    }
+  },
   "projectname": "mp-fish",
   "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
   "libVersion": "2.19.6"

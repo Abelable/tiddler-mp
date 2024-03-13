@@ -1,2 +1,36 @@
-<empty-illus wx:if="{{!qaList.length}}" desc="您还没有粉丝哦" />
-<view class="no-more-tips" wx:if="{{finished && qaList.length}}">～没有更多了～</view>
+<wxs module="TIME" src="/utils/filters/time.wxs" />
+
+<view class="container">
+  <view class="question-info-wrap">
+    <view class="scenic-name">{{ scenicName }}</view>
+    <view class="question-info">
+      <view class="question-content-wrap row">
+        <view class="question-tag">问</view>
+        <view class="question-content">{{ questionInfo.content }}</view>
+      </view>
+      <view class="question-time">提问时间：{{TIME.transform(questionInfo.createdAt, 'YYYY-MM-DD')}}</view>
+    </view>
+  </view>
+  
+  <view class="answer-list-wrap">
+    <view class="total-tips row">
+      <view class="answer-tag">答</view>
+      <view class="answer-total">共{{questionInfo.answerNum}}条回答</view>
+    </view>
+    <view class="answer-list">
+      <view class="answer-item" wx:for="{{answerList}}" wx:key="index">
+  
+      </view>
+    </view>
+  </view>
+  
+  <empty-illus wx:if="{{!answerList.length}}" desc="暂无回答" />
+  <view class="no-more-tips" wx:if="{{finished && answerList.length}}">～没有更多了～</view>
+</view>
+
+<view class="footer row" wx:if="{{userInfo.id !== questionInfo.userId}}">
+  <input class="question-input" value="{{questionContent}}" bindinput="setQuestionContent" placeholder="请输入您宝贵的建议" />
+  <view class="submit-btn row center" bindtap="submitQuestion">回答</view>
+</view>
+
+<view class="delete-btn row center" wx:if="{{userInfo.id === questionInfo.userId}}" bindtap="deleteQuestion">删除提问</view>
