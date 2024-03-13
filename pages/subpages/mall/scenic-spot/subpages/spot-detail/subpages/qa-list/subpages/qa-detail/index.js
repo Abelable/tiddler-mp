@@ -9,7 +9,9 @@ Page({
     scenicName: "",
     questionInfo: {},
     answerList: [],
+    answerTotal: 0,
     finished: false,
+    answerContent: "",
   },
 
   onLoad({ scenicName, questionInfo }) {
@@ -35,17 +37,45 @@ Page({
 
   async setAnswerList(init = false) {
     if (init) {
-      this.page = 1;
+      this.page = 0;
     }
-    const { list = [] } =
+    const { list = [], total } =
       (await scenicService.getScenicAnswerList(this.questionId, ++this.page)) ||
       {};
     this.setData({
       answerList: init ? list : [...this.data.answerList, ...list],
     });
+    if (init) {
+      this.setData({ answerTotal: total });
+    }
     if (!list.length) {
       this.setData({ finished: true });
     }
+  },
+
+  setAnswerContent(e) {
+    this.setData({
+      answerContent: e.detail.value,
+    });
+  },
+
+  submitAnswer() {
+    if (!this.data.answerContent) {
+      wx.showToast({
+        title: "请输入您的建议",
+        icon: "none",
+      });
+      return;
+    }
+
+    scenicService.addScenicAnswer(
+      this.questionId,
+      this.data.answerContent,
+      () => {
+        this.setData({ answerContent: "" });
+        this.setAnswerList(true);
+      }
+    );
   },
 
   deleteQuestion() {
@@ -56,6 +86,23 @@ Page({
           scenicService.deleteScenicQuestion(this.questionId, () => {
             wx.navigateBack();
           });
+        }
+      },
+    });
+  },
+
+  deleteAnswer(e) {
+    wx.showModal({
+      content: "确定删除该回答吗？",
+      success: (result) => {
+        if (result.confirm) {
+          scenicService.deleteScenicAnswer(
+            this.questionId,
+            e.currentTarget.dataset.id,
+            () => {
+              this.setAnswerList(true);
+            }
+          );
         }
       },
     });

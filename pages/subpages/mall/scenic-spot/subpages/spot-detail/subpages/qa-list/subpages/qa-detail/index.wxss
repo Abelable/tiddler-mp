@@ -43,12 +43,11 @@
 
 .answer-list-wrap {
   margin-top: 24rpx;
-  padding: 0 24rpx;
   background: #fff;
   border-radius: 24rpx;
 }
 .total-tips {
-  padding: 24rpx 0;
+  padding: 24rpx;
 }
 .answer-tag {
   display: flex;
@@ -68,6 +67,49 @@
   color: #333;
   font-size: 28rpx;
   font-weight: 500;
+}
+
+.answer-list {
+  padding: 0 24rpx;
+}
+.answer-item {
+  padding: 24rpx 0;
+  border-top: 1px solid #eee;
+}
+.user-avatar {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+}
+.user-name {
+  margin-left: 12rpx;
+  color: #666;
+  font-size: 24rpx;
+}
+.answer-content {
+  margin-top: 18rpx;
+  color: #333;
+  font-size: 26rpx;
+}
+.answer-more {
+  margin-top: 18rpx;
+}
+.answer-time {
+  color: #999;
+  font-size: 24rpx;
+}
+.answer-delete-btn {
+  width: 90rpx;
+  height: 46rpx;
+  color: #999;
+  font-size: 18rpx;
+  border: 1px solid #ddd;
+  border-radius: 8rpx;
+}
+.delete-icon {
+  margin-right: 4rpx;
+  width: 24rpx;
+  height: 24rpx;
 }
 
 .footer {
@@ -112,4 +154,11 @@
   border: 1px solid #FD0B0A;
   border-radius: 50rpx;
   z-index: 100;
+}
+
+.no-more-tips {
+  margin-top: 36rpx;
+  color: #999;
+  font-size: 24rpx;
+  text-align: center;
 }

@@ -117,10 +117,10 @@ class ScenicService extends MallService {
     });
   }
 
-  async deleteScenicAnswer(answerId, success) {
+  async deleteScenicAnswer(questionId, answerId, success) {
     return await this.post({
-      url: `${this.baseUrl}/scenic/question/delete`,
-      data: { answerId },
+      url: `${this.baseUrl}/scenic/answer/delete`,
+      data: { questionId, answerId },
       success,
     });
   }

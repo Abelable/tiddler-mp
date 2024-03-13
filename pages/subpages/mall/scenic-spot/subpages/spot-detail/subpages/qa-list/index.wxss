@@ -104,3 +104,10 @@
   border-radius: 40rpx;
   background: var(--theme-color-btn-bg);
 }
+
+.no-more-tips {
+  margin-top: 36rpx;
+  color: #999;
+  font-size: 24rpx;
+  text-align: center;
+}
