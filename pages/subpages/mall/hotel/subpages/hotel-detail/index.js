@@ -33,6 +33,7 @@ Component({
     roomTypeIndexList: [],
     roomPackageList: [],
     commentList,
+    qaSummary: null,
     nearbyScenicList: [],
     nearbyScenicTotal: 0,
     nearbyHotelList: [],
@@ -59,6 +60,7 @@ Component({
       this.hotelId = +id;
       await this.setHotelInfo();
       await this.setRoomTypeList();
+      await this.setQaSummary();
       await this.setNearbyScenicList();
       await this.setNearbyHotelList();
       this.setMenuList();
@@ -176,6 +178,11 @@ Component({
           this.redraw();
         }
       );
+    },
+
+    async setQaSummary() {
+      const qaSummary = await hotelService.getHotelQaSummary(this.hotelId);
+      this.setData({ qaSummary });
     },
 
     setMenuList() {
@@ -410,6 +417,12 @@ Component({
       wx.navigateTo({
         url: "/pages/subpages/mall/hotel/subpages/order-check/index",
       });
+    },
+
+    checkQa() {
+      const { id, name } = this.data.hotelInfo;
+      const url = `./subpages/qa-list/index?hotelId=${id}&hotelName=${name}`;
+      wx.navigateTo({ url });
     },
 
     onShareAppMessage() {},
