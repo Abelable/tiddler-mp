@@ -161,7 +161,7 @@
 .list-spec {
   margin: 18rpx 24rpx;
   padding: 0 24rpx;
-  height: 90rpx;
+  height: 100rpx;
   font-size: 28rpx;
   background: #fff;
   border-radius: 12rpx;
@@ -184,6 +184,39 @@
 .choose-btn-icon {
   width: 16rpx;
   height: 16rpx;
+}
+
+.comment-summary-wrap {
+  margin: 18rpx 24rpx;
+  padding: 0 24rpx;
+  height: 120rpx;
+  background: #fff;
+  border-radius: 12rpx;
+}
+.comment-user-avatar-wrap {
+  margin-left: 8rpx;
+}
+.comment-user-avatar {
+  margin-left: -8rpx;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  border: 2rpx solid #fff;
+}
+.comment-num {
+  margin-left: 12rpx;
+  color: #333;
+  font-size: 26rpx;
+  font-weight: 600;
+}
+.goods-score-wrap {
+  color: #666;
+  font-size: 26rpx;
+}
+.goods-score {
+  margin-left: 8rpx;
+  color: #333;
+  font-weight: 600;
 }
 
 .goods-detail {
