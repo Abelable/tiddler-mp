@@ -55,7 +55,7 @@
         <button 
           class="btn active" 
            
-          catchtap="navToEvaluation" data-id="{{item.id}}" data-goodsList="{{item.goodsList}}"
+          catchtap="navToEvaluation" data-id="{{item.id}}" data-goods-list="{{item.goodsList}}"
         >评价</button>
       </view>
     </view>

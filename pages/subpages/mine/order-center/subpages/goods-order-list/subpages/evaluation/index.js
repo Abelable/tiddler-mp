@@ -10,5 +10,7 @@ Page({
     this.orderId = orderId;
   },
 
-  
+  setScore(e) {
+    this.setData({ score: e.detail });
+  },
 });
