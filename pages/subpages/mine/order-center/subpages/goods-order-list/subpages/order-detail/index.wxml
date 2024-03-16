@@ -66,32 +66,32 @@
   <button 
     class="btn" 
     wx:if="{{orderInfo.status === 102 || orderInfo.status === 103 || orderInfo.status === 104 || orderInfo.status === 401 || orderInfo.status === 402}}" 
-    bindtap="deleteOrder" data-id="{{orderInfo.id}}" data-index="{{index}}"
+    bindtap="deleteOrder"
   >删除订单</button>
   <button 
     class="btn" 
     wx:if="{{orderInfo.status === 101}}" 
-    bindtap="cancelOrder" data-id="{{orderInfo.id}}" data-index="{{index}}"
+    bindtap="cancelOrder"
   >取消订单</button>
   <button 
     class="btn active"
     wx:if="{{orderInfo.status === 301}}" 
-    bindtap="confirmOrder" data-id="{{orderInfo.id}}" data-index="{{index}}"
+    bindtap="confirmOrder"
   >确认收货</button>
   <button 
     class="btn active" 
     wx:if="{{orderInfo.status === 101}}" 
-    bindtap="payOrder" data-id="{{orderInfo.id}}" data-index="{{index}}"
+    bindtap="payOrder"
   >继续付款</button>
   <button 
     class="btn active" 
     wx:if="{{orderInfo.status === 201}}"
-    bindtap="refundOrder" data-id="{{orderInfo.id}}" data-index="{{index}}"
+    bindtap="refundOrder"
   >申请退款</button>
   <button 
     class="btn active" 
     wx:if="{{orderInfo.status === 401 || orderInfo.status === 402}}" 
-    bindtap="navToComment" data-id="{{orderInfo.id}}"
+    bindtap="navToEvaluation"
   >评价</button>
   <button class="btn active" bindtap="contact">{{orderInfo.shopId ? '联系卖家' : '联系客服'}}</button>
 </view>

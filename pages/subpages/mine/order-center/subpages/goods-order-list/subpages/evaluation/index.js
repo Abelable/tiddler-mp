@@ -1,11 +1,12 @@
 Page({
   data: {
-    goodsInfoList: [],
+    goodsList: [],
+    score: 0,
   },
 
-  onLoad({ goodsInfoList, orderId }) {
-    goodsInfoList = JSON.parse(goodsInfoList);
-    this.setData({ goodsInfoList });
+  onLoad({ goodsList, orderId }) {
+    goodsList = JSON.parse(goodsList);
+    this.setData({ goodsList });
     this.orderId = orderId;
   },
 

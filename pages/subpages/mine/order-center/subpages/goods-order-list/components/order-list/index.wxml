@@ -54,7 +54,7 @@
         <button 
           class="btn active" 
           wx:if="{{item.status === 401 || item.status === 402}}" 
-          catchtap="navToComment" data-id="{{item.id}}"
+          catchtap="navToEvaluation" data-id="{{item.id}}" data-goodsList="{{item.goodsList}}"
         >评价</button>
       </view>
     </view>

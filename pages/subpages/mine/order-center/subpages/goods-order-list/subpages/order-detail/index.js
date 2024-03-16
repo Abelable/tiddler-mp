@@ -89,18 +89,18 @@ Page({
     wx.navigateTo({ url })
   },
 
-  navToComment(e) {
+  navToEvaluation(e) {
     const id = e.currentTarget.dataset.id
     const url = `/pages/subpages/mine/order-center/subpages/goods-order-list/subpages/evaluation/index?id=${id}`
     wx.navigateTo({ url })
-  },
-
-  contact() {
   },
 
   navToShop(e) {
     const { id } = e.currentTarget.dataset
     const url = `/pages/subpages/mall/goods/subpages/shop/index?id=${id}`
     wx.navigateTo({ url })
+  },
+
+  contact() {
   },
 })
