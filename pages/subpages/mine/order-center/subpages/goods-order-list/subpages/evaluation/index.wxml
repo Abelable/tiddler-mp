@@ -1,0 +1,15 @@
+<view class="container">
+  <view class="goods-list">
+    <view class="goods-item" wx:for="{{goodsInfoList}}" wx:key="index">
+      <image class="goods-image" src="{{item.image}}" />
+      <view class="goods-info">
+        <view class="goods-name">{{item.name}}</view>
+        <view class="goods-sku">{{item.selectedSkuName}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="evaluation-info-wrap"></view>
+</view>
+
+

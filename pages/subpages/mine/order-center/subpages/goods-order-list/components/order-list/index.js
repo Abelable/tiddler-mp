@@ -50,8 +50,6 @@ Component({
       })
     },
 
-    
-  
     navToDetail(e) {
       const id = e.currentTarget.dataset.id
       const url = `/pages/subpages/mine/order-center/subpages/goods-order-list/subpages/order-detail/index?id=${id}`
@@ -66,7 +64,7 @@ Component({
 
     navToComment(e) {
       const id = e.currentTarget.dataset.id
-      const url = `/pages/subpages/mine/order-center/subpages/goods-order-list/subpages/comment/index?id=${id}`
+      const url = `/pages/subpages/mine/order-center/subpages/goods-order-list/subpages/evaluation/index?id=${id}`
       wx.navigateTo({ url })
     },
 
