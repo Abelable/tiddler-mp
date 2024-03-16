@@ -31,6 +31,14 @@ class GoodsService extends MallService {
     });
   }
 
+  async getGoodsEvaluationSummary(goodsId) {
+    return await this.get({
+      url: `${this.baseUrl}/goods/evaluation/summary`,
+      data: { goodsId },
+      loadingTitle: "加载中...",
+    });
+  }
+
   async getShopInfo(id) {
     return await this.get({
       url: `${this.baseUrl}/shop/info`,
