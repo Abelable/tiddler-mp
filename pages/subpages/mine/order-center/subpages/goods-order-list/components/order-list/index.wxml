@@ -51,9 +51,10 @@
           wx:if="{{item.status === 201}}"
           catchtap="refundOrder" data-id="{{item.id}}" data-index="{{index}}"
         >申请退款</button>
+        <!-- wx:if="{{item.status === 401 || item.status === 402}}" -->
         <button 
           class="btn active" 
-          wx:if="{{item.status === 401 || item.status === 402}}" 
+           
           catchtap="navToEvaluation" data-id="{{item.id}}" data-goodsList="{{item.goodsList}}"
         >评价</button>
       </view>

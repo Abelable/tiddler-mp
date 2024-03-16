@@ -72,7 +72,8 @@
   <button class="btn active" wx:if="{{orderInfo.status === 201}}" bindtap="refundOrder">
     申请退款
   </button>
-  <button class="btn active" wx:if="{{orderInfo.status === 401 || orderInfo.status === 402}}" bindtap="navToEvaluation">
+  <!-- wx:if="{{orderInfo.status === 401 || orderInfo.status === 402}}" -->
+  <button class="btn active" bindtap="navToEvaluation">
     评价
   </button>
   <button class="btn active" bindtap="contact">{{orderInfo.shopId ? '联系卖家' : '联系客服'}}</button>
