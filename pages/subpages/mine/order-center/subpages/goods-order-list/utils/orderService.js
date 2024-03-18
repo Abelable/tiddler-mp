@@ -63,6 +63,14 @@ class OrderService extends BaseService {
       loadingTitle: '发布中...' 
     })
   }
+
+  async submitEvaluation(orderId, goodsIds, score, content, imageList, success) {
+    return await this.post({ 
+      url: `${this.baseUrl}/goods/evaluation/add`, 
+      data: { orderId, goodsIds, score, content, imageList }, 
+      success, 
+    })
+  }
 }
 
 export default OrderService

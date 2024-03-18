@@ -29,4 +29,4 @@
   </view>
 </view>
 
-<view class="submit-btn row center">提交</view>
+<view class="submit-btn row center" bindtap="submit">提交</view>
