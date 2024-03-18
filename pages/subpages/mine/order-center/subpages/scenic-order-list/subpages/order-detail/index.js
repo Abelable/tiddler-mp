@@ -1,99 +1,102 @@
-import OrderService from '../../utils/orderService'
+import OrderService from "../../utils/orderService";
 
-const orderService = new OrderService()
+const orderService = new OrderService();
 
 Page({
   data: {
-    orderInfo: null
+    orderInfo: null,
   },
-  
+
   onLoad({ id }) {
-    this.orderId = id
-    this.setOrderInfo()
+    this.orderId = id;
+    this.setOrderInfo();
   },
 
   async setOrderInfo() {
-    const orderInfo = await orderService.getOrderDetail(this.orderId)
-    this.setData({ orderInfo })
+    const orderInfo = await orderService.getOrderDetail(this.orderId);
+    this.setData({ orderInfo });
 
     const titleEnums = {
-      101: '等待买家付款',
-      102: '交易关闭',
-      103: '交易关闭',
-      104: '交易关闭',
-      201: '出行确认中',
-      202: '退款申请中',
-      203: '退款成功',
-      301: '交易成功',
-      302: '交易成功',
-    }
+      101: "等待买家付款",
+      102: "交易关闭",
+      103: "交易关闭",
+      104: "交易关闭",
+      201: "出行确认中",
+      202: "退款申请中",
+      203: "退款成功",
+      301: "交易成功",
+      302: "交易成功",
+      401: "交易成功",
+    };
     wx.setNavigationBarTitle({
       title: titleEnums[orderInfo.status],
-    })
+    });
   },
 
   copyOrderSn() {
     wx.setClipboardData({
-      data: this.data.orderInfo.orderSn, 
+      data: this.data.orderInfo.orderSn,
       success: () => {
-        wx.showToast({ title: '复制成功', icon: 'none' })
-      }
-    })
+        wx.showToast({ title: "复制成功", icon: "none" });
+      },
+    });
   },
 
   async payOrder() {
-    const params = await orderService.getPayParams(this.orderId)
-    wx.requestPayment({ ...params,
+    const params = await orderService.getPayParams(this.orderId);
+    wx.requestPayment({
+      ...params,
       success: () => {
         this.setData({
-          ['orderInfo.status']: 201
-        })
-      }
-    })
+          ["orderInfo.status"]: 201,
+        });
+      },
+    });
   },
 
   refundOrder() {
     orderService.refundOrder(this.orderId, () => {
       this.setData({
-        ['orderInfo.status']: 202
-      })
-    })
+        ["orderInfo.status"]: 202,
+      });
+    });
   },
 
   confirmOrder() {
     orderService.confirmOrder(this.orderId, () => {
       this.setData({
-        ['orderInfo.status']: 401
-      })
-    })
+        ["orderInfo.status"]: 401,
+      });
+    });
   },
 
   deleteOrder() {
     orderService.deleteOrder(this.orderId, () => {
-      wx.navigateBack()
-    })
+      wx.navigateBack();
+    });
   },
 
   cancelOrder() {
     orderService.cancelOrder(this.orderId, () => {
       this.setData({
-        ['orderInfo.status']: 102
-      })
-    })
+        ["orderInfo.status"]: 102,
+      });
+    });
   },
 
-  navToEvaluation(e) {
-    const id = e.currentTarget.dataset.id
-    const url = `/pages/subpages/mine/order-center/subpages/goods-order-list/subpages/evaluation/index?id=${id}`
-    wx.navigateTo({ url })
+  navToEvaluation() {
+    const { id } = this.data.orderInfo.ticketInfo;
+    const url = `../evaluation/index?orderId=${this.orderId}&ticketId=${id}`;
+    wx.navigateTo({ url });
   },
 
-  contact() {
-  },
+  navToAfterSale() {},
+
+  contact() {},
 
   navToShop(e) {
-    const { id } = e.currentTarget.dataset
-    const url = `/pages/subpages/mall/goods/subpages/shop/index?id=${id}`
-    wx.navigateTo({ url })
+    const { id } = e.currentTarget.dataset;
+    const url = `/pages/subpages/mall/goods/subpages/shop/index?id=${id}`;
+    wx.navigateTo({ url });
   },
-})
+});

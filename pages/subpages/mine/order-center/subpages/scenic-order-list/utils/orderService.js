@@ -62,7 +62,7 @@ class OrderService extends BaseService {
 
   async submitEvaluation(orderId, ticketId, score, content, imageList, success) {
     return await this.post({ 
-      url: `${this.baseUrl}/goods/evaluation/add`, 
+      url: `${this.baseUrl}/scenic/evaluation/add`, 
       data: { orderId, ticketId, score, content, imageList }, 
       success, 
     })

@@ -3,7 +3,6 @@
 }
 
 .evaluation-info-wrap {
-  margin-top: 24rpx;
   padding: 24rpx 24rpx 32rpx;
   background: #fff;
   border-radius: 24rpx;

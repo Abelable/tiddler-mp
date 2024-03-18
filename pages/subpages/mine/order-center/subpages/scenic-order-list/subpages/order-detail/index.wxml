@@ -1,6 +1,5 @@
 <wxs module="TIME" src="/utils/filters/time.wxs" />
 <wxs module="ORDER" src="../../../../../utils/scenicOrder.wxs" />
-
 <view class="container">
   <view class="card">
     <view class="card-header row">
@@ -44,43 +43,27 @@
     </view>
   </view>
 </view>
-
 <view class="bottom-bar">
-  <button 
-    class="btn" 
-    wx:if="{{orderInfo.status === 102 || orderInfo.status === 103 || orderInfo.status === 104 || orderInfo.status === 301 || orderInfo.status === 302}}" 
-    bindtap="deleteOrder" data-id="{{orderInfo.id}}" data-index="{{index}}"
-  >删除订单</button>
-  <button 
-    class="btn" 
-    wx:if="{{orderInfo.status === 101}}" 
-    bindtap="cancelOrder" data-id="{{orderInfo.id}}" data-index="{{index}}"
-  >取消订单</button>
-  <button 
-    class="btn active"
-    wx:if="{{orderInfo.status === 201}}" 
-    bindtap="confirmOrder" data-id="{{orderInfo.id}}" data-index="{{index}}"
-  >确认出行</button>
-  <button 
-    class="btn active" 
-    wx:if="{{orderInfo.status === 101}}" 
-    bindtap="payOrder" data-id="{{orderInfo.id}}" data-index="{{index}}"
-  >继续付款</button>
-  <button 
-    class="btn active" 
-    wx:if="{{orderInfo.status === 201}}"
-    bindtap="refundOrder" data-id="{{orderInfo.id}}" data-index="{{index}}"
-  >申请退款</button>
-  <button 
-    class="btn active" 
-    wx:if="{{orderInfo.status === 301 || orderInfo.status === 302}}" 
-    bindtap="navToEvaluation" data-id="{{orderInfo.id}}"
-  >评价</button>
-  <button 
-    class="btn active" 
-    wx:if="{{orderInfo.status === 301 || orderInfo.status === 302}}" 
-    bindtap="navToEvaluation" data-id="{{orderInfo.id}}"
-  >申请售后</button>
+  <button class="btn" wx:if="{{orderInfo.status === 102 || orderInfo.status === 103 || orderInfo.status === 104 || orderInfo.status === 301 || orderInfo.status === 302}}" bindtap="deleteOrder" data-id="{{orderInfo.id}}" data-index="{{index}}">
+    删除订单
+  </button>
+  <button class="btn" wx:if="{{orderInfo.status === 101}}" bindtap="cancelOrder" data-id="{{orderInfo.id}}" data-index="{{index}}">
+    取消订单
+  </button>
+  <button class="btn active" wx:if="{{orderInfo.status === 201}}" bindtap="confirmOrder" data-id="{{orderInfo.id}}" data-index="{{index}}">
+    确认出行
+  </button>
+  <button class="btn active" wx:if="{{orderInfo.status === 101}}" bindtap="payOrder" data-id="{{orderInfo.id}}" data-index="{{index}}">
+    继续付款
+  </button>
+  <button class="btn active" wx:if="{{orderInfo.status === 201}}" bindtap="refundOrder" data-id="{{orderInfo.id}}" data-index="{{index}}">
+    申请退款
+  </button>
+  <button class="btn active" wx:if="{{orderInfo.status === 301 || orderInfo.status === 302}}" bindtap="navToEvaluation">
+    评价
+  </button>
+  <button class="btn active" wx:if="{{orderInfo.status === 301 || orderInfo.status === 302}}" bindtap="navToAfterSale" data-id="{{orderInfo.id}}">
+    申请售后
+  </button>
   <button class="btn active" bindtap="contact">{{orderInfo.shopId ? '联系卖家' : '联系客服'}}</button>
 </view>
-  
