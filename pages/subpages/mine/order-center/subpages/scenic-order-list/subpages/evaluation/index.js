@@ -1,65 +1,92 @@
+import OrderService from "../../utils/orderService";
+
+const orderService = new OrderService();
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    score: 0,
+    imageList: [],
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-
+  onLoad({ orderId, ticketId }) {
+    this.orderId = orderId;
+    this.ticketId = ticketId;
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
+  setScore(e) {
+    this.setData({ score: e.detail });
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
+  setContent(e) {
+    this.content = e.detail.value;
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
+  async uploadImage(e) {
+    const { index, file } = e.detail;
+    this.setData({
+      imageList: [
+        ...this.data.imageList,
+        { status: "uploading", message: "上传中", deletable: true },
+      ],
+    });
+    const url = (await orderService.uploadFile(file.url)) || "";
+    if (url) {
+      this.setData({
+        [`imageList[${index}]`]: {
+          ...this.data.imageList[index],
+          status: "done",
+          message: "上传成功",
+          url,
+        },
+      });
+    } else {
+      this.setData({
+        [`imageList[${index}]`]: {
+          ...this.data.imageList[index],
+          status: "fail",
+          message: "上传失败",
+        },
+      });
+    }
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
+  deleteImage(e) {
+    const { imageList } = this.data;
+    imageList.splice(e.detail.index, 1);
+    this.setData({ imageList });
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
+  submit() {
+    const { score, imageList } = this.data;
+    if (!score) {
+      wx.showToast({
+        title: "忘记评分咯！",
+        icon: "none",
+      });
+      return;
+    }
+    if (!this.content) {
+      wx.showToast({
+        title: "评价不能为空哦！",
+        icon: "none",
+      });
+      return;
+    }
+    orderService.submitEvaluation(
+      this.orderId,
+      this.ticketId,
+      score,
+      this.content,
+      imageList,
+      () => {
+        wx.showToast({
+          title: "提交成功",
+          icon: "none",
+        });
+        setTimeout(() => {
+          wx.navigateBack();
+        }, 2000);
+      }
+    );
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
-})
+});
