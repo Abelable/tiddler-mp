@@ -57,26 +57,16 @@ Page({
 
   setCurOpenTime(openTimeList) {
     const date = new Date();
-
     const curMonth = date.getMonth() + 1;
     const curOpenTime = openTimeList.find(
       (item) => curMonth >= item.openMonth && curMonth <= item.closeMonth
     );
-
-    const { openTime, closeTime } = curOpenTime;
-    const openDate = new Date(openTime);
-    const closeDate = new Date(closeTime);
-    const openTimeUnit = Number(
-      `${openDate.getHours()}` + `${openDate.getMinutes()}`.padStart(2, "0")
-    );
-    const closeTimeUnit = Number(
-      `${closeDate.getHours()}` + `${closeDate.getMinutes()}`.padStart(2, "0")
-    );
+    const openTime = Number(curOpenTime.openTime.replace(":", ""));
+    const closeTime = Number(curOpenTime.closeTime.replace(":", ""));
     const curTime = Number(
       `${date.getHours()}` + `${date.getMinutes()}`.padStart(2, "0")
     );
-    const isOpen = curTime >= openTimeUnit && curTime <= closeTimeUnit;
-
+    const isOpen = curTime >= openTime && curTime <= closeTime;
     this.setData({ curOpenTime, isOpen });
   },
 
