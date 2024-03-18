@@ -191,7 +191,7 @@
       <view class="content-title">用户点评</view>
     </view>
     <view class="comment-list">
-      <comment-item wx:for="{{commentList}}" wx:key="index" item="{{item}}" />
+      <evaluation-item wx:for="{{commentList}}" wx:key="index" item="{{item}}" />
     </view>
     <view class="total-tips row center">
       <text>共1000条点评</text>

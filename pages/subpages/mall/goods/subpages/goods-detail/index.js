@@ -192,6 +192,12 @@ Page({
     });
   },
 
+  checkEvaluationDetail() {
+    const { avgScore } = this.data.evaluationSummary;
+    const url = `./subpages/evaluation/index?goodsId=${this.goodsId}&avgScore=${avgScore}`;
+    wx.navigateTo({ url });
+  },
+
   // 分享
   onShareAppMessage() {
     const { id, name: title, image: imageUrl } = this.data.goodsInfo;

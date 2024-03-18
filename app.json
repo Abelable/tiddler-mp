@@ -54,6 +54,7 @@
       "mall/catering/subpages/set-meal-order-check/index",
       "mall/goods/index",
       "mall/goods/subpages/goods-detail/index",
+      "mall/goods/subpages/goods-detail/subpages/evaluation/index",
       "mall/goods/subpages/shop/index",
       "mall/goods/subpages/cart/index",
       "mall/goods/subpages/search/index",
