@@ -84,9 +84,9 @@
   </view>
 
   <view class="score-wrap row">
-    <van-rate value="{{scenicInfo.rate || 0}}" size="18" gutter="0" color="#ffd21e" void-icon="star" void-color="#eee" allow-half readonly />
-    <text class="score" wx:if="{{scenicInfo.rate}}">{{scenicInfo.rate}}分</text>
-    <text class="no-score" wx:if="{{!scenicInfo.rate}}">暂无评分</text>
+    <van-rate value="{{scenicInfo.score || 0}}" size="18" gutter="0" color="#ffd21e" void-icon="star" void-color="#eee" allow-half readonly />
+    <text class="score" wx:if="{{scenicInfo.score}}">{{scenicInfo.score}}分</text>
+    <text class="no-score" wx:if="{{!scenicInfo.score}}">暂无评分</text>
   </view>
 
   <view class="info-list-wrap">

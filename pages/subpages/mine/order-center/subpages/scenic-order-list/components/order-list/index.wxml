@@ -11,7 +11,7 @@
       <view class="order-status">{{ORDER.statusDesc(item.status)}}</view>
     </view>
     <view class="list-content">
-      <ticket-item ticketInfo="{{item.ticketInfo}}" />
+      <ticket-item ticketInfo="{{item.ticketInfo || null}}" />
     </view>
     <view class="list-footer">
       <view class="total-info row baseline">

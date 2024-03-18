@@ -3,9 +3,9 @@
   <view class="scenic-spot-info">
     <view class="scenic-spot-name omit single-line">{{info.name}}</view>
     <view class="scenic-spot-rate-wrap row">
-      <van-rate value="{{info.rate || 0}}" size="12" gutter="0" color="#ffd21e" void-icon="star" void-color="#eee" allow-half readonly />
+      <van-rate value="{{info.score || 0}}" size="12" gutter="0" color="#ffd21e" void-icon="star" void-color="#eee" allow-half readonly />
       <view class="scenic-spot-rate">
-        <text style="font-weight: bold;">{{info.rate || 0}}</text>
+        <text style="font-weight: bold;">{{info.score || 0}}</text>
         <text>分</text>
       </view>
     </view>

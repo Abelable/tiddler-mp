@@ -1,5 +1,6 @@
 <wxs module="TIME" src="/utils/filters/time.wxs" />
 <wxs module="ORDER" src="../../../../../utils/scenicOrder.wxs" />
+
 <view class="container">
   <view class="card">
     <view class="card-header row">
@@ -10,10 +11,10 @@
       </view>
       <view class="shop-name omit single-line" wx:if="{{!orderInfo.shopId}}">官方自营</view>
     </view>
-    <ticket-item ticketInfo="{{orderInfo.ticketInfo}}" />
+    <ticket-item ticketInfo="{{orderInfo.ticketInfo || null}}" />
     <view class="list row between">
       <view class="title">{{ORDER.paymentDesc(orderInfo.status)}}</view>
-      <price-unit price="{{orderInfo.paymentAmount}}" />
+      <price-unit price="{{orderInfo.paymentAmount || 0}}" />
     </view>
     <view class="more-info-wrap">
       <view class="list row top">
