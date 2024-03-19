@@ -55,15 +55,6 @@ class OrderService extends BaseService {
     return await this.get({ url: `${this.baseUrl}/order/tracker-order-id`, data: { order_id } })
   }
 
-  async publishComment(order_id, comment_type, commentLists, success) {
-    return await this.post({ 
-      url: `${this.baseUrl}/order/comment`, 
-      data: { order_id, comment_type, json_data: JSON.stringify(commentLists) }, 
-      success, 
-      loadingTitle: '发布中...' 
-    })
-  }
-
   async submitEvaluation(orderId, goodsIds, score, content, imageList, success) {
     return await this.post({ 
       url: `${this.baseUrl}/goods/evaluation/add`, 

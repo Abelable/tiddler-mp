@@ -51,15 +51,6 @@ class OrderService extends BaseService {
     });
   }
 
-  async publishComment(order_id, comment_type, commentLists, success) {
-    return await this.post({
-      url: `${this.baseUrl}/scenic/order/comment`,
-      data: { order_id, comment_type, json_data: JSON.stringify(commentLists) },
-      success,
-      loadingTitle: "发布中...",
-    });
-  }
-
   async submitEvaluation(orderId, ticketId, score, content, imageList, success) {
     return await this.post({ 
       url: `${this.baseUrl}/scenic/evaluation/add`, 
