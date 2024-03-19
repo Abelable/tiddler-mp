@@ -11,8 +11,8 @@
     <view class="spot-info" wx:if="{{navBarVisible}}">
       <view class="spot-name">{{restaurantInfo.name}}</view>
       <view class="grade-wrap row">
-        <van-rate value="{{restaurantInfo.rate || 0}}" size="8" gutter="0" color="#ffd21e" void-icon="star" void-color="#eee" allow-half readonly />
-        <text class="spot-grade">{{restaurantInfo.rate}}</text>
+        <van-rate value="{{restaurantInfo.score || 0}}" size="8" gutter="0" color="#ffd21e" void-icon="star" void-color="#eee" allow-half readonly />
+        <text class="spot-grade">{{restaurantInfo.score}}</text>
       </view>
     </view>
   </view>
@@ -75,8 +75,8 @@
   </view>
 
   <view class="score-wrap row">
-    <van-rate value="{{restaurantInfo.rate || 0}}" size="16" gutter="0" color="#ffd21e" void-icon="star" void-color="#eee" allow-half readonly />
-    <view class="score {{ restaurantInfo.rate ? 'active' : '' }}">{{restaurantInfo.rate || '暂无评分'}}</view>
+    <van-rate value="{{restaurantInfo.score || 0}}" size="16" gutter="0" color="#ffd21e" void-icon="star" void-color="#eee" allow-half readonly />
+    <view class="score {{ restaurantInfo.score ? 'active' : '' }}">{{restaurantInfo.score || '暂无评分'}}</view>
     <view class="price">¥{{restaurantInfo.price}}/人</view>
     <view class="row">
       <view class="more-detail">2031人评</view>

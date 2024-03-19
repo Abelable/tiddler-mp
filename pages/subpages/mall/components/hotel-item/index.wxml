@@ -4,7 +4,7 @@
     <view class="hotel-name omit single-line">{{info.name}}</view>
     <view class="hotel-appraise row">
       <view class="hotel-rate">
-        <text class="hotel-rate-number">{{info.rate}}</text>
+        <text class="hotel-rate-number">{{info.score}}</text>
         <text>分</text>
       </view>
       <view class="hotel-type">{{['经济酒店', '舒适酒店', '高档酒店', '豪华酒店'][info.grade - 1]}}</view>
