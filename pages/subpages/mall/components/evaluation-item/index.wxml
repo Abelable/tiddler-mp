@@ -12,7 +12,7 @@
       <view class="comment-rate">{{item.score}}分</view>
     </view>
   </view>
-  <view class="comment-content omit">{{item.content}}</view>
+  <view class="comment-content {{contentOmit ? 'omit' : ''}}">{{item.content}}</view>
   <view class="comment-images row between" wx:if="{{item.imageList.length}}">
     <image 
       class="comment-image" 

@@ -168,9 +168,9 @@
   <view class="content-title-wrap">
     <view class="content-title">用户点评</view>
   </view>
-  <view class="evaluation-summary" wx:if="{{evaluationSummary.total}}">
+  <view class="evaluation-summary" wx:if="{{evaluationSummary.total}}" bindtap="checkEvaluation">
     <view class="evaluation-list">
-      <evaluation-item wx:for="{{evaluationSummary.list}}" wx:key="index" item="{{item}}" />
+      <evaluation-item wx:for="{{evaluationSummary.list}}" wx:key="index" item="{{item}}" contentOmit/>
     </view>
     <view class="total-tips row center">
       <text>共{{evaluationSummary.total}}条点评</text>

@@ -1,6 +1,6 @@
-import GoodsService from "../../../../utils/goodsService";
+import ScenicService from "../../../../utils/scenicService";
 
-const goodsService = new GoodsService();
+const scenicService = new ScenicService();
 
 Page({
   data: {
@@ -8,12 +8,8 @@ Page({
     finished: false,
   },
 
-  onLoad({ goodsId, avgScore }) {
-    wx.setNavigationBarTitle({
-      title: +avgScore ? `商品评分 ${avgScore}` : '商品评价',
-    });
-    this.goodsId = goodsId;
-
+  onLoad({ scenicId }) {
+    this.scenicId = scenicId;
     this.setEvaluationList(true)
   },
 
@@ -31,7 +27,7 @@ Page({
       this.page = 0;
     }
     const { list = [] } =
-      (await goodsService.getGoodsEvaluationList(this.goodsId, ++this.page)) ||
+      (await scenicService.getScenicEvaluationList(this.scenicId, ++this.page)) ||
       {};
     this.setData({
       evaluationList: init ? list : [...this.data.evaluationList, ...list],

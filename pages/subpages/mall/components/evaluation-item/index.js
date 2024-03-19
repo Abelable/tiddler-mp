@@ -4,6 +4,7 @@ Component({
   },
 
   properties: {
+    contentOmit: Boolean,
     item: {
       type: Object,
       observer({ imageList = [] }) {

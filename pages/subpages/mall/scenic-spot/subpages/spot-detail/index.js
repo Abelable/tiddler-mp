@@ -431,6 +431,11 @@ Page({
     wx.navigateTo({ url });
   },
 
+  checkEvaluation() {
+    const url = `./subpages/evaluation-list/index?scenicId=${this.scenicId}`;
+    wx.navigateTo({ url });
+  },
+
   checkQa() {
     const { id, name } = this.data.scenicInfo;
     const url = `./subpages/qa-list/index?scenicId=${id}&scenicName=${name}`;
