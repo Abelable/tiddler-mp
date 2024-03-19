@@ -27,6 +27,7 @@ Page({
       301: '待收货',
       401: '交易成功',
       402: '交易成功',
+      501: '交易成功',
     }
     wx.setNavigationBarTitle({
       title: titleEnums[orderInfo.status],
@@ -83,9 +84,9 @@ Page({
     })
   },
 
-  navToEvaluation(e) {
-    const id = e.currentTarget.dataset.id
-    const url = `/pages/subpages/mine/order-center/subpages/goods-order-list/subpages/evaluation/index?id=${id}`
+  navToEvaluation() {
+    const {hotelId} = this.data.orderInfo.roomInfo 
+    const url = `../evaluation/index?orderId=${this.orderId}&hotelId=${hotelId}`
     wx.navigateTo({ url })
   },
 
