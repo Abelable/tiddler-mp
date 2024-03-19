@@ -311,6 +311,9 @@
   border-radius: 18rpx;
 }
 
+.evaluation-summary {
+  margin-top: 24rpx;
+}
 .total-tips {
   margin-top: 24rpx;
   color: #666;

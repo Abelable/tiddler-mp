@@ -1,4 +1,4 @@
-import { commentList, mediaList } from "../.../../../../../utils/tempData";
+import { mediaList } from "../.../../../../../utils/tempData";
 import ScenicService from "../../utils/scenicService";
 
 const scenicService = new ScenicService();
@@ -21,7 +21,7 @@ Page({
     combinedTicketTypeList: [],
     curCombinedTicketTypeIdx: 0,
     combinedTicketList: [],
-    commentList,
+    evaluationSummary: null,
     qaSummary: null,
     nearbyHotelList: [],
     nearbyHotelTotal: 0,
@@ -37,6 +37,7 @@ Page({
     await this.setScenicCategoryOptions();
     await this.setScenicInfo();
     await this.setSourceTicketList();
+    await this.setEvaluationSummary();
     await this.setQaSummary();
     await this.setNearbyHotelList();
     await this.setNearbyScenicList();
@@ -210,6 +211,12 @@ Page({
       }
     );
     return ticketList;
+  },
+
+  async setEvaluationSummary() {
+    const { list = [], total } =
+      (await scenicService.getScenicEvaluationList(this.scenicId, 1, 2)) || {};
+    this.setData({ evaluationSummary: { list, total } });
   },
 
   async setQaSummary() {

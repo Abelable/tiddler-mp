@@ -124,6 +124,14 @@ class ScenicService extends MallService {
       success,
     });
   }
+
+  async getScenicEvaluationList(scenicId, page, limit = 10) {
+    return await this.get({
+      url: `${this.baseUrl}/scenic/evaluation/list`,
+      data: { scenicId, page, limit },
+      loadingTitle: "加载中...",
+    });
+  }
 }
 
 export default ScenicService;
