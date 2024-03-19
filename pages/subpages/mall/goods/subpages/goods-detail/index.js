@@ -194,7 +194,7 @@ Page({
 
   checkEvaluationDetail() {
     const { avgScore } = this.data.evaluationSummary;
-    const url = `./subpages/evaluation/index?goodsId=${this.goodsId}&avgScore=${avgScore}`;
+    const url = `./subpages/evaluation-list/index?goodsId=${this.goodsId}&avgScore=${avgScore}`;
     wx.navigateTo({ url });
   },
 
