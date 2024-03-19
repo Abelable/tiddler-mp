@@ -8,9 +8,9 @@ Page({
     imageList: [],
   },
 
-  onLoad({ orderId, ticketId }) {
+  onLoad({ orderId, hotelId }) {
     this.orderId = orderId;
-    this.ticketId = ticketId;
+    this.hotelId = hotelId;
   },
 
   setScore(e) {
@@ -74,7 +74,7 @@ Page({
     }
     orderService.submitEvaluation(
       this.orderId,
-      this.ticketId,
+      this.hotelId,
       score,
       this.content,
       imageList,
