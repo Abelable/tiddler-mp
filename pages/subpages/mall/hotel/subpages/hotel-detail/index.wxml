@@ -55,7 +55,7 @@
     <view class="row between">
       <view class="row">
         <view class="hotel-name">{{hotelInfo.name}}</view>
-        <view class="hotel-score">4.2</view>
+        <view class="hotel-score">{{hotelInfo.score}}</view>
       </view>
       <image class="share-icon" src="./images/share.png" />
     </view>
@@ -190,12 +190,14 @@
     <view class="content-title-wrap">
       <view class="content-title">用户点评</view>
     </view>
-    <view class="comment-list">
-      <evaluation-item wx:for="{{commentList}}" wx:key="index" item="{{item}}" />
-    </view>
-    <view class="total-tips row center">
-      <text>共1000条点评</text>
-      <image class="more-icon" src="./images/more.png" />
+    <view class="evaluation-summary" wx:if="{{evaluationSummary.total}}" bindtap="checkEvaluation">
+      <view class="evaluation-list">
+        <evaluation-item wx:for="{{evaluationSummary.list}}" wx:key="index" item="{{item}}" contentOmit />
+      </view>
+      <view class="total-tips row center">
+        <text>共{{evaluationSummary.total}}条点评</text>
+        <image class="more-icon" src="./images/more.png" />
+      </view>
     </view>
   </view>
 

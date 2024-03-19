@@ -1,7 +1,7 @@
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
 import { store } from "../../../../../../store/index";
 import { calcDistance } from "../../../../../../utils/index";
-import { commentList, mediaList } from "../../../../utils/tempData";
+import { mediaList } from "../../../../utils/tempData";
 import { formatter } from "../../utils/index";
 import HotelService from "../../utils/hotelService";
 
@@ -32,7 +32,7 @@ Component({
     roomTypeList: [],
     roomTypeIndexList: [],
     roomPackageList: [],
-    commentList,
+    evaluationSummary: null,
     qaSummary: null,
     nearbyScenicList: [],
     nearbyScenicTotal: 0,
@@ -60,6 +60,7 @@ Component({
       this.hotelId = +id;
       await this.setHotelInfo();
       await this.setRoomTypeList();
+      await this.setEvaluationSummary();
       await this.setQaSummary();
       await this.setNearbyScenicList();
       await this.setNearbyHotelList();
@@ -178,6 +179,12 @@ Component({
           this.redraw();
         }
       );
+    },
+
+    async setEvaluationSummary() {
+      const { list = [], total } =
+        (await hotelService.getHotelEvaluationList(this.hotelId, 1, 2)) || {};
+      this.setData({ evaluationSummary: { list, total } });
     },
 
     async setQaSummary() {
@@ -417,6 +424,11 @@ Component({
       wx.navigateTo({
         url: "/pages/subpages/mall/hotel/subpages/order-check/index",
       });
+    },
+
+    checkEvaluation() {
+      const url = `./subpages/evaluation-list/index?hotelId=${this.hotelId}`;
+      wx.navigateTo({ url });
     },
 
     checkQa() {

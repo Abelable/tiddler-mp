@@ -117,6 +117,14 @@ class HotelService extends MallService {
       success,
     });
   }
+
+  async getHotelEvaluationList(hotelId, page, limit = 10) {
+    return await this.get({
+      url: `${this.baseUrl}/hotel/evaluation/list`,
+      data: { hotelId, page, limit },
+      loadingTitle: "加载中...",
+    });
+  }
 }
 
 export default HotelService;
