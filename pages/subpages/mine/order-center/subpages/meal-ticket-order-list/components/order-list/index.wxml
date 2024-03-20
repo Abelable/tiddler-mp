@@ -42,7 +42,7 @@
         <button 
           class="btn active" 
           wx:if="{{item.status === 301 || item.status === 302}}" 
-          catchtap="navToEvaluation" data-id="{{item.id}}"
+          catchtap="navToEvaluation" data-order-id="{{item.id}}" data-restaurant-id="{{item.restaurantId}}"
         >评价</button>
       </view>
     </view>

@@ -51,13 +51,12 @@ class OrderService extends BaseService {
     });
   }
 
-  async publishComment(order_id, comment_type, commentLists, success) {
-    return await this.post({
-      url: `${this.baseUrl}/catering/meal_ticket/order/comment`,
-      data: { order_id, comment_type, json_data: JSON.stringify(commentLists) },
-      success,
-      loadingTitle: "发布中...",
-    });
+  async submitEvaluation(orderId, restaurantId, score, content, imageList, success) {
+    return await this.post({ 
+      url: `${this.baseUrl}/catering/meal_ticket/evaluation/add`, 
+      data: { orderId, restaurantId, score, content, imageList }, 
+      success, 
+    })
   }
 }
 
