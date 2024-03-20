@@ -230,6 +230,14 @@ class BaseService extends Base {
       success
     })
   }
+
+  async submitCateringEvaluation(type, orderId, restaurantId, score, content, imageList, success) {
+    return await this.post({ 
+      url: `${this.baseUrl}/catering/meal_ticket/evaluation/add`, 
+      data: { type, orderId, restaurantId, score, content, imageList }, 
+      success, 
+    })
+  }
 }
 
 export default BaseService;

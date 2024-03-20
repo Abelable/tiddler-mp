@@ -50,14 +50,6 @@ class OrderService extends BaseService {
       success,
     });
   }
-
-  async submitEvaluation(orderId, restaurantId, score, content, imageList, success) {
-    return await this.post({ 
-      url: `${this.baseUrl}/catering/meal_ticket/evaluation/add`, 
-      data: { orderId, restaurantId, score, content, imageList }, 
-      success, 
-    })
-  }
 }
 
 export default OrderService;

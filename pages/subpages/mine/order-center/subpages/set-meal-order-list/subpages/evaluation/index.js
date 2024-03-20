@@ -72,7 +72,8 @@ Page({
       });
       return;
     }
-    orderService.submitEvaluation(
+    orderService.submitCateringEvaluation(
+      2,
       this.orderId,
       this.restaurantId,
       score,
