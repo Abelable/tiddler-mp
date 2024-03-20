@@ -219,24 +219,32 @@ class BaseService extends Base {
     return await this.post({
       url: `${this.baseUrl}/media/short_video/toggle_like`,
       data: { id },
-      success
-    })
+      success,
+    });
   }
 
   async toggleShortVideoCollectStatus(id, success) {
     return await this.post({
       url: `${this.baseUrl}/media/short_video/toggle_collect`,
       data: { id },
-      success
-    })
+      success,
+    });
   }
 
-  async submitCateringEvaluation(type, orderId, restaurantId, score, content, imageList, success) {
-    return await this.post({ 
-      url: `${this.baseUrl}/catering/meal_ticket/evaluation/add`, 
-      data: { type, orderId, restaurantId, score, content, imageList }, 
-      success, 
-    })
+  async submitCateringEvaluation(
+    type,
+    orderId,
+    restaurantId,
+    score,
+    content,
+    imageList,
+    success
+  ) {
+    return await this.post({
+      url: `${this.baseUrl}/catering/evaluation/add`,
+      data: { type, orderId, restaurantId, score, content, imageList },
+      success,
+    });
   }
 }
 
