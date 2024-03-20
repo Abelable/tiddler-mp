@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import { store } from "../../../../../../store/index";
-import { commentList, mediaList } from "../.../../../../../utils/tempData";
+import { mediaList } from "../.../../../../../utils/tempData";
 import { weekDayList, calcDistance } from "../../../../../../utils/index";
 import CateringService from "../../utils/cateringService";
 
@@ -24,7 +24,7 @@ Page({
     imageMenuList: [],
     imageCount: 0,
     distance: 0,
-    commentList,
+    evaluationSummary: null,
     qaSummary: null,
     mediaList,
     noticePopupVisible: false,
@@ -34,6 +34,7 @@ Page({
   async onLoad({ id }) {
     this.restaurantId = +id;
     await this.setRestaurantInfo();
+    await this.setEvaluationSummary();
     await this.setQaSummary();
     this.setNavBarVisibleLimit();
     this.setMenuChangeLimitList();
@@ -271,6 +272,12 @@ Page({
     return ticketList;
   },
 
+  async setEvaluationSummary() {
+    const { list = [], total = 0 } =
+      (await cateringService.getEvaluationList(this.restaurantId, 1, 2)) || {};
+    this.setData({ evaluationSummary: { list, total } });
+  },
+
   async setQaSummary() {
     const qaSummary = await cateringService.getCateringQaSummary(
       this.restaurantId
@@ -439,6 +446,11 @@ Page({
       name,
       address,
     });
+  },
+
+  checkEvaluation() {
+    const url = `./subpages/evaluation-list/index?restaurantId=${this.restaurantId}`;
+    wx.navigateTo({ url });
   },
 
   checkQa() {

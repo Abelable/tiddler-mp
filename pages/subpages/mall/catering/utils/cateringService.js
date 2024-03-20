@@ -144,6 +144,14 @@ class CateringService extends BaseService {
       success,
     });
   }
+
+  async getEvaluationList(restaurantId, page, limit) {
+    return await this.get({
+      url: `${this.baseUrl}/catering/evaluation/list`,
+      data: { restaurantId, page, limit },
+      loadingTitle: "加载中...",
+    });
+  }
 }
 
 export default CateringService;
