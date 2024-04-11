@@ -116,7 +116,7 @@ Page({
     }
     const list =
       (await cateringService.getRestaurantList({
-        name: keywords,
+        keywords,
         categoryId: curCategoryId,
         sort,
         order,

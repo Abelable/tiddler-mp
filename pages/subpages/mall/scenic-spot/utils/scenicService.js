@@ -6,11 +6,11 @@ class ScenicService extends MallService {
     return await this.get({ url: `${this.baseUrl}/scenic/category_options` });
   }
 
-  async getScenicList({ name, categoryId, sort, order, page, limit = 10 }) {
+  async getScenicList({ keywords, categoryId, sort, order, page, limit = 10 }) {
     const { list = [] } =
       (await this.get({
         url: `${this.baseUrl}/scenic/list`,
-        data: cleanObject({ name, categoryId, sort, order, page, limit }),
+        data: cleanObject({ keywords, categoryId, sort, order, page, limit }),
         loadingTitle: "加载中...",
       })) || {};
     return list;

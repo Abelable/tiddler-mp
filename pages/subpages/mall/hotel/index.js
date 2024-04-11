@@ -118,7 +118,7 @@ Page({
     }
     const list =
       (await hotelService.getHotelList({
-        name: keywords,
+        keywords,
         categoryId: curCategoryId,
         sort,
         order,

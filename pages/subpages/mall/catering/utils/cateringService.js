@@ -8,11 +8,11 @@ class CateringService extends BaseService {
     });
   }
 
-  async getRestaurantList({ name, categoryId, sort, order, page, limit = 10 }) {
+  async getRestaurantList({ keywords, categoryId, sort, order, page, limit = 10 }) {
     const { list = [] } =
       (await this.get({
         url: `${this.baseUrl}/catering/restaurant/list`,
-        data: cleanObject({ name, categoryId, sort, order, page, limit }),
+        data: cleanObject({ keywords, categoryId, sort, order, page, limit }),
         loadingTitle: "加载中...",
       })) || {};
     return list;

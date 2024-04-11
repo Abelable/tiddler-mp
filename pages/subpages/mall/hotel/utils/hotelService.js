@@ -6,11 +6,11 @@ class HotelService extends MallService {
     return await this.get({ url: `${this.baseUrl}/hotel/category_options` });
   }
 
-  async getHotelList({ name, categoryId, sort, order, page, limit = 10 }) {
+  async getHotelList({ keywords, categoryId, sort, order, page, limit = 10 }) {
     const { list = [] } =
       (await this.get({
         url: `${this.baseUrl}/hotel/list`,
-        data: cleanObject({ name, categoryId, sort, order, page, limit }),
+        data: cleanObject({ keywords, categoryId, sort, order, page, limit }),
         loadingTitle: "加载中...",
       })) || {};
     return list;
