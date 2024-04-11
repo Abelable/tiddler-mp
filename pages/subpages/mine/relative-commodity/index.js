@@ -1,4 +1,4 @@
-import { store } from "../../../../store";
+import { store } from "../../../../store/index";
 import CommodityService from "./utils/commodityService";
 
 const commodityService = new CommodityService();
@@ -19,6 +19,26 @@ Page({
 
   async onLoad() {
     await this.getUserRelativeCommodityIds();
+    this.setList(true);
+  },
+
+  setKeywords(e) {
+    const keywords = e.detail.value;
+    this.setData({ keywords });
+  },
+
+  cancelSearch() {
+    this.setData({ keywords: "" });
+    this.setList(true);
+  },
+
+  search() {
+    if (!this.data.keywords) {
+      wx.showToast({
+        title: '请输入搜索关键字',
+        icon: 'none'
+      });
+    }
     this.setList(true);
   },
 
@@ -133,7 +153,7 @@ Page({
       this.scenicPage = 0;
       this.setData({ scenicFinished: false });
     }
-    const { list = [] } =
+    let { list = [] } =
       (await commodityService.getScenicList({
         scenicIds: this.relativeScenicIds,
         keywords,
@@ -154,7 +174,7 @@ Page({
       this.hotelPage = 0;
       this.setData({ hotelFinished: false });
     }
-    const { list = [] } =
+    let { list = [] } =
       (await commodityService.getHotelList({
         hotelIds: this.relativeHotelIds,
         keywords,
@@ -175,7 +195,7 @@ Page({
       this.restaurantPage = 0;
       this.setData({ restaurantFinished: false });
     }
-    const { list = [] } =
+    let { list = [] } =
       (await commodityService.getRestaurantList({
         restaurantIds: this.relativeRestaurantIds,
         keywords,
@@ -196,7 +216,7 @@ Page({
       this.goodsPage = 0;
       this.setData({ goodsFinished: false });
     }
-    const { list = [] } =
+    let { list = [] } =
       (await commodityService.getGoodsList({
         goodsIds: this.relativeGoodsIds,
         keywords,
