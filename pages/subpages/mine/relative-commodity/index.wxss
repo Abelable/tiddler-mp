@@ -14,18 +14,19 @@
 .search-content {
   position: relative;
   padding-left: 24rpx;
+  padding-right: 140rpx;
   height: 80rpx;
   background: #fff;
   border-radius: 40rpx;
   border: 1px solid #161F4E;
 }
-.search-icon{
+.search-icon {
   width: 30rpx;
   height: 30rpx;
 }
 .search-input {
   padding-left: 10rpx;
-  width: 210rpx;
+  flex: 1;
   height: 68rpx;
   color: #333;
   font-size: 28rpx;
