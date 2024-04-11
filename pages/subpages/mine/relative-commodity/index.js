@@ -7,14 +7,14 @@ Page({
   data: {
     curMenuIdx: 0,
     keywords: "",
-    goodsList: [],
-    goodsFinished: false,
     scenicList: [],
     scenicFinished: false,
     hotelList: [],
     hotelFinished: false,
     restaurantList: [],
-    restaurantFinished: false
+    restaurantFinished: false,
+    goodsList: [],
+    goodsFinished: false
   },
 
   async onLoad() {
