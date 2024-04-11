@@ -13,6 +13,7 @@ export const store = observable({
   locationInfo: null,
   scenicPreOrderInfo: null,
   hotelPreOrderInfo: null,
+  mediaCommodityList: [],
 
   setTabType: action(function (type) {
     this.tabType = type;
@@ -35,8 +36,11 @@ export const store = observable({
   setHotelPreOrderInfo: action(function (info) {
     this.hotelPreOrderInfo = info;
   }),
+  setMediaCommodityList: action(function (list) {
+    this.mediaCommodityList = list;
+  }),
 
   ...tim,
   ...live,
-  ...hotel,
+  ...hotel
 });

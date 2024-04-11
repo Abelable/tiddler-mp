@@ -1,0 +1,58 @@
+<view class="header">
+  <view class="search-bar">
+    <view class="search-content row">
+      <image class="search-icon" src="https://img.ubo.vip/mp/index/search/index-search.png" />
+      <input class="search-input"
+        value="{{keywords}}" bindinput="setKeywords" bindconfirm="search" 
+        placeholder="请输入商品名称" type="text" confirm-type="search" 
+      />
+      <view class="cancel-btn" wx:if="{{keywords}}" bindtap="cancelSearch">
+        <image class="cancel-icon" src="https://img.ubo.vip/mp/search/clear-search.png" />
+      </view>
+      <button class="search-btn" bindtap="search">搜索</button>
+    </view>
+  </view>
+
+  <view class="menu-tab-list row">
+    <view 
+      class="menu-tab {{curMenuIdx === index ? 'active' : '' }} row center" 
+      wx:for="{{['景点', '酒店', '餐馆', '商品']}}" 
+      wx:key="index" 
+      bindtap="selectMenu" 
+      data-index="{{ index }}"
+    >
+      {{item}}
+    </view>
+  </view>
+</view>
+
+<view class="content">
+  <view class="list-wrap" wx:if="{{ curMenuIdx === 0 }}">
+    <empty-illus wx:if="{{scenicFinished && !scenicList.length}}" desc="暂无相关景点" />
+    <view class="no-more-tips" wx:if="{{scenicFinished && scenicList.length}}">～没有更多了～</view>
+  </view>
+  <view class="list-wrap" wx:if="{{ curMenuIdx === 1 }}">
+    <empty-illus wx:if="{{hotelFinished && !hotelList.length}}" desc="暂无相关酒店" />
+    <view class="no-more-tips" wx:if="{{hotelFinished && hotelList.length}}">～没有更多了～</view>
+  </view>
+  <view class="list-wrap" wx:if="{{ curMenuIdx === 2 }}">
+    <empty-illus wx:if="{{restaurantFinished && !restaurantList.length}}" desc="暂无相关餐馆" />
+    <view class="no-more-tips" wx:if="{{restaurantFinished && restaurantList.length}}">～没有更多了～</view>
+  </view>
+    <view class="list-wrap" wx:if="{{ curMenuIdx === 3 }}">
+    <view class="goods-list">
+      <view class="goods-item" wx:for="{{goodsList}}" wx:key="index" bindtap="toggleGoodsSelected" data-index="{{index}}">
+        <image class="goods-img" src="{{item.image}}" mode="aspectFill" lazy-load />
+        <view class="goods-name omit single-line">{{item.name}}</view>
+        <view class="goods-price-wrap">
+          <price-unit price="{{item.price}}" />
+          <image class="pick-icon" src="./images/{{selectedIndex === index ? 'checked' : 'unchecked'}}.png" />
+        </view>
+      </view>
+    </view>
+    <empty-illus wx:if="{{goodsFinished && !goodsList.length}}" desc="暂无相关商品" />
+    <view class="no-more-tips" wx:if="{{goodsFinished && goodsList.length}}">～没有更多了～</view>
+  </view>
+</view>
+
+<button class="confirm-btn" bindtap="confirm">确定</button>

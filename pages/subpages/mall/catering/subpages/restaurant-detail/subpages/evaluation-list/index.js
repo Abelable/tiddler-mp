@@ -5,12 +5,12 @@ const cateringService = new CateringService();
 Page({
   data: {
     evaluationList: [],
-    finished: false,
+    finished: false
   },
 
   onLoad({ restaurantId }) {
     this.restaurantId = restaurantId;
-    this.setEvaluationList(true)
+    this.setEvaluationList(true);
   },
 
   onPullDownRefresh() {
@@ -25,15 +25,18 @@ Page({
   async setEvaluationList(init = false) {
     if (init) {
       this.page = 0;
+      this.setData({ finished: false });
     }
     const { list = [] } =
-      (await cateringService.getEvaluationList(this.restaurantId, ++this.page)) ||
-      {};
+      (await cateringService.getEvaluationList(
+        this.restaurantId,
+        ++this.page
+      )) || {};
     this.setData({
-      evaluationList: init ? list : [...this.data.evaluationList, ...list],
+      evaluationList: init ? list : [...this.data.evaluationList, ...list]
     });
     if (!list.length) {
       this.setData({ finished: true });
     }
-  },
+  }
 });
