@@ -141,10 +141,10 @@ Page({
 
   // todo 获取用户相关商品id数组
   async getUserRelativeCommodityIds() {
-    this.relativeGoodsIds = [];
     this.relativeScenicIds = [];
     this.relativeHotelIds = [];
     this.relativeRestaurantIds = [];
+    this.relativeGoodsIds = [];
   },
 
   async setScenicList(init) {
