@@ -22,12 +22,18 @@ Page({
     this.setList(true);
   },
 
-  // todo 获取用户相关商品id数组
-  async getUserRelativeCommodityIds() {
-    this.relativeGoodsIds = [];
-    this.relativeScenicIds = [];
-    this.relativeHotelIds = [];
-    this.relativeRestaurantIds = [];
+  selectMenu(e) {
+    const curMenuIdx = Number(e.currentTarget.dataset.index);
+    this.setData({ curMenuIdx });
+
+    const { hotelList, restaurantList, goodsList } = this.data;
+    if (
+      (curMenuIdx === 1 && !hotelList.length) ||
+      (curMenuIdx === 2 && !restaurantList.length) ||
+      (curMenuIdx === 3 && !goodsList.length)
+    ) {
+      this.setList(true);
+    }
   },
 
   onPullDownRefresh() {
@@ -111,6 +117,14 @@ Page({
 
     store.setMediaCommodityList(commodityList);
     wx.navigateBack();
+  },
+
+  // todo 获取用户相关商品id数组
+  async getUserRelativeCommodityIds() {
+    this.relativeGoodsIds = [];
+    this.relativeScenicIds = [];
+    this.relativeHotelIds = [];
+    this.relativeRestaurantIds = [];
   },
 
   async setScenicList(init) {

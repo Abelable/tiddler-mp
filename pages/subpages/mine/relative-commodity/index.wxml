@@ -28,25 +28,58 @@
 
 <view class="content">
   <view class="list-wrap" wx:if="{{ curMenuIdx === 0 }}">
+    <view class="commodity-list">
+      <view class="commodity-item" wx:for="{{scenicList}}" wx:key="index" bindtap="toggleScenicSelected" data-index="{{index}}">
+        <image class="commodity-img" src="{{item.cover}}" mode="aspectFill" lazy-load />
+        <view class="commodity-name omit single-line">{{item.name}}</view>
+        <view class="commodity-price-wrap">
+          <price-unit price="{{item.price}}" unit="起" />
+          <image class="pick-icon" src="./images/{{item.selected ? 'checked' : 'unchecked'}}.png" />
+        </view>
+      </view>
+    </view>
     <empty-illus wx:if="{{scenicFinished && !scenicList.length}}" desc="暂无相关景点" />
     <view class="no-more-tips" wx:if="{{scenicFinished && scenicList.length}}">～没有更多了～</view>
   </view>
+
   <view class="list-wrap" wx:if="{{ curMenuIdx === 1 }}">
+    <view class="commodity-list">
+      <view class="commodity-item" wx:for="{{hotelList}}" wx:key="index" bindtap="toggleScenicSelected" data-index="{{index}}">
+        <image class="commodity-img" src="{{item.cover}}" mode="aspectFill" lazy-load />
+        <view class="commodity-name omit single-line">{{item.name}}</view>
+        <view class="commodity-price-wrap">
+          <price-unit price="{{item.price}}" unit="起" />
+          <image class="pick-icon" src="./images/{{item.selected ? 'checked' : 'unchecked'}}.png" />
+        </view>
+      </view>
+    </view>
     <empty-illus wx:if="{{hotelFinished && !hotelList.length}}" desc="暂无相关酒店" />
     <view class="no-more-tips" wx:if="{{hotelFinished && hotelList.length}}">～没有更多了～</view>
   </view>
+
   <view class="list-wrap" wx:if="{{ curMenuIdx === 2 }}">
+    <view class="commodity-list">
+      <view class="commodity-item" wx:for="{{restaurantList}}" wx:key="index" bindtap="toggleScenicSelected" data-index="{{index}}">
+        <image class="commodity-img" src="{{item.cover}}" mode="aspectFill" lazy-load />
+        <view class="commodity-name omit single-line">{{item.name}}</view>
+        <view class="commodity-price-wrap">
+          <price-unit price="{{item.price}}" unit="起" />
+          <image class="pick-icon" src="./images/{{item.selected ? 'checked' : 'unchecked'}}.png" />
+        </view>
+      </view>
+    </view>
     <empty-illus wx:if="{{restaurantFinished && !restaurantList.length}}" desc="暂无相关餐馆" />
     <view class="no-more-tips" wx:if="{{restaurantFinished && restaurantList.length}}">～没有更多了～</view>
   </view>
-    <view class="list-wrap" wx:if="{{ curMenuIdx === 3 }}">
-    <view class="goods-list">
-      <view class="goods-item" wx:for="{{goodsList}}" wx:key="index" bindtap="toggleGoodsSelected" data-index="{{index}}">
-        <image class="goods-img" src="{{item.image}}" mode="aspectFill" lazy-load />
-        <view class="goods-name omit single-line">{{item.name}}</view>
-        <view class="goods-price-wrap">
+
+  <view class="list-wrap" wx:if="{{ curMenuIdx === 3 }}">
+    <view class="commodity-list">
+      <view class="commodity-item" wx:for="{{goodsList}}" wx:key="index" bindtap="toggleGoodsSelected" data-index="{{index}}">
+        <image class="commodity-img" src="{{item.image}}" mode="aspectFill" lazy-load />
+        <view class="commodity-name omit single-line">{{item.name}}</view>
+        <view class="commodity-price-wrap">
           <price-unit price="{{item.price}}" />
-          <image class="pick-icon" src="./images/{{selectedIndex === index ? 'checked' : 'unchecked'}}.png" />
+          <image class="pick-icon" src="./images/{{item.selected ? 'checked' : 'unchecked'}}.png" />
         </view>
       </view>
     </view>
