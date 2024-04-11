@@ -14,14 +14,13 @@ Page({
     content: "",
     address: "",
     addressVisible: true,
-    pickedGoodsName: "",
-    goodsPickPopupVisible: false,
+    pickedCommoditiesName: ""
   },
 
   async onLoad() {
     this.storeBindings = createStoreBindings(this, {
       store,
-      fields: ["userInfo"],
+      fields: ["userInfo"]
     });
 
     this.setLocationInfo();
@@ -34,7 +33,7 @@ Page({
       const map = new Map({ key: QQ_MAP_KEY });
       map.reverseGeocoder({
         location: { longitude, latitude },
-        success: (res) => {
+        success: res => {
           if (res.status === 0) {
             const { address } = res.result;
             this.setData({ address });
@@ -43,10 +42,10 @@ Page({
           } else {
             wx.showToast({
               title: res.message,
-              icon: "none",
+              icon: "none"
             });
           }
-        },
+        }
       });
     }
   },
@@ -55,7 +54,7 @@ Page({
     wx.openSetting({
       success: () => {
         this.setLocationInfo();
-      },
+      }
     });
   },
 
@@ -64,8 +63,8 @@ Page({
     this.setData({
       imageList: [
         ...this.data.imageList,
-        { status: "uploading", message: "上传中", deletable: true },
-      ],
+        { status: "uploading", message: "上传中", deletable: true }
+      ]
     });
     const url = (await noteService.uploadFile(file.url)) || "";
     if (url) {
@@ -74,16 +73,16 @@ Page({
           ...this.data.imageList[index],
           status: "done",
           message: "上传成功",
-          url,
-        },
+          url
+        }
       });
     } else {
       this.setData({
         [`imageList[${index}]`]: {
           ...this.data.imageList[index],
           status: "fail",
-          message: "上传失败",
-        },
+          message: "上传失败"
+        }
       });
     }
   },
@@ -96,46 +95,31 @@ Page({
 
   setTitle: debounce(function (e) {
     this.setData({
-      title: e.detail.value,
+      title: e.detail.value
     });
   }, 200),
 
   setContent: debounce(function (e) {
     this.setData({
-      content: e.detail.value,
+      content: e.detail.value
     });
   }, 200),
 
   toggleAddressVisible(e) {
     this.setData({
-      addressVisible: e.detail.value,
+      addressVisible: e.detail.value
     });
   },
 
   editAddress: debounce(function (e) {
     this.setData({
-      address: e.detail.value,
+      address: e.detail.value
     });
   }, 200),
 
-  showGoodsPickerPopup() {
-    this.setData({
-      goodsPickPopupVisible: true,
-    });
-  },
-
-  goodsPickerConfirm(e) {
-    const { id, name } = e.detail;
-    this.setData({
-      pickedGoodsName: name,
-      goodsPickPopupVisible: false,
-    });
-    this.pickedGoodsId = id;
-  },
-
-  hideGoodsPickerPopup() {
-    this.setData({
-      goodsPickPopupVisible: false,
+  pickRelativeCommodity() {
+    wx.navigateTo({
+      url: "../relative-commodity/index"
     });
   },
 
@@ -152,14 +136,14 @@ Page({
     }
 
     const noteInfo = {
-      imageList: JSON.stringify(imageList.map((item) => item.url)),
+      imageList: JSON.stringify(imageList.map(item => item.url)),
       title,
       content,
       isPrivate,
       goodsId: pickedGoodsId,
       longitude: addressVisible ? longitude : 0,
       latitude: addressVisible ? latitude : 0,
-      address: addressVisible ? address : "",
+      address: addressVisible ? address : ""
     };
 
     noteService.createNote(noteInfo, () => {
@@ -169,5 +153,5 @@ Page({
 
   onUnload() {
     this.storeBindings.destroyStoreBindings();
-  },
+  }
 });

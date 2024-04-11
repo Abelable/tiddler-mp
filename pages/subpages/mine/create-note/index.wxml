@@ -24,9 +24,9 @@
       <input class="list-input" placeholder="有趣的标题更吸引人哦～" bindinput="setTitle" />
     </view>
     <view class="list row between" wx:if="{{userInfo.merchantId}}">
-      <view class="title">添加商品</view>
-      <view class="list-picker row" bindtap="showGoodsPickerPopup">
-        <text class="list-picker-desc omit single-line">{{pickedGoodsName? ('已选：' + pickedGoodsName) : '请选择商品'}}</text>
+      <view class="title">相关商品</view>
+      <view class="list-picker row" bindtap="pickRelativeCommodity">
+        <text class="list-picker-desc omit single-line">{{pickedCommoditiesName? ('已选：' + pickedCommoditiesName) : '请选择商品'}}</text>
         <image class="arrow" src="https://img.ubo.vip/mp/sass/mine/gray-arrow.png" />
       </view>
     </view>
@@ -53,5 +53,3 @@
 </view>
 
 <button class="publish-btn {{(imageList.length && content && title) ? 'active' : ''}}" bindtap="publish">发布</button>
-
-<goods-picker-popup show="{{goodsPickPopupVisible}}" bind:confirm="goodsPickerConfirm" bind:hide="hideGoodsPickerPopup" />

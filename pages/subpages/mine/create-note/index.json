@@ -1,7 +1,6 @@
 {
   "navigationBarTitleText": "创建游记",
   "usingComponents": {
-    "van-uploader": "@vant/weapp/uploader/index",
-    "goods-picker-popup": "../components/goods-picker-popup/index"
+    "van-uploader": "@vant/weapp/uploader/index"
   }
 }

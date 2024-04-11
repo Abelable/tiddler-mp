@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "选择关联商品",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "empty-illus": "/components/empty-illus/index"
+  }
+}
