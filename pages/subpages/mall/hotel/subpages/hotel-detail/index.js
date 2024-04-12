@@ -350,10 +350,15 @@ Component({
         this.setData({ finished: false });
       }
       const { list = [] } =
-        hotelService.getRelativeMediaList(2, this.hotelId, ++this.page) || {};
+        (await hotelService.getRelativeMediaList(
+          2,
+          this.hotelId,
+          ++this.page
+        )) || {};
       this.setData({
         mediaList: init ? list : [...this.data.mediaList, ...list]
       });
+      debugger;
       if (!list.length) {
         this.setData({ finished: true });
       }

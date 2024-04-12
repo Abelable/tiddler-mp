@@ -410,7 +410,11 @@ Page({
       this.setData({ finished: false });
     }
     const { list = [] } =
-      scenicService.getRelativeMediaList(1, this.scenicId, ++this.page) || {};
+      (await scenicService.getRelativeMediaList(
+        1,
+        this.scenicId,
+        ++this.page
+      )) || {};
     this.setData({
       mediaList: init ? list : [...this.data.mediaList, ...list]
     });

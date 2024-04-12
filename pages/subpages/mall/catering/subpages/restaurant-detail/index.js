@@ -28,7 +28,7 @@ Page({
     mediaList: [],
     finished: false,
     noticePopupVisible: false,
-    telPopupVisible: false,
+    telPopupVisible: false
   },
 
   async onLoad({ id }) {
@@ -55,7 +55,7 @@ Page({
       foodImageList,
       priceImageList,
       longitude: lo2,
-      latitude: la2,
+      latitude: la2
     } = restaurantInfo;
 
     openTimeList.length && this.setCurOpenTime(openTimeList);
@@ -94,21 +94,21 @@ Page({
 
     this.setData({
       restaurantInfo,
-      telList: telList.map((item) => ({ name: item, color: "#1989fa" })),
+      telList: telList.map(item => ({ name: item, color: "#1989fa" })),
       facilityList: facilityList.slice(0, 4),
       imageList,
       imageMenuList,
       imageCount,
-      distance,
+      distance
     });
   },
 
   setCurOpenTime(openTimeList) {
     const curWeekDay = dayjs().day() + 1;
     const curTime = dayjs().format("HH:mm");
-    const openTimeDescList = openTimeList.map((time) => {
+    const openTimeDescList = openTimeList.map(time => {
       if (curWeekDay >= time.startWeekDay && curWeekDay <= time.endWeekDay) {
-        const timeFrameIdx = time.timeFrameList.findIndex((timeFrame) => {
+        const timeFrameIdx = time.timeFrameList.findIndex(timeFrame => {
           const _curTime = +curTime.replace(":", "");
           const _openTime = +timeFrame.openTime.replace(":", "");
           const _closeTime = +timeFrame.closeTime.replace(":", "");
@@ -117,13 +117,13 @@ Page({
         this.setData({ openStatus: timeFrameIdx !== -1 });
       }
       const startWeekDay = weekDayList.find(
-        (week) => week.value == time.startWeekDay
+        week => week.value == time.startWeekDay
       ).text;
       const endWeekDay = weekDayList.find(
-        (week) => week.value == time.endWeekDay
+        week => week.value == time.endWeekDay
       ).text;
       const timeFrameDesc = time.timeFrameList
-        .map((timeFrame) => `${timeFrame.openTime}-${timeFrame.closeTime}`)
+        .map(timeFrame => `${timeFrame.openTime}-${timeFrame.closeTime}`)
         .join();
       return `${startWeekDay}至${endWeekDay}: ${timeFrameDesc}`;
     });
@@ -160,7 +160,7 @@ Page({
             combinedTicketCategoryIds.push(categoryId);
           }
           return categoryId;
-        }),
+        })
       };
       if (type === 1) {
         this.ticketList.push(item);
@@ -172,8 +172,8 @@ Page({
     if (ticketCategoryIds.length) {
       const ticketTypeList = Array.from(new Set(ticketCategoryIds))
         .sort()
-        .map((categoryId) =>
-          this.categoryOptions.find((item) => item.id === categoryId)
+        .map(categoryId =>
+          this.categoryOptions.find(item => item.id === categoryId)
         );
       this.setData({ ticketTypeList });
       this.setTicketList();
@@ -184,8 +184,8 @@ Page({
         new Set(combinedTicketCategoryIds)
       )
         .sort()
-        .map((categoryId) =>
-          this.categoryOptions.find((item) => item.id === categoryId)
+        .map(categoryId =>
+          this.categoryOptions.find(item => item.id === categoryId)
         );
       this.setData({ combinedTicketTypeList });
       this.setCombinedTicketList();
@@ -221,15 +221,14 @@ Page({
     sourceTicketList.forEach(
       ({ type, name, briefName, categoryIds, specList, ...item }) => {
         if (
-          categoryIds.findIndex(
-            (categoryId) => categoryId === curCategoryId
-          ) !== -1
+          categoryIds.findIndex(categoryId => categoryId === curCategoryId) !==
+          -1
         ) {
           const priceList = JSON.parse(
-            specList.find((spec) => spec.categoryId === curCategoryId).priceList
+            specList.find(spec => spec.categoryId === curCategoryId).priceList
           );
           const curTicketIndex = ticketList.findIndex(
-            (ticket) => ticket.name === item.name
+            ticket => ticket.name === item.name
           );
           if (curTicketIndex === -1) {
             ticketList.push({
@@ -244,9 +243,9 @@ Page({
                   type,
                   name,
                   briefName,
-                  ...item,
-                },
-              ],
+                  ...item
+                }
+              ]
             });
           } else {
             const { basePrice, list, ...rest } = ticketList[curTicketIndex];
@@ -262,9 +261,9 @@ Page({
                   type,
                   name,
                   briefName,
-                  ...item,
-                },
-              ],
+                  ...item
+                }
+              ]
             };
           }
         }
@@ -292,7 +291,11 @@ Page({
       this.setData({ finished: false });
     }
     const { list = [] } =
-    cateringService.getRelativeMediaList(3, this.restaurantId, ++this.page) || {};
+      (await cateringService.getRelativeMediaList(
+        3,
+        this.restaurantId,
+        ++this.page
+      )) || {};
     this.setData({
       mediaList: init ? list : [...this.data.mediaList, ...list]
     });
@@ -304,7 +307,7 @@ Page({
   setNavBarVisibleLimit() {
     const query = wx.createSelectorQuery();
     query.select(".restaurant-name").boundingClientRect();
-    query.exec((res) => {
+    query.exec(res => {
       this.navBarVisibleLimit = res[0].bottom;
     });
   },
@@ -312,28 +315,28 @@ Page({
   setMenuChangeLimitList() {
     const query = wx.createSelectorQuery();
     query.selectAll(".content-title").boundingClientRect();
-    query.exec((res) => {
+    query.exec(res => {
       this.menuChangeLimitList = res[0].map(
-        (item) => item.top + (this.scrollTop || 0)
+        item => item.top + (this.scrollTop || 0)
       );
     });
   },
 
   bannerChange(e) {
     this.setData({
-      curDot: e.detail.current + 1,
+      curDot: e.detail.current + 1
     });
   },
 
   swiperBanner(e) {
     this.setData({
-      curDot: e.currentTarget.dataset.index + 1,
+      curDot: e.currentTarget.dataset.index + 1
     });
   },
 
   toggleMuted() {
     this.setData({
-      muted: !this.data.muted,
+      muted: !this.data.muted
     });
   },
 
@@ -353,7 +356,7 @@ Page({
   selectMenu(e) {
     const { index } = e.currentTarget.dataset;
     wx.pageScrollTo({
-      scrollTop: this.menuChangeLimitList[index] - statusBarHeight - 100,
+      scrollTop: this.menuChangeLimitList[index] - statusBarHeight - 100
     });
   },
 
@@ -361,7 +364,7 @@ Page({
     const { index } = e.currentTarget.dataset;
     this.setData(
       {
-        curTicketTypeIdx: Number(index),
+        curTicketTypeIdx: Number(index)
       },
       () => {
         this.setTicketList();
@@ -375,7 +378,7 @@ Page({
     const { ticketList } = this.data;
     this.setData(
       {
-        [`ticketList[${index}].fold`]: !ticketList[index].fold,
+        [`ticketList[${index}].fold`]: !ticketList[index].fold
       },
       () => {
         this.setMenuChangeLimitList();
@@ -387,7 +390,7 @@ Page({
     const { index } = e.currentTarget.dataset;
     this.setData(
       {
-        curCombinedTicketTypeIdx: Number(index),
+        curCombinedTicketTypeIdx: Number(index)
       },
       () => {
         this.setCombinedTicketList();
@@ -401,7 +404,7 @@ Page({
     const { combinedTicketList } = this.data;
     this.setData(
       {
-        [`combinedTicketList[${index}].fold`]: !combinedTicketList[index].fold,
+        [`combinedTicketList[${index}].fold`]: !combinedTicketList[index].fold
       },
       () => {
         this.setMenuChangeLimitList();
@@ -460,7 +463,7 @@ Page({
       latitude,
       longitude,
       name,
-      address,
+      address
     });
   },
 
@@ -487,5 +490,5 @@ Page({
     this.setData({ telPopupVisible: false });
   },
 
-  onShareAppMessage() {},
+  onShareAppMessage() {}
 });
