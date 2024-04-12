@@ -358,7 +358,6 @@ Component({
       this.setData({
         mediaList: init ? list : [...this.data.mediaList, ...list]
       });
-      debugger;
       if (!list.length) {
         this.setData({ finished: true });
       }
