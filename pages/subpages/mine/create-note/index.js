@@ -127,7 +127,7 @@ Page({
     });
   },
 
-  async deleteCommodity(e) {
+  deleteCommodity(e) {
     const { index } = e.currentTarget.dataset;
     const { position, instance } = e.detail;
     if (position === "right") {

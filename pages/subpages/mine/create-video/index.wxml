@@ -1,28 +1,23 @@
 <view class="container">
-  <view class="card row top">
-    <textarea class="title-textarea" style="height: {{textareaHeight}}px;" bindinput="setTitle" placeholder="有趣的标题会吸引更多的人看哟～" maxlength="50" />
-    <view class="cover-wrap" bindtap="editCover">
-      <image class="cover" src="{{cover}}" bindload="setTextareaHeight" mode="widthFix" />
-      <button class="cover-editor" hover-class="none">编辑封面</button>
+  <view class="card">
+    <view class="video-info-wrap row top">
+      <view class="textarea-wrap">
+        <textarea class="title-textarea" bindinput="setTitle" placeholder="有趣的标题会吸引更多的人看哟～" maxlength="100" />
+        <view class="length-desc">{{title.length}}/100</view>
+      </view>
+      <view class="cover-wrap" bindtap="editCover">
+        <image class="cover" src="{{cover}}" mode="widthFix" />
+        <button class="cover-editor" hover-class="none">编辑封面</button>
+      </view>
+      
     </view>
-    <view class="length-desc">{{title.length}}/50</view>
   </view>
 
-  <view class="card" style="padding-top: 0; padding-bottom: 0;">
-    <view class="list row between" wx:if="{{userInfo.merchantId}}">
-      <view class="title">添加商品</view>
-      <view class="list-picker row" bindtap="showGoodsPickerPopup">
-        <text class="list-picker-desc omit single-line">{{pickedGoodsName? ('已选：' + pickedGoodsName) : '请选择商品'}}</text>
-        <image class="arrow" src="https://img.ubo.vip/mp/sass/mine/gray-arrow.png" />
-      </view>
-    </view>
+  <view class="card">
     <view class="list row between">
       <view class="title row">设置私密</view>
       <switch color="#0095fa" bindchange="toggleIsPrivate" />
     </view>
-  </view>
-
-  <view class="card" style="padding-top: 0; padding-bottom: 0;">
     <view class="list row between">
       <view class="title row">显示位置</view>
       <switch color="#0095fa" checked="{{addressVisible}}" bindchange="toggleAddressVisible" />
@@ -35,6 +30,38 @@
       </view>
       <input class="list-input" wx:if="{{address}}" value="{{address}}" bindinput="editAddress" />
     </view>
+  </view>
+
+  <view class="card">
+    <view class="title-wrap row between">
+      <view class="title">相关商品</view>
+      <view class="add-btn row" bindtap="pickRelativeCommodity">
+        <view>选择商品</view>
+        <image class="arrow" src="/images/arrow.png" />
+      </view>
+    </view>
+
+    <view class="commodity-list">
+      <van-swipe-cell wx:for="{{mediaCommodityList}}" wx:key="index" bind:close="deleteCommodity" data-index="{{index}}" async-close right-width="{{ 40 }}">
+        <view class="commodity-item row">
+          <view class="commodity-image-wrap">
+            <image class="commodity-image" src="{{item.cover}}" />
+            <view class="type-tag row">{{ ['景点', '酒店', '餐馆', '商品'][item.type -1] }}</view>
+          </view>
+          <view class="commodity-info">
+            <view class="commodity-name omit single-line">{{item.name}}</view>
+            <view class="row end">
+              <price-unit price="{{item.price || 0}}" unit="{{ item.type !== 4 ? '起' : '' }}" fontSize="22rpx" integerFontSize="26rpx" />
+            </view>
+          </view>
+        </view>
+        <view class="swipe-cell-delete-btn row center" slot="right">
+          <image class="delete-icon" src="/images/delete.png" />
+        </view>
+      </van-swipe-cell>
+    </view>
+
+    <empty-illus wx:if="{{!mediaCommodityList.length}}" desc="暂未选择商品" height="520rpx" />
   </view>
 </view>
 

@@ -18,7 +18,6 @@
   font-weight: bold;
 }
 
-
 .title-textarea {
   margin-top: 24rpx;
   padding: 24rpx;
@@ -89,16 +88,13 @@
 }
 
 .commodity-list {
-  padding: 32rpx 0;
+  padding: 32rpx 0 8rpx;
 }
 .commodity-item {
   margin-bottom: 24rpx;
   padding: 16rpx;
   border-radius: 20rpx;
   border: 1px solid #eee;
-}
-.commodity-item:last-child {
-  margin-bottom: 0;
 }
 .commodity-image-wrap {
   position: relative;

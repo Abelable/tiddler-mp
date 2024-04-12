@@ -12,15 +12,13 @@ Page({
     title: "",
     cover: "",
     address: "",
-    addressVisible: true,
-    pickedGoodsName: "",
-    textareaHeight: 0,
+    addressVisible: true
   },
 
   async onLoad({ tempFilePath }) {
     this.storeBindings = createStoreBindings(this, {
       store,
-      fields: ["userInfo"],
+      fields: ["mediaCommodityList"]
     });
 
     this.setVideoUrl(tempFilePath);
@@ -28,9 +26,11 @@ Page({
   },
 
   async setVideoUrl(tempFilePath) {
+    wx.showLoading({ title: "封面加载中..." });
     this.videoUrl = await videoService.uploadFile(tempFilePath);
     const cover = `${this.videoUrl}?x-oss-process=video/snapshot,t_0`;
     this.setData({ cover });
+    wx.hideLoading();
   },
 
   async setLocationInfo() {
@@ -40,7 +40,7 @@ Page({
       const map = new Map({ key: QQ_MAP_KEY });
       map.reverseGeocoder({
         location: { longitude, latitude },
-        success: (res) => {
+        success: res => {
           if (res.status === 0) {
             const { address } = res.result;
             this.setData({ address });
@@ -49,10 +49,10 @@ Page({
           } else {
             wx.showToast({
               title: res.message,
-              icon: "none",
+              icon: "none"
             });
           }
-        },
+        }
       });
     }
   },
@@ -61,25 +61,25 @@ Page({
     wx.openSetting({
       success: () => {
         this.setLocationInfo();
-      },
+      }
     });
   },
 
   toggleAddressVisible(e) {
     this.setData({
-      addressVisible: e.detail.value,
+      addressVisible: e.detail.value
     });
   },
 
   editAddress: debounce(function (e) {
     this.setData({
-      address: e.detail.value,
+      address: e.detail.value
     });
   }, 200),
 
   setTitle: debounce(function (e) {
     this.setData({
-      title: e.detail.value,
+      title: e.detail.value
     });
   }, 200),
 
@@ -97,13 +97,36 @@ Page({
     });
   },
 
+  deleteCommodity(e) {
+    const { index } = e.currentTarget.dataset;
+    const { position, instance } = e.detail;
+    if (position === "right") {
+      wx.showModal({
+        title: "提示",
+        content: "确定删除该商品吗？",
+        showCancel: true,
+        success: async res => {
+          if (res.confirm) {
+            const commodityList = [...store.mediaCommodityList];
+            commodityList.splice(index, 1);
+            store.setMediaCommodityList(commodityList);
+            instance.close();
+          } else {
+            instance.close();
+          }
+        }
+      });
+    }
+  },
+
   toggleIsPrivate(e) {
     this.isPrivate = e.detail.value ? 1 : 0;
   },
 
   publish() {
-    const { title, cover, address, addressVisible } = this.data;
-    const { videoUrl, pickedGoodsId, longitude, latitude, isPrivate } = this;
+    const { title, cover, address, addressVisible, mediaCommodityList } =
+      this.data;
+    const { videoUrl, longitude, latitude, isPrivate } = this;
 
     if (!title) {
       return;
@@ -114,10 +137,10 @@ Page({
       cover,
       videoUrl,
       isPrivate,
-      goodsId: pickedGoodsId,
+      commodityList: mediaCommodityList.map(({ type, id }) => ({ type, id })),
       longitude: addressVisible ? longitude : 0,
       latitude: addressVisible ? latitude : 0,
-      address: addressVisible ? address : "",
+      address: addressVisible ? address : ""
     };
 
     videoService.createVideo(videoInfo, () => {
@@ -125,16 +148,7 @@ Page({
     });
   },
 
-  setTextareaHeight() {
-    const query = wx.createSelectorQuery();
-    query.select(".cover-wrap").boundingClientRect();
-    query.exec((res) => {
-      const { height: textareaHeight } = res[0] || {};
-      this.setData({ textareaHeight });
-    });
-  },
-
   onUnload() {
     this.storeBindings.destroyStoreBindings();
-  },
+  }
 });
