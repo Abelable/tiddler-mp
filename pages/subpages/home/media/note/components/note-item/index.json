@@ -1,6 +1,6 @@
 {
   "component": true,
   "usingComponents": {
-    "price-unit": "/components/price-unit/index"
+    "commodity-list": "/components/commodity-list/index"
   }
 }

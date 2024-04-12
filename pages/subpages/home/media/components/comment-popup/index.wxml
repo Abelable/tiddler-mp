@@ -5,7 +5,7 @@
         <text wx:if="{{total}}">{{total}}条</text>
         <text>评论</text>
       </view>
-      <image class="close-icon" catchtap="hideModal" src="./images/close-icon.png" />
+      <image class="close-icon" catchtap="hide" src="./images/close-icon.png" />
     </view>
 
     <view class="empty-tips" wx:if="{{!total}}">——暂无评论，来抢沙发——</view>

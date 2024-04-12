@@ -22,33 +22,7 @@
   <view class="title">{{item.title}}</view>
   <view class="content omit" wx:if="{{item.content}}">{{item.content}}</view>
 
-  <view class="commodity-list" wx:if="{{item.commodityList.length}}">
-    <view 
-      class="commodity-item row" 
-      wx:for="{{item.commodityList}}" 
-      wx:key="_index" 
-      wx:for-index="_index" 
-      wx:for-item="_item" 
-      catchtap="checkCommodityDetail" 
-      data-type="{{_item.type}}" 
-      data-id="{{_item.id}}"
-    >
-      <view class="commodity-image-wrap">
-        <image class="commodity-image" src="{{_item.cover}}" />
-        <view class="type-tag row">{{['景点', '酒店',  '餐馆', '商品'][item.type - 1]}}</view>
-      </view>
-      <view class="commodity-info">
-        <view class="commodity-name omit single-line">{{_item.name}}</view>
-        <view class="row between baseline">
-          <view class="row baseline">
-            <price-unit price="{{_item.price || 0}}" unit="{{_item.type !== 4 ? '起' : ''}}" fontSize="22rpx" integerFontSize="26rpx" />
-            <view class="market-price" wx:if="{{_item.marketPrice}}}">¥{{_item.marketPrice}}</view>
-          </view>
-          <view class="sales-volumns" wx:if="{{_item.marketPrice}}}">已售{{_item.marketPrice}}}件</view>
-        </view>
-      </view>
-    </view>
-  </view>
+  <commodity-list wx:if="{{item.commodityList.length}}" list="{{item.commodityList}}" />
   
   <view class="btn-wrap">
     <view class="btn-item">
