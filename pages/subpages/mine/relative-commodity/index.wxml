@@ -75,7 +75,7 @@
   <view class="list-wrap" wx:if="{{ curMenuIdx === 3 }}">
     <view class="commodity-list">
       <view class="commodity-item" wx:for="{{goodsList}}" wx:key="index" bindtap="toggleGoodsSelected" data-index="{{index}}">
-        <image class="commodity-img" src="{{item.image}}" mode="aspectFill" lazy-load />
+        <image class="commodity-img" src="{{item.cover}}" mode="aspectFill" lazy-load />
         <view class="commodity-name omit single-line">{{item.name}}</view>
         <view class="commodity-price-wrap">
           <price-unit price="{{item.price}}" />

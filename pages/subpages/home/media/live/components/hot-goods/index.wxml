@@ -6,7 +6,7 @@
   <view class="close-btn row center" catchtap="hide">
     <image class="close-icon" src="https://img.ubo.vip/tiddler/nav-icon/close.png" />
   </view>
-  <image class="goods-image" src="{{goodsInfo.image}}" mode="aspectFill" />
+  <image class="goods-image" src="{{goodsInfo.cover}}" mode="aspectFill" />
   <view class="goods-name omit">{{goodsInfo.name}}</view>
   <view class="price-bar row between">
     <view class="price row baseline">

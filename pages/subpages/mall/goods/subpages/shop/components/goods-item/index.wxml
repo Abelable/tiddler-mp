@@ -1,5 +1,5 @@
 <view class="goods-item" bindtap="navToGoodsDetail">
-  <image class="cover" mode="widthFix" src="{{item.image}}" lazy-load />
+  <image class="cover" mode="widthFix" src="{{item.cover}}" lazy-load />
   <view class="content">
     <view class="title omit">{{item.name}}</view>
     <view class="info-wrap row between">

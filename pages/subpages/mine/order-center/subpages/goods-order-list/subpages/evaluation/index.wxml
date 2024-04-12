@@ -1,7 +1,7 @@
 <view class="container">
   <view class="goods-list">
     <view class="goods-item row" wx:for="{{goodsList}}" wx:key="index">
-      <image class="goods-image" src="{{item.image}}" />
+      <image class="goods-image" src="{{item.cover}}" />
       <view class="goods-info">
         <view class="goods-name omit single-line">{{item.name}}</view>
         <view class="goods-sku omit single-line">{{item.selectedSkuName}}</view>

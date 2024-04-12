@@ -29,7 +29,7 @@
         <view class="goods-item" wx:for="{{goodsList}}" wx:key="index" >
           <image class="select-icon" wx:if="{{multiple}}" bindtap="select" data-index="{{index}}" src="{{item.checked  ? './images/selected.png' : './images/unselected.png'}}" />
           <view class="goods-img-wrap">
-            <image class="goods-img" src="{{item.image}}" />
+            <image class="goods-img" src="{{item.cover}}" />
             <view class="goods-index row {{item.isHot ? 'is-hot' : ''}}">{{index + 1}}{{item.isHot ? ' · 讲解中' : ''}}</view>
           </view>
           <view class="goods-info-wrap">

@@ -34,7 +34,7 @@
 
   <view class="goods-info-wrap row" wx:if="{{item.goodsInfo}}" catchtap="navToGoodsDetail">
     <view class="goods-image-wrap">
-      <image class="goods-image" src="{{item.goodsInfo.image}}" />
+      <image class="goods-image" src="{{item.goodsInfo.cover}}" />
       <view class="type-tag row">商品</view>
     </view>
     <view class="goods-info">

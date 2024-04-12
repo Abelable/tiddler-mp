@@ -4,7 +4,7 @@
     <scroll-view class="goods-list" scroll-y bindscrolltolower="loadMore">
       <view class="goods-item" wx:for="{{goodsList}}" wx:key="index" catchtap="navToGoodsDetail" data-id="{{item.id}}">
         <view class="goods-img-wrap">
-          <image class="goods-img" src="{{item.image}}" />
+          <image class="goods-img" src="{{item.cover}}" />
           <view class="goods-index row {{item.isHot ? 'is-hot' : ''}}">{{index + 1}}{{item.isHot ? ' · 讲解中' : ''}}</view>
         </view>
         <view class="goods-info-wrap">
