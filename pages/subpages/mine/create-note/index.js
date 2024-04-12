@@ -176,6 +176,7 @@ Page({
     };
 
     noteService.createNote(noteInfo, () => {
+      store.setMediaCommodityList([]);
       wx.navigateBack();
     });
   },

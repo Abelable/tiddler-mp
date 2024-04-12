@@ -144,6 +144,7 @@ Page({
     };
 
     videoService.createVideo(videoInfo, () => {
+      store.setMediaCommodityList([]);
       wx.navigateBack();
     });
   },
