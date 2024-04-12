@@ -105,6 +105,10 @@ Page({
     });
   }, 200),
 
+  toggleIsPrivate(e) {
+    this.isPrivate = e.detail.value ? 1 : 0;
+  },
+
   toggleAddressVisible(e) {
     this.setData({
       addressVisible: e.detail.value
@@ -123,24 +127,49 @@ Page({
     });
   },
 
-  toggleIsPrivate(e) {
-    this.isPrivate = e.detail.value ? 1 : 0;
+  async deleteCommodity(e) {
+    const { index } = e.currentTarget.dataset;
+    const { position, instance } = e.detail;
+    if (position === "right") {
+      wx.showModal({
+        title: "提示",
+        content: "确定删除该商品吗？",
+        showCancel: true,
+        success: async res => {
+          if (res.confirm) {
+            const commodityList = [...store.mediaCommodityList];
+            commodityList.splice(index, 1);
+            store.setMediaCommodityList(commodityList);
+            instance.close();
+          } else {
+            instance.close();
+          }
+        }
+      });
+    }
   },
 
   publish() {
-    const { imageList, title, content, address, addressVisible } = this.data;
-    const { pickedGoodsId, longitude, latitude, isPrivate } = this;
+    const {
+      imageList,
+      title,
+      content,
+      address,
+      addressVisible,
+      mediaCommodityList
+    } = this.data;
+    const { longitude, latitude, isPrivate } = this;
 
     if (!imageList.length || !title || !content) {
       return;
     }
 
     const noteInfo = {
-      imageList: JSON.stringify(imageList.map(item => item.url)),
+      imageList: imageList.map(item => item.url),
       title,
       content,
       isPrivate,
-      goodsId: pickedGoodsId,
+      commodityList: mediaCommodityList.map(({ type, id }) => ({ type, id })),
       longitude: addressVisible ? longitude : 0,
       latitude: addressVisible ? latitude : 0,
       address: addressVisible ? address : ""
