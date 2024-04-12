@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "创建游记",
   "usingComponents": {
-    "van-uploader": "@vant/weapp/uploader/index"
+    "van-uploader": "@vant/weapp/uploader/index",
+    "empty-illus": "/components/empty-illus/index"
   }
 }

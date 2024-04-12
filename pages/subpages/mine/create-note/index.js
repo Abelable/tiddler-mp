@@ -20,7 +20,7 @@ Page({
   async onLoad() {
     this.storeBindings = createStoreBindings(this, {
       store,
-      fields: ["userInfo"]
+      fields: ["mediaCommodityList"]
     });
 
     this.setLocationInfo();

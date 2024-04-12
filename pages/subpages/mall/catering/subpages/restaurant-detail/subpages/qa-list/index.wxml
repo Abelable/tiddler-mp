@@ -17,7 +17,7 @@
         <view class="qa-time">{{TIME.transform(item.createdAt, 'YYYY-MM-DD')}}</view>
         <view class="more-check row" wx:if="{{item.answerNum}}">
           <view>查看全部{{item.answerNum}}条回答</view>
-          <image class="more-icon" src="./images/arrow.png" />
+          <image class="more-icon" src="/images/arrow.png" />
         </view>
       </view>
     </view>
