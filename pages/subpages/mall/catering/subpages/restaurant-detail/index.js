@@ -1,6 +1,5 @@
 import dayjs from "dayjs";
 import { store } from "../../../../../../store/index";
-import { mediaList } from "../.../../../../../utils/tempData";
 import { weekDayList, calcDistance } from "../../../../../../utils/index";
 import CateringService from "../../utils/cateringService";
 
@@ -26,7 +25,8 @@ Page({
     distance: 0,
     evaluationSummary: null,
     qaSummary: null,
-    mediaList,
+    mediaList: [],
+    finished: false,
     noticePopupVisible: false,
     telPopupVisible: false,
   },
@@ -36,6 +36,7 @@ Page({
     await this.setRestaurantInfo();
     await this.setEvaluationSummary();
     await this.setQaSummary();
+    await this.setMediaList(true);
     this.setNavBarVisibleLimit();
     this.setMenuChangeLimitList();
   },
@@ -285,6 +286,21 @@ Page({
     this.setData({ qaSummary });
   },
 
+  async setMediaList(init = false) {
+    if (init) {
+      this.page = 0;
+      this.setData({ finished: false });
+    }
+    const { list = [] } =
+    cateringService.getRelativeMediaList(3, this.restaurantId, ++this.page) || {};
+    this.setData({
+      mediaList: init ? list : [...this.data.mediaList, ...list]
+    });
+    if (!list.length) {
+      this.setData({ finished: true });
+    }
+  },
+
   setNavBarVisibleLimit() {
     const query = wx.createSelectorQuery();
     query.select(".restaurant-name").boundingClientRect();
@@ -421,7 +437,7 @@ Page({
   },
 
   onReachBottom() {
-    console.log("onReachBottom");
+    this.setMediaList();
   },
 
   checkMoreInfo() {

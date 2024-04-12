@@ -1,7 +1,6 @@
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
 import { store } from "../../../../../../store/index";
 import { calcDistance } from "../../../../../../utils/index";
-import { mediaList } from "../../../../utils/tempData";
 import { formatter } from "../../utils/index";
 import HotelService from "../../utils/hotelService";
 
@@ -12,7 +11,7 @@ Component({
   behaviors: [storeBindingsBehavior],
   storeBindings: {
     store,
-    fields: ["checkInDate", "checkOutDate"],
+    fields: ["checkInDate", "checkOutDate"]
   },
 
   data: {
@@ -38,10 +37,11 @@ Component({
     nearbyScenicTotal: 0,
     nearbyHotelList: [],
     nearbyHotelTotal: 0,
-    mediaList,
+    mediaList: [],
+    finished: false,
     curRoomInfo: null,
     noticePopupVisible: false,
-    calendarPopupVisibel: false,
+    calendarPopupVisibel: false
   },
 
   observers: {
@@ -52,7 +52,7 @@ Component({
       this.dateList = new Array(nightNum)
         .fill("")
         .map((item, index) => checkInDate + 1000 * 60 * 60 * 24 * index);
-    },
+    }
   },
 
   methods: {
@@ -64,6 +64,7 @@ Component({
       await this.setQaSummary();
       await this.setNearbyScenicList();
       await this.setNearbyHotelList();
+      await this.setMediaList(true);
       this.setMenuList();
     },
 
@@ -78,7 +79,7 @@ Component({
         restaurantImageList,
         environmentImageList,
         longitude: lo2,
-        latitude: la2,
+        latitude: la2
       } = hotelInfo;
       const imageList = [];
       const imageMenuList = [];
@@ -129,7 +130,7 @@ Component({
         imageList,
         imageMenuList,
         imageCount,
-        distance,
+        distance
       });
     },
 
@@ -138,13 +139,13 @@ Component({
       const typeList = await hotelService.getRoomTypeOptions(this.hotelId);
 
       const roomTypeList = typeList
-        .map((item) => {
+        .map(item => {
           const roomList = hotelRoomList
-            .filter((room) => room.typeId === item.id)
-            .map((room) => {
-              const priceUnitList = this.dateList.map((date) =>
+            .filter(room => room.typeId === item.id)
+            .map(room => {
+              const priceUnitList = this.dateList.map(date =>
                 room.priceList.find(
-                  (priceUnit) =>
+                  priceUnit =>
                     date >= priceUnit.startDate * 1000 &&
                     date <= priceUnit.endDate * 1000
                 )
@@ -152,7 +153,7 @@ Component({
               const price = Number(
                 (
                   priceUnitList
-                    .map((item) => item.price)
+                    .map(item => item.price)
                     .reduce((a, b) => Number(a) + Number(b), 0) /
                   priceUnitList.length
                 ).toFixed(2)
@@ -162,12 +163,12 @@ Component({
               );
               return { ...room, price, roomNum };
             })
-            .filter((room) => room.roomNum);
+            .filter(room => room.roomNum);
           const { price = 0 } =
             roomList.sort((a, b) => a.price - b.price)[0] || {};
           return { ...item, roomList, price, fold: true };
         })
-        .filter((item) => item.roomList.length);
+        .filter(item => item.roomList.length);
 
       const roomTypeIndexList = new Array(roomTypeList.length + 1)
         .fill("")
@@ -202,7 +203,7 @@ Component({
             "热门问答",
             "附近景点",
             "附近酒店",
-            "达人入住",
+            "达人入住"
           ]
         : [
             "酒店房间",
@@ -210,7 +211,7 @@ Component({
             "热门问答",
             "附近景点",
             "附近酒店",
-            "达人入住",
+            "达人入住"
           ];
       this.setData({ menuList }, () => {
         this.setNavBarVisibleLimit();
@@ -221,7 +222,7 @@ Component({
     setNavBarVisibleLimit() {
       const query = wx.createSelectorQuery();
       query.select(".hotel-name").boundingClientRect();
-      query.exec((res) => {
+      query.exec(res => {
         this.navBarVisibleLimit = res[0].bottom;
       });
     },
@@ -229,28 +230,28 @@ Component({
     setMenuChangeLimitList() {
       const query = wx.createSelectorQuery();
       query.selectAll(".content-title").boundingClientRect();
-      query.exec((res) => {
+      query.exec(res => {
         this.menuChangeLimitList = res[0].map(
-          (item) => item.top + (this.scrollTop || 0)
+          item => item.top + (this.scrollTop || 0)
         );
       });
     },
 
     bannerChange(e) {
       this.setData({
-        curDot: e.detail.current + 1,
+        curDot: e.detail.current + 1
       });
     },
 
     swiperBanner(e) {
       this.setData({
-        curDot: e.currentTarget.dataset.index + 1,
+        curDot: e.currentTarget.dataset.index + 1
       });
     },
 
     toggleMuted() {
       this.setData({
-        muted: !this.data.muted,
+        muted: !this.data.muted
       });
     },
 
@@ -263,7 +264,7 @@ Component({
     selectMenu(e) {
       const { index } = e.currentTarget.dataset;
       wx.pageScrollTo({
-        scrollTop: this.menuChangeLimitList[index] - statusBarHeight - 100,
+        scrollTop: this.menuChangeLimitList[index] - statusBarHeight - 100
       });
     },
 
@@ -272,7 +273,7 @@ Component({
       const { fold } = this.data.roomTypeList[index];
       this.setData(
         {
-          [`roomTypeList[${index}].fold`]: !fold,
+          [`roomTypeList[${index}].fold`]: !fold
         },
         () => {
           this.redraw();
@@ -317,7 +318,7 @@ Component({
     },
 
     onReachBottom() {
-      console.log("onReachBottom");
+      this.setMediaList();
     },
 
     async setNearbyScenicList() {
@@ -326,7 +327,7 @@ Component({
         await hotelService.getNearbyScenicList({
           longitude,
           latitude,
-          page: 1,
+          page: 1
         });
       this.setData({ nearbyScenicList, nearbyScenicTotal });
     },
@@ -338,9 +339,24 @@ Component({
           id,
           longitude,
           latitude,
-          page: 1,
+          page: 1
         });
       this.setData({ nearbyHotelList, nearbyHotelTotal });
+    },
+
+    async setMediaList(init = false) {
+      if (init) {
+        this.page = 0;
+        this.setData({ finished: false });
+      }
+      const { list = [] } =
+        hotelService.getRelativeMediaList(2, this.scenicId, ++this.page) || {};
+      this.setData({
+        mediaList: init ? list : [...this.data.mediaList, ...list]
+      });
+      if (!list.length) {
+        this.setData({ finished: true });
+      }
     },
 
     showNoticePopup(e) {
@@ -348,7 +364,7 @@ Component({
       const curRoomInfo = this.setCurRoomInfo(typeIndex, roomIndex);
       this.setData({
         curRoomInfo,
-        noticePopupVisible: true,
+        noticePopupVisible: true
       });
     },
 
@@ -361,13 +377,13 @@ Component({
         hotelName,
         hotelEnglishName,
         ...roomTypeInfo,
-        ...roomInfo,
+        ...roomInfo
       };
     },
 
     hideNoticePopup() {
       this.setData({
-        noticePopupVisible: false,
+        noticePopupVisible: false
       });
     },
 
@@ -391,19 +407,19 @@ Component({
         latitude,
         longitude,
         name,
-        address,
+        address
       });
     },
 
     showCalendarPopup() {
       this.setData({
-        calendarPopupVisibel: true,
+        calendarPopupVisibel: true
       });
     },
 
     hideCalendarPopup() {
       this.setData({
-        calendarPopupVisibel: false,
+        calendarPopupVisibel: false
       });
     },
 
@@ -412,7 +428,7 @@ Component({
       store.setCheckInDate(start.getTime());
       store.setCheckOutDate(end.getTime());
       this.setData({
-        calendarPopupVisibel: false,
+        calendarPopupVisibel: false
       });
       this.setRoomTypeList();
     },
@@ -422,7 +438,7 @@ Component({
       const curRoomInfo = this.setCurRoomInfo(typeIndex, roomIndex);
       store.setHotelPreOrderInfo(curRoomInfo);
       wx.navigateTo({
-        url: "/pages/subpages/mall/hotel/subpages/order-check/index",
+        url: "/pages/subpages/mall/hotel/subpages/order-check/index"
       });
     },
 
@@ -437,6 +453,6 @@ Component({
       wx.navigateTo({ url });
     },
 
-    onShareAppMessage() {},
-  },
+    onShareAppMessage() {}
+  }
 });
