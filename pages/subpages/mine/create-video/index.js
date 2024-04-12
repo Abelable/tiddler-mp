@@ -14,7 +14,6 @@ Page({
     address: "",
     addressVisible: true,
     pickedGoodsName: "",
-    goodsPickPopupVisible: false,
     textareaHeight: 0,
   },
 
@@ -92,24 +91,9 @@ Page({
     }
   },
 
-  showGoodsPickerPopup() {
-    this.setData({
-      goodsPickPopupVisible: true,
-    });
-  },
-
-  goodsPickerConfirm(e) {
-    const { id, name } = e.detail;
-    this.setData({
-      pickedGoodsName: name,
-      goodsPickPopupVisible: false,
-    });
-    this.pickedGoodsId = id;
-  },
-
-  hideGoodsPickerPopup() {
-    this.setData({
-      goodsPickPopupVisible: false,
+  pickRelativeCommodity() {
+    wx.navigateTo({
+      url: "../relative-commodity/index"
     });
   },
 

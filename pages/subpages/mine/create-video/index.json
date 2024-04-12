@@ -1,6 +1,3 @@
 {
-  "navigationBarTitleText": "创建短视频",
-  "usingComponents": {
-    "goods-picker-popup": "../components/goods-picker-popup/index"
-  }
+  "navigationBarTitleText": "创建短视频"
 }

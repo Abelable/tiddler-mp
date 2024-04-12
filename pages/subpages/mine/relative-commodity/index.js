@@ -1,4 +1,10 @@
 import { store } from "../../../../store/index";
+import {
+  TYPE_OF_GOODS,
+  TYPE_OF_HOTEL,
+  TYPE_OF_RESTAURANT,
+  TYPE_OF_SCENIC
+} from "../../../../utils/emuns/commodityType";
 import CommodityService from "./utils/commodityService";
 
 const commodityService = new CommodityService();
@@ -18,6 +24,19 @@ Page({
   },
 
   async onLoad() {
+    this.selectedScenicIds = store.mediaCommodityList
+      .filter(item => item.type === TYPE_OF_SCENIC)
+      .map(item => item.id);
+    this.selectedHotelIds = store.mediaCommodityList
+      .filter(item => item.type === TYPE_OF_HOTEL)
+      .map(item => item.id);
+    this.selectedRestaurantIds = store.mediaCommodityList
+      .filter(item => item.type === TYPE_OF_RESTAURANT)
+      .map(item => item.id);
+    this.selectedGoodsIds = store.mediaCommodityList
+      .filter(item => item.type === TYPE_OF_GOODS)
+      .map(item => item.id);
+
     await this.getUserRelativeCommodityIds();
     this.setList(true);
   },
@@ -35,8 +54,8 @@ Page({
   search() {
     if (!this.data.keywords) {
       wx.showToast({
-        title: '请输入搜索关键字',
-        icon: 'none'
+        title: "请输入搜索关键字",
+        icon: "none"
       });
     }
     this.setList(true);
@@ -121,10 +140,13 @@ Page({
     const selectedRestaurant = restaurantList.filter(item => item.selected);
     const selectedGoods = goodsList.filter(item => item.selected);
     const commodityList = [
-      ...selectedScenic.map(({ id, name }) => ({ id, name, type: 1 })),
-      ...selectedHotel.map(({ id, name }) => ({ id, name, type: 2 })),
-      ...selectedRestaurant.map(({ id, name }) => ({ id, name, type: 3 })),
-      ...selectedGoods.map(({ id, name }) => ({ id, name, type: 4 }))
+      ...selectedScenic.map(item => ({ ...item, type: TYPE_OF_SCENIC })),
+      ...selectedHotel.map(item => ({ ...item, type: TYPE_OF_HOTEL })),
+      ...selectedRestaurant.map(item => ({
+        ...item,
+        type: TYPE_OF_RESTAURANT
+      })),
+      ...selectedGoods.map(item => ({ ...item, type: TYPE_OF_GOODS }))
     ];
 
     if (!commodityList.length) {
@@ -159,7 +181,10 @@ Page({
         keywords,
         page: ++this.scenicPage
       })) || {};
-    list = list.map(item => ({ ...item, selected: false }));
+    list = list.map(item => ({
+      ...item,
+      selected: this.selectedScenicIds.includes(item.id)
+    }));
     this.setData({
       scenicList: init ? list : [...scenicList, ...list]
     });
@@ -180,7 +205,10 @@ Page({
         keywords,
         page: ++this.hotelPage
       })) || {};
-    list = list.map(item => ({ ...item, selected: false }));
+    list = list.map(item => ({
+      ...item,
+      selected: this.selectedHotelIds.includes(item.id)
+    }));
     this.setData({
       hotelList: init ? list : [...hotelList, ...list]
     });
@@ -201,7 +229,10 @@ Page({
         keywords,
         page: ++this.restaurantPage
       })) || {};
-    list = list.map(item => ({ ...item, selected: false }));
+    list = list.map(item => ({
+      ...item,
+      selected: this.selectedRestaurantIds.includes(item.id)
+    }));
     this.setData({
       restaurantList: init ? list : [...restaurantList, ...list]
     });
@@ -222,7 +253,10 @@ Page({
         keywords,
         page: ++this.goodsPage
       })) || {};
-    list = list.map(item => ({ ...item, selected: false }));
+    list = list.map(item => ({
+      ...item,
+      selected: this.selectedGoodsIds.includes(item.id)
+    }));
     this.setData({
       goodsList: init ? list : [...goodsList, ...list]
     });

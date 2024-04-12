@@ -39,5 +39,3 @@
 </view>
 
 <button class="publish-btn {{title ? 'active' : ''}}" bindtap="publish">发布</button>
-
-<goods-picker-popup show="{{goodsPickPopupVisible}}" bind:confirm="goodsPickerConfirm" bind:hide="hideGoodsPickerPopup" />
