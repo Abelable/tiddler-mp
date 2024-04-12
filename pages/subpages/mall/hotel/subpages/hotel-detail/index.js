@@ -350,7 +350,7 @@ Component({
         this.setData({ finished: false });
       }
       const { list = [] } =
-        hotelService.getRelativeMediaList(2, this.scenicId, ++this.page) || {};
+        hotelService.getRelativeMediaList(2, this.hotelId, ++this.page) || {};
       this.setData({
         mediaList: init ? list : [...this.data.mediaList, ...list]
       });
