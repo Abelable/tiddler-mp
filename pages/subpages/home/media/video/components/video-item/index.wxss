@@ -100,6 +100,7 @@
 }
 .commodity-item {
   display: inline-block;
+  margin-right: 24rpx;
   height: 100rpx;
   width: 280rpx;
   background-size: 100%;
