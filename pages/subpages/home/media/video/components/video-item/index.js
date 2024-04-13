@@ -1,29 +1,35 @@
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
 import { store } from "../../../../../../../store/index";
 import { checkLogin } from "../../../../../../../utils/index";
+import {
+  TYPE_OF_GOODS,
+  TYPE_OF_HOTEL,
+  TYPE_OF_RESTAURANT,
+  TYPE_OF_SCENIC
+} from "../../../../../../../utils/emuns/commodityType";
 
 Component({
   options: {
-    addGlobalClass: true,
+    addGlobalClass: true
   },
 
   behaviors: [storeBindingsBehavior],
 
   storeBindings: {
     store,
-    fields: ["userInfo"],
+    fields: ["userInfo"]
   },
 
   properties: {
     item: Object,
     index: Number,
-    curIdx: Number,
+    curIdx: Number
   },
 
   data: {
     mode: "cover",
     videoStop: false,
-    praiseHeartArr: [],
+    praiseHeartArr: []
   },
 
   observers: {
@@ -34,7 +40,7 @@ Component({
       } else if (this.player) {
         this.player.pause();
       }
-    },
+    }
   },
 
   methods: {
@@ -63,11 +69,11 @@ Component({
           style: `top: ${y - 40}px; left: ${
             x - 40
           }px; transform: rotate(${deg}deg); animation: float 0.6s linear;`,
-          url: "https://img.ubo.vip/mp/praise-heart.png",
+          url: "https://img.ubo.vip/mp/praise-heart.png"
         };
         const { item, praiseHeartArr } = this.data;
         this.setData({
-          [`praiseHeartArr[${praiseHeartArr.length}]`]: praiseHeartItem,
+          [`praiseHeartArr[${praiseHeartArr.length}]`]: praiseHeartItem
         });
 
         checkLogin(() => {
@@ -108,7 +114,7 @@ Component({
       const { id } = this.properties.item.authorInfo;
       if (store.userInfo.id !== id) {
         wx.navigateTo({
-          url: `/pages/subpages/home/media/author-center/index?id=${id}`,
+          url: `/pages/subpages/home/media/author-center/index?id=${id}`
         });
       }
     },
@@ -135,10 +141,27 @@ Component({
       this.triggerEvent("more");
     },
 
-    navToGoodsDetail() {
-      const { id } = this.properties.item.goodsInfo;
-      const url = `/pages/subpages/mall/goods/subpages/goods-detail/index?id=${id}`;
+    checkCommodityDetail(e) {
+      const { type, id } = e.currentTarget.dataset;
+      let url;
+      switch (type) {
+        case TYPE_OF_SCENIC:
+          url = `/pages/subpages/mall/scenic-spot/subpages/spot-detail/index?id=${id}`;
+          break;
+
+        case TYPE_OF_HOTEL:
+          url = `/pages/subpages/mall/hotel/subpages/hotel-detail/index?id=${id}`;
+          break;
+
+        case TYPE_OF_RESTAURANT:
+          url = `/pages/subpages/mall/catering/subpages/restaurant-detail/index?id=${id}`;
+          break;
+
+        case TYPE_OF_GOODS:
+          url = `/pages/subpages/mall/goods/subpages/goods-detail/index?id=${id}`;
+          break;
+      }
       wx.navigateTo({ url });
-    },
-  },
+    }
+  }
 });

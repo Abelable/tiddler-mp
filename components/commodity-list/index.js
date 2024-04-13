@@ -24,14 +24,15 @@ Component({
           break;
 
         case TYPE_OF_HOTEL:
-          url = `/pages/subpages/mall/hotel/subpages/spot-detail/index?id=${id}`;
+          url = `/pages/subpages/mall/hotel/subpages/hotel-detail/index?id=${id}`;
           break;
 
         case TYPE_OF_RESTAURANT:
           url = `/pages/subpages/mall/catering/subpages/restaurant-detail/index?id=${id}`;
           break;
+          
         case TYPE_OF_GOODS:
-          url = `/pages/subpages/mall/catering/subpages/restaurant-detail/index?id=${id}`;
+          url = `/pages/subpages/mall/goods/subpages/goods-detail/index?id=${id}`;
           break;
       }
       wx.navigateTo({ url });

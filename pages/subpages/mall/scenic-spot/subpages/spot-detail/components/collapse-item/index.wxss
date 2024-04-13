@@ -20,7 +20,7 @@
   font-size: 22rpx;
 }
 .base-price {
-  color: #EE0D23;
+  color: #ff5040;
 }
 .arrow {
   margin-left: 4rpx;

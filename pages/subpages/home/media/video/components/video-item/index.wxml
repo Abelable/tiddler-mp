@@ -40,16 +40,46 @@
   </view>
 
   <view class="video-info">
-    <view class="goods-tag row" wx:if="{{item.goodsInfo}}" catchtap="navToGoodsDetail" data-id="{{item.goodsInfo.id}}">
+    <!-- <view class="goods-tag row" wx:if="{{item.goodsInfo}}" catchtap="navToGoodsDetail" data-id="{{item.goodsInfo.id}}">
       <image class="goods-icon" src="https://img.ubo.vip/mp/index/short-video/goods.png" />
       <text class="goods-name omit single-line">{{item.goodsInfo.name}}</text>
-    </view>
+    </view> -->
     <view class="author-name" catchtap="navToPersonalCenter">@{{item.authorInfo.nickname}}</view>
+
     <view class="address" wx:if="{{item.address}}">
       <image class="address-icon" src="./images/address.png" />
       <text>{{item.address}}</text>
     </view>
+
     <view class="video-title">{{item.title}}</view>
+
+    <scroll-view class="commodity-list row" scroll-x>
+      <view 
+        class="commodity-item" 
+        style="background-image: url({{_item.cover}});"
+        wx:for="{{item.commodityList}}" 
+        wx:key="_index" 
+        wx:for-item="_item" 
+        wx:for-index="_index"
+        catchtap="checkCommodityDetail"
+        data-type="{{_item.type}}"
+        data-id="{{_item.id}}"
+      >
+        <view class="commodity-item-inner">
+          <view class="commodity-name-wrap row">
+            <image class="comodity-icon" src="./images/{{['scenic', 'hotel', 'restaurant', 'goods'][_item.type - 1]}}.png" />
+            <view class="commodity-name omit single-line">{{_item.name}}</view>
+          </view>
+          <view class="commodity-data-wrap row between baseline">
+            <view class="row baseline">
+              <price-unit price="{{_item.price || 0}}" unit="{{_item.type !== 4 ? '起' : ''}}" color="#FFDD00" unitColor="#fff" fontSize="22rpx" integerFontSize="28rpx" unitFontSize="18rpx" />
+              <view class="market-price" wx:if="{{_item.marketPrice}}">¥{{_item.marketPrice}}</view>
+            </view>
+            <view class="sales-volumns">已售{{_item.salesVolume}}</view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
   </view>
 
   <image class="pause-icon" wx:if="{{videoStop}}" src="https://img.ubo.vip/mp/index/room/pause-icon.png" />
