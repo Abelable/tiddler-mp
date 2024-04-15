@@ -20,16 +20,14 @@ Page({
     selectedSpecDesc: "",
     specPopupVisible: false,
     actionMode: 0,
-    shareModalVisible: false,
-    posterInfo: null, // 分享海报
-    posterModalVisible: false, // 海报弹窗
-    shareDesc: "",
+    posterInfo: null,
+    posterModelVisible: false
   },
 
   async onLoad({ id, scene, q }) {
     wx.showShareMenu({
       withShareTicket: true,
-      menus: ["shareAppMessage", "shareTimeline"],
+      menus: ["shareAppMessage", "shareTimeline"]
     });
 
     const decodedScene = scene ? decodeURIComponent(scene) : "";
@@ -65,7 +63,7 @@ Page({
   getBannerHeight() {
     const query = wx.createSelectorQuery();
     query.select(".banner-wrap").boundingClientRect();
-    query.exec((res) => {
+    query.exec(res => {
       this.bannerHeight = res[0].height;
     });
   },
@@ -74,7 +72,7 @@ Page({
   getDetailTop() {
     const query = wx.createSelectorQuery();
     query.select(".goods-detail-line").boundingClientRect();
-    query.exec((res) => {
+    query.exec(res => {
       if (res[0] !== null) {
         this.detailTop = res[0].top;
       }
@@ -103,20 +101,20 @@ Page({
   // 滚动到顶部
   scrollToTop() {
     wx.pageScrollTo({
-      scrollTop: 0,
+      scrollTop: 0
     });
   },
 
   // 滚动到详情部分
   scrollToDetail() {
     wx.pageScrollTo({
-      scrollTop: this.detailTop - navBarHeight * 0.9,
+      scrollTop: this.detailTop - navBarHeight * 0.9
     });
   },
 
   bannerChange(event) {
     this.setData({
-      curDot: event.detail.current + 1,
+      curDot: event.detail.current + 1
     });
   },
 
@@ -148,7 +146,7 @@ Page({
       const { mode } = e.currentTarget.dataset;
       this.setData({
         specPopupVisible: true,
-        actionMode: mode,
+        actionMode: mode
       });
     }
   },
@@ -161,34 +159,27 @@ Page({
     if (cartGoodsNumber) this.setData({ cartGoodsNumber });
   },
 
-  async setPosterInfo() {
-    let { wxacode_pic, goodsView } = await goodsService.getGoodsPoster(
-      this.data.goodsId
-    );
-    let { goods_img, goods_name, shop_price: shopPrice } = goodsView;
-    let goodsName =
-      goods_name.length > 16 ? goods_name.slice(0, 16) + "..." : goods_name;
-    let { path: qrCode } = await goodsService.getImageInfo(wxacode_pic);
-    let { path: goodsPic } = await goodsService.getImageInfo(goods_img);
-    this.setData({
-      posterInfo: { goodsPic, shopPrice, goodsName, qrCode },
-    });
-  },
-
-  showShareModal() {
+  share() {
     checkLogin(() => {
-      this.setData({ shareModalVisible: true, showMask: true });
-      this.setPosterInfo();
+      // this.setQRcode();
+      const { cover, name: title, price, marketPrice } = this.data.goodsInfo;
+      this.setData({
+        posterModalVisible: true,
+        posterInfo: { cover, title, price, marketPrice }
+      });
     });
   },
 
-  showPosterModal() {
-    this.setData({ shareModalVisible: false, posterModalVisible: true });
+  async setQRcode() {
+    const scene = `id=${this.goodsId}`;
+    const page = "/pages/subpages/mall/goods/subpages/goods-detail/index";
+    const qrcode = await goodsService.getQRCode(scene, page);
+    console.log("qrcode", qrcode);
   },
 
   hidePosterModal() {
     this.setData({
-      posterModalVisible: false,
+      posterModalVisible: false
     });
   },
 
@@ -200,7 +191,7 @@ Page({
 
   // 分享
   onShareAppMessage() {
-    const { id, name: title, image: imageUrl } = this.data.goodsInfo;
+    const { id, name: title, cover: imageUrl } = this.data.goodsInfo;
     const path = `/pages/subpages/mall/goods/subpages/goods-detail/index?id=${id}`;
     return { title, imageUrl, path };
   },
@@ -210,5 +201,5 @@ Page({
     const title = `小鱼游商品：${name}`;
     const query = `id=${id}`;
     return { query, title, imageUrl };
-  },
+  }
 });

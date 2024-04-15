@@ -246,6 +246,14 @@ class BaseService extends Base {
       success,
     });
   }
+
+  async getQRCode(scene, page) {
+    return await this.get({
+      url: `${this.baseUrl}/wx/wx`,
+      data: { scene, page },
+      loadingTitle: '加载中...'
+    });
+  }
 }
 
 export default BaseService;

@@ -1,4 +1,4 @@
-import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
+import { store } from "../../store/index";
 import { SCENE_GOODS, SCENE_LIVE } from "../../utils/emuns/posterScene";
 
 const descList = [
@@ -17,7 +17,8 @@ let ctx = null;
 
 Component({
   properties: {
-    scene: Number
+    scene: Number,
+    info: Object
   },
 
   lifetimes: {
@@ -54,8 +55,8 @@ Component({
 
     async createPoster() {
       const { avatar, nickname } = store.userInfo;
-      const {scene, info} = this.properties
-      const { cover, title, price, marketPrice } = info || {}
+      const { scene, info } = this.properties;
+      const { cover, title, price, marketPrice } = info || {};
 
       await this.drawImage(
         "https://img.ubo.vip/tiddler/poster_bg.png",
@@ -71,17 +72,24 @@ Component({
 
       await this.drawImage(cover, 27, 71, 237, 130);
       if (title.length < 16) {
-        this.setText(14, '#333', 145, 225, title, 'center')
+        this.setText(14, "#333", 145, 225, title, "center");
       } else if (title.length > 16 && title.length < 32) {
-        this.setText(14, '#333', 145, 225, title.slice(0, 16), 'center')
-        this.setText(14, '#333', 145, 246, title.slice(16), 'center')
+        this.setText(14, "#333", 145, 225, title.slice(0, 16), "center");
+        this.setText(14, "#333", 145, 246, title.slice(16), "center");
       } else {
-        this.setText(14, '#333', 145, 225, title.slice(0, 16), 'center')
-        this.setText(14, '#333', 145, 246, `${title.slice(16, 31)}...`, 'center')
+        this.setText(14, "#333", 145, 225, title.slice(0, 16), "center");
+        this.setText(
+          14,
+          "#333",
+          145,
+          246,
+          `${title.slice(16, 31)}...`,
+          "center"
+        );
       }
 
       await this.drawImage("./images/qrcode.jpg", 189, 360, 86, 86);
-      this.setText(ctx, 10, '#999', 145, 380, '长按识别小程序码', 'center')
+      this.setText(ctx, 10, "#999", 145, 380, "长按识别小程序码", "center");
 
       wx.canvasToTempFilePath(
         {
@@ -192,7 +200,7 @@ Component({
       wx.saveImageToPhotosAlbum({
         filePath: this.posterUrl,
         success: () => {
-          this.triggerEvent("hidePosterModal");
+          this.triggerEvent("hide");
           wx.showToast({ title: "成功保存", icon: "none" });
         }
       });

@@ -112,7 +112,7 @@
       <image class="shortcut-icon" src="./images/customer-icon.png"/>
       <view>客服</view>
     </view>
-    <view class="shortcut" bindtap="showShareModal">
+    <view class="shortcut" bindtap="share">
       <image class="shortcut-icon" src="./images/share-icon.png"/>
       <view>分享</view>
     </view>
@@ -128,9 +128,6 @@
   </view>
 </view>
 
-<!-- 遮罩 -->
-<modal-mask wx:if="{{showMask}}" bindtap="hideModal" opacity="{{posterModalVisible ? 0.6 : 0.3}}" />
-
 <!-- 商品规格选择弹窗 -->
 <spec-popup
   show="{{specPopupVisible}}"
@@ -139,4 +136,4 @@
   bind:hide="hideSpecPopup"
 />
 <!-- 分享 -->
-<share-popup wx:if="{{shareModalVisible}}" />
+<poster-modal wx:if="{{posterModalVisible}}" scene="7" info="{{posterInfo}}" bind:hide="hidePosterModel" />
