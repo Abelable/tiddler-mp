@@ -1,0 +1,17 @@
+<view class="poster-modal">
+  <canvas id="poster" class="poster" type="2d" />
+  <view class="btns">
+    <button class="btn" open-type='share' hover-class="none">
+      <view class="btn-icon">
+        <image style="width: 24px; height: 24px" src="https://img.ubo.vip/mp/i-share-modal/wechat-icon.png" />
+      </view>
+      <view>发给朋友</view>
+    </button>
+    <button class="btn" catchtap="save">
+      <view class="btn-icon">
+        <image style="width: 26px; height: 26px" src="https://img.ubo.vip/mp/i-share-modal/poster-icon.png" />
+      </view>
+      <view>保存海报</view>
+    </button>
+  </view>
+</view>
