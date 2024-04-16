@@ -2,9 +2,9 @@ import { store } from "../../store/index";
 import { SCENE_GOODS, SCENE_LIVE } from "../../utils/emuns/posterScene";
 
 const descList = [
-  "发现精彩直播",
-  "发现有趣短视频",
-  "发现有趣游记",
+  "推荐精彩直播",
+  "推荐趣味短视频",
+  "推荐优质游记",
   "推荐秀美景点",
   "推荐舒适酒店",
   "推荐美味餐馆",
@@ -73,6 +73,10 @@ Component({
       await this.roundRect(27, 71, 237, 226, 5, cover);
       this.setWrapText(12, "#333", 27, 318, title, 16, 162, true);
 
+      this.setPrice(price, `¥${marketPrice}`, 27, 365);
+
+      this.setText(10, "#999", 27, 381, "已售1000");
+
       await this.drawImage("./images/qrcode.jpg", 198, 304, 68, 68);
       this.setText(8, "#999", 232, 382, "长按识别小程序码", "center");
 
@@ -85,6 +89,27 @@ Component({
         },
         this
       );
+    },
+
+    setPrice(price, marketPrice, x, y) {
+      this.setText(10, "#ff5040", x, y, "¥");
+
+      ctx.font = `bold ${15}px sans-serif`;
+      ctx.fillStyle = "#ff5040";
+      ctx.fillText(price, x + 7, y);
+
+      const priceWidth = ctx.measureText(price).width;
+      ctx.font = `${10}px sans-serif`;
+      ctx.fillStyle = "#bbb";
+      ctx.fillText(marketPrice, x + priceWidth + 12, y);
+
+      ctx.beginPath();
+      const marketPriceWidth = ctx.measureText(marketPrice).width;
+      ctx.rect(x + priceWidth + 12, y - 4, marketPriceWidth, 1);
+      ctx.fillStyle = "#bbb";
+      ctx.fill();
+
+      ctx.restore();
     },
 
     /**
@@ -137,8 +162,17 @@ Component({
       ctx.restore();
     },
 
-    setText(fs, color, x, y, c, align = "left", fontFamily = "sans-serif") {
-      ctx.font = `${fs}px ${fontFamily}`;
+    setText(
+      fs,
+      color,
+      x,
+      y,
+      c,
+      align = "left",
+      bold = false,
+      fontFamily = "sans-serif"
+    ) {
+      ctx.font = bold ? `bold ${fs}px ${fontFamily}` : `${fs}px ${fontFamily}`;
       ctx.fillStyle = color;
       ctx.textAlign = align;
       ctx.fillText(c, x, y);
@@ -165,9 +199,9 @@ Component({
         const tempLine = line + c[i];
         const tempLineWidth = ctx.measureText(tempLine).width;
         if (tempLineWidth > maxWidth && i > 0) {
-          row++
+          row++;
           if (row === maxRow) {
-            line = tempLine.slice(0, -2) + '...';
+            line = tempLine.slice(0, -2) + "...";
             break;
           } else {
             ctx.fillText(line, x, y);
