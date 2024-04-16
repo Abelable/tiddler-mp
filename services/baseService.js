@@ -249,7 +249,7 @@ class BaseService extends Base {
 
   async getQRCode(scene, page) {
     return await this.get({
-      url: `${this.baseUrl}/wx/wx`,
+      url: `${this.baseUrl}/wx/qrcode`,
       data: { scene, page },
       loadingTitle: '加载中...'
     });

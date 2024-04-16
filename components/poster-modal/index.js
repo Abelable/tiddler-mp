@@ -56,7 +56,8 @@ Component({
     async createPoster() {
       const { avatar, nickname } = store.userInfo;
       const { scene, info } = this.properties;
-      const { cover, title, price, marketPrice, salesVolume } = info || {};
+      const { cover, title, price, marketPrice, salesVolume, qrcode } =
+        info || {};
 
       await this.drawImage(
         "https://img.ubo.vip/tiddler/poster_bg.png",
@@ -75,7 +76,7 @@ Component({
       this.setPrice(price, `¥${marketPrice}`, 27, 365);
       this.setText(10, "#999", 27, 381, `已售${salesVolume}`);
 
-      await this.drawImage("./images/qrcode.jpg", 198, 304, 68, 68);
+      await this.drawImage(qrcode, 198, 304, 68, 68);
       this.setText(8, "#999", 232, 382, "长按识别小程序码", "center");
 
       wx.canvasToTempFilePath(

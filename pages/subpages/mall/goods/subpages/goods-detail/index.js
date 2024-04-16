@@ -160,27 +160,24 @@ Page({
   },
 
   share() {
-    checkLogin(() => {
-      // this.setQRcode();
+    checkLogin(async () => {
+      const scene = `id=${this.goodsId}`;
+      const page = "pages/tab-bar-pages/home/index";
+      const qrcode = await goodsService.getQRCode(scene, page);
+
       const {
         cover,
         name: title,
         price,
         marketPrice,
-        salesVolume
+        salesVolume,
       } = this.data.goodsInfo;
+
       this.setData({
         posterModalVisible: true,
-        posterInfo: { cover, title, price, marketPrice, salesVolume }
+        posterInfo: { cover, title, price, marketPrice, salesVolume, qrcode }
       });
     });
-  },
-
-  async setQRcode() {
-    const scene = `id=${this.goodsId}`;
-    const page = "/pages/subpages/mall/goods/subpages/goods-detail/index";
-    const qrcode = await goodsService.getQRCode(scene, page);
-    console.log("qrcode", qrcode);
   },
 
   hidePosterModal() {
