@@ -1,3 +1,4 @@
+import { checkLogin } from "../../../../../../utils/index";
 import ScenicService from "../../utils/scenicService";
 
 const scenicService = new ScenicService();
@@ -29,7 +30,9 @@ Page({
     mediaList: [],
     finished: false,
     curTicketInfo: null,
-    noticePopupVisible: false
+    noticePopupVisible: false,
+    posterInfo: null,
+    posterModelVisible: false
   },
 
   async onLoad({ id }) {
@@ -421,6 +424,27 @@ Page({
     if (!list.length) {
       this.setData({ finished: true });
     }
+  },
+
+  share() {
+    checkLogin(async () => {
+      const scene = `id=${this.scenicId}`;
+      const page = "pages/tab-bar-pages/home/index";
+      const qrcode = await scenicService.getQRCode(scene, page);
+
+      const { imageList, name, price, salesVolume } = this.data.scenicInfo;
+
+      this.setData({
+        posterModalVisible: true,
+        posterInfo: { cover: imageList[0], name, price, salesVolume, qrcode }
+      });
+    });
+  },
+
+  hidePosterModal() {
+    this.setData({
+      posterModalVisible: false
+    });
   },
 
   showNoticePopup(e) {

@@ -56,7 +56,7 @@ Component({
     async createPoster() {
       const { avatar, nickname } = store.userInfo;
       const { scene, info } = this.properties;
-      const { cover, title, price, marketPrice, salesVolume, qrcode } =
+      const { cover, name, price, marketPrice, salesVolume, qrcode } =
         info || {};
 
       await this.drawImage(
@@ -72,8 +72,14 @@ Component({
       this.setText(8, "#fff", 55, 45, descList[scene - 1]);
 
       await this.roundRect(27, 71, 237, 240, 5, cover);
-      this.setWrapText(12, "#333", 27, 335, title, 16, 162, true);
-      this.setPrice(price, `¥${marketPrice}`, 27, 380);
+      this.setWrapText(12, "#333", 27, 335, name, 16, 162, true);
+
+      if (scene === "7") {
+        this.setGoodsPrice(price, `¥${marketPrice}`, 27, 380);
+      } else {
+        this.setPrice(price, 27, 380);
+      }
+      
       this.setText(10, "#999", 186, 380, `已售${salesVolume}`, 'right');
 
       await this.drawImage(qrcode, 198, 320, 68, 68);
@@ -89,7 +95,7 @@ Component({
       );
     },
 
-    setPrice(price, marketPrice, x, y) {
+    setGoodsPrice(price, marketPrice, x, y) {
       this.setText(10, "#ff5040", x, y, "¥");
 
       ctx.font = `bold ${15}px sans-serif`;
@@ -108,6 +114,19 @@ Component({
       ctx.fill();
 
       ctx.restore();
+    },
+
+    setPrice(price, x, y) {
+      this.setText(10, "#ff5040", x, y, "¥");
+
+      ctx.font = `bold ${15}px sans-serif`;
+      ctx.fillStyle = "#ff5040";
+      ctx.fillText(price, x + 7, y);
+
+      const priceWidth = ctx.measureText(price).width;
+      ctx.font = `${9}px sans-serif`;
+      ctx.fillStyle = "#999";
+      ctx.fillText('起', x + priceWidth + 9, y);
     },
 
     /**

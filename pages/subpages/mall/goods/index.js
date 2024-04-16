@@ -14,7 +14,7 @@ Page({
     activeSubTabIdx: 0,
     tabScroll: 0,
     goodsList: [],
-    finished: false,
+    finished: false
   },
 
   async onLoad() {
