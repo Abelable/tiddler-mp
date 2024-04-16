@@ -60,7 +60,7 @@ Component({
         info || {};
 
       await this.drawImage(
-        "https://img.ubo.vip/tiddler/poster_bg.png",
+        "https://img.ubo.vip/tiddler/poster/bg.png",
         0,
         0,
         291,

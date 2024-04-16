@@ -15,6 +15,7 @@
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+  padding: 0 50px;
 }
 .btn {
   display: flex;
@@ -27,13 +28,8 @@
   line-height: 16px;
 }
 .btn-icon {
-  margin-bottom: 7px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin-bottom: 6px;
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background: #fff;
-  box-shadow: 0px 1px 2px 0px rgba(215,215,215,0.5);
 }
