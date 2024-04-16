@@ -71,13 +71,12 @@ Component({
       this.setText(13, "#fff", 55, 30, nickname);
       this.setText(8, "#fff", 55, 45, descList[scene - 1]);
 
-      await this.roundRect(27, 71, 237, 226, 5, cover);
-      this.setWrapText(12, "#333", 27, 318, title, 16, 162, true);
-      this.setPrice(price, `¥${marketPrice}`, 27, 365);
-      this.setText(10, "#999", 27, 381, `已售${salesVolume}`);
+      await this.roundRect(27, 71, 237, 240, 5, cover);
+      this.setWrapText(12, "#333", 27, 335, title, 16, 162, true);
+      this.setPrice(price, `¥${marketPrice}`, 27, 380);
+      this.setText(10, "#999", 186, 380, `已售${salesVolume}`, 'right');
 
-      await this.drawImage(qrcode, 198, 304, 68, 68);
-      this.setText(8, "#999", 232, 382, "长按识别小程序码", "center");
+      await this.drawImage(qrcode, 198, 320, 68, 68);
 
       wx.canvasToTempFilePath(
         {
