@@ -8,7 +8,7 @@ const descList = [
   "推荐秀美景点",
   "推荐舒适酒店",
   "推荐美味餐馆",
-  "推荐特色商品",
+  "推荐优质好物",
   "推荐优质店铺",
   "发现有趣达人"
 ];
@@ -67,29 +67,14 @@ Component({
       );
 
       await this.roundRect(15, 17, 32, 32, 16, avatar);
-      this.setText(14, "#fff", 55, 28, nickname);
-      this.setText(12, "#fff", 55, 46, descList[scene - 1]);
+      this.setText(13, "#fff", 55, 30, nickname);
+      this.setText(8, "#fff", 55, 45, descList[scene - 1]);
 
-      await this.drawImage(cover, 27, 71, 237, 130);
-      if (title.length < 16) {
-        this.setText(14, "#333", 145, 225, title, "center");
-      } else if (title.length > 16 && title.length < 32) {
-        this.setText(14, "#333", 145, 225, title.slice(0, 16), "center");
-        this.setText(14, "#333", 145, 246, title.slice(16), "center");
-      } else {
-        this.setText(14, "#333", 145, 225, title.slice(0, 16), "center");
-        this.setText(
-          14,
-          "#333",
-          145,
-          246,
-          `${title.slice(16, 31)}...`,
-          "center"
-        );
-      }
+      await this.roundRect(27, 71, 237, 180, 8, cover);
+      this.setWrapText(13, "#333", 27, 270, title, 18, 237, true);
 
-      await this.drawImage("./images/qrcode.jpg", 189, 360, 86, 86);
-      this.setText(ctx, 10, "#999", 145, 380, "长按识别小程序码", "center");
+      await this.drawImage("./images/qrcode.jpg", 195, 300, 68, 68);
+      this.setText(8, "#999", 230, 380, "长按识别小程序码", "center");
 
       wx.canvasToTempFilePath(
         {
@@ -152,23 +137,122 @@ Component({
       ctx.restore();
     },
 
-    setText(fs, color, x, y, c, align = "left") {
-      ctx.font = `${fs}px`;
+    setText(fs, color, x, y, c, align = "left", fontFamily = "sans-serif") {
+      ctx.font = `${fs}px ${fontFamily}`;
       ctx.fillStyle = color;
       ctx.textAlign = align;
       ctx.fillText(c, x, y);
       ctx.restore();
     },
 
-    drawImage(src, x, y, w, h) {
+    setWrapText(
+      fs,
+      color,
+      x,
+      y,
+      c,
+      lineHeight,
+      maxWidth,
+      bold = false,
+      fontFamily = "sans-serif"
+    ) {
+      ctx.font = bold ? `bold ${fs}px ${fontFamily}` : `${fs}px ${fontFamily}`;
+      ctx.fillStyle = color;
+      let line = "";
+      for (let i = 0; i < c.length; i++) {
+        const tempLine = line + c[i];
+        const tempLineWidth = ctx.measureText(tempLine).width;
+        if (tempLineWidth > maxWidth && i > 0) {
+          ctx.fillText(line, x, y);
+          line = c[i];
+          y += lineHeight;
+        } else {
+          line = tempLine;
+        }
+      }
+      ctx.fillText(line, x, y);
+      ctx.restore();
+    },
+
+    drawImage(src, x, y, w, h, mode = "cover") {
       return new Promise(resolve => {
         const image = canvas.createImage();
         image.src = src;
         image.onload = () => {
-          ctx.drawImage(image, x, y, w, h);
+          switch (mode) {
+            case "cover":
+              this.drawCoverImage(image, x, y, w, h);
+              break;
+
+            case "contain":
+              this.drawContainImage(image, x, y, w, h);
+              break;
+
+            case "fill":
+              ctx.drawImage(image, x, y, w, h);
+              break;
+
+            case "none":
+              ctx.drawImage(image, x, y, image.width, image.height);
+              break;
+          }
           resolve();
         };
       });
+    },
+
+    drawCoverImage(image, x, y, w, h) {
+      const scale = this.calcCoverScale(image.width, image.height, w, h);
+      const _w = image.width * scale;
+      const _h = image.height * scale;
+      const { _x, _y } = this.calcPos(_w, _h, w, h);
+      ctx.drawImage(image, x + _x, y + _y, _w, _h);
+    },
+
+    drawContainImage() {
+      const scale = this.calcContainScale(image.width, image.height, w, h);
+      const _w = image.width * scale;
+      const _h = image.height * scale;
+      const { _x, _y } = this.calcPos(_w, _h, w, h);
+      ctx.drawImage(image, x + _x, y + _y, _w, _h);
+    },
+
+    /**
+     * cover 模式
+     * @param {number} w 图片宽度
+     * @param {number} h 图片高度
+     * @param {number} cw 容器宽度
+     * @param {number} ch 容器高度
+     * @returns {number} 缩放比
+     */
+    calcCoverScale(w, h, cw, ch) {
+      const scaleW = cw / w;
+      const scaleH = ch / h;
+      const scale = Math.max(scaleW, scaleH); // 取大值
+      return scale;
+    },
+
+    /**
+     * contain 模式
+     * @param {number} w 图片宽度
+     * @param {number} h 图片高度
+     * @param {number} cw 容器宽度
+     * @param {number} ch 容器高度
+     * @returns {number} 缩放比
+     */
+    calcContainScale(w, h, cw, ch) {
+      const scaleW = cw / w;
+      const scaleH = ch / h;
+      const scale = Math.min(scaleW, scaleH); // 取小值
+      return scale;
+    },
+
+    // 计算让图片居中需要设置的 x，y
+    calcPos(w, h, cw, ch) {
+      return {
+        _x: (cw - w) / 2,
+        _y: (ch - h) / 2
+      };
     },
 
     save() {

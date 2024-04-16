@@ -7,7 +7,7 @@
       </view>
       <view>发给朋友</view>
     </button>
-    <button class="btn" catchtap="save">
+    <button class="btn" catchtap="save" hover-class="none">
       <view class="btn-icon">
         <image style="width: 26px; height: 26px" src="https://img.ubo.vip/mp/i-share-modal/poster-icon.png" />
       </view>
