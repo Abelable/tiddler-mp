@@ -1,6 +1,10 @@
 import dayjs from "dayjs";
 import { store } from "../../../../../../store/index";
-import { weekDayList, calcDistance } from "../../../../../../utils/index";
+import {
+  weekDayList,
+  calcDistance,
+  checkLogin
+} from "../../../../../../utils/index";
 import CateringService from "../../utils/cateringService";
 
 const cateringService = new CateringService();
@@ -28,7 +32,9 @@ Page({
     mediaList: [],
     finished: false,
     noticePopupVisible: false,
-    telPopupVisible: false
+    telPopupVisible: false,
+    posterInfo: null,
+    posterModelVisible: false
   },
 
   async onLoad({ id }) {
@@ -441,6 +447,27 @@ Page({
 
   onReachBottom() {
     this.setMediaList();
+  },
+
+  share() {
+    checkLogin(async () => {
+      const scene = `id=${this.restaurantId}`;
+      const page = "pages/tab-bar-pages/home/index";
+      const qrcode = await cateringService.getQRCode(scene, page);
+
+      const { cover, name, price, salesVolume } = this.data.restaurantInfo;
+
+      this.setData({
+        posterModalVisible: true,
+        posterInfo: { cover, name, price, salesVolume, qrcode }
+      });
+    });
+  },
+
+  hidePosterModal() {
+    this.setData({
+      posterModalVisible: false
+    });
   },
 
   checkMoreInfo() {
