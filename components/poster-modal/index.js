@@ -70,11 +70,11 @@ Component({
       this.setText(13, "#fff", 55, 30, nickname);
       this.setText(8, "#fff", 55, 45, descList[scene - 1]);
 
-      await this.roundRect(27, 71, 237, 180, 8, cover);
-      this.setWrapText(13, "#333", 27, 270, title, 18, 237, true);
+      await this.roundRect(27, 71, 237, 226, 5, cover);
+      this.setWrapText(12, "#333", 27, 318, title, 16, 162, true);
 
-      await this.drawImage("./images/qrcode.jpg", 195, 300, 68, 68);
-      this.setText(8, "#999", 230, 380, "长按识别小程序码", "center");
+      await this.drawImage("./images/qrcode.jpg", 198, 304, 68, 68);
+      this.setText(8, "#999", 232, 382, "长按识别小程序码", "center");
 
       wx.canvasToTempFilePath(
         {
@@ -154,18 +154,26 @@ Component({
       lineHeight,
       maxWidth,
       bold = false,
+      maxRow = 2,
       fontFamily = "sans-serif"
     ) {
       ctx.font = bold ? `bold ${fs}px ${fontFamily}` : `${fs}px ${fontFamily}`;
       ctx.fillStyle = color;
       let line = "";
+      let row = 0;
       for (let i = 0; i < c.length; i++) {
         const tempLine = line + c[i];
         const tempLineWidth = ctx.measureText(tempLine).width;
         if (tempLineWidth > maxWidth && i > 0) {
-          ctx.fillText(line, x, y);
-          line = c[i];
-          y += lineHeight;
+          row++
+          if (row === maxRow) {
+            line = tempLine.slice(0, -2) + '...';
+            break;
+          } else {
+            ctx.fillText(line, x, y);
+            line = c[i];
+            y += lineHeight;
+          }
         } else {
           line = tempLine;
         }
