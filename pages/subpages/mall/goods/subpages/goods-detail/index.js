@@ -162,10 +162,16 @@ Page({
   share() {
     checkLogin(() => {
       // this.setQRcode();
-      const { cover, name: title, price, marketPrice } = this.data.goodsInfo;
+      const {
+        cover,
+        name: title,
+        price,
+        marketPrice,
+        salesVolume
+      } = this.data.goodsInfo;
       this.setData({
         posterModalVisible: true,
-        posterInfo: { cover, title, price, marketPrice }
+        posterInfo: { cover, title, price, marketPrice, salesVolume }
       });
     });
   },
