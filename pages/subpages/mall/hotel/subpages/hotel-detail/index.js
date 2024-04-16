@@ -1,6 +1,6 @@
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
 import { store } from "../../../../../../store/index";
-import { calcDistance } from "../../../../../../utils/index";
+import { calcDistance, checkLogin } from "../../../../../../utils/index";
 import { formatter } from "../../utils/index";
 import HotelService from "../../utils/hotelService";
 
@@ -41,7 +41,9 @@ Component({
     finished: false,
     curRoomInfo: null,
     noticePopupVisible: false,
-    calendarPopupVisibel: false
+    calendarPopupVisibel: false,
+    posterInfo: null,
+    posterModelVisible: false
   },
 
   observers: {
@@ -361,6 +363,27 @@ Component({
       if (!list.length) {
         this.setData({ finished: true });
       }
+    },
+
+    share() {
+      checkLogin(async () => {
+        const scene = `id=${this.hotelId}`;
+        const page = "pages/tab-bar-pages/home/index";
+        const qrcode = await hotelService.getQRCode(scene, page);
+  
+        const { cover, name, price, salesVolume } = this.data.hotelInfo;
+  
+        this.setData({
+          posterModalVisible: true,
+          posterInfo: { cover, name, price, salesVolume, qrcode }
+        });
+      });
+    },
+  
+    hidePosterModal() {
+      this.setData({
+        posterModalVisible: false
+      });
     },
 
     showNoticePopup(e) {
