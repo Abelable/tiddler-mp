@@ -2,7 +2,7 @@ import { getQueryString } from "../../../../../utils/index";
 import {
   SCENE_MINE,
   SCENE_COLLECT,
-  SCENE_LIKE,
+  SCENE_LIKE
 } from "../../../../../utils/emuns/mediaScene";
 import VideoService from "./utils/videoService";
 
@@ -17,13 +17,14 @@ Page({
     commentPopupVisible: false,
     inputPopupVisible: false,
     featurePopupVisible: false,
-    sharePopupVisible: false,
+    posterInfo: null,
+    posterModalVisible: false
   },
 
   async onLoad({ id, authorId, mediaScene, scene, q }) {
     wx.showShareMenu({
       withShareTicket: true,
-      menus: ["shareAppMessage", "shareTimeline"],
+      menus: ["shareAppMessage", "shareTimeline"]
     });
 
     const decodedScene = scene ? decodeURIComponent(scene) : "";
@@ -57,7 +58,7 @@ Page({
         case SCENE_MINE:
           res = await videoService.getUserVideoList({
             id: this.videoId,
-            page: ++this.page,
+            page: ++this.page
           });
           break;
 
@@ -79,12 +80,12 @@ Page({
           res = await videoService.getVideoList({
             id: this.videoId,
             authorId: this.authorId,
-            page: ++this.page,
+            page: ++this.page
           });
           break;
       }
       this.setData({
-        videoList: [...this.data.videoList, ...res.list],
+        videoList: [...this.data.videoList, ...res.list]
       });
       if (!res.list.length) {
         this.finished = true;
@@ -96,9 +97,9 @@ Page({
     const { videoList, curVideoIdx } = this.data;
     const { id } = videoList[curVideoIdx].authorInfo;
     videoService.followAuthor(id, () => {
-      const list = videoList.map((item) => ({
+      const list = videoList.map(item => ({
         ...item,
-        isFollow: item.authorInfo.id === id,
+        isFollow: item.authorInfo.id === id
       }));
       this.setData({ videoList: list });
     });
@@ -112,7 +113,7 @@ Page({
         [`videoList[${curVideoIdx}].isLike`]: !isLike,
         [`videoList[${curVideoIdx}].likeNumber`]: isLike
           ? --likeNumber
-          : ++likeNumber,
+          : ++likeNumber
       });
     });
   },
@@ -125,33 +126,33 @@ Page({
         [`videoList[${curVideoIdx}].isCollected`]: !isCollected,
         [`videoList[${curVideoIdx}].collectionTimes`]: isCollected
           ? --collectionTimes
-          : ++collectionTimes,
+          : ++collectionTimes
       });
     });
   },
 
   showCommentPopup() {
     this.setData({
-      commentPopupVisible: true,
+      commentPopupVisible: true
     });
   },
 
   hideCommentPopup() {
     this.setData({
-      commentPopupVisible: false,
+      commentPopupVisible: false
     });
   },
 
   updateCommentsNumber(e) {
     const { commentsNumber, curMediaIdx } = e.detail;
     this.setData({
-      [`videoList[${curMediaIdx}].commentsNumber`]: commentsNumber,
+      [`videoList[${curMediaIdx}].commentsNumber`]: commentsNumber
     });
   },
 
   showInputModal() {
     this.setData({
-      inputPopupVisible: true,
+      inputPopupVisible: true
     });
   },
 
@@ -160,37 +161,53 @@ Page({
     this.setData({
       [`videoList[${curVideoIdx}].commentsNumber`]: ++videoList[curVideoIdx]
         .commentsNumber,
-      inputPopupVisible: false,
+      inputPopupVisible: false
     });
   },
 
-  hideInputModal() {
+  async share() {
+    const { videoList, curVideoIdx } = this.data;
+    const { id, cover, title, authorInfo, likeNumber } = videoList[curVideoIdx];
+
+    const scene = `id=${id}`;
+    const page = "pages/tab-bar-pages/home/index";
+    const qrcode = await videoService.getQRCode(scene, page);
+
     this.setData({
-      inputPopupVisible: false,
+      posterModalVisible: true,
+      posterInfo: {
+        cover,
+        title,
+        authorInfo,
+        likeNumber,
+        qrcode
+      }
     });
   },
 
-  showSharePopup() {
-    this.setData({
-      sharePopupVisible: true,
-    });
-  },
-
-  hideSharePopup() {
-    this.setData({
-      sharePopupVisible: true,
-    });
+  hideModal() {
+    const { inputPopupVisible, posterModalVisible } = this.data;
+    if (inputPopupVisible) {
+      this.setData({
+        inputPopupVisible: false
+      });
+    }
+    if (posterModalVisible) {
+      this.setData({
+        posterModalVisible: false
+      });
+    }
   },
 
   showFeaturePopup() {
     this.setData({
-      featurePopupVisible: true,
+      featurePopupVisible: true
     });
   },
 
   hideFeaturePopup() {
     this.setData({
-      featurePopupVisible: false,
+      featurePopupVisible: false
     });
   },
 
@@ -206,5 +223,5 @@ Page({
     const { id, title, cover: imageUrl } = videoList[curVideoIdx];
     const query = `id=${id}`;
     return { query, title, imageUrl };
-  },
+  }
 });

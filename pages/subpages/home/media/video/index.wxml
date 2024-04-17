@@ -9,7 +9,7 @@
       bind:like="like"
       bind:collect="collect"
       bind:comment="showCommentPopup"
-      bind:share="showSharePopup"
+      bind:share="share"
       bind:more="showFeaturePopup"
     />
   </swiper-item>
@@ -30,7 +30,6 @@
   videoId="{{videoList[curVideoIdx].id}}" 
   bind:hide="hideFeaturePopup" 
 />
-<share-popup wx:if="{{sharePopupVisible}}" videoInfo="{{videoList[curVideoIdx]}}" bind:hide="hideSharePopup" />
 <comment-popup 
   wx:if="{{commentPopupVisible}}"
   mediaType="{{2}}"
@@ -43,10 +42,16 @@
   bind:hide="hideCommentPopup" 
 />
 
-<modal-mask wx:if="{{inputPopupVisible}}" opacity="{{0}}" bindtap="hideInputModal" />
+<modal-mask 
+  wx:if="{{inputPopupVisible || posterModalVisible}}"
+  opacity="{{inputPopupVisible ? 0 : 0.3}}" 
+  filter="{{posterModalVisible}}" 
+  bindtap="hideModal" 
+/>
 <input-popup 
   wx:if="{{inputPopupVisible}}" 
   mediaType="{{2}}" 
   mediaId="{{videoList[curVideoIdx].id}}" 
   bind:finish="finishComment"
 />
+<poster-modal wx:if="{{posterModalVisible}}" scene="2" info="{{posterInfo}}" bind:hide="hideModal" />

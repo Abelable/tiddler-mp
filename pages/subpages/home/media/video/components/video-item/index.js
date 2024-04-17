@@ -137,6 +137,12 @@ Component({
       });
     },
 
+    share() {
+      checkLogin(() => {
+        this.triggerEvent("share");
+      });
+    },
+
     more() {
       this.triggerEvent("more");
     },

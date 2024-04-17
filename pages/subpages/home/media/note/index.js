@@ -156,21 +156,6 @@ Page({
     });
   },
 
-  hideModal() {
-    
-    const { inputPopupVisible, posterModalVisible } = this.data;
-    if (inputPopupVisible) {
-      this.setData({
-        inputPopupVisible: false
-      });
-    }
-    if (posterModalVisible) {
-      this.setData({
-        posterModalVisible: false
-      });
-    }
-  },
-
   share(e) {
     checkLogin(async () => {
       const { curNoteIdx } = e.detail;
@@ -193,6 +178,20 @@ Page({
         }
       });
     });
+  },
+
+  hideModal() {
+    const { inputPopupVisible, posterModalVisible } = this.data;
+    if (inputPopupVisible) {
+      this.setData({
+        inputPopupVisible: false
+      });
+    }
+    if (posterModalVisible) {
+      this.setData({
+        posterModalVisible: false
+      });
+    }
   },
 
   showFeaturePopup(e) {
