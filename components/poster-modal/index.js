@@ -121,9 +121,10 @@ Component({
       if (["2", "3"].includes(scene)) {
         await this.roundRect(27, 366, 18, 18, 9, authorInfo.avatar);
         this.setText(10, "#333", 50, 379, authorInfo.nickname);
+        await this.setLikeNumber(likeNumber, 186, 380);
       }
 
-      await this.drawImage(qrcode, 198, 320, 68, 68);
+      await this.drawImage(qrcode, 198, 320, 66, 66);
 
       wx.canvasToTempFilePath(
         {
@@ -139,12 +140,12 @@ Component({
     setGoodsPrice(price, marketPrice, x, y) {
       this.setText(10, "#ff5040", x, y, "¥");
 
-      ctx.font = `bold ${15}px sans-serif`;
+      ctx.font = "bold 15px sans-serif";
       ctx.fillStyle = "#ff5040";
       ctx.fillText(price, x + 7, y);
 
       const priceWidth = ctx.measureText(price).width;
-      ctx.font = `${10}px sans-serif`;
+      ctx.font = "10px sans-serif";
       ctx.fillStyle = "#bbb";
       ctx.fillText(marketPrice, x + priceWidth + 12, y);
 
@@ -160,14 +161,24 @@ Component({
     setPrice(price, x, y) {
       this.setText(10, "#ff5040", x, y, "¥");
 
-      ctx.font = `bold ${15}px sans-serif`;
+      ctx.font = "bold 15px sans-serif";
       ctx.fillStyle = "#ff5040";
       ctx.fillText(price, x + 7, y);
 
       const priceWidth = ctx.measureText(price).width;
-      ctx.font = `${9}px sans-serif`;
+      ctx.font = "9px sans-serif";
       ctx.fillStyle = "#999";
       ctx.fillText("起", x + priceWidth + 9, y);
+    },
+
+    async setLikeNumber(likeNumber, x, y) {
+      ctx.font = '10px sans-serif';
+      ctx.fillStyle = "#333";
+      ctx.textAlign = "right";
+      ctx.fillText(likeNumber, x, y);
+
+      const likeNumberWidth = ctx.measureText(likeNumber).width;
+      await this.drawImage("https://img.ubo.vip/tiddler/media-item/heart.png", x - likeNumberWidth - 15, y - 9, 13, 12);
     },
 
     /**
