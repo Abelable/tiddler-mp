@@ -370,16 +370,16 @@ Component({
         const scene = `id=${this.hotelId}`;
         const page = "pages/tab-bar-pages/home/index";
         const qrcode = await hotelService.getQRCode(scene, page);
-  
-        const { cover, name, price, salesVolume } = this.data.hotelInfo;
-  
+
+        const { cover, title, price, salesVolume } = this.data.hotelInfo;
+
         this.setData({
           posterModalVisible: true,
-          posterInfo: { cover, name, price, salesVolume, qrcode }
+          posterInfo: { cover, title, price, salesVolume, qrcode }
         });
       });
     },
-  
+
     hidePosterModal() {
       this.setData({
         posterModalVisible: false

@@ -165,12 +165,17 @@ Page({
       const page = "pages/tab-bar-pages/home/index";
       const qrcode = await goodsService.getQRCode(scene, page);
 
-      const { cover, name, price, marketPrice, salesVolume } =
-        this.data.goodsInfo;
+      const {
+        cover,
+        name: title,
+        price,
+        marketPrice,
+        salesVolume
+      } = this.data.goodsInfo;
 
       this.setData({
         posterModalVisible: true,
-        posterInfo: { cover, name, price, marketPrice, salesVolume, qrcode }
+        posterInfo: { cover, title, price, marketPrice, salesVolume, qrcode }
       });
     });
   },
