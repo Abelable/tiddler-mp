@@ -85,6 +85,36 @@ Component({
 
       await this.roundRect(27, 71, 237, 240, 5, cover);
 
+      if (scene === "1") {
+        this.roundRect(
+          38,
+          82,
+          status === 1 ? 57 : 47,
+          22,
+          11,
+          "",
+          null,
+          "rgba(0, 0, 0, 0.5)"
+        );
+        this.roundRect(
+          45,
+          91,
+          5,
+          5,
+          2.5,
+          "",
+          null,
+          ["#00D011", "#5562F9", "#D07A00"][status - 1]
+        );
+        this.setText(
+          10,
+          "#fff",
+          55,
+          96.5,
+          ["直播中", "回放", "预告"][status - 1]
+        );
+      }
+
       if (scene === "2") {
         this.roundRect(
           126,
