@@ -101,7 +101,7 @@ Page({
     this.setData({
       posterModalVisible: true,
       posterInfo: {
-        status: 1,
+        status,
         cover,
         title,
         authorInfo,
