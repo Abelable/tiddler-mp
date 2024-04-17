@@ -5,7 +5,7 @@
 }
 .commodity-list.show-dots {
   margin-bottom: 0;
-  height: 180rpx;
+  height: 178rpx;
 }
 .commodity-item {
   padding: 16rpx;

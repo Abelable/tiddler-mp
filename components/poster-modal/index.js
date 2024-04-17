@@ -2,9 +2,9 @@ import { store } from "../../store/index";
 import { SCENE_GOODS, SCENE_LIVE } from "../../utils/emuns/posterScene";
 
 const descList = [
-  "推荐精彩直播",
-  "推荐趣味短视频",
-  "推荐优质游记",
+  "发现精彩直播",
+  "发现趣味短视频",
+  "发现趣味游记",
   "推荐秀美景点",
   "推荐舒适酒店",
   "推荐美味餐馆",
@@ -56,8 +56,16 @@ Component({
     async createPoster() {
       const { avatar, nickname } = store.userInfo;
       const { scene, info } = this.properties;
-      const { cover, title, price, marketPrice, salesVolume, qrcode } =
-        info || {};
+      const {
+        cover,
+        title,
+        price,
+        marketPrice,
+        salesVolume,
+        authorInfo,
+        likeNumber,
+        qrcode
+      } = info || {};
 
       await this.drawImage(
         "https://img.ubo.vip/tiddler/poster/bg.png",
@@ -74,12 +82,19 @@ Component({
       await this.roundRect(27, 71, 237, 240, 5, cover);
       this.setWrapText(12, "#333", 27, 335, title, 16, 162, true);
 
-      if (scene === "7") {
-        this.setGoodsPrice(price, `¥${marketPrice}`, 27, 380);
-      } else {
-        this.setPrice(price, 27, 380);
+      if (["4", "5", "6", "7"].includes(scene)) {
+        if (scene === "7") {
+          this.setGoodsPrice(price, `¥${marketPrice}`, 27, 380);
+        } else {
+          this.setPrice(price, 27, 380);
+        }
+        this.setText(10, "#999", 186, 380, `已售${salesVolume}`, "right");
       }
-      this.setText(10, "#999", 186, 380, `已售${salesVolume}`, 'right');
+
+      if (["2", "3"].includes(scene)) {
+        await this.roundRect(27, 366, 18, 18, 9, authorInfo.avatar);
+        this.setText(10, "#333", 50, 379, authorInfo.nickname);
+      }
 
       await this.drawImage(qrcode, 198, 320, 68, 68);
 
@@ -125,7 +140,7 @@ Component({
       const priceWidth = ctx.measureText(price).width;
       ctx.font = `${9}px sans-serif`;
       ctx.fillStyle = "#999";
-      ctx.fillText('起', x + priceWidth + 9, y);
+      ctx.fillText("起", x + priceWidth + 9, y);
     },
 
     /**

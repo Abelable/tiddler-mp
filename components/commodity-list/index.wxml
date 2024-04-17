@@ -1,5 +1,5 @@
 <swiper 
-  class="commodity-list small-dots {{ list.length > 1 ? 'show-dots' : '' }}" 
+  class="commodity-list custom-dots {{ list.length > 1 ? 'show-dots' : '' }}" 
   indicator-dots="{{list.length > 1}}" 
   circular
 >

@@ -6,7 +6,7 @@
   bind:showCommentPopup="showCommentPopup"
   bind:follow="follow"
   bind:comment="showInputModal"
-  bind:share="showSharePopup"
+  bind:share="share"
   bind:like="like"
   bind:collect="collect"
   bind:more="showFeaturePopup"
@@ -20,7 +20,6 @@
   noteId="{{noteList[curNoteIdx].id}}" 
   bind:hide="hideFeaturePopup" 
 />
-<share-popup wx:if="{{sharePopupVisible}}" noteInfo="{{noteList[curNoteIdx]}}" bind:hide="hideSharePopup" />
 <comment-popup 
   wx:if="{{commentPopupVisible}}"
   mediaType="{{3}}"
@@ -33,11 +32,17 @@
   bind:hide="hideCommentPopup" 
 />
 
-<modal-mask wx:if="{{inputPopupVisible}}" opacity="{{0}}" bindtap="hideInputModal" />
+<modal-mask 
+  wx:if="{{inputPopupVisible || posterModalVisible}}"
+  opacity="{{inputPopupVisible ? 0 : 0.3}}" 
+  filter="{{posterModalVisible}}" 
+  bindtap="hideModal" 
+/>
 <input-popup 
   wx:if="{{inputPopupVisible}}" 
   mediaType="{{3}}" 
   mediaId="{{noteList[curNoteIdx].id}}" 
   bind:finish="finishComment"
 />
+<poster-modal wx:if="{{posterModalVisible}}" scene="3" info="{{posterInfo}}" bind:hide="hideModal" />
 

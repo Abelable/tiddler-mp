@@ -1,8 +1,8 @@
-import { getQueryString } from "../../../../../utils/index";
+import { checkLogin, getQueryString } from "../../../../../utils/index";
 import {
   SCENE_MINE,
   SCENE_COLLECT,
-  SCENE_LIKE,
+  SCENE_LIKE
 } from "../../../../../utils/emuns/mediaScene";
 import NoteService from "./utils/noteService";
 
@@ -18,13 +18,14 @@ Page({
     commentPopupVisible: false,
     inputPopupVisible: false,
     featurePopupVisible: false,
-    sharePopupVisible: false,
+    posterInfo: null,
+    posterModalVisible: false
   },
 
   async onLoad({ id, authorId, mediaScene, scene, q }) {
     wx.showShareMenu({
       withShareTicket: true,
-      menus: ["shareAppMessage", "shareTimeline"],
+      menus: ["shareAppMessage", "shareTimeline"]
     });
 
     const decodedScene = scene ? decodeURIComponent(scene) : "";
@@ -58,7 +59,7 @@ Page({
           res = await noteService.getUserNoteList({
             id: this.noteId,
             page: ++this.page,
-            withComments: 1,
+            withComments: 1
           });
           break;
 
@@ -78,12 +79,12 @@ Page({
             id: this.noteId,
             authorId: this.authorId,
             withComments: 1,
-            page: ++this.page,
+            page: ++this.page
           });
           break;
       }
       this.setData({
-        noteList: init ? res.list : [...this.data.noteList, ...res.list],
+        noteList: init ? res.list : [...this.data.noteList, ...res.list]
       });
       if (!res.list.length) {
         this.setData({ finished: true });
@@ -95,27 +96,27 @@ Page({
     const { curNoteIdx } = e.detail;
     this.setData({
       curNoteIdx,
-      commentPopupVisible: true,
+      commentPopupVisible: true
     });
   },
 
   hideCommentPopup() {
     this.setData({
-      commentPopupVisible: false,
+      commentPopupVisible: false
     });
   },
 
   updateComments(e) {
     const { commentsNumber, curMediaIdx, comment } = e.detail;
     this.setData({
-      [`noteList[${curMediaIdx}].commentsNumber`]: commentsNumber,
+      [`noteList[${curMediaIdx}].commentsNumber`]: commentsNumber
     });
     if (comment) {
       this.setData({
         [`noteList[${curMediaIdx}].comments`]: [
           { nickname: comment.userInfo.nickname, content: comment.content },
-          ...this.data.noteList[curMediaIdx].comments,
-        ],
+          ...this.data.noteList[curMediaIdx].comments
+        ]
       });
     }
   },
@@ -124,12 +125,12 @@ Page({
     const { commentsNumber, curMediaIdx, commentIdx } = e.detail;
     const { comments } = this.data.noteList[curMediaIdx];
     this.setData({
-      [`noteList[${curMediaIdx}].commentsNumber`]: commentsNumber,
+      [`noteList[${curMediaIdx}].commentsNumber`]: commentsNumber
     });
     if (commentIdx !== -1) {
       comments.splice(commentIdx, 1);
       this.setData({
-        [`noteList[${curMediaIdx}].comments`]: comments,
+        [`noteList[${curMediaIdx}].comments`]: comments
       });
     }
   },
@@ -138,7 +139,7 @@ Page({
     const { curNoteIdx } = e.detail;
     this.setData({
       curNoteIdx,
-      inputPopupVisible: true,
+      inputPopupVisible: true
     });
   },
 
@@ -149,29 +150,48 @@ Page({
       [`noteList[${curNoteIdx}].commentsNumber`]: ++commentsNumber,
       [`noteList[${curNoteIdx}].comments`]: [
         { nickname: e.detail.userInfo.nickname, content: e.detail.content },
-        ...comments,
+        ...comments
       ],
-      inputPopupVisible: false,
+      inputPopupVisible: false
     });
   },
 
-  hideInputModal() {
-    this.setData({
-      inputPopupVisible: false,
-    });
+  hideModal() {
+    
+    const { inputPopupVisible, posterModalVisible } = this.data;
+    if (inputPopupVisible) {
+      this.setData({
+        inputPopupVisible: false
+      });
+    }
+    if (posterModalVisible) {
+      this.setData({
+        posterModalVisible: false
+      });
+    }
   },
 
-  showSharePopup(e) {
-    const { curNoteIdx } = e.detail;
-    this.setData({
-      curNoteIdx,
-      sharePopupVisible: true,
-    });
-  },
+  share(e) {
+    checkLogin(async () => {
+      const { curNoteIdx } = e.detail;
+      const { noteList } = this.data;
+      const { id, imageList, title, authorInfo, likeNumber } =
+        noteList[curNoteIdx];
 
-  hideSharePopup() {
-    this.setData({
-      sharePopupVisible: true,
+      const scene = `id=${id}`;
+      const page = "pages/tab-bar-pages/home/index";
+      const qrcode = await noteService.getQRCode(scene, page);
+
+      this.setData({
+        posterModalVisible: true,
+        posterInfo: {
+          cover: imageList[0],
+          title,
+          authorInfo,
+          likeNumber,
+          qrcode
+        }
+      });
     });
   },
 
@@ -179,13 +199,13 @@ Page({
     const { curNoteIdx } = e.detail;
     this.setData({
       curNoteIdx,
-      featurePopupVisible: true,
+      featurePopupVisible: true
     });
   },
 
   hideFeaturePopup() {
     this.setData({
-      featurePopupVisible: false,
+      featurePopupVisible: false
     });
   },
 
@@ -193,9 +213,9 @@ Page({
     const { curNoteIdx } = e.detail;
     const { id } = this.data.noteList[curNoteIdx].authorInfo;
     noteService.followAuthor(id, () => {
-      const noteList = this.data.noteList.map((item) => ({
+      const noteList = this.data.noteList.map(item => ({
         ...item,
-        isFollow: item.authorInfo.id === id,
+        isFollow: item.authorInfo.id === id
       }));
       this.setData({ noteList });
     });
@@ -209,7 +229,7 @@ Page({
         [`noteList[${curNoteIdx}].isLike`]: !isLike,
         [`noteList[${curNoteIdx}].likeNumber`]: isLike
           ? --likeNumber
-          : ++likeNumber,
+          : ++likeNumber
       });
     });
   },
@@ -222,7 +242,7 @@ Page({
         [`noteList[${curNoteIdx}].isCollected`]: !isCollected,
         [`noteList[${curNoteIdx}].collectionTimes`]: isCollected
           ? --collectionTimes
-          : ++collectionTimes,
+          : ++collectionTimes
       });
     });
   },
@@ -239,5 +259,5 @@ Page({
     const { id, title, cover: imageUrl } = noteList[curNoteIdx];
     const query = `id=${id}`;
     return { query, title, imageUrl };
-  },
+  }
 });
