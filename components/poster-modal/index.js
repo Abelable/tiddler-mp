@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { store } from "../../store/index";
 import { SCENE_GOODS, SCENE_LIVE } from "../../utils/emuns/posterScene";
 
@@ -57,6 +58,7 @@ Component({
       const { avatar, nickname } = store.userInfo;
       const { scene, info } = this.properties;
       const {
+        status,
         cover,
         title,
         price,
@@ -64,6 +66,8 @@ Component({
         salesVolume,
         authorInfo,
         likeNumber,
+        noticeTime,
+        startTime,
         qrcode
       } = info || {};
 
@@ -127,7 +131,24 @@ Component({
         this.roundRect(158, 300, 4, 4, 2, "", null, "#fff");
       }
 
-      this.setWrapText(12, "#333", 27, 334, title, 16, 173, true);
+      this.setWrapText(
+        12,
+        "#333",
+        27,
+        334,
+        title,
+        16,
+        173,
+        true,
+        scene === "1" ? 1 : 2
+      );
+
+      if (scene === "1") {
+        const time = `直播时间：${dayjs(
+          status === 3 ? noticeTime : startTime
+        ).format("MM-DD HH:mm")}`;
+        this.setText(10, "#999", 27, 354, time);
+      }
 
       if (["4", "5", "6", "7"].includes(scene)) {
         if (scene === "7") {
@@ -138,10 +159,12 @@ Component({
         this.setText(10, "#999", 197, 380, `已售${salesVolume}`, "right");
       }
 
-      if (["2", "3"].includes(scene)) {
+      if (["1", "2", "3"].includes(scene)) {
         await this.roundRect(27, 366, 18, 18, 9, authorInfo.avatar);
         this.setText(10, "#333", 50, 379, authorInfo.nickname);
-        await this.setLikeNumber(likeNumber, 197, 380);
+        if (["2", "3"].includes(scene)) {
+          await this.setLikeNumber(likeNumber, 197, 380);
+        }
       }
 
       await this.drawImage(qrcode, 212, 321, 50, 50);

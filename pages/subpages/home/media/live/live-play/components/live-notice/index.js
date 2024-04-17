@@ -74,7 +74,9 @@ Component({
     },
 
     share() {
-      this.triggerEvent("share");
+      checkLogin(() => {
+        this.triggerEvent("share");
+      })
     },
 
     navToUserCenter() {}

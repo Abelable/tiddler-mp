@@ -230,9 +230,9 @@ Component({
       });
     },
 
-    showSharePopup() {
+    share() {
       checkLogin(() => {
-        this.triggerEvent("showSharePopup");
+        this.triggerEvent("share");
       });
     },
 

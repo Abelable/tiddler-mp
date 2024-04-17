@@ -13,20 +13,21 @@ Page({
     curRoomIdx: 0,
     inputPopupVisible: false,
     goodsPopupVisible: false,
-    sharePopupVisible: false,
-    subscribeModalVisible: false,
+    posterInfo: null,
+    posterModalVisible: false,
+    subscribeModalVisible: false
   },
 
   async onLoad(options) {
     wx.showShareMenu({
       withShareTicket: true,
-      menus: ["shareAppMessage", "shareTimeline"],
+      menus: ["shareAppMessage", "shareTimeline"]
     });
 
     this.storeBindings = createStoreBindings(this, {
       store,
       fields: ["userInfo"],
-      actions: ["setLiveMsgList"],
+      actions: ["setLiveMsgList"]
     });
 
     const { id, scene, q } = options;
@@ -40,13 +41,13 @@ Page({
 
   onShow() {
     wx.setKeepScreenOn({
-      keepScreenOn: true,
+      keepScreenOn: true
     });
   },
 
   onHide() {
     wx.setKeepScreenOn({
-      keepScreenOn: false,
+      keepScreenOn: false
     });
   },
 
@@ -65,42 +66,66 @@ Page({
     const { list = [] } =
       (await liveService.getRoomList(this.roomId, ++this.page)) || {};
     this.setData({
-      roomList: [...this.data.roomList, ...list],
+      roomList: [...this.data.roomList, ...list]
     });
   },
 
   showInputPopup() {
     this.setData({
-      inputPopupVisible: true,
+      inputPopupVisible: true
     });
   },
 
   showSubscribeModal() {
     this.setData({
-      subscribeModalVisible: true,
+      subscribeModalVisible: true
+    });
+  },
+
+  async share() {
+    const { roomList, curRoomIdx } = this.data;
+    const {
+      id,
+      status,
+      shareCover: cover,
+      title,
+      anchorInfo: authorInfo,
+      noticeTime,
+      startTime
+    } = roomList[curRoomIdx];
+
+    const scene = `id=${id}`;
+    const page = "pages/tab-bar-pages/home/index";
+    const qrcode = await liveService.getQRCode(scene, page);
+
+    this.setData({
+      posterModalVisible: true,
+      posterInfo: {
+        status,
+        cover,
+        title,
+        authorInfo,
+        noticeTime,
+        startTime,
+        qrcode
+      }
     });
   },
 
   hideModal() {
-    const { inputPopupVisible, subscribeModalVisible } = this.data;
+    const { inputPopupVisible, subscribeModalVisible, posterModalVisible } =
+      this.data;
     inputPopupVisible && this.setData({ inputPopupVisible: false });
     subscribeModalVisible && this.setData({ subscribeModalVisible: false });
+    posterModalVisible && this.setData({ posterModalVisible: false });
   },
 
   showGoodsPopup() {
-    this.setData({ goodsPopupVisible: true })
-  },
-  
-  hideGoodsPopup() {
-    this.setData({ goodsPopupVisible: false })
+    this.setData({ goodsPopupVisible: true });
   },
 
-  showSharePopup() {
-    this.setData({ sharePopupVisible: true })
-  },
-  
-  hideSharePopup() {
-    this.setData({ sharePopupVisible: false })
+  hideGoodsPopup() {
+    this.setData({ goodsPopupVisible: false });
   },
 
   onUnload() {
@@ -122,5 +147,5 @@ Page({
     title = `有播直播间：${title}`;
     const query = `id=${id}`;
     return { query, title, imageUrl };
-  },
+  }
 });
