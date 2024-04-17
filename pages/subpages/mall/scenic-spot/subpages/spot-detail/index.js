@@ -432,7 +432,12 @@ Page({
       const page = "pages/tab-bar-pages/home/index";
       const qrcode = await scenicService.getQRCode(scene, page);
 
-      const { imageList, title, price, salesVolume } = this.data.scenicInfo;
+      const {
+        imageList,
+        name: title,
+        price,
+        salesVolume
+      } = this.data.scenicInfo;
 
       this.setData({
         posterModalVisible: true,

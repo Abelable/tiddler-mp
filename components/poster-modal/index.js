@@ -107,24 +107,25 @@ Component({
         this.roundRect(158, 300, 4, 4, 2, "", null, "#fff");
       }
 
-      this.setWrapText(12, "#333", 27, 335, title, 16, 162, true);
+      this.setWrapText(12, "#333", 27, 334, title, 16, 173, true);
 
       if (["4", "5", "6", "7"].includes(scene)) {
         if (scene === "7") {
-          this.setGoodsPrice(price, `¥${marketPrice}`, 27, 380);
+          this.setGoodsPrice(price, `¥${marketPrice}`, 27, 382);
         } else {
-          this.setPrice(price, 27, 380);
+          this.setPrice(price, 27, 382);
         }
-        this.setText(10, "#999", 186, 380, `已售${salesVolume}`, "right");
+        this.setText(10, "#999", 197, 380, `已售${salesVolume}`, "right");
       }
 
       if (["2", "3"].includes(scene)) {
         await this.roundRect(27, 366, 18, 18, 9, authorInfo.avatar);
         this.setText(10, "#333", 50, 379, authorInfo.nickname);
-        await this.setLikeNumber(likeNumber, 186, 380);
+        await this.setLikeNumber(likeNumber, 197, 380);
       }
 
-      await this.drawImage(qrcode, 198, 320, 66, 66);
+      await this.drawImage(qrcode, 212, 321, 50, 50);
+      this.setText(7, "#999", 237, 380, "长按识别二维码", "center");
 
       wx.canvasToTempFilePath(
         {
