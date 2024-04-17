@@ -81,6 +81,26 @@ Component({
 
       await this.roundRect(27, 71, 237, 240, 5, cover);
 
+      if (scene === "2") {
+        this.roundRect(
+          126,
+          171,
+          40,
+          40,
+          20,
+          "",
+          null,
+          "rgba(225, 225, 225, 0.6)"
+        );
+        await this.drawImage(
+          "https://img.ubo.vip/tiddler/poster/play-icon.png",
+          139,
+          183,
+          16,
+          16
+        );
+      }
+
       if (scene === "3") {
         const linearGradient = this.createLinearGradient(
           27,
@@ -173,13 +193,19 @@ Component({
     },
 
     async setLikeNumber(likeNumber, x, y) {
-      ctx.font = '10px sans-serif';
+      ctx.font = "10px sans-serif";
       ctx.fillStyle = "#333";
       ctx.textAlign = "right";
       ctx.fillText(likeNumber, x, y);
 
       const likeNumberWidth = ctx.measureText(likeNumber).width;
-      await this.drawImage("https://img.ubo.vip/tiddler/media-item/heart.png", x - likeNumberWidth - 15, y - 9, 13, 12);
+      await this.drawImage(
+        "https://img.ubo.vip/tiddler/media-item/heart.png",
+        x - likeNumberWidth - 15,
+        y - 9,
+        13,
+        12
+      );
     },
 
     /**

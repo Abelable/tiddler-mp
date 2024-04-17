@@ -50,7 +50,7 @@
 
     <view class="video-title">{{item.title}}</view>
 
-    <scroll-view class="commodity-list row" scroll-x>
+    <scroll-view class="commodity-list row" wx:if="{{item.commodityList.length}}" scroll-x>
       <view 
         class="commodity-item" 
         style="background-image: url({{_item.cover}});"
