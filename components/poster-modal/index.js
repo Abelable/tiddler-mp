@@ -80,6 +80,33 @@ Component({
       this.setText(8, "#fff", 55, 45, descList[scene - 1]);
 
       await this.roundRect(27, 71, 237, 240, 5, cover);
+
+      if (scene === "3") {
+        const linearGradient = this.createLinearGradient(
+          27,
+          281,
+          27,
+          311,
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0.5)"
+        );
+        this.roundRect(
+          27,
+          281,
+          237,
+          30,
+          [0, 0, 5, 5],
+          "",
+          null,
+          linearGradient
+        );
+
+        this.roundRect(128, 300, 4, 4, 2, "", null, "#00cffc");
+        this.roundRect(138, 300, 4, 4, 2, "", null, "#fff");
+        this.roundRect(148, 300, 4, 4, 2, "", null, "#fff");
+        this.roundRect(158, 300, 4, 4, 2, "", null, "#fff");
+      }
+
       this.setWrapText(12, "#333", 27, 335, title, 16, 162, true);
 
       if (["4", "5", "6", "7"].includes(scene)) {
@@ -150,7 +177,7 @@ Component({
      * @param {Number} w - 矩形的宽度
      * @param {Number} h - 矩形的高度
      * @param {Number} r - 矩形的圆角半径
-     * @param {Number} cover - 矩形的封面
+     * @param {String} cover - 矩形的封面
      * @param {Object} shadow - 矩形的阴影
      * @param {String} [c = 'transparent'] - 矩形的填充色
      */
@@ -191,6 +218,13 @@ Component({
         await this.drawImage(cover, x, y, w, h);
       }
       ctx.restore();
+    },
+
+    createLinearGradient(startX, startY, stopX, stopY, startColor, stopColor) {
+      const grad = ctx.createLinearGradient(startX, startY, stopX, stopY);
+      grad.addColorStop(0, startColor);
+      grad.addColorStop(1, stopColor);
+      return grad;
     },
 
     setText(
