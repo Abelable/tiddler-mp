@@ -16,7 +16,7 @@
     <view class="shop-name omit single-line">{{shopInfo.name}}</view>
     <view class="authentication row">{{shopInfo.type === 2 ? '企业店铺' : '个人店铺'}}</view>
   </view>
-  <view class="share-btn" bindtap="showShareModal">
+  <view class="share-btn" bindtap="share">
     <image class="share-icon" src="./images/share-icon.png"/>
     <view>分享</view>
   </view>
@@ -27,3 +27,6 @@
   <empty-illus wx:if="{{finished && !goodsList.length}}" desc="暂无列表" />
   <view class="no-more-tips" wx:if="{{finished && goodsList.length}}">～没有更多了～</view>
 </view>
+
+<modal-mask wx:if="{{posterModalVisible}}" filter bindtap="hidePosterModal" />
+<poster-modal wx:if="{{posterModalVisible}}" info="{{posterInfo}}" scene="8" />

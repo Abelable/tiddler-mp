@@ -7,6 +7,8 @@
     "back-icon": "/components/back-icon-white/index",
     "fall-flow": "/components/fall-flow/index",
     "empty-illus": "/components/empty-illus/index",
-    "goods-item": "./components/goods-item/index"
+    "goods-item": "./components/goods-item/index",
+    "modal-mask": "/components/modal-mask/index",
+    "poster-modal": "/components/poster-modal/index"
   }
 }

@@ -65,6 +65,7 @@ Component({
         marketPrice,
         salesVolume,
         authorInfo,
+        shopInfo,
         likeNumber,
         noticeTime,
         startTime,
@@ -84,7 +85,7 @@ Component({
       this.setText(13, "#fff", 55, 30, nickname);
       this.setText(8, "#fff", 55, 45, descList[scene - 1]);
 
-      if (scene === "9") {
+      if (["8", "9"].includes(scene)) {
         await this.roundRect(27, 116, 237, 130, 5, cover);
         const linearGradient = this.createLinearGradient(
           27,
@@ -105,9 +106,37 @@ Component({
           linearGradient
         );
         this.roundRect(100, 71, 90, 90, 45, "", null, "#fff");
-        await this.roundRect(105, 76, 80, 80, 40, authorInfo.avatar);
-        this.setText(16, "#fff", 145, 195, authorInfo.nickname, "center", true);
-        this.setText(10, "#fff", 145, 220, auchorDataDesc, "center");
+        await this.roundRect(
+          105,
+          76,
+          80,
+          80,
+          40,
+          scene === "8" ? shopInfo.avatar : authorInfo.avatar
+        );
+        this.setText(
+          16,
+          "#fff",
+          145,
+          195,
+          scene === "8" ? title : authorInfo.nickname,
+          "center",
+          true
+        );
+        if (scene === "8") {
+          this.roundRect(115, 210, 60, 20, 10, "", null, "#434D5E");
+          this.setText(
+            10,
+            "#FFE5BD",
+            145,
+            224,
+            shopInfo.type === 1 ? "个人店铺" : "企业店铺",
+            "center",
+            true
+          );
+        } else {
+          this.setText(10, "#fff", 145, 220, auchorDataDesc, "center");
+        }
 
         await this.roundRect(100, 270, 90, 90, 45, qrcode);
         this.setText(10, "#999", 145, 380, "长按识别二维码", "center");

@@ -8,8 +8,8 @@
       "list": [
         {
           "name": "",
-          "pathName": "pages/subpages/home/media/author-center/index",
-          "query": "id=2",
+          "pathName": "pages/subpages/mall/goods/subpages/shop/index",
+          "query": "id=1",
           "launchMode": "default",
           "scene": null
         }
