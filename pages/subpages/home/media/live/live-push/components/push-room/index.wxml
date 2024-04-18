@@ -47,7 +47,7 @@
           <view class="feature-btn row center" catchtap="showMoreFeaturesPopup" >
             <image class="more-icon" src="../../../images/more.png" />
           </view>
-           <view class="feature-btn row center" catchtap="showSharePopup" >
+           <view class="feature-btn row center" catchtap="share" >
             <image class="share-icon" src="../../../images/share.png" />
           </view>
           <view class="feature-btn row center" catchtap="praise">
@@ -61,7 +61,6 @@
 </pusher>
 
 <goods-shelves-popup wx:if="{{goodsShelvesPopupVisible}}" bind:hide="hideModal" />
-<share-popup wx:if="{{sharePopupVisible}}" bind:showPosterModal="showPosterModal" bind:hide="hideModal" />
 <more-features-popup 
   wx:if="{{moreFeaturesPopupVisible}}" 
   roomInfo="{{roomInfo}}"
@@ -74,5 +73,11 @@
 <hd-popup wx:if="{{hdPopupVisible}}" bind:hide="hideModal" />
 <subscribe-remind-popup wx:if="{{subscribeRemindPopupVisible}}" groupId="{{roomInfo.groupId}}" bind:hide="hideModal" />
 
-<modal-mask wx:if="{{inputPopupVisible}}" opacity="{{0}}" catchtap="hideModal" />
+<modal-mask 
+  wx:if="{{inputPopupVisible || posterModalVisible}}" 
+  opacity="{{!inputPopupVisible ? 0.3 : 0}}" 
+  filter="{{posterModalVisible}}"
+  catchtap="hideModal"
+/>
 <input-popup wx:if="{{inputPopupVisible}}" roomInfo="{{roomInfo}}" identity="{{2}}" bind:hide="hideModal" />
+<poster-modal wx:if="{{posterModalVisible}}" scene="1" info="{{posterInfo}}" bind:hide="hideModal" />

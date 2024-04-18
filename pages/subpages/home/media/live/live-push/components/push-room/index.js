@@ -35,7 +35,6 @@ Component({
     audienceActionTips: "", // 观众行为（进直播间、下单...）
     showAudienceActionTips: false, // 控制观众行为弹幕的显示隐藏
     inputPopupVisible: false,
-    sharePopupVisible: false,
     posterModalVisible: false,
     moreFeaturesPopupVisible: false,
     beautyPopupVisible: false,
@@ -114,19 +113,6 @@ Component({
       });
     },
 
-    showSharePopup() {
-      this.setData({
-        sharePopupVisible: true,
-      });
-    },
-
-    showPosterModal() {
-      this.setData({
-        sharePopupVisible: false,
-        posterModalVisible: true,
-      });
-    },
-
     showMoreFeaturesPopup() {
       this.setData({
         moreFeaturesPopupVisible: true,
@@ -159,10 +145,38 @@ Component({
       });
     },
 
+    async share() {
+      const {
+        id,
+        status,
+        shareCover: cover,
+        title,
+        anchorInfo: authorInfo,
+        noticeTime,
+        startTime
+      } = this.properties.roomInfo;
+  
+      const scene = `id=${id}`;
+      const page = "pages/tab-bar-pages/home/index";
+      const qrcode = await liveService.getQRCode(scene, page);
+  
+      this.setData({
+        posterModalVisible: true,
+        posterInfo: {
+          status,
+          cover,
+          title,
+          authorInfo,
+          noticeTime,
+          startTime,
+          qrcode
+        }
+      });
+    },
+
     hideModal() {
       const {
         inputPopupVisible,
-        sharePopupVisible,
         posterModalVisible,
         moreFeaturesPopupVisible,
         beautyPopupVisible,
@@ -171,7 +185,6 @@ Component({
         goodsShelvesPopupVisible,
       } = this.data;
       if (inputPopupVisible) this.setData({ inputPopupVisible: false });
-      if (sharePopupVisible) this.setData({ sharePopupVisible: false });
       if (posterModalVisible) this.setData({ posterModalVisible: false });
       if (moreFeaturesPopupVisible)
         this.setData({ moreFeaturesPopupVisible: false });
