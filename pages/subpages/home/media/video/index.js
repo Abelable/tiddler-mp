@@ -1,4 +1,4 @@
-import { getQueryString } from "../../../../../utils/index";
+import { getQueryString, numOver } from "../../../../../utils/index";
 import {
   SCENE_MINE,
   SCENE_COLLECT,
@@ -179,7 +179,7 @@ Page({
         cover,
         title,
         authorInfo,
-        likeNumber,
+        likeNumber: numOver(likeNumber, 100000),
         qrcode
       }
     });

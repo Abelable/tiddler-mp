@@ -1,4 +1,8 @@
-import { checkLogin, getQueryString } from "../../../../../utils/index";
+import {
+  checkLogin,
+  getQueryString,
+  numOver
+} from "../../../../../utils/index";
 import {
   SCENE_MINE,
   SCENE_COLLECT,
@@ -173,7 +177,7 @@ Page({
           cover: imageList[0],
           title,
           authorInfo,
-          likeNumber,
+          likeNumber: numOver(likeNumber, 100000),
           qrcode
         }
       });
