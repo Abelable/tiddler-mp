@@ -225,11 +225,11 @@ Component({
           "#333",
           27,
           334,
-          `${title}${title}`,
+          title,
           16,
           173,
           true,
-          ['1', '4', '5', '6'].includes(scene) ? 1 : 2
+          ["1", "4", "5", "6"].includes(scene) ? 1 : 2
         );
 
         if (scene === "1") {
@@ -237,6 +237,10 @@ Component({
             status === 3 ? noticeTime : startTime
           ).format("MM-DD HH:mm")}`;
           this.setText(10, "#999", 27, 354, time);
+        }
+
+        if (["4", "5", "6"].includes(scene)) {
+          this.setTagList(tagList, 27, 356);
         }
 
         if (["4", "5", "6", "7"].includes(scene)) {
@@ -269,6 +273,18 @@ Component({
         },
         this
       );
+    },
+
+    setTagList(tagList, x, y) {
+      for (let i = 0; i < tagList.length; i++) {
+        const tag = tagList[i];
+        ctx.font = "8px sans-serif";
+        ctx.fillStyle = "#999";
+        const { width } = ctx.measureText(tag);
+        this.roundRect(x, y - 11, width + 8, 16, 5, "", null, "#f1f1f1");
+        ctx.fillText(tag, x + 4, y);
+        x = x + width + 12;
+      }
     },
 
     setGoodsPrice(price, marketPrice, x, y) {

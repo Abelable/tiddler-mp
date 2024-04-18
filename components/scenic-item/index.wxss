@@ -70,7 +70,7 @@
   max-width: 170rpx;
   color: #999;
   font-size: 20rpx;
-  background: #f6f6f6;
+  background: #f1f1f1;
   padding: 2rpx 10rpx;
   border-radius: 10rpx;
 }
