@@ -436,12 +436,20 @@ Page({
         imageList,
         name: title,
         price,
-        salesVolume
+        salesVolume,
+        featureTagList
       } = this.data.scenicInfo;
 
       this.setData({
         posterModalVisible: true,
-        posterInfo: { cover: imageList[0], title, price, salesVolume, qrcode }
+        posterInfo: {
+          cover: imageList[0],
+          title,
+          price,
+          salesVolume,
+          tagList: featureTagList.slice(0, 2),
+          qrcode
+        }
       });
     });
   },

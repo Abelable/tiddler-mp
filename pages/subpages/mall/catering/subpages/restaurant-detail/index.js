@@ -455,11 +455,24 @@ Page({
       const page = "pages/tab-bar-pages/home/index";
       const qrcode = await cateringService.getQRCode(scene, page);
 
-      const { cover, name: title, price, salesVolume } = this.data.restaurantInfo;
+      const {
+        cover,
+        name: title,
+        price,
+        salesVolume,
+        facilityList
+      } = this.data.restaurantInfo;
 
       this.setData({
         posterModalVisible: true,
-        posterInfo: { cover, title, price, salesVolume, qrcode }
+        posterInfo: {
+          cover,
+          title,
+          price,
+          salesVolume,
+          tagList: facilityList.slice(0, 2),
+          qrcode
+        }
       });
     });
   },

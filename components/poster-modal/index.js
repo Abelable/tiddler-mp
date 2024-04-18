@@ -70,6 +70,7 @@ Component({
         noticeTime,
         startTime,
         auchorDataDesc,
+        tagList,
         qrcode
       } = info || {};
 
@@ -224,11 +225,11 @@ Component({
           "#333",
           27,
           334,
-          title,
+          `${title}${title}`,
           16,
           173,
           true,
-          scene === "1" ? 1 : 2
+          ['1', '4', '5', '6'].includes(scene) ? 1 : 2
         );
 
         if (scene === "1") {

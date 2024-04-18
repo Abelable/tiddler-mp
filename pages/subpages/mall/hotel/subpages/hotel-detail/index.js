@@ -371,11 +371,24 @@ Component({
         const page = "pages/tab-bar-pages/home/index";
         const qrcode = await hotelService.getQRCode(scene, page);
 
-        const { cover, name: title, price, salesVolume } = this.data.hotelInfo;
+        const {
+          cover,
+          name: title,
+          price,
+          salesVolume,
+          featureTagList
+        } = this.data.hotelInfo;
 
         this.setData({
           posterModalVisible: true,
-          posterInfo: { cover, title, price, salesVolume, qrcode }
+          posterInfo: {
+            cover,
+            title,
+            price,
+            salesVolume,
+            tagList: featureTagList.slice(0, 2),
+            qrcode
+          }
         });
       });
     },
