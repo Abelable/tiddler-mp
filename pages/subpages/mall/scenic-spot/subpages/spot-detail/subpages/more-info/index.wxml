@@ -33,7 +33,7 @@
           <view class="grid-item">{{item.openMonth}}月-{{item.closeMonth}}月</view>
         </view>
         <view class="grid-line">
-          <view class="grid-item">{{TIME.transform(item.openTime, 'hh:mm')}}-{{TIME.transform(item.closeTime, 'hh:mm')}}{{item.tips ? '（' + item.tips + '）' : ''}}</view>
+          <view class="grid-item">{{item.openTime}}-{{item.closeTime}}{{item.tips ? '（' + item.tips + '）' : ''}}</view>
         </view>
       </block>
     </view>
