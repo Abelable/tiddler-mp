@@ -61,6 +61,7 @@ Component({
         status,
         cover,
         title,
+        content,
         price,
         marketPrice,
         salesVolume,
@@ -229,7 +230,7 @@ Component({
           16,
           173,
           true,
-          ["1", "4", "5", "6"].includes(scene) ? 1 : 2
+          ["1", "3", "4", "5", "6"].includes(scene) ? 1 : 2
         );
 
         if (scene === "1") {
@@ -237,6 +238,10 @@ Component({
             status === 3 ? noticeTime : startTime
           ).format("MM-DD HH:mm")}`;
           this.setText(10, "#999", 27, 354, time);
+        }
+
+        if (scene === "3") {
+          this.setWrapText(10, "#666", 27, 354, content, 16, 173, false, 1);
         }
 
         if (["4", "5", "6"].includes(scene)) {
@@ -252,13 +257,7 @@ Component({
               scene - 4
             ]
           );
-          this.setText(
-            10,
-            "#fff",
-            45,
-            95,
-            ["景点", "酒店", "美食"][scene - 4]
-          );
+          this.setText(10, "#fff", 45, 95, ["景点", "酒店", "美食"][scene - 4]);
 
           this.setTagList(tagList, 27, 356);
         }

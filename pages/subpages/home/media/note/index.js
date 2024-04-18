@@ -164,7 +164,7 @@ Page({
     checkLogin(async () => {
       const { curNoteIdx } = e.detail;
       const { noteList } = this.data;
-      const { id, imageList, title, authorInfo, likeNumber } =
+      const { id, imageList, title, content, authorInfo, likeNumber } =
         noteList[curNoteIdx];
       const scene = `id=${id}`;
       const page = "pages/tab-bar-pages/home/index";
@@ -176,6 +176,7 @@ Page({
           posterInfo: {
             cover: imageList[0],
             title,
+            content,
             authorInfo,
             likeNumber: numOver(likeNumber, 100000),
             qrcode
