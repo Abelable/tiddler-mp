@@ -32,18 +32,10 @@ Page({
     });
 
     if (!store.locationInfo) {
-      await this.setLocationInfo();
+      await cateringService.getLocationInfo();
     }
     await this.setCategoryOptions();
     this.setRestaurantList(true);
-  },
-
-  async setLocationInfo() {
-    const { authSetting } = await cateringService.getSetting();
-    if (authSetting["scope.userLocation"] !== false) {
-      const { longitude, latitude } = await cateringService.getLocation();
-      store.setLocationInfo({ longitude, latitude });
-    }
   },
 
   async setCategoryOptions() {

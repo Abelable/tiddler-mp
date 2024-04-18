@@ -23,7 +23,7 @@ Page({
 
     this.setVideoUrl(tempFilePath);
     if (!store.locationInfo) {
-      await this.setLocationInfo();
+      await videoService.getLocationInfo();
     }
     this.mapInit();
   },
@@ -36,18 +36,10 @@ Page({
     wx.hideLoading();
   },
 
-  async setLocationInfo() {
-    const { authSetting } = await videoService.getSetting();
-    if (authSetting["scope.userLocation"] !== false) {
-      const { longitude, latitude } = await videoService.getLocation();
-      store.setLocationInfo({ longitude, latitude });
-    }
-  },
-
   openLocationSetting() {
     wx.openSetting({
       success: async () => {
-        await this.setLocationInfo();
+        await videoService.getLocationInfo();
         this.mapInit();
       }
     });

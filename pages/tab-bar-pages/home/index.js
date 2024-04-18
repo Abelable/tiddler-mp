@@ -45,22 +45,14 @@ Component({
         duration: 0
       });
 
-      if (store.locationInfo) {
-        this.setLocationInfo();
+      if (!store.locationInfo) {
+        homeService.getLocationInfo();
       }
       this.setList(SCENE_REFRESH);
     }
   },
 
   methods: {
-    async setLocationInfo() {
-      const { authSetting } = await homeService.getSetting();
-      if (authSetting["scope.userLocation"] !== false) {
-        const { longitude, latitude } = await homeService.getLocation();
-        store.setLocationInfo({ longitude, latitude });
-      }
-    },
-
     switchMenu(e) {
       this.handleMenuChange(Number(e.currentTarget.dataset.index));
     },

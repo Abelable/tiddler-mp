@@ -34,18 +34,10 @@ Page({
 
     this.initCalendar();
     if (!store.locationInfo) {
-      await this.setLocationInfo();
+      await hotelService.getLocationInfo();
     }
     await this.setCategoryOptions();
     this.setHotelList(true);
-  },
-
-  async setLocationInfo() {
-    const { authSetting } = await hotelService.getSetting();
-    if (authSetting["scope.userLocation"] !== false) {
-      const { longitude, latitude } = await hotelService.getLocation();
-      store.setLocationInfo({ longitude, latitude });
-    }
   },
 
   async setCategoryOptions() {

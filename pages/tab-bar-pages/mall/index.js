@@ -27,7 +27,7 @@ Component({
       store.setTabType("mall");
 
       if (!store.locationInfo) {
-        this.setLocationInfo();
+        mallService.getLocationInfo();
       }
       this.initCalendar();
       this.setBannerList();
@@ -38,14 +38,6 @@ Component({
   },
 
   methods: {
-    async setLocationInfo() {
-      const { authSetting } = await mallService.getSetting();
-      if (authSetting["scope.userLocation"] !== false) {
-        const { longitude, latitude } = await mallService.getLocation();
-        store.setLocationInfo({ longitude, latitude });
-      }
-    },
-
     initCalendar() {
       store.setCheckInDate(new Date().getTime());
 

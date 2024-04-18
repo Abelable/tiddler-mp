@@ -3,17 +3,26 @@ import { cleanObject } from "../utils/index";
 import Base from "./base/index";
 
 class BaseService extends Base {
+  async getLocationInfo() {
+    const { authSetting } = await this.getSetting();
+    if (authSetting["scope.userLocation"] !== false) {
+      const { longitude, latitude } = await this.getLocation();
+      store.setLocationInfo({ longitude, latitude });
+      return { longitude, latitude };
+    }
+  }
+
   async getUserMobile(code) {
     return await this.post({
       url: `${this.baseUrl}/auth/wx_mp/mobile`,
-      data: { code },
+      data: { code }
     });
   }
 
   async register(code, avatar, nickname, gender, mobile) {
     return await this.post({
       url: `${this.baseUrl}/auth/wx_mp/register`,
-      data: { code, avatar, nickname, gender, mobile },
+      data: { code, avatar, nickname, gender, mobile }
     });
   }
 
@@ -21,7 +30,7 @@ class BaseService extends Base {
     const { code } = await this.wxLogin();
     const token = await this.post({
       url: `${this.baseUrl}/auth/wx_mp/login`,
-      data: { code },
+      data: { code }
     });
     wx.setStorageSync("token", token || "");
   }
@@ -46,7 +55,7 @@ class BaseService extends Base {
   async getAuthorInfo(authorId) {
     return await this.get({
       url: `${this.baseUrl}/author_info`,
-      data: { authorId },
+      data: { authorId }
     });
   }
 
@@ -68,7 +77,7 @@ class BaseService extends Base {
     const ossConfig = await this.get({ url: `${this.baseUrl}/oss_config` });
     wx.setStorage({
       key: "ossConfig",
-      data: JSON.stringify(ossConfig),
+      data: JSON.stringify(ossConfig)
     });
     return ossConfig;
   }
@@ -76,42 +85,42 @@ class BaseService extends Base {
   async getQrCode(scene, page) {
     return await this.post({
       url: `${this.baseUrl}/oss_config`,
-      data: { scene, page },
+      data: { scene, page }
     });
   }
 
   async getPayParams(orderIds) {
     return await this.post({
       url: `${this.baseUrl}/order/pay_params`,
-      data: { orderIds },
+      data: { orderIds }
     });
   }
 
   async getScenicOrderPayParams(orderId) {
     return await this.post({
       url: `${this.baseUrl}/scenic/order/pay_params`,
-      data: { orderId },
+      data: { orderId }
     });
   }
 
   async getHotelOrderPayParams(orderId) {
     return await this.post({
       url: `${this.baseUrl}/hotel/order/pay_params`,
-      data: { orderId },
+      data: { orderId }
     });
   }
 
   async getMealTicketOrderPayParams(orderId) {
     return await this.post({
       url: `${this.baseUrl}/catering/meal_ticket/order/pay_params`,
-      data: { orderId },
+      data: { orderId }
     });
   }
 
   async getSetMealOrderPayParams(orderId) {
     return await this.post({
       url: `${this.baseUrl}/catering/set_meal/order/pay_params`,
-      data: { orderId },
+      data: { orderId }
     });
   }
 
@@ -119,7 +128,7 @@ class BaseService extends Base {
     return await this.post({
       url: `${this.baseUrl}/fan/follow`,
       data: { authorId },
-      success,
+      success
     });
   }
 
@@ -127,14 +136,14 @@ class BaseService extends Base {
     return await this.post({
       url: `${this.baseUrl}/fan/cancel_follow`,
       data: { authorId },
-      success,
+      success
     });
   }
 
   async getFollowStatus(authorId) {
     return await this.get({
       url: `${this.baseUrl}/fan/follow_status`,
-      data: { authorId },
+      data: { authorId }
     });
   }
 
@@ -142,7 +151,7 @@ class BaseService extends Base {
     return await this.post({
       url: `${this.baseUrl}/media/live/subscribe`,
       data: { anchorId },
-      success,
+      success
     });
   }
 
@@ -150,7 +159,7 @@ class BaseService extends Base {
     return await this.get({
       url: `${this.baseUrl}/media/short_video/user_list`,
       data: cleanObject({ id, page, limit }),
-      loadingTitle,
+      loadingTitle
     });
   }
 
@@ -158,14 +167,14 @@ class BaseService extends Base {
     return await this.get({
       url: `${this.baseUrl}/media/tourism_note/user_list`,
       data: cleanObject({ id, page, limit, withComments }),
-      loadingTitle: "加载中...",
+      loadingTitle: "加载中..."
     });
   }
 
   async getUserCollectVideoList(id, page, limit = 10) {
     return await this.get({
       url: `${this.baseUrl}/media/short_video/collect_list`,
-      data: { id, page, limit },
+      data: { id, page, limit }
     });
   }
 
@@ -173,14 +182,14 @@ class BaseService extends Base {
     return await this.get({
       url: `${this.baseUrl}/media/tourism_note/collect_list`,
       data: { id, page, limit },
-      loadingTitle: "加载中...",
+      loadingTitle: "加载中..."
     });
   }
 
   async getUserLikeVideoList(id, page, limit = 10) {
     return await this.get({
       url: `${this.baseUrl}/media/short_video/like_list`,
-      data: { id, page, limit },
+      data: { id, page, limit }
     });
   }
 
@@ -188,14 +197,14 @@ class BaseService extends Base {
     return await this.get({
       url: `${this.baseUrl}/media/tourism_note/like_list`,
       data: { id, page, limit },
-      loadingTitle: "加载中...",
+      loadingTitle: "加载中..."
     });
   }
 
   async getUserGoodsList(page, limit = 10) {
     return await this.get({
       url: `${this.baseUrl}/goods/user_goods_list`,
-      data: { page, limit },
+      data: { page, limit }
     });
   }
 
@@ -203,7 +212,7 @@ class BaseService extends Base {
     return await this.post({
       url: `${this.baseUrl}/media/tourism_note/toggle_like`,
       data: { id },
-      success,
+      success
     });
   }
 
@@ -211,7 +220,7 @@ class BaseService extends Base {
     return await this.post({
       url: `${this.baseUrl}/media/tourism_note/toggle_collect`,
       data: { id },
-      success,
+      success
     });
   }
 
@@ -219,7 +228,7 @@ class BaseService extends Base {
     return await this.post({
       url: `${this.baseUrl}/media/short_video/toggle_like`,
       data: { id },
-      success,
+      success
     });
   }
 
@@ -227,7 +236,7 @@ class BaseService extends Base {
     return await this.post({
       url: `${this.baseUrl}/media/short_video/toggle_collect`,
       data: { id },
-      success,
+      success
     });
   }
 
@@ -243,7 +252,7 @@ class BaseService extends Base {
     return await this.post({
       url: `${this.baseUrl}/catering/evaluation/add`,
       data: { type, orderId, restaurantId, score, content, imageList },
-      success,
+      success
     });
   }
 
@@ -251,7 +260,7 @@ class BaseService extends Base {
     return await this.get({
       url: `${this.baseUrl}/wx/qrcode`,
       data: { scene, page },
-      loadingTitle: '加载中...'
+      loadingTitle: "加载中..."
     });
   }
 }

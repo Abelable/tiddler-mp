@@ -24,23 +24,15 @@ Page({
     });
 
     if (!store.locationInfo) {
-      await this.setLocationInfo();
+      await noteService.getLocationInfo();
     }
     this.mapInit();
-  },
-
-  async setLocationInfo() {
-    const { authSetting } = await noteService.getSetting();
-    if (authSetting["scope.userLocation"] !== false) {
-      const { longitude, latitude } = await noteService.getLocation();
-      store.setLocationInfo({ longitude, latitude });
-    }
   },
 
   openLocationSetting() {
     wx.openSetting({
       success: async () => {
-        await this.setLocationInfo();
+        await noteService.getLocationInfo();
         this.mapInit();
       }
     });
