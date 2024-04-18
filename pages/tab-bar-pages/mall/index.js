@@ -26,7 +26,9 @@ Component({
     show() {
       store.setTabType("mall");
 
-      this.setLocationInfo();
+      if (!store.locationInfo) {
+        this.setLocationInfo();
+      }
       this.initCalendar();
       this.setBannerList();
       if (!this.data.commodityList.length) {

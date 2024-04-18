@@ -5,7 +5,7 @@ import HomeService from "./utils/homeService";
 import {
   SCENE_SWITCH_TAB,
   SCENE_REFRESH,
-  SCENE_LOADMORE,
+  SCENE_LOADMORE
 } from "../../../utils/emuns/listScene";
 
 const homeService = new HomeService();
@@ -16,7 +16,7 @@ Component({
 
   storeBindings: {
     store,
-    fields: ["userInfo"],
+    fields: ["userInfo"]
   },
 
   data: {
@@ -27,14 +27,14 @@ Component({
     followMediaList: [],
     followFinished: false,
     mediaList: [],
-    finished: false,
+    finished: false
   },
 
   pageLifetimes: {
     show() {
       wx.showShareMenu({
         withShareTicket: true,
-        menus: ["shareAppMessage", "shareTimeline"],
+        menus: ["shareAppMessage", "shareTimeline"]
       });
 
       store.setTabType("home");
@@ -42,11 +42,14 @@ Component({
       this.scrollTopArr = [0, 0];
       wx.pageScrollTo({
         scrollTop: 0,
-        duration: 0,
+        duration: 0
       });
-      this.setLocationInfo();
+
+      if (store.locationInfo) {
+        this.setLocationInfo();
+      }
       this.setList(SCENE_REFRESH);
-    },
+    }
   },
 
   methods: {
@@ -75,7 +78,7 @@ Component({
         this.scrollTopArr[curMenuIndex] = this.scrollTop || 0;
         wx.pageScrollTo({
           scrollTop: this.scrollTopArr[index] || 0,
-          duration: 0,
+          duration: 0
         });
       }
     },
@@ -132,7 +135,7 @@ Component({
             (await homeService.getFollowMediaList(++this.followPage)) || {};
           this.setData(
             {
-              followMediaList: init ? list : [...followMediaList, ...list],
+              followMediaList: init ? list : [...followMediaList, ...list]
             },
             () => {
               this.setWrapHeight();
@@ -156,7 +159,7 @@ Component({
         const { list = [] } =
           (await homeService.getMediaList(++this.page)) || {};
         this.setData({
-          mediaList: init ? list : [...mediaList, ...list],
+          mediaList: init ? list : [...mediaList, ...list]
         });
         if (!list.length) {
           this.setData({ finished: true });
@@ -168,12 +171,12 @@ Component({
       const { curMenuIndex } = this.data;
       const query = wx.createSelectorQuery();
       query.selectAll(".content-wrap").boundingClientRect();
-      query.exec((res) => {
+      query.exec(res => {
         if (res[0][curMenuIndex]) {
           const { height } = res[0][curMenuIndex];
           this.setData({
             [`wrapHeightList[${curMenuIndex}]`]:
-              height < windowHeight ? windowHeight : height,
+              height < windowHeight ? windowHeight : height
           });
         }
       });
@@ -183,13 +186,13 @@ Component({
       if (e.scrollTop >= 10) {
         if (!this.data.navBarActive) {
           this.setData({
-            navBarActive: true,
+            navBarActive: true
           });
         }
       } else {
         if (this.data.navBarActive) {
           this.setData({
-            navBarActive: false,
+            navBarActive: false
           });
         }
       }
@@ -206,24 +209,24 @@ Component({
 
     search() {
       wx.navigateTo({
-        url: "/pages/subpages/home/search/index",
+        url: "/pages/subpages/home/search/index"
       });
     },
 
     navToMessageCenter() {
       wx.navigateTo({
-        url: "/pages/subpages/message-center/index",
+        url: "/pages/subpages/message-center/index"
       });
     },
 
     register() {
       wx.navigateTo({
-        url: "/pages/subpages/common/register/index",
+        url: "/pages/subpages/common/register/index"
       });
     },
 
     onShareAppMessage() {},
 
-    onShareTimeline() {},
-  },
+    onShareTimeline() {}
+  }
 });

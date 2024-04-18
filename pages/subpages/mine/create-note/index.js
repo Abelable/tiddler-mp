@@ -23,37 +23,46 @@ Page({
       fields: ["mediaCommodityList"]
     });
 
-    this.setLocationInfo();
+    if (!store.locationInfo) {
+      await this.setLocationInfo();
+    }
+    this.mapInit();
   },
 
   async setLocationInfo() {
     const { authSetting } = await noteService.getSetting();
     if (authSetting["scope.userLocation"] !== false) {
       const { longitude, latitude } = await noteService.getLocation();
-      const map = new Map({ key: QQ_MAP_KEY });
-      map.reverseGeocoder({
-        location: { longitude, latitude },
-        success: res => {
-          if (res.status === 0) {
-            const { address } = res.result;
-            this.setData({ address });
-            this.longitude = longitude;
-            this.latitude = latitude;
-          } else {
-            wx.showToast({
-              title: res.message,
-              icon: "none"
-            });
-          }
-        }
-      });
+      store.setLocationInfo({ longitude, latitude });
     }
   },
 
   openLocationSetting() {
     wx.openSetting({
-      success: () => {
-        this.setLocationInfo();
+      success: async () => {
+        await this.setLocationInfo();
+        this.mapInit();
+      }
+    });
+  },
+
+  mapInit() {
+    const { longitude, latitude } = store.locationInfo;
+    const map = new Map({ key: QQ_MAP_KEY });
+    map.reverseGeocoder({
+      location: { longitude, latitude },
+      success: res => {
+        if (res.status === 0) {
+          const { address } = res.result;
+          this.setData({ address });
+          this.longitude = longitude;
+          this.latitude = latitude;
+        } else {
+          wx.showToast({
+            title: res.message,
+            icon: "none"
+          });
+        }
       }
     });
   },

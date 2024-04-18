@@ -31,7 +31,9 @@ Page({
       fields: ["checkInDate", "checkOutDate"],
     });
 
-    await this.setLocationInfo();
+    if (!store.locationInfo) {
+      await this.setLocationInfo();
+    }
     await this.setCategoryOptions();
     this.setRestaurantList(true);
   },

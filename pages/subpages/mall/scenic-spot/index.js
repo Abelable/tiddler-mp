@@ -16,7 +16,9 @@ Page({
   },
 
   async onLoad() {
-    await this.setLocationInfo()
+    if (!store.locationInfo) {
+      await this.setLocationInfo()
+    }
     await this.setCategoryOptions()
     this.setScenicList(true)
   },

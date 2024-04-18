@@ -33,7 +33,9 @@ Page({
     });
 
     this.initCalendar();
-    await this.setLocationInfo();
+    if (!store.locationInfo) {
+      await this.setLocationInfo();
+    }
     await this.setCategoryOptions();
     this.setHotelList(true);
   },
