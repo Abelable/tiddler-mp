@@ -240,6 +240,26 @@ Component({
         }
 
         if (["4", "5", "6"].includes(scene)) {
+          this.roundRect(
+            39,
+            83,
+            32,
+            16.8,
+            4,
+            "",
+            null,
+            ["rgb(184, 64, 211)", "rgb(98, 97, 238)", "rgb(251, 49, 105)"][
+              scene - 4
+            ]
+          );
+          this.setText(
+            10,
+            "#fff",
+            45,
+            95,
+            ["景点", "酒店", "美食"][scene - 4]
+          );
+
           this.setTagList(tagList, 27, 356);
         }
 
@@ -249,7 +269,7 @@ Component({
           } else {
             this.setPrice(price, 27, 382);
           }
-          this.setText(10, "#999", 197, 380, `已售${salesVolume}`, "right");
+          this.setText(10, "#999", 197, 382, `已售${salesVolume}`, "right");
         }
 
         if (["1", "2", "3"].includes(scene)) {
@@ -260,8 +280,8 @@ Component({
           }
         }
 
-        await this.drawImage(qrcode, 212, 321, 50, 50);
-        this.setText(7, "#999", 237, 380, "长按识别二维码", "center");
+        await this.drawImage(qrcode, 208, 318, 56, 56);
+        this.setText(7, "#999", 237, 382, "长按识别二维码", "center");
       }
 
       wx.canvasToTempFilePath(
