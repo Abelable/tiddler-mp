@@ -68,6 +68,7 @@ Component({
         likeNumber,
         noticeTime,
         startTime,
+        auchorDataDesc,
         qrcode
       } = info || {};
 
@@ -83,122 +84,151 @@ Component({
       this.setText(13, "#fff", 55, 30, nickname);
       this.setText(8, "#fff", 55, 45, descList[scene - 1]);
 
-      await this.roundRect(27, 71, 237, 240, 5, cover);
-
-      if (scene === "1") {
-        this.roundRect(
-          38,
-          82,
-          status === 1 ? 57 : 47,
-          22,
-          11,
-          "",
-          null,
-          "rgba(0, 0, 0, 0.5)"
-        );
-        this.roundRect(
-          45,
-          91,
-          5,
-          5,
-          2.5,
-          "",
-          null,
-          ["#00D011", "#5562F9", "#D07A00"][status - 1]
-        );
-        this.setText(
-          10,
-          "#fff",
-          55,
-          96.5,
-          ["直播中", "回放", "预告"][status - 1]
-        );
-      }
-
-      if (scene === "2") {
-        this.roundRect(
-          126,
-          171,
-          40,
-          40,
-          20,
-          "",
-          null,
-          "rgba(225, 225, 225, 0.6)"
-        );
-        await this.drawImage(
-          "https://img.ubo.vip/tiddler/poster/play-icon.png",
-          139,
-          183,
-          16,
-          16
-        );
-      }
-
-      if (scene === "3") {
+      if (scene === "9") {
+        await this.roundRect(27, 116, 237, 130, 5, cover);
         const linearGradient = this.createLinearGradient(
           27,
-          281,
+          166,
           27,
-          311,
+          246,
           "rgba(0, 0, 0, 0)",
           "rgba(0, 0, 0, 0.5)"
         );
         this.roundRect(
           27,
-          281,
+          166,
           237,
-          30,
+          80,
           [0, 0, 5, 5],
           "",
           null,
           linearGradient
         );
+        this.roundRect(100, 71, 90, 90, 45, "", null, "#fff");
+        await this.roundRect(105, 76, 80, 80, 40, authorInfo.avatar);
+        this.setText(16, "#fff", 145, 195, authorInfo.nickname, "center", true);
+        this.setText(10, "#fff", 145, 220, auchorDataDesc, "center");
 
-        this.roundRect(128, 300, 4, 4, 2, "", null, "#00cffc");
-        this.roundRect(138, 300, 4, 4, 2, "", null, "#fff");
-        this.roundRect(148, 300, 4, 4, 2, "", null, "#fff");
-        this.roundRect(158, 300, 4, 4, 2, "", null, "#fff");
-      }
+        await this.roundRect(100, 270, 90, 90, 45, qrcode);
+        this.setText(10, "#999", 145, 380, "长按识别二维码", "center");
+      } else {
+        await this.roundRect(27, 71, 237, 240, 5, cover);
 
-      this.setWrapText(
-        12,
-        "#333",
-        27,
-        334,
-        title,
-        16,
-        173,
-        true,
-        scene === "1" ? 1 : 2
-      );
-
-      if (scene === "1") {
-        const time = `直播时间：${dayjs(
-          status === 3 ? noticeTime : startTime
-        ).format("MM-DD HH:mm")}`;
-        this.setText(10, "#999", 27, 354, time);
-      }
-
-      if (["4", "5", "6", "7"].includes(scene)) {
-        if (scene === "7") {
-          this.setGoodsPrice(price, `¥${marketPrice}`, 27, 382);
-        } else {
-          this.setPrice(price, 27, 382);
+        if (scene === "1") {
+          this.roundRect(
+            38,
+            82,
+            status === 1 ? 57 : 47,
+            22,
+            11,
+            "",
+            null,
+            "rgba(0, 0, 0, 0.5)"
+          );
+          this.roundRect(
+            45,
+            91,
+            5,
+            5,
+            2.5,
+            "",
+            null,
+            ["#00D011", "#5562F9", "#D07A00"][status - 1]
+          );
+          this.setText(
+            10,
+            "#fff",
+            55,
+            96.5,
+            ["直播中", "回放", "预告"][status - 1]
+          );
         }
-        this.setText(10, "#999", 197, 380, `已售${salesVolume}`, "right");
-      }
 
-      if (["1", "2", "3"].includes(scene)) {
-        await this.roundRect(27, 366, 18, 18, 9, authorInfo.avatar);
-        this.setText(10, "#333", 50, 379, authorInfo.nickname);
-        if (["2", "3"].includes(scene)) {
-          await this.setLikeNumber(likeNumber, 197, 380);
+        if (scene === "2") {
+          this.roundRect(
+            126,
+            171,
+            40,
+            40,
+            20,
+            "",
+            null,
+            "rgba(225, 225, 225, 0.6)"
+          );
+          await this.drawImage(
+            "https://img.ubo.vip/tiddler/poster/play-icon.png",
+            139,
+            183,
+            16,
+            16
+          );
         }
-      }
 
-      await this.drawImage(qrcode, 212, 321, 50, 50);
-      this.setText(7, "#999", 237, 380, "长按识别二维码", "center");
+        if (scene === "3") {
+          const linearGradient = this.createLinearGradient(
+            27,
+            281,
+            27,
+            311,
+            "rgba(0, 0, 0, 0)",
+            "rgba(0, 0, 0, 0.5)"
+          );
+          this.roundRect(
+            27,
+            281,
+            237,
+            30,
+            [0, 0, 5, 5],
+            "",
+            null,
+            linearGradient
+          );
+
+          this.roundRect(128, 300, 4, 4, 2, "", null, "#00cffc");
+          this.roundRect(138, 300, 4, 4, 2, "", null, "#fff");
+          this.roundRect(148, 300, 4, 4, 2, "", null, "#fff");
+          this.roundRect(158, 300, 4, 4, 2, "", null, "#fff");
+        }
+
+        this.setWrapText(
+          12,
+          "#333",
+          27,
+          334,
+          title,
+          16,
+          173,
+          true,
+          scene === "1" ? 1 : 2
+        );
+
+        if (scene === "1") {
+          const time = `直播时间：${dayjs(
+            status === 3 ? noticeTime : startTime
+          ).format("MM-DD HH:mm")}`;
+          this.setText(10, "#999", 27, 354, time);
+        }
+
+        if (["4", "5", "6", "7"].includes(scene)) {
+          if (scene === "7") {
+            this.setGoodsPrice(price, `¥${marketPrice}`, 27, 382);
+          } else {
+            this.setPrice(price, 27, 382);
+          }
+          this.setText(10, "#999", 197, 380, `已售${salesVolume}`, "right");
+        }
+
+        if (["1", "2", "3"].includes(scene)) {
+          await this.roundRect(27, 366, 18, 18, 9, authorInfo.avatar);
+          this.setText(10, "#333", 50, 379, authorInfo.nickname);
+          if (["2", "3"].includes(scene)) {
+            await this.setLikeNumber(likeNumber, 197, 380);
+          }
+        }
+
+        await this.drawImage(qrcode, 212, 321, 50, 50);
+        this.setText(7, "#999", 237, 380, "长按识别二维码", "center");
+      }
 
       wx.canvasToTempFilePath(
         {

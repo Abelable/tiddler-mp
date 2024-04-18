@@ -25,7 +25,7 @@ export const formatDate = (date, format) => {
     hh: `${date.getHours()}`.padStart(2, "0"),
     mm: `${date.getMinutes()}`.padStart(2, "0"),
     ss: `${date.getSeconds()}`.padStart(2, "0"),
-    week: `星期${week[date.getDay()]}`,
+    week: `星期${week[date.getDay()]}`
   };
 
   for (const key in formatObj) {
@@ -38,7 +38,7 @@ export const formatDate = (date, format) => {
 export const getQueryString = (url, name) => {
   const paramsArr = url.substring(url.indexOf("?") + 1).split("&");
   let r = "";
-  paramsArr.forEach((item) => {
+  paramsArr.forEach(item => {
     const valueArr = item.split("=");
     if (valueArr[0] === name) r = valueArr[1];
   });
@@ -71,12 +71,12 @@ export const customBack = (needInitPrePageData = false) => {
   } else wx.navigateBack();
 };
 
-export const isVoid = (value) =>
+export const isVoid = value =>
   value === undefined || value === null || value === "";
 
-export const cleanObject = (object) => {
+export const cleanObject = object => {
   const result = { ...object };
-  Object.keys(result).forEach((key) => {
+  Object.keys(result).forEach(key => {
     if (isVoid(result[key])) delete result[key];
   });
   return result;
@@ -107,5 +107,12 @@ export const weekDayList = [
   { text: "周四", value: 4 },
   { text: "周五", value: 5 },
   { text: "周六", value: 6 },
-  { text: "周日", value: 7 },
+  { text: "周日", value: 7 }
 ];
+
+export const numOver = (num, unit) => {
+  const unitDesc = unit === 1000 ? "k" : "w";
+  const baseUnit = unit === 1000 ? 1000 : 10000;
+  num = num >= unit ? (num / baseUnit).toFixed(1) + unitDesc : num;
+  return num;
+};

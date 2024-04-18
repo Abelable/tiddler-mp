@@ -1,9 +1,9 @@
-import { checkLogin } from "../../../../../utils/index";
+import { checkLogin, numOver } from "../../../../../utils/index";
 import MediaService from "../../utils/mediaService";
 import {
   SCENE_SWITCH_TAB,
   SCENE_REFRESH,
-  SCENE_LOADMORE,
+  SCENE_LOADMORE
 } from "../../../../../utils/emuns/listScene";
 
 const mediaService = new MediaService();
@@ -22,11 +22,13 @@ Page({
     videoFinished: false,
     noteList: [],
     noteFinished: false,
+    posterInfo: null,
+    posterModalVisible: false
   },
 
   async onLoad({ id }) {
     this.authorId = +id;
-    await this.setAuthorInfo()
+    await this.setAuthorInfo();
 
     this.scrollTopArr = [0, 0];
     this.setList(SCENE_REFRESH);
@@ -36,12 +38,12 @@ Page({
   },
 
   onShow() {
-    this.setFollowStatus()
+    this.setFollowStatus();
   },
 
   async setAuthorInfo() {
-    const authorInfo = await mediaService.getAuthorInfo(this.authorId)
-    this.setData({ authorInfo })
+    const authorInfo = await mediaService.getAuthorInfo(this.authorId);
+    this.setData({ authorInfo });
   },
 
   setFollowStatus() {
@@ -54,13 +56,13 @@ Page({
   follow() {
     mediaService.followAuthor(this.authorId, () => {
       this.setData({ isFollow: true });
-    })
+    });
   },
 
   cancelFollow() {
     mediaService.cancelFollowAuthor(this.authorId, () => {
       this.setData({ isFollow: false });
-    })
+    });
   },
 
   switchMenu(e) {
@@ -80,7 +82,7 @@ Page({
       this.scrollTopArr[curMenuIndex] = this.scrollTop || 0;
       wx.pageScrollTo({
         scrollTop: this.scrollTopArr[index] || 0,
-        duration: 0,
+        duration: 0
       });
     }
   },
@@ -147,10 +149,10 @@ Page({
         (await mediaService.getVideoList({
           authorId: this.authorId,
           page: ++this.videoPage,
-          loadingTitle: "加载中...",
+          loadingTitle: "加载中..."
         })) || {};
       this.setData({
-        videoList: init ? list : [...videoList, ...list],
+        videoList: init ? list : [...videoList, ...list]
       });
       if (!list.length) {
         this.setData({ videoFinished: true });
@@ -167,13 +169,13 @@ Page({
 
     if (!noteFinished) {
       const { list = [] } =
-        (await mediaService.getNoteList({ 
+        (await mediaService.getNoteList({
           authorId: this.authorId,
           page: ++this.notePage,
-          loadingTitle: '加载中...'
+          loadingTitle: "加载中..."
         })) || {};
       this.setData({
-        noteList: init ? list : [...noteList, ...list],
+        noteList: init ? list : [...noteList, ...list]
       });
       if (!list.length) {
         this.setData({ noteFinished: true });
@@ -184,7 +186,7 @@ Page({
   setNavBarVisibleLimit() {
     const query = wx.createSelectorQuery();
     query.select(".name").boundingClientRect();
-    query.exec((res) => {
+    query.exec(res => {
       this.navBarVisibleLimit = res[0].bottom;
     });
   },
@@ -192,7 +194,7 @@ Page({
   setMenuFixedLimit() {
     const query = wx.createSelectorQuery();
     query.select(".works-menu").boundingClientRect();
-    query.exec((res) => {
+    query.exec(res => {
       this.menuFixedLimit = res[0].top - statusBarHeight - 44;
     });
   },
@@ -201,11 +203,11 @@ Page({
     const { curMenuIndex } = this.data;
     const query = wx.createSelectorQuery();
     query.selectAll(".content-wrap").boundingClientRect();
-    query.exec((res) => {
+    query.exec(res => {
       if (res[0][curMenuIndex]) {
         const { height } = res[0][curMenuIndex];
         this.setData({
-          [`wrapHeightList[${curMenuIndex}]`]: height < 400 ? 400 : height,
+          [`wrapHeightList[${curMenuIndex}]`]: height < 400 ? 400 : height
         });
       }
     });
@@ -215,27 +217,62 @@ Page({
     if (e.scrollTop >= this.navBarVisibleLimit) {
       !this.data.navBarVisible &&
         this.setData({
-          navBarVisible: true,
+          navBarVisible: true
         });
     } else {
       this.data.navBarVisible &&
         this.setData({
-          navBarVisible: false,
+          navBarVisible: false
         });
     }
 
     if (e.scrollTop >= this.menuFixedLimit) {
       !this.data.menuFixed &&
         this.setData({
-          menuFixed: true,
+          menuFixed: true
         });
     } else {
       this.data.menuFixed &&
         this.setData({
-          menuFixed: false,
+          menuFixed: false
         });
     }
 
     this.scrollTop = e.scrollTop;
   },
+
+  share() {
+    checkLogin(async () => {
+      const {
+        id,
+        bg,
+        avatar,
+        nickname,
+        beLikedTimes,
+        followedAuthorNumber,
+        fansNumber
+      } = this.data.authorInfo;
+
+      const scene = `id=${id}`;
+      const page = "pages/tab-bar-pages/home/index";
+      const qrcode = await mediaService.getQRCode(scene, page);
+
+      this.setData({
+        posterModalVisible: true,
+        posterInfo: {
+          cover: bg ? bg : "https://img.ubo.vip/tiddler/temp/bg.jpg",
+          authorInfo: { avatar, nickname },
+          auchorDataDesc: `${numOver(beLikedTimes, 100000)}获赞｜${numOver(
+            followedAuthorNumber,
+            100000
+          )}关注｜${numOver(fansNumber, 100000)}粉丝`,
+          qrcode
+        }
+      });
+    });
+  },
+
+  hidePosterModal() {
+    this.setData({ posterModalVisible: false });
+  }
 });
