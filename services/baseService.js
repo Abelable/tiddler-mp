@@ -208,6 +208,14 @@ class BaseService extends Base {
     });
   }
 
+  async shareTourismNote(id, scene, page, success) {
+    return await this.post({
+      url: `${this.baseUrl}/media/tourism_note/share`,
+      data: { id, scene, page },
+      success
+    });
+  }
+
   async toggleTourismNoteLikeStatus(id, success) {
     return await this.post({
       url: `${this.baseUrl}/media/tourism_note/toggle_like`,
@@ -220,6 +228,14 @@ class BaseService extends Base {
     return await this.post({
       url: `${this.baseUrl}/media/tourism_note/toggle_collect`,
       data: { id },
+      success
+    });
+  }
+
+  async shareShortVideo(id, scene, page, success) {
+    return await this.post({
+      url: `${this.baseUrl}/media/short_video/share`,
+      data: { id, scene, page },
       success
     });
   }

@@ -166,20 +166,22 @@ Page({
       const { noteList } = this.data;
       const { id, imageList, title, authorInfo, likeNumber } =
         noteList[curNoteIdx];
-
       const scene = `id=${id}`;
       const page = "pages/tab-bar-pages/home/index";
-      const qrcode = await noteService.getQRCode(scene, page);
 
-      this.setData({
-        posterModalVisible: true,
-        posterInfo: {
-          cover: imageList[0],
-          title,
-          authorInfo,
-          likeNumber: numOver(likeNumber, 100000),
-          qrcode
-        }
+      noteService.shareTourismNote(id, scene, page, res => {
+        const { qrcode, shareTimes } = res.data;
+        this.setData({
+          posterModalVisible: true,
+          posterInfo: {
+            cover: imageList[0],
+            title,
+            authorInfo,
+            likeNumber: numOver(likeNumber, 100000),
+            qrcode
+          },
+          [`noteList[${curNoteIdx}].shareTimes`]: shareTimes
+        });
       });
     });
   },

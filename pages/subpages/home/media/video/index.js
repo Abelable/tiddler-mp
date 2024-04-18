@@ -168,20 +168,22 @@ Page({
   async share() {
     const { videoList, curVideoIdx } = this.data;
     const { id, cover, title, authorInfo, likeNumber } = videoList[curVideoIdx];
-
     const scene = `id=${id}`;
     const page = "pages/tab-bar-pages/home/index";
-    const qrcode = await videoService.getQRCode(scene, page);
 
-    this.setData({
-      posterModalVisible: true,
-      posterInfo: {
-        cover,
-        title,
-        authorInfo,
-        likeNumber: numOver(likeNumber, 100000),
-        qrcode
-      }
+    videoService.shareShortVideo(id, scene, page, res => {
+      const { qrcode, shareTimes } = res.data;
+      this.setData({
+        posterModalVisible: true,
+        posterInfo: {
+          cover,
+          title,
+          authorInfo,
+          likeNumber: numOver(likeNumber, 100000),
+          qrcode
+        },
+        [`videoList[${curVideoIdx}].shareTimes`]: shareTimes
+      });
     });
   },
 
