@@ -9,8 +9,15 @@
   </view>
   <view class="title omit">{{ item.name }}</view>
   <view class="label-list">
-    <view class="label">体验慢生活</view>
-    <view class="label">纯玩0购物</view>
+    <view 
+      class="label omit single-line" 
+      wx:for="{{featureTagList}}" 
+      wx:key="_index" 
+      wx:for-item="_item" 
+      wx:for-index="_index"
+    >
+      {{ _item }}
+    </view>
   </view>
   <view class="info-wrap">
     <view class="price">
