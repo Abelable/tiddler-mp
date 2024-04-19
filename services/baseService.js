@@ -280,6 +280,26 @@ class BaseService extends Base {
     });
   }
 
+  async getHistoryKeywords() {
+    return await this.get({
+      url: `${this.baseUrl}/keyword/list`,
+      loadingTitle: "加载中..."
+    });
+  }
+
+  async clearHistoryKeywords() {
+    return await this.post({
+      url: `${this.baseUrl}/keyword/clear`
+    });
+  }
+
+  async getHotKeywords() {
+    return await this.get({
+      url: `${this.baseUrl}/keyword/hot_list`,
+      loadingTitle: "加载中..."
+    });
+  }
+
   async searchVideoList(keywords, page, limit = 10) {
     return await this.get({
       url: `${this.baseUrl}/media/short_video/search`,

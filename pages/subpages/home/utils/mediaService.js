@@ -135,26 +135,6 @@ class MediaService extends BaseService {
       success
     });
   }
-
-  async getHistoryKeywords() {
-    return await this.get({
-      url: `${this.baseUrl}/keyword/list`,
-      loadingTitle: "加载中..."
-    });
-  }
-
-  async clearHistoryKeywords() {
-    return await this.post({
-      url: `${this.baseUrl}/keyword/clear`
-    });
-  }
-
-  async getHotKeywords() {
-    return await this.get({
-      url: `${this.baseUrl}/keyword/hot_list`,
-      loadingTitle: "加载中..."
-    });
-  }
 }
 
 export default MediaService;
