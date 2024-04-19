@@ -279,6 +279,30 @@ class BaseService extends Base {
       loadingTitle: "加载中..."
     });
   }
+
+  async searchVideoList(keywords, page, limit = 10) {
+    return await this.get({
+      url: `${this.baseUrl}/media/short_video/search`,
+      data: { keywords, page, limit },
+      loadingTitle: "加载中..."
+    });
+  }
+
+  async searchNoteList(keywords, page, limit = 10) {
+    return await this.get({
+      url: `${this.baseUrl}/media/tourism_note/search`,
+      data: { keywords, page, limit },
+      loadingTitle: "加载中..."
+    });
+  }
+
+  async searchLiveRoomList(keywords, page, limit = 10) {
+    return await this.get({
+      url: `${this.baseUrl}/media/live/search`,
+      data: { keywords, page, limit },
+      loadingTitle: "加载中..."
+    });
+  }
 }
 
 export default BaseService;

@@ -1,7 +1,7 @@
 import { customBack } from "../../../../utils/index";
-import MediaService from "../utils/mediaService";
+import BaseService from "../../../../services/baseService";
 
-const mediaService = new MediaService();
+const baseService = new BaseService();
 const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Page({
@@ -127,7 +127,7 @@ Page({
     }
     const { keywords, videoList } = this.data;
     const { list = [] } =
-      (await mediaService.searchVideoList(keywords, ++this.videoPage, limit)) ||
+      (await baseService.searchVideoList(keywords, ++this.videoPage, limit)) ||
       {};
     this.setData({
       videoList: init ? list : [...videoList, ...list],
@@ -145,7 +145,7 @@ Page({
     }
     const { keywords, noteList } = this.data;
     const { list = [] } =
-      (await mediaService.searchNoteList(keywords, ++this.notePage, limit)) ||
+      (await baseService.searchNoteList(keywords, ++this.notePage, limit)) ||
       {};
     this.setData({
       noteList: init ? list : [...noteList, ...list],
@@ -163,7 +163,7 @@ Page({
     }
     const { keywords, liveList } = this.data;
     const { list = [] } =
-      (await mediaService.searchLiveRoomList(
+      (await baseService.searchLiveRoomList(
         keywords,
         ++this.livePage,
         limit
@@ -180,12 +180,12 @@ Page({
   },
 
   async setHistoryKeywords() {
-    const historyKeywords = await mediaService.getHistoryKeywords();
+    const historyKeywords = await baseService.getHistoryKeywords();
     this.setData({ historyKeywords });
   },
   
   async setHotKeywords() {
-    const hotKeywords = await mediaService.getHotKeywords();
+    const hotKeywords = await baseService.getHotKeywords();
     this.setData({ hotKeywords });
   },
 
@@ -198,7 +198,7 @@ Page({
           this.setData({
             historyKeywords: [],
           });
-          mediaService.clearHistoryKeywords();
+          baseService.clearHistoryKeywords();
         }
       },
     });

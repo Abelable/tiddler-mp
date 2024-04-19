@@ -5,7 +5,7 @@ class MediaService extends BaseService {
   async saveLiveChatMsg(id, content, identity) {
     return await this.post({
       url: `${this.baseUrl}/media/live/comment`,
-      data: { id, content, identity },
+      data: { id, content, identity }
     });
   }
 
@@ -13,15 +13,7 @@ class MediaService extends BaseService {
     return await this.get({
       url: `${this.baseUrl}/media/short_video/list`,
       data: cleanObject({ id, authorId, page, limit }),
-      loadingTitle,
-    });
-  }
-
-  async searchVideoList(keywords, page, limit = 10) {
-    return await this.get({
-      url: `${this.baseUrl}/media/short_video/search`,
-      data: { keywords, page, limit },
-      loadingTitle: "加载中...",
+      loadingTitle
     });
   }
 
@@ -30,7 +22,7 @@ class MediaService extends BaseService {
       (await this.get({
         url: `${this.baseUrl}/media/short_video/comment_list`,
         data: { mediaId, page, limit },
-        loadingTitle: "加载中...",
+        loadingTitle: "加载中..."
       })) || {};
     return list;
   }
@@ -40,7 +32,7 @@ class MediaService extends BaseService {
       (await this.get({
         url: `${this.baseUrl}/media/short_video/reply_comment_list`,
         data: { mediaId, commentId, page, limit },
-        loadingTitle: "加载中...",
+        loadingTitle: "加载中..."
       })) || {};
     return list;
   }
@@ -49,7 +41,7 @@ class MediaService extends BaseService {
     return await this.post({
       url: `${this.baseUrl}/media/short_video/comment`,
       data: cleanObject({ mediaId, commentId, content }),
-      success,
+      success
     });
   }
 
@@ -57,7 +49,7 @@ class MediaService extends BaseService {
     return await this.post({
       url: `${this.baseUrl}/media/short_video/delete_comment`,
       data: { id },
-      success,
+      success
     });
   }
 
@@ -67,20 +59,12 @@ class MediaService extends BaseService {
     withComments = 0,
     page,
     limit = 10,
-    loadingTitle,
+    loadingTitle
   }) {
     return await this.get({
       url: `${this.baseUrl}/media/tourism_note/list`,
       data: cleanObject({ id, authorId, withComments, page, limit }),
-      loadingTitle,
-    });
-  }
-
-  async searchNoteList(keywords, page, limit = 10) {
-    return await this.get({
-      url: `${this.baseUrl}/media/tourism_note/search`,
-      data: { keywords, page, limit },
-      loadingTitle: "加载中...",
+      loadingTitle
     });
   }
 
@@ -89,7 +73,7 @@ class MediaService extends BaseService {
       (await this.get({
         url: `${this.baseUrl}/media/tourism_note/comment_list`,
         data: { mediaId, page, limit },
-        loadingTitle: "加载中...",
+        loadingTitle: "加载中..."
       })) || {};
     return list;
   }
@@ -99,7 +83,7 @@ class MediaService extends BaseService {
       (await this.get({
         url: `${this.baseUrl}/media/tourism_note/reply_comment_list`,
         data: { mediaId, commentId, page, limit },
-        loadingTitle: "加载中...",
+        loadingTitle: "加载中..."
       })) || {};
     return list;
   }
@@ -108,7 +92,7 @@ class MediaService extends BaseService {
     return await this.post({
       url: `${this.baseUrl}/media/tourism_note/comment`,
       data: cleanObject({ mediaId, commentId, content }),
-      success,
+      success
     });
   }
 
@@ -116,7 +100,7 @@ class MediaService extends BaseService {
     return await this.post({
       url: `${this.baseUrl}/media/tourism_note/delete_comment`,
       data: { id },
-      success,
+      success
     });
   }
 
@@ -124,7 +108,7 @@ class MediaService extends BaseService {
     return await this.post({
       url: `${this.baseUrl}/media/short_video/toggle_private`,
       data: { id },
-      success,
+      success
     });
   }
 
@@ -132,7 +116,7 @@ class MediaService extends BaseService {
     return await this.post({
       url: `${this.baseUrl}/media/tourism_note/toggle_private`,
       data: { id },
-      success,
+      success
     });
   }
 
@@ -140,7 +124,7 @@ class MediaService extends BaseService {
     return await this.post({
       url: `${this.baseUrl}/media/short_video/delete`,
       data: { id },
-      success,
+      success
     });
   }
 
@@ -148,35 +132,27 @@ class MediaService extends BaseService {
     return await this.post({
       url: `${this.baseUrl}/media/tourism_note/delete`,
       data: { id },
-      success,
+      success
     });
   }
 
   async getHistoryKeywords() {
     return await this.get({
       url: `${this.baseUrl}/keyword/list`,
-      loadingTitle: "加载中...",
+      loadingTitle: "加载中..."
     });
   }
 
   async clearHistoryKeywords() {
     return await this.post({
-      url: `${this.baseUrl}/keyword/clear`,
+      url: `${this.baseUrl}/keyword/clear`
     });
   }
 
   async getHotKeywords() {
     return await this.get({
       url: `${this.baseUrl}/keyword/hot_list`,
-      loadingTitle: "加载中...",
-    });
-  }
-
-  async searchLiveRoomList(keywords, page, limit = 10) {
-    return await this.get({
-      url: `${this.baseUrl}/media/live/search`,
-      data: { keywords, page, limit },
-      loadingTitle: "加载中...",
+      loadingTitle: "加载中..."
     });
   }
 }
