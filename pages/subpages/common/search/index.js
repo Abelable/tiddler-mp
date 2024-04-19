@@ -96,13 +96,24 @@ Page({
     const curMenuIdx = Number(e.currentTarget.dataset.index);
     const tabScroll = (curMenuIdx - 2) * 80;
     this.setData({ curMenuIdx, tabScroll });
-    const { videoList, noteList, liveList, goodsList } = this.data;
+    const {
+      videoList,
+      noteList,
+      liveList,
+      scenicList,
+      hotelList,
+      restaurantList,
+      goodsList
+    } = this.data;
 
     if (
-      (curMenuIdx === 0 && !videoList.length) ||
-      (curMenuIdx === 1 && !noteList.length) ||
-      (curMenuIdx === 2 && !liveList.length) ||
-      (curMenuIdx === 3 && !goodsList.length)
+      (curMenuIdx === 1 && !videoList.length) ||
+      (curMenuIdx === 2 && !noteList.length) ||
+      (curMenuIdx === 3 && !liveList.length) ||
+      (curMenuIdx === 4 && !scenicList.length) ||
+      (curMenuIdx === 5 && !hotelList.length) ||
+      (curMenuIdx === 6 && !restaurantList.length) ||
+      (curMenuIdx === 7 && !goodsList.length)
     ) {
       this.setList(true);
     }
@@ -121,7 +132,7 @@ Page({
     switch (this.data.curMenuIdx) {
       case 0:
         break;
-        
+
       case 1:
         this.setVideoList(init);
         break;
