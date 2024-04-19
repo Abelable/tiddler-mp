@@ -324,6 +324,30 @@ class BaseService extends Base {
     });
   }
 
+  async searchScenicList(keywords, page, limit = 10) {
+    return await this.get({
+      url: `${this.baseUrl}/scenic/search`,
+      data: { keywords, page, limit },
+      loadingTitle: "加载中..."
+    });
+  }
+
+  async searchHotelList(keywords, page, limit = 10) {
+    return await this.get({
+      url: `${this.baseUrl}/hotel/search`,
+      data: { keywords, page, limit },
+      loadingTitle: "加载中..."
+    });
+  }
+
+  async searchRestaurantList(keywords, page, limit = 10) {
+    return await this.get({
+      url: `${this.baseUrl}/catering/restaurant/search`,
+      data: { keywords, page, limit },
+      loadingTitle: "加载中..."
+    });
+  }
+
   async getShopCategoryOptions() {
     return await this.get({ url: `${this.baseUrl}/shop/category_options` });
   }
@@ -331,7 +355,7 @@ class BaseService extends Base {
   async getGoodsCategoryOptions(shopCategoryId) {
     return await this.get({
       url: `${this.baseUrl}/goods/category_options`,
-      data: { shopCategoryId },
+      data: { shopCategoryId }
     });
   }
 

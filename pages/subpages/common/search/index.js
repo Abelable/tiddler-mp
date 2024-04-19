@@ -18,6 +18,12 @@ Page({
     noteFinished: false,
     liveList: [],
     liveFinished: false,
+    scenicList: [],
+    scenicFinished: false,
+    hotelList: [],
+    hotelFinished: false,
+    restaurantList: [],
+    restaurantFinished: false,
     curGoodsSortIndex: 0,
     goodsSortOptions: [
       { icon: "", text: "综合排序", value: 0 },
@@ -124,6 +130,18 @@ Page({
         break;
 
       case 3:
+        this.setScenicList(init);
+        break;
+
+      case 4:
+        this.setHotelList(init);
+        break;
+
+      case 5:
+        this.setRestaurantList(init);
+        break;
+
+      case 6:
         this.setGoodsList(init);
         break;
     }
@@ -183,6 +201,66 @@ Page({
     });
     if (list.length < limit) {
       this.setData({ liveFinished: true });
+    }
+  },
+
+  async setScenicList(init = false) {
+    const limit = 10;
+    if (init) {
+      this.scenicPage = 0;
+      this.setData({ scenicFinished: false });
+    }
+    const { keywords, scenicList } = this.data;
+    const { list = [] } =
+      (await mallService.searchScenicList(
+        keywords,
+        ++this.scenicPage,
+        limit
+      )) || {};
+    this.setData({
+      scenicList: init ? list : [...scenicList, ...list]
+    });
+    if (list.length < limit) {
+      this.setData({ scenicFinished: true });
+    }
+  },
+
+  async setHotelList(init = false) {
+    const limit = 10;
+    if (init) {
+      this.hotelPage = 0;
+      this.setData({ hotelFinished: false });
+    }
+    const { keywords, hotelList } = this.data;
+    const { list = [] } =
+      (await mallService.searchHotelList(keywords, ++this.hotelPage, limit)) ||
+      {};
+    this.setData({
+      hotelList: init ? list : [...hotelList, ...list]
+    });
+    if (list.length < limit) {
+      this.setData({ hotelFinished: true });
+    }
+  },
+
+  async setRestaurantList(init = false) {
+    const limit = 10;
+    if (init) {
+      this.restaurantPage = 0;
+      this.setData({ restaurantFinished: false });
+    }
+    const { keywords, restaurantList } = this.data;
+    const { list = [] } =
+      (await mallService.searchRestaurantList(
+        keywords,
+        ++this.restaurantPage,
+        limit
+      )) || {};
+    this.setData({
+      restaurantList: init ? list : [...restaurantList, ...list]
+    });
+    if (list.length < limit) {
+      this.setData({ restaurantFinished: true });
     }
   },
 

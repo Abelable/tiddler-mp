@@ -95,7 +95,7 @@ Component({
 
     search() {
       wx.navigateTo({
-        url: "/pages/subpages/mall/search/index",
+        url: "/pages/subpages/common/search/index",
       });
     },
 

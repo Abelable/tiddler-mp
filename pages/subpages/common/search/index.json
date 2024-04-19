@@ -8,6 +8,9 @@
     "video-item": "/components/video-item/index",
     "note-item": "/components/note-item/index",
     "live-item": "/components/live-item/index",
+    "scenic-item": "/components/scenic-item/index",
+    "hotel-item": "/components/hotel-item/index",
+    "restaurant-item": "/components/restaurant-item/index",
     "goods-item": "/components/goods-item/index",
     "empty-illus": "/components/empty-illus/index"
   }
