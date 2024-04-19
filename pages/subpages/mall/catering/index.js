@@ -20,7 +20,6 @@ Page({
     ],
     curCategoryId: 0,
     categoryOptions: [],
-    keywords: "",
     restaurantList: [],
     finished: false,
   },
@@ -61,30 +60,6 @@ Page({
     });
   },
 
-  setKeywords: debounce(function (e) {
-    this.setData({
-      keywords: e.detail.value,
-    });
-  }, 500),
-
-  clearKeywords() {
-    this.setData(
-      {
-        keywords: "",
-      },
-      () => {
-        this.setRestaurantList(true);
-      }
-    );
-  },
-
-  search() {
-    if (!this.data.keywords) {
-      return;
-    }
-    this.setRestaurantList(true);
-  },
-
   async setRestaurantList(init = false) {
     const limit = 10;
     if (init) {
@@ -93,7 +68,7 @@ Page({
         finished: false,
       });
     }
-    const { keywords, curSortIndex, curCategoryId, restaurantList } = this.data;
+    const { curSortIndex, curCategoryId, restaurantList } = this.data;
     let sort = "";
     let order = "desc";
     switch (curSortIndex) {
@@ -110,7 +85,6 @@ Page({
     }
     const list =
       (await cateringService.getRestaurantList({
-        keywords,
         categoryId: curCategoryId,
         sort,
         order,
@@ -125,6 +99,12 @@ Page({
         finished: true,
       });
     }
+  },
+
+  search() {
+    wx.navigateTo({
+      url: '/pages/subpages/common/search/index?scene=6'
+    });
   },
 
   navBack() {

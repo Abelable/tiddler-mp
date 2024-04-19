@@ -11,6 +11,7 @@ Page({
     hotKeywords: [],
     keywords: "",
     isSearching: false,
+    tabScroll: 0,
     curMenuIdx: 0,
     videoList: [],
     videoFinished: false,
@@ -93,7 +94,8 @@ Page({
 
   selectMenu(e) {
     const curMenuIdx = Number(e.currentTarget.dataset.index);
-    this.setData({ curMenuIdx });
+    const tabScroll = (curMenuIdx - 2) * 80;
+    this.setData({ curMenuIdx, tabScroll });
     const { videoList, noteList, liveList, goodsList } = this.data;
 
     if (
@@ -118,31 +120,37 @@ Page({
   setList(init = false) {
     switch (this.data.curMenuIdx) {
       case 0:
+        break;
+        
+      case 1:
         this.setVideoList(init);
         break;
 
-      case 1:
+      case 2:
         this.setNoteList(init);
         break;
 
-      case 2:
+      case 3:
         this.setLiveList(init);
         break;
 
-      case 3:
+      case 4:
         this.setScenicList(init);
         break;
 
-      case 4:
+      case 5:
         this.setHotelList(init);
         break;
 
-      case 5:
+      case 6:
         this.setRestaurantList(init);
         break;
 
-      case 6:
+      case 7:
         this.setGoodsList(init);
+        break;
+
+      case 8:
         break;
     }
   },

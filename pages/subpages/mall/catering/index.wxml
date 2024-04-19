@@ -3,12 +3,9 @@
 <view class="nav-bar" style="padding-top: {{statusBarHeight}}px;">
   <view class="search-bar-wrap">
     <image class="back-icon" src="https://img.ubo.vip/tiddler/nav-icon/back.png" bindtap="navBack" />
-    <view class="search-bar">
+    <view class="search-bar" bindtap="search">
       <image class="search-icon" src="https://img.ubo.vip/tiddler/nav-icon/search.png" />
-      <input class="search-input" value="{{keywords}}" bindinput="setKeywords" bindconfirm="search" placeholder="搜索餐厅" confirm-type="search" />
-      <view class="cancel-btn" wx:if="{{keywords}}" bindtap="clearKeywords">
-        <image class="cancel-icon" src="https://img.ubo.vip/mp/search/clear-search.png" />
-      </view>
+      <text class="placeholder">搜索餐厅</text>
     </view>
   </view>
 

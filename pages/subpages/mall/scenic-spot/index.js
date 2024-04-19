@@ -75,7 +75,7 @@ Page({
 
   search() {
     wx.navigateTo({
-      url: '/pages/subpages/common/search/index?scene=3'
+      url: '/pages/subpages/common/search/index?scene=4'
     });
   },
 

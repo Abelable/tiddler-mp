@@ -16,7 +16,7 @@
   <view class="menu-tab-list row">
     <view 
       class="menu-tab {{curMenuIdx === index ? 'active' : '' }} row center" 
-      wx:for="{{['景点', '酒店', '餐馆', '商品']}}" 
+      wx:for="{{['景点', '酒店', '餐厅', '商品']}}" 
       wx:key="index" 
       bindtap="selectMenu" 
       data-index="{{ index }}"
@@ -68,7 +68,7 @@
         </view>
       </view>
     </view>
-    <empty-illus wx:if="{{restaurantFinished && !restaurantList.length}}" desc="暂无相关餐馆" />
+    <empty-illus wx:if="{{restaurantFinished && !restaurantList.length}}" desc="暂无相关餐厅" />
     <view class="no-more-tips" wx:if="{{restaurantFinished && restaurantList.length}}">～没有更多了～</view>
   </view>
 

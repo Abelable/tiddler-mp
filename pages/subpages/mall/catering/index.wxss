@@ -20,36 +20,21 @@
 .search-bar {
   display: flex;
   align-items: center;
-  margin-left: 16rpx;
-  padding-left: 32rpx;
-  width: 468rpx;
+  margin-left: 8px;
+  padding-left: 12px;
+  width: 200px;
   height: 36px;
   border-radius: 18px;
   background: #f5f6f7;
 }
 .search-icon {
-  margin-left: 10px;
   margin-right: 5px;
   width: 16px;
   height: 16px;
 }
-.search-input {
-  padding-left: 10rpx;
-  flex: 1;
-  height: 30px;
-  color: #333;
-  font-size: 26rpx;
-}
-.cancel-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 60rpx;
-  height: 60rpx;
-}
-.cancel-icon {
-  width: 32rpx;
-  height: 32rpx;
+.placeholder {
+  color: #666;
+  font-size: 14px;
 }
 
 .restaurant-list {
