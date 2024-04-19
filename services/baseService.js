@@ -323,6 +323,34 @@ class BaseService extends Base {
       loadingTitle: "加载中..."
     });
   }
+
+  async getShopCategoryOptions() {
+    return await this.get({ url: `${this.baseUrl}/shop/category_options` });
+  }
+
+  async getGoodsCategoryOptions(shopCategoryId) {
+    return await this.get({
+      url: `${this.baseUrl}/goods/category_options`,
+      data: { shopCategoryId },
+    });
+  }
+
+  async seachGoodsList({
+    keywords,
+    categoryId,
+    sort,
+    order,
+    page,
+    limit = 10
+  }) {
+    const { list = [] } =
+      (await this.get({
+        url: `${this.baseUrl}/goods/search`,
+        data: cleanObject({ keywords, categoryId, sort, order, page, limit }),
+        loadingTitle: "加载中..."
+      })) || {};
+    return list;
+  }
 }
 
 export default BaseService;

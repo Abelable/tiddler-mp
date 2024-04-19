@@ -2,17 +2,6 @@ import { cleanObject } from "../../../../../utils/index";
 import MallService from "../../utils/mallService";
 
 class GoodsService extends MallService {
-  async getShopCategoryOptions() {
-    return await this.get({ url: `${this.baseUrl}/shop/category_options` });
-  }
-
-  async getGoodsCategoryOptions(shopCategoryId) {
-    return await this.get({
-      url: `${this.baseUrl}/goods/category_options`,
-      data: { shopCategoryId },
-    });
-  }
-
   async getGoodsList({ shopCategoryId, categoryId, sort, order, page, limit = 10 }) {
     const { list = [] } =
       (await this.get({
@@ -109,26 +98,6 @@ class GoodsService extends MallService {
       url: `${this.baseUrl}/order/submit`,
       data: { addressId, cartGoodsIds },
       loadingTitle: "订单提交中...",
-    });
-  }
-
-  async getHistoryKeywords() {
-    return await this.get({
-      url: `${this.baseUrl}/goods/keyword/list`,
-      loadingTitle: "加载中...",
-    });
-  }
-
-  async clearHistoryKeywords() {
-    return await this.post({
-      url: `${this.baseUrl}/goods/keyword/clear`,
-    });
-  }
-
-  async getHotKeywords() {
-    return await this.get({
-      url: `${this.baseUrl}/goods/keyword/hot_list`,
-      loadingTitle: "加载中...",
     });
   }
 

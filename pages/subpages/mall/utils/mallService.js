@@ -56,43 +56,6 @@ class MallService extends BaseService {
     });
   }
 
-  async getHistoryKeywords() {
-    return await this.get({
-      url: `${this.baseUrl}/mall/keyword/list`,
-      loadingTitle: "加载中..."
-    });
-  }
-
-  async clearHistoryKeywords() {
-    return await this.post({
-      url: `${this.baseUrl}/mall/keyword/clear`
-    });
-  }
-
-  async getHotKeywords() {
-    return await this.get({
-      url: `${this.baseUrl}/mall/keyword/hot_list`,
-      loadingTitle: "加载中..."
-    });
-  }
-
-  async seachGoodsList({
-    keywords,
-    categoryId,
-    sort,
-    order,
-    page,
-    limit = 10
-  }) {
-    const { list = [] } =
-      (await this.get({
-        url: `${this.baseUrl}/goods/search`,
-        data: cleanObject({ keywords, categoryId, sort, order, page, limit }),
-        loadingTitle: "加载中..."
-      })) || {};
-    return list;
-  }
-
   async getRelativeMediaList(commodityType, commodityId, page, limit = 10) {
     return await this.get({
       url: `${this.baseUrl}/media/commodity_relative_list`,

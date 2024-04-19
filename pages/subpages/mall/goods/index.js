@@ -120,7 +120,7 @@ Page({
 
   search() {
     wx.navigateTo({
-      url: "./subpages/search/index",
+      url: "/pages/subpages/common/search/index?scene=3",
     });
   },
 });

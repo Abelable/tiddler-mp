@@ -18,16 +18,29 @@ Page({
     noteFinished: false,
     liveList: [],
     liveFinished: false,
+    curGoodsSortIndex: 0,
+    goodsSortOptions: [
+      { icon: "", text: "综合排序", value: 0 },
+      { icon: "", text: "销量排序", value: 1 },
+      { icon: "", text: "价格降序", value: 2 },
+      { icon: "", text: "价格升序", value: 3 }
+    ],
+    curGoodsCategoryId: 0,
+    goodsCategoryOptions: [],
+    goodsList: [],
+    goodsFinished: false
   },
 
-  onLoad() {
+  onLoad({ scene = 0 }) {
+    this.setData({ curMenuIdx: Number(scene) });
+    this.setGoodsCategoryOptions();
     this.setHistoryKeywords();
     this.setHotKeywords();
   },
 
   setKeywords(e) {
     this.setData({
-      keywords: e.detail.value,
+      keywords: e.detail.value
     });
   },
 
@@ -42,6 +55,10 @@ Page({
       noteFinished: false,
       liveList: [],
       liveFinished: false,
+      curGoodsSortIndex: 0,
+      curGoodsCategoryId: 0,
+      goodsList: [],
+      goodsFinished: false
     });
   },
 
@@ -49,21 +66,9 @@ Page({
     const { keywords } = e.currentTarget.dataset;
     this.setData({
       keywords,
-      isSearching: true,
+      isSearching: true
     });
-    switch (this.data.curMenuIdx) {
-      case 0:
-        this.setVideoList(true);
-        break;
-
-      case 1:
-        this.setNoteList(true);
-        break;
-
-      case 2:
-        this.setLiveList(true);
-        break;
-    }
+    this.setList(true);
   },
 
   search() {
@@ -72,7 +77,7 @@ Page({
       return;
     }
     this.setData({
-      historyKeywords: Array.from(new Set([...historyKeywords, keywords])),
+      historyKeywords: Array.from(new Set([...historyKeywords, keywords]))
     });
     if (!isSearching) {
       this.setData({ isSearching: true });
@@ -83,12 +88,13 @@ Page({
   selectMenu(e) {
     const curMenuIdx = Number(e.currentTarget.dataset.index);
     this.setData({ curMenuIdx });
-    const { videoList, noteList, liveList } = this.data;
+    const { videoList, noteList, liveList, goodsList } = this.data;
 
     if (
       (curMenuIdx === 0 && !videoList.length) ||
       (curMenuIdx === 1 && !noteList.length) ||
-      (curMenuIdx === 2 && !liveList.length)
+      (curMenuIdx === 2 && !liveList.length) ||
+      (curMenuIdx === 3 && !goodsList.length)
     ) {
       this.setList(true);
     }
@@ -116,6 +122,10 @@ Page({
       case 2:
         this.setLiveList(init);
         break;
+
+      case 3:
+        this.setGoodsList(init);
+        break;
     }
   },
 
@@ -130,7 +140,7 @@ Page({
       (await baseService.searchVideoList(keywords, ++this.videoPage, limit)) ||
       {};
     this.setData({
-      videoList: init ? list : [...videoList, ...list],
+      videoList: init ? list : [...videoList, ...list]
     });
     if (list.length < limit) {
       this.setData({ videoFinished: true });
@@ -148,7 +158,7 @@ Page({
       (await baseService.searchNoteList(keywords, ++this.notePage, limit)) ||
       {};
     this.setData({
-      noteList: init ? list : [...noteList, ...list],
+      noteList: init ? list : [...noteList, ...list]
     });
     if (list.length < limit) {
       this.setData({ noteFinished: true });
@@ -169,13 +179,64 @@ Page({
         limit
       )) || {};
     this.setData({
-      liveList: init ? list : [...liveList, ...list],
+      liveList: init ? list : [...liveList, ...list]
     });
-    // if (list.length < limit) {
-    //   this.setData({ liveFinished: true });
-    // }
-    if (!list.length) {
+    if (list.length < limit) {
       this.setData({ liveFinished: true });
+    }
+  },
+
+  async setGoodsCategoryOptions() {
+    const options = await baseService.getShopCategoryOptions();
+    const goodsCategoryOptions = [
+      { icon: "", text: "全部分类", value: 0 },
+      ...options.map(item => ({ icon: "", text: item.name, value: item.id }))
+    ];
+    this.setData({ goodsCategoryOptions });
+  },
+
+  async setGoodsList(init = false) {
+    const limit = 10;
+    if (init) {
+      this.goodsPage = 0;
+      this.setData({ goodsFinished: false });
+    }
+    const {
+      keywords,
+      curGoodsSortIndex,
+      curGoodsCategoryId: categoryId,
+      goodsList
+    } = this.data;
+    let sort = "";
+    let order = "desc";
+    switch (curGoodsSortIndex) {
+      case 1:
+        sort = "sales_volume";
+        break;
+      case 2:
+        sort = "price";
+        break;
+      case 3:
+        sort = "price";
+        order = "asc";
+        break;
+    }
+    const list =
+      (await baseService.seachGoodsList({
+        keywords,
+        categoryId,
+        sort,
+        order,
+        page: ++this.goodsPage,
+        limit
+      })) || [];
+    this.setData({
+      goodsList: init ? list : [...goodsList, ...list]
+    });
+    if (list.length < limit) {
+      this.setData({
+        goodsFinished: true
+      });
     }
   },
 
@@ -183,7 +244,7 @@ Page({
     const historyKeywords = await baseService.getHistoryKeywords();
     this.setData({ historyKeywords });
   },
-  
+
   async setHotKeywords() {
     const hotKeywords = await baseService.getHotKeywords();
     this.setData({ hotKeywords });
@@ -193,18 +254,18 @@ Page({
     wx.showModal({
       content: "确定清空历史搜索记录吗？",
       showCancel: true,
-      success: (result) => {
+      success: result => {
         if (result.confirm) {
           this.setData({
-            historyKeywords: [],
+            historyKeywords: []
           });
           baseService.clearHistoryKeywords();
         }
-      },
+      }
     });
   },
 
   navBack() {
     customBack();
-  },
+  }
 });
