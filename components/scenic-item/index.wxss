@@ -52,7 +52,7 @@
   font-weight: 500;
 }
 
-.title {
+.scenic-title {
   margin-top: 12rpx;
   padding: 0 10rpx;
   color: #333;

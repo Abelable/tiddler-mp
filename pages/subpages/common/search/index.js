@@ -212,7 +212,7 @@ Page({
     }
     const { keywords, scenicList } = this.data;
     const { list = [] } =
-      (await mallService.searchScenicList(
+      (await baseService.searchScenicList(
         keywords,
         ++this.scenicPage,
         limit
@@ -233,7 +233,7 @@ Page({
     }
     const { keywords, hotelList } = this.data;
     const { list = [] } =
-      (await mallService.searchHotelList(keywords, ++this.hotelPage, limit)) ||
+      (await baseService.searchHotelList(keywords, ++this.hotelPage, limit)) ||
       {};
     this.setData({
       hotelList: init ? list : [...hotelList, ...list]
@@ -251,7 +251,7 @@ Page({
     }
     const { keywords, restaurantList } = this.data;
     const { list = [] } =
-      (await mallService.searchRestaurantList(
+      (await baseService.searchRestaurantList(
         keywords,
         ++this.restaurantPage,
         limit

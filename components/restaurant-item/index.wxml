@@ -7,7 +7,7 @@
       <text class="address-detail omit single-line">{{ item.address }}</text>
     </view>
   </view>
-  <view class="title omit">{{ item.name }}</view>
+  <view class="restaurant-title omit">{{ item.name }}</view>
   <view class="label-list">
     <view 
       class="label omit single-line" 

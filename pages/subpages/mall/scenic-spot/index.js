@@ -73,6 +73,12 @@ Page({
     wx.stopPullDownRefresh();
   },
 
+  search() {
+    wx.navigateTo({
+      url: '/pages/subpages/common/search/index?scene=3'
+    });
+  },
+
   navBack() {
     customBack();
   }
