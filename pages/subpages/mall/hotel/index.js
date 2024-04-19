@@ -1,6 +1,5 @@
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { store } from "../../../../store/index";
-import { debounce } from "../../../../utils/index";
 import { formatter } from "./utils/index";
 import HotelService from "./utils/hotelService";
 
@@ -21,7 +20,6 @@ Page({
     curCategoryId: 0,
     categoryOptions: [],
     calendarPopupVisibel: false,
-    keywords: "",
     hotelList: [],
     finished: false,
   },
@@ -63,30 +61,6 @@ Page({
     });
   },
 
-  setKeywords: debounce(function (e) {
-    this.setData({
-      keywords: e.detail.value,
-    });
-  }, 500),
-
-  clearKeywords() {
-    this.setData(
-      {
-        keywords: "",
-      },
-      () => {
-        this.setHotelList(true);
-      }
-    );
-  },
-
-  search() {
-    if (!this.data.keywords) {
-      return;
-    }
-    this.setHotelList(true);
-  },
-
   async setHotelList(init = false) {
     const limit = 10;
     if (init) {
@@ -95,7 +69,7 @@ Page({
         finished: false,
       });
     }
-    const { keywords, curSortIndex, curCategoryId, hotelList } = this.data;
+    const { curSortIndex, curCategoryId, hotelList } = this.data;
     let sort = "";
     let order = "desc";
     switch (curSortIndex) {
@@ -112,7 +86,6 @@ Page({
     }
     const list =
       (await hotelService.getHotelList({
-        keywords,
         categoryId: curCategoryId,
         sort,
         order,
