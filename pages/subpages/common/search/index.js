@@ -1,12 +1,12 @@
+import { createStoreBindings } from "mobx-miniprogram-bindings";
+import { store } from "../../../../store/index";
 import { customBack } from "../../../../utils/index";
 import BaseService from "../../../../services/baseService";
 
 const baseService = new BaseService();
-const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Page({
   data: {
-    statusBarHeight,
     historyKeywords: [],
     hotKeywords: [],
     keywords: "",
@@ -25,22 +25,19 @@ Page({
     hotelFinished: false,
     restaurantList: [],
     restaurantFinished: false,
-    curGoodsSortIndex: 0,
-    goodsSortOptions: [
-      { icon: "", text: "综合排序", value: 0 },
-      { icon: "", text: "销量排序", value: 1 },
-      { icon: "", text: "价格降序", value: 2 },
-      { icon: "", text: "价格升序", value: 3 }
-    ],
-    curGoodsCategoryId: 0,
-    goodsCategoryOptions: [],
     goodsList: [],
-    goodsFinished: false
+    goodsFinished: false,
+    calendarPopupVisibel: false
   },
 
   onLoad({ scene = 0 }) {
+    this.storeBindings = createStoreBindings(this, {
+      store,
+      fields: ["checkInDate", "checkOutDate"]
+    });
+
     this.setData({ curMenuIdx: Number(scene) });
-    this.setGoodsCategoryOptions();
+    this.initCalendar();
     this.setHistoryKeywords();
     this.setHotKeywords();
   },
@@ -283,47 +280,16 @@ Page({
     }
   },
 
-  async setGoodsCategoryOptions() {
-    const options = await baseService.getShopCategoryOptions();
-    const goodsCategoryOptions = [
-      { icon: "", text: "全部分类", value: 0 },
-      ...options.map(item => ({ icon: "", text: item.name, value: item.id }))
-    ];
-    this.setData({ goodsCategoryOptions });
-  },
-
   async setGoodsList(init = false) {
     const limit = 10;
     if (init) {
       this.goodsPage = 0;
       this.setData({ goodsFinished: false });
     }
-    const {
-      keywords,
-      curGoodsSortIndex,
-      curGoodsCategoryId: categoryId,
-      goodsList
-    } = this.data;
-    let sort = "";
-    let order = "desc";
-    switch (curGoodsSortIndex) {
-      case 1:
-        sort = "sales_volume";
-        break;
-      case 2:
-        sort = "price";
-        break;
-      case 3:
-        sort = "price";
-        order = "asc";
-        break;
-    }
+    const { keywords, goodsList } = this.data;
     const list =
       (await baseService.seachGoodsList({
         keywords,
-        categoryId,
-        sort,
-        order,
         page: ++this.goodsPage,
         limit
       })) || [];
@@ -331,9 +297,7 @@ Page({
       goodsList: init ? list : [...goodsList, ...list]
     });
     if (list.length < limit) {
-      this.setData({
-        goodsFinished: true
-      });
+      this.setData({ goodsFinished: true });
     }
   },
 
@@ -362,7 +326,40 @@ Page({
     });
   },
 
+  showCalendarPopup() {
+    this.setData({
+      calendarPopupVisibel: true
+    });
+  },
+
+  hideCalendarPopup() {
+    this.setData({
+      calendarPopupVisibel: false
+    });
+  },
+
+  initCalendar() {
+    store.setCheckInDate(new Date().getTime());
+
+    const endDate = new Date();
+    endDate.setDate(endDate.getDate() + 1);
+    store.setCheckOutDate(endDate.getTime());
+  },
+
+  setCalendar(e) {
+    const [start, end] = e.detail;
+    store.setCheckInDate(start.getTime());
+    store.setCheckOutDate(end.getTime());
+    this.setData({
+      calendarPopupVisibel: false
+    });
+  },
+
   navBack() {
     customBack();
+  },
+
+  onUnload() {
+    this.storeBindings.destroyStoreBindings();
   }
 });

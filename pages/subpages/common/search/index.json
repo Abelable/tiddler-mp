@@ -1,9 +1,8 @@
 {
-  "navigationStyle": "custom",
+  "navigationBarTitleText": "搜索",
   "enablePullDownRefresh": true,
   "usingComponents": {
-    "van-dropdown-menu": "@vant/weapp/dropdown-menu/index",
-    "van-dropdown-item": "@vant/weapp/dropdown-item/index",
+    "van-calendar": "@vant/weapp/calendar/index",
     "fall-flow": "/components/fall-flow/index",
     "video-item": "/components/video-item/index",
     "note-item": "/components/note-item/index",

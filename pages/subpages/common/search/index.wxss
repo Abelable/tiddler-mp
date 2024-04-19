@@ -7,33 +7,37 @@
   z-index: 100;
 }
 .search-bar {
-  height: 44px;
-}
-.back-wrap {
-  padding: 0 16rpx;
-}
-.back-icon {
-  width: 34rpx;
-  height: 34rpx;
+  padding: 18rpx 24rpx;
+  border-top: 1px solid #eee;
 }
 .search-content {
   position: relative;
-  margin-right: 30rpx;
-  padding-left: 20rpx;
-  width: 430rpx;
-  height: 30px;
+  padding-right: 120rpx;
+  height: 72rpx;
   background: #fff;
-  border-radius: 15px;
+  border-radius: 36rpx;
   border: 1px solid #161f4e;
 }
+.calendar-bar {
+  margin-left: 32rpx;
+  padding-right: 20rpx;
+  border-right: 1px solid #e1e1e1;
+}
+.calendar-item {
+  color: var(--theme-color);
+  font-size: 20rpx;
+  font-weight: bold;
+  line-height: 1.2;
+}
 .search-icon {
+  margin-left: 20rpx;
   width: 30rpx;
   height: 30rpx;
 }
 .search-input {
   padding-left: 10rpx;
-  width: 210rpx;
-  height: 30px;
+  flex: 1;
+  height: 72rpx;
   color: #333;
   font-size: 26rpx;
 }
@@ -52,51 +56,52 @@
   position: absolute;
   top: -1px;
   right: -1px;
-  width: 100rpx;
-  height: 30px;
+  width: 120rpx;
+  height: 72rpx;
   font-size: 26rpx;
   color: #fff;
-  border-radius: 15px;
+  border-radius: 36rpx;
   background: #161f4e;
 }
 
 .menu-tab-list {
   display: flex;
-  padding: 0 8px;
-  height: 44px;
+  padding: 0 16rpx;
+  height: 88rpx;
   white-space: nowrap;
+  border-top: 1px solid #eee;
 }
 .menu-tab {
   display: inline-block;
-  padding: 0 10px;
-  height: 44px;
+  padding: 0 20rpx;
+  height: 88rpx;
   color: #999;
-  font-size: 14px;
-  line-height: 44px;
+  font-size: 28rpx;
+  line-height: 88rpx;
   transition: .1s ease;
 }
 .menu-tab.active {
   position: relative;
   color: #111;
-  font-size: 16px;
+  font-size: 32rpx;
   font-weight: 600;
   transition: .1s ease;
 }
 .menu-tab.active::before {
   position: absolute;
   left: 50%;
-  bottom: 14px;
+  bottom: 28rpx;
   transform: translateX(-50%);
   content: '';
   width: 68%;
-  height: 4px;
+  height: 8rpx;
   background: rgba(145, 217, 243, 0.8);
-  border-radius: 2px;
+  border-radius: 4rpx;
   z-index: -1;
 }
 
 .history-keywords-wrap {
-  padding: 0 30rpx;
+  padding: 138rpx 30rpx 0;
 }
 .hot-keywords-wrap {
   padding: 30rpx;
@@ -125,7 +130,7 @@
 }
 
 .list-wrap {
-  padding: 20rpx;
+  padding: 216rpx 20rpx 20rpx;
 }
 
 .no-more-tips {
