@@ -43,23 +43,9 @@
   width: 16px;
   height: 16px;
 }
-.search-input {
-  padding-left: 10rpx;
-  flex: 1;
-  height: 30px;
-  color: #333;
-  font-size: 26rpx;
-}
-.cancel-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 60rpx;
-  height: 60rpx;
-}
-.cancel-icon {
-  width: 32rpx;
-  height: 32rpx;
+.placeholder {
+  color: #666;
+  font-size: 14px;
 }
 
 .hotel-list {

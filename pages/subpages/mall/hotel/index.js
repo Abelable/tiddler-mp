@@ -158,6 +158,12 @@ Page({
     });
   },
 
+  search() {
+    wx.navigateTo({
+      url: "/pages/subpages/common/search/index?scene=5",
+    });
+  },
+
   navBack() {
     wx.navigateBack();
   },

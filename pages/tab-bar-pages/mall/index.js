@@ -11,7 +11,7 @@ Component({
     categoryList: [
       { name: "景点玩乐", icon: "https://img.ubo.vip/tiddler/mall/scenic.png" },
       { name: "酒店民宿", icon: "https://img.ubo.vip/tiddler/mall/hotel.png" },
-      { name: "美食小吃", icon: "https://img.ubo.vip/tiddler/mall/food.png" },
+      { name: "餐厅美食", icon: "https://img.ubo.vip/tiddler/mall/food.png" },
       {
         name: "特色商品",
         icon: "https://img.ubo.vip/tiddler/mall/shopping.png",

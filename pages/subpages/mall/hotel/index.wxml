@@ -1,10 +1,10 @@
 <wxs module="TIME" src="/utils/filters/time.wxs" />
 
 <view class="nav-bar" style="padding-top: {{statusBarHeight}}px;">
-  <view class="search-bar-wrap">
+  <view class="search-bar-wrap" bindtap="search">
     <image class="back-icon" src="https://img.ubo.vip/tiddler/nav-icon/back.png" bindtap="navBack" />
     <view class="search-bar">
-      <view class="calendar-bar" bindtap="showCalendarPopup">
+      <view class="calendar-bar" catchtap="showCalendarPopup">
         <view class="calendar-item">
           <text style="color: #999;">住</text>
           <text>{{TIME.transform(checkInDate, 'MM-DD')}}</text>
@@ -15,10 +15,7 @@
         </view>
       </view>
       <image class="search-icon" src="https://img.ubo.vip/tiddler/nav-icon/search.png" />
-      <input class="search-input" value="{{keywords}}" bindinput="setKeywords" bindconfirm="search" placeholder="搜索酒店/民宿" confirm-type="search" />
-      <view class="cancel-btn" wx:if="{{keywords}}" bindtap="clearKeywords">
-        <image class="cancel-icon" src="https://img.ubo.vip/mp/search/clear-search.png" />
-      </view>
+      <text class="placeholder">搜索酒店民宿</text>
     </view>
   </view>
 
