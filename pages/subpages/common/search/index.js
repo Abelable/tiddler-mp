@@ -23,11 +23,13 @@ Page({
     scenicFinished: false,
     hotelList: [],
     hotelFinished: false,
+    calendarPopupVisibel: false,
     restaurantList: [],
     restaurantFinished: false,
     goodsList: [],
     goodsFinished: false,
-    calendarPopupVisibel: false
+    userList: [],
+    userFinished: false
   },
 
   onLoad({ scene = 0 }) {
@@ -62,7 +64,9 @@ Page({
       curGoodsSortIndex: 0,
       curGoodsCategoryId: 0,
       goodsList: [],
-      goodsFinished: false
+      goodsFinished: false,
+      userList: [],
+      userFinished: false
     });
   },
 
@@ -110,7 +114,8 @@ Page({
       (curMenuIdx === 4 && !scenicList.length) ||
       (curMenuIdx === 5 && !hotelList.length) ||
       (curMenuIdx === 6 && !restaurantList.length) ||
-      (curMenuIdx === 7 && !goodsList.length)
+      (curMenuIdx === 7 && !goodsList.length) ||
+      (curMenuIdx === 8 && !userList.length)
     ) {
       this.setList(true);
     }
@@ -159,6 +164,7 @@ Page({
         break;
 
       case 8:
+        this.setUserList(init);
         break;
     }
   },
@@ -298,6 +304,27 @@ Page({
     });
     if (list.length < limit) {
       this.setData({ goodsFinished: true });
+    }
+  },
+
+  async setUserList(init = false) {
+    const limit = 10;
+    if (init) {
+      this.userPage = 0;
+      this.setData({ userFinished: false });
+    }
+    const { keywords, userList } = this.data;
+    const list =
+      (await baseService.searchUserList({
+        keywords,
+        page: ++this.userPage,
+        limit
+      })) || [];
+    this.setData({
+      userList: init ? list : [...userList, ...list]
+    });
+    if (list.length < limit) {
+      this.setData({ userFinished: true });
     }
   },
 
