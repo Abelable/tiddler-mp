@@ -288,7 +288,7 @@ Page({
     }
     const { keywords, goodsList } = this.data;
     const list =
-      (await baseService.seachGoodsList({
+      (await baseService.searchGoodsList({
         keywords,
         page: ++this.goodsPage,
         limit

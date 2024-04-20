@@ -359,7 +359,7 @@ class BaseService extends Base {
     });
   }
 
-  async seachGoodsList({
+  async searchGoodsList({
     keywords,
     categoryId,
     sort,
@@ -371,6 +371,16 @@ class BaseService extends Base {
       (await this.get({
         url: `${this.baseUrl}/goods/search`,
         data: cleanObject({ keywords, categoryId, sort, order, page, limit }),
+        loadingTitle: "加载中..."
+      })) || {};
+    return list;
+  }
+
+  async searchUserList({ keywords, page, limit = 10 }) {
+    const { list = [] } =
+      (await this.get({
+        url: `${this.baseUrl}/user/search`,
+        data: { keywords, page, limit },
         loadingTitle: "加载中..."
       })) || {};
     return list;
