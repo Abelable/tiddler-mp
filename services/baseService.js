@@ -43,18 +43,18 @@ class BaseService extends Base {
   }
 
   async getUserInfo() {
-    const userInfo = await this.get({ url: `${this.baseUrl}/user_info` });
+    const userInfo = await this.get({ url: `${this.baseUrl}/user/info` });
     store.setUserInfo(userInfo);
     return userInfo;
   }
 
   async getTimLoginInfo() {
-    return await this.get({ url: `${this.baseUrl}/tim_login_info` });
+    return await this.get({ url: `${this.baseUrl}/user/tim_login_info` });
   }
 
   async getAuthorInfo(authorId) {
     return await this.get({
-      url: `${this.baseUrl}/author_info`,
+      url: `${this.baseUrl}/user/author_info`,
       data: { authorId }
     });
   }

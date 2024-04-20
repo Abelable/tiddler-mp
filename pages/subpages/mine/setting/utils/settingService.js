@@ -4,7 +4,7 @@ import { cleanObject } from '../../../../../utils/index'
 class SettingService extends BaseService {
   async updateUserInfo(userInfo, success) {
     return await this.post({ 
-      url: `${this.baseUrl}/update_user_info`, 
+      url: `${this.baseUrl}/user/update`, 
       data: cleanObject(userInfo),
       success
     })
