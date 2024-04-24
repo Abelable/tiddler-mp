@@ -82,6 +82,22 @@
 </view>
 
 <view class="list-wrap" wx:if="{{isSearching && curMenuIdx === 0}}">
+  <view class="result-overview-wrap" wx:if="{{scenicList.length}}">
+    <view class="result-title row">
+      <view>景点</view>
+      <image class="more-icon" wx:if="{{scenicList.length > 3}}" bindtap="selectMenu" data-index="4" src="./images/arrow.png" />
+    </view>
+    <scenic-item wx:for="{{ARRAY.slice(scenicList, 0, 3)}}" wx:key="index" item="{{item}}" />
+  </view>
+
+  <view class="result-overview-wrap" wx:if="{{hotelList.length}}">
+    <view class="result-title row">
+      <view>酒店</view>
+      <image class="more-icon" wx:if="{{hotelList.length > 3}}" bindtap="selectMenu" data-index="5" src="./images/arrow.png" />
+    </view>
+    <hotel-item wx:for="{{ARRAY.slice(hotelList, 0, 3)}}" wx:key="index" item="{{item}}" />
+  </view>
+
   <view class="result-overview-wrap" wx:if="{{restaurantList.length}}">
     <view class="result-title row">
       <view>餐厅</view>
@@ -129,13 +145,13 @@
 </view>
 
 <view class="list-wrap" wx:if="{{isSearching && curMenuIdx === 4}}">
-  <fall-flow wx:if="{{scenicList}}" list="{{scenicList}}" generic:item="scenic-item" />
+  <fall-flow wx:if="{{scenicList}}" list="{{scenicList}}" generic:item="scenic-item-grid" />
   <empty-illus wx:if="{{scenicFinished && !scenicList.length}}" desc="没有找到相关景点" />
   <view class="no-more-tips" wx:if="{{scenicFinished && scenicList.length}}">～没有更多了～</view>
 </view>
 
 <view class="list-wrap" wx:if="{{isSearching && curMenuIdx === 5}}">
-  <fall-flow wx:if="{{hotelList}}" list="{{hotelList}}" generic:item="hotel-item" />
+  <fall-flow wx:if="{{hotelList}}" list="{{hotelList}}" generic:item="hotel-item-grid" />
   <empty-illus wx:if="{{hotelFinished && !hotelList.length}}" desc="没有找到相关酒店" />
   <view class="no-more-tips" wx:if="{{hotelFinished && hotelList.length}}">～没有更多了～</view>
 </view>
