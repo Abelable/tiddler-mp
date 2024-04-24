@@ -1,4 +1,5 @@
 .user-item {
+  margin-bottom: 24rpx;
   padding: 24rpx;
   line-height: 1;
   background: #fff;

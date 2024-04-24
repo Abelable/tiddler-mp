@@ -1,4 +1,5 @@
 <wxs module="TIME" src="/utils/filters/time.wxs" />
+<wxs module="ARRAY" src="/utils/filters/array.wxs" />
 
 <view class="header">
   <view class="search-bar">
@@ -80,6 +81,35 @@
   </view>
 </view>
 
+<view class="list-wrap" wx:if="{{isSearching && curMenuIdx === 0}}">
+  <view class="result-overview-wrap" wx:if="{{restaurantList.length}}">
+    <view class="result-title row">
+      <view>餐厅</view>
+      <image class="more-icon" wx:if="{{restaurantList.length > 3}}" bindtap="selectMenu" data-index="6" src="./images/arrow.png" />
+    </view>
+    <restaurant-item wx:for="{{ARRAY.slice(restaurantList, 0, 3)}}" wx:key="index" item="{{item}}" />
+  </view>
+
+  <view class="result-overview-wrap" wx:if="{{goodsList.length}}">
+    <view class="result-title row">
+      <view>商品</view>
+      <image class="more-icon" wx:if="{{goodsList.length > 3}}" bindtap="selectMenu" data-index="7" src="./images/arrow.png" />
+    </view>
+    <goods-item wx:for="{{ARRAY.slice(goodsList, 0, 3)}}" wx:key="index" item="{{item}}" />
+  </view>
+
+  <view class="result-overview-wrap" wx:if="{{userList.length}}">
+    <view class="result-title row">
+      <view>用户</view>
+      <image class="more-icon" wx:if="{{userList.length > 3}}" bindtap="selectMenu" data-index="8" src="./images/arrow.png" />
+    </view>
+    <user-item wx:for="{{ARRAY.slice(userList, 0, 3)}}" wx:key="index" item="{{item}}" />
+  </view>
+
+  <fall-flow wx:if="{{mediaList.length}}" list="{{mediaList}}" generic:item="media-item" />
+  <view class="no-more-tips" wx:if="{{mediaFinished && mediaList.length}}">～没有更多了～</view>
+</view>
+
 <view class="list-wrap" wx:if="{{isSearching && curMenuIdx === 1}}">
   <fall-flow wx:if="{{videoList.length}}" list="{{videoList}}" generic:item="video-item" />
   <empty-illus wx:if="{{videoFinished && !videoList.length}}" desc="没有找到相关短视频" />
@@ -111,13 +141,13 @@
 </view>
 
 <view class="list-wrap" wx:if="{{isSearching && curMenuIdx === 6}}">
-  <fall-flow wx:if="{{restaurantList}}" list="{{restaurantList}}" generic:item="restaurant-item" />
-  <empty-illus wx:if="{{restaurantFinished && !restaurantList.length}}" desc="没有找到相关美食" />
+  <fall-flow wx:if="{{restaurantList}}" list="{{restaurantList}}" generic:item="restaurant-item-grid" />
+  <empty-illus wx:if="{{restaurantFinished && !restaurantList.length}}" desc="没有找到相关餐厅美食" />
   <view class="no-more-tips" wx:if="{{restaurantFinished && restaurantList.length}}">～没有更多了～</view>
 </view>
 
 <view class="list-wrap" wx:if="{{isSearching && curMenuIdx === 7}}">
-  <fall-flow wx:if="{{goodsList.length}}" list="{{goodsList}}" generic:item="goods-item" />
+  <fall-flow wx:if="{{goodsList.length}}" list="{{goodsList}}" generic:item="goods-item-grid" />
   <empty-illus wx:if="{{goodsFinished && !goodsList.length}}" desc="没有找到相关商品" />
   <view class="no-more-tips" wx:if="{{goodsFinished && goodsList.length}}">～没有更多了～</view>
 </view>

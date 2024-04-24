@@ -1,0 +1,29 @@
+<navigator 
+  class="restaurant row"
+  wx:key="index"
+  url="/pages/subpages/mall/catering/subpages/restaurant-detail/index?id={{item.id}}"
+  hover-class="none"
+>
+  <image class="restaurant-cover" src="{{item.cover}}" mode="aspectFill" lazy-load />
+  <view class="restaurant-content">
+    <view class="restaurant-title omit single-line">{{item.name}}</view>
+    <view class="score-wrap">
+      <van-rate value="{{item.score || 0}}" size="12" gutter="0" color="#ffd21e" void-icon="star" void-color="#eee" allow-half readonly />
+      <view class="score {{ item.score ? 'active' : '' }}">{{item.score || '暂无评分'}}</view>
+      <view class="price">¥{{item.price}}/人</view>
+    </view>
+    <view class="open-time-wrap row top">
+      <view class="open-status row {{openStatus ? 'active' : ''}}">{{openStatus ? '营业中' : '休息中'}}</view>
+      <view class="open-time-list">
+        <view class="open-time" wx:for="{{openTimeDescList}}" wx:for-item="desc" wx:for-index="descIdx" wx:key="descIdx">{{desc}}</view>
+      </view>
+    </view>
+    <view class="facilityList">
+      <view class="facility" wx:for="{{facilityList}}" wx:for-item="facility" wx:for-index="facilityIdx" wx:key="facilityIdx">{{facility}}</view>
+    </view>
+    <view class="position-wrap">
+      <image class="position-icon" src="./images/position.png" />
+      <text>{{item.address}}，距您{{distance}}km</text>
+    </view>
+  </view>
+</navigator>

@@ -13,6 +13,8 @@ Page({
     isSearching: false,
     tabScroll: 0,
     curMenuIdx: 0,
+    mediaList: [],
+    mediaFinished: false,
     videoList: [],
     videoFinished: false,
     noteList: [],
@@ -52,11 +54,8 @@ Page({
 
   selectKeywords(e) {
     const { keywords } = e.currentTarget.dataset;
-    this.setData({
-      keywords,
-      isSearching: true
-    });
-    this.setList(true);
+    this.setData({ keywords });
+    this.search();
   },
 
   search() {
@@ -74,6 +73,8 @@ Page({
     this.setData({
       keywords: "",
       isSearching: false,
+      mediaList: [],
+      mediaFinished: false,
       videoList: [],
       videoFinished: false,
       noteList: [],
@@ -97,29 +98,6 @@ Page({
     const curMenuIdx = Number(e.currentTarget.dataset.index);
     const tabScroll = (curMenuIdx - 2) * 80;
     this.setData({ curMenuIdx, tabScroll });
-    const {
-      videoList,
-      noteList,
-      liveList,
-      scenicList,
-      hotelList,
-      restaurantList,
-      goodsList,
-      userList
-    } = this.data;
-
-    if (
-      (curMenuIdx === 1 && !videoList.length) ||
-      (curMenuIdx === 2 && !noteList.length) ||
-      (curMenuIdx === 3 && !liveList.length) ||
-      (curMenuIdx === 4 && !scenicList.length) ||
-      (curMenuIdx === 5 && !hotelList.length) ||
-      (curMenuIdx === 6 && !restaurantList.length) ||
-      (curMenuIdx === 7 && !goodsList.length) ||
-      (curMenuIdx === 8 && !userList.length)
-    ) {
-      this.setList(true);
-    }
   },
 
   onReachBottom() {
@@ -134,6 +112,17 @@ Page({
   setList(init = false) {
     switch (this.data.curMenuIdx) {
       case 0:
+        if (init) {
+          this.setVideoList(true);
+          this.setNoteList(true);
+          this.setLiveList(true);
+          this.setScenicList(true);
+          this.setHotelList(true);
+          this.setRestaurantList(true);
+          this.setGoodsList(true);
+          this.setUserList(true);
+        }
+        this.setMediaList(init);
         break;
       case 1:
         this.setVideoList(init);
@@ -159,6 +148,24 @@ Page({
       case 8:
         this.setUserList(init);
         break;
+    }
+  },
+
+  async setMediaList(init = false) {
+    const limit = 10;
+    if (init) {
+      this.mediaPage = 0;
+      this.setData({ mediaFinished: false });
+    }
+    const { keywords, mediaList } = this.data;
+    const { list = [] } =
+      (await baseService.searchMediaList(keywords, ++this.mediaPage, limit)) ||
+      {};
+    this.setData({
+      mediaList: init ? list : [...mediaList, ...list]
+    });
+    if (list.length < limit) {
+      this.setData({ mediaFinished: true });
     }
   },
 

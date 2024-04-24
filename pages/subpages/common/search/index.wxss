@@ -129,6 +129,20 @@
   background: #efefef;
 }
 
+.result-overview-wrap {
+  margin-bottom: 24rpx;
+}
+.result-title {
+  margin-bottom: 18rpx;
+  color: #333;
+  font-size: 28rpx;
+  font-weight: 500;
+}
+.more-icon {
+  width: 18rpx;
+  height: 18rpx;
+}
+
 .list-wrap {
   padding: 216rpx 20rpx 20rpx;
 }

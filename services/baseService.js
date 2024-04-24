@@ -307,6 +307,14 @@ class BaseService extends Base {
     });
   }
 
+  async searchMediaList(keywords, page, limit = 10) {
+    return await this.get({
+      url: `${this.baseUrl}/media/search`,
+      data: { keywords, page, limit },
+      loadingTitle: "加载中..."
+    });
+  }
+
   async searchVideoList(keywords, page, limit = 10) {
     return await this.get({
       url: `${this.baseUrl}/media/short_video/search`,
