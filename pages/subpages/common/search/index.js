@@ -50,6 +50,25 @@ Page({
     });
   },
 
+  selectKeywords(e) {
+    const { keywords } = e.currentTarget.dataset;
+    this.setData({
+      keywords,
+      isSearching: true
+    });
+    this.setList(true);
+  },
+
+  search() {
+    const { keywords } = this.data;
+    if (!keywords) {
+      return;
+    }
+    baseService.saveKeywords(keywords);
+    this.setList(true);
+    this.setData({ isSearching: true });
+  },
+
   cancelSearch() {
     this.setHistoryKeywords();
     this.setData({
@@ -72,25 +91,6 @@ Page({
       userList: [],
       userFinished: false
     });
-  },
-
-  selectKeywords(e) {
-    const { keywords } = e.currentTarget.dataset;
-    this.setData({
-      keywords,
-      isSearching: true
-    });
-    this.setList(true);
-  },
-
-  search() {
-    const { keywords } = this.data;
-    if (!keywords) {
-      return;
-    }
-    baseService.saveKeywords(keywords);
-    this.setList(true);
-    this.setData({ isSearching: true });
   },
 
   selectMenu(e) {
@@ -135,35 +135,27 @@ Page({
     switch (this.data.curMenuIdx) {
       case 0:
         break;
-
       case 1:
         this.setVideoList(init);
         break;
-
       case 2:
         this.setNoteList(init);
         break;
-
       case 3:
         this.setLiveList(init);
         break;
-
       case 4:
         this.setScenicList(init);
         break;
-
       case 5:
         this.setHotelList(init);
         break;
-
       case 6:
         this.setRestaurantList(init);
         break;
-
       case 7:
         this.setGoodsList(init);
         break;
-
       case 8:
         this.setUserList(init);
         break;
