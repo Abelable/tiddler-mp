@@ -287,6 +287,13 @@ class BaseService extends Base {
     });
   }
 
+  async saveKeywords(keywords) {
+    return await this.post({
+      url: `${this.baseUrl}/keyword/add`,
+      data: { keywords }
+    });
+  }
+
   async clearHistoryKeywords() {
     return await this.post({
       url: `${this.baseUrl}/keyword/clear`

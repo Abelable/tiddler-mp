@@ -61,8 +61,12 @@ Page({
       noteFinished: false,
       liveList: [],
       liveFinished: false,
-      curGoodsSortIndex: 0,
-      curGoodsCategoryId: 0,
+      scenicList: [],
+      scenicFinished: false,
+      hotelList: [],
+      hotelFinished: false,
+      restaurantList: [],
+      restaurantFinished: false,
       goodsList: [],
       goodsFinished: false,
       userList: [],
@@ -80,17 +84,13 @@ Page({
   },
 
   search() {
-    const { keywords, isSearching, historyKeywords } = this.data;
+    const { keywords } = this.data;
     if (!keywords) {
       return;
     }
-    this.setData({
-      historyKeywords: Array.from(new Set([...historyKeywords, keywords]))
-    });
-    if (!isSearching) {
-      this.setData({ isSearching: true });
-    }
+    baseService.saveKeywords(keywords);
     this.setList(true);
+    this.setData({ isSearching: true });
   },
 
   selectMenu(e) {
