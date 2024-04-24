@@ -122,6 +122,12 @@
   <view class="no-more-tips" wx:if="{{goodsFinished && goodsList.length}}">～没有更多了～</view>
 </view>
 
+<view class="list-wrap" wx:if="{{isSearching && curMenuIdx === 8}}">
+  <user-item wx:for="{{userList}}" wx:key="index" item="{{item}}" />
+  <empty-illus wx:if="{{userFinished && !userList.length}}" desc="没有找到相关用户" />
+  <view class="no-more-tips" wx:if="{{userFinished && userList.length}}">～没有更多了～</view>
+</view>
+
 <van-calendar 
   default-date="{{[checkInDate, checkOutDate]}}"
   show="{{calendarPopupVisibel}}" 

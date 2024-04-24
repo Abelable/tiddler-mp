@@ -104,7 +104,8 @@ Page({
       scenicList,
       hotelList,
       restaurantList,
-      goodsList
+      goodsList,
+      userList
     } = this.data;
 
     if (
