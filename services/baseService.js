@@ -82,13 +82,6 @@ class BaseService extends Base {
     return ossConfig;
   }
 
-  async getQrCode(scene, page) {
-    return await this.post({
-      url: `${this.baseUrl}/oss_config`,
-      data: { scene, page }
-    });
-  }
-
   async getPayParams(orderIds) {
     return await this.post({
       url: `${this.baseUrl}/order/pay_params`,
