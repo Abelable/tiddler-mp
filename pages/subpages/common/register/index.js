@@ -7,29 +7,48 @@ const { statusBarHeight } = getApp().globalData.systemInfo
 Page({
   data: {
     statusBarHeight,
-    showAuthModal: false
+    authModalVisible: false
   },
 
   async getMobile(e) {
     const mobile = await baseService.getUserMobile(e.detail.code)
     if (mobile) {
       this.mobile = mobile
-      this.setData({ showAuthModal: true })
+      this.setData({ authModalVisible: true })
     }
   },
 
-  async getUserInfo() {
-    const { userInfo } = await baseService.getUserProfile()
-    this.register(userInfo)
+  async chooseAvatar(e) {
+    const avatarUrl = (await baseService.uploadFile(e.detail.avatarUrl)) || "";
+    this.setData({ avatarUrl });
   },
 
-  async register(userInfo) {
-    const { avatarUrl: avatar, nickName: nickname, gender } = userInfo
-    const { code } = await baseService.wxLogin()
-    const token = await baseService.register(code, avatar, nickname, gender, this.mobile)
+  setNickname(e) {
+    this.nickname = e.detail.value;
+  },
+
+  saveAuthInfo() {
+    if (!this.nickname) {
+      wx.showToast({
+        title: "请输入用户昵称",
+        icon: "none"
+      });
+      return;
+    }
+    this.register();
+  },
+
+  async register() {
+    const { code } = await baseService.wxLogin();
+    const token = await baseService.register(
+      code,
+      this.data.avatarUrl,
+      this.nickname,
+      this.mobile
+    );
     if (token) {
-      wx.setStorageSync('token', token)
-      wx.navigateBack()
+      wx.setStorageSync("token", token);
+      wx.navigateBack();
     }
   },
 
@@ -38,7 +57,7 @@ Page({
   },
 
   hideModal() {
-    this.setData({ showAuthModal: false })
+    this.setData({ authModalVisible: false })
   },
 
   navToHome() {
