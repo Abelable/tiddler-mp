@@ -7,7 +7,8 @@ const { statusBarHeight } = getApp().globalData.systemInfo
 Page({
   data: {
     statusBarHeight,
-    authModalVisible: false
+    authModalVisible: false,
+    avatarUrl: "https://img.ubo.vip/youmeng/default_avatar.png"
   },
 
   async getMobile(e) {

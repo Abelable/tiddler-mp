@@ -137,9 +137,9 @@
   margin: 50rpx auto 0;
   width: 464rpx;
   height: 90rpx;
-  color: #FFE5BD;
+  color: #fff;
   font-size: 32rpx;
   font-weight: bold;
   border-radius: 45rpx;
-  background: linear-gradient(128deg, #404A5C 0%, #0F131A 100%);
+  background: #0095fa;
 }
