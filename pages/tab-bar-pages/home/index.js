@@ -48,11 +48,21 @@ Component({
       if (!store.locationInfo) {
         homeService.getLocationInfo();
       }
+      this.initCalendar();
+
       this.setList(SCENE_REFRESH);
     }
   },
 
   methods: {
+    initCalendar() {
+      store.setCheckInDate(new Date().getTime());
+
+      const endDate = new Date();
+      endDate.setDate(endDate.getDate() + 1);
+      store.setCheckOutDate(endDate.getTime());
+    },
+
     switchMenu(e) {
       this.handleMenuChange(Number(e.currentTarget.dataset.index));
     },
