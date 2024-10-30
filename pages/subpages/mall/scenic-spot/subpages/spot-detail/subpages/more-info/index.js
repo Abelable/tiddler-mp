@@ -11,12 +11,12 @@ Page({
     let {
       name: title,
       brief,
-      openTimeList,
-      policyList,
-      hotlineList,
-      projectList,
-      facilityList,
-      tipsList,
+      openTimeList = [],
+      policyList = [],
+      hotlineList = [],
+      projectList = [],
+      facilityList = [],
+      tipsList = [],
     } = JSON.parse(info);
     wx.setNavigationBarTitle({ title });
     this.brief = brief;
