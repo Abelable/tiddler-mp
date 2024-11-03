@@ -67,6 +67,7 @@
 }
 .label {
   margin-right: 10rpx;
+  padding: 2rpx 10rpx;
   max-width: 170rpx;
   color: #999;
   color: var(--theme-color);
