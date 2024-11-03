@@ -9,7 +9,7 @@ Component({
   data: {
     statusBarHeight,
     categoryList: [
-      { name: "景点玩乐", icon: "https://img.ubo.vip/tiddler/mall/scenic.png" },
+      { name: "景点乐园", icon: "https://img.ubo.vip/tiddler/mall/scenic.png" },
       { name: "酒店民宿", icon: "https://img.ubo.vip/tiddler/mall/hotel.png" },
       { name: "餐厅美食", icon: "https://img.ubo.vip/tiddler/mall/food.png" },
       {
