@@ -32,12 +32,16 @@ Component({
 
   pageLifetimes: {
     show() {
+      store.setTabType("home");
+    }
+  },
+
+  methods: {
+    onLoad() {
       wx.showShareMenu({
         withShareTicket: true,
         menus: ["shareAppMessage", "shareTimeline"]
       });
-
-      store.setTabType("home");
 
       this.scrollTopArr = [0, 0];
       wx.pageScrollTo({
@@ -51,10 +55,8 @@ Component({
       this.initCalendar();
 
       this.setList(SCENE_REFRESH);
-    }
-  },
+    },
 
-  methods: {
     initCalendar() {
       store.setCheckInDate(new Date().getTime());
 

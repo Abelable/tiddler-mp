@@ -25,7 +25,11 @@ Component({
   pageLifetimes: {
     show() {
       store.setTabType("mall");
+    },
+  },
 
+  methods: {
+    onLoad() {
       if (!store.locationInfo) {
         mallService.getLocationInfo();
       }
@@ -35,9 +39,7 @@ Component({
         this.setCommodityList(true);
       }
     },
-  },
 
-  methods: {
     initCalendar() {
       store.setCheckInDate(new Date().getTime());
 
