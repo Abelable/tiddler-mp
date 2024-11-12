@@ -2,7 +2,7 @@
 
 <view class="note-item {{visible ? 'show' : ''}}" bindtap="navToNoteDetail">
   <view class="cover-wrap">
-    <image class="cover" src="{{item.imageList[0]}}" bindload="onCoverLoaded" mode="widthFix" lazy-load />
+    <image class="cover" src="{{item.imageList[0]}}?x-oss-process=image/resize,w_350" bindload="onCoverLoaded" mode="widthFix" lazy-load />
     <view class="private-tag row" wx:if="{{item.isPrivate}}">
       <image class="private-icon" src="https://img.ubo.vip/tiddler/media-item/private-icon.png" />
       <text>私密</text>

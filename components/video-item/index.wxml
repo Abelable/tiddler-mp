@@ -4,7 +4,7 @@
   <view class="cover-wrap">
     <image 
       class="cover {{ coverMode !== 'widthFix' ? 'over-size' : '' }}"
-      src="{{item.cover}}" 
+      src="{{item.cover}}?x-oss-process=image/resize,w_350" 
       mode="{{ coverMode }}" 
       bindload="onCoverLoaded"
       lazy-load 
