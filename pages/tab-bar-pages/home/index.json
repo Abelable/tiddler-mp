@@ -6,5 +6,6 @@
     "media-item": "/components/media-item",
     "empty-illus": "/components/empty-illus/index",
     "follow-media-item": "./components/follow-media-item/index"
-  }
+  },
+  "onReachBottomDistance": 600
 }
