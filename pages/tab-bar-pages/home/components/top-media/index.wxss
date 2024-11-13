@@ -5,6 +5,7 @@
   height: 420rpx;
   border-radius: 18rpx;
   overflow: hidden;
+  text-shadow: 0 0 1px #999;
 }
 .top-media {
   position: relative;
