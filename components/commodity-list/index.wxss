@@ -55,6 +55,7 @@
   font-size: 22rpx;
   text-decoration: line-through;
 }
+.free-tips,
 .sales-volumns {
   color: #999;
   font-size: 22rpx;
