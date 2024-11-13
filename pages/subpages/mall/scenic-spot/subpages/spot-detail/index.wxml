@@ -78,7 +78,7 @@
   <view class="row between">
     <view class="row">
       <view class="scenic-spot-name">{{scenicInfo.name}}</view>
-      <view class="level-tag row">3A</view>
+      <view class="level-tag row" wx:if="{{scenicInfo.level}}">{{scenicInfo.level}}</view>
     </view>
     <image class="share-icon" bindtap="share" src="./images/share.png" />
   </view>
