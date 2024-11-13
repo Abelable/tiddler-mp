@@ -59,3 +59,7 @@
   font-size: 24rpx;
   text-align: center;
 }
+
+.van-dropdown-menu {
+  box-shadow: none !important;
+}
