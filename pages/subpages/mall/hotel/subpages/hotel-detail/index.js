@@ -1,6 +1,7 @@
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
 import { store } from "../../../../../../store/index";
 import { calcDistance, checkLogin } from "../../../../../../utils/index";
+import { WEBVIEW_BASE_URL } from "../../../../../../config";
 import { formatter } from "../../utils/index";
 import HotelService from "../../utils/hotelService";
 
@@ -285,7 +286,9 @@ Component({
 
     redraw() {
       this.selectComponent("#index-bar-wrap").updateData();
-      this.selectComponent("#index-bar").updateData();
+      if (this.selectComponent("#index-bar")) {
+        this.selectComponent("#index-bar").updateData();
+      }
       this.setMenuChangeLimitList();
     },
 
@@ -484,6 +487,11 @@ Component({
 
     checkEvaluation() {
       const url = `./subpages/evaluation-list/index?hotelId=${this.hotelId}`;
+      wx.navigateTo({ url });
+    },
+
+    settleIn() {
+      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/hotel/provider/settle_in`;
       wx.navigateTo({ url });
     },
 

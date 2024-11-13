@@ -120,7 +120,7 @@
         </view>
       </view>
 
-      <view class="room-list-wrap" wx:if="{{roomTypeIndexList.length}}">
+      <view class="room-list-wrap" wx:if="{{roomTypeIndexList.length > 1}}">
         <van-index-bar id="index-bar" index-list="{{ roomTypeIndexList }}" sticky-offset-top="{{ statusBarHeight + 148 }}">
           <view wx:for="{{roomTypeList}}" wx:key="index">
             <van-index-anchor index="{{ item.id }}" use-slot>
@@ -173,7 +173,7 @@
           </view>
         </van-index-bar>
       </view>
-      <empty-illus wx:if="{{!roomTypeIndexList.length}}" desc="暂无相关房间信息" height="520rpx" />
+      <empty-illus wx:if="{{roomTypeIndexList.length === 1}}" desc="暂无相关房间信息" btnContent="商家入驻" bind:btnClick="settleIn" height="520rpx" />
 
       <view class="content-wrap" wx:if="{{combinedTicketTypeList.length}}">
         <view class="content-title-wrap">
@@ -199,6 +199,7 @@
         <image class="more-icon" src="./images/more.png" />
       </view>
     </view>
+    <empty-illus wx:if="{{!evaluationSummary.total}}" desc="暂无点评" height="520rpx" />
   </view>
 
   <view class="content-wrap">

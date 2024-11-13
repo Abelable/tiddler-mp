@@ -1,6 +1,6 @@
 <view class="hotel-item" bindtap="checkDetail">
-  <image class="hotel-image" mode="aspectFill" src="{{info.cover}}" />
-  <view class="hotel-info">
+  <image class="hotel-cover" mode="aspectFill" src="{{info.cover}}" />
+  <view class="hotel-info-wrap">
     <view class="hotel-name omit single-line">{{info.name}}</view>
     <view class="hotel-appraise row">
       <view class="hotel-rate">
