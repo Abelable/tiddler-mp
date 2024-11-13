@@ -1,29 +1,29 @@
 <view class="top-media-wrap">
   <view class="top-media">
-    <image class="top-media-cover" src="{{topMediaList[curTopMediaIdx].imageList[0]}}" mode="aspectFill" />
+    <image class="top-media-cover" src="{{mediaList[curTopMediaIdx].imageList[0]}}" mode="aspectFill" />
     <view class="top-media-time">
-      <view class="time-date">13</view>
+      <view class="time-date">{{mediaList[curTopMediaIdx].time.date}}</view>
       <view class="time-split"></view>
       <view>
-        <view class="time-month">NOV</view>
-        <view class="time-year">2024</view>
+        <view class="time-month">{{mediaList[curTopMediaIdx].time.month}}</view>
+        <view class="time-year">{{mediaList[curTopMediaIdx].time.year}}</view>
       </view>
       <image class="top-desc" src="./images/{{curTopMediaIdx === 0 ? 'today_' : ''}}best_note.png" />
     </view>
     <view class="top-media-info">
-      <view class="top-media-title omit single-line">{{topMediaList[curTopMediaIdx].title}}</view>
+      <view class="top-media-title omit single-line">{{mediaList[curTopMediaIdx].title}}</view>
       <view class="author-info-wrap">
-        <image class="author-avatar avatar-default" src="{{topMediaList[curTopMediaIdx].authorInfo.avatar}}" />
-        <text class="author-name omit single-line">{{topMediaList[curTopMediaIdx].authorInfo.nickname}}</text>
-        <text wx:if="{{topMediaList[curTopMediaIdx].address}}" style="margin: 0 8rpx;">·</text>
-        <text class="address-detail omit single-line" wx:if="{{topMediaList[curTopMediaIdx].address}}">{{topMediaList[curTopMediaIdx].address}}</text>
+        <image class="author-avatar avatar-default" src="{{mediaList[curTopMediaIdx].authorInfo.avatar}}" />
+        <text class="author-name omit single-line">{{mediaList[curTopMediaIdx].authorInfo.nickname}}</text>
+        <text wx:if="{{mediaList[curTopMediaIdx].address}}" style="margin: 0 8rpx;">·</text>
+        <text class="address-detail omit single-line" wx:if="{{mediaList[curTopMediaIdx].address}}">{{mediaList[curTopMediaIdx].address}}</text>
       </view>
     </view>
   </view>
   <view class="top-media-menu">
     <image 
       class="top-media-menu-item {{curTopMediaIdx === index ? 'active' : ''}}" 
-      wx:for="{{topMediaList}}" 
+      wx:for="{{mediaList}}" 
       wx:key="index" 
       src="{{item.imageList[0]}}?x-oss-process=image/resize,w_120"
       bindtap="selectTopMedia"
