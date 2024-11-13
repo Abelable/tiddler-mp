@@ -33,7 +33,7 @@
   width: 8rpx;
   height: 40rpx;
   border-radius: 4rpx;
-  background: #f476b4;
+  background: #6097f7;
 }
 .time-month, .time-year {
   font-size: 18rpx;
