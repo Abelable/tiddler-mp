@@ -26,6 +26,8 @@ Component({
     curMenuIndex: 1,
     followMediaList: [],
     followFinished: false,
+    curTopMediaIdx: 0,
+    topMediaList: [],
     mediaList: [],
     finished: false
   },
@@ -162,9 +164,26 @@ Component({
       if (!finished) {
         const { list = [] } =
           (await homeService.getMediaList(++this.page)) || {};
-        this.setData({
-          mediaList: init ? list : [...mediaList, ...list]
-        });
+        if (init) {
+          const topMediaList = [];
+          const filterMediaList = [];
+          list.forEach(item => {
+            if (item.type === 3 && topMediaList.length < 5) {
+              topMediaList.push(item);
+            } else {
+              filterMediaList.push(item);
+            }
+          });
+          this.setData({
+            topMediaList,
+            mediaList: filterMediaList
+          });
+        } else {
+          this.setData({
+            mediaList: [...mediaList, ...list]
+          });
+        }
+
         if (!list.length) {
           this.setData({ finished: true });
         }
@@ -205,6 +224,11 @@ Component({
       if (this.data.curMenuIndex === 1) {
         this.setActiveMediaItem();
       }
+    },
+
+    selectTopMedia(e) {
+      const curTopMediaIdx = e.currentTarget.dataset.index;
+      this.setData({ curTopMediaIdx });
     },
 
     setActiveMediaItem: debounce(function () {
