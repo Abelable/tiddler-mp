@@ -16,7 +16,7 @@
 <view class="container">
   <swiper style="height: {{wrapHeightList[curMenuIndex]}}px;" current="{{curMenuIndex}}" bindchange="swiperChange">
     <swiper-item>
-      <view class="content-wrap" style="padding-top: {{statusBarHeight + 102}}px; background: #fff;">
+      <view class="content-wrap" style="padding-top: {{statusBarHeight + 98}}px; background: #fff;">
         <follow-media-item wx:for="{{followMediaList}}" wx:key="index" item="{{item}}" />
         <empty-illus 
           wx:if="{{!userInfo || (followFinished && !followMediaList.length)}}" 
@@ -28,7 +28,7 @@
       </view>
     </swiper-item>
     <swiper-item>
-      <view class="content-wrap" style="padding-top: {{statusBarHeight + 102}}px;">
+      <view class="content-wrap" style="padding-top: {{statusBarHeight + 98}}px;">
         <top-media topMediaList="{{topMediaList}}" />
         <fall-flow class="fall-flow" list="{{mediaList}}" generic:item="media-item" bind:finish="setWrapHeight" />
         <empty-illus wx:if="{{finished && !mediaList.length}}" desc="暂无列表" />

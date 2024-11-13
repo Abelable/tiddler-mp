@@ -33,7 +33,7 @@
   width: 8rpx;
   height: 40rpx;
   border-radius: 4rpx;
-  background: var(--theme-color);
+  background: #f476b4;
 }
 .time-month, .time-year {
   font-size: 18rpx;
@@ -86,7 +86,7 @@
   backdrop-filter: blur(10px);
 }
 .top-media-menu-item {
-  width: 86rpx;
+  width: 98rpx;
   height: 68rpx;
   border-radius: 18rpx;
 }
@@ -100,7 +100,7 @@
   width: 100%;
   height: 100%;
   content: "";
-  border-radius: 16rpx;
-  border: 6rpx solid var(--theme-color);
+  border-radius: 18rpx;
+  border: 6.8rpx solid #6097f7;
   box-sizing: border-box;
 }
