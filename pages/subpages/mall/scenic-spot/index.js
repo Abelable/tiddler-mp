@@ -17,8 +17,6 @@ Page({
     ],
     curCategoryId: 0,
     categoryOptions: [],
-    activeTabIdx: 0,
-    tabScroll: 0,
     scenicList: [],
     finished: false
   },
