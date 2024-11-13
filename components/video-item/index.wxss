@@ -10,7 +10,7 @@
 .cover-wrap {
   position: relative;
   font-size: 0;
-  border-radius: 18rpx;
+  border-radius: 32rpx;
   overflow: hidden;
 }
 .cover {
