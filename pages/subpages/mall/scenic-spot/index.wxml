@@ -6,21 +6,6 @@
       <text class="placeholder">搜索景点</text>
     </view>
   </view>
-  <!-- <scroll-view 
-    class="category-tabs" 
-    scroll-left="{{tabScroll}}"
-    scroll-x
-    enable-flex
-    scroll-with-animation
-  >
-    <view 
-      wx:for="{{categoryOptions}}" 
-      wx:key="index" 
-      class="category-tab {{activeTabIdx === index ? 'active' : ''}}" 
-      bindtap="selectCate" 
-      data-idx="{{index}}"
-      >{{item.name}}</view>
-  </scroll-view> -->
 
   <van-dropdown-menu active-color="#1989fa">
     <van-dropdown-item value="{{ curSortIndex }}" options="{{ sortOptions }}" bind:change="setSortIndex" />
