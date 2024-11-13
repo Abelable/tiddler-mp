@@ -24,6 +24,7 @@ Component({
 
     navToNoteDetail() {
       const { item, mediaScene } = this.properties;
+      debugger
       const { id, authorInfo } = item;
 
       const url = `/pages/subpages/home/media/note/index?id=${id}&mediaScene=${mediaScene}&authorId=${

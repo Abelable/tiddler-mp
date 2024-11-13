@@ -50,6 +50,12 @@ Component({
     selectTopMedia(e) {
       const curTopMediaIdx = e.currentTarget.dataset.index;
       this.setData({ curTopMediaIdx });
-    }
+    },
+
+    navToNoteDetail(e) {
+      const { id } = e.currentTarget.dataset;
+      const url = `/pages/subpages/home/media/note/index?id=${id}&mediaScene=1&authorId=0`;
+      wx.navigateTo({ url });
+    },
   }
 });

@@ -1,5 +1,5 @@
 <view class="top-media-wrap">
-  <view class="top-media">
+  <view class="top-media" catchtap="navToNoteDetail" data-id="{{mediaList[curTopMediaIdx].id}}">
     <image class="top-media-cover" src="{{mediaList[curTopMediaIdx].imageList[0]}}" mode="aspectFill" />
     <view class="top-media-time">
       <view class="time-date">{{mediaList[curTopMediaIdx].time.date}}</view>
