@@ -1,3 +1,4 @@
+import { WEBVIEW_BASE_URL } from "../../../../../../config";
 import { checkLogin } from "../../../../../../utils/index";
 import ScenicService from "../../utils/scenicService";
 
@@ -489,6 +490,11 @@ Page({
 
   checkEvaluation() {
     const url = `./subpages/evaluation-list/index?scenicId=${this.scenicId}`;
+    wx.navigateTo({ url });
+  },
+
+  settleIn() {
+    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/scenic/provider/settle_in`;
     wx.navigateTo({ url });
   },
 
