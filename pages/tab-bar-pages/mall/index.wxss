@@ -79,7 +79,7 @@ page {
 .commodity-list {
   margin-top: 30rpx;
   padding: 20rpx;
-  border-radius: 32rpx 32rpx 0 0;
+  border-radius: 42rpx 42rpx 0 0;
   box-shadow: 0 -10px 20px -2px #f0f0f0;
 }
 

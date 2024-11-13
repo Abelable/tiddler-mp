@@ -1,7 +1,7 @@
 <view class="hotel-item {{visible ? 'show' : ''}}" bindtap="checkDetail">
   <view class="cover-wrap">
     <image class="cover" mode="widthFix" src="{{ item.cover }}" bindload="onCoverLoaded" lazy-load />
-    <view class="type-label row">酒店民宿</view>
+    <view class="type-label row">酒店</view>
     <view class="address-info">
       <image class="address-icon" src="https://img.ubo.vip/tiddler/media-item/address.png" />
       <text class="address-detail omit single-line">{{ item.address }}</text>

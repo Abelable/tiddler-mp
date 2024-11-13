@@ -20,8 +20,8 @@
 
 .type-label {
   position: absolute;
-  top: 10rpx;
-  left: 10rpx;
+  top: 18rpx;
+  left: 18rpx;
   padding: 0 12rpx;
   height: 34rpx;
   color: #fff;
