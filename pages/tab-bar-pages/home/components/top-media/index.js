@@ -9,10 +9,18 @@ Component({
     topMediaList: {
       type: Array,
       observer(list) {
-        const mediaList = list.map(item => {
-          const year = dayjs(item.createdAt).year();
-          const monthIdx = dayjs(item.createdAt).month();
-          const date = dayjs(item.createdAt).date();
+        const mediaList = list.map((item, index) => {
+          let year, monthIdx, date;
+          if (index === 0) {
+            year = dayjs().year();
+            monthIdx = dayjs().month();
+            date = dayjs().date();
+          } else {
+            year = dayjs(item.createdAt).year();
+            monthIdx = dayjs(item.createdAt).month();
+            date = dayjs(item.createdAt).date();
+          }
+
           const month = [
             "JAN",
             "FEB",
@@ -56,6 +64,6 @@ Component({
       const { id } = e.currentTarget.dataset;
       const url = `/pages/subpages/home/media/note/index?id=${id}&mediaScene=1&authorId=0`;
       wx.navigateTo({ url });
-    },
+    }
   }
 });
