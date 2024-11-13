@@ -11,8 +11,7 @@
       <view class="level-tag row" wx:if="{{item.level}}">{{item.level}}</view>
     </view>
     <view class="labels">
-      <view class="label">杭州亲子滑雪好去处</view>
-      <view class="label">5千平方米的戏雪区</view>
+      <view class="label" wx:for="{{item.featureTagList}}" wx::key="index" wx:for-item="label">{{label}}</view>
     </view>
     <view class="score-wrap">
       <van-rate value="{{item.score || 0}}" size="12" gutter="0" color="#ffd21e" void-icon="star" void-color="#eee" allow-half readonly />
@@ -23,12 +22,13 @@
       <text>{{item.address}}，距您{{distance}}km</text>
     </view>
     <view class="price-info">
-      <view class="sales">已售 13506</view>
-      <view class="price">
+      <view class="price" wx:if="{{item.price}}">
         <text style="margin-right: 4rpx; color: #ff5049;">¥</text>
-        <text class="num" style="color: #ff5049; font-size: 32rpx;">200</text>
+        <text class="num" style="color: #ff5049; font-size: 32rpx;">{{item.price}}</text>
         <text style="margin-left: 2rpx;">起</text>
       </view>
+      <view class="price" wx:if="{{!item.price}}">免费打卡</view>
+      <view class="sales" wx:if="{{item.salesVolume}}">已售 {{item.salesVolume}}</view>
     </view>
   </view>
 </navigator>

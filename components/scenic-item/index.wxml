@@ -20,12 +20,13 @@
     </view>
   </view>
   <view class="info-wrap">
-    <view class="price">
+    <view class="price" wx:if="{{item.price}}">
       <text style="margin-right: 4rpx; color: #ff5040;">¥</text>
       <text class="num" style="color: #ff5040; font-size: 32rpx;">{{ item.price || 0 }}</text>
       <text style="margin-left: 2rpx;">起</text>
     </view>
-    <view class="sales">
+    <view class="price" wx:if="{{!item.price}}">免费打卡</view>
+    <view class="sales" wx:if="{{item.salesVolumns}}">
       <text>已售</text>
       <text style="font-weight: bold;">{{ item.salesVolumns || 0 }}</text>
     </view>

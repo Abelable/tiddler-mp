@@ -17,7 +17,7 @@
   flex-direction: column;
   margin-left: 20rpx;
   flex: 1;
-  height: 230rpx;
+  height: 220rpx;
 }
 .title {
   color: #333;
@@ -41,10 +41,10 @@
 }
 .label {
   margin-right: 10rpx;
-  color: #999;
-  font-size: 18rpx;
-  background: #f6f6f6;
   padding: 2rpx 10rpx;
+  color: var(--theme-color);
+  font-size: 18rpx;
+  background: #ebf2fd;
   border-radius: 10rpx;
 }
 .score-wrap {
