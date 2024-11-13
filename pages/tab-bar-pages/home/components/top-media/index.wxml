@@ -10,6 +10,15 @@
       </view>
       <image class="top-desc" src="./images/best_note.png" />
     </view>
+    <view class="top-media-info">
+      <view class="top-media-title omit single-line">{{topMediaList[curTopMediaIdx].title}}</view>
+      <view class="author-info-wrap">
+        <image class="author-avatar avatar-default" src="{{topMediaList[curTopMediaIdx].authorInfo.avatar}}" />
+        <text class="author-name omit single-line">{{topMediaList[curTopMediaIdx].authorInfo.nickname}}</text>
+        <text wx:if="{{topMediaList[curTopMediaIdx].address}}" style="margin: 0 8rpx;">·</text>
+        <text class="address-detail omit single-line" wx:if="{{topMediaList[curTopMediaIdx].address}}">{{topMediaList[curTopMediaIdx].address}}</text>
+      </view>
+    </view>
   </view>
   <view class="top-media-menu">
     <image 

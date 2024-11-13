@@ -1,7 +1,3 @@
 {
-  "component": true,
-  "usingComponents": {
-    "video-item": "../video-item/index",
-    "note-item": "../note-item/index"
-  }
+  "component": true
 }

@@ -48,6 +48,32 @@
   height: 50rpx;
 }
 
+.top-media-info {
+  position: absolute;
+  left: 24rpx;
+  bottom: 32rpx;
+  width: 550rpx;
+}
+.top-media-title {
+  color: #fff;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.author-info-wrap {
+  display: flex;
+  align-items: center;
+  margin-top: 12rpx;
+  color: #fff;
+  font-size: 20rpx;
+}
+.author-avatar {
+  margin-right: 8rpx;
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+}
+
 .top-media-menu {
   position: absolute;
   top: 0;
