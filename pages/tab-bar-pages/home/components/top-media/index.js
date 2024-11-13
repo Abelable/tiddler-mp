@@ -6,55 +6,50 @@ Component({
   },
 
   properties: {
-    topMediaList: {
-      type: Array,
-      observer(list) {
-        const mediaList = list.map((item, index) => {
-          let year, monthIdx, date;
-          if (index === 0) {
-            year = dayjs().year();
-            monthIdx = dayjs().month();
-            date = dayjs().date();
-          } else {
-            year = dayjs(item.createdAt).year();
-            monthIdx = dayjs(item.createdAt).month();
-            date = dayjs(item.createdAt).date();
-          }
+    topMediaList: Array
+  },
 
-          const month = [
-            "JAN",
-            "FEB",
-            "MAR",
-            "APR",
-            "MAY",
-            "JUN",
-            "JUL",
-            "AUG",
-            "SEP",
-            "OCT",
-            "NOV",
-            "DEC"
-          ][monthIdx];
-          return {
-            ...item,
-            time: {
-              year,
-              month,
-              date
-            }
-          };
-        });
-        this.setData({ mediaList });
-      }
+  lifetimes: {
+    attached() {
+      this.setTimeList()
     }
   },
 
   data: {
     curTopMediaIdx: 0,
-    mediaList: []
+    timeList: []
   },
 
   methods: {
+    setTimeList() {
+      const monthDescList = [
+        "JAN",
+        "FEB",
+        "MAR",
+        "APR",
+        "MAY",
+        "JUN",
+        "JUL",
+        "AUG",
+        "SEP",
+        "OCT",
+        "NOV",
+        "DEC"
+      ];
+      const timeList = new Array(5).fill("").map((item, index) => {
+        const time = dayjs().subtract(index, "day");
+        const year = time.year();
+        const monthIdx = time.month();
+        const date = time.date();
+        return {
+          year,
+          month: monthDescList[monthIdx],
+          date
+        };
+      });
+      this.setData({ timeList });
+    },
+
     selectTopMedia(e) {
       const curTopMediaIdx = e.currentTarget.dataset.index;
       this.setData({ curTopMediaIdx });
