@@ -10,7 +10,9 @@ Component({
       type: Array,
       observer(list) {
         const mediaList = list.map(item => {
-          const { year, month: monthIdx, date} = dayjs(item.createdAt);
+          const year = dayjs(item.createdAt).year();
+          const monthIdx = dayjs(item.createdAt).month();
+          const date = dayjs(item.createdAt).date();
           const month = [
             "JAN",
             "FEB",
@@ -26,13 +28,15 @@ Component({
             "DEC"
           ][monthIdx];
           return {
-            ...item, 
+            ...item,
             time: {
-              year, month, date
+              year,
+              month,
+              date
             }
-          }
+          };
         });
-        this.setData({ mediaList })
+        this.setData({ mediaList });
       }
     }
   },
