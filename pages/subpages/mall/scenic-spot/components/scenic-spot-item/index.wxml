@@ -11,7 +11,7 @@
       <view class="level-tag row" wx:if="{{item.level}}">{{item.level}}</view>
     </view>
     <view class="labels">
-      <view class="label" wx:for="{{item.featureTagList}}" wx::key="index" wx:for-item="label">{{label}}</view>
+      <view class="label" wx:for="{{item.featureTagList}}" wx:key="index" wx:for-item="label">{{label}}</view>
     </view>
     <view class="score-wrap">
       <van-rate value="{{item.score || 0}}" size="12" gutter="0" color="#ffd21e" void-icon="star" void-color="#eee" allow-half readonly />

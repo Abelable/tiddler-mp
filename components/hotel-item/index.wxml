@@ -27,7 +27,7 @@
     </view>
     <view class="sales">
       <text>已售</text>
-      <text style="font-weight: bold;">{{ item.salesVolumns || 0 }}</text>
+      <text style="font-weight: bold;">{{ item.salesVolume || 0 }}</text>
     </view>
   </view>
 </view>
