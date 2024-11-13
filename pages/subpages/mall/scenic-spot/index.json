@@ -2,6 +2,8 @@
   "navigationStyle": "custom",
   "enablePullDownRefresh": true,
   "usingComponents": {
+    "van-dropdown-menu": "@vant/weapp/dropdown-menu/index",
+    "van-dropdown-item": "@vant/weapp/dropdown-item/index",
     "empty-illus": "/components/empty-illus/index",
     "scenic-spot-item": "./components/scenic-spot-item/index"
   }

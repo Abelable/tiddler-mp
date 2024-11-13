@@ -8,6 +8,14 @@ const { statusBarHeight } = getApp().globalData.systemInfo;
 Page({
   data: {
     statusBarHeight,
+    curSortIndex: 0,
+    sortOptions: [
+      { icon: "", text: "综合排序", value: 0 },
+      { icon: "", text: "好评排序", value: 1 },
+      { icon: "", text: "价格降序", value: 2 },
+      { icon: "", text: "价格升序", value: 3 },
+    ],
+    curCategoryId: 0,
     categoryOptions: [],
     activeTabIdx: 0,
     tabScroll: 0,
@@ -25,18 +33,25 @@ Page({
 
   async setCategoryOptions() {
     const options = await scenicService.getScenicCategoryOptions();
-    this.setData({
-      categoryOptions: [{ id: 0, name: "推荐" }, ...options]
+    const categoryOptions = [
+      { icon: "", text: "全部分类", value: 0 },
+      ...options.map((item) => ({ icon: "", text: item.name, value: item.id })),
+    ];
+    this.setData({ categoryOptions });
+  },
+
+  setSortIndex(e) {
+    const curSortIndex = Number(e.detail);
+    this.setData({ curSortIndex }, () => {
+      this.setScenicList(true);
     });
   },
 
-  selectCate(e) {
-    const { idx } = e.currentTarget.dataset;
-    this.setData({
-      activeTabIdx: idx,
-      tabScroll: (idx - 2) * 80
+  setCategoryId(e) {
+    const curCategoryId = Number(e.detail);
+    this.setData({ curCategoryId }, () => {
+      this.setScenicList(true);
     });
-    this.setScenicList(true);
   },
 
   async setScenicList(init = false) {
@@ -47,10 +62,26 @@ Page({
         finished: false
       });
     }
-    const { categoryOptions, activeTabIdx, scenicList } = this.data;
+    const { curSortIndex, curCategoryId, scenicList } = this.data;
+    let sort = "";
+    let order = "desc";
+    switch (curSortIndex) {
+      case 1:
+        sort = "score";
+        break;
+      case 2:
+        sort = "price";
+        break;
+      case 3:
+        sort = "price";
+        order = "asc";
+        break;
+    }
     const list =
       (await scenicService.getScenicList({
-        categoryId: categoryOptions[activeTabIdx].id,
+        categoryId: curCategoryId,
+        sort,
+        order,
         page: ++this.page,
         limit
       })) || [];

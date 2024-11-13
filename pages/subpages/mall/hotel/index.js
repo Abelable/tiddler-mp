@@ -74,7 +74,7 @@ Page({
     let order = "desc";
     switch (curSortIndex) {
       case 1:
-        sort = "rate";
+        sort = "score";
         break;
       case 2:
         sort = "price";
