@@ -1,0 +1,25 @@
+<view class="top-media-wrap">
+  <view class="top-media">
+    <image class="top-media-cover" src="{{topMediaList[curTopMediaIdx].imageList[0]}}" mode="aspectFill" />
+    <view class="top-media-time">
+      <view class="time-date">13</view>
+      <view class="time-split"></view>
+      <view>
+        <view class="time-month">NOV</view>
+        <view class="time-year">2024</view>
+      </view>
+      <image class="top-desc" src="./images/best_note.png" />
+    </view>
+  </view>
+  <view class="top-media-menu">
+    <image 
+      class="top-media-menu-item {{curTopMediaIdx === index ? 'active' : ''}}" 
+      wx:for="{{topMediaList}}" 
+      wx:key="index" 
+      src="{{item.imageList[0]}}?x-oss-process=image/resize,w_120"
+      bindtap="selectTopMedia"
+      data-index="{{index}}"
+      mode="aspectFill"
+    />
+  </view>
+</view>

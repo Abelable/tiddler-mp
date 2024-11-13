@@ -26,7 +26,6 @@ Component({
     curMenuIndex: 1,
     followMediaList: [],
     followFinished: false,
-    curTopMediaIdx: 0,
     topMediaList: [],
     mediaList: [],
     finished: false
@@ -224,11 +223,6 @@ Component({
       if (this.data.curMenuIndex === 1) {
         this.setActiveMediaItem();
       }
-    },
-
-    selectTopMedia(e) {
-      const curTopMediaIdx = e.currentTarget.dataset.index;
-      this.setData({ curTopMediaIdx });
     },
 
     setActiveMediaItem: debounce(function () {
