@@ -133,6 +133,7 @@
   font-size: 20rpx;
   text-decoration: line-through;
 }
+.free-tips,
 .sales-volumns {
   color: #fff;
   font-size: 20rpx;
