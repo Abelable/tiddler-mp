@@ -194,10 +194,10 @@ class BaseService extends Base {
     });
   }
 
-  async getUserGoodsList(page, limit = 10) {
+  async getUserGoodsList(page, status = 1, limit = 10) {
     return await this.get({
-      url: `${this.baseUrl}/goods/user_goods_list`,
-      data: { page, limit }
+      url: `${this.baseUrl}/shop/goods/list`,
+      data: { status, page, limit }
     });
   }
 
