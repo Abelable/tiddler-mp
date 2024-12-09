@@ -92,7 +92,8 @@
       "mine/create-video/index",
       "mine/create-note/index",
       "mine/relative-commodity/index",
-      "mine/fan-follow-list/index"
+      "mine/fan-follow-list/index",
+      "mine/promoter-center/index"
     ]
   }],
   "tabBar": {
