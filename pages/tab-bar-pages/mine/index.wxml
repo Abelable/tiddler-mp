@@ -49,7 +49,7 @@
         <image class="function-icon" src="./images/coupon.png" />
         <view class="function-desc">优惠券</view>
       </navigator>
-      <view class="function-item" bindtap="navToSetting">
+      <view class="function-item" bindtap="navToPromoterCenter">
         <image class="function-icon" src="./images/promoter_center.png" />
         <view class="function-desc">推广中心</view>
       </view>

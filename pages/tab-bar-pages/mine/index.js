@@ -397,5 +397,11 @@ Component({
         url: "/pages/subpages/message-center/index",
       });
     },
+
+    navToPromoterCenter() {
+      wx.navigateTo({
+        url: "/pages/subpages/mine/promoter-center/index",
+      });
+    }
   },
 });
