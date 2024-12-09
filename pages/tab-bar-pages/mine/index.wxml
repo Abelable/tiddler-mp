@@ -45,9 +45,13 @@
         <image class="function-icon" src="https://img.ubo.vip/tiddler/mine/address.png" />
         <view class="function-desc">收货地址</view>
       </navigator>
-      <view class="function-item" bindtap="navToLive">
-        <image class="function-icon" src="https://img.ubo.vip/tiddler/mine/live.png" />
-        <view class="function-desc">我的直播</view>
+      <navigator class="function-item" url="/pages/subpages/mine/address-list/index" hover-class="none">
+        <image class="function-icon" src="./images/coupon.png" />
+        <view class="function-desc">优惠券</view>
+      </navigator>
+      <view class="function-item" bindtap="navToSetting">
+        <image class="function-icon" src="./images/promoter_center.png" />
+        <view class="function-desc">推广中心</view>
       </view>
       <navigator 
         class="function-item" 
@@ -58,6 +62,10 @@
         <image class="function-icon" src="https://img.ubo.vip/tiddler/mine/shop.png" />
         <view class="function-desc">商家中心</view>
       </navigator>
+      <view class="function-item" bindtap="navToLive">
+        <image class="function-icon" src="https://img.ubo.vip/tiddler/mine/live.png" />
+        <view class="function-desc">我的直播</view>
+      </view>
       <view class="function-item" bindtap="navToSetting">
         <image class="function-icon" src="https://img.ubo.vip/tiddler/mine/setting.png" />
         <view class="function-desc">更多设置</view>
