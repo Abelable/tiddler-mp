@@ -1,6 +1,6 @@
 Page({
   data: {
-    level: 1
+    level: 4
   },
 
   onLoad() {

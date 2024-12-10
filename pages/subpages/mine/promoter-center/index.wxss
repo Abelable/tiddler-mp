@@ -4,6 +4,7 @@
 .level-info-wrap {
   position: relative;
   padding: 68rpx 0 24rpx 24rpx;
+  min-height: 220rpx;
   background: rgba(255, 239, 204, 0.1);
   border-radius: 24rpx;
   border: 2px solid #fde4b4;
@@ -19,14 +20,24 @@
   border-right: 2px solid #fde4b4;
   border-bottom: 2px solid #fde4b4;
   border-bottom-right-radius: 24rpx;
-  background: linear-gradient(90deg, rgb(74, 233, 210) 0%, rgb(18, 200, 169) 100%);
+}
+.bg-1 {
+  background: linear-gradient(90deg, #4ae9d2 0%, #12c8a9 100%);
+}
+.bg-2 {
+  background: linear-gradient(90deg, #71c3fe 0%, #3c9bff 100%);
+}
+.bg-3 {
+  background: linear-gradient(90deg, #d284fb 0%, #9b72f6 100%);
+}
+.bg-4 {
+  background: linear-gradient(90deg, #fc7777 0%, #fe5757 100%);
 }
 .level-medal {
   position: absolute;
   right: 24rpx;
   top: 18rpx;
   width: 168rpx;
-  height: 162rpx;
 }
 .current-level {
   color: #404A5C;
@@ -57,7 +68,6 @@
   font-size: 18rpx;
   line-height: 24rpx;
   text-align: right;
-  background: linear-gradient(90deg, rgb(113, 195, 254) 0%, rgb(60, 155, 255) 100%);
   border-radius: 12rpx;
 }
 .next-level {

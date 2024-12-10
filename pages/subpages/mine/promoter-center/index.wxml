@@ -1,17 +1,17 @@
 <view class="container">
   <view class="level-info-wrap">
-    <view class="level-tag">当前等级</view>
-    <image class="level-medal" src="https://static.tiddler.cn/mp/promoter_level/medal_level_1.png" />
-    <view class="current-level">推广萌新Lv.1</view>
+    <view class="level-tag bg-{{level}}">当前等级</view>
+    <image class="level-medal" src="https://static.tiddler.cn/mp/promoter_level/medal_level_{{level}}.png" mode="widthFix" />
+    <view class="current-level">推广{{['萌新', '能手', '达人', '狂魔'][level - 1]}}Lv.{{level}}</view>
     <view class="current-level-desc">2025.08.08到期 每月8日更新等级</view>
-    <view class="progress-wrap">
+    <view class="progress-wrap" wx:if="{{level !== 4}}">
       <view class="progress-bar">
-        <view class="progress-bar-inner" style="width: 80%;">80%</view>
+        <view class="progress-bar-inner bg-{{level + 1}}" style="width: 80%;">80%</view>
       </view>
-      <view class="next-level">Lv.2</view>
+      <view class="next-level">Lv.{{level + 1}}</view>
     </view>
-    <view class="next-level-desc">
-      <text>距升级Lv.2还差2500元，查看业绩</text>
+    <view class="next-level-desc" wx:if="{{level !== 4}}">
+      <text>距升级Lv.{{level + 1}}还差2500元，查看业绩</text>
       <image class="arrow" src="./images/arrow.png" />
     </view>
   </view>
