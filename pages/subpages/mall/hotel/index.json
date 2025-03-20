@@ -6,6 +6,5 @@
     "van-dropdown-item": "@vant/weapp/dropdown-item/index",
     "empty-illus": "/components/empty-illus/index",
     "hotel-item": "./components/hotel-item/index"
-    
   }
 }
