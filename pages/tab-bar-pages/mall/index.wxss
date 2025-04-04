@@ -19,10 +19,10 @@ page {
   background: #fff;
 }
 
-.notice-center-icon {
+.sign-in-icon {
   margin-left: 8px;
-  width: 24px;
-  height: 24px;
+  width: 33px;
+  height: 27.5px;
 }
 
 .search-bar {

@@ -3,9 +3,10 @@
 <view class="nav-bar row" style="padding-top: {{statusBarHeight}}px;">
   <image class="nav-bg" wx:if="{{navBarVisible}}" src="{{userInfo.bg || 'https://img.ubo.vip/tiddler/temp/bg.jpg'}}" />
   <view class="bg-cover" wx:if="{{navBarVisible}}" />
-  <view class="notice-icon-wrap row center" bindtap="navToSetting">
+  <!-- <view class="notice-icon-wrap row center" bindtap="navToSetting">
     <image class="notice-icon" src="https://img.ubo.vip/tiddler/nav-icon/msg_center.png" bindtap="navToMessageCenter" />
-  </view>
+  </view> -->
+  <image class="sign-in-icon" src="/images/sign_in.png" bindtap="navToMessageCenter" />
   <image class="mine-avatar" wx:if="{{navBarVisible}}" src="{{userInfo.avatar}}" />
   <view class="mine-name" wx:if="{{navBarVisible}}">{{userInfo.nickname}}</view>
 </view>

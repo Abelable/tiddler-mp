@@ -19,13 +19,13 @@
   justify-content: center;
   height: 44px;
 }
-.notice-center-icon {
+.sign-in-icon {
   position: absolute;
   top: 50%;
   left: 8px;
   transform: translateY(-50%);
-  width: 24px;
-  height: 24px;
+  width: 33px;
+  height: 27.5px;
 }
 .menu-tabs {
   display: flex;

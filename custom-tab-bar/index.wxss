@@ -24,6 +24,11 @@
   width: 24px;
   height: 24px;
 }
+.icon.notice {
+  margin-bottom: 2px;
+  width: 21px;
+  height: 21px;
+}
 
 .text {
   font-size: 10px;

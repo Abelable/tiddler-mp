@@ -1,0 +1,7 @@
+page {
+  background: #fff;
+}
+
+.container {
+  padding-bottom: calc(48px + env(safe-area-inset-bottom));
+}

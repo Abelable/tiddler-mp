@@ -2,6 +2,7 @@
   "pages":[
     "pages/tab-bar-pages/home/index",
     "pages/tab-bar-pages/mall/index",
+    "pages/tab-bar-pages/notice/index",
     "pages/tab-bar-pages/mine/index"
   ],
   "subPackages": [{
@@ -104,6 +105,9 @@
       },
       {
         "pagePath": "pages/tab-bar-pages/mall/index"
+      },
+      {
+        "pagePath": "pages/tab-bar-pages/notice/index"
       },
       {
         "pagePath": "pages/tab-bar-pages/mine/index"
