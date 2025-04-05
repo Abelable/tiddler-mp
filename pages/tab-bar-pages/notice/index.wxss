@@ -1,7 +1,47 @@
-page {
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   background: #fff;
+  z-index: 100;
+}
+.nav-bar {
+  padding: 0 8px;
+  height: 44px;
+}
+.sign-in-icon {
+  width: 35px;
+  height: 29.5px;
+}
+.all-read-btn {
+  margin-left: 12px;
+  padding: 4px 8px;
+  color: #333;
+  font-size: 10px;
+  background: #eee;
+  border-radius: 8px;
+}
+.nav-bar-title {
+  margin-right: 108px;
+  flex: 1;
+  color: #333;
+  font-size: 16px;
+  font-weight: 550;
 }
 
-.container {
-  padding-bottom: calc(48px + env(safe-area-inset-bottom));
+.message-bar {
+  padding: 4px 0 12px;
+}
+.message-type-item {
+  flex-direction: column;
+}
+.message-type-icon {
+  width: 50px;
+  height: 50px;
+}
+.message-type-desc {
+  margin-top: 2px;
+  color: #333;
+  font-size: 11px;
 }

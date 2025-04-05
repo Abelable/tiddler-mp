@@ -235,12 +235,6 @@ Component({
       });
     },
 
-    navToMessageCenter() {
-      wx.navigateTo({
-        url: "/pages/subpages/message-center/index"
-      });
-    },
-
     register() {
       wx.navigateTo({
         url: "/pages/subpages/common/register/index"

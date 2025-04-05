@@ -27,8 +27,8 @@
 
 .sign-in-icon {
   margin-left: 8px;
-  width: 33px;
-  height: 27.5px;
+  width: 35px;
+  height: 29.5px;
 }
 
 .mine-avatar {

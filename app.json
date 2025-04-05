@@ -14,7 +14,6 @@
       "common/cropper/index",
       "common/search/index",
       "common/video-play/index",
-      "message-center/index",
       "home/media/live/create-live/index",
       "home/media/live/live-notice/index",
       "home/media/live/live-push/vertical-screen/index",

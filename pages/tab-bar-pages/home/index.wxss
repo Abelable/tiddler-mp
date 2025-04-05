@@ -13,25 +13,21 @@
 }
 
 .menu-tabs-wrap {
-  position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
+  padding-left: 8px;
+  padding-right: 43px;
   height: 44px;
 }
 .sign-in-icon {
-  position: absolute;
-  top: 50%;
-  left: 8px;
-  transform: translateY(-50%);
-  width: 33px;
-  height: 27.5px;
+  width: 35px;
+  height: 29.5px;
 }
 .menu-tabs {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  width: 100px;
+  flex: 1;
   height: 44px;
 }
 .menu-tab {

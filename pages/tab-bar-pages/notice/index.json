@@ -1,7 +1,6 @@
 {
   "navigationStyle": "custom",
-  "enablePullDownRefresh": true,
-  "backgroundColor": "#ffffff",
   "usingComponents": {
+    "back-icon": "/components/back-icon/index"
   }
 }

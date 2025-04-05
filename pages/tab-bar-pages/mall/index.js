@@ -113,12 +113,6 @@ Component({
       });
     },
 
-    navToMessageCenter() {
-      wx.navigateTo({
-        url: "/pages/subpages/message-center/index",
-      });
-    },
-
     linkTo(e) {
       const { scene, param } = e.currentTarget.dataset;
       switch (scene) {
