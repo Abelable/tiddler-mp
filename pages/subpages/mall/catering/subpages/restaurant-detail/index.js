@@ -37,14 +37,33 @@ Page({
     posterModelVisible: false
   },
 
-  async onLoad({ id }) {
-    this.restaurantId = +id;
+  async onLoad(options) {
+    const { id, superiorId = "", scene = "" } = options || {};
+    const decodedSceneList = scene ? decodeURIComponent(scene).split("-") : [];
+    this.restaurantId = +id || decodedSceneList[0];
+    this.superiorId = +superiorId || decodedSceneList[1];
+
+    getApp().onLaunched(async () => {
+      if (this.superiorId && !store.promoterInfo) {
+        wx.setStorageSync("superiorId", this.superiorId);
+        const superiorInfo = await cateringService.getSuperiorInfo(
+          this.superiorId
+        );
+        store.setPromoterInfo(superiorInfo);
+      }
+    });
+
     await this.setRestaurantInfo();
     await this.setEvaluationSummary();
     await this.setQaSummary();
     await this.setMediaList(true);
     this.setNavBarVisibleLimit();
     this.setMenuChangeLimitList();
+
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ["shareAppMessage", "shareTimeline"]
+    });
   },
 
   async setRestaurantInfo() {
@@ -451,8 +470,11 @@ Page({
 
   share() {
     checkLogin(async () => {
-      const scene = `id=${this.restaurantId}`;
-      const page = "pages/tab-bar-pages/home/index";
+      const scene = store.promoterInfo
+        ? `${this.restaurantId}-${store.promoterInfo.id}`
+        : `${this.restaurantId}`;
+      const page =
+        "pages/subpages/mall/catering/subpages/restaurant-detail/index";
       const qrcode = await cateringService.getQRCode(scene, page);
 
       const {
@@ -530,5 +552,19 @@ Page({
     this.setData({ telPopupVisible: false });
   },
 
-  onShareAppMessage() {}
+  onShareAppMessage() {
+    const { id, name, cover } = this.data.restaurantInfo;
+    const path = store.promoterInfo
+      ? `/pages/subpages/mall/hotel/subpages/hotel-detail/index?id=${id}&superiorId=${store.promoterInfo.id}`
+      : `/pages/subpages/mall/hotel/subpages/hotel-detail/index?id=${id}`;
+    return { path, title: name, imageUrl: cover };
+  },
+
+  onShareTimeline() {
+    const { id, name, cover } = this.data.restaurantInfo;
+    const query = store.promoterInfo
+      ? `id=${id}&superiorId=${promoterInfo.id}`
+      : `id=${id}`;
+    return { query, title: name, imageUrl: cover };
+  }
 });

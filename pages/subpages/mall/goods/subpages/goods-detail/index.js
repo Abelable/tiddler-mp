@@ -1,4 +1,5 @@
-import { getQueryString, checkLogin } from "../../../../../../utils/index";
+import { store } from "../../../../../../store/index";
+import { checkLogin } from "../../../../../../utils/index";
 import GoodsService from "../../utils/goodsService";
 
 const goodsService = new GoodsService();
@@ -24,19 +25,29 @@ Page({
     posterModelVisible: false
   },
 
-  async onLoad({ id, scene, q }) {
+  async onLoad(options) {
+    const { id, superiorId = "", scene = "" } = options || {};
+    const decodedSceneList = scene ? decodeURIComponent(scene).split("-") : [];
+    this.goodsId = +id || decodedSceneList[0];
+    this.superiorId = +superiorId || decodedSceneList[1];
+
+    getApp().onLaunched(async () => {
+      if (this.superiorId && !store.promoterInfo) {
+        wx.setStorageSync("superiorId", this.superiorId);
+        const superiorInfo = await goodsService.getSuperiorInfo(
+          this.superiorId
+        );
+        store.setPromoterInfo(superiorInfo);
+      }
+    });
+
+    await this.setGoodsInfo();
+    this.getBannerHeight();
+
     wx.showShareMenu({
       withShareTicket: true,
       menus: ["shareAppMessage", "shareTimeline"]
     });
-
-    const decodedScene = scene ? decodeURIComponent(scene) : "";
-    const decodedQ = q ? decodeURIComponent(q) : "";
-    this.goodsId =
-      id || decodedScene.split("-")[0] || getQueryString(decodedQ, "id");
-
-    await this.setGoodsInfo();
-    this.getBannerHeight();
   },
 
   onShow() {
@@ -161,8 +172,10 @@ Page({
 
   share() {
     checkLogin(async () => {
-      const scene = `id=${this.goodsId}`;
-      const page = "pages/tab-bar-pages/home/index";
+      const scene = store.promoterInfo
+        ? `${this.goodsId}-${store.promoterInfo.id}`
+        : `${this.goodsId}`;
+      const page = "pages/subpages/mall/goods/subpages/goods-detail/index";
       const qrcode = await goodsService.getQRCode(scene, page);
 
       const {
@@ -195,14 +208,17 @@ Page({
   // 分享
   onShareAppMessage() {
     const { id, name: title, cover: imageUrl } = this.data.goodsInfo;
-    const path = `/pages/subpages/mall/goods/subpages/goods-detail/index?id=${id}`;
+    const path = store.promoterInfo
+      ? `/pages/subpages/mall/goods/subpages/goods-detail/index?id=${id}&superiorId=${store.promoterInfo.id}`
+      : `/pages/subpages/mall/goods/subpages/goods-detail/index?id=${id}`;
     return { title, imageUrl, path };
   },
 
   onShareTimeline() {
-    const { id, name, image: imageUrl } = this.data.goodsInfo;
-    const title = `小鱼游商品：${name}`;
-    const query = `id=${id}`;
+    const { id, name: title, cover: imageUrl } = this.data.goodsInfo;
+    const query = store.promoterInfo
+      ? `id=${id}&superiorId=${promoterInfo.id}`
+      : `id=${id}`;
     return { query, title, imageUrl };
   }
 });

@@ -1,4 +1,5 @@
 import { WEBVIEW_BASE_URL } from "../../../../../../config";
+import { store } from "../../../../../../store/index";
 import { checkLogin } from "../../../../../../utils/index";
 import ScenicService from "../../utils/scenicService";
 
@@ -36,8 +37,20 @@ Page({
     posterModelVisible: false
   },
 
-  async onLoad({ id }) {
-    this.scenicId = +id;
+  async onLoad(options) {
+    const { id, superiorId = "", scene = "" } = options || {};
+    const decodedSceneList = scene ? decodeURIComponent(scene).split("-") : [];
+    this.scenicId = +id || decodedSceneList[0];
+    this.superiorId = +superiorId || decodedSceneList[1];
+
+    getApp().onLaunched(async () => {
+      if (this.superiorId && !store.promoterInfo) {
+        wx.setStorageSync("superiorId", this.superiorId);
+        const superiorInfo = await scenicService.getSuperiorInfo(this.superiorId);
+        store.setPromoterInfo(superiorInfo);
+      }
+    });
+
     await this.setScenicCategoryOptions();
     await this.setScenicInfo();
     await this.setSourceTicketList();
@@ -47,6 +60,11 @@ Page({
     await this.setNearbyScenicList();
     await this.setMediaList(true);
     this.setMenuList();
+
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ["shareAppMessage", "shareTimeline"]
+    });
   },
 
   async setScenicCategoryOptions() {
@@ -429,8 +447,10 @@ Page({
 
   share() {
     checkLogin(async () => {
-      const scene = `id=${this.scenicId}`;
-      const page = "pages/tab-bar-pages/home/index";
+      const scene = store.promoterInfo
+        ? `${this.scenicId}-${store.promoterInfo.id}`
+        : `${this.scenicId}`;
+      const page = "pages/subpages/mall/scenic-spot/subpages/spot-detail/index";
       const qrcode = await scenicService.getQRCode(scene, page);
 
       const {
@@ -514,5 +534,19 @@ Page({
     });
   },
 
-  onShareAppMessage() {}
+  onShareAppMessage() {
+    const { id, name, imageList } = this.data.scenicInfo;
+    const path = store.promoterInfo
+      ? `/pages/subpages/mall/scenic-spot/subpages/spot-detail/index?id=${id}&superiorId=${store.promoterInfo.id}`
+      : `/pages/subpages/mall/scenic-spot/subpages/spot-detail/index?id=${id}`;
+    return { path, title: name, imageUrl: imageList[0] };
+  },
+
+  onShareTimeline() {
+    const { id, name, imageList } = this.data.scenicInfo;
+    const query = store.promoterInfo
+      ? `id=${id}&superiorId=${promoterInfo.id}`
+      : `id=${id}`;
+    return { query, title: name, imageUrl: imageList[0] };
+  }
 });
