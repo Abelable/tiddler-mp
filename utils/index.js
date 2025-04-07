@@ -116,3 +116,10 @@ export const numOver = (num, unit) => {
   num = num >= unit ? (num / baseUnit).toFixed(1) + unitDesc : num;
   return num;
 };
+
+export const randomNickname = () => {
+  const now = Date.now();
+  const random = Math.floor(Math.random() * 1000);
+  const timestamp = (now % 1000000) + random;
+  return timestamp.toString().slice(-6);
+};

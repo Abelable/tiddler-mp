@@ -7,58 +7,52 @@ const { statusBarHeight } = getApp().globalData.systemInfo
 Page({
   data: {
     statusBarHeight,
-    authModalVisible: false,
-    avatarUrl: "https://img.ubo.vip/youmeng/default_avatar.png"
+    agree: false
+  },
+
+  onLoad() {
+    this.superiorId = wx.getStorageSync("superiorId") || "";
   },
 
   async getMobile(e) {
     const mobile = await baseService.getUserMobile(e.detail.code)
     if (mobile) {
       this.mobile = mobile
-      this.setData({ authModalVisible: true })
+      this.register();
     }
-  },
-
-  async chooseAvatar(e) {
-    const avatarUrl = (await baseService.uploadFile(e.detail.avatarUrl)) || "";
-    this.setData({ avatarUrl });
-  },
-
-  setNickname(e) {
-    this.nickname = e.detail.value;
-  },
-
-  saveAuthInfo() {
-    if (!this.nickname) {
-      wx.showToast({
-        title: "请输入用户昵称",
-        icon: "none"
-      });
-      return;
-    }
-    this.register();
   },
 
   async register() {
     const { code } = await baseService.wxLogin();
     const token = await baseService.register(
       code,
-      this.data.avatarUrl,
-      this.nickname,
-      this.mobile
+      this.mobile,
+      this.superiorId
     );
     if (token) {
       wx.setStorageSync("token", token);
+      if (this.superiorId) {
+        wx.removeStorageSync("superiorId");
+      }
       wx.navigateBack();
     }
   },
 
-  serviceAgreement() {
-    wx.navigateTo({ url: `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/agreements/user_service` })
+  toast() {
+    wx.showToast({
+      title: "请先阅读并同意用户服务协议",
+      icon: "none"
+    });
   },
 
-  hideModal() {
-    this.setData({ authModalVisible: false })
+  toggleAgree() {
+    this.setData({
+      agree: !this.data.agree
+    });
+  },
+
+  checkAgreement() {
+    wx.navigateTo({ url: `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/agreements/user_service` })
   },
 
   navToHome() {
