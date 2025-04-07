@@ -39,7 +39,7 @@ Page({
     getApp().onLaunched(async () => {
       if (this.superiorId && !store.promoterInfo) {
         wx.setStorageSync("superiorId", this.superiorId);
-        const superiorInfo = await homeService.getSuperiorInfo(this.superiorId);
+        const superiorInfo = await videoService.getSuperiorInfo(this.superiorId);
         store.setPromoterInfo(superiorInfo);
       }
     });
@@ -235,8 +235,8 @@ Page({
     const { videoList, curVideoIdx } = this.data;
     const { id, title, cover: imageUrl } = videoList[curVideoIdx];
     const path = store.promoterInfo
-      ? `/pages/subpages/index/short-video/index?id=${id}&superiorId=${store.promoterInfo.id}`
-      : `/pages/subpages/index/short-video/index?id=${id}`;
+      ? `/pages/subpages/home/media/video/index?id=${id}&superiorId=${store.promoterInfo.id}`
+      : `/pages/subpages/home/media/video/index?id=${id}`;
     return { path, title, imageUrl };
   },
 

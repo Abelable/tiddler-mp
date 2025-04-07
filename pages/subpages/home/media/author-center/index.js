@@ -1,4 +1,5 @@
 import { checkLogin, numOver } from "../../../../../utils/index";
+import { store } from "../../../../../store/index";
 import MediaService from "../../utils/mediaService";
 import {
   SCENE_SWITCH_TAB,
@@ -26,8 +27,22 @@ Page({
     posterModalVisible: false
   },
 
-  async onLoad({ id }) {
-    this.authorId = +id;
+  async onLoad(options) {
+    const { id, superiorId = "", scene = "" } = options || {};
+    const decodedSceneList = scene ? decodeURIComponent(scene).split("-") : [];
+    this.authorId = +id || decodedSceneList[0];
+    this.superiorId = +superiorId || decodedSceneList[1];
+
+    getApp().onLaunched(async () => {
+      if (this.superiorId && !store.promoterInfo) {
+        wx.setStorageSync("superiorId", this.superiorId);
+        const superiorInfo = await mediaService.getSuperiorInfo(
+          this.superiorId
+        );
+        store.setPromoterInfo(superiorInfo);
+      }
+    });
+
     await this.setAuthorInfo();
 
     this.scrollTopArr = [0, 0];
@@ -35,6 +50,11 @@ Page({
 
     this.setNavBarVisibleLimit();
     this.setMenuFixedLimit();
+
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ["shareAppMessage", "shareTimeline"]
+    });
   },
 
   onShow() {
@@ -253,8 +273,10 @@ Page({
         fansNumber
       } = this.data.authorInfo;
 
-      const scene = `id=${id}`;
-      const page = "pages/tab-bar-pages/home/index";
+      const scene = store.promoterInfo
+        ? `${id}-${store.promoterInfo.id}`
+        : `${id}`;
+      const page = "pages/subpages/home/media/author-center/index";
       const qrcode = await mediaService.getQRCode(scene, page);
 
       this.setData({
@@ -274,5 +296,21 @@ Page({
 
   hidePosterModal() {
     this.setData({ posterModalVisible: false });
+  },
+
+  onShareAppMessage() {
+    const { id, nickname: title } = this.data.authorInfo
+    const path = store.promoterInfo
+      ? `/pages/subpages/home/media/author-center/index?id=${id}&superiorId=${store.promoterInfo.id}`
+      : `/pages/subpages/home/media/author-center/index?id=${id}`;
+    return { path, title };
+  },
+
+  onShareTimeline() {
+    const { id, nickname: title } = this.data.authorInfo
+    const query = store.promoterInfo
+      ? `id=${id}&superiorId=${promoterInfo.id}`
+      : `id=${id}`;
+    return { query, title };
   }
 });

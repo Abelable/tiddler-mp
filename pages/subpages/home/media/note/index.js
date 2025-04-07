@@ -1,8 +1,5 @@
-import {
-  checkLogin,
-  getQueryString,
-  numOver
-} from "../../../../../utils/index";
+import { checkLogin, numOver } from "../../../../../utils/index";
+import { store } from "../../../../../store/index";
 import {
   SCENE_MINE,
   SCENE_COLLECT,
@@ -26,20 +23,34 @@ Page({
     posterModalVisible: false
   },
 
-  async onLoad({ id, authorId, mediaScene, scene, q }) {
+  async onLoad(options) {
+    const {
+      id,
+      authorId,
+      mediaScene,
+      superiorId = "",
+      scene = ""
+    } = options || {};
+    const decodedSceneList = scene ? decodeURIComponent(scene).split("-") : [];
+    this.noteId = +id || decodedSceneList[0];
+    this.superiorId = +superiorId || decodedSceneList[1];
+    this.authorId = authorId ? +authorId : 0;
+    this.mediaScene = mediaScene ? +mediaScene : 0;
+
+    getApp().onLaunched(async () => {
+      if (this.superiorId && !store.promoterInfo) {
+        wx.setStorageSync("superiorId", this.superiorId);
+        const superiorInfo = await noteService.getSuperiorInfo(this.superiorId);
+        store.setPromoterInfo(superiorInfo);
+      }
+    });
+
+    this.setNoteList(true);
+
     wx.showShareMenu({
       withShareTicket: true,
       menus: ["shareAppMessage", "shareTimeline"]
     });
-
-    const decodedScene = scene ? decodeURIComponent(scene) : "";
-    const decodedQ = q ? decodeURIComponent(q) : "";
-    this.noteId =
-      +id || decodedScene.split("-")[0] || getQueryString(decodedQ, "id");
-    this.authorId = authorId ? +authorId : 0;
-    this.mediaScene = mediaScene ? +mediaScene : 0;
-
-    this.setNoteList(true);
   },
 
   onPullDownRefresh() {
@@ -166,8 +177,10 @@ Page({
       const { noteList } = this.data;
       const { id, imageList, title, content, authorInfo, likeNumber } =
         noteList[curNoteIdx];
-      const scene = `id=${id}`;
-      const page = "pages/tab-bar-pages/home/index";
+      const scene = store.promoterInfo
+        ? `${id}-${store.promoterInfo.id}`
+        : `${id}`;
+      const page = "pages/subpages/home/media/note/index";
 
       noteService.shareTourismNote(id, scene, page, res => {
         const { qrcode, shareTimes } = res.data;
@@ -256,14 +269,18 @@ Page({
   onShareAppMessage() {
     const { noteList, curNoteIdx } = this.data;
     const { id, title, cover: imageUrl } = noteList[curNoteIdx];
-    const path = `/pages/subpages/index/short-note/index?id=${id}`;
+    const path = store.promoterInfo
+      ? `/pages/subpages/home/media/note/index?id=${id}&superiorId=${store.promoterInfo.id}`
+      : `/pages/subpages/home/media/note/index?id=${id}`;
     return { path, title, imageUrl };
   },
 
   onShareTimeline() {
     const { noteList, curNoteIdx } = this.data;
     const { id, title, cover: imageUrl } = noteList[curNoteIdx];
-    const query = `id=${id}`;
+    const query = store.promoterInfo
+    ? `id=${id}&superiorId=${promoterInfo.id}`
+    : `id=${id}`;
     return { query, title, imageUrl };
   }
 });

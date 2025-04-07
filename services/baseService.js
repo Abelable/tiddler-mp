@@ -63,6 +63,13 @@ class BaseService extends Base {
     })
   }
 
+  async getSuperiorInfo(superiorId) {
+    return this.get({
+      url: `${this.baseUrl}/user/superior_info`,
+      data: { superiorId }
+    });
+  }
+
   async getTimLoginInfo() {
     return await this.get({ url: `${this.baseUrl}/user/tim_login_info` });
   }

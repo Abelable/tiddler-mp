@@ -1,6 +1,5 @@
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { store } from "../../../../../../store/index";
-import { getQueryString } from "../../../../../../utils/index";
 import LiveService from "../utils/liveService";
 
 const liveService = new LiveService();
@@ -19,10 +18,20 @@ Page({
   },
 
   async onLoad(options) {
-    wx.showShareMenu({
-      withShareTicket: true,
-      menus: ["shareAppMessage", "shareTimeline"]
+    const { id, superiorId = "", scene = "" } = options || {};
+    const decodedSceneList = scene ? decodeURIComponent(scene).split("-") : [];
+    this.roomId = +id || decodedSceneList[0];
+    this.superiorId = +superiorId || decodedSceneList[1];
+
+    getApp().onLaunched(async () => {
+      if (this.superiorId && !store.promoterInfo) {
+        wx.setStorageSync("superiorId", this.superiorId);
+        const superiorInfo = await liveService.getSuperiorInfo(this.superiorId);
+        store.setPromoterInfo(superiorInfo);
+      }
     });
+
+    this.setRoomList();
 
     this.storeBindings = createStoreBindings(this, {
       store,
@@ -30,13 +39,10 @@ Page({
       actions: ["setLiveMsgList"]
     });
 
-    const { id, scene, q } = options;
-    const decodedScene = scene ? decodeURIComponent(scene) : "";
-    const decodedQ = q ? decodeURIComponent(q) : "";
-    this.roomId =
-      id || decodedScene.split("-")[0] || getQueryString(decodedQ, "id");
-
-    this.setRoomList();
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ["shareAppMessage", "shareTimeline"]
+    });
   },
 
   onShow() {
@@ -94,8 +100,11 @@ Page({
       startTime
     } = roomList[curRoomIdx];
 
-    const scene = `id=${id}`;
-    const page = "pages/tab-bar-pages/home/index";
+    const scene =
+      wx.getStorageSync("token") && store.promoterInfo
+        ? `${id}-${store.promoterInfo.id}`
+        : `${id}`;
+    const page = "pages/subpages/home/media/live/live-play/index";
     const qrcode = await liveService.getQRCode(scene, page);
 
     this.setData({
@@ -136,7 +145,9 @@ Page({
     const { roomList, curRoomIdx } = this.data;
     const roomInfo = roomList[curRoomIdx];
     const { id, title, cover: imageUrl } = roomInfo;
-    const path = `/pages/subpages/index/room/index?id=${id}}`;
+    const path = store.promoterInfo
+      ? `/pages/subpages/home/media/live/live-play/index?id=${id}&superiorId=${store.promoterInfo.id}`
+      : `/pages/subpages/home/media/live/live-play/index?id=${id}}`;
     return { path, title, imageUrl };
   },
 
@@ -145,7 +156,9 @@ Page({
     const roomInfo = roomList[curRoomIdx];
     const { id, title, cover: imageUrl } = roomInfo;
     title = `有播直播间：${title}`;
-    const query = `id=${id}`;
+    const query = store.promoterInfo
+      ? `id=${id}&superiorId=${promoterInfo.id}`
+      : `id=${id}`;
     return { query, title, imageUrl };
   }
 });
