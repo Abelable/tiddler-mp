@@ -36,7 +36,6 @@ Component({
     likeMediaList: [],
     likeFinished: false,
     authInfoPopupVisible: false,
-    authInfoModalVisible: false,
   },
 
   lifetimes: {

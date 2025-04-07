@@ -1,4 +1,4 @@
-import { store } from "../../../../store/index";
+import { store } from "../../../../../store/index";
 import MineService from "../../utils/mineService";
 
 const mineService = new MineService();

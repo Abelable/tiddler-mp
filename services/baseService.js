@@ -55,6 +55,14 @@ class BaseService extends Base {
     return userInfo;
   }
 
+  async updateUserInfo(userInfo, success) {
+    return await this.post({ 
+      url: `${this.baseUrl}/user/update`, 
+      data: cleanObject(userInfo),
+      success
+    })
+  }
+
   async getTimLoginInfo() {
     return await this.get({ url: `${this.baseUrl}/user/tim_login_info` });
   }
