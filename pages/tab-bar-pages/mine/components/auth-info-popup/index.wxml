@@ -2,7 +2,7 @@
   <view class="user-info-popup">
     <view class="row">
       <image class="logo" src="https://static.tiddler.cn/mp/logo.png" />
-      <view class="app-name">小鱼游</view>
+      <view class="app-name">千岛湖小鱼游</view>
       <view class="apply-tips">申请</view>
     </view>
     <view class="apply-info-title">获取您的头像、昵称</view>
@@ -12,7 +12,7 @@
         <view class="modal-list-title">头像</view>
         <button class="avatar-wrapper" bind:chooseavatar="chooseAvatar" open-type="chooseAvatar" hover-class="none">
           <image class="avatar-img" src="{{avatar || 'https://static.tiddler.cn/mp/default_avatar.png'}}" />
-          <image class="arrow" src="/images/arrow.png" />
+          <image class="avatar-arrow" src="../../images/arrow.png" />
         </button> 
       </view>
       <view class="auth-modal-list">
