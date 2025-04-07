@@ -92,7 +92,7 @@ switch {
 }
 
 .avatar-default {
-  background-image: url('https://img.ubo.vip/tiddler/default-avatar.png');
+  background-image: url('https://static.tiddler.cn/mp/default_avatar.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }

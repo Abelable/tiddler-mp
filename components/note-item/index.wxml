@@ -8,7 +8,7 @@
       <text>私密</text>
     </view>
     <view class="address-info" wx:if="{{item.address}}">
-      <image class="address-icon" src="https://img.ubo.vip/tiddler/media-item/address.png" />
+      <image class="address-icon" src="/images/address.png" />
       <text class="address-detail omit single-line">{{item.address}}</text>
     </view>
   </view>
