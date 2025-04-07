@@ -9,27 +9,43 @@ Component({
   data: {
     statusBarHeight,
     categoryList: [
-      { name: "景点乐园", icon: "https://img.ubo.vip/tiddler/mall/scenic.png" },
-      { name: "酒店民宿", icon: "https://img.ubo.vip/tiddler/mall/hotel.png" },
-      { name: "餐厅美食", icon: "https://img.ubo.vip/tiddler/mall/food.png" },
-      {
-        name: "特色商品",
-        icon: "https://img.ubo.vip/tiddler/mall/shopping.png",
-      },
+      { name: "景点乐园", icon: "scenic" },
+      { name: "酒店民宿", icon: "hotel" },
+      { name: "餐厅美食", icon: "food" },
+      { name: "特色商品", icon: "shopping" }
     ],
     navBarActive: false,
     commodityList: [],
-    finished: false,
+    finished: false
   },
 
   pageLifetimes: {
     show() {
       store.setTabType("mall");
-    },
+    }
   },
 
   methods: {
-    onLoad() {
+    onLoad(options) {
+      wx.showShareMenu({
+        withShareTicket: true,
+        menus: ["shareAppMessage", "shareTimeline"]
+      });
+
+      const { superiorId = "", scene = "" } = options || {};
+      const decodedScene = scene ? decodeURIComponent(scene) : "";
+      this.superiorId = superiorId || decodedScene.split("-")[0];
+
+      getApp().onLaunched(async () => {
+        if (this.superiorId && !store.promoterInfo) {
+          wx.setStorageSync("superiorId", this.superiorId);
+          const superiorInfo = await mallService.getSuperiorInfo(
+            this.superiorId
+          );
+          store.setPromoterInfo(superiorInfo);
+        }
+      });
+
       if (!store.locationInfo) {
         mallService.getLocationInfo();
       }
@@ -63,7 +79,7 @@ Component({
       const { list = [] } =
         (await mallService.getCommodityList(++this.page, limit)) || {};
       this.setData({
-        commodityList: init ? list : [...commodityList, ...list],
+        commodityList: init ? list : [...commodityList, ...list]
       });
       if (list.length < limit) {
         this.setData({ finished: true });
@@ -74,13 +90,13 @@ Component({
       if (e.scrollTop >= 10) {
         if (!this.data.navBarActive) {
           this.setData({
-            navBarActive: true,
+            navBarActive: true
           });
         }
       } else {
         if (this.data.navBarActive) {
           this.setData({
-            navBarActive: false,
+            navBarActive: false
           });
         }
       }
@@ -97,7 +113,7 @@ Component({
 
     search() {
       wx.navigateTo({
-        url: "/pages/subpages/common/search/index",
+        url: "/pages/subpages/common/search/index"
       });
     },
 
@@ -106,10 +122,10 @@ Component({
         "/pages/subpages/mall/scenic-spot/index",
         "/pages/subpages/mall/hotel/index",
         "/pages/subpages/mall/catering/index",
-        "/pages/subpages/mall/goods/index",
+        "/pages/subpages/mall/goods/index"
       ];
       wx.navigateTo({
-        url: pageList[Number(e.currentTarget.dataset.index)],
+        url: pageList[Number(e.currentTarget.dataset.index)]
       });
     },
 
@@ -118,34 +134,48 @@ Component({
       switch (scene) {
         case 1:
           wx.navigateTo({
-            url: `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}${param}`,
+            url: `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}${param}`
           });
           break;
 
         case 2:
           wx.navigateTo({
-            url: `/pages/subpages/mall/scenic-spot/subpages/spot-detail/index?id=${param}`,
+            url: `/pages/subpages/mall/scenic-spot/subpages/spot-detail/index?id=${param}`
           });
           break;
 
         case 3:
           wx.navigateTo({
-            url: `/pages/subpages/mall/hotel/subpages/hotel-detail/index?id=${param}`,
+            url: `/pages/subpages/mall/hotel/subpages/hotel-detail/index?id=${param}`
           });
           break;
 
         case 4:
           wx.navigateTo({
-            url: `/pages/subpages/mall/catering/subpages/restaurant-detail/index?id=${param}`,
+            url: `/pages/subpages/mall/catering/subpages/restaurant-detail/index?id=${param}`
           });
           break;
 
         case 5:
           wx.navigateTo({
-            url: `/pages/subpages/mall/goods/subpages/goods-detail/index?id=${param}`,
+            url: `/pages/subpages/mall/goods/subpages/goods-detail/index?id=${param}`
           });
           break;
       }
     },
-  },
+
+    onShareAppMessage() {
+      const { id } = store.promoterInfo || {};
+      const path = id
+        ? `/pages/tab-bar-pages/mall/index?superiorId=${id}`
+        : "/pages/tab-bar-pages/mall/index";
+      return { path };
+    },
+
+    onShareTimeline() {
+      const { id } = store.promoterInfo || {};
+      const query = id ? `superiorId=${id}` : "";
+      return { query };
+    }
+  }
 });

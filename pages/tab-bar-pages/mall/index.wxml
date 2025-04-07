@@ -22,7 +22,7 @@
   
   <view class="category-wrap">
     <view class="category-item" wx:for="{{categoryList}}" wx:key="index" bindtap="navTo" data-index="{{index}}">
-      <image class="category-icon" src="{{item.icon}}" />
+      <image class="category-icon" src="https://static.tiddler.cn/mp/mall/{{item.icon}}.png" />
       <view class="category-desc">{{item.name}}</view>
     </view>
   </view>
