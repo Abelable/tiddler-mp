@@ -39,11 +39,6 @@ Component({
 
   methods: {
     onLoad(options) {
-      wx.showShareMenu({
-        withShareTicket: true,
-        menus: ["shareAppMessage", "shareTimeline"]
-      });
-
       const { superiorId = "", scene = "" } = options || {};
       const decodedScene = scene ? decodeURIComponent(scene) : "";
       this.superiorId = superiorId || decodedScene.split("-")[0];
@@ -70,6 +65,11 @@ Component({
       this.initCalendar();
 
       this.setList(SCENE_REFRESH);
+
+      wx.showShareMenu({
+        withShareTicket: true,
+        menus: ["shareAppMessage", "shareTimeline"]
+      });
     },
 
     initCalendar() {
