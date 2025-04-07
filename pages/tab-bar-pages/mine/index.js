@@ -35,6 +35,8 @@ Component({
     collectFinished: false,
     likeMediaList: [],
     likeFinished: false,
+    authInfoPopupVisible: false,
+    authInfoModalVisible: false,
   },
 
   lifetimes: {
@@ -61,6 +63,17 @@ Component({
   },
 
   methods: {
+    onLoad() {
+      setTimeout(() => {
+        checkLogin(() => {
+          const { avatar = "" } = store.userInfo || {};
+          if (!avatar || avatar.includes("default_avatar")) {
+            this.setData({ authInfoPopupVisible: true });
+          }
+        }, false);
+      }, 500);
+    },
+
     updateUserInfo() {
       mineService.getUserInfo();
     },

@@ -24,7 +24,7 @@ class BaseService extends Base {
       url: `${this.baseUrl}/auth/wx_mp/register`,
       data: cleanObject({
         code,
-        avatar: "https://static.youbozhenxuan.cn/mp/default_avatar.png",
+        avatar: "https://static.tiddler.cn/mp/default_avatar.png",
         nickname: `用户${randomNickname()}`,
         mobile,
         superiorId,

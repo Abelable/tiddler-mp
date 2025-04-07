@@ -1,5 +1,5 @@
 <view class="login-wrap">
-  <image class="bg" mode="widthFix" src="https://img.ubo.vip/tiddler/temp/register/bg.jpeg" />
+  <image class="bg" mode="widthFix" src="https://static.tiddler.cn/mp/register_bg.jpeg" />
   <view class="back-icon-wrap" style="top: {{statusBarHeight + 5}}px">
     <back-icon custom bind:navigateBack="navToHome" />
   </view>
@@ -13,11 +13,11 @@
     </view>
     <button class="register-btn" wx:if="{{!agree}}" bindtap="toast" hover-class="none">
       <view>开启旅途</view>
-      <image class="arrow" src="https://img.ubo.vip/tiddler/temp/register/arrow.png" />
+      <image class="arrow" src="./images/arrow.png" />
     </button>
     <button class="register-btn" wx:if="{{agree}}" bindgetphonenumber="getMobile" open-type="getPhoneNumber" hover-class="none">
       <view>开启旅途</view>
-      <image class="arrow" src="https://img.ubo.vip/tiddler/temp/register/arrow.png" />
+      <image class="arrow" src="./images/arrow.png" />
     </button>
     <view class="agreement-tips">
       <checkbox class="checkbox" checked="{{agree}}" bindtap="toggleAgree" color="#0095fa" />

@@ -122,3 +122,6 @@
     </view>
   </view>
 </view>
+
+<auth-info-modal wx:if="{{authInfoModalVisible}}" bind:hide="hideAuthInfoModal" />
+<auth-info-popup show="{{authInfoPopupVisible}}" bind:hide="hideAuthInfoPopup" />

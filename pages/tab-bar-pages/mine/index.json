@@ -7,6 +7,8 @@
     "fall-flow": "/components/fall-flow/index",
     "media-item": "/components/media-item/index",
     "video-item": "/components/video-item/index",
-    "note-item": "/components/note-item/index"
+    "note-item": "/components/note-item/index",
+    "auth-info-modal": "./components/auth-info-modal/index",
+    "auth-info-popup": "./components/auth-info-popup/index"
   }
 }
