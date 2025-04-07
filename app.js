@@ -1,6 +1,6 @@
 import BaseService from "./services/baseService";
-import { checkLogin } from "./utils/index";
 import tim from "./utils/tim/index";
+import { store } from "./store/index";
 
 const baseService = new BaseService();
 
@@ -8,27 +8,56 @@ App({
   globalData: {
     systemInfo: null,
     liveCustomMsg: null,
+    launched: false
   },
 
   async onLaunch() {
     this.setSystemInfo();
+
     if (!wx.getStorageSync("token")) {
       await baseService.login();
     }
-    checkLogin(() => {
-      this.init();
-    }, false);
+
+    if (wx.getStorageSync("token")) {
+      const { userId, sdkAppId, userSig } = await baseService.getTimLoginInfo();
+      tim.init(Number(sdkAppId), String(userId), userSig);
+
+      const userInfo = await baseService.getUserInfo();
+      if (userInfo.level) {
+        store.setPromoterInfo(userInfo);
+      } else if (userInfo.superiorId) {
+        const superiorInfo = await baseService.getSuperiorInfo(
+          userInfo.superiorId
+        );
+        store.setPromoterInfo(superiorInfo);
+      }
+    } else {
+      const superiorId = wx.getStorageSync("superiorId");
+      if (superiorId) {
+        const superiorInfo = await baseService.getSuperiorInfo(superiorId);
+        store.setPromoterInfo(superiorInfo);
+      }
+    }
+
+    this.globalData.launched = true;
+  },
+
+  onLaunched(handler) {
+    Object.defineProperty(this.globalData, "launched", {
+      configurable: true,
+      enumerable: true,
+      set: value => {
+        this.value = value;
+        handler(value);
+      },
+      get: () => {
+        return this.value;
+      }
+    });
   },
 
   onShow() {
     this.update();
-  },
-
-  async init() {
-    baseService.getUserInfo();
-
-    const { userId, sdkAppId, userSig } = await baseService.getTimLoginInfo();
-    tim.init(Number(sdkAppId), String(userId), userSig);
   },
 
   setSystemInfo() {
