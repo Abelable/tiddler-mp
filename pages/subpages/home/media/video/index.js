@@ -1,4 +1,5 @@
-import { getQueryString, numOver } from "../../../../../utils/index";
+import { numOver } from "../../../../../utils/index";
+import { store } from "../../../../../store/index";
 import {
   SCENE_MINE,
   SCENE_COLLECT,
@@ -21,20 +22,34 @@ Page({
     posterModalVisible: false
   },
 
-  async onLoad({ id, authorId, mediaScene, scene, q }) {
+  async onLoad(options) {
+    const {
+      id,
+      authorId,
+      mediaScene,
+      superiorId = "",
+      scene = ""
+    } = options || {};
+    const decodedSceneList = scene ? decodeURIComponent(scene).split("-") : [];
+    this.videoId = +id || decodedSceneList[0];
+    this.superiorId = +superiorId || decodedSceneList[1];
+    this.authorId = authorId ? +authorId : 0;
+    this.mediaScene = mediaScene ? +mediaScene : 0;
+
+    getApp().onLaunched(async () => {
+      if (this.superiorId && !store.promoterInfo) {
+        wx.setStorageSync("superiorId", this.superiorId);
+        const superiorInfo = await homeService.getSuperiorInfo(this.superiorId);
+        store.setPromoterInfo(superiorInfo);
+      }
+    });
+
+    this.setVideoList();
+
     wx.showShareMenu({
       withShareTicket: true,
       menus: ["shareAppMessage", "shareTimeline"]
     });
-
-    const decodedScene = scene ? decodeURIComponent(scene) : "";
-    const decodedQ = q ? decodeURIComponent(q) : "";
-    this.videoId =
-      +id || decodedScene.split("-")[0] || getQueryString(decodedQ, "id");
-    this.authorId = authorId ? +authorId : 0;
-    this.mediaScene = mediaScene ? +mediaScene : 0;
-
-    this.setVideoList();
   },
 
   changeVideo(e) {
@@ -168,8 +183,11 @@ Page({
   async share() {
     const { videoList, curVideoIdx } = this.data;
     const { id, cover, title, authorInfo, likeNumber } = videoList[curVideoIdx];
-    const scene = `id=${id}`;
-    const page = "pages/tab-bar-pages/home/index";
+    const scene =
+      wx.getStorageSync("token") && store.promoterInfo
+        ? `${id}-${store.promoterInfo.id}`
+        : `${id}`;
+    const page = "pages/subpages/home/media/video/index";
 
     videoService.shareShortVideo(id, scene, page, res => {
       const { qrcode, shareTimes } = res.data;
@@ -216,14 +234,18 @@ Page({
   onShareAppMessage() {
     const { videoList, curVideoIdx } = this.data;
     const { id, title, cover: imageUrl } = videoList[curVideoIdx];
-    const path = `/pages/subpages/index/short-video/index?id=${id}`;
+    const path = store.promoterInfo
+      ? `/pages/subpages/index/short-video/index?id=${id}&superiorId=${store.promoterInfo.id}`
+      : `/pages/subpages/index/short-video/index?id=${id}`;
     return { path, title, imageUrl };
   },
 
   onShareTimeline() {
     const { videoList, curVideoIdx } = this.data;
     const { id, title, cover: imageUrl } = videoList[curVideoIdx];
-    const query = `id=${id}`;
+    const query = store.promoterInfo
+      ? `id=${id}&superiorId=${promoterInfo.id}`
+      : `id=${id}`;
     return { query, title, imageUrl };
   }
 });
