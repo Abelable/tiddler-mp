@@ -38,10 +38,24 @@ Component({
   },
 
   methods: {
-    onLoad() {
+    onLoad(options) {
       wx.showShareMenu({
         withShareTicket: true,
         menus: ["shareAppMessage", "shareTimeline"]
+      });
+
+      const { superiorId = "", scene = "" } = options || {};
+      const decodedScene = scene ? decodeURIComponent(scene) : "";
+      this.superiorId = superiorId || decodedScene.split("-")[0];
+
+      getApp().onLaunched(async () => {
+        if (this.superiorId && !store.promoterInfo) {
+          wx.setStorageSync("superiorId", this.superiorId);
+          const superiorInfo = await homeService.getSuperiorInfo(
+            this.superiorId
+          );
+          store.setPromoterInfo(superiorInfo);
+        }
       });
 
       this.scrollTopArr = [0, 0];
@@ -241,8 +255,18 @@ Component({
       });
     },
 
-    onShareAppMessage() {},
+    onShareAppMessage() {
+      const { id } = store.promoterInfo || {};
+      const path = id
+        ? `/pages/tab-bar-pages/home/index?superiorId=${id}`
+        : "/pages/tab-bar-pages/home/index";
+      return { path };
+    },
 
-    onShareTimeline() {}
+    onShareTimeline() {
+      const { id } = store.promoterInfo || {};
+      const query = id ? `superiorId=${id}` : "";
+      return { query };
+    }
   }
 });
