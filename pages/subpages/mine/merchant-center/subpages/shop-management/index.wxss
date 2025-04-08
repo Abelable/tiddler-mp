@@ -38,7 +38,7 @@
   font-size: 0;
   border-radius: 50%;
 }
-.shop-avatar {
+.shop-logo {
   width: 100%;
   height: 100%;
   border-radius: 50%;
