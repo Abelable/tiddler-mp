@@ -101,6 +101,12 @@ Page({
     wx.navigateTo({ url });
   },
 
+  navToPickupAddressManagement() {
+    const { id } = this.data.shopInfo;
+    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/pickup_address/list&shop_id=${id}`;
+    wx.navigateTo({ url });
+  },
+
   navToFreightTemplateManagement() {
     const { id } = this.data.shopInfo;
     const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/freight_template/list&shop_id=${id}`;

@@ -65,6 +65,12 @@
       <view class="btn-title">寄回地址</view>
     </view>
     <view class="btn">
+      <view class="btn-icon-wrap" bindtap="navToPickupAddressManagement">
+        <image class="btn-icon" src="./images/address.png" />
+      </view>
+      <view class="btn-title">提货地址</view>
+    </view>
+    <view class="btn">
       <view class="btn-icon-wrap" bindtap="navToFreightTemplateManagement">
         <image class="btn-icon" src="./images/freight.png" />
       </view>

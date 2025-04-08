@@ -163,8 +163,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 120rpx;
-  height: 120rpx;
+  width: 100rpx;
+  height: 100rpx;
   background: #373B40;
   border-radius: 50%;
 }
