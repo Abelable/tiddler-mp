@@ -90,18 +90,20 @@ Page({
   },
 
   navToGoodsManagement() {
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/goods/list`;
+    const { id } = this.data.shopInfo;
+    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/goods/list&shop_id=${id}`;
     wx.navigateTo({ url });
   },
 
   navToRefundAddressManagement() {
     const { id } = this.data.shopInfo;
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/goods_return_address/list&shop_id=${id}`;
+    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/refund_address/list&shop_id=${id}`;
     wx.navigateTo({ url });
   },
 
   navToFreightTemplateManagement() {
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/freight_template/list`;
+    const { id } = this.data.shopInfo;
+    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/freight_template/list&shop_id=${id}`;
     wx.navigateTo({ url });
   }
 });
