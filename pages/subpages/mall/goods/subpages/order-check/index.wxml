@@ -22,7 +22,7 @@
     wx:for="{{preOrderInfo.goodsLists}}" wx:key="index"
   >
     <view class="order-header row">
-      <image class="shop-icon" wx:if="{{item.shopInfo}}" src="{{item.shopInfo.avatar}}" />
+      <image class="shop-icon" wx:if="{{item.shopInfo}}" src="{{item.shopInfo.logo}}" />
       <view>{{item.shopInfo ? item.shopInfo.name : '官方自营'}}</view>
     </view>
     <view class="goods-item row" wx:for="{{item.goodsList}}" wx:key="index" wx:for-item="goods">

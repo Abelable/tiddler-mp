@@ -16,7 +16,7 @@
       </view>
     </view>
     <view class="shop-info row" wx:if="{{item.shopInfo}}" catchtap="navToShop">
-      <image class="shop-avatar" src="{{item.shopInfo.avatar}}" lazy-load />
+      <image class="shop-logo" src="{{item.shopInfo.logo}}" lazy-load />
       <view class="shop-name omit single-line">{{item.shopInfo.name}}</view>
     </view>
   </view>

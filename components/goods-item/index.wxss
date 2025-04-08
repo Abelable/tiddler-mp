@@ -56,7 +56,7 @@
 .shop-info {
   padding: 18rpx 0 0;
 }
-.shop-avatar {
+.shop-logo {
   width: 40rpx;
   height: 40rpx;
   border-radius: 50%;
