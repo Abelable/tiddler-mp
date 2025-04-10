@@ -15,6 +15,7 @@ Page({
     // 轮播图相关
     curDot: 1,
     goodsInfo: null,
+    recommendGoodsList: [],
     evaluationSummary: null,
     cartGoodsNumber: 0,
     // 规格相关
@@ -41,7 +42,7 @@ Page({
       }
     });
 
-    await this.setGoodsInfo();
+    await this.init();
     this.getBannerHeight();
 
     wx.showShareMenu({
@@ -56,6 +57,12 @@ Page({
     }, false);
   },
 
+  async init() {
+    await this.setGoodsInfo();
+    this.setRecommendGoodsList(true);
+  },
+
+
   async setGoodsInfo() {
     const goodsInfo = await goodsService.getGoodsInfo(this.goodsId);
     const evaluationSummary = await goodsService.getGoodsEvaluationSummary(
@@ -64,6 +71,27 @@ Page({
     this.setData({ goodsInfo, evaluationSummary }, () => {
       this.getDetailTop();
     });
+  },
+
+  async setRecommendGoodsList(init = false) {
+    if (init) {
+      this.page = 0;
+      this.setData({ finished: false });
+    }
+    const { goodsInfo, recommendGoodsList } = this.data;
+    const { id, shopCategoryId } = goodsInfo;
+
+    const list = await goodsService.getRecommedGoodsList(
+      [id],
+      [shopCategoryId],
+      ++this.page
+    );
+    this.setData({
+      recommendGoodsList: init ? list : [...recommendGoodsList, ...list]
+    });
+    if (!list.length) {
+      this.setData({ finished: true });
+    }
   },
 
   async setCartGoodsNumber() {
@@ -203,6 +231,15 @@ Page({
     const { avgScore } = this.data.evaluationSummary;
     const url = `./subpages/evaluation-list/index?goodsId=${this.goodsId}&avgScore=${avgScore}`;
     wx.navigateTo({ url });
+  },
+
+  onReachBottom() {
+    this.setRecommendGoodsList();
+  },
+
+  onPullDownRefresh() {
+    this.init();
+    wx.stopPullDownRefresh();
   },
 
   // 分享

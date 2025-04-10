@@ -1,6 +1,7 @@
 {
   "navigationStyle": "custom",
   "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": true,
   "usingComponents": {
     "back-icon": "/components/back-icon-white/index",
     "price-unit": "/components/price-unit/index",

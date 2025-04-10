@@ -1,8 +1,8 @@
-import { checkLogin, customBack } from '../../../../../../utils/index'
-import GoodsService from '../../utils/goodsService'
+import { checkLogin, customBack } from "../../../../../../utils/index";
+import GoodsService from "../../utils/goodsService";
 
-const goodsService = new GoodsService()
-const { statusBarHeight } = getApp().globalData.systemInfo
+const goodsService = new GoodsService();
+const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Page({
   data: {
@@ -15,250 +15,302 @@ Page({
     deleteBtnVisible: false,
     goodsInfo: null,
     cartInfo: null,
-    specPopupVisible: false,
+    specPopupVisible: false
   },
 
   onShow() {
-    checkLogin(this.init)
+    checkLogin(this.init);
   },
 
   async init() {
-    const { cartList: list, recommendGoodsList } = await goodsService.getCartList() || {}
+    await this.setCartList();
+    this.setRecommendGoodsList(true);
+  },
+
+  async setCartList() {
+    const list = (await goodsService.getCartList()) || [];
     const cartList = list.map(item => ({
       ...item,
       checked: false,
       goodsList: item.goodsList.map(_item => ({
-        ..._item, 
+        ..._item,
         checked: false
       }))
-    }))
-    this.setData({ cartList, recommendGoodsList })
+    }));
+    this.setData({ cartList });
+  },
+
+  async setRecommendGoodsList(init = false) {
+    if (init) {
+      this.page = 0;
+      this.setData({ finished: false });
+    }
+    const { cartList, recommendGoodsList } = this.data;
+    const goodsIds = [];
+    const shopCategoryIds = [];
+    cartList.forEach(({ goodsId, shopCategoryId }) => {
+      goodsIds.push(goodsId);
+      shopCategoryIds.push(shopCategoryId);
+    });
+
+    const list = await goodsService.getRecommedGoodsList(
+      goodsIds,
+      shopCategoryIds,
+      ++this.page
+    );
+    this.setData({
+      recommendGoodsList: init ? list : [...recommendGoodsList, ...list]
+    });
+    if (!list.length) {
+      this.setData({ finished: true });
+    }
   },
 
   /**
    * 切换购物车列表选中状态
    */
   async toggleCartChecked(e) {
-    const { index } = e.currentTarget.dataset
-    let { cartList, deleteBtnVisible } = this.data
-    let checkStatus = cartList[index].checked
-    cartList[index].checked = !checkStatus
+    const { index } = e.currentTarget.dataset;
+    let { cartList, deleteBtnVisible } = this.data;
+    let checkStatus = cartList[index].checked;
+    cartList[index].checked = !checkStatus;
     cartList[index].goodsList.map(item => {
       if (deleteBtnVisible || (!deleteBtnVisible && item.status === 1)) {
-        item.checked = !checkStatus
+        item.checked = !checkStatus;
       }
-    })
+    });
     this.setData({ cartList }, () => {
-      this.acount()
-    })
+      this.acount();
+    });
   },
 
   /**
    * 切换商品列表选中状态
    */
   async toggleGoodsChecked(e) {
-    const { cartIndex, goodsIndex } = e.currentTarget.dataset
-    let { cartList, deleteBtnVisible } = this.data
-    let goodsCheckStatus = cartList[cartIndex].goodsList[goodsIndex].checked
-    cartList[cartIndex].goodsList[goodsIndex].checked = !goodsCheckStatus
+    const { cartIndex, goodsIndex } = e.currentTarget.dataset;
+    let { cartList, deleteBtnVisible } = this.data;
+    let goodsCheckStatus = cartList[cartIndex].goodsList[goodsIndex].checked;
+    cartList[cartIndex].goodsList[goodsIndex].checked = !goodsCheckStatus;
     let unCheckedIndex = cartList[cartIndex].goodsList.findIndex(item => {
-      if (deleteBtnVisible || (!deleteBtnVisible && item.status === 1)) return item.checked === false
-    })
-    cartList[cartIndex].checked = unCheckedIndex === -1
+      if (deleteBtnVisible || (!deleteBtnVisible && item.status === 1))
+        return item.checked === false;
+    });
+    cartList[cartIndex].checked = unCheckedIndex === -1;
     this.setData({ cartList }, () => {
-      this.acount()
-    })
+      this.acount();
+    });
   },
 
   /**
    * 切换全选状态
    */
-  toggleAllChecked(){
-    let { cartList, isSelectAll, deleteBtnVisible } = this.data
+  toggleAllChecked() {
+    let { cartList, isSelectAll, deleteBtnVisible } = this.data;
     if (deleteBtnVisible) {
       cartList.map(item => {
-        item.checked = !isSelectAll
+        item.checked = !isSelectAll;
         item.goodsList.map(_item => {
-          _item.checked = !isSelectAll
-        })
-      })
+          _item.checked = !isSelectAll;
+        });
+      });
       this.setData({ cartList }, () => {
-        this.acount()
-      })
+        this.acount();
+      });
     } else {
       cartList.map(item => {
-        item.checked = !isSelectAll
+        item.checked = !isSelectAll;
         item.goodsList.map(_item => {
-          if (_item.status === 1) _item.checked = !isSelectAll
-        })
-      })
+          if (_item.status === 1) _item.checked = !isSelectAll;
+        });
+      });
       this.setData({ cartList }, () => {
-        this.acount()
-      })
+        this.acount();
+      });
     }
   },
 
   async countChange(e) {
-    const { cartIndex, goodsIndex } = e.currentTarget.dataset
-    const { id, goodsId, selectedSkuIndex } = this.data.cartList[cartIndex].goodsList[goodsIndex]
+    const { cartIndex, goodsIndex } = e.currentTarget.dataset;
+    const { id, goodsId, selectedSkuIndex } =
+      this.data.cartList[cartIndex].goodsList[goodsIndex];
     goodsService.editCart(id, goodsId, selectedSkuIndex, e.detail, () => {
-      this.setData({ 
-        [`cartList[${cartIndex}].goodsList[${goodsIndex}].number`]: e.detail
-      }, () => {
-        this.acount()
-      })
-    })
+      this.setData(
+        {
+          [`cartList[${cartIndex}].goodsList[${goodsIndex}].number`]: e.detail
+        },
+        () => {
+          this.acount();
+        }
+      );
+    });
   },
 
   deleteGoodsList() {
-    this.data.selectedCount && wx.showModal({
-      title: '提示',
-      content: '确定删除这些商品吗？',
-      showCancel: true,
-      success: res => {
-        if (res.confirm) {
-          goodsService.deleteCartList(this.selectedCartIdArr, () => {
-            this.init()
-          })
+    this.data.selectedCount &&
+      wx.showModal({
+        title: "提示",
+        content: "确定删除这些商品吗？",
+        showCancel: true,
+        success: res => {
+          if (res.confirm) {
+            goodsService.deleteCartList(this.selectedCartIdArr, () => {
+              this.init();
+            });
+          }
         }
-      }
-    })
+      });
   },
 
   async deleteGoods(e) {
-    const { id, cartIndex, goodsIndex } = e.currentTarget.dataset
-    const { position, instance } = e.detail
-    if (position === 'right') {
+    const { id, cartIndex, goodsIndex } = e.currentTarget.dataset;
+    const { position, instance } = e.detail;
+    if (position === "right") {
       wx.showModal({
-        title: '提示',
-        content: '确定删除该商品吗？',
+        title: "提示",
+        content: "确定删除该商品吗？",
         showCancel: true,
         success: async res => {
           if (res.confirm) {
-            goodsService.deleteCartList(
-              [id], 
-              () => {
-                const goodsList = this.data.cartList[cartIndex].goodsList
-                goodsList.splice(goodsIndex, 1)
-                if (goodsList.length) {
-                  this.setData({
-                    [`cartList[${cartIndex}].goodsList`]: goodsList
-                  })
-                } else {
-                  const cartList = this.data.cartList
-                  cartList.splice(cartIndex, 1)
-                  this.setData({ cartList })
-                  if (!cartList.length) {
-                    this.init()
-                  }
+            goodsService.deleteCartList([id], () => {
+              const goodsList = this.data.cartList[cartIndex].goodsList;
+              goodsList.splice(goodsIndex, 1);
+              if (goodsList.length) {
+                this.setData({
+                  [`cartList[${cartIndex}].goodsList`]: goodsList
+                });
+              } else {
+                const cartList = this.data.cartList;
+                cartList.splice(cartIndex, 1);
+                this.setData({ cartList });
+                if (!cartList.length) {
+                  this.init();
                 }
-                this.acount()
-                instance.close()
               }
-            )
+              this.acount();
+              instance.close();
+            });
           } else {
-            instance.close()
+            instance.close();
           }
         }
-      })
+      });
     }
   },
 
   async showSpecPopup(e) {
-    const { info: cartInfo, cartIndex, goodsIndex } = e.currentTarget.dataset
-    const goodsInfo = await goodsService.getGoodsInfo(cartInfo.goodsId)
+    const { info: cartInfo, cartIndex, goodsIndex } = e.currentTarget.dataset;
+    const goodsInfo = await goodsService.getGoodsInfo(cartInfo.goodsId);
     this.setData({
       cartInfo,
       goodsInfo,
       specPopupVisible: true
-    })
-    this.editingCartIndex = cartIndex
-    this.editingGoodsIndex = goodsIndex
+    });
+    this.editingCartIndex = cartIndex;
+    this.editingGoodsIndex = goodsIndex;
   },
 
   hideSpecPopup(e) {
-    const cartInfo = this.data.cartList[this.editingCartIndex].goodsList[this.editingGoodsIndex]
-    this.setData({ 
-      [`cartList[${this.editingCartIndex}].goodsList[${this.editingGoodsIndex}]`]: {
-        ...cartInfo,
-        ...e.detail.cartInfo
+    const cartInfo =
+      this.data.cartList[this.editingCartIndex].goodsList[
+        this.editingGoodsIndex
+      ];
+    this.setData(
+      {
+        [`cartList[${this.editingCartIndex}].goodsList[${this.editingGoodsIndex}]`]:
+          {
+            ...cartInfo,
+            ...e.detail.cartInfo
+          },
+        specPopupVisible: false
       },
-      specPopupVisible: false
-    }, () => {
-      this.acount()
-    })
+      () => {
+        this.acount();
+      }
+    );
   },
 
   toggleDeleteBtnVisible() {
     this.setData({
       deleteBtnVisible: !this.data.deleteBtnVisible
-    })
+    });
   },
 
   acount() {
-    this.totalCount = 0
-    let selectedCount = 0
-    let totalPrice = 0
-    this.selectedCartIdArr = []
+    this.totalCount = 0;
+    let selectedCount = 0;
+    let totalPrice = 0;
+    this.selectedCartIdArr = [];
 
-    const { cartList, deleteBtnVisible } = this.data
+    const { cartList, deleteBtnVisible } = this.data;
 
     if (deleteBtnVisible) {
       cartList.forEach(item => {
         item.goodsList.forEach(_item => {
           if (_item.checked) {
-            this.selectedCartIdArr.push(_item.id)
-            selectedCount += _item.number
+            this.selectedCartIdArr.push(_item.id);
+            selectedCount += _item.number;
           }
-          this.totalCount += _item.number
-        })
-      })
-      this.setData({ 
+          this.totalCount += _item.number;
+        });
+      });
+      this.setData({
         selectedCount,
         isSelectAll: selectedCount && selectedCount === this.totalCount
-      })
+      });
     } else {
       cartList.forEach(item => {
         item.goodsList.forEach(_item => {
           if (_item.status === 1 && _item.checked) {
-            this.selectedCartIdArr.push(_item.id)
-            selectedCount += _item.number
-            totalPrice += _item.number * _item.price
+            this.selectedCartIdArr.push(_item.id);
+            selectedCount += _item.number;
+            totalPrice += _item.number * _item.price;
           }
-          this.totalCount += _item.number
-        })
-      })
-      this.setData({ 
-        selectedCount, 
+          this.totalCount += _item.number;
+        });
+      });
+      this.setData({
+        selectedCount,
         totalPrice,
         isSelectAll: selectedCount && selectedCount === this.totalCount
-      })
+      });
     }
   },
 
-  submit(){
+  submit() {
     if (this.data.selectedCount) {
-      wx.navigateTo({ 
-        url: `/pages/subpages/mall/goods/subpages/order-check/index?cartGoodsIds=${JSON.stringify(this.selectedCartIdArr)}` 
-      })
+      wx.navigateTo({
+        url: `/pages/subpages/mall/goods/subpages/order-check/index?cartGoodsIds=${JSON.stringify(
+          this.selectedCartIdArr
+        )}`
+      });
     }
   },
 
   navToShop(e) {
-    wx.navigateTo({ 
+    wx.navigateTo({
       url: `/pages/subpages/mall/goods/subpages/shop/index?id=${e.currentTarget.dataset.id}`
-    })
+    });
   },
 
-  showGoodsDetail(e){
-    wx.navigateTo({ 
+  showGoodsDetail(e) {
+    wx.navigateTo({
       url: `/pages/subpages/mall/goods/subpages/goods-detail/index?id=${e.currentTarget.dataset.id}`
-    })
+    });
   },
 
   navBack() {
-    customBack()
+    customBack();
+  },
+
+  onReachBottom() {
+    this.setRecommendGoodsList();
+  },
+
+  onPullDownRefresh() {
+    this.init();
+    wx.stopPullDownRefresh();
   },
 
   catchtap() {}
-})
+});

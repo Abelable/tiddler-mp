@@ -96,9 +96,9 @@
   </view>
 
   <!-- 商品推荐 -->
-  <view class="recommend-goods-wrap" wx:if="{{goodsInfo.recommendGoodsList.length}}">
+  <view class="recommend-goods-wrap" wx:if="{{recommendGoodsList.length}}">
     <split-line desc="为您推荐" />
-    <fall-flow list="{{goodsInfo.recommendGoodsList}}" generic:item="goods-item" />
+    <fall-flow list="{{recommendGoodsList}}" generic:item="goods-item" />
   </view>
 
   <!-- nomore -->

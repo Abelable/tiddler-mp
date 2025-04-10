@@ -406,6 +406,16 @@ class BaseService extends Base {
     return list;
   }
 
+  async getRecommedGoodsList(goodsIds, shopCategoryIds, page, limit = 10) {
+    const { list = [] } =
+      (await this.post({
+        url: `${this.baseUrl}/goods/recommend_list`,
+        data: { goodsIds, shopCategoryIds, page, limit },
+        loadingTitle: "加载中..."
+      })) || {};
+    return list;
+  }
+
   async searchUserList({ keywords, page, limit = 10 }) {
     const { list = [] } =
       (await this.get({
