@@ -5,7 +5,7 @@
   <view class="card">
     <view class="card-header row">
       <view class="shop-info row" wx:if="{{orderInfo.shopId}}" catchtap="navToShop" data-id="{{orderInfo.shopId}}">
-        <image class="shop-avatar" wx:if="{{orderInfo.shopAvatar}}" src="{{orderInfo.shopAvatar}}" />
+        <image class="shop-logo" wx:if="{{orderInfo.shopLogo}}" src="{{orderInfo.shopLogo}}" />
         <view class="shop-name omit single-line">{{orderInfo.shopName}}</view>
         <image style="width: 20rpx; height: 20rpx;" src="https://img.ubo.vip/mp/to-icon.png" />
       </view>

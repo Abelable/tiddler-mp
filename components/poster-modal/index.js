@@ -114,7 +114,7 @@ Component({
           80,
           80,
           40,
-          scene === "8" ? shopInfo.avatar : authorInfo.avatar
+          scene === "8" ? shopInfo.logo : authorInfo.avatar
         );
         this.setText(
           16,

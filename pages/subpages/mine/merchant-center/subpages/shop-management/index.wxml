@@ -9,7 +9,7 @@
 <view class="header" style="margin-top: {{statusBarHeight + 44}}px">
   <view class="shop-info-wrap row">
     <view class="avatar-wrap">
-      <image class="shop-avatar" src="{{shopInfo.logo}}" />
+      <image class="shop-logo" src="{{shopInfo.logo}}" />
       <image class="enterprise-label" wx:if="{{shopInfo.type === 2}}" src="https://img.ubo.vip/mp/selection/goods-detail/firm-icon.png" />
     </view>
     <view class="info">

@@ -72,7 +72,7 @@
   border-radius: 16rpx;
   background: linear-gradient(315deg, #DAB174 0%, #FFE5BD 100%);
 }
-.shop-avatar {
+.shop-logo {
   width: 90rpx;
   height: 90rpx;
   border-radius: 50%;

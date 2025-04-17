@@ -3,7 +3,7 @@
   <view class="order-item" wx:for="{{list}}" wx:key="index" catchtap="navToDetail" data-id="{{item.id}}">
     <view class="list-header row between">
       <view class="shop-info row" wx:if="{{item.shopId}}" catchtap="navToShop" data-id="{{item.shopId}}">
-        <image class="shop-avatar" wx:if="{{item.shopAvatar}}" src="{{item.shopAvatar}}" />
+        <image class="shop-logo" wx:if="{{item.shopLogo}}" src="{{item.shopLogo}}" />
         <view class="shop-name omit single-line">{{item.shopName}}</view>
         <image style="width: 20rpx; height: 20rpx;" src="https://img.ubo.vip/mp/to-icon.png" />
       </view>
