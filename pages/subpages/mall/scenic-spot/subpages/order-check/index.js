@@ -62,12 +62,12 @@ Component({
       const { id: ticketId, categoryId } = scenicPreOrderInfo;
       const { timeStamp } = recentlyDateList[curDateIdx];
 
-      const paymentAmount = await scenicService.getPaymentAmount(
+      const { paymentAmount } = await scenicService.getPaymentAmount(
         ticketId,
         categoryId,
         timeStamp,
         num
-      );
+      ) || {};
       this.setData({ paymentAmount });
     },
 
