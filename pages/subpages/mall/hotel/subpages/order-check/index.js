@@ -33,12 +33,12 @@ Component({
 
     async setPaymentAmount() {
       const { hotelPreOrderInfo, checkInDate, checkOutDate, num } = this.data;
-      const paymentAmount = await hotelService.getPaymentAmount(
+      const { paymentAmount } = await hotelService.getPaymentAmount(
         hotelPreOrderInfo.id,
         Math.floor(checkInDate / 1000),
         Math.floor(checkOutDate / 1000),
         num
-      );
+      ) || {};
       this.setData({ paymentAmount });
     },
 
