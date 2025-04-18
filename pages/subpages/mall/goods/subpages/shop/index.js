@@ -74,7 +74,7 @@ Page({
 
   share() {
     checkLogin(async () => {
-      const { id, type, avatar, cover, name: title } = this.data.shopInfo;
+      const { id, type, logo, cover, name: title } = this.data.shopInfo;
 
       const scene = `id=${id}`;
       const page = "pages/tab-bar-pages/home/index";
@@ -84,7 +84,7 @@ Page({
         posterModalVisible: true,
         posterInfo: {
           title,
-          shopInfo: { type, avatar },
+          shopInfo: { type, logo },
           cover: cover || "https://img.ubo.vip/tiddler/temp/bg.jpg",
           qrcode
         }
