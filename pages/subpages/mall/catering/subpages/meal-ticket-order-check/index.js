@@ -11,7 +11,7 @@ Component({
     discount: 0,
     limitTips: "",
     usageTips: "",
-    noticePopupVisible: false,
+    noticePopupVisible: false
   },
 
   methods: {
@@ -36,7 +36,7 @@ Component({
         useTimeList,
         inapplicableProducts,
         boxAvailable,
-        needPreBook,
+        needPreBook
       } = ticketInfo;
 
       const discount = parseFloat(((price / originalPrice) * 10).toFixed(1));
@@ -77,15 +77,16 @@ Component({
         ticketInfo,
         discount,
         limitTips: limitTipList.join("，"),
-        usageTips: usageTipsList.slice(0, 3).join("｜"),
+        usageTips: usageTipsList.slice(0, 3).join("｜")
       });
     },
 
     async setPaymentAmount() {
-      const paymentAmount = await cateringService.getMealTicketPaymentAmount(
-        this.ticketId,
-        this.data.num
-      );
+      const { paymentAmount } =
+        (await cateringService.getMealTicketPaymentAmount(
+          this.ticketId,
+          this.data.num
+        )) || {};
       this.setData({ paymentAmount });
     },
 
@@ -114,27 +115,27 @@ Component({
         ...payParams,
         success: () => {
           wx.navigateTo({
-            url: "/pages/subpages/mine/order-center/subpages/meal-ticket-order-list/index?status=2",
+            url: "/pages/subpages/mine/order-center/subpages/meal-ticket-order-list/index?status=2"
           });
         },
         fail: () => {
           wx.navigateTo({
-            url: "/pages/subpages/mine/order-center/subpages/meal-ticket-order-list/index?status=1",
+            url: "/pages/subpages/mine/order-center/subpages/meal-ticket-order-list/index?status=1"
           });
-        },
+        }
       });
     },
 
     showNoticePopup() {
       this.setData({
-        noticePopupVisible: true,
+        noticePopupVisible: true
       });
     },
 
     hideNoticePopup() {
       this.setData({
-        noticePopupVisible: false,
+        noticePopupVisible: false
       });
-    },
-  },
+    }
+  }
 });

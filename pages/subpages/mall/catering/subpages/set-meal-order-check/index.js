@@ -12,7 +12,7 @@ Component({
     limitTips: "",
     usageTips: "",
     detailPopupVisible: false,
-    noticePopupVisible: false,
+    noticePopupVisible: false
   },
 
   methods: {
@@ -34,7 +34,7 @@ Component({
         buyLimit,
         perTableUsageLimit,
         useTimeList,
-        needPreBook,
+        needPreBook
       } = setMealInfo;
 
       const discount = parseFloat(((price / originalPrice) * 10).toFixed(1));
@@ -63,15 +63,16 @@ Component({
         setMealInfo,
         discount,
         limitTips: limitTipList.join("，"),
-        usageTips: usageTipsList.slice(0, 3).join("｜"),
+        usageTips: usageTipsList.slice(0, 3).join("｜")
       });
     },
 
     async setPaymentAmount() {
-      const paymentAmount = await cateringService.getSetMealPaymentAmount(
-        this.setMealId,
-        this.data.num
-      );
+      const { paymentAmount } =
+        (await cateringService.getSetMealPaymentAmount(
+          this.setMealId,
+          this.data.num
+        )) || {};
       this.setData({ paymentAmount });
     },
 
@@ -93,46 +94,44 @@ Component({
     },
 
     async pay(orderId) {
-      const payParams = await cateringService.getSetMealOrderPayParams(
-        orderId
-      );
+      const payParams = await cateringService.getSetMealOrderPayParams(orderId);
       wx.requestPayment({
         ...payParams,
         success: () => {
           wx.navigateTo({
-            url: "/pages/subpages/mine/order-center/subpages/set-meal-order-list/index?status=2",
+            url: "/pages/subpages/mine/order-center/subpages/set-meal-order-list/index?status=2"
           });
         },
         fail: () => {
           wx.navigateTo({
-            url: "/pages/subpages/mine/order-center/subpages/set-meal-order-list/index?status=1",
+            url: "/pages/subpages/mine/order-center/subpages/set-meal-order-list/index?status=1"
           });
-        },
+        }
       });
     },
 
     showDetailPopup() {
       this.setData({
-        detailPopupVisible: true,
+        detailPopupVisible: true
       });
     },
 
     hideDetailPopup() {
       this.setData({
-        detailPopupVisible: false,
+        detailPopupVisible: false
       });
     },
 
     showNoticePopup() {
       this.setData({
-        noticePopupVisible: true,
+        noticePopupVisible: true
       });
     },
 
     hideNoticePopup() {
       this.setData({
-        noticePopupVisible: false,
+        noticePopupVisible: false
       });
-    },
-  },
+    }
+  }
 });
