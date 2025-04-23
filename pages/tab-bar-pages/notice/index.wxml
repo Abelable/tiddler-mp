@@ -23,3 +23,7 @@
     </view>
   </view>
 </view>
+
+<view class="content" style="margin-top: {{statusBarHeight + 128}}px">
+  <empty-illus desc="暂无消息" />
+</view>

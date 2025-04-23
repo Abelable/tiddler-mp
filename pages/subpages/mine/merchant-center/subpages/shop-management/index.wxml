@@ -62,7 +62,7 @@
       <view class="btn-icon-wrap" bindtap="navToRefundAddressManagement">
         <image class="btn-icon" src="./images/address.png" />
       </view>
-      <view class="btn-title">寄回地址</view>
+      <view class="btn-title">退货地址</view>
     </view>
     <view class="btn">
       <view class="btn-icon-wrap" bindtap="navToPickupAddressManagement">
