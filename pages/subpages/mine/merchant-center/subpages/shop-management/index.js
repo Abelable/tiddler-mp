@@ -10,7 +10,6 @@ Page({
     menuFixed: false,
     menuList: [
       { name: "全部", status: 0 },
-      { name: "待付款", status: 1 },
       { name: "待发货", status: 2 },
       { name: "待收货", status: 3 },
       { name: "售后", status: 5 }
