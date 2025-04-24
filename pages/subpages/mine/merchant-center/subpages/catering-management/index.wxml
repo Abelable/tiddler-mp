@@ -36,7 +36,7 @@
         </view>
       </view>
     </view>
-    <button class="withdraw-btn">收益提现</button>
+    <button class="withdraw-btn" hover-class="none">收益提现</button>
   </view>
   
   <view class="btns-wrap row between">
