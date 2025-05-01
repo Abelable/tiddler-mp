@@ -68,7 +68,7 @@
         <image class="function-icon" src="https://img.ubo.vip/tiddler/mine/live.png" />
         <view class="function-desc">我的直播</view>
       </view> -->
-      <navigator class="function-item" url="/pages/subpages/mine/address-list/index" hover-class="none">
+      <navigator class="function-item" url="/pages/subpages/mine/history/index" hover-class="none">
         <image class="function-icon" src="./images/history.png" />
         <view class="function-desc">浏览历史</view>
       </navigator>
