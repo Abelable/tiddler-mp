@@ -1,4 +1,6 @@
-import { WEBVIEW_BASE_URL } from "../../../../config";
+import { createStoreBindings } from "mobx-miniprogram-bindings";
+import { store } from "../../../../../../store/index";
+import { WEBVIEW_BASE_URL } from "../../../../../../config";
 import AccountService from "./utils/accountService";
 
 const accountService = new AccountService();
@@ -21,6 +23,13 @@ Page({
     timeData: null,
     orderList: [],
     finished: false
+  },
+
+  onLoad() {
+    this.storeBindings = createStoreBindings(this, {
+      store,
+      fields: ["userInfo", "promoterInfo"]
+    });
   },
 
   onShow() {
@@ -85,8 +94,8 @@ Page({
 
   withdraw(e) {
     const { scene } = e.currentTarget.dataset;
-    const { selfPurchase, share } = this.data.cashInfo;
-    const amount = scene === 1 ? selfPurchase : share;
+    const { selfPurchase, share, team } = this.data.cashInfo || {};
+    const amount = [selfPurchase, share, team][scene - 1];
     wx.navigateTo({
       url: `./subpages/withdraw/index?scene=${scene}&amount=${amount}`
     });
@@ -123,5 +132,9 @@ Page({
     wx.navigateTo({
       url: `/pages/common/webview/index?url=${WEBVIEW_BASE_URL}/agreements/withdraw_rules`
     });
+  },
+
+  onUnload() {
+    this.storeBindings.destroyStoreBindings();
   }
 });

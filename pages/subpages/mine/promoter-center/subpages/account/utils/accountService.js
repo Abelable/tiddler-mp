@@ -1,4 +1,4 @@
-import { cleanObject } from "../../../../../utils/index";
+import { cleanObject } from "../../../../../../../utils/index";
 import PromoterService from "../../../utils/promoterService";
 
 class AccountService extends PromoterService {

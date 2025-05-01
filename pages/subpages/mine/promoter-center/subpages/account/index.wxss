@@ -75,8 +75,8 @@
   background: #fff;
   border-radius: 0 0 20rpx 20rpx;
 }
-.amount-type-item:first-child {
-  margin-right: 152rpx;
+.amount-type-item {
+  flex: 1;
 }
 .amount-type-name {
   color: #3C3F42;

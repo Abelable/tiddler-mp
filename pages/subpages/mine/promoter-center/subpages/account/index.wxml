@@ -37,6 +37,14 @@
         </view>
         <view class="type-withdraw-btn" bindtap="withdraw" data-scene="{{2}}">提现</view>
       </view>
+      <view class="amount-type-item" wx:if="{{userInfo.level > 1}}">
+        <view class="amount-type-name">团队奖励</view>
+        <view class="type-amount">
+          <text style="font-size: 28rpx;">¥</text>
+          <text>{{cashInfo ? NUM.toFixed(cashInfo.team, 2) : '0.00'}}</text>
+        </view>
+        <view class="type-withdraw-btn" bindtap="withdraw" data-scene="{{3}}">提现</view>
+      </view>
     </view>
     <view class="withdraw-tips-wrap row">
       <view class="withdraw-time-tips">每月25～31号可提现上月的结算收益</view>
@@ -50,7 +58,7 @@
   <view class="menu-tabs">
     <view 
       class="menu-tab {{ curMenuIdx === index ? 'active' : '' }}"
-      wx:for="{{['自购返现', '分享奖励']}}"
+      wx:for="{{userInfo.level > 1 ? ['自购返现', '分享奖励', '团队奖励'] : ['自购返现', '分享奖励']}}"
       wx:key="index"
       bindtap="selectMenu"
       data-index="{{index}}"

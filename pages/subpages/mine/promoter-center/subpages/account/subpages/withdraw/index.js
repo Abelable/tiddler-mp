@@ -1,4 +1,4 @@
-import { store } from "../../../../../../store/index";
+import { store } from "../../../../../../../../store/index";
 import AccountService from "../../utils/accountService";
 
 const accountService = new AccountService();
@@ -13,10 +13,7 @@ Page({
     amount: 0,
     taxFee: 0,
     actualAmount: 0,
-    pathOptions: [
-      { cn: "余额", en: "balance", value: 3 },
-      { cn: "银行卡", en: "card", value: 2 }
-    ],
+    pathOptions: [],
     curOptionIdx: 0,
     bancCardInfo: null,
     remark: "",
@@ -27,27 +24,26 @@ Page({
   onLoad(options) {
     const scene = Number(options.scene);
     const amount = Number(options.amount);
-    const taxFee = (scene === 2 || scene === 3) ? Math.floor(amount * 0.06 * 100) / 100 : 0;
+    const taxFee =
+      scene === 2 || scene === 3 ? Math.floor(amount * 0.06 * 100) / 100 : 0;
     const actualAmount = amount - taxFee - 1;
     this.setData({
       scene,
       amount,
       taxFee,
-      actualAmount: actualAmount < 0 ? 0 : actualAmount
+      actualAmount: actualAmount < 0 ? 0 : actualAmount,
+      pathOptions:
+        actualAmount >= 500
+          ? [
+              { cn: "余额", en: "balance", value: 3 },
+              { cn: "银行卡", en: "card", value: 2 }
+            ]
+          : [
+              { cn: "余额", en: "balance", value: 3 },
+              { cn: "微信", en: "wx", value: 1 },
+              { cn: "银行卡", en: "card", value: 2 }
+            ]
     });
-    // this.setData({
-    //   scene,
-    //   amount,
-    //   taxFee,
-    //   actualAmount: actualAmount < 0 ? 0 : actualAmount,
-    //   pathOptions:
-    //     actualAmount >= 500
-    //       ? [{ cn: "银行卡", en: "card", value: 2 }]
-    //       : [
-    //           { cn: "微信", en: "wx", value: 1 },
-    //           { cn: "银行卡", en: "card", value: 2 }
-    //         ]
-    // });
 
     const date = new Date().getDate();
     if (date >= 25 && amount > 1) {
