@@ -1,0 +1,66 @@
+<wxs module="NUM" src="/utils/filters/num.wxs" />
+
+<view class="nav-bar {{navBarBgVisible ? 'show-bg' : ''}}" style="padding-top: {{statusBarHeight}}px;">
+  <view class="nav-bar-inner">
+    <back-icon />
+    <view class="nav-bar-title">提现</view>
+  </view>
+</view>
+
+<view class="container" style="padding-top: {{statusBarHeight + 44}}px;">
+  <view class="amount-label">提现金额</view>
+
+  <view class="amount">{{NUM.toFixed(amount, 2)}}</view>
+
+  <view class="fee-card">
+    <view class="fee-item" wx:if="{{curOptionIdx !== 0 && (scene === 2 || scene === 3)}}">
+      <view class="fee-label">税费（费率6%）</view>
+      <view class="fee-amount">¥{{NUM.toFixed(taxFee, 2)}}</view>
+    </view>
+    <view class="fee-item" wx:if="{{curOptionIdx !== 0}}">
+      <view class="fee-label">提现手续费（每笔1元）</view>
+      <view class="fee-amount">¥1</view>
+    </view>
+    <view class="fee-item">
+      <view class="fee-label">实际到账</view>
+      <view class="fee-amount reality">¥{{NUM.toFixed(curOptionIdx !== 0 ? actualAmount : amount, 2)}}</view>
+    </view>
+  </view>
+
+  <view class="withdraw-card">
+    <view class="withdraw-title">提现至：</view>
+    <view class="withdraw-options">
+      <view class="withdraw-option row" wx:for="{{pathOptions}}" wx:key="index" bindtap="selectOption" data-index="{{index}}">
+        <image class="option-icon" src="./images/{{item.en}}.png" />
+        <view class="option-name">{{item.cn}}</view>
+        <image class="selected-icon" src="./images/{{curOptionIdx === index ? 'selected' : 'unselected'}}.png" />
+      </view>
+    </view>
+    <view class="bind-bank-tips row" bindtap="bindBank">
+      <view>{{bancCardInfo ? bancCardInfo.bankName + '（' + bancCardInfo.code + '） 更换'  : '尚未绑定银行卡账号 去绑定'}}</view>
+      <image class="arrow" src="./images/more.png" />
+    </view>
+    <textarea class="remark" style="font-size: 24rpx;" value="{{remark}}" bindinput="setRemark" maxlength="32" placeholder="添加备注，最多32个字" />
+  </view>
+
+  <view class="withdraw-tips" wx:if="{{curOptionIdx === 0}}">
+    <view>提现说明：</view>
+    <view>每月25～31号可提现上月的结算收益</view>
+  </view>
+  <view class="withdraw-tips" wx:if="{{curOptionIdx !== 0 && scene === 1}}">
+    <view>提现说明：</view>
+    <view>1. 提现金额必须大于1元，方可提现</view>
+    <view>2. 举例：提现100元，扣取提现手续费每笔1元，实际到账99元</view>
+    <view>3. 每月25～31号可提现上月的结算收益</view>
+  </view>
+  <view class="withdraw-tips" wx:if="{{curOptionIdx !== 0 && (scene === 2 || scene === 3)}}">
+    <view>提现说明：</view>
+    <view>1. 提现金额为税前收入，每笔提现按照第三方代扣代缴综合税费6%收取，实际到账为税后收入举例：提现100元，扣取提现手续费每笔1元与综合税费6%（6元），实际到账93元</view>
+    <view>2. 提现金额必须大于1元，单笔最高可提现3万。</view>
+    <view>3. 每月25～31号可提现上月的结算收益</view>
+  </view>
+</view>
+
+<view class="withdraw-btn {{btnActive ? 'active' : ''}}" bindtap="withdraw">立即提现</view>
+
+<auth-modal wx:if="{{authModalVisible}}" bind:hide="hideAuthModal" />

@@ -1,0 +1,146 @@
+.nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+.nav-bar.show-bg {
+  background: #fff;
+}
+.nav-bar-inner {
+  display: flex;
+  align-items: center;
+  padding-left: 12px;
+  height: 44px;
+}
+.nav-bar-title {
+  margin-right: 44px;
+  flex: 1;
+  color: #000;
+  font-size: 34rpx;
+  font-weight: 500;
+  text-align: center;
+}
+
+.container {
+  position: relative;
+  padding: 24rpx;
+  padding-bottom: calc(142rpx + env(safe-area-inset-bottom));
+  min-height: 100vh;
+  background-image: url("https://static.youbozhenxuan.cn/mp/account_bg.png");
+  background-position: top center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.amount-label {
+  margin-top: 52rpx;
+  color: #6A6F75;
+  font-size: 32rpx;
+  text-align: center;
+}
+.amount {
+  color: #110E4B;
+  font-size: 66rpx;
+  font-weight: bold;
+  text-align: center;
+}
+
+.fee-card {
+  margin-top: 52rpx;
+  padding: 16rpx 40rpx;
+  background: #fff;
+  border-radius: 20rpx;
+}
+.fee-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 24rpx 0;
+}
+.fee-label, .fee-amount {
+  color: #3C3F42;
+  font-size: 28rpx;
+}
+.fee-amount.reality {
+  color: #EB2240;
+  font-weight: bold;
+}
+
+.withdraw-card {
+  margin-top: 16rpx;
+  padding: 36rpx 40rpx 32rpx;
+  background: #fff;
+  border-radius: 20rpx;
+}
+.withdraw-title {
+  color: #3C3F42;
+  font-size: 28rpx;
+}
+.withdraw-option {
+  margin-top: 32rpx;
+}
+/* .withdraw-option:first-child {
+  margin-top: 32rpx;
+} */
+/* .withdraw-option:last-child {
+  margin-top: 48rpx;
+} */
+.option-icon {
+  width: 42rpx;
+  height: 42rpx;
+}
+.option-name {
+  margin-left: 16rpx;
+  flex: 1;
+  color: #242425;
+  font-size: 32rpx;
+}
+.selected-icon {
+  width: 36rpx;
+  height: 36rpx;
+}
+.bind-bank-tips {
+  margin-left: 72rpx;
+  color: #9899A1;
+  font-size: 24rpx;
+}
+.arrow {
+  width: 24rpx;
+  height: 24rpx;
+}
+.remark {
+  margin-top: 42rpx;
+  padding: 28rpx;
+  width: calc(100% - 56rpx);
+  height: 110rpx;
+  background: #F8F8F8;
+  border-radius: 8rpx;
+}
+
+.withdraw-tips {
+  margin-top: 22rpx;
+  color: #3C3F42;
+  font-size: 24rpx;
+}
+
+.withdraw-btn {
+  position: fixed;
+  left: 50%;
+  bottom: calc(24rpx + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 614rpx;
+  height: 94rpx;
+  color: #fff;
+  font-size: 36rpx;
+  background: #F5701D;
+  border-radius: 47rpx;
+  z-index: 100%;
+  opacity: 0.5;
+} 
+.withdraw-btn.active {
+  opacity: 1;
+}

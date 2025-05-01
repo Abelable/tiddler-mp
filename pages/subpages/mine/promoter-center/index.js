@@ -15,7 +15,6 @@ Page({
   },
 
   onLoad() {
-
     this.storeBindings = createStoreBindings(this, {
       store,
       fields: ["userInfo", "promoterInfo"]
@@ -23,6 +22,12 @@ Page({
   },
 
   upgrade() {},
+
+  withdraw() {
+    wx.navigateTo({
+      url: "./subpages/account/index"
+    });
+  },
 
   onUnload() {
     this.storeBindings.destroyStoreBindings();

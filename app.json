@@ -93,7 +93,12 @@
       "mine/create-note/index",
       "mine/relative-commodity/index",
       "mine/fan-follow-list/index",
-      "mine/promoter-center/index"
+      "mine/promoter-center/index",
+      "mine/promoter-center/subpages/account/index",
+      "mine/promoter-center/subpages/account/subpages/withdraw/index",
+      "mine/promoter-center/subpages/account/subpages/withdraw-result/index",
+      "mine/promoter-center/subpages/account/subpages/withdraw-record/index",
+      "mine/promoter-center/subpages/account/subpages/bind-bank/index"
     ]
   }],
   "tabBar": {
