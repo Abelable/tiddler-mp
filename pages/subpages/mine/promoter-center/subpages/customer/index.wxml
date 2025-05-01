@@ -1,0 +1,37 @@
+<view class="header">
+  <view class="search-bar">
+    <image class="search-icon" src="./images/search.png" />
+    <input
+      class="search-input"
+      value="{{keywords}}"
+      bindinput="setKeywords"
+      placeholder="请输入昵称或手机号"
+    />
+    <image
+      class="clear-icon"
+      wx:if="{{keywords}}"
+      bindtap="clearSearch"
+      src="./images/close.png"
+    />
+    <view class="search-btn" bindtap="search">搜索</view>
+  </view>
+  <view class="menu" wx:if="{{!searching}}">
+    <view
+      class="menu-item {{curMenuIdx === index ? 'selected' : ''}}"
+      wx:for="{{['今日新增', '今日下单', '累计所有']}}"
+      wx:key="index"
+      bindtap="selectMenu"
+      data-index="{{index}}"
+    >
+      {{ item }}
+    </view>
+  </view>
+</view>
+
+<view class="container {{searching ? 'searching' : ''}}">
+  <view class="customer-list" wx:if="{{customerList.length}}">
+    <customer-item wx:for="{{customerList}}" wx:key="index" item="{{item}}" />
+  </view>
+  <empty-illus wx:if="{{finished && !customerList.length}}" desc="{{searching ? '未搜索到客户' : curMenuIdx === 0 ? '暂无新增客户' : curMenuIdx === 1 ? '暂无下单客户' : '暂无客户'}}" />
+  <view class="no-more-tips" wx:if="{{curMenuIdx === 2 && finished && customerList.length}}">～没有更多了～</view>
+</view>

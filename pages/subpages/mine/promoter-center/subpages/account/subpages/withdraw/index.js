@@ -125,7 +125,7 @@ Page({
             }, 2000);
           } else {
             wx.navigateTo({
-              url: "./subpages/withdraw-result/index"
+              url: "../withdraw-result/index"
             });
           }
         }

@@ -29,6 +29,12 @@ Page({
     });
   },
 
+  navToCustomer(e) {
+    wx.navigateTo({
+      url: `./subpages/customer/index?type=${e.currentTarget.dataset.type}`
+    });
+  },
+
   onUnload() {
     this.storeBindings.destroyStoreBindings();
   }

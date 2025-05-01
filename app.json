@@ -98,7 +98,8 @@
       "mine/promoter-center/subpages/account/subpages/withdraw/index",
       "mine/promoter-center/subpages/account/subpages/withdraw-result/index",
       "mine/promoter-center/subpages/account/subpages/withdraw-record/index",
-      "mine/promoter-center/subpages/account/subpages/bind-bank/index"
+      "mine/promoter-center/subpages/account/subpages/bind-bank/index",
+      "mine/promoter-center/subpages/customer/index"
     ]
   }],
   "tabBar": {

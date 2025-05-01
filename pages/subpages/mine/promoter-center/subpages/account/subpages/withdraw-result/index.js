@@ -11,7 +11,7 @@ Page({
 
   checkRecord() {
     wx.navigateTo({
-      url: "/pages/mine/subpages/account/subpages/withdraw-record/index"
+      url: "../withdraw-record/index"
     });
   }
 });
