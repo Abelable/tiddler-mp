@@ -13,7 +13,7 @@
 <view class="container level-{{userInfo.level || 0}}" style="padding-top: {{statusBarHeight + 60}}px;">
   <view
     class="upgradation-wrap"
-    style="background-image: url('./images/upgradation_bg_c{{userInfo.level}}.png')"
+    style="background-image: url('https://static.tiddler.cn/mp/upgradation_bg_c{{userInfo.level}}.png')"
     wx:if="{{userInfo.level < 4}}"
   >
     <view class="progress-desc">
