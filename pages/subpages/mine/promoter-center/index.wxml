@@ -1,18 +1,123 @@
-<view class="container">
-  <view class="level-info-wrap">
-    <view class="level-tag bg-{{level}}">当前等级</view>
-    <image class="level-medal" src="https://static.tiddler.cn/mp/promoter_level/medal_level_{{level}}.png" mode="widthFix" />
-    <view class="current-level">推广{{['萌新', '能手', '达人', '狂魔'][level - 1]}}Lv.{{level}}</view>
-    <view class="current-level-desc">2025.08.08到期 每月8日更新等级</view>
-    <view class="progress-wrap" wx:if="{{level !== 4}}">
-      <view class="progress-bar">
-        <view class="progress-bar-inner bg-{{level + 1}}" style="width: 80%;">80%</view>
-      </view>
-      <view class="next-level">Lv.{{level + 1}}</view>
+<wxs module="NUM" src="/utils/filters/num.wxs" />
+
+<view class="nav-bar-wrap {{navBarBgVisible ? 'show-bg' : ''}} level-{{userInfo.level}}" style="padding-top: {{statusBarHeight}}px;">
+  <view class="nav-bar row">
+    <view style="flex: 1;">
+      <back-icon />
     </view>
-    <view class="next-level-desc" wx:if="{{level !== 4}}">
-      <text>距升级Lv.{{level + 1}}还差2500元，查看业绩</text>
-      <image class="arrow" src="./images/arrow.png" />
+    <view class="nav-bar-title">推广中心</view>
+    <view style="flex: 1;"></view>
+  </view>
+</view>
+
+<view class="container level-{{userInfo.level || 0}}" style="padding-top: {{statusBarHeight + 60}}px;">
+  <view
+    class="upgradation-wrap"
+    style="background-image: url('./images/upgradation_bg_c{{userInfo.level}}.png')"
+    wx:if="{{userInfo.level < 4}}"
+  >
+    <view class="progress-desc">
+      <text>距离C{{ userInfo.level }}，仅差</text>
+      <text style="color: #f5701d">{{ NUM.toFixed(100 - (achievementInfo.percent || 0), 2) }}%</text>
+    </view>
+    <view class="progress-bar-wrap">
+      <view class="progress-bar-tips">涨分进度</view>
+      <view class="progress-bar">
+        <view
+          class="progress-bar-inner"
+          style="width: {{achievementInfo.percent}}%"
+        ></view>
+      </view>
+      <view class="progress-bar-tips">
+        {{ NUM.toFixed(achievementInfo.percent || 0, 2) }}%
+      </view>
+      <view class="upgrade-btn" bindtap="upgrade">
+        {{
+          achievementInfo.percent === 100 && !userInfo.enterpriseInfoId
+            ? "去升级"
+            : "去查看"
+        }}
+      </view>
+    </view>
+  </view>
+
+    <view class="account-info">
+    <view class="account-amount" wx:if="{{userInfo.level}}">
+      <view class="account-amount-header">
+        <view class="account-amount-title">我的账户</view>
+        <view class="withdraw-btn" bindtap="withdraw">提现</view>
+      </view>
+      <view class="amount-list">
+        <view class="amount-item">
+          <view class="amount">{{commissionSumInfo ? NUM.toFixed(commissionSumInfo.cashAmount, 2) : '0.00'}}</view>
+          <view class="amount-desc">可提现金额</view>
+        </view>
+        <view class="amount-item">
+          <view class="amount">{{commissionSumInfo ? NUM.toFixed(commissionSumInfo.pendingAmount, 2) : '0.00'}}</view>
+          <view class="amount-desc">待结算金额</view>
+        </view>
+        <view class="amount-item">
+          <view class="amount">{{commissionSumInfo ? NUM.toFixed(commissionSumInfo.settledAmount, 2) : '0.00'}}</view>
+          <view class="amount-desc">累积已结算金额</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="account-daily-data">
+      <view class="date-menu">
+        <view
+          class="date {{curDateIdx === index ? 'selected' : ''}}"
+          wx:for="{{dateList}}"
+          wx:key="index"
+          bindtap="selectDate"
+          data-index="{{index}}"
+        >
+          {{item}}
+        </view>
+        <view class="date" bindtap="withdraw">更多</view>
+      </view>
+      <view class="daily-data-list">
+        <view class="daily-data-item">
+          <view class="daily-data">{{commissionTimeData ? commissionTimeData.orderCount : 0}}</view>
+          <view class="daily-data-desc">订单量</view>
+        </view>
+        <view class="daily-data-item">
+          <view class="daily-data">{{commissionTimeData ? NUM.toFixed(commissionTimeData.salesVolume, 2) : '0.00'}}</view>
+          <view class="daily-data-desc">销售额</view>
+        </view>
+        <view class="daily-data-item">
+          <view class="daily-data">{{commissionTimeData ? NUM.toFixed(commissionTimeData.pendingAmount, 2) : '0.00'}}</view>
+          <view class="daily-data-desc">待结算金额</view>
+        </view>
+        <view class="daily-data-item">
+          <view class="daily-data">{{commissionTimeData ? NUM.toFixed(commissionTimeData.settledAmount, 2) : '0.00'}}</view>
+          <view class="daily-data-desc">已结算金额</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="customer-data-center">
+    <view class="title-wrap row between">
+      <view class="title">我的客户</view>
+      <view class="check-more-btn row" bindtap="navToCustomer" data-type="0">
+        <text>查看全部</text>
+        <image class="more-icon" src="./images/arrow.png" />
+      </view>
+    </view>
+    <view class="customer-data-list">
+      <view class="customer-data-item" catchtap="navToCustomer" data-type="1">
+        <view class="customer-data-desc">今日新增客户数</view>
+        <view class="customer-data">{{customerData.todayNewCount || '-'}}</view>
+      </view>
+      <view class="customer-data-item" catchtap="navToCustomer" data-type="2">
+        <view class="customer-data-desc">今日下单客户数</view>
+        <view class="customer-data">{{customerData.todayOrderingCount || '-'}}</view>
+      </view>
+      <view class="customer-data-item" catchtap="navToCustomer" data-type="3">
+        <view class="customer-data-desc">累积客户总数</view>
+        <view class="customer-data">{{customerData.totalCount || '-'}}</view>
+      </view>
     </view>
   </view>
 </view>
