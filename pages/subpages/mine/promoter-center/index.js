@@ -1,5 +1,6 @@
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { store } from "../../../../store/index";
+import { WEBVIEW_BASE_URL } from "../../../../config";
 import PromoterService from "./utils/promoterService";
 
 const promoterService = new PromoterService();
