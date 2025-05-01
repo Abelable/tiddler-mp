@@ -21,7 +21,15 @@ Page({
     });
   },
 
-  upgrade() {},
+  upgrade() {
+    const { achievementInfo, userInfo } = this.data;
+    const scene =
+      achievementInfo.percent === 100 && !userInfo.enterpriseInfoId
+        ? "certification"
+        : "performance";
+    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/promoter/${scene}`;
+    wx.navigateTo({ url });
+  },
 
   withdraw() {
     wx.navigateTo({
