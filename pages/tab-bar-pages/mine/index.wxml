@@ -44,14 +44,10 @@
         <view class="function-desc">收货地址</view>
       </navigator>
       <navigator class="function-item" url="/pages/subpages/mine/address-list/index" hover-class="none">
-        <image class="function-icon" src="./images/history.png" />
-        <view class="function-desc">浏览历史</view>
-      </navigator>
-      <navigator class="function-item" url="/pages/subpages/mine/address-list/index" hover-class="none">
         <image class="function-icon" src="./images/coupon.png" />
         <view class="function-desc">优惠券</view>
       </navigator>
-      <navigator class="function-item" url="/pages/subpages/mine/address-list/index" hover-class="none">
+      <navigator class="function-item" url="/pages/subpages/mine/balance/index" hover-class="none">
         <image class="function-icon" src="./images/balance.png" />
         <view class="function-desc">我的余额</view>
       </navigator>
@@ -72,6 +68,10 @@
         <image class="function-icon" src="https://img.ubo.vip/tiddler/mine/live.png" />
         <view class="function-desc">我的直播</view>
       </view> -->
+      <navigator class="function-item" url="/pages/subpages/mine/address-list/index" hover-class="none">
+        <image class="function-icon" src="./images/history.png" />
+        <view class="function-desc">浏览历史</view>
+      </navigator>
       <view class="function-item" bindtap="navToSetting">
         <image class="function-icon" src="https://img.ubo.vip/tiddler/mine/setting.png" />
         <view class="function-desc">更多设置</view>
