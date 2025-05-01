@@ -130,7 +130,7 @@ Page({
 
   checkWithdrawRules() {
     wx.navigateTo({
-      url: `/pages/common/webview/index?url=${WEBVIEW_BASE_URL}/agreements/withdraw_rules`
+      url: `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/agreements/withdraw_rules`
     });
   },
 
