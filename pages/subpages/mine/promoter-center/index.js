@@ -9,10 +9,12 @@ const { statusBarHeight } = getApp().globalData.systemInfo;
 Page({
   data: {
     statusBarHeight,
-    achievementInfo: {},
+    achievementInfo: null,
+    commissionSumInfo: null,
     dateList: ["今日", "昨日", "本月", "上月"],
     curDateIdx: 0,
-    commissionTimeData: null
+    commissionTimeData: null,
+    customerData: null
   },
 
   onLoad() {
@@ -20,6 +22,16 @@ Page({
       store,
       fields: ["userInfo", "promoterInfo"]
     });
+
+    this.setAchievementInfo();
+    this.setCommissionSumInfo();
+    this.setCommissionTimeData();
+    this.setCustomerData();
+  },
+
+  async setAchievementInfo() {
+    const achievementInfo = await promoterService.getPromoterAchievement();
+    this.setData({ achievementInfo });
   },
 
   upgrade() {
@@ -30,6 +42,29 @@ Page({
         : "performance";
     const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/promoter/${scene}`;
     wx.navigateTo({ url });
+  },
+
+  async setCommissionSumInfo() {
+    const commissionSumInfo = await promoterService.getCommissionSumInfo();
+    this.setData({ commissionSumInfo });
+  },
+
+  selectDate(e) {
+    const curDateIdx = e.currentTarget.dataset.index;
+    this.setData({ curDateIdx });
+    this.setCommissionTimeData();
+  },
+
+  async setCommissionTimeData() {
+    const commissionTimeData = await promoterService.getCommissionTimeData(
+      this.data.curDateIdx + 1
+    );
+    this.setData({ commissionTimeData });
+  },
+
+  async setCustomerData() {
+    const customerData = await promoterService.getCustomerData();
+    this.setData({ customerData });
   },
 
   withdraw() {
