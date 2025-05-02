@@ -16,7 +16,7 @@ class AccountService extends PromoterService {
     limit = 10
   }) {
     const { list = [] } = await this.post({
-      url: `${this.baseUrl}/order/commission_list`,
+      url: `${this.baseUrl}/commission/order_list`,
       data: cleanObject({ scene, timeType, statusList, page, limit }),
       loadingTitle: "加载中..."
     });
