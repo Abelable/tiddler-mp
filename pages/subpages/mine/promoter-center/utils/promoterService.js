@@ -29,14 +29,24 @@ class PromoterService extends BaseService {
 
   async getTodayNewCustomerList() {
     return await this.get({
-      url: `${this.baseUrl}/user/today_new_customer_list`
+      url: `${this.baseUrl}/promoter/today_new_customer_list`
     });
   }
 
   async getTodayOrderingCustomerList() {
     return await this.get({
-      url: `${this.baseUrl}/user/today_ordering_customer_list`
+      url: `${this.baseUrl}/promoter/today_ordering_customer_list`
     });
+  }
+
+  async getCustomerList({ keywords, page, limit = 10 }) {
+    const { list = [] } =
+      (await this.get({
+        url: `${this.baseUrl}/promoter/customer_list`,
+        data: cleanObject({ keywords, page, limit }),
+        loadingTitle: "加载中..."
+      })) || {};
+    return list;
   }
 }
 
