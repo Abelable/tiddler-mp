@@ -31,17 +31,18 @@
 }
 
 .message-bar {
-  padding: 4px 0 12px;
+  padding: 18px 0;
+  border-bottom: 1px solid #eee;
 }
 .message-type-item {
   flex-direction: column;
 }
 .message-type-icon {
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
 }
 .message-type-desc {
-  margin-top: 2px;
+  margin-top: 6px;
   color: #333;
   font-size: 11px;
 }
