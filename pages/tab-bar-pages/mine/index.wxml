@@ -47,7 +47,12 @@
         <image class="function-icon" src="./images/coupon.png" />
         <view class="function-desc">优惠券</view>
       </navigator>
-      <navigator class="function-item" wx:if="{{userInfo.level}}" url="/pages/subpages/mine/balance/index" hover-class="none">
+      <navigator 
+        class="function-item" 
+        wx:if="{{userInfo.level || userInfo.merchantId || userInfo.scenicProviderId || userInfo.hotelProviderId || userInfo.cateringProviderId}}" 
+        url="/pages/subpages/mine/balance/index" 
+        hover-class="none"
+      >
         <image class="function-icon" src="./images/balance.png" />
         <view class="function-desc">我的余额</view>
       </navigator>
