@@ -1,4 +1,4 @@
-<wxs module="ORDER" src="../../../../../utils/setMealOrder.wxs" />
+<wxs module="ORDER" src="../../../utils/setMealOrder.wxs" />
 
 <view class="order-list">
   <view class="order-item" wx:for="{{list}}" wx:key="index" catchtap="navToDetail" data-id="{{item.id}}">
