@@ -37,11 +37,11 @@
     <image class="arrow" src="./images/arrow.png" />
   </navigator>
   <navigator class="list row between" url="./subpages/meal-ticket-order-list/index" hover-class="none">
-    <view class="title">餐饮代金券订单</view>
+    <view class="title">餐券订单</view>
     <image class="arrow" src="./images/arrow.png" />
   </navigator>
   <navigator class="list row between" url="./subpages/set-meal-order-list/index" hover-class="none">
-    <view class="title">餐饮套餐订单</view>
+    <view class="title">套餐订单</view>
     <image class="arrow" src="./images/arrow.png" />
   </navigator>
 </view> -->
