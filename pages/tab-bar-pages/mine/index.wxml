@@ -43,7 +43,7 @@
         <image class="function-icon" src="https://img.ubo.vip/tiddler/mine/address.png" />
         <view class="function-desc">收货地址</view>
       </navigator>
-      <navigator class="function-item" url="/pages/subpages/mine/address-list/index" hover-class="none">
+      <navigator class="function-item" url="/pages/subpages/mine/coupon-list/index" hover-class="none">
         <image class="function-icon" src="./images/coupon.png" />
         <view class="function-desc">优惠券</view>
       </navigator>
