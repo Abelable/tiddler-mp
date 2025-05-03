@@ -78,6 +78,18 @@ Page({
     goodsFinished: false
   },
 
+  async onLoad({ type = "1", status = "0" }) {
+    const curMenuIdx = type - 1;
+    const curSubMenuIdx = this.data.menuList.findIndex(
+      (item) => item.status === Number(status)
+    );
+    this.setData({ curMenuIdx, curSubMenuIdx });
+  },
+
+  onShow() {
+    this.setOrderList(true);
+  },
+
   selectMenu(e) {
     const { index: curMenuIdx } = e.currentTarget.dataset;
     this.setData({ curMenuIdx });
