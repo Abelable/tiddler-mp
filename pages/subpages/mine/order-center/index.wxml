@@ -8,15 +8,15 @@
   </view>
   <view class="menu-wrap">
     <view 
-      class="menu-item {{curMenuIndex === index ? 'selected' : ''}} row center" 
+      class="menu-item {{curMenuIdx === index ? 'selected' : ''}} row center" 
       wx:for="{{menuList}}" wx:key="index" 
       bindtap="selectMenu" data-index="{{index}}"
     >{{item.name}}</view>
   </view>
   <view class="sub-menu-wrap">
     <view 
-      class="sub-menu-item {{curSubMenuIndex === index ? 'selected' : ''}} row center" 
-      wx:for="{{menuList[curMenuIndex].subMenuList}}" wx:key="index" 
+      class="sub-menu-item {{menuList[curMenuIdx].curSubMenuIdx === index ? 'selected' : ''}} row center" 
+      wx:for="{{menuList[curMenuIdx].subMenuList}}" wx:key="index" 
       bindtap="selectSubMenu" data-index="{{index}}"
     >{{item.name}}</view>
   </view>
