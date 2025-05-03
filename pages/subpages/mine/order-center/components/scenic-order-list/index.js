@@ -52,20 +52,21 @@ Component({
   
     navToDetail(e) {
       const id = e.currentTarget.dataset.id
-      const url = `/pages/subpages/mine/order-center/subpages/scenic-order-list/subpages/order-detail/index?id=${id}`
+      const url = `/pages/subpages/mine/order-center/subpages/scenic-order/order-detail/index?id=${id}`
       wx.navigateTo({ url })
     },
 
     navToEvaluation(e) {
       const id = e.currentTarget.dataset.id
-      const url = `/pages/subpages/mine/order-center/subpages/scenic-order-list/subpages/evaluation/index?id=${id}`
+      const url = `/pages/subpages/mine/order-center/subpages/scenic-order/evaluation/index?id=${id}`
       wx.navigateTo({ url })
     },
 
-    navToShop(e) {
-      const { id } = e.currentTarget.dataset
-      const url = `/pages/subpages/mall/goods/subpages/shop/index?id=${id}`
-      wx.navigateTo({ url })
-    },
+    // todo
+    // navToShop(e) {
+    //   const { id } = e.currentTarget.dataset
+    //   const url = `/pages/subpages/mall/goods/subpages/shop/index?id=${id}`
+    //   wx.navigateTo({ url })
+    // },
   }
 })

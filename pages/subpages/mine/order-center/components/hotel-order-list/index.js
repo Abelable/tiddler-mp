@@ -53,20 +53,21 @@ Component({
 
     navToDetail(e) {
       const id = e.currentTarget.dataset.id;
-      const url = `/pages/subpages/mine/order-center/subpages/hotel-order-list/subpages/order-detail/index?id=${id}`;
+      const url = `/pages/subpages/mine/order-center/subpages/hotel-order/order-detail/index?id=${id}`;
       wx.navigateTo({ url });
     },
 
     navToEvaluation(e) {
       const { orderId, hotelId } = e.currentTarget.dataset;
-      const url = `/pages/subpages/mine/order-center/subpages/hotel-order-list/subpages/evaluation/index?orderId=${orderId}&hotelId=${hotelId}`;
+      const url = `/pages/subpages/mine/order-center/subpages/hotel-order/evaluation/index?orderId=${orderId}&hotelId=${hotelId}`;
       wx.navigateTo({ url });
     },
 
-    navToShop(e) {
-      const { id } = e.currentTarget.dataset;
-      const url = `/pages/subpages/mall/goods/subpages/shop/index?id=${id}`;
-      wx.navigateTo({ url });
-    },
+    // todo
+    // navToShop(e) {
+    //   const { id } = e.currentTarget.dataset;
+    //   const url = `/pages/subpages/mall/goods/subpages/shop/index?id=${id}`;
+    //   wx.navigateTo({ url });
+    // },
   },
 });

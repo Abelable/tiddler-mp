@@ -53,13 +53,13 @@ Component({
 
     navToDetail(e) {
       const id = e.currentTarget.dataset.id;
-      const url = `/pages/subpages/mine/order-center/subpages/meal-ticket-order-list/subpages/order-detail/index?id=${id}`;
+      const url = `/pages/subpages/mine/order-center/subpages/meal-ticket-order/order-detail/index?id=${id}`;
       wx.navigateTo({ url });
     },
 
     navToEvaluation(e) {
       const { orderId, restaurantId } = e.currentTarget.dataset;
-      const url = `/pages/subpages/mine/order-center/subpages/meal-ticket-order-list/subpages/evaluation/index?orderId=${orderId}&restaurantId=${restaurantId}`;
+      const url = `/pages/subpages/mine/order-center/subpages/meal-ticket-order/evaluation/index?orderId=${orderId}&restaurantId=${restaurantId}`;
       wx.navigateTo({ url });
     },
 
