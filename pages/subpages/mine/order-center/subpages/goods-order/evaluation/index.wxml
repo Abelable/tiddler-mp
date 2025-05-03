@@ -1,0 +1,32 @@
+<view class="container">
+  <view class="goods-list">
+    <view class="goods-item row" wx:for="{{goodsList}}" wx:key="index">
+      <image class="goods-image" src="{{item.cover}}" />
+      <view class="goods-info">
+        <view class="goods-name omit single">{{item.name}}</view>
+        <view class="goods-sku omit single">{{item.selectedSkuName}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="evaluation-info-wrap">
+    <view class="goods-score row">
+      <view class="score-title">商品评分</view>
+      <van-rate value="{{score}}" bind:change="setScore" gutter="0" color="#ffd21e" void-icon="star" void-color="#eee" />
+      <view class="score">{{score}}分</view>
+    </view>
+    <textarea class="evaluation-content" bindinput="setContent" placeholder="请输入您对商品的评价" />
+    <view class="uploader-wrap">
+      <van-uploader 
+        file-list="{{imageList}}" 
+        bind:after-read="uploadImage" 
+        bind:delete="deleteImage" 
+        accept="image" 
+        max-count="10" 
+        deletable 
+      />
+    </view>
+  </view>
+</view>
+
+<view class="submit-btn row center" bindtap="submit">提交</view>
