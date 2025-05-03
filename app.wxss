@@ -2,7 +2,7 @@ page {
   position: relative;
   min-height: 100vh;
   background-color: #f5f6f8;
-  --theme-color: #77a9fd;
+  --theme-color: #169dfe;
   --theme-color-gradient: linear-gradient(90deg, #6097f7 0%, #86abeb 100%);
   --theme-color-btn-bg: linear-gradient(90deg, #00cffc 0%, #0095fa 100%);
 }
