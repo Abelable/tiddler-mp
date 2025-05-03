@@ -16,32 +16,41 @@
   <view class="sub-menu-wrap">
     <view 
       class="sub-menu-item {{curSubMenuIndex === index ? 'selected' : ''}} row center" 
-      wx:for="{{subMenuList}}" wx:key="index" 
+      wx:for="{{menuList[curMenuIndex].subMenuList}}" wx:key="index" 
       bindtap="selectSubMenu" data-index="{{index}}"
     >{{item.name}}</view>
   </view>
 </view>
 
 
-<!-- <view class="list-wrap">
-  <navigator class="list row between" url="./subpages/goods-order-list/index" hover-class="none">
-    <view class="title">商品订单</view>
-    <image class="arrow" src="./images/arrow.png" />
-  </navigator>
-  <navigator class="list row between" url="./subpages/scenic-order-list/index" hover-class="none">
-    <view class="title">景区门票订单</view>
-    <image class="arrow" src="./images/arrow.png" />
-  </navigator>
-  <navigator class="list row between" url="./subpages/hotel-order-list/index" hover-class="none">
-    <view class="title">酒店房间订单</view>
-    <image class="arrow" src="./images/arrow.png" />
-  </navigator>
-  <navigator class="list row between" url="./subpages/meal-ticket-order-list/index" hover-class="none">
-    <view class="title">餐券订单</view>
-    <image class="arrow" src="./images/arrow.png" />
-  </navigator>
-  <navigator class="list row between" url="./subpages/set-meal-order-list/index" hover-class="none">
-    <view class="title">套餐订单</view>
-    <image class="arrow" src="./images/arrow.png" />
-  </navigator>
-</view> -->
+<view class="container" style="margin-top: {{statusBarHeight + 138}}px;">
+  <view class="content" wx:if="{{curMenuIdx === 0}}">
+    <scenic-order-list list="{{scenicOrderList}}" bind:update="updateScenicOrderList"/>
+    <empty-illus wx:if="{{scenicFinished && !scenicOrderList.length}}" desc="暂无景点订单" />
+    <view class="no-more-tips" wx:if="{{scenicFinished && scenicOrderList.length}}">～没有更多了～</view>
+  </view>
+
+  <view class="content" wx:if="{{curMenuIdx === 1}}">
+    <order-list list="{{hotelOrderList}}" bind:update="updateHotelOrderList"/>
+    <empty-illus wx:if="{{hotelFinished && !hotelOrderList.length}}" desc="暂无酒店订单" />
+    <view class="no-more-tips" wx:if="{{hotelFinished && hotelOrderList.length}}">～没有更多了～</view>
+  </view>
+
+  <view class="content" wx:if="{{curMenuIdx === 2}}">
+    <meal-ticket-order-list list="{{mealTicketOrderList}}" bind:update="updateMealTicketOrderList"/>
+    <empty-illus wx:if="{{mealTicketFinished && !mealTicketOrderList.length}}" desc="暂无餐券订单" />
+    <view class="no-more-tips" wx:if="{{mealTicketFinished && mealTicketOrderList.length}}">～没有更多了～</view>
+  </view>
+
+  <view class="content" wx:if="{{curMenuIdx === 3}}">
+    <set-meal-order-list list="{{setMealOrderList}}" bind:update="updateSetMealOrderList"/>
+    <empty-illus wx:if="{{setMealFinished && !setMealOrderList.length}}" desc="暂无套餐订单" />
+    <view class="no-more-tips" wx:if="{{setMealFinished && setMealOrderList.length}}">～没有更多了～</view>
+  </view>
+
+  <view class="content" wx:if="{{curMenuIdx === 4}}">
+    <goods-order-list list="{{goodsOrderList}}" bind:update="updateGoodsOrderList"/>
+    <empty-illus wx:if="{{goodsFinished && !goodsOrderList.length}}" desc="暂无商品订单" />
+    <view class="no-more-tips" wx:if="{{goodsFinished && goodsOrderList.length}}">～没有更多了～</view>
+  </view>
+</view>
