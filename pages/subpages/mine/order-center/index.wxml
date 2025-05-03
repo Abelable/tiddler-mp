@@ -1,4 +1,29 @@
-<view class="list-wrap">
+<view class="header" style="padding-top: {{statusBarHeight}}px;">
+  <view class="nav-bar row">
+    <back-icon custom bind:navigateBack="navigateBack" />
+    <view class="search-bar" bindtap="search">
+      <image class="search-icon" src="/images/search.png" />
+      <text class="placeholder">搜索订单</text>
+    </view>
+  </view>
+  <view class="menu-wrap">
+    <view 
+      class="menu-item {{curMenuIndex === index ? 'selected' : ''}} row center" 
+      wx:for="{{menuList}}" wx:key="index" 
+      bindtap="selectMenu" data-index="{{index}}"
+    >{{item.name}}</view>
+  </view>
+  <view class="sub-menu-wrap">
+    <view 
+      class="sub-menu-item {{curSubMenuIndex === index ? 'selected' : ''}} row center" 
+      wx:for="{{subMenuList}}" wx:key="index" 
+      bindtap="selectSubMenu" data-index="{{index}}"
+    >{{item.name}}</view>
+  </view>
+</view>
+
+
+<!-- <view class="list-wrap">
   <navigator class="list row between" url="./subpages/goods-order-list/index" hover-class="none">
     <view class="title">商品订单</view>
     <image class="arrow" src="./images/arrow.png" />
@@ -19,4 +44,4 @@
     <view class="title">餐饮套餐订单</view>
     <image class="arrow" src="./images/arrow.png" />
   </navigator>
-</view>
+</view> -->

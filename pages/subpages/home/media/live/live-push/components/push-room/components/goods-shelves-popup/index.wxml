@@ -10,7 +10,7 @@
       </view>
       <view class="multiple-switch row">
         <view>多选：</view>
-        <switch bindchange="switchMultiple" color="#3979BE" />
+        <switch bindchange="switchMultiple" color="#169dfe" />
       </view>
     </view>
 

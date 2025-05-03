@@ -47,7 +47,7 @@
 }
 .count-wrap {
   font-size: 24rpx;
-  color: #3979BE;
+  color: #169dfe;
 }
 .count {
   margin-left: 5rpx;

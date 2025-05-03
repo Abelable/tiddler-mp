@@ -22,7 +22,7 @@
         <view class="content">{{orderInfo.consignee}}，{{orderInfo.mobile}}，{{orderInfo.address}}</view>
         <view class="copy-btn">
           <text>｜</text>
-          <text style="color: #3979BE" bindtap="copyAddress">复制</text>
+          <text style="color: #169dfe" bindtap="copyAddress">复制</text>
         </view>
       </view>
       <view class="list row between">
@@ -30,7 +30,7 @@
         <view>
           <text>{{orderInfo.orderSn}}</text>
           <text>｜</text>
-          <text style="color: #3979BE" bindtap="copyOrderSn">复制</text>
+          <text style="color: #169dfe" bindtap="copyOrderSn">复制</text>
         </view>
       </view>
       <view class="list row between">
