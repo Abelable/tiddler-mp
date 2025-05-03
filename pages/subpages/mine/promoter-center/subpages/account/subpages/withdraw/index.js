@@ -87,7 +87,7 @@ Page({
 
   bindBank() {
     wx.navigateTo({
-      url: "./subpages/bind-bank/index"
+      url: "../bind-bank/index"
     });
   },
 
