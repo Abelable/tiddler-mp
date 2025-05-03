@@ -4,7 +4,7 @@
       <view class="goods-list">
         <view class="goods-item" wx:for="{{goodsList}}" wx:key="index" bindtap="toggleChecked" data-index="{{index}}">
           <image class="goods-img" src="{{item.cover}}" mode="aspectFill" lazy-load />
-          <view class="goods-name omit single-line">{{item.name}}</view>
+          <view class="goods-name omit single">{{item.name}}</view>
           <view class="goods-price-wrap">
             <price-unit price="{{item.price}}" />
             <image class="pick-icon" src="./images/{{item.checked ? 'checked' : 'unchecked'}}.png" />

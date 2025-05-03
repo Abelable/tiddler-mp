@@ -6,10 +6,10 @@
     <view class="card-header row">
       <view class="shop-info row" wx:if="{{orderInfo.shopId}}" catchtap="navToShop" data-id="{{orderInfo.shopId}}">
         <image class="shop-logo" wx:if="{{orderInfo.shopLogo}}" src="{{orderInfo.shopLogo}}" />
-        <view class="shop-name omit single-line">{{orderInfo.shopName}}</view>
+        <view class="shop-name omit single">{{orderInfo.shopName}}</view>
         <image style="width: 20rpx; height: 20rpx;" src="https://img.ubo.vip/mp/to-icon.png" />
       </view>
-      <view class="shop-name omit single-line" wx:if="{{!orderInfo.shopId}}">官方自营</view>
+      <view class="shop-name omit single" wx:if="{{!orderInfo.shopId}}">官方自营</view>
     </view>
     <ticket-item ticketInfo="{{orderInfo.ticketInfo || null}}" />
     <view class="list row between">

@@ -3,7 +3,7 @@
   <view class="content">
     <view class="goods-title omit">
       <text class="goods-tag" wx:if="{{!item.shopInfo}}">自营</text>
-      {{item.name}}
+      <text>{{item.name}}</text> 
     </view>
     <view class="info-wrap row between">
       <view class="row baseline">
@@ -17,7 +17,7 @@
     </view>
     <view class="shop-info row" wx:if="{{item.shopInfo}}" catchtap="navToShop">
       <image class="shop-logo" src="{{item.shopInfo.logo}}" lazy-load />
-      <view class="shop-name omit single-line">{{item.shopInfo.name}}</view>
+      <view class="shop-name omit single">{{item.shopInfo.name}}</view>
     </view>
   </view>
 </view>

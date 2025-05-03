@@ -12,7 +12,7 @@
         <view class="address row" wx:if="{{item.address}}">
           <text class="split-spot">·</text>
           <image class="address-icon" src="/images/media-item/address.png" />
-          <text class="address-detail omit single-line">{{item.address}}</text>
+          <text class="address-detail omit single">{{item.address}}</text>
         </view>
       </view>
     </view>
@@ -38,7 +38,7 @@
     <view class="comment-list">
       <view class="comment-item" wx:for="{{comments}}" wx:key="index" wx:for-item="comment">
         <view class="commentator-name">{{comment.nickname}}：</view>
-        <view class="comment-content omit single-line">{{comment.content}}</view>
+        <view class="comment-content omit single">{{comment.content}}</view>
       </view>
     </view>
     <view class="explain">共{{NUM.over(item.commentsNumber, 100000)}}条评论</view>

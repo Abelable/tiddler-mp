@@ -4,13 +4,13 @@
     <view class="type-label row">美食</view>
     <view class="address-info">
       <image class="address-icon" src="/images/address.png" />
-      <text class="address-detail omit single-line">{{ item.address }}</text>
+      <text class="address-detail omit single">{{ item.address }}</text>
     </view>
   </view>
   <view class="restaurant-title omit">{{ item.name }}</view>
   <view class="label-list">
     <view 
-      class="label omit single-line" 
+      class="label omit single" 
       wx:for="{{facilityList}}" 
       wx:key="_index" 
       wx:for-item="_item" 

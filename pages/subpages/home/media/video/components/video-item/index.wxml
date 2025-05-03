@@ -65,7 +65,7 @@
         <view class="commodity-item-inner">
           <view class="commodity-name-wrap row">
             <image class="comodity-icon" src="./images/{{['scenic', 'hotel', 'restaurant', 'goods'][_item.type - 1]}}.png" />
-            <view class="commodity-name omit single-line">{{STRING.slice(_item.name || '', 8)}}</view>
+            <view class="commodity-name omit single">{{STRING.slice(_item.name || '', 8)}}</view>
           </view>
           <view class="commodity-data-wrap row between baseline">
             <view class="row baseline" wx:if="{{_item.price}}">

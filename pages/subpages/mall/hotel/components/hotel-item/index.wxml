@@ -2,7 +2,7 @@
   <image class="cover" src="{{ item.cover }}" mode="aspectFill" lazy-load />
   <view class="content">
     <view class="title omit">{{ item.name }}</view>
-    <view class="desc omit single-line">{{['经济酒店', '舒适酒店', '高档酒店', '豪华酒店'][item.grade - 1]}} ｜ {{item.englishName}} </view>
+    <view class="desc omit single">{{['经济酒店', '舒适酒店', '高档酒店', '豪华酒店'][item.grade - 1]}} ｜ {{item.englishName}} </view>
     <view class="data-wrap">
       <view class="score">4.2</view>
       <view class="other-data">

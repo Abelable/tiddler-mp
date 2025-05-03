@@ -28,7 +28,7 @@
 .goods-tag {
   display: inline-block;
   margin-bottom: 1rpx;
-  margin-right: 2rpx;
+  margin-right: 4rpx;
   padding: 0 12rpx;
   height: 33rpx;
   color: #ef3741;

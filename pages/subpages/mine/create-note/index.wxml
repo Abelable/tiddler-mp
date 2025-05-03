@@ -62,7 +62,7 @@
             <view class="type-tag row">{{ ['景点', '酒店', '餐厅', '商品'][item.type -1] }}</view>
           </view>
           <view class="commodity-info">
-            <view class="commodity-name omit single-line">{{item.name}}</view>
+            <view class="commodity-name omit single">{{item.name}}</view>
             <view class="row end">
               <price-unit price="{{item.price || 0}}" unit="{{ item.type !== 4 ? '起' : '' }}" fontSize="22rpx" integerFontSize="26rpx" />
             </view>

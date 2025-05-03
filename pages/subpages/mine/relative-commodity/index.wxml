@@ -31,7 +31,7 @@
     <view class="commodity-list">
       <view class="commodity-item" wx:for="{{scenicList}}" wx:key="index" bindtap="toggleScenicSelected" data-index="{{index}}">
         <image class="commodity-img" src="{{item.cover}}" mode="aspectFill" lazy-load />
-        <view class="commodity-name omit single-line">{{item.name}}</view>
+        <view class="commodity-name omit single">{{item.name}}</view>
         <view class="commodity-price-wrap">
           <price-unit price="{{item.price}}" unit="起" />
           <image class="pick-icon" src="./images/{{item.selected ? 'checked' : 'unchecked'}}.png" />
@@ -46,7 +46,7 @@
     <view class="commodity-list">
       <view class="commodity-item" wx:for="{{hotelList}}" wx:key="index" bindtap="toggleHotelSelected" data-index="{{index}}">
         <image class="commodity-img" src="{{item.cover}}" mode="aspectFill" lazy-load />
-        <view class="commodity-name omit single-line">{{item.name}}</view>
+        <view class="commodity-name omit single">{{item.name}}</view>
         <view class="commodity-price-wrap">
           <price-unit price="{{item.price}}" unit="起" />
           <image class="pick-icon" src="./images/{{item.selected ? 'checked' : 'unchecked'}}.png" />
@@ -61,7 +61,7 @@
     <view class="commodity-list">
       <view class="commodity-item" wx:for="{{restaurantList}}" wx:key="index" bindtap="toggleRestaurantSelected" data-index="{{index}}">
         <image class="commodity-img" src="{{item.cover}}" mode="aspectFill" lazy-load />
-        <view class="commodity-name omit single-line">{{item.name}}</view>
+        <view class="commodity-name omit single">{{item.name}}</view>
         <view class="commodity-price-wrap">
           <price-unit price="{{item.price}}" unit="起" />
           <image class="pick-icon" src="./images/{{item.selected ? 'checked' : 'unchecked'}}.png" />
@@ -76,7 +76,7 @@
     <view class="commodity-list">
       <view class="commodity-item" wx:for="{{goodsList}}" wx:key="index" bindtap="toggleGoodsSelected" data-index="{{index}}">
         <image class="commodity-img" src="{{item.cover}}" mode="aspectFill" lazy-load />
-        <view class="commodity-name omit single-line">{{item.name}}</view>
+        <view class="commodity-name omit single">{{item.name}}</view>
         <view class="commodity-price-wrap">
           <price-unit price="{{item.price}}" />
           <image class="pick-icon" src="./images/{{item.selected ? 'checked' : 'unchecked'}}.png" />

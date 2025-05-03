@@ -3,7 +3,7 @@
     <view class="restaurant-name">{{restaurantName}}</view>
 
     <view class="set-meal-name-wrap row between">
-      <view class="set-meal-name omit single-line">{{setMealInfo.name}}</view>
+      <view class="set-meal-name omit single">{{setMealInfo.name}}</view>
       <view class="check-detail row">
         <view class="detail-tips" bindtap="showDetailPopup">详情</view>
         <image class="more-icon" src="./images/more-blue.png" />

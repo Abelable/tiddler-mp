@@ -13,7 +13,7 @@
       <image class="enterprise-label" wx:if="{{shopInfo.type === 2}}" src="https://img.ubo.vip/mp/selection/goods-detail/firm-icon.png" />
     </view>
     <view class="info">
-      <view class="shop-name omit single-line">{{shopInfo.name}}</view>
+      <view class="shop-name omit single">{{shopInfo.name}}</view>
       <view class="authentication row">{{['官方', '专营店', '自营'][shopInfo.type - 1]}}</view>
     </view>
   </view>

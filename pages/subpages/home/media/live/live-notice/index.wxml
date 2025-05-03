@@ -15,7 +15,7 @@
     <view class="tag row center">预告</view>
   </view>
 
-  <view class="title omit single-line">{{roomInfo.title}}</view>
+  <view class="title omit single">{{roomInfo.title}}</view>
 
   <view class="time-wrap">
     <view>开始时间：{{TIME.transform(roomInfo.noticeTime, 'YYYY-MM-DD hh:mm')}}</view>

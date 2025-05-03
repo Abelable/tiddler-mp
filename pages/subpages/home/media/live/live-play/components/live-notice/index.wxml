@@ -7,14 +7,14 @@
     <view class="tag row center">预告</view>
   </view>
 
-  <view class="title omit single-line">{{roomInfo.title}}</view>
+  <view class="title omit single">{{roomInfo.title}}</view>
 
   <view class="anchor-info" bindtap="navToUserCenter">
     <view class="avatar-wrap">
       <image class="anchor-avatar avatar-default" src="{{roomInfo.anchorInfo.avatar}}" />
       <image class="follow-icon" wx:if="{{!isFollow}}" bindtap="follow" src="./images/follow.png" />
     </view>
-    <view class="anchor-name omit single-line">{{roomInfo.anchorInfo.nickname}}</view>
+    <view class="anchor-name omit single">{{roomInfo.anchorInfo.nickname}}</view>
   </view>
 
   <view class="time-wrap">

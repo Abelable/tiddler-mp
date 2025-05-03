@@ -11,7 +11,7 @@
         <view class="address row" wx:if="{{item.address}}">
           <text class="split-spot">·</text>
           <image class="address-icon" src="/images/media-item/address.png" />
-          <text class="address-detail omit single-line">{{item.address}}</text>
+          <text class="address-detail omit single">{{item.address}}</text>
         </view>
       </view>
     </view>
@@ -38,7 +38,7 @@
       <view class="type-tag row">商品</view>
     </view>
     <view class="goods-info">
-      <view class="goods-name omit single-line">{{item.goodsInfo.name}}</view>
+      <view class="goods-name omit single">{{item.goodsInfo.name}}</view>
       <view class="row between baseline">
         <view class="row baseline">
           <price-unit price="{{item.goodsInfo.price || 0}}" fontSize="22rpx" integerFontSize="26rpx" />

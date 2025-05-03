@@ -10,7 +10,7 @@
           <image class="answer-user-avatar" src="{{ item.firstAnswer.userInfo.avatar }}" />
           <view class="answer-user-name">{{ item.firstAnswer.userInfo.nickname }}</view>
         </view>
-        <view class="answer-content omit single-line">{{ item.firstAnswer.content }}</view>
+        <view class="answer-content omit single">{{ item.firstAnswer.content }}</view>
       </view>
       <view class="no-tips" wx:if="{{!item.answerNum}}">暂无回答</view>
       <view class="qa-more row between">

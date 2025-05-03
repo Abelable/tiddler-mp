@@ -59,7 +59,7 @@
       </view>
       <image class="share-icon" bindtap="share" src="./images/share.png" />
     </view>
-    <view class="name-desc omit single-line">
+    <view class="name-desc omit single">
       {{['经济酒店', '舒适酒店', '高档酒店', '豪华酒店'][hotelInfo.grade - 1]}} ｜ {{hotelInfo.englishName}}
     </view>
     <view class="labels-wrap row" bindtap="checkMoreInfo">
@@ -216,7 +216,7 @@
               <image class="answer-user-avatar" src="{{item.firstAnswer.userInfo.avatar}}" />
               <view class="answer-user-name">{{item.firstAnswer.userInfo.nickname}}</view>
             </view>
-            <view class="qa-answer omit single-line">{{item.firstAnswer.content}}</view>
+            <view class="qa-answer omit single">{{item.firstAnswer.content}}</view>
           </view>
           <view class="qa-no-answer" wx:if="{{index === 0 && !item.firstAnswer}}">暂无回答</view>
           <view class="qa-answers row" wx:if="{{index !== 0}}">

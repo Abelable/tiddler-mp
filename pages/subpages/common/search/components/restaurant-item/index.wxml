@@ -8,7 +8,7 @@
     <image class="restaurant-cover" src="{{item.cover}}" mode="aspectFill" lazy-load />
     <view class="restaurant-content">
       <view class="row">
-        <view class="restaurant-title omit single-line">{{item.name}}</view>
+        <view class="restaurant-title omit single">{{item.name}}</view>
         <view class="restaurant-category row">{{item.categoryName}}</view>
       </view>
       <view class="score-wrap">

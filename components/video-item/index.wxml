@@ -18,14 +18,14 @@
     </view>
     <view class="address-info" wx:if="{{item.address}}">
       <image class="address-icon" src="/images/address.png" />
-      <text class="address-detail omit single-line">{{item.address}}</text>
+      <text class="address-detail omit single">{{item.address}}</text>
     </view>
   </view>
   <view class="title omit">{{item.title}}</view>
   <view class="info-wrap">
     <view class="author-info">
       <image class="author-avatar avatar-default" src="{{item.authorInfo.avatar}}" />
-      <text class="author-name omit single-line">{{item.authorInfo.nickname}}</text>
+      <text class="author-name omit single">{{item.authorInfo.nickname}}</text>
     </view>
     <view class="praise-info">
       <image class="praise-icon" src="https://img.ubo.vip/tiddler/media-item/heart.png" />

@@ -3,7 +3,7 @@
 
 <view class="container">
   <view class="card">
-    <view class="restaurant-name omit single-line">{{orderInfo.restaurantName}}</view>
+    <view class="restaurant-name omit single">{{orderInfo.restaurantName}}</view>
     <meal-ticket-item ticketInfo="{{orderInfo.ticketInfo}}" />
     <view class="list row between">
       <view class="title">{{ORDER.paymentDesc(orderInfo.status)}}</view>

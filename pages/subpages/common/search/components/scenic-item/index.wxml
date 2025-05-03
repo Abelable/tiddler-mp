@@ -7,7 +7,7 @@
   <image class="scenic-cover" src="{{item.cover}}" mode="aspectFill" lazy-load />
   <view class="scenic-content">
     <view class="row">
-      <view class="scenic-title omit single-line">{{item.name}}</view>
+      <view class="scenic-title omit single">{{item.name}}</view>
       <view class="level-tag row" wx:if="{{item.level}}">{{item.level}}</view>
     </view>
     <view class="labels">

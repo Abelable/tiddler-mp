@@ -192,7 +192,7 @@
             <image class="answer-user-avatar" src="{{item.firstAnswer.userInfo.avatar}}" />
             <view class="answer-user-name">{{item.firstAnswer.userInfo.nickname}}</view>
           </view>
-          <view class="qa-answer omit single-line">{{item.firstAnswer.content}}</view>
+          <view class="qa-answer omit single">{{item.firstAnswer.content}}</view>
         </view>
         <view class="qa-no-answer" wx:if="{{index === 0 && !item.firstAnswer}}">暂无回答</view>
         <view class="qa-answers row" wx:if="{{index !== 0}}">

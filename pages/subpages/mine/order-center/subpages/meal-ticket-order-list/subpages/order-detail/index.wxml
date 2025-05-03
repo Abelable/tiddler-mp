@@ -5,7 +5,7 @@
   <view class="card">
     <view class="card-header row">
       <view class="restaurant-info row" catchtap="navToRestaurant" data-id="{{orderInfo.restaurantId}}">
-        <view class="restaurant-name omit single-line">{{orderInfo.restaurantName}}</view>
+        <view class="restaurant-name omit single">{{orderInfo.restaurantName}}</view>
         <image style="width: 20rpx; height: 20rpx;" src="https://img.ubo.vip/mp/to-icon.png" />
       </view>
     </view>
