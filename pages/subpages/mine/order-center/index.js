@@ -240,6 +240,106 @@ Page({
     }
   },
 
+  updateScenicOrderList(e) {
+    const statusEmuns = {
+      cancel: 102,
+      pay: 201,
+      refund: 202,
+      confirm: 401,
+    };
+    const { type, index } = e.detail;
+    const { menuList, scenicOrderList } = this.data;
+    const { curSubMenuIdx } = menuList[0];
+    if (type === "delete" || curSubMenuIdx !== 0) {
+      scenicOrderList.splice(index, 1);
+      this.setData({ scenicOrderList });
+    } else {
+      this.setData({
+        [`scenicOrderList[${index}].status`]: statusEmuns[type],
+      });
+    }
+  },
+
+  updateHotelOrderList(e) {
+    const statusEmuns = {
+      cancel: 102,
+      pay: 201,
+      refund: 202,
+      confirm: 401,
+    };
+    const { type, index } = e.detail;
+    const { menuList, hotelOrderList } = this.data;
+    const { curSubMenuIdx } = menuList[1];
+    if (type === "delete" || curSubMenuIdx !== 0) {
+      hotelOrderList.splice(index, 1);
+      this.setData({ hotelOrderList });
+    } else {
+      this.setData({
+        [`hotelOrderList[${index}].status`]: statusEmuns[type],
+      });
+    }
+  },
+
+  updateMealTicketOrderList(e) {
+    const statusEmuns = {
+      cancel: 102,
+      pay: 201,
+      refund: 202,
+      confirm: 401,
+    };
+    const { type, index } = e.detail;
+    const { menuList, mealTicketOrderList } = this.data;
+    const { curSubMenuIdx } = menuList[4];
+    if (type === "delete" || curSubMenuIdx !== 0) {
+      mealTicketOrderList.splice(index, 1);
+      this.setData({ mealTicketOrderList });
+    } else {
+      this.setData({
+        [`mealTicketOrderList[${index}].status`]: statusEmuns[type],
+      });
+    }
+  },
+
+  updateSetMealOrderList(e) {
+    const statusEmuns = {
+      cancel: 102,
+      pay: 201,
+      refund: 202,
+      confirm: 401,
+    };
+    const { type, index } = e.detail;
+    const { menuList, setMealOrderList } = this.data;
+    const { curSubMenuIdx } = menuList[4];
+    if (type === "delete" || curSubMenuIdx !== 0) {
+      setMealOrderList.splice(index, 1);
+      this.setData({ setMealOrderList });
+    } else {
+      this.setData({
+        [`setMealOrderList[${index}].status`]: statusEmuns[type],
+      });
+    }
+  },
+
+  updateGoodsOrderList(e) {
+    const statusEmuns = {
+      cancel: 102,
+      pay: 201,
+      refund: 202,
+      confirm: 401,
+    };
+    const { type, index } = e.detail;
+    const { menuList, goodsOrderList } = this.data;
+    const { curSubMenuIdx } = menuList[4];
+    if (type === "delete" || curSubMenuIdx !== 0) {
+      goodsOrderList.splice(index, 1);
+      this.setData({ goodsOrderList });
+    } else {
+      this.setData({
+        [`goodsOrderList[${index}].status`]: statusEmuns[type],
+      });
+    }
+  },
+
   navigateBack() {
     wx.switchTab({
       url: "/pages/tab-bar-pages/mine/index"
