@@ -1,9 +1,13 @@
 <view class="goods-item {{visible ? 'show' : ''}}" bindtap="navToGoodsDetail">
-  <image class="cover" mode="widthFix" src="{{item.cover}}" bindload="onCoverLoaded" lazy-load />
+  <view class="cover-wrap {{showTag ? 'show-tag' : ''}}">
+    <image class="cover" mode="widthFix" src="{{ item.cover }}" bindload="onCoverLoaded" lazy-load />
+    <view class="type-label row" wx:if="{{showTag}}">商品</view>
+  </view>
   <view class="content">
     <view class="goods-title omit">
       <text class="goods-tag" wx:if="{{!item.shopInfo}}">自营</text>
-      <text>{{item.name}}</text> 
+      <text wx:if="{{!item.shopInfo}}"> {{item.name}}</text>
+      <text wx:if="{{item.shopInfo}}">{{item.name}}</text>
     </view>
     <view class="info-wrap row between">
       <view class="row baseline">

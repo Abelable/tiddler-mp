@@ -27,7 +27,7 @@
   color: #fff;
   font-size: 20rpx;
   border-radius: 8rpx;
-  background: rgb(98, 97, 238);
+  background: #6261ee;
 }
 
 .address-info {
