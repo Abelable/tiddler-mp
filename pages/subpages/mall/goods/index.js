@@ -83,10 +83,10 @@ Page({
     } = this.data;
     const list =
       (await goodsService.getGoodsList({
-        shopCategoryId: categoryOptions[activeTabIdx].id,
+        shopCategoryId: categoryOptions[activeTabIdx].id || undefined,
         categoryId: subCategoryOptions.length
           ? subCategoryOptions[activeSubTabIdx].id
-          : 0,
+          : undefined,
         page: ++this.page,
         limit,
       })) || [];

@@ -30,7 +30,7 @@
 </view>
 
 <view class="goods-list-wrap" style="padding-top: {{statusBarHeight + 100}}px">
-  <view class="sub-category-tabs">
+  <view class="sub-category-tabs" wx:if="{{subCategoryOptions.length}}">
     <view 
       class="sub-category-tab row center {{activeSubTabIdx === index ? 'active' : ''}}" 
       wx:for="{{subCategoryOptions}}" 
