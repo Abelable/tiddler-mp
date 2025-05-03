@@ -64,6 +64,7 @@
       "mine/address-list/subpages/add/index",
       "mine/address-list/subpages/edit/index",
       "mine/order-center/index",
+      "mine/order-center/subpages/order-search/index",
       "mine/order-center/subpages/goods-order/order-detail/index",
       "mine/order-center/subpages/goods-order/evaluation/index",
       "mine/order-center/subpages/goods-order/shipping/index",
