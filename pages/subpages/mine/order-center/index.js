@@ -81,7 +81,7 @@ Page({
   async onLoad({ type = "1", status = "0" }) {
     const curMenuIdx = type - 1;
     const curSubMenuIdx = this.data.menuList.findIndex(
-      (item) => item.status === Number(status)
+      item => item.status === Number(status)
     );
     this.setData({ curMenuIdx, curSubMenuIdx });
   },
@@ -245,7 +245,7 @@ Page({
       cancel: 102,
       pay: 201,
       refund: 202,
-      confirm: 401,
+      confirm: 401
     };
     const { type, index } = e.detail;
     const { menuList, scenicOrderList } = this.data;
@@ -255,7 +255,7 @@ Page({
       this.setData({ scenicOrderList });
     } else {
       this.setData({
-        [`scenicOrderList[${index}].status`]: statusEmuns[type],
+        [`scenicOrderList[${index}].status`]: statusEmuns[type]
       });
     }
   },
@@ -265,7 +265,7 @@ Page({
       cancel: 102,
       pay: 201,
       refund: 202,
-      confirm: 401,
+      confirm: 401
     };
     const { type, index } = e.detail;
     const { menuList, hotelOrderList } = this.data;
@@ -275,7 +275,7 @@ Page({
       this.setData({ hotelOrderList });
     } else {
       this.setData({
-        [`hotelOrderList[${index}].status`]: statusEmuns[type],
+        [`hotelOrderList[${index}].status`]: statusEmuns[type]
       });
     }
   },
@@ -285,7 +285,7 @@ Page({
       cancel: 102,
       pay: 201,
       refund: 202,
-      confirm: 401,
+      confirm: 401
     };
     const { type, index } = e.detail;
     const { menuList, mealTicketOrderList } = this.data;
@@ -295,7 +295,7 @@ Page({
       this.setData({ mealTicketOrderList });
     } else {
       this.setData({
-        [`mealTicketOrderList[${index}].status`]: statusEmuns[type],
+        [`mealTicketOrderList[${index}].status`]: statusEmuns[type]
       });
     }
   },
@@ -305,7 +305,7 @@ Page({
       cancel: 102,
       pay: 201,
       refund: 202,
-      confirm: 401,
+      confirm: 401
     };
     const { type, index } = e.detail;
     const { menuList, setMealOrderList } = this.data;
@@ -315,7 +315,7 @@ Page({
       this.setData({ setMealOrderList });
     } else {
       this.setData({
-        [`setMealOrderList[${index}].status`]: statusEmuns[type],
+        [`setMealOrderList[${index}].status`]: statusEmuns[type]
       });
     }
   },
@@ -325,7 +325,7 @@ Page({
       cancel: 102,
       pay: 201,
       refund: 202,
-      confirm: 401,
+      confirm: 401
     };
     const { type, index } = e.detail;
     const { menuList, goodsOrderList } = this.data;
@@ -335,7 +335,7 @@ Page({
       this.setData({ goodsOrderList });
     } else {
       this.setData({
-        [`goodsOrderList[${index}].status`]: statusEmuns[type],
+        [`goodsOrderList[${index}].status`]: statusEmuns[type]
       });
     }
   },
@@ -344,5 +344,11 @@ Page({
     wx.switchTab({
       url: "/pages/tab-bar-pages/mine/index"
     });
+  },
+
+  search() {
+    const { curMenuIdx } = this.data;
+    const url = `./subpages/order-search/index?type=${curMenuIdx + 1}`;
+    wx.navigateTo({ url });
   }
 });

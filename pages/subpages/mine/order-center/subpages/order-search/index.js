@@ -4,18 +4,17 @@ const orderService = new OrderService();
 
 Page({
   data: {
+    type: 1,
     historyKeywords: [],
     keywords: "",
     isSearching: false,
-    orderList: [],
-    finished: false
+    orderList: []
   },
 
   onLoad({ type = "1" }) {
-    this.type = +type;
+    this.setData({ type: +type });
 
     this.setHistoryKeywords();
-    this.setHotKeywords();
   },
 
   setKeywords(e) {
@@ -45,25 +44,53 @@ Page({
     this.setData({
       keywords: "",
       isSearching: false,
-      orderList: [],
-      finished: false
+      orderList: []
     });
   },
 
   async setOrderList() {
-    const { keywords } = this.data;
-    const orderList = (await orderService.searchGoodsOrderList(keywords)) || [];
+    const { type, keywords } = this.data;
+    let orderList;
+    switch (type) {
+      case 1:
+        orderList = (await orderService.searchScenicOrderList(keywords)) || [];
+        break;
+      case 2:
+        orderList = (await orderService.searchHotelOrderList(keywords)) || [];
+        break;
+      case 3:
+        orderList = (await orderService.searchMealTicketOrderList(keywords)) || [];
+        break;
+      case 4:
+        orderList = (await orderService.searchSetMealOrderList(keywords)) || [];
+        break;
+      case 5:
+        orderList = (await orderService.searchGoodsOrderList(keywords)) || [];
+        break;
+    }
     this.setData({ orderList });
   },
 
   async setHistoryKeywords() {
-    const historyKeywords = await orderService.getHistoryKeywords();
+    let historyKeywords;
+    switch (this.data.type) {
+      case 1:
+        historyKeywords = await orderService.getScenicHistoryKeywords();
+        break;
+      case 2:
+        historyKeywords = await orderService.getHotelHistoryKeywords();
+        break;
+      case 3:
+        historyKeywords = await orderService.getMealTicketHistoryKeywords();
+        break;
+      case 4:
+        historyKeywords = await orderService.getSetMealHistoryKeywords();
+        break;
+      case 5:
+        historyKeywords = await orderService.getGoodsHistoryKeywords();
+        break;
+    }
     this.setData({ historyKeywords });
-  },
-
-  async setHotKeywords() {
-    const hotKeywords = await orderService.getHotKeywords();
-    this.setData({ hotKeywords });
   },
 
   clearHistoryKeywords() {
@@ -75,7 +102,23 @@ Page({
           this.setData({
             historyKeywords: []
           });
-          orderService.clearHistoryKeywords();
+          switch (this.data.type) {
+            case 1:
+              orderService.clearScenicHistoryKeywords();
+              break;
+            case 2:
+              orderService.clearHotelHistoryKeywords();
+              break;
+            case 3:
+              orderService.clearMealTicketHistoryKeywords();
+              break;
+            case 4:
+              orderService.clearSetMealHistoryKeywords();
+              break;
+            case 5:
+              orderService.clearGoodsHistoryKeywords();
+              break;
+          }
         }
       }
     });
