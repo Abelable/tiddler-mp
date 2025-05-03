@@ -1,4 +1,4 @@
-import OrderService from "../../../utils/orderService";
+import OrderService from "../../utils/orderService";
 
 const orderService = new OrderService();
 
@@ -11,7 +11,9 @@ Page({
     finished: false
   },
 
-  onLoad() {
+  onLoad({ type = "1" }) {
+    this.type = +type;
+
     this.setHistoryKeywords();
     this.setHotKeywords();
   },
@@ -50,7 +52,7 @@ Page({
 
   async setOrderList() {
     const { keywords } = this.data;
-    const orderList = (await orderService.searchOrderList(keywords)) || [];
+    const orderList = (await orderService.searchGoodsOrderList(keywords)) || [];
     this.setData({ orderList });
   },
 
