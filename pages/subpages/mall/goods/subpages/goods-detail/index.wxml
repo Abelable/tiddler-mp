@@ -106,10 +106,10 @@
 </view>
 
 <!-- 底部工具栏 -->
-<view class="bottom-bar row">
+<view class="bottom-bar row between">
   <view class="shortcut-wrap row">
     <view class="shortcut">
-      <image class="shortcut-icon" src="./images/customer-icon.png"/>
+      <image class="shortcut-icon" src="./images/cs-icon.png"/>
       <view>客服</view>
     </view>
     <view class="shortcut" bindtap="share">
@@ -122,10 +122,23 @@
       <view class="cart-count" wx:if="{{cartGoodsNumber}}">{{cartGoodsNumber}}</view>
     </navigator>
   </view>
-  <view class="btns">
-    <button class="add-cart-btn {{!goodsInfo.stock ? 'invalid' : ''}}" bindtap="showSpecPopup" data-mode="{{1}}">加入购物车</button>
-    <button class="buy-btn {{!goodsInfo.stock ? 'invalid' : ''}}" bindtap="showSpecPopup" data-mode="{{2}}">立即购买</button>
+  <view class="btns row" wx:if="{{goodsInfo.status === 1 && goodsInfo.stock}}">
+    <button 
+      class="add-cart-btn" 
+      wx:if="{{goodsInfo.deliveryMode === 1}}" 
+      bindtap="showSpecPopup" 
+      data-mode="{{1}}"
+    >
+      加入购物车
+    </button>
+    <button class="buy-btn" bindtap="showSpecPopup" data-mode="{{2}}">
+      <view>
+        <view>{{goodsInfo.couponList.length ? "领券购买" : "立即购买"}}</view>
+        <view wx:if="{{goodsInfo.couponList.length}}" style="margin-top: 10rpx;">券后¥{{bottomPrice}}起</view>
+      </view>
+    </button>
   </view>
+  <button class="invalid-notice-btn" wx:if="{{goodsInfo.status === 2 || goodsInfo.stock === 0}}">{{goodsInfo.status === 2 ? '商品已下架' : '商品库存不足'}}</button>
 </view>
 
 <!-- 商品规格选择弹窗 -->

@@ -240,25 +240,26 @@
   position: fixed;
   left: 0;
   bottom: 0;
-  padding: 12rpx 0 calc(10rpx + env(safe-area-inset-bottom));
+  padding: 12rpx 24rpx calc(10rpx + env(safe-area-inset-bottom));
   width: 100%;
   background: #fff;
   box-shadow: 0 -2rpx 2rpx 0 rgba(0,0,0,0.05);
 }
-.shortcut-wrap {
-  flex: 1;
-}
+
 .shortcut {
   position: relative;
-  flex: 1;
-  color: #666;
-  font-size: 20rpx;
+  margin-left: 26rpx;
+  color: #000;
+  font-size: 18rpx;
   text-align: center;
   line-height: 1;
 }
+.shortcut:first-child {
+  margin-left: 0;
+}
 .shortcut-icon {
-  width: 50rpx;
-  height: 50rpx;
+  width: 48rpx;
+  height: 48rpx;
 }
 .cart-count {
   position: absolute;
@@ -274,27 +275,28 @@
   transform: scale(0.8);
 }
 
-.btns {
-  display: flex;
-  margin-right: 24rpx;
-  margin-left: 12rpx;
-  width: 456rpx;
-  height: 80rpx;
-  border-radius: 40rpx;
-  overflow: hidden;
-}
 .add-cart-btn, .buy-btn {
-  flex: 1;
-  color: #fff;
+  width: 230rpx;
+  height: 76rpx;
   font-size: 28rpx;
+  font-weight: 500;
+  border-radius: 20rpx;
 }
 .add-cart-btn {
-  background: #1986F8;
+  color: #010101;
+  background: #f0f0f0;
 }
 .buy-btn {
-  background: #161F4E;
-}
-.add-cart-btn.invalid, .buy-btn.invalid {
+  margin-left: 12rpx;
   color: #fff;
-  background: #ccc;
+  background: var(--theme-color);
+}
+
+.invalid-notice-btn {
+  width: 220rpx;
+  height: 80rpx;
+  color: #fff;
+  font-size: 28rpx;
+  border-radius: 40rpx;
+  background: #d1d1d1;
 }
