@@ -1,4 +1,4 @@
-import OrderService from "../utils/orderService";
+import OrderService from "../../../utils/orderService";
 
 const orderService = new OrderService();
 
@@ -13,7 +13,7 @@ Page({
   },
 
   async setOrderInfo() {
-    const orderInfo = await orderService.getOrderDetail(this.orderId);
+    const orderInfo = await orderService.getGoodsOrderDetail(this.orderId);
     this.setData({ orderInfo });
 
     const titleEnums = {
@@ -56,7 +56,7 @@ Page({
   },
 
   refundOrder() {
-    orderService.refundOrder(this.orderId, () => {
+    orderService.refundGoodsOrder(this.orderId, () => {
       this.setData({
         ["orderInfo.status"]: 202,
       });
@@ -64,7 +64,7 @@ Page({
   },
 
   confirmOrder() {
-    orderService.confirmOrder(this.orderId, () => {
+    orderService.confirmGoodsOrder(this.orderId, () => {
       this.setData({
         ["orderInfo.status"]: 401,
       });
@@ -72,13 +72,13 @@ Page({
   },
 
   deleteOrder() {
-    orderService.deleteOrder(this.orderId, () => {
+    orderService.deleteGoodsOrder(this.orderId, () => {
       wx.navigateBack();
     });
   },
 
   cancelOrder() {
-    orderService.cancelOrder(this.orderId, () => {
+    orderService.cancelGoodsOrder(this.orderId, () => {
       this.setData({
         ["orderInfo.status"]: 102,
       });

@@ -1,4 +1,4 @@
-import OrderService from "../../utils/orderService";
+import OrderService from "../../../utils/orderService";
 
 const orderService = new OrderService();
 
@@ -72,7 +72,7 @@ Page({
       });
       return;
     }
-    orderService.submitEvaluation(
+    orderService.submitScenicEvaluation(
       this.orderId,
       this.ticketId,
       score,

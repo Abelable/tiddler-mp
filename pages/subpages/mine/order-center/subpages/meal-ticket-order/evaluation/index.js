@@ -1,4 +1,4 @@
-import OrderService from "../../utils/orderService";
+import OrderService from "../../../utils/orderService";
 
 const orderService = new OrderService();
 

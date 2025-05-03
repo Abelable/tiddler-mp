@@ -11,6 +11,14 @@ class OrderService extends BaseService {
     return list;
   }
 
+  async searchScenicOrderList(keywords) {
+    return await this.get({
+      url: `${this.baseUrl}/scenic/order/search`,
+      data: { keywords },
+      loadingTitle: "加载中..."
+    });
+  }
+
   async getScenicOrderDetail(id) {
     return await this.get({
       url: `${this.baseUrl}/scenic/order/detail`,
@@ -68,6 +76,14 @@ class OrderService extends BaseService {
         loadingTitle: "加载中...",
       })) || {};
     return list;
+  }
+
+  async searchHotelOrderList(keywords) {
+    return await this.get({
+      url: `${this.baseUrl}/hotel/order/search`,
+      data: { keywords },
+      loadingTitle: "加载中..."
+    });
   }
 
   async getHotelOrderDetail(id) {
@@ -226,6 +242,14 @@ class OrderService extends BaseService {
         loadingTitle: "加载中...",
       })) || {};
     return list;
+  }
+
+  async searchGoodsOrderList(keywords) {
+    return await this.get({
+      url: `${this.baseUrl}/order/search`,
+      data: { keywords },
+      loadingTitle: "加载中..."
+    });
   }
 
   async getGoodsOrderDetail(id) {

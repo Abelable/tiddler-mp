@@ -1,4 +1,4 @@
-import OrderService from "../../utils/orderService";
+import OrderService from "../../../utils/orderService";
 
 const orderService = new OrderService();
 
@@ -13,7 +13,7 @@ Page({
   },
 
   async setOrderInfo() {
-    const orderInfo = await orderService.getOrderDetail(this.orderId);
+    const orderInfo = await orderService.getMealTicketOrderDetail(this.orderId);
     this.setData({ orderInfo });
 
     const titleEnums = {
@@ -43,7 +43,7 @@ Page({
   },
 
   async payOrder() {
-    const params = await orderService.getPayParams(this.orderId);
+    const params = await orderService.getMealTicketPayParams(this.orderId);
     wx.requestPayment({
       ...params,
       success: () => {
@@ -55,7 +55,7 @@ Page({
   },
 
   refundOrder() {
-    orderService.refundOrder(this.orderId, () => {
+    orderService.refundMealTicketOrder(this.orderId, () => {
       this.setData({
         ["orderInfo.status"]: 202,
       });
@@ -63,7 +63,7 @@ Page({
   },
 
   confirmOrder() {
-    orderService.confirmOrder(this.orderId, () => {
+    orderService.confirmMealTicketOrder(this.orderId, () => {
       this.setData({
         ["orderInfo.status"]: 401,
       });
@@ -71,13 +71,13 @@ Page({
   },
 
   deleteOrder() {
-    orderService.deleteOrder(this.orderId, () => {
+    orderService.deleteMealTicketOrder(this.orderId, () => {
       wx.navigateBack();
     });
   },
 
   cancelOrder() {
-    orderService.cancelOrder(this.orderId, () => {
+    orderService.cancelMealTicketOrder(this.orderId, () => {
       this.setData({
         ["orderInfo.status"]: 102,
       });

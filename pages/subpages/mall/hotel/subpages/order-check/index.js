@@ -91,7 +91,7 @@ Component({
     },
 
     async pay(orderId) {
-      const payParams = await hotelService.getHotelOrderPayParams(orderId);
+      const payParams = await hotelService.getHotelPayParams(orderId);
       wx.requestPayment({
         ...payParams,
         success: () => {

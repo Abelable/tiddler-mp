@@ -111,28 +111,28 @@ class BaseService extends Base {
     });
   }
 
-  async getScenicOrderPayParams(orderId) {
+  async getScenicPayParams(orderId) {
     return await this.post({
       url: `${this.baseUrl}/scenic/order/pay_params`,
       data: { orderId }
     });
   }
 
-  async getHotelOrderPayParams(orderId) {
+  async getHotelPayParams(orderId) {
     return await this.post({
       url: `${this.baseUrl}/hotel/order/pay_params`,
       data: { orderId }
     });
   }
 
-  async getMealTicketOrderPayParams(orderId) {
+  async getMealTicketPayParams(orderId) {
     return await this.post({
       url: `${this.baseUrl}/catering/meal_ticket/order/pay_params`,
       data: { orderId }
     });
   }
 
-  async getSetMealOrderPayParams(orderId) {
+  async getSetMealPayParams(orderId) {
     return await this.post({
       url: `${this.baseUrl}/catering/set_meal/order/pay_params`,
       data: { orderId }

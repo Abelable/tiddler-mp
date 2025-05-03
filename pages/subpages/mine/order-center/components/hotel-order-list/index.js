@@ -14,7 +14,7 @@ Component({
   methods: {
     async payOrder(e) {
       const { id, index } = e.currentTarget.dataset;
-      const params = await orderService.getHotelOrderPayParams([id]);
+      const params = await orderService.getHotelPayParams([id]);
       wx.requestPayment({
         ...params,
         success: () => {

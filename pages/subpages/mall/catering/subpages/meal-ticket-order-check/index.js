@@ -108,7 +108,7 @@ Component({
     },
 
     async pay(orderId) {
-      const payParams = await cateringService.getMealTicketOrderPayParams(
+      const payParams = await cateringService.getMealTicketPayParams(
         orderId
       );
       wx.requestPayment({
