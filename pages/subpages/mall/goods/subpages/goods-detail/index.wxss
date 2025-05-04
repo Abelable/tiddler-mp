@@ -158,7 +158,7 @@ page {
   display: flex;
   align-items: center;
   margin-left: 32rpx;
-  padding: 0 24rpx;
+  padding: 0 20rpx;
   height: 50rpx;
   color: #fff;
   font-size: 24rpx;
