@@ -16,6 +16,7 @@ Page({
     // 轮播图相关
     curDot: 1,
     goodsInfo: null,
+    selectedSkuIndex: 0,
     recommendGoodsList: [],
     evaluationSummary: null,
     cartGoodsNumber: 0,
@@ -135,7 +136,7 @@ Page({
   // 获取详情部分离窗口顶部的距离
   getDetailTop() {
     const query = wx.createSelectorQuery();
-    query.select(".goods-detail-line").boundingClientRect();
+    query.select(".goods-detail").boundingClientRect();
     query.exec(res => {
       if (res[0] !== null) {
         this.detailTop = res[0].top;

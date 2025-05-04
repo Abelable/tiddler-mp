@@ -4,8 +4,8 @@
     <view class="type-label row" wx:if="{{showTag}}">商品</view>
   </view>
   <view class="content">
-    <view class="goods-title omit">
-      <text class="goods-tag" wx:if="{{!item.shopInfo}}">自营</text>
+    <view class="goods-name-item omit">
+      <text class="goods-tag-item" wx:if="{{!item.shopInfo}}">自营</text>
       <text wx:if="{{!item.shopInfo}}"> {{item.name}}</text>
       <text wx:if="{{item.shopInfo}}">{{item.name}}</text>
     </view>

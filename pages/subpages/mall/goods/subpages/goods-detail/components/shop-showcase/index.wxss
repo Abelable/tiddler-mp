@@ -1,7 +1,7 @@
 .shop-showcase {
-  margin: 18rpx 24rpx;
+  margin: 20rpx;
   padding: 24rpx;
-  border-radius: 12rpx;
+  border-radius: 32rpx;
   background: #fff;
 }
 
@@ -11,14 +11,14 @@
 }
 .avatar-wrap {
   position: relative;
-  width: 68rpx;
-  height: 68rpx;
+  width: 60rpx;
+  height: 60rpx;
   font-size: 0;
 }
 .shop-logo {
   width: 100%;
   height: 100%;
-  border-radius: 50%;
+  border-radius: 22rpx;
 }
 .enterprise-label {
   position: absolute;
@@ -34,13 +34,17 @@
   font-size: 28rpx;
   font-weight: 500;
 }
-.more-btn {
-  color: #999;
-  font-size: 28rpx;
-}
-.more-icon {
-  width: 16rpx;
-  height: 16rpx;
+
+.check-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 145rpx;
+  height: 60rpx;
+  color: #2a2a2a;
+  font-size: 24rpx;
+  background: #f4f4f4;
+  border-radius: 18rpx;
 }
 
 .goods-list {

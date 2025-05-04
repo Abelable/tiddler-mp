@@ -1,5 +1,5 @@
 .goods-item {
-  margin-bottom: 10rpx;
+  margin-bottom: 12rpx;
   width: 350rpx;
   font-size: 0;
   background: #fff;
@@ -38,15 +38,15 @@
 }
 
 .content {
-  padding: 12rpx;
+  padding: 18rpx;
 }
 
-.goods-title {
+.goods-name-item {
   color: #333;
   font-size: 26rpx;
   font-weight: bold;
 }
-.goods-tag {
+.goods-tag-item {
   padding: 1rpx 10rpx;
   height: 33rpx;
   color: #ef3741;

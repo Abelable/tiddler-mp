@@ -100,17 +100,38 @@
       <text class="goods-tag" wx:if="{{!goodsInfo.shopInfo}}">自营</text>
       <text>{{goodsInfo.name}}</text>
     </view>
-    <view class="goods-intro">{{goodsInfo.introduction}}</view>
+    <view class="goods-intro" wx:if="{{goodsInfo.introduction}}">{{goodsInfo.introduction}}</view>
   </view>
 
-  <!-- 规格选择 -->
-  <view class="list-spec row">
-    <view class="list-spec-title">规格</view>
-    <view class="choose-btn" bindtap="showSpecPopup" data-mode="{{0}}">
-      <view class="choose-btn-desc omit single">
-        {{selecteSkuName ? ('已选：' + selecteSkuName) : '请选择'}}
+  <view class="option-info-wrap">
+    <view class="option-item">
+      <view class="option-label">选择</view>
+      <view class="option-content" bindtap="showSpecPopup">{{goodsInfo.skuList[selectedSkuIndex].name}}</view>
+      <image class="option-arrow" src="./images/option-arrow.png" />
+    </view>
+    <view class="option-item" bindtap="showAddressPopup" wx:if="{{goodsInfo.deliveryMode === 1}}">
+      <view class="option-label">配送</view>
+      <view class="option-content">
+        <view class="address-info row">
+          <image class="address-icon" src="./images/address.png" />
+          <view class="address-detail omit single">
+            {{goodsInfo.addressInfo ? goodsInfo.addressInfo.regionDesc + " " + goodsInfo.addressInfo.addressDetail : "请选择地址"}}
+          </view>
+        </view>
+        <view class="delivery-tips">现货 48小时发货</view>
       </view>
-      <image class="choose-btn-icon" src="https://img.ubo.vip/mp/selection/goods-detail/to-icon.png" />
+      <image class="option-arrow" src="./images/option-arrow.png" />
+    </view>
+    <view class="option-item" bindtap="showServicePopup">
+      <view class="option-label">购物保障</view>
+      <view class="option-content row">
+        <image class="confidence-tag" src="./images/confidence-tag.png" />
+        <view>
+          <text wx:if="{{goodsInfo.refundStatus}}">七天无理由退货·</text>
+          <text>品质严保·极速退款</text>
+        </view>
+      </view>
+      <image class="option-arrow" src="./images/option-arrow.png" />
     </view>
   </view>
 
@@ -124,7 +145,7 @@
     <view class="goods-score-wrap row">
       <view wx:if="{{evaluationSummary.avgScore}}">商品评分</view>
       <view class="goods-score" wx:if="{{evaluationSummary.avgScore}}">{{ evaluationSummary.avgScore }}</view>
-      <image class="choose-btn-icon" src="https://img.ubo.vip/mp/selection/goods-detail/to-icon.png" />
+      <image class="option-arrow" src="./images/option-arrow.png" />
     </view>
   </view>
 
@@ -132,8 +153,8 @@
   <shop-showcase wx:if="{{goodsInfo.shopInfo}}" shopInfo="{{goodsInfo.shopInfo}}" />
 
   <!-- 商品详情 -->
-  <split-line class="goods-detail-line" wx:if="{{goodsInfo.detailImageList.length}}" desc="宝贝详情" />
   <view class="goods-detail" wx:if="{{goodsInfo.detailImageList.length}}">
+    <view class="goods-detail-title">商品详情</view>
     <image 
       style="width: 100%"
       wx:for="{{goodsInfo.detailImageList}}" 
