@@ -147,6 +147,10 @@ page {
   background: #fff;
   overflow: hidden;
 }
+
+.price-wrap {
+  line-height: 1;
+}
 .market-price {
   margin-left: 16rpx;
   color: #959595;
@@ -179,9 +183,9 @@ page {
 }
 
 .goods-name {
-  margin-top: 18rpx;
+  margin-top: 32rpx;
   color: #141925;
-  font-size: 32rpx;
+  font-size: 34rpx;
   font-weight: 600;
 }
 .goods-tag {

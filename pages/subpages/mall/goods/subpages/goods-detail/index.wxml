@@ -81,11 +81,11 @@
 <view class="wrap">
   <!-- 商品基本信息 -->
   <view class="goods-info-wrap">
-    <view class="row">
+    <view class="price-wrap row">
       <view class="row baseline">
         <price-unit 
           price="{{goodsInfo.price || 0}}" 
-          color="#fb2359"
+          color="#f8305a"
           fontSize="32rpx" 
           integerFontSize="52rpx"
         />
