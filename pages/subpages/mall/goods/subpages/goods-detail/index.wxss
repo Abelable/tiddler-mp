@@ -4,14 +4,13 @@
   left: 0;
   display: flex;
   align-items: center;
-  padding-left: 8px;
   width: 100%;
   height: 44px;
   box-sizing: initial;
   z-index: 20;
 }
 .nav-bar.show {
-  background: #161F4E;
+  background: #fff;
   box-shadow: 0 2rpx 2rpx rgba(0,0,0,0.05);
 }
 .menu-wrap {
@@ -21,37 +20,25 @@
   transform: translateX(-50%);
   display: flex;
   justify-content: space-between;
-  padding: 0 17px;
   height: 32px;
-  color: #fff;
-  background-color: rgba(0, 0, 0, 0.3);
+  color: #666;
   border-radius: 17px;
-}
-.menu-wrap.show {
-  background: none;
 }
 .menu-tips {
   position: relative;
+  padding: 0 6px;
   line-height: 32px;
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 14px;
 }
-.menu-wrap.show > .menu-tips.show::after {
+.menu-wrap > .menu-tips.show::after {
   position: absolute;
-  left: 0;
+  left: 50%;
   bottom: 3px;
-  width: 30px;
-  height: 3px;
+  transform: translateX(-50%);
+  width: 28px;
+  height: 1.5px;
   content: '';
-  background-color: #1986F8;
-  border-radius: 2px 0px 2px 0px;
-}
-.menu-split {
-  margin: 0 20rpx;
-  line-height: 34px;
-  font-size: 12px;
-  font-weight: 500;
-  color: #EFEFEF;
+  background-color: var(--theme-color);
 }
 
 .banner-wrap {
@@ -186,25 +173,25 @@
   height: 16rpx;
 }
 
-.comment-summary-wrap {
+.evaluation-summary-wrap {
   margin: 18rpx 24rpx;
   padding: 0 24rpx;
   height: 110rpx;
   background: #fff;
   border-radius: 12rpx;
 }
-.comment-user-avatar-wrap {
+.evaluation-user-avatar-wrap {
   margin-left: 8rpx;
   margin-right: 12rpx;
 }
-.comment-user-avatar {
+.evaluation-user-avatar {
   margin-left: -8rpx;
   width: 40rpx;
   height: 40rpx;
   border-radius: 50%;
   border: 2rpx solid #fff;
 }
-.comment-num {
+.evaluation-num {
   color: #333;
   font-size: 26rpx;
   font-weight: 600;

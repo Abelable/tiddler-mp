@@ -11,6 +11,7 @@ Page({
     statusBarHeight,
     // 导航栏相关
     showNavBar: false, // 导航栏显隐
+    evaluationActive: false,
     detailActive: false, // 导航栏'详情'激活状态
     // 轮播图相关
     curDot: 1,
@@ -42,8 +43,8 @@ Page({
       }
     });
 
-    await this.init();
     this.getBannerHeight();
+    this.init();
 
     wx.showShareMenu({
       withShareTicket: true,
@@ -58,19 +59,30 @@ Page({
   },
 
   async init() {
+    wx.showLoading({ title: "加载中..." });
     await this.setGoodsInfo();
+    await this.setEvaluationSummary();
+    wx.hideLoading();
+
+    this.getEvaluationTop();
+    this.getDetailTop();
+
     this.setRecommendGoodsList(true);
   },
 
-
   async setGoodsInfo() {
-    const goodsInfo = await goodsService.getGoodsInfo(this.goodsId);
+    const goodsInfo = await goodsService.getGoodsInfo(
+      this.goodsId,
+      this.addressId
+    );
+    this.setData({ goodsInfo });
+  },
+
+  async setEvaluationSummary() {
     const evaluationSummary = await goodsService.getGoodsEvaluationSummary(
       this.goodsId
     );
-    this.setData({ goodsInfo, evaluationSummary }, () => {
-      this.getDetailTop();
-    });
+    this.setData({ evaluationSummary });
   },
 
   async setRecommendGoodsList(init = false) {
@@ -107,6 +119,19 @@ Page({
     });
   },
 
+    // 获取评价部分离窗口顶部的距离
+    getEvaluationTop() {
+      if (this.data.evaluationSummary.total) {
+        const query = wx.createSelectorQuery();
+        query.select(".evaluation-summary-wrap").boundingClientRect();
+        query.exec(res => {
+          if (res[0] !== null) {
+            this.evaluationTop = res[0].top - 8;
+          }
+        });
+      }
+    },
+
   // 获取详情部分离窗口顶部的距离
   getDetailTop() {
     const query = wx.createSelectorQuery();
@@ -120,20 +145,36 @@ Page({
 
   // 监听滚动
   onPageScroll(e) {
-    const { showNavBar, detailActive } = this.data;
+    const { showNavBar, evaluationActive, detailActive } = this.data;
 
     // 控制导航栏显隐
-    if (e.scrollTop >= this.bannerHeight) {
+    if (e.scrollTop >= this.bannerHeight - navBarHeight) {
       if (!showNavBar) this.setData({ showNavBar: true });
     } else {
       if (showNavBar) this.setData({ showNavBar: false });
     }
 
     // 控制导航栏tab的状态切换
-    if (e.scrollTop >= this.detailTop - navBarHeight) {
-      if (!detailActive) this.setData({ detailActive: true });
+    if (this.evaluationTop) {
+      if (e.scrollTop < this.evaluationTop - navBarHeight) {
+        if (evaluationActive) this.setData({ evaluationActive: false });
+        if (detailActive) this.setData({ detailActive: false });
+      } else if (
+        e.scrollTop >= this.evaluationTop - navBarHeight &&
+        e.scrollTop < this.detailTop - navBarHeight
+      ) {
+        if (!evaluationActive) this.setData({ evaluationActive: true });
+        if (detailActive) this.setData({ detailActive: false });
+      } else {
+        if (evaluationActive) this.setData({ evaluationActive: false });
+        if (!detailActive) this.setData({ detailActive: true });
+      }
     } else {
-      if (detailActive) this.setData({ detailActive: false });
+      if (e.scrollTop >= this.detailTop - navBarHeight) {
+        if (!detailActive) this.setData({ detailActive: true });
+      } else {
+        if (detailActive) this.setData({ detailActive: false });
+      }
     }
   },
 
@@ -144,10 +185,17 @@ Page({
     });
   },
 
+  // 滚动到评价部分
+  scrollToEvaluation() {
+    wx.pageScrollTo({
+      scrollTop: this.evaluationTop - navBarHeight
+    });
+  },
+
   // 滚动到详情部分
   scrollToDetail() {
     wx.pageScrollTo({
-      scrollTop: this.detailTop - navBarHeight * 0.9
+      scrollTop: this.detailTop - navBarHeight
     });
   },
 

@@ -12,11 +12,10 @@ class GoodsService extends MallService {
     return list;
   }
 
-  async getGoodsInfo(id) {
+  async getGoodsInfo(id, addressId) {
     return await this.get({
       url: `${this.baseUrl}/goods/detail`,
-      data: { id },
-      loadingTitle: "加载中...",
+      data: cleanObject({ id, addressId }),
     });
   }
 
@@ -24,7 +23,6 @@ class GoodsService extends MallService {
     return await this.get({
       url: `${this.baseUrl}/goods/evaluation/summary`,
       data: { goodsId },
-      loadingTitle: "加载中...",
     });
   }
 
