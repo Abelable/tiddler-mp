@@ -181,7 +181,7 @@ page {
 }
 .goods-intro {
   margin-top: 18rpx;
-  color: #feabba;
+  color: var(--theme-color);
   font-size: 24rpx;
 }
 
