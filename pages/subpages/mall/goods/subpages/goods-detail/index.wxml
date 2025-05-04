@@ -87,7 +87,7 @@
           price="{{goodsInfo.price || 0}}" 
           unit="{{goodsInfo.skuList.length ? '起' : ''}}" 
           color="#fb2359"
-          fontSize="36rpx" 
+          fontSize="32rpx" 
           integerFontSize="52rpx" 
           unitColor="#fb2359"
           unitFontSize="26rpx"
