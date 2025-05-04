@@ -96,7 +96,7 @@
         <text wx:if="{{!commissionVisible}}" style="padding-top: 8rpx; font-size: 28rpx;">******</text>
         <image class="commission-visible-icon" src="./images/{{commissionVisible ? '' : 'in'}}visible.png" />
       </view>
-      <view class="sale-volume">已售{{goodsInfo.salesVolume}}件</view>
+      <view class="sale-volume" wx:if="{{goodsInfo.salesVolume}}">已售{{goodsInfo.salesVolume}}件</view>
     </view>
     <view class="goods-name">
       <text class="goods-tag" wx:if="{{!goodsInfo.shopInfo}}">自营</text>
@@ -172,7 +172,7 @@
 
   <!-- 商品推荐 -->
   <view class="recommend-goods-wrap" wx:if="{{recommendGoodsList.length}}">
-    <split-line desc="为您推荐" />
+    <split-line desc="推荐" />
     <fall-flow list="{{recommendGoodsList}}" generic:item="goods-item" />
   </view>
 
