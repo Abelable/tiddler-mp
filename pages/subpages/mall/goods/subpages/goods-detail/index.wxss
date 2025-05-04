@@ -154,8 +154,8 @@ page {
   text-decoration: line-through;
 }
 .sale-volume {
-  color: #999;
-  font-size: 28rpx;
+  color: #959595;
+  font-size: 24rpx;
 }
 
 .goods-name {

@@ -1,4 +1,4 @@
-<!-- <page-meta page-style="{{ specPopupVisible ? 'overflow: hidden;' : '' }}" /> -->
+<page-meta page-style="{{ specPopupVisible ? 'overflow: hidden;' : '' }}" />
 
 <wxs module="STRING" src="/utils/filters/string.wxs" />
 <wxs module="TIME" src="/utils/filters/time.wxs" />
@@ -83,10 +83,18 @@
   <view class="goods-info-wrap">
     <view class="row between">
       <view class="row baseline">
-        <price-unit price="{{goodsInfo.price || 0}}" fontSize="28rpx" integerFontSize="48rpx" />
-        <view class="market-price">￥{{goodsInfo.marketPrice}}</view>
+        <price-unit 
+          price="{{goodsInfo.price || 0}}" 
+          unit="{{goodsInfo.skuList.length ? '起' : ''}}" 
+          color="#fb2359"
+          fontSize="36rpx" 
+          integerFontSize="52rpx" 
+          unitColor="#fb2359"
+          unitFontSize="26rpx"
+        />
+        <view class="market-price" wx:if="{{goodsInfo.marketPrice}}">￥{{goodsInfo.marketPrice}}</view>
       </view>
-      <view class="sale-volume">已售{{goodsInfo.salesVolume}}</view>
+      <view class="sale-volume">已售{{goodsInfo.salesVolume}}件</view>
     </view>
     <view class="goods-name omit">
       <text class="goods-tag" wx:if="{{!goodsInfo.shopInfo}}">自营</text>
