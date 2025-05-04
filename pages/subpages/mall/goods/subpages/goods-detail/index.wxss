@@ -1,3 +1,7 @@
+page {
+  background: #f2f2f2;
+}
+
 .nav-bar {
   position: fixed;
   top: 0;
@@ -43,9 +47,7 @@
 
 .banner-wrap {
   position: relative;
-}
-.banner-video {
-  position: relative;
+  margin-bottom: -32rpx;
 }
 
 .video-wrap {
@@ -61,7 +63,7 @@
 .customer-banner {
   position: absolute;
   left: 0;
-  bottom: 26rpx;
+  bottom: 50rpx;
   width: 100%;
   height: 50rpx;
 }
@@ -99,7 +101,7 @@
 .banner-dots, .banner-dots-menu {
   position: absolute;
   right: 24rpx;
-  bottom: 26rpx;
+  bottom: 50rpx;
   height: 50rpx;
   font-weight: bold;
   background: rgba(0, 0, 0, 0.3);
@@ -133,10 +135,15 @@
   background: rgba(255, 255, 255, 0.6);
 }
 
+.wrap {
+  position: absolute;
+  left: 0;
+  top: 968rpx;
+  width: 100%;
+}
 .goods-info-wrap {
-  margin: 18rpx 24rpx;
   padding: 24rpx;
-  border-radius: 12rpx;
+  border-radius: 32rpx;
   background: #fff;
   overflow: hidden;
 }

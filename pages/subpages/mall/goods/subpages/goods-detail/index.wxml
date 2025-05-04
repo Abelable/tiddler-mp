@@ -1,4 +1,4 @@
-<page-meta page-style="{{ specPopupVisible ? 'overflow: hidden;' : '' }}" />
+<!-- <page-meta page-style="{{ specPopupVisible ? 'overflow: hidden;' : '' }}" /> -->
 
 <wxs module="STRING" src="/utils/filters/string.wxs" />
 <wxs module="TIME" src="/utils/filters/time.wxs" />
@@ -13,72 +13,72 @@
   </view>
 </view>
 
-<view class="wrap">
-  <!-- 轮播 -->
-  <view class="banner-wrap">
-    <swiper style="height: 1000rpx;" current="{{curDot - 1}}" circular bindchange="bannerChange">
-      <swiper-item 
-        wx:if="{{goodsInfo.video}}"
-        bindtap="previewMedia" 
-        data-current="{{0}}"
-      >
-        <view class="video-wrap" bindtap="fullScreenPlay">
-          <video
-            class="video-player"
-            src="{{goodsInfo.video}}"
-            muted
-            autoplay
-            loop
-            controls="{{false}}"
-            show-center-play-btn="{{false}}" 
-            show-fullscreen-btn="{{false}}"
-          />
-        </view>
-      </swiper-item>
-      <swiper-item 
-        wx:for="{{goodsInfo.imageList}}" 
-        wx:key="index" 
-        bindtap="previewMedia" 
-        data-current="{{goodsInfo.video ? index + 1 : index}}"
-      >
-        <image style="width:100%; height:100%;" src="{{item}}" mode='aspectFill' lazy-load />
-      </swiper-item>
-    </swiper>
-
-    <swiper class="customer-banner" vertical autoplay circular>
-      <swiper-item class="customer-info-wrap" wx:for="{{goodsInfo.customerList}}" wx:key="index">
-        <view class="customer-info">
-          <image class="customer-avatar" src="{{item.avatar}}" />
-          <view class="customer-name">{{STRING.nicknameFilter(item.nickname || '')}}</view>
-          <view class="customer-content">{{TIME.timeDiff(item.createdAt)}}购买了该商品</view>
-        </view>
-      </swiper-item>
-    </swiper>
-
-    <view class="banner-dots" wx:if="{{!goodsInfo.video && goodsInfo.imageList.length > 1}}">
-      {{curDot}}/{{goodsInfo.imageList.length}}
-    </view>
-
-    <view class="banner-dots-menu" wx:if="{{goodsInfo.video}}">
-      <view 
-        class="banner-dots-menu-item {{curDot === 1 ? 'active' : ''}}" 
-        catchtap="switchBanner" 
-        data-index="{{1}}"
-      >
-        视频
+ <!-- 轮播 -->
+<view class="banner-wrap">
+  <swiper style="height: 1000rpx;" current="{{curDot - 1}}" circular bindchange="bannerChange">
+    <swiper-item 
+      wx:if="{{goodsInfo.video}}"
+      bindtap="previewMedia" 
+      data-current="{{0}}"
+    >
+      <view class="video-wrap" bindtap="fullScreenPlay">
+        <video
+          class="video-player"
+          src="{{goodsInfo.video}}"
+          muted
+          autoplay
+          loop
+          controls="{{false}}"
+          show-center-play-btn="{{false}}" 
+          show-fullscreen-btn="{{false}}"
+        />
       </view>
-      <view 
-        class="banner-dots-menu-item {{curDot !== 1 ? 'active' : ''}}" 
-        wx:if="{{goodsInfo.imageList.length}}" 
-        catchtap="switchBanner" 
-        data-index="{{2}}"
-      >
-        <text>图集</text>
-        <text wx:if="{{goodsInfo.imageList.length > 1 && curDot !== 1}}">{{curDot - 1}}/{{goodsInfo.imageList.length}}</text>
+    </swiper-item>
+    <swiper-item 
+      wx:for="{{goodsInfo.imageList}}" 
+      wx:key="index" 
+      bindtap="previewMedia" 
+      data-current="{{goodsInfo.video ? index + 1 : index}}"
+    >
+      <image style="width:100%; height:100%;" src="{{item}}" mode='aspectFill' lazy-load />
+    </swiper-item>
+  </swiper>
+
+  <swiper class="customer-banner" vertical autoplay circular>
+    <swiper-item class="customer-info-wrap" wx:for="{{goodsInfo.customerList}}" wx:key="index">
+      <view class="customer-info">
+        <image class="customer-avatar" src="{{item.avatar}}" />
+        <view class="customer-name">{{STRING.nicknameFilter(item.nickname || '')}}</view>
+        <view class="customer-content">{{TIME.timeDiff(item.createdAt)}}购买了该商品</view>
       </view>
-    </view>
+    </swiper-item>
+  </swiper>
+
+  <view class="banner-dots" wx:if="{{!goodsInfo.video && goodsInfo.imageList.length > 1}}">
+    {{curDot}}/{{goodsInfo.imageList.length}}
   </view>
 
+  <view class="banner-dots-menu" wx:if="{{goodsInfo.video}}">
+    <view 
+      class="banner-dots-menu-item {{curDot === 1 ? 'active' : ''}}" 
+      catchtap="switchBanner" 
+      data-index="{{1}}"
+    >
+      视频
+    </view>
+    <view 
+      class="banner-dots-menu-item {{curDot !== 1 ? 'active' : ''}}" 
+      wx:if="{{goodsInfo.imageList.length}}" 
+      catchtap="switchBanner" 
+      data-index="{{2}}"
+    >
+      <text>图集</text>
+      <text wx:if="{{goodsInfo.imageList.length > 1 && curDot !== 1}}">{{curDot - 1}}/{{goodsInfo.imageList.length}}</text>
+    </view>
+  </view>
+</view>
+
+<view class="wrap">
   <!-- 商品基本信息 -->
   <view class="goods-info-wrap">
     <view class="row between">
