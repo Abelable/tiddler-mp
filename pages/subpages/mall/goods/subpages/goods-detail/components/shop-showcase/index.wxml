@@ -4,10 +4,10 @@
       <image class="shop-logo" src="{{shopInfo.logo}}" />
       <image class="enterprise-label" wx:if="{{shopInfo.type === 2}}" src="https://img.ubo.vip/mp/selection/goods-detail/firm-icon.png" />
     </view>
-    <view class="name omit single">{{shopInfo.name}}</view>
+    <view class="name omit">{{shopInfo.name}}</view>
     <view class="check-btn" bindtap="navToShop">进入店铺</view>
   </view>
-  <scroll-view class="goods-list" scroll-x>
+  <view class="goods-list" wx:if="{{shopInfo.goodsList.length}}">
     <view 
       class="goods-item" 
       wx:for="{{shopInfo.goodsList}}" 
@@ -16,10 +16,11 @@
       data-id="{{item.id}}"
     >
       <image class="goods-image" src="{{item.cover}}" lazy-load />
-      <view class="content">
-        <view class="goods-title omit single">{{item.name}}</view>
+      <view class="goods-title omit">{{item.name}}</view>
+      <view class="price-wrap row between">
         <price-unit price="{{item.price || 0}}" />
+        <view class="sale-volume" wx:if="{{item.salesVolume}}">已售{{item.salesVolume}}</view>
       </view>
     </view>
-  </scroll-view>
+  </view>
 </view>
