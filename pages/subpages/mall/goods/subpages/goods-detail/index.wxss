@@ -149,17 +149,37 @@ page {
 }
 .market-price {
   margin-left: 16rpx;
-  color: #bbb;
+  color: #959595;
   font-size: 28rpx;
   text-decoration: line-through;
 }
+
+.commission-tag {
+  display: flex;
+  align-items: center;
+  margin-left: 32rpx;
+  padding: 0 24rpx;
+  height: 50rpx;
+  color: #fff;
+  font-size: 24rpx;
+  background: #f8305a;
+  border-radius: 25rpx;
+}
+.commission-visible-icon {
+  margin-left: 12rpx;
+  width: 32rpx;
+  height: 32rpx;
+}
+
 .sale-volume {
+  flex: 1;
   color: #959595;
   font-size: 24rpx;
+  text-align: right;
 }
 
 .goods-name {
-  margin-top: 24rpx;
+  margin-top: 18rpx;
   color: #141925;
   font-size: 32rpx;
   font-weight: 600;

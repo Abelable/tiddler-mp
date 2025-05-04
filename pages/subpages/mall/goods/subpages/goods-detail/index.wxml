@@ -81,18 +81,20 @@
 <view class="wrap">
   <!-- 商品基本信息 -->
   <view class="goods-info-wrap">
-    <view class="row between">
+    <view class="row">
       <view class="row baseline">
         <price-unit 
           price="{{goodsInfo.price || 0}}" 
-          unit="{{goodsInfo.skuList.length ? '起' : ''}}" 
           color="#fb2359"
           fontSize="32rpx" 
-          integerFontSize="52rpx" 
-          unitColor="#fb2359"
-          unitFontSize="26rpx"
+          integerFontSize="52rpx"
         />
         <view class="market-price" wx:if="{{goodsInfo.marketPrice}}">￥{{goodsInfo.marketPrice}}</view>
+      </view>
+      <view class="commission-tag" bindtap="toggleCommissionVisible">
+        <text wx:if="{{commissionVisible}}">利润¥20</text>
+        <text wx:if="{{!commissionVisible}}" style="padding-top: 8rpx; font-size: 28rpx;">******</text>
+        <image class="commission-visible-icon" src="./images/{{commissionVisible ? '' : 'in'}}visible.png" />
       </view>
       <view class="sale-volume">已售{{goodsInfo.salesVolume}}件</view>
     </view>

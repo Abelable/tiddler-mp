@@ -16,6 +16,7 @@ Page({
     // 轮播图相关
     curDot: 1,
     goodsInfo: null,
+    commissionVisible: false,
     selectedSkuIndex: 0,
     recommendGoodsList: [],
     evaluationSummary: null,
@@ -219,6 +220,12 @@ Page({
     wx.previewMedia({
       sources: video ? [{ url: video, type: "video" }, ...sources] : sources,
       current
+    });
+  },
+
+  toggleCommissionVisible() {
+    this.setData({
+      commissionVisible: !this.data.commissionVisible
     });
   },
 

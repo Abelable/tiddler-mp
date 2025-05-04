@@ -1,10 +1,6 @@
-<view class="price-unit row bottom">
-  <view class="price-main" style="color: {{color}}; font-size: {{fontSize}};">
-    <text>{{symbol}}</text>
-    <text style="margin-left: 1px; font-size: {{integerFontSize}}; font-weight: 600;">{{integerPart}}</text>
-    <text wx:if="{{floatPart}}">.{{floatPart}}</text>
-  </view>
-  <view class="price-supply" style="color: {{unitColor}}; font-size: {{unitFontSize}}">
-    {{unit}}
-  </view>
+<view class="price-unit row baseline" style="color: {{color}}; font-size: {{fontSize}};">
+  <text>{{symbol}}</text>
+  <text style="margin-left: 1px; font-size: {{integerFontSize}}; font-weight: 600;">{{integerPart}}</text>
+  <text wx:if="{{floatPart}}">.{{floatPart}}</text>
+  <text style="color: {{unitColor}}; font-size: {{unitFontSize}}">{{unit}}</text>
 </view>
