@@ -16,9 +16,20 @@
 <view class="wrap">
   <!-- 轮播 -->
   <view class="banner-wrap">
-    <swiper style="height: 750rpx;" circular bindchange="bannerChange">
+    <swiper style="height: 1000rpx;" circular bindchange="bannerChange">
       <swiper-item wx:if="{{goodsInfo.video}}">
-        <video style="width:100%; height:100%;" src="{{goodsInfo.video}}" />
+        <view class="video-wrap" bindtap="fullScreenPlay">
+          <video
+            class="video-player"
+            src="{{goodsInfo.video}}"
+            muted="{{muted}}"
+            autoplay
+            loop
+            controls="{{false}}"
+            show-center-play-btn="{{false}}" 
+            show-fullscreen-btn="{{false}}"
+          />
+        </view>
       </swiper-item>
       <swiper-item 
         wx:for="{{goodsInfo.imageList}}" 
@@ -30,9 +41,19 @@
         <image style="width:100%; height:100%;" src="{{item}}" mode='aspectFill' lazy-load />
       </swiper-item>
     </swiper>
-    <view class="banner-dots">
-      <text class="cur-dot">{{curDot}}</text>
-      <text> / {{goodsInfo.imageList.length + (goodsInfo.video ? 1 : 0)}}</text>
+
+    <swiper class="customer-banner" vertical autoplay circular>
+      <swiper-item class="customer-info-wrap" wx:for="{{goodsInfo.customerList}}" wx:key="index">
+        <view class="customer-info">
+          <image class="customer-avatar" src="{{item.avatar}}" />
+          <view class="customer-name">{{STRING.nicknameFilter(item.nickname || '')}}</view>
+          <view class="customer-content">{{TIME.timeDiff(item.createdAt)}}购买了该商品</view>
+        </view>
+      </swiper-item>
+    </swiper>
+
+    <view class="banner-dots" wx:if="{{!goodsInfo.video && goodsInfo.imageList.length > 1}}">
+      {{curDot}}/{{goodsInfo.imageList.length}}
     </view>
   </view>
 
