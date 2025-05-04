@@ -96,10 +96,11 @@
       </view>
       <view class="sale-volume">已售{{goodsInfo.salesVolume}}件</view>
     </view>
-    <view class="goods-name omit">
+    <view class="goods-name">
       <text class="goods-tag" wx:if="{{!goodsInfo.shopInfo}}">自营</text>
       <text>{{goodsInfo.name}}</text>
     </view>
+    <view class="goods-intro">{{goodsInfo.introduction}}</view>
   </view>
 
   <!-- 规格选择 -->
