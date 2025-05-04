@@ -96,52 +96,41 @@
   font-size: 23rpx;
 }
 
-.banner-dots {
+.banner-dots, .banner-dots-menu {
   position: absolute;
   right: 24rpx;
   bottom: 26rpx;
-  padding: 0 24rpx;
   height: 50rpx;
-  color: #fff;
-  font-size: 23rpx;
-  line-height: 50rpx;
   font-weight: bold;
   background: rgba(0, 0, 0, 0.3);
   border-radius: 25rpx;
 }
+.banner-dots {
+  padding: 0 24rpx;
+  color: #fff;
+  font-size: 23rpx;
+  line-height: 50rpx;
+}
 .cur-dot {
   font-size: 24rpx;
 }
-.hot-tips, .sale-amount-tips {
-  position: absolute;
-  left: 24rpx;
-  bottom: 24rpx;
-}
-.hot-tips {
+.banner-dots-menu {
   display: flex;
   align-items: center;
-  font-size: 22rpx;
-  font-weight: 500;
-  color: #fff;
-  background: linear-gradient(90deg,rgba(255,54,50,1),rgba(246,178,102,1));
+  padding: 0 6rpx;
+}
+.banner-dots-menu-item {
+  display: flex;
+  align-items: center;
   padding: 0 18rpx;
-  border-radius: 5rpx;
-}
-.sale-amount-tips {
-  padding: 0 26rpx;
-  height: 48rpx;
-  line-height: 48rpx;
-  border-radius: 24rpx;
-  text-align: center;
-  font-size: 26rpx;
-  font-weight: 500;
+  height: 40rpx;
   color: #fff;
-  background-color: rgba(0, 0, 0, 0.3);
+  font-size: 20rpx;
+  border-radius: 20rpx;
 }
-.hot-icon {
-  margin-right: 10rpx;
-  width: 15rpx;
-  height: 19rpx;
+.banner-dots-menu-item.active {
+  color: #333;
+  background: rgba(255, 255, 255, 0.6);
 }
 
 .goods-info-wrap {

@@ -119,18 +119,18 @@ Page({
     });
   },
 
-    // 获取评价部分离窗口顶部的距离
-    getEvaluationTop() {
-      if (this.data.evaluationSummary.total) {
-        const query = wx.createSelectorQuery();
-        query.select(".evaluation-summary-wrap").boundingClientRect();
-        query.exec(res => {
-          if (res[0] !== null) {
-            this.evaluationTop = res[0].top - 8;
-          }
-        });
-      }
-    },
+  // 获取评价部分离窗口顶部的距离
+  getEvaluationTop() {
+    if (this.data.evaluationSummary.total) {
+      const query = wx.createSelectorQuery();
+      query.select(".evaluation-summary-wrap").boundingClientRect();
+      query.exec(res => {
+        if (res[0] !== null) {
+          this.evaluationTop = res[0].top - 8;
+        }
+      });
+    }
+  },
 
   // 获取详情部分离窗口顶部的距离
   getDetailTop() {
@@ -205,10 +205,20 @@ Page({
     });
   },
 
-  // 图片预览
-  previewImage(e) {
-    const { current, urls } = e.currentTarget.dataset;
-    wx.previewImage({ current, urls });
+  switchBanner(e) {
+    const curDot = e.currentTarget.dataset.index;
+    this.setData({ curDot });
+  },
+
+  // 视频、图片预览
+  previewMedia(e) {
+    const { current } = e.currentTarget.dataset;
+    const { video, imageList } = this.data.goodsInfo;
+    const sources = imageList.map(url => ({ url, type: "image" }));
+    wx.previewMedia({
+      sources: video ? [{ url: video, type: "video" }, ...sources] : sources,
+      current
+    });
   },
 
   // 客服

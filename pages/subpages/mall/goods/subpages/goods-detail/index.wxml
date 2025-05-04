@@ -16,13 +16,17 @@
 <view class="wrap">
   <!-- 轮播 -->
   <view class="banner-wrap">
-    <swiper style="height: 1000rpx;" circular bindchange="bannerChange">
-      <swiper-item wx:if="{{goodsInfo.video}}">
+    <swiper style="height: 1000rpx;" current="{{curDot - 1}}" circular bindchange="bannerChange">
+      <swiper-item 
+        wx:if="{{goodsInfo.video}}"
+        bindtap="previewMedia" 
+        data-current="{{0}}"
+      >
         <view class="video-wrap" bindtap="fullScreenPlay">
           <video
             class="video-player"
             src="{{goodsInfo.video}}"
-            muted="{{muted}}"
+            muted
             autoplay
             loop
             controls="{{false}}"
@@ -34,9 +38,8 @@
       <swiper-item 
         wx:for="{{goodsInfo.imageList}}" 
         wx:key="index" 
-        bindtap="previewImage" 
-        data-current="{{item}}" 
-        data-urls="{{goodsInfo.imageList}}"
+        bindtap="previewMedia" 
+        data-current="{{goodsInfo.video ? index + 1 : index}}"
       >
         <image style="width:100%; height:100%;" src="{{item}}" mode='aspectFill' lazy-load />
       </swiper-item>
@@ -54,6 +57,25 @@
 
     <view class="banner-dots" wx:if="{{!goodsInfo.video && goodsInfo.imageList.length > 1}}">
       {{curDot}}/{{goodsInfo.imageList.length}}
+    </view>
+
+    <view class="banner-dots-menu" wx:if="{{goodsInfo.video}}">
+      <view 
+        class="banner-dots-menu-item {{curDot === 1 ? 'active' : ''}}" 
+        catchtap="switchBanner" 
+        data-index="{{1}}"
+      >
+        视频
+      </view>
+      <view 
+        class="banner-dots-menu-item {{curDot !== 1 ? 'active' : ''}}" 
+        wx:if="{{goodsInfo.imageList.length}}" 
+        catchtap="switchBanner" 
+        data-index="{{2}}"
+      >
+        <text>图集</text>
+        <text wx:if="{{goodsInfo.imageList.length > 1 && curDot !== 1}}">{{curDot - 1}}/{{goodsInfo.imageList.length}}</text>
+      </view>
     </view>
   </view>
 
