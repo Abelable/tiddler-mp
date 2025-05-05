@@ -306,6 +306,10 @@ page {
   color: #333;
   font-weight: 600;
 }
+.goods-score-arrow {
+  width: 18rpx;
+  height: 18rpx;
+}
 
 .goods-detail {
   margin-top: 20rpx;

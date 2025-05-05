@@ -137,7 +137,7 @@
     </view>
   </view>
 
-  <view class="evaluation-summary-wrap row between" bindtap="checkEvaluationDetail">
+  <view class="evaluation-summary-wrap row between" wx:if="{{evaluationSummary.total}}" bindtap="checkEvaluationDetail">
     <view class="evaluation-summary row">
       <view class="evaluation-user-avatar-wrap row" wx:if="{{evaluationSummary.userList.length}}">
         <image class="evaluation-user-avatar" wx:for="{{evaluationSummary.userList}}" wx:key="index" src="{{ item.avatar }}" />
@@ -147,7 +147,7 @@
     <view class="goods-score-wrap row">
       <view wx:if="{{evaluationSummary.avgScore}}">商品评分</view>
       <view class="goods-score" wx:if="{{evaluationSummary.avgScore}}">{{ evaluationSummary.avgScore }}</view>
-      <image class="option-arrow" src="./images/option-arrow.png" />
+      <image class="goods-score-arrow" src="./images/option-arrow.png" />
     </view>
   </view>
 
