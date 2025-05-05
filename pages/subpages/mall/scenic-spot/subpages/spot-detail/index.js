@@ -34,7 +34,7 @@ Page({
     curTicketInfo: null,
     noticePopupVisible: false,
     posterInfo: null,
-    posterModelVisible: false
+    posterModalVisible: false
   },
 
   async onLoad(options) {

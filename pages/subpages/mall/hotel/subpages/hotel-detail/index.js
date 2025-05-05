@@ -44,7 +44,7 @@ Component({
     noticePopupVisible: false,
     calendarPopupVisibel: false,
     posterInfo: null,
-    posterModelVisible: false
+    posterModalVisible: false
   },
 
   observers: {

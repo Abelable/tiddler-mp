@@ -30,7 +30,7 @@ Page({
     actionMode: 0,
     addressPopupVisible: false,
     posterInfo: null,
-    posterModelVisible: false
+    posterModalVisible: false
   },
 
   async onLoad(options) {

@@ -34,7 +34,7 @@ Page({
     noticePopupVisible: false,
     telPopupVisible: false,
     posterInfo: null,
-    posterModelVisible: false
+    posterModalVisible: false
   },
 
   async onLoad(options) {
