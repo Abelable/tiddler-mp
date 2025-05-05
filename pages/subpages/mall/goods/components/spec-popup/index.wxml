@@ -4,19 +4,47 @@
       <image
         class="spec-image" 
         mode="aspectFill" 
-        src="{{selectedSkuIndex !== -1 ? (goodsInfo.skuList[selectedSkuIndex].cover || goodsInfo.defaultSpecImage) : goodsInfo.defaultSpecImage}}"
+        src="{{selectedSkuIndex !== -1 ? (goodsInfo.skuList[selectedSkuIndex].image || goodsInfo.defaultSpecImage) : goodsInfo.defaultSpecImage}}"
+        bindtap="checkSpecImg"
+        data-url="{{selectedSkuIndex !== -1 ? (goodsInfo.skuList[selectedSkuIndex].image || goodsInfo.defaultSpecImage) : goodsInfo.defaultSpecImage}}"
       />
       <view class="spec-info">
-        <price-unit price="{{selectedSkuIndex !== -1 ? goodsInfo.skuList[selectedSkuIndex].price : (goodsInfo.price || 0)}}" />
+        <price-unit
+          price="{{selectedSkuIndex !== -1 ? goodsInfo.skuList[selectedSkuIndex].price : (goodsInfo.price || 0)}}"
+          fontSize="32rpx" 
+          integerFontSize="50rpx"
+        />
+        <view class="commission" wx:if="{{commissionVisible}}">利润：¥{{commission}}</view>
         <view class="spec-stock">库存{{selectedSkuIndex !== -1 ? goodsInfo.skuList[selectedSkuIndex].stock : goodsInfo.stock}}</view>
         <view class="omit single">{{ selectedSkuName ? '已选：' + selectedSkuName : '请选择规格'}}</view>
       </view>
     </view>
     <scroll-view class="selection-mian" scroll-y>
-      <view class="spec-list" wx:for="{{specList}}" wx:key="index">
-        <view class="dividing-line">
-          <view class="dividing-line-title">{{item.name}}</view>
+      <view class="spec-list row between" wx:if="{{goodsInfo.couponList.length}}">
+        <view class="spec-title">优惠</view>
+        <view class="spec-content" wx:if="{{couponDiscount}}">
+          <text>优惠券</text>
+          <text style="color: #FF3636">-{{couponDiscount}}元</text>
         </view>
+        <view class="spec-content row" wx:if="{{!couponDiscount}}">
+          <text wx:if="{{receivedCouponList.length}}">未达优惠使用门槛</text>
+          <text wx:if="{{!receivedCouponList.length}}" catchtap="showCouponPopup">领取优惠券</text>
+          <image class="spec-content-arrow" wx:if="{{!receivedCouponList.length}}" catchtap="showCouponPopup" src="/images/arrow.png" />
+        </view>
+      </view>
+      <view class="spec-list row between">
+        <view class="spec-title">数量</view>
+        <view class="count-control-wrap">
+          <van-stepper 
+            value="{{ count }}" 
+            bind:change="countChange" 
+            max="{{goodsInfo.isGift ? 1 : maxCount}}" 
+            integer
+          />
+        </view>
+      </view>
+      <view class="spec-list" wx:for="{{specList}}" wx:key="index">
+        <view class="spec-title">{{item.name}}</view>
         <view 
           class="spec-tips {{_item.selected ? 'selected' : ''}}" 
           wx:for="{{item.options}}" 
@@ -30,41 +58,33 @@
           {{_item.name}}
         </view>
       </view>
-      <view class="spec-list">
-        <view class="dividing-line">
-          <view class="dividing-line-title">数量</view>
-        </view>
-        <view class="count-control-wrap">
-          <van-stepper value="{{ count }}" bind:change="countChange" integer max="{{selectedSkuIndex !== -1 ? goodsInfo.skuList[selectedSkuIndex].stock : goodsInfo.stock}}" />
-        </view>
-      </view>
     </scroll-view>
     <view class="btns-wrap row">
       <button 
-        class="add-cart-btn {{btnActive ? 'active' : '' }}" 
+        class="cart-btn {{mode === 0 ? 'border' :  ''}} {{btnActive && maxCount > 0 ? 'active' : '' }} " 
         style="margin-right: {{mode === 0 ? '12rpx' :  '0'}};"
         wx:if="{{mode === 0 || mode === 1}}" 
         bindtap="addCart"
         hover-class="none"
       >
-        {{btnActive ? '加入购物车' : '库存不足'}}
+        {{maxCount === 0 ? '限购商品，已达上限' : (btnActive ? '加入购物车' : '库存不足')}}
       </button>
       <button 
-        class="buy-btn {{btnActive ? 'active' : '' }}" 
+        class="buy-btn {{btnActive && maxCount > 0 ? 'active' : '' }}" 
         style="margin-left: {{mode === 0 ? '12rpx' :  '0'}};"
         wx:if="{{mode === 0 || mode === 2}}" 
         bindtap="buyNow"
         hover-class="none"
       >
-        {{btnActive ? '立即购买' : '库存不足'}}
+        {{maxCount === 0 ? '限购商品，已达上限' : (btnActive ? '立即购买' : '库存不足')}}
       </button>
       <button 
-        class="edit-btn {{btnActive ? 'active' : '' }}" 
+        class="edit-btn {{btnActive && maxCount > 0 ? 'active' : '' }}" 
         wx:if="{{mode === 3}}" 
         bindtap="editSpec"
         hover-class="none"
       >
-        {{btnActive ? '完成' : '库存不足'}}
+        {{maxCount === 0 ? '限购商品，已达上限' : (btnActive ? '完成' : '库存不足')}}
       </button>
     </view>
   </view>
