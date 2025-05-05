@@ -92,7 +92,7 @@
         <view class="market-price" wx:if="{{goodsInfo.marketPrice}}">￥{{goodsInfo.marketPrice}}</view>
       </view>
       <view class="commission-tag" bindtap="toggleCommissionVisible">
-        <text wx:if="{{commissionVisible}}">利润¥20</text>
+        <text wx:if="{{commissionVisible}}">利润¥{{commission}}</text>
         <text wx:if="{{!commissionVisible}}" style="padding-top: 8rpx; font-size: 28rpx;">******</text>
         <image class="commission-visible-icon" src="./images/{{commissionVisible ? '' : 'in'}}visible.png" />
       </view>

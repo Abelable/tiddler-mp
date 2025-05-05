@@ -16,6 +16,9 @@ Page({
     // 轮播图相关
     curDot: 1,
     goodsInfo: null,
+    goodsNumber: 1,
+    selectedSkuIndex: 0,
+    commission: 0,
     commissionVisible: false,
     selectedSkuIndex: 0,
     recommendGoodsList: [],
@@ -25,6 +28,7 @@ Page({
     selectedSpecDesc: "",
     specPopupVisible: false,
     actionMode: 0,
+    addressPopupVisible: false,
     posterInfo: null,
     posterModelVisible: false
   },
@@ -45,7 +49,7 @@ Page({
       }
     });
 
-    this.getBannerHeight();
+    this.getInfoWrapHeight();
     this.init();
 
     wx.showShareMenu({
@@ -66,6 +70,8 @@ Page({
     await this.setEvaluationSummary();
     wx.hideLoading();
 
+    this.setCommission();
+
     this.getEvaluationTop();
     this.getDetailTop();
 
@@ -85,6 +91,28 @@ Page({
       this.goodsId
     );
     this.setData({ evaluationSummary });
+  },
+
+  setCommission() {
+    const { goodsInfo, selectedSkuIndex } = this.data;
+    const {
+      skuList = [],
+      price: basePrice,
+      salesCommissionRate: baseSalesCommissionRate,
+      promotionCommissionRate
+    } = goodsInfo;
+    const {
+      price: skuPrice = 0,
+      salesCommissionRate: skuSalesCommissionRate = 0
+    } = skuList[selectedSkuIndex] || {};
+    const price = skuPrice || basePrice;
+    const salesCommissionRate =
+      skuSalesCommissionRate || baseSalesCommissionRate;
+    const commission =
+      Math.round(
+        price * (salesCommissionRate / 100) * (promotionCommissionRate || 20)
+      ) / 100;
+    this.setData({ commission });
   },
 
   async setRecommendGoodsList(init = false) {
@@ -113,11 +141,11 @@ Page({
     this.setData({ cartGoodsNumber });
   },
 
-  getBannerHeight() {
+  getInfoWrapHeight() {
     const query = wx.createSelectorQuery();
-    query.select(".banner-wrap").boundingClientRect();
+    query.select(".wrap").boundingClientRect();
     query.exec(res => {
-      this.bannerHeight = res[0].height;
+      this.infoWrapHeight = res[0].height;
     });
   },
 
@@ -150,7 +178,7 @@ Page({
     const { showNavBar, evaluationActive, detailActive } = this.data;
 
     // 控制导航栏显隐
-    if (e.scrollTop >= this.bannerHeight - navBarHeight) {
+    if (e.scrollTop >= this.infoWrapHeight - navBarHeight) {
       if (!showNavBar) this.setData({ showNavBar: true });
     } else {
       if (showNavBar) this.setData({ showNavBar: false });
