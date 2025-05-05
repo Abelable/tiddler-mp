@@ -99,7 +99,8 @@ Page({
       skuList = [],
       price: basePrice,
       salesCommissionRate: baseSalesCommissionRate,
-      promotionCommissionRate
+      promotionCommissionRate,
+      promotionCommissionUpperLimit
     } = goodsInfo;
     const {
       price: skuPrice = 0,
@@ -112,7 +113,9 @@ Page({
       Math.round(
         price * (salesCommissionRate / 100) * (promotionCommissionRate || 20)
       ) / 100;
-    this.setData({ commission });
+    this.setData({
+      commission: Math.min(commission, promotionCommissionUpperLimit || 20)
+    });
   },
 
   async setRecommendGoodsList(init = false) {
