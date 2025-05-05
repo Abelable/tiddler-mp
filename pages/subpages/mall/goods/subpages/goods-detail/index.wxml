@@ -216,11 +216,19 @@
   <button class="invalid-notice-btn" wx:if="{{goodsInfo.status === 2 || goodsInfo.stock === 0}}">{{goodsInfo.status === 2 ? '商品已下架' : '商品库存不足'}}</button>
 </view>
 
-<!-- 商品规格选择弹窗 -->
+<service-popup 
+  show="{{servicePopupVisible}}"
+  refundStatus="{{goodsInfo.refundStatus}}"
+  bind:hide="hideServicePopup"
+/>
 <spec-popup
   show="{{specPopupVisible}}"
   mode="{{actionMode}}"
   goodsInfo="{{goodsInfo}}"
+  commission="{{commission}}"
+  commissionVisible="{{commissionVisible}}"
+  bind:selectSpec="selectSpec"
+  bind:addCartSuccess="addCartSuccess"
   bind:hide="hideSpecPopup"
 />
 

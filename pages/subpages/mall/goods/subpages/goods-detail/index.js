@@ -24,6 +24,7 @@ Page({
     recommendGoodsList: [],
     evaluationSummary: null,
     cartGoodsNumber: 0,
+    servicePopupVisible: false,
     // 规格相关
     selectedSpecDesc: "",
     specPopupVisible: false,
@@ -269,13 +270,6 @@ Page({
     }
   },
 
-  // 通过遮罩关闭弹窗
-  hideModal() {
-    this.data.shareModalVisible && this.setData({ shareModalVisible: false });
-    this.data.posterModalVisible && this.setData({ posterModalVisible: false });
-    this.data.showMask && this.setData({ showMask: false });
-  },
-
   // 显示规格弹窗
   showSpecPopup(e) {
     if (this.data.goodsInfo.stock) {
@@ -293,6 +287,14 @@ Page({
     this.setData({ specPopupVisible: false });
     if (selecteSkuName) this.setData({ selecteSkuName });
     if (cartGoodsNumber) this.setData({ cartGoodsNumber });
+  },
+
+  showServicePopup() {
+    this.setData({ servicePopupVisible: true });
+  },
+
+  hideServicePopup() {
+    this.setData({ servicePopupVisible: false });
   },
 
   share() {
@@ -322,6 +324,13 @@ Page({
     this.setData({
       posterModalVisible: false
     });
+  },
+
+  // 通过遮罩关闭弹窗
+  hideModal() {
+    this.data.shareModalVisible && this.setData({ shareModalVisible: false });
+    this.data.posterModalVisible && this.setData({ posterModalVisible: false });
+    this.data.showMask && this.setData({ showMask: false });
   },
 
   checkEvaluationDetail() {
