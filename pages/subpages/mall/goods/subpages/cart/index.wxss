@@ -4,7 +4,7 @@
   left: 0;
   width: 100%;
   height: 44px;
-  background: #161F4E;
+  background: #fff;
   box-sizing: initial;
   z-index: 100;
 }
@@ -23,15 +23,16 @@
   height: 20px;
 }
 .edit-btn {
-  padding-left: 10px;
-  padding-right: 12px;
-  color: #fff;
+  margin-left: 8px;
+  width: 120rpx;
+  height: 32px;
+  color: #000;
   font-size: 15px;
-  line-height: 1;
-  border-left: 0.5px solid rgba(255,255,255,0.3);
+  border-radius: 16px;
+  border: 0.5px solid #e1e1e1;
 }
 .navigation-title {
-  color: #fff;
+  color: #000;
   font-size: 32rpx;
   font-weight: 600;
 }
@@ -48,7 +49,7 @@
 }
 .checkbox .wx-checkbox-input.wx-checkbox-input-checked {
   border: none;
-  background: #1986F8;
+  background: var(--theme-color);
 }
 .checkbox.danger .wx-checkbox-input.wx-checkbox-input-checked {
   background: #FD0B0A;
@@ -275,7 +276,7 @@
 }
 .submit.active {
   color: #fff;
-  background: #1986F8;
+  background: var(--theme-color);
 }
 .delete-btn.active {
   color: #fff;

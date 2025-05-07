@@ -364,7 +364,7 @@ page {
 .cart-count {
   position: absolute;
   top: -6rpx;
-  right: 6rpx;
+  right: -4rpx;
   padding: 0 10rpx;
   height: 30rpx;
   color: #fff;
