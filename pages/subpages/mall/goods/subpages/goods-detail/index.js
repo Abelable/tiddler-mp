@@ -23,9 +23,9 @@ Page({
     selectedSpecDesc: "",
     specPopupVisible: false,
     actionMode: 0,
+    addressPopupVisible: false,
     recommendGoodsList: [],
     finished: false,
-    addressPopupVisible: false,
     posterInfo: null,
     posterModalVisible: false
   },
@@ -290,6 +290,25 @@ Page({
 
   hideSpecPopup() {
     this.setData({ specPopupVisible: false });
+  },
+
+  showAddressPopup() {
+    this.setData({
+      addressPopupVisible: true
+    });
+  },
+
+  confirmAddressSelect(e) {
+    this.addressId = e.detail.id;
+    this.setGoodsInfo();
+    this.setCommission();
+    this.hideAddressPopup();
+  },
+
+  hideAddressPopup() {
+    this.setData({
+      addressPopupVisible: false
+    });
   },
 
   showServicePopup() {
