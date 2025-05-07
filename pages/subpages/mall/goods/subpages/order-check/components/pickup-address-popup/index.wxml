@@ -4,7 +4,7 @@
     <scroll-view class="address-list" scroll-y>
       <radio-group bindchange="selectAddress">
         <view class="address-item row" wx:for="{{addressList}}" wx:key="index">
-          <radio class="radio" value="{{index}}" checked="{{ selectedIndex === index }}" color="#F5701D" />
+          <radio class="radio" value="{{index}}" checked="{{ selectedIndex === index }}" color="#169dfe" />
           <view class="content">
             <view class="address-name">{{item.name || item.addressDetail}}</view>
             <view class="address-detail" wx:if="{{item.name}}">{{item.addressDetail}}</view>
