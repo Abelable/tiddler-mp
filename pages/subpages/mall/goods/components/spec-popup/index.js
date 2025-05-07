@@ -225,14 +225,14 @@ Component({
       if (btnActive && maxCount > 0) {
         checkLogin(async () => {
           const { goodsInfo, selectedSkuIndex, count } = this.data;
-          const { id, deliveryMethod } = goodsInfo;
+          const { id, deliveryMode } = goodsInfo;
           const cartGoodsId = await goodsService.fastAddCart(
             id,
             selectedSkuIndex,
             count
           );
           const cartGoodsIds = JSON.stringify([cartGoodsId]);
-          const url = `/pages/home/subpages/order-check/index?cartGoodsIds=${cartGoodsIds}&deliveryMethod=${deliveryMethod}`;
+          const url = `/pages/subpages/mall/goods/subpages/order-check/index?cartGoodsIds=${cartGoodsIds}&deliveryMode=${deliveryMode}`;
           wx.navigateTo({ url });
         });
       }
