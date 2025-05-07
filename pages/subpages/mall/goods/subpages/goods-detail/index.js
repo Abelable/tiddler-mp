@@ -9,26 +9,22 @@ const navBarHeight = statusBarHeight + 44;
 Page({
   data: {
     statusBarHeight,
-    // 导航栏相关
-    showNavBar: false, // 导航栏显隐
+    showNavBar: false,
     evaluationActive: false,
-    detailActive: false, // 导航栏'详情'激活状态
-    // 轮播图相关
+    detailActive: false,
     curDot: 1,
     goodsInfo: null,
-    goodsNumber: 1,
     selectedSkuIndex: 0,
     commission: 0,
     commissionVisible: false,
-    selectedSkuIndex: 0,
-    recommendGoodsList: [],
     evaluationSummary: null,
     cartGoodsNumber: 0,
     servicePopupVisible: false,
-    // 规格相关
     selectedSpecDesc: "",
     specPopupVisible: false,
     actionMode: 0,
+    recommendGoodsList: [],
+    finished: false,
     addressPopupVisible: false,
     posterInfo: null,
     posterModalVisible: false
@@ -270,10 +266,10 @@ Page({
     }
   },
 
-  // 显示规格弹窗
   showSpecPopup(e) {
-    if (this.data.goodsInfo.stock) {
-      const { mode } = e.currentTarget.dataset;
+    const { status, stock } = this.data.goodsInfo;
+    if (status === 1 && stock) {
+      const { mode = 0 } = e.currentTarget.dataset;
       this.setData({
         specPopupVisible: true,
         actionMode: mode
@@ -281,12 +277,19 @@ Page({
     }
   },
 
-  // 关闭规格弹窗
-  hideSpecPopup(e) {
-    const { selecteSkuName, cartGoodsNumber } = e.detail;
+  selectSpec(e) {
+    const { selectedSkuIndex } = e.detail;
+    this.setData({ selectedSkuIndex });
+    this.setCommission();
+  },
+
+  addCartSuccess(e) {
+    const { cartGoodsNumber } = e.detail;
+    this.setData({ cartGoodsNumber, specPopupVisible: false });
+  },
+
+  hideSpecPopup() {
     this.setData({ specPopupVisible: false });
-    if (selecteSkuName) this.setData({ selecteSkuName });
-    if (cartGoodsNumber) this.setData({ cartGoodsNumber });
   },
 
   showServicePopup() {

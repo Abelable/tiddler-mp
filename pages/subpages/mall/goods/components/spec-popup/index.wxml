@@ -11,6 +11,7 @@
       <view class="spec-info">
         <price-unit
           price="{{selectedSkuIndex !== -1 ? goodsInfo.skuList[selectedSkuIndex].price : (goodsInfo.price || 0)}}"
+          color="#f8305a"
           fontSize="32rpx" 
           integerFontSize="50rpx"
         />

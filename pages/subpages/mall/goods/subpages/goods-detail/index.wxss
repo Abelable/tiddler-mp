@@ -394,9 +394,9 @@ page {
 
 .invalid-notice-btn {
   width: 220rpx;
-  height: 80rpx;
+  height: 76rpx;
   color: #fff;
   font-size: 28rpx;
-  border-radius: 40rpx;
+  border-radius: 20rpx;
   background: #d1d1d1;
 }
