@@ -69,7 +69,7 @@
     <fall-flow list="{{recommendGoodsList}}" generic:item="goods-item" />
   </view>
 
-  <view class="nomore-tip" wx:if="{{recommendGoodsList.length}}">～没有更多了～</view>
+  <view class="nomore-tip" wx:if="{{recommendGoodsList.length && finished}}">～没有更多了～</view>
 </view>
 
 <view class="bottom-bar" wx:if="{{cartList.length}}">
@@ -90,4 +90,11 @@
   <button class="delete-btn {{selectedCount ? 'active' : ''}}" wx:if="{{deleteBtnVisible}}" bindtap="deleteGoodsList" hover-class="none">删除</button>
 </view>
 
-<spec-popup show="{{specPopupVisible}}" mode="{{3}}" goodsInfo="{{goodsInfo}}" cartInfo="{{cartInfo}}" bind:hide="hideSpecPopup" />
+<spec-popup 
+  show="{{specPopupVisible}}" 
+  mode="{{3}}" 
+  goodsInfo="{{goodsInfo}}" 
+  cartInfo="{{cartInfo}}" 
+  bind:editSpecSuccess="editSpecSuccess" 
+  bind:hide="hideSpecPopup"
+/>

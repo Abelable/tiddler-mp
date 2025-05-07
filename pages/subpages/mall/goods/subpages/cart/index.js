@@ -9,6 +9,7 @@ Page({
     statusBarHeight,
     cartList: [],
     recommendGoodsList: [],
+    finished: false,
     isSelectAll: false,
     totalPrice: 0,
     selectedCount: 0,
@@ -210,7 +211,7 @@ Page({
     this.editingGoodsIndex = goodsIndex;
   },
 
-  hideSpecPopup(e) {
+  editSpecSuccess(e) {
     const cartInfo =
       this.data.cartList[this.editingCartIndex].goodsList[
         this.editingGoodsIndex
@@ -228,6 +229,10 @@ Page({
         this.acount();
       }
     );
+  },
+
+  hideSpecPopup() {
+    this.setData({ specPopupVisible: false });
   },
 
   toggleDeleteBtnVisible() {
