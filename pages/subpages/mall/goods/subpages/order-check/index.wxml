@@ -4,17 +4,70 @@
     <view class="err-msg">{{preOrderInfo.errMsg}}</view>
   </view>
 
-  <view class="card row" bindtap="showAddressSelectPopup">
-    <image class="address-icon" src="https://img.ubo.vip/mp/selection/goods-detail/order-check/address-icon.png" />
-    <view class="consignee">
-      <view class="person-info" wx:if="{{preOrderInfo.addressInfo}}">
-        <text class="consignee-name">{{preOrderInfo.addressInfo.name}}</text>
-        <text>{{preOrderInfo.addressInfo.mobile}}</text>
+  <view class="delivery-method-wrap">
+    <view class="menu" wx:if="{{goodsDeliveryMode === 3}}">
+      <view 
+        class="menu-item {{curMenuIdx === index ? 'active' : ''}}"
+        wx:for="{{['物流配送', '到店自取/消费']}}" 
+        wx:key="index" 
+        bindtap="selectMenu" 
+        data-index="{{index}}"
+      >
+        <view class="menu-item-inner">{{item}}</view>
       </view>
-      <view class="address-info" wx:if="{{preOrderInfo.addressInfo}}">{{preOrderInfo.addressInfo.regionDesc + ' ' + preOrderInfo.addressInfo.addressDetail}}</view>
-      <view wx:if="{{!preOrderInfo.addressInfo}}">请选择合适的寄件地址</view>
     </view>
-    <image class="select-icon" src="https://img.ubo.vip/mp/selection/goods-detail/order-check/to-icon.png" />
+    <view class="address-wrap row" style="border-top-right-radius: 16rpx" wx:if="{{(goodsDeliveryMode === 3 && curMenuIdx === 0) || goodsDeliveryMode === 1}}" bindtap="showAddressPopup">
+      <image class="address-icon" src="https://img.ubo.vip/mp/selection/goods-detail/order-check/address-icon.png" />
+      <view class="consignee">
+        <view class="person-info" wx:if="{{preOrderInfo.addressInfo}}">
+          <text class="consignee-name">{{preOrderInfo.addressInfo.name}}</text>
+          <text>{{preOrderInfo.addressInfo.mobile}}</text>
+        </view>
+        <view class="address-info" wx:if="{{preOrderInfo.addressInfo}}">{{preOrderInfo.addressInfo.regionDesc + ' ' + preOrderInfo.addressInfo.addressDetail}}</view>
+        <view wx:if="{{!preOrderInfo.addressInfo}}">请选择合适的寄件地址</view>
+      </view>
+      <image class="select-icon" src="https://img.ubo.vip/mp/selection/goods-detail/order-check/to-icon.png" />
+    </view>
+    <view class="address-wrap" style="border-top-left-radius: 16rpx" wx:if="{{(goodsDeliveryMode === 3 && curMenuIdx === 1) || goodsDeliveryMode === 2}}">
+      <view class="pickup-address-wrap">
+        <view class="pickup-address">
+          <view class="pickup-address-name">
+            {{pickupAddressList[curPickupAddressIdx].name || pickupAddressList[curPickupAddressIdx].addressDetail}}
+          </view>
+          <view class="pickup-address-detail" wx:if="{{pickupAddressList[curPickupAddressIdx].name}}">
+            {{pickupAddressList[curPickupAddressIdx].addressDetail}}
+          </view>
+          <view class="distance-info">
+            <image class="distance-icon" src="./images/distance.png" />
+            <view class="distance">距您{{pickupAddressList[curPickupAddressIdx].distance}}km</view>
+            <view class="check-map-btn" bindtap="navigation">
+              <view>查看地图</view>
+              <image class="address-arrow" src="/images/arrow.png" />
+            </view>
+          </view>
+        </view>
+        <view class="change-btn" bindtap="showPickupAddressPopup">
+          <view>切换</view>
+          <image class="change-btn-arrow" src="/images/arrow.png" />
+        </view>
+      </view>
+      <view class="pickup-info-wrap">
+        <view class="pickup-info" bindtap="showPickupTimePopup">
+          <view class="pickup-info-title">自取时间</view>
+          <view class="pickup-info-detail">
+            <view class="pickup-time">{{pickupTime ? TIME.transform(pickupTime, 'YYYY-MM-DD hh:mm') : '未选择'}}</view>
+            <image class="pickup-info-arrow" src="/images/arrow.png" />
+          </view>
+        </view>
+        <view class="pickup-info" bindtap="showMobileModal">
+          <view class="pickup-info-title">预留电话</view>
+          <view class="pickup-info-detail">
+            <view class="pickup-phone">{{pickupMobile || '未设置'}}</view>
+            <image class="pickup-info-arrow" src="/images/arrow.png" />
+          </view>
+        </view>
+      </view>
+    </view>
   </view>
 
   <view 
@@ -41,6 +94,14 @@
     </view>
   </view>
 
+    <view class="card row between" wx:if="{{preOrderInfo.accountBalance}}">
+    <view class="row baseline">
+      <view class="balance">可用余额：</view>
+      <price-unit price="{{preOrderInfo.accountBalance || 0}}" color="#333" />
+    </view>
+    <switch style="transform: scale(0.8)" bindchange="toggleUseBalance" color="#169dfe" />
+  </view>
+
   <view class="card">
     <view class="card-title">价格明细</view>
     <view class="list row between">
@@ -55,6 +116,15 @@
         <text>运费</text>
       </view>
       <price-unit price="{{preOrderInfo.freightPrice || 0}}" color="#333" />
+    </view>
+    <view class="list row between" wx:if="{{preOrderInfo.deductionBalance}}">
+      <view class="list-title">
+        <text>余额抵扣</text>
+      </view>
+      <view class="row">
+        <text style="color: #ff5040">-</text>
+        <price-unit price="{{preOrderInfo.deductionBalance || 0}}" />
+      </view>
     </view>
     <view class="list row between">
       <view class="list-title">
@@ -74,4 +144,24 @@
   <button class="submit-btn {{preOrderInfo.addressInfo && !preOrderInfo.errMsg ? 'active' : ''}}" bindtap="submit">提交订单</button>
 </view>
 
-<address-popup addressId="{{preOrderInfo.addressInfo.id || 0}}" show="{{addressSelectPopupVisible}}" bind:hide="hideAddressSelectPopup" />
+<address-popup 
+  show="{{addressPopupVisible}}" 
+  addressId="{{preOrderInfo.addressInfo.id || 0}}" 
+  bind:hide="hideAddressPopup"
+/>
+<pickup-address-popup 
+  show="{{pickupAddressPopupVisible}}" 
+  addressList="{{pickupAddressList}}"
+  bind:confirm="confirmPickupAddressSelect" 
+  bind:hide="hidePickupAddressPopup"
+/>
+<pickup-time-popup 
+  show="{{pickupTimePopupVisible}}" 
+   bind:confirm="confirmPickupTimeSelect" 
+  bind:hide="hidePickupTimePopup"
+/>
+<mobile-modal
+  wx:if="{{mobileModalVisible}}"
+  bind:confirm="confirmMobileSet" 
+  bind:hide="hideMobileModal" 
+/>

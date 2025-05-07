@@ -91,18 +91,52 @@ class GoodsService extends MallService {
     });
   }
 
-  async getPreOrderInfo(cartGoodsIds, addressId) {
-    return await this.post({
-      url: `${this.baseUrl}/order/pre_order_info`,
-      data: cleanObject({ cartGoodsIds, addressId }),
+  async getPickupAddressList(cartGoodsId) {
+    return await this.get({
+      url: `${this.baseUrl}/goods/pickup_address_list`,
+      data: { cartGoodsId },
+      loadingTitle: "加载中..."
     });
   }
 
-  async submitOrder(cartGoodsIds, addressId) {
+  async getPreOrderInfo(
+    deliveryMode,
+    cartGoodsIds,
+    addressId,
+    useBalance = false
+  ) {
+    return await this.post({
+      url: `${this.baseUrl}/order/pre_order_info`,
+      data: cleanObject({
+        deliveryMode,
+        cartGoodsIds,
+        addressId,
+        useBalance
+      })
+    });
+  }
+
+  async submitOrder({
+    deliveryMode,
+    addressId = "",
+    pickupAddressId = "",
+    pickupTime = "",
+    pickupMobile = "",
+    cartGoodsIds,
+    useBalance
+  }) {
     return await this.post({
       url: `${this.baseUrl}/order/submit`,
-      data: { addressId, cartGoodsIds },
-      loadingTitle: "订单提交中...",
+      data: cleanObject({
+        deliveryMode,
+        addressId,
+        pickupAddressId,
+        pickupTime,
+        pickupMobile,
+        cartGoodsIds,
+        useBalance
+      }),
+      loadingTitle: "订单提交中..."
     });
   }
 

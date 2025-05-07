@@ -1,67 +1,239 @@
-import GoodsService from '../../utils/goodsService'
+import dayjs from "dayjs";
+import { calcDistance } from "../../../../../../utils/index";
+import GoodsService from "../../utils/goodsService";
 
-const goodsService = new GoodsService()
+const goodsService = new GoodsService();
 
 Page({
   data: {
+    goodsDeliveryMode: 1,
+    curMenuIdx: 0,
     preOrderInfo: null,
-    addressSelectPopupVisible: false
+    addressPopupVisible: false,
+    distance: 0,
+    pickupAddressList: [],
+    curPickupAddressIdx: 0,
+    pickupAddressPopupVisible: false,
+    pickupTime: "",
+    pickupTimePopupVisible: false,
+    pickupMobile: "",
+    mobileModalVisible: false
   },
 
-  onLoad({ cartGoodsIds }) {
-    this.cartGoodsIds = JSON.parse(cartGoodsIds) 
-    this.setPreOrderInfo()
+  async onLoad(options) {
+    const { cartGoodsIds, deliveryMode = 1 } = options || {};
+    this.cartGoodsIds = JSON.parse(cartGoodsIds);
+
+    const goodsDeliveryMode = +deliveryMode;
+    this.setData({ goodsDeliveryMode });
+    if (goodsDeliveryMode !== 1) {
+      await this.setLocationInfo();
+      this.setPickupAddressList(this.cartGoodsIds[0]);
+    }
+
+    this.setPreOrderInfo();
+  },
+
+  selectMenu(e) {
+    const curMenuIdx = +e.currentTarget.dataset.index;
+    this.setData({ curMenuIdx });
+    this.setPreOrderInfo();
+  },
+
+  showAddressPopup() {
+    this.setData({
+      addressPopupVisible: true
+    });
+  },
+
+  confirmAddressSelect(e) {
+    this.addressId = e.detail.id;
+    this.setPreOrderInfo();
+    this.hideAddressPopup();
+  },
+
+  hideAddressPopup(e) {
+    this.setData({
+      addressPopupVisible: false
+    });
+    if (e.detail) {
+      this.addressId = e.detail;
+      this.setPreOrderInfo();
+    }
+  },
+
+  showPickupAddressPopup() {
+    this.setData({
+      pickupAddressPopupVisible: true
+    });
+  },
+
+  confirmPickupAddressSelect(e) {
+    const curPickupAddressIdx = e.detail.index;
+    if (curPickupAddressIdx !== this.data.curPickupAddressIdx) {
+      this.setData({ curPickupAddressIdx });
+      this.setDistance();
+    }
+    this.hidePickupAddressPopup();
+  },
+
+  hidePickupAddressPopup() {
+    this.setData({
+      pickupAddressPopupVisible: false
+    });
+  },
+
+  showPickupTimePopup() {
+    this.setData({
+      pickupTimePopupVisible: true
+    });
+  },
+
+  confirmPickupTimeSelect(e) {
+    const pickupTime = e.detail.time;
+    this.setData({
+      pickupTime,
+      pickupTimePopupVisible: false
+    });
+  },
+
+  hidePickupTimePopup() {
+    this.setData({
+      pickupTimePopupVisible: false
+    });
+  },
+
+  showMobileModal() {
+    this.setData({
+      mobileModalVisible: true
+    });
+  },
+
+  confirmMobileSet(e) {
+    const { mobile } = e.detail;
+    this.setData({
+      pickupMobile: mobile,
+      mobileModalVisible: false
+    });
+  },
+
+  hideMobileModal() {
+    this.setData({
+      mobileModalVisible: false
+    });
+  },
+
+  toggleUseBalance(e) {
+    this.useBalance = e.detail.value;
+    this.setPreOrderInfo();
   },
 
   async setPreOrderInfo() {
-    const preOrderInfo = await goodsService.getPreOrderInfo(this.cartGoodsIds, this.addressId)
-    this.setData({ preOrderInfo })
+    const preOrderInfo = await goodsService.getPreOrderInfo(
+      this.data.curMenuIdx + 1,
+      this.cartGoodsIds,
+      this.addressId,
+      this.useBalance
+    );
+    this.setData({ preOrderInfo });
   },
 
-  showAddressSelectPopup() {
-    this.setData({
-      addressSelectPopupVisible: true
-    })
+  async setLocationInfo() {
+    const { longitude, latitude } = await goodsService.getLocationInfo();
+    this.lo1 = longitude;
+    this.la1 = latitude;
   },
 
-  hideAddressSelectPopup(e) {
-    this.setData({
-      addressSelectPopupVisible: false
-    })
-    if (e.detail) {
-      this.addressId = e.detail
-      this.setPreOrderInfo()
-    }
+  async setPickupAddressList(cartGoodsId) {
+    const list = await goodsService.getPickupAddressList(cartGoodsId);
+    const pickupAddressList = list.map(item => {
+      const { longitude, latitude } = item;
+      const la2 = +latitude;
+      const lo2 = +longitude;
+      const distance = calcDistance(this.la1, this.lo1, la2, lo2);
+      return { ...item, distance };
+    });
+    this.setData({ pickupAddressList });
   },
 
   // 提交订单
   async submit() {
-    const { addressInfo, errMsg } = this.data.preOrderInfo
-    const addressId = addressInfo.id
-    if (!addressId) {
-      return
-    }
+    const {
+      preOrderInfo,
+      goodsDeliveryMode,
+      curMenuIdx,
+      pickupAddressList,
+      curPickupAddressIdx,
+      pickupTime,
+      pickupMobile
+    } = this.data;
+    const { errMsg, addressInfo = {} } = preOrderInfo;
+    const addressId = addressInfo.id || "";
     if (errMsg) {
-      return
+      return;
     }
-    const orderIds = await goodsService.submitOrder(this.cartGoodsIds, addressId)
-    this.pay(orderIds)
+    if (
+      (goodsDeliveryMode === 1 ||
+        (goodsDeliveryMode === 3 && curMenuIdx === 0)) &&
+      !addressId
+    ) {
+      return;
+    }
+    if (
+      (goodsDeliveryMode === 2 ||
+        (goodsDeliveryMode === 3 && curMenuIdx === 1)) &&
+      (!pickupTime || !pickupMobile)
+    ) {
+      return;
+    }
+    const orderIds = await goodsService.submitOrder({
+      deliveryMode: curMenuIdx + 1,
+      addressId: curMenuIdx === 0 ? addressId : "",
+      pickupAddressId:
+        curMenuIdx === 1 ? pickupAddressList[curPickupAddressIdx].id : "",
+      pickupTime:
+        curMenuIdx === 1 ? dayjs(pickupTime).format("YYYY-MM-DD HH:mm:ss") : "",
+      pickupMobile: curMenuIdx === 1 ? pickupMobile : "",
+      cartGoodsIds: this.cartGoodsIds,
+      useBalance: this.useBalance ? 1 : 0
+    });
+    if (orderIds) {
+      this.pay(orderIds);
+    }
   },
 
   async pay(orderIds) {
-    const payParams = await goodsService.getPayParams(orderIds)
-    wx.requestPayment({
-      ...payParams,
-      success: () => {
-        wx.navigateTo({ 
-          url: '/pages/subpages/mine/order-center/subpages/goods-order-list/index?status=2'
-        })
-      },
-      fail: () => {
-        wx.navigateTo({ 
-          url: '/pages/subpages/mine/order-center/subpages/goods-order-list/index?status=1'
-        })
-      }
-    })
+    const { curMenuIdx } = this.data;
+    const url = `/pages/subpages/mine/order-center/index?type=5&status=${
+      curMenuIdx === 0 ? 2 : 3
+    }`;
+    const payParams = await goodsService.getPayParams(orderIds);
+    if (payParams) {
+      wx.requestPayment({
+        ...payParams,
+        success: () => {
+          wx.navigateTo({ url });
+        },
+        fail: () => {
+          wx.navigateTo({
+            url: "/pages/subpages/mine/order-center/index?type=5&status=1"
+          });
+        }
+      });
+    } else if (this.useBalance) {
+      wx.navigateTo({ url });
+    }
   },
-})
+
+  navigation() {
+    const { pickupAddressList, curPickupAddressIdx } = this.data;
+    const { name, addressDetail, longitude, latitude } =
+      pickupAddressList[curPickupAddressIdx];
+    wx.openLocation({
+      latitude: +latitude,
+      longitude: +longitude,
+      name: name || addressDetail,
+      address: addressDetail
+    });
+  }
+});
