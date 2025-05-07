@@ -199,8 +199,8 @@
   </view>
   <view class="btns row" wx:if="{{goodsInfo.status === 1 && goodsInfo.stock}}">
     <button 
-      class="add-cart-btn" 
-      wx:if="{{goodsInfo.deliveryMode === 1}}" 
+      class="add-cart-btn"
+      wx:if="{{goodsInfo.deliveryMode === 1 && ((goodsInfo.isGift && userInfo.level) || !goodsInfo.isGift)}}" 
       bindtap="showSpecPopup" 
       data-mode="{{1}}"
     >

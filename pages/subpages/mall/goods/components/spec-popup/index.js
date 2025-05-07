@@ -1,9 +1,18 @@
+import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
+import { store } from "../../../../../../store/index";
 import { checkLogin } from "../../../../../../utils/index";
 import GoodsService from "../../utils/goodsService";
 
 const goodsService = new GoodsService();
 
 Component({
+  behaviors: [storeBindingsBehavior],
+
+  storeBindings: {
+    store,
+    fields: ["userInfo"]
+  },
+
   options: {
     addGlobalClass: true
   },

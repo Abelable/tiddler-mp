@@ -375,8 +375,11 @@ page {
   transform: scale(0.8);
 }
 
+.btns {
+  width: 472rpx;
+}
 .add-cart-btn, .buy-btn {
-  width: 230rpx;
+  flex: 1;
   height: 76rpx;
   font-size: 28rpx;
   font-weight: 500;

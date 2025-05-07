@@ -1,3 +1,4 @@
+import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { store } from "../../../../../../store/index";
 import { checkLogin } from "../../../../../../utils/index";
 import GoodsService from "../../utils/goodsService";
@@ -31,6 +32,11 @@ Page({
   },
 
   async onLoad(options) {
+    this.storeBindings = createStoreBindings(this, {
+      store,
+      fields: ["userInfo"],
+    });
+
     const { id, superiorId = "", scene = "" } = options || {};
     const decodedSceneList = scene ? decodeURIComponent(scene).split("-") : [];
     this.goodsId = +id || decodedSceneList[0];
