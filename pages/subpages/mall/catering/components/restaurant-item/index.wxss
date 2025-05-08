@@ -61,7 +61,7 @@
   font-size: 20rpx;
 }
 .score.active {
-  color: #ffd21e;
+  color: #fa2458;
   font-size: 22rpx;
   font-weight: bold;
 }

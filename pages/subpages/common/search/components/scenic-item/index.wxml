@@ -15,7 +15,7 @@
       <view class="label">5千平方米的戏雪区</view>
     </view>
     <view class="score-wrap">
-      <van-rate value="{{item.score || 0}}" size="12" gutter="0" color="#ffd21e" void-icon="star" void-color="#eee" allow-half readonly />
+      <van-rate value="{{item.score || 0}}" size="12" gutter="0" color="#fa2458" void-icon="star" void-color="#fedbe4" allow-half readonly />
       <text class="score">{{item.score || '暂无评'}}分</text>
     </view>
     <view class="position-wrap">

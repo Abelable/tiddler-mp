@@ -2,6 +2,7 @@
 
 <wxs module="STRING" src="/utils/filters/string.wxs" />
 <wxs module="TIME" src="/utils/filters/time.wxs" />
+<wxs module="NUM" src="/utils/filters/num.wxs" />
 
 <!-- 顶部导航 -->
 <view class="nav-bar {{showNavBar ? 'show' : ''}}" style="padding-top: {{statusBarHeight}}px">
@@ -137,17 +138,28 @@
     </view>
   </view>
 
-  <view class="evaluation-summary-wrap row between" wx:if="{{evaluationSummary.total}}" bindtap="checkEvaluationDetail">
-    <view class="evaluation-summary row">
-      <view class="evaluation-user-avatar-wrap row" wx:if="{{evaluationSummary.userList.length}}">
-        <image class="evaluation-user-avatar" wx:for="{{evaluationSummary.userList}}" wx:key="index" src="{{ item.avatar }}" />
+  <view class="evaluation-summary-wrap" wx:if="{{evaluationSummary.total}}" bindtap="checkEvaluationDetail">
+    <view class="evaluation-total row between">
+      <view class="evaluation-title">
+        商品评分（{{NUM.toFixed(evaluationSummary.avgScore, 1)}}）
       </view>
-      <view class="evaluation-num">{{evaluationSummary.total ? evaluationSummary.total + '评价' : '暂无评价'}}</view>
+      <view class="evaluation-num row">
+        <text>共{{evaluationSummary.total}}条评价</text>
+        <image class="evaluatio-arrow" src="./images/option-arrow.png" />
+      </view>
     </view>
-    <view class="goods-score-wrap row">
-      <view wx:if="{{evaluationSummary.avgScore}}">商品评分</view>
-      <view class="goods-score" wx:if="{{evaluationSummary.avgScore}}">{{ evaluationSummary.avgScore }}</view>
-      <image class="goods-score-arrow" src="./images/option-arrow.png" />
+    <view class="evaluation-list">
+      <view class="evaluation-item" wx:for="{{evaluationSummary.list}}" wx:key="index">
+        <view class="evaluation-user-info row">
+          <image class="evaluation-user-avatar" src="{{item.userInfo.avatar}}" />
+          <view class="evaluation-user-name">{{item.userInfo.nickname}}</view>
+          <van-rate style="margin-bottom: 6rpx" value="{{item.score || 0}}" size="12" gutter="0" color="#fa2458" void-icon="star" void-color="#fedbe4" allow-half readonly />
+        </view>
+        <view class="evaluation-content-wrap row top">
+          <view class="evaluation-content">{{item.content}}</view>
+          <image class="evaluation-image" wx:if="{{item.imageList.length}}" src="{{item.imageList[0]}}" mode="aspectFill" />
+        </view>
+      </view>
     </view>
   </view>
 

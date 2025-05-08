@@ -11,7 +11,7 @@
     <view class="spot-info" wx:if="{{navBarVisible}}">
       <view class="spot-name">{{scenicInfo.name}}</view>
       <view class="grade-wrap row">
-        <van-rate value="{{scenicInfo.score || 0}}" size="8" gutter="0" color="#ffd21e" void-icon="star" void-color="#eee" allow-half readonly />
+        <van-rate value="{{scenicInfo.score || 0}}" size="8" gutter="0" color="#fa2458" void-icon="star" void-color="#fedbe4" allow-half readonly />
         <text class="spot-grade">{{scenicInfo.score}}</text>
       </view>
     </view>
@@ -84,7 +84,7 @@
   </view>
 
   <view class="score-wrap row">
-    <van-rate value="{{scenicInfo.score || 0}}" size="18" gutter="0" color="#ffd21e" void-icon="star" void-color="#eee" allow-half readonly />
+    <van-rate value="{{scenicInfo.score || 0}}" size="18" gutter="0" color="#fa2458" void-icon="star" void-color="#fedbe4" allow-half readonly />
     <text class="score" wx:if="{{scenicInfo.score}}">{{scenicInfo.score}}分</text>
     <text class="no-score" wx:if="{{!scenicInfo.score}}">暂无评分</text>
   </view>

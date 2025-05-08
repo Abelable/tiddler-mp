@@ -2,7 +2,7 @@
   <view class="evaluation-info-wrap">
     <view class="goods-score row">
       <view class="score-title">评分</view>
-      <van-rate value="{{score}}" bind:change="setScore" gutter="0" color="#ffd21e" void-icon="star" void-color="#eee" />
+      <van-rate value="{{score}}" bind:change="setScore" gutter="0" color="#fa2458" void-icon="star" void-color="#fedbe4" />
       <view class="score">{{score}}分</view>
     </view>
     <textarea class="evaluation-content" bindinput="setContent" placeholder="请输入您的评价" />

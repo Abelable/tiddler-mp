@@ -12,7 +12,7 @@
         <view class="restaurant-category row">{{item.categoryName}}</view>
       </view>
       <view class="score-wrap">
-        <van-rate value="{{item.score || 0}}" size="12" gutter="0" color="#ffd21e" void-icon="star" void-color="#eee" allow-half readonly />
+        <van-rate value="{{item.score || 0}}" size="12" gutter="0" color="#fa2458" void-icon="star" void-color="#fedbe4" allow-half readonly />
         <view class="score {{ item.score ? 'active' : '' }}">{{item.score || '暂无评分'}}</view>
         <view class="price">¥{{item.price}}/人</view>
       </view>
