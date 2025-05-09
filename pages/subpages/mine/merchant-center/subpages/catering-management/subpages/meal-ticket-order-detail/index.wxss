@@ -49,11 +49,11 @@
   line-height: 54rpx;
   text-align: center;
   font-size: 26rpx;
-  color: #169dfe;
+  color: var(--theme-color);
   border-radius: 28rpx;
-  border: 1rpx solid #169dfe;
+  border: 1rpx solid var(--theme-color);
 }
 .btn.active {
   color: #fff;
-  background: #169dfe;
+  background: var(--theme-color);
 }

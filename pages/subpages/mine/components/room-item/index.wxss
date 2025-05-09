@@ -67,6 +67,6 @@
   color: #666;
 }
 .count {
-  color: #169dfe;
+  color: var(--theme-color);
   font-weight: 500;
 }

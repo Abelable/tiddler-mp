@@ -149,7 +149,7 @@
 }
 .menu-item.selected {
   position: relative;
-  color: #169dfe;
+  color: var(--theme-color);
   font-size: 15px;
   font-weight: bold;
 }
@@ -162,7 +162,7 @@
   height: 3px;
   content: '';
   border-radius: 1.5px;
-  background: #169dfe;
+  background: var(--theme-color);
 }
 
 

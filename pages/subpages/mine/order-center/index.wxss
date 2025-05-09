@@ -55,9 +55,9 @@
 }
 .menu-item.selected {
   position: relative;
-  color: #169dfe;
+  color: var(--theme-color);
   background: #fff;
-  border: 1px solid #169dfe;
+  border: 1px solid var(--theme-color);
 }
 
 .sub-menu-wrap {
@@ -77,7 +77,7 @@
 }
 .sub-menu-item.selected {
   position: relative;
-  color: #169dfe;
+  color: var(--theme-color);
   font-weight: bold;
 }
 .sub-menu-item.selected::after {
@@ -89,5 +89,5 @@
   height: 3px;
   content: '';
   border-radius: 1.5px;
-  background: #169dfe;
+  background: var(--theme-color);
 }

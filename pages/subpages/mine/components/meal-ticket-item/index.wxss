@@ -21,7 +21,7 @@
 }
 .count-wrap {
   font-size: 24rpx;
-  color: #169dfe;
+  color: var(--theme-color);
 }
 .count {
   margin-left: 5rpx;
