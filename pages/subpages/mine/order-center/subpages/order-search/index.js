@@ -8,7 +8,9 @@ Page({
     historyKeywords: [],
     keywords: "",
     isSearching: false,
-    orderList: []
+    orderList: [],
+    goodsVerifyCode: "",
+    goodsQrCodeModalVisible: false
   },
 
   onLoad({ type = "1" }) {
@@ -122,5 +124,40 @@ Page({
         }
       }
     });
-  }
+  },
+
+  updateGoodsOrderList(e) {
+    const statusEmuns = {
+      cancel: 102,
+      pay: 201,
+      refund: 202,
+      confirm: 401
+    };
+    const { type, index } = e.detail;
+    const { menuList, orderList } = this.data;
+    const { curSubMenuIdx } = menuList[4];
+    if (type === "delete" || curSubMenuIdx !== 0) {
+      orderList.splice(index, 1);
+      this.setData({ orderList });
+    } else {
+      this.setData({
+        [`orderList[${index}].status`]: statusEmuns[type]
+      });
+    }
+  },
+
+  showGoodsQrCodeModal(e) {
+    const { goodsVerifyCode } = e.detail;
+    this.setData({
+      goodsVerifyCode,
+      goodsQrCodeModalVisible: true
+    });
+  },
+
+  hideGoodsQrCodeModal() {
+    this.setData({
+      goodsQrCodeModalVisible: false
+    });
+    this.setGoodsOrderList(true);
+  },
 });
