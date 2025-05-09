@@ -68,14 +68,24 @@ Page({
     curMenuIdx: 0,
     scenicOrderList: [],
     scenicFinished: false,
+    scenicVerifyCode: "",
+    scenicQrCodeModalVisible: false,
     hotelOrderList: [],
     hotelFinished: false,
+    hotelVerifyCode: "",
+    hotelQrCodeModalVisible: false,
     mealTicketOrderList: [],
     mealTicketFinished: false,
+    mealTicketVerifyCode: "",
+    mealTicketQrCodeModalVisible: false,
     setMealOrderList: [],
     setMealFinished: false,
+    setMealVerifyCode: "",
+    setMealQrCodeModalVisible: false,
     goodsOrderList: [],
-    goodsFinished: false
+    goodsFinished: false,
+    goodsVerifyCode: "",
+    goodsQrCodeModalVisible: false
   },
 
   async onLoad({ type = "1", status = "0" }) {
@@ -338,6 +348,81 @@ Page({
         [`goodsOrderList[${index}].status`]: statusEmuns[type]
       });
     }
+  },
+
+  showScenicQrCodeModal(e) {
+    const { scenicVerifyCode } = e.detail;
+    this.setData({
+      scenicVerifyCode,
+      scenicQrCodeModalVisible: true
+    });
+  },
+
+  hideScenicQrCodeModal() {
+    this.setData({
+      scenicQrCodeModalVisible: false
+    });
+    this.setScenicOrderList(true);
+  },
+
+  showHotelQrCodeModal(e) {
+    const { hotelVerifyCode } = e.detail;
+    this.setData({
+      hotelVerifyCode,
+      hotelQrCodeModalVisible: true
+    });
+  },
+
+  hideHotelQrCodeModal() {
+    this.setData({
+      hotelQrCodeModalVisible: false
+    });
+    this.setHotelOrderList(true);
+  },
+
+  showMealTicketQrCodeModal(e) {
+    const { mealTicketVerifyCode } = e.detail;
+    this.setData({
+      mealTicketVerifyCode,
+      mealTicketQrCodeModalVisible: true
+    });
+  },
+
+  hideMealTicketQrCodeModal() {
+    this.setData({
+      mealTicketQrCodeModalVisible: false
+    });
+    this.setMealTicketOrderList(true);
+  },
+
+  showSetMealQrCodeModal(e) {
+    const { setMealVerifyCode } = e.detail;
+    this.setData({
+      setMealVerifyCode,
+      setMealQrCodeModalVisible: true
+    });
+  },
+
+  hideSetMealQrCodeModal() {
+    this.setData({
+      setMealQrCodeModalVisible: false
+    });
+    this.setSetMealOrderList(true);
+  },
+
+  showGoodsQrCodeModal(e) {
+    const { goodsVerifyCode } = e.detail;
+    this.setData({
+      goodsVerifyCode,
+      goodsQrCodeModalVisible: true
+    });
+  },
+
+  hideGoodsQrCodeModal() {
+    this.setData({
+      goodsQrCodeModalVisible: false
+    });
+    this.setGoodsOrderList(true);
   },
 
   navigateBack() {

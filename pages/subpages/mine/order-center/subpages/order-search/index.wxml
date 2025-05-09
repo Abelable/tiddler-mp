@@ -44,7 +44,16 @@
   <hotel-order-list wx:if="{{type === 2}}" list="{{orderList}}" bind:update="updateScenicOrderList"/>
   <meal-ticket-order-list wx:if="{{type === 3}}" list="{{orderList}}" bind:update="updateScenicOrderList"/>
   <set-meal-order-list wx:if="{{type === 4}}" list="{{orderList}}" bind:update="updateScenicOrderList"/>
-  <goods-order-list wx:if="{{type === 5}}" list="{{orderList}}" bind:update="updateScenicOrderList"/>
+  <view class="order-list" wx:if="{{type === 5}}">
+    <goods-order-item 
+      wx:for="{{orderList}}" 
+      wx:key="index" 
+      item="{{item}}" 
+      index="{{index}}" 
+      bind:update="updateGoodsOrderList"
+      bind:checkQrCode="showGoodsQrCodeModal"
+    />
+  </view>
   <empty-illus wx:if="{{!orderList.length}}" desc="暂无{{['景点', '酒店', '餐券', '套餐', '商品'][type - 1]}}订单" />
   <view class="no-more-tips" wx:if="{{orderList.length}}">～没有更多了～</view>
 </view>

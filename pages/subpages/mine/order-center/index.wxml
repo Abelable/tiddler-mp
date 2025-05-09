@@ -49,8 +49,23 @@
   </view>
 
   <view class="content" wx:if="{{curMenuIdx === 4}}">
-    <goods-order-list list="{{goodsOrderList}}" bind:update="updateGoodsOrderList"/>
+    <view class="order-list">
+      <goods-order-item 
+        wx:for="{{orderList}}" 
+        wx:key="index" 
+        item="{{item}}" 
+        index="{{index}}" 
+        bind:update="updateGoodsOrderList"
+        bind:checkQrCode="showGoodsQrCodeModal"
+      />
+    </view>
     <empty-illus wx:if="{{goodsFinished && !goodsOrderList.length}}" desc="暂无商品订单" />
     <view class="no-more-tips" wx:if="{{goodsFinished && goodsOrderList.length}}">～没有更多了～</view>
   </view>
 </view>
+
+<goods-qr-code-modal 
+  wx:if="{{goodsQrCodeModalVisible}}"
+  code="{{goodsVerifyCode}}" 
+  bind:hide="hideGoodsQrCodeModal"
+/>
