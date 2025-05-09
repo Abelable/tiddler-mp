@@ -129,7 +129,14 @@
       "desc": "你的位置信息将用于定位效果展示"
     }
   },
+  "plugins": {
+    "logisticsPlugin": {
+      "version": "2.3.0",
+      "provider": "wx9ad912bf20548d92"
+    }
+  },
   "requiredPrivateInfos": [
+    "chooseAddress",
     "getLocation"
   ],
   "sitemapLocation": "sitemap.json",

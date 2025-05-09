@@ -1,6 +1,63 @@
 <wxs module="TIME" src="/utils/filters/time.wxs" />
 <wxs module="ORDER" src="../../../../utils/order.wxs" />
+
 <view class="container">
+  <view class="card" wx:if="{{orderInfo.deliveryMode === 1}}">
+    <view class="ship-info-wrap" wx:if="{{packageList.length}}">
+      <view class="package-info row" wx:if="{{packageList.length > 1}}">
+        <scroll-view class="package-list-wrap" scroll-x>
+          <view class="package-list">
+            <view 
+              class="package {{index === selectedPackageIdx ? 'selected' : ''}}" 
+              wx:for="{{packageList}}" 
+              wx:key="id" 
+              wx:for-item="package"
+              bindtap="selectPackage"
+              data-index="{{index}}"
+            >
+              <view class="package-goods" wx:for="{{package.goodsList}}" wx:key="id" wx:for-item="goods">
+                <image class="package-goods-cover" src="{{goods.goodsCover}}" />
+                <view class="package-goods-num">x{{goods.goodsNumber}}</view>
+              </view>
+            </view>
+          </view>
+        </scroll-view>
+        <view class="package-num">共{{packageList.length}}件包裹</view>
+      </view>
+      <view class="row" bindtap="checkShippingInfo">
+        <image class="ship-icon" src="./images/ship.png" />
+        <view class="ship-code omit single">
+          {{packageList[selectedPackageIdx].shipChannel}}｜{{packageList[selectedPackageIdx].shipSn}}
+        </view>
+        <view class="more-btn row center">
+          <view>查看物流</view>
+          <image class="more-icon" src="./images/arrow.png" />
+        </view>
+      </view>
+    </view>
+    <view class="consignee-info-wrap row">
+      <image class="address-icon" src="./images/address.png" />
+      <view class="consignee-info">
+        <view class="row">
+          <text class="consignee-name">{{orderInfo.consignee}}</text>
+          <text class="consignee-mobile">{{NUM.mobileFormat(orderInfo.mobile)}}</text>
+        </view>
+        <view class="address-detail">{{orderInfo.address}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="card row" wx:if="{{orderInfo.deliveryMode === 2}}" bindtap="navigation">
+    <view class="pickup-address-info">
+      <view class="pickup-address-name">{{orderInfo.pickupAddress.name}}</view>
+      <view class="pickup-address-detail">{{orderInfo.pickupAddress.addressDetail}}</view>
+    </view>
+    <view class="navgation-btn row">
+      <view>导航</view>
+      <image class="navgation-btn-arrow" src="/images/arrow.png" />
+    </view>
+  </view>
+
   <view class="card">
     <view class="card-header row">
       <view class="shop-info row" wx:if="{{orderInfo.shopId}}" catchtap="navToShop" data-id="{{orderInfo.shopId}}">
@@ -57,23 +114,61 @@
     </view>
   </view>
 </view>
-<view class="bottom-bar">
-  <button class="btn" wx:if="{{orderInfo.status === 301}}" bindtap="navToShipping" data-id="{{orderInfo.id}}">
-    查看物流
-  </button>
-  <button class="btn" wx:if="{{orderInfo.status === 102 || orderInfo.status === 103 || orderInfo.status === 104 || orderInfo.status === 401 || orderInfo.status === 402}}" bindtap="deleteOrder">
+
+<view class="bottom-bar" wx:if="{{userInfo.id === orderInfo.userId}}">
+  <button 
+    class="btn" 
+    wx:if="{{orderInfo.status === 102 || orderInfo.status === 103 || orderInfo.status === 104 || orderInfo.status === 203}}"
+    bindtap="deleteOrder"
+    hover-class="none"
+  >
     删除订单
   </button>
-  <button class="btn" wx:if="{{orderInfo.status === 101}}" bindtap="cancelOrder">取消订单</button>
-  <button class="btn active" wx:if="{{orderInfo.status === 301}}" bindtap="confirmOrder">
+  <button class="btn" wx:if="{{orderInfo.status === 101}}" bindtap="cancelOrder" hover-class="none">取消订单</button>
+  <button class="btn active" wx:if="{{orderInfo.status === 301}}" bindtap="confirmOrder" hover-class="none">
     确认收货
   </button>
-  <button class="btn active" wx:if="{{orderInfo.status === 101}}" bindtap="payOrder">继续付款</button>
-  <button class="btn active" wx:if="{{orderInfo.status === 201}}" bindtap="refundOrder">
+  <button class="btn active" wx:if="{{orderInfo.status === 302}}" bindtap="showQrCodeModal" hover-class="none">
+    查看券码
+  </button>
+  <button class="btn active" wx:if="{{orderInfo.status === 201}}" bindtap="showAddressPopup" hover-class="none">
+    修改地址
+  </button>
+  <button class="btn active" wx:if="{{refundBtnVisible}}" bindtap="refundOrder" hover-class="none">
     申请退款
   </button>
-  <button class="btn active" wx:if="{{orderInfo.status === 401 || orderInfo.status === 402}}" bindtap="navToEvaluation">
+  <button class="btn active" wx:if="{{orderInfo.status === 401 || orderInfo.status === 402 || orderInfo.status === 403}}" bindtap="navToEvaluation" hover-class="none">
     评价
   </button>
-  <button class="btn active" bindtap="contact">{{orderInfo.shopId ? '联系卖家' : '联系客服'}}</button>
+  <button 
+    class="btn" 
+    wx:if="{{orderInfo.status === 501}}"
+    catchtap="navToEvaluation"
+    hover-class="none"
+  >查看评价</button>
+  <button 
+    class="btn active"
+    send-message-title="订单编号：{{orderInfo.orderSn}}"
+    send-message-img="{{orderInfo.goodsList[0].cover}}"
+    send-message-path="/pages/mine/subpages/order-center/subpages/order-detail/index?id={{orderInfo.id}}"
+    show-message-card="{{true}}"
+    open-type="contact" 
+    session-from="sessionFrom" 
+    hover-class="none"
+  >
+    联系客服
+  </button>
+  <button class="btn active" wx:if="{{orderInfo.status === 101}}" bindtap="payOrder" hover-class="none">继续付款</button>
 </view>
+
+<address-popup 
+  show="{{addressPopupVisible}}" 
+  bind:confirm="confirmAddressSelect" 
+  bind:hide="hideAddressPopup"
+/>
+
+<qr-code-modal 
+  wx:if="{{qrCodeModalVisible}}"
+  code="{{orderInfo.verifyCode}}" 
+  bind:hide="hideQrCodeModal"
+/>

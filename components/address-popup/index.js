@@ -1,7 +1,7 @@
-import { checkLogin } from "../../../../../../utils/index";
-import GoodsService from "../../utils/goodsService";
+import { checkLogin } from "../../utils/index";
+import BaseService from "../../services/baseService";
 
-const goodsService = new GoodsService();
+const baseService = new BaseService();
 
 Component({
   options: {
@@ -33,7 +33,7 @@ Component({
 
   methods: {
     async setAddressList() {
-      const addressList = await goodsService.getAddressList();
+      const addressList = await baseService.getAddressList();
       this.setData({ addressList });
 
       const { addressId } = this.properties;
