@@ -15,7 +15,7 @@
       <van-rate value="{{score}}" bind:change="setScore" gutter="0" color="#fa2458" void-icon="star" void-color="#fedbe4" />
       <view class="score">{{score}}分</view>
     </view>
-    <textarea class="evaluation-content" bindinput="setContent" placeholder="请输入您对商品的评价" />
+    <textarea class="evaluation-content" value="{{content}}" bindinput="setContent" placeholder="请输入您对商品的评价" />
     <view class="uploader-wrap">
       <van-uploader 
         file-list="{{imageList}}" 
@@ -29,4 +29,4 @@
   </view>
 </view>
 
-<view class="submit-btn row center" bindtap="submit">提交</view>
+<view class="submit-btn row center" wx:if="{{submitBtnVisible}}" bindtap="submit">提交</view>

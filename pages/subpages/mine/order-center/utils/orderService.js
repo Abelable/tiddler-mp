@@ -435,6 +435,14 @@ class OrderService extends BaseService {
     });
   }
 
+  async getEvaluation(orderId) {
+    return await this.get({
+      url: `${this.baseUrl}/goods/evaluation/detail`,
+      data: { orderId },
+      loadingTitle: "加载中..."
+    });
+  }
+
   async submitEvaluation(
     orderId,
     goodsIds,
