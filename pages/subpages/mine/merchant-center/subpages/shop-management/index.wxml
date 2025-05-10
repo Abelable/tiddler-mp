@@ -21,12 +21,12 @@
     <view class="bg" />
     <view class="main">
       <view class="balance-data-item">
-        <view class="balance-data-title">累计收益</view>
+        <view class="balance-data-title">累计收益(元)</view>
         <view class="balance-data-amount">8828.92</view>
       </view>
       <view class="data-items-wrap row between">
         <view class="data-item">
-          <view class="data-title">成交额</view>
+          <view class="data-title">成交额(元)</view>
           <view class="data-amount">882.88</view>
           <view class="data-supplement">昨日 682.22</view>
         </view>
@@ -47,16 +47,16 @@
   
   <view class="btns-wrap row between">
     <view class="btn">
-      <view class="btn-icon-wrap">
-        <image class="btn-icon" src="./images/shop.png" />
-      </view>
-      <view class="btn-title">店铺管理</view>
-    </view>
-    <view class="btn">
       <view class="btn-icon-wrap" bindtap="navToGoodsManagement">
         <image class="btn-icon" src="./images/goods.png" />
       </view>
       <view class="btn-title">商品管理</view>
+    </view>
+    <view class="btn">
+      <view class="btn-icon-wrap" bindtap="navToFreightTemplateManagement">
+        <image class="btn-icon" src="./images/freight.png" />
+      </view>
+      <view class="btn-title">运费模板</view>
     </view>
     <view class="btn">
       <view class="btn-icon-wrap" bindtap="navToRefundAddressManagement">
@@ -71,10 +71,10 @@
       <view class="btn-title">提货地址</view>
     </view>
     <view class="btn">
-      <view class="btn-icon-wrap" bindtap="navToFreightTemplateManagement">
-        <image class="btn-icon" src="./images/freight.png" />
+      <view class="btn-icon-wrap" bindtap="navToPickupAddressManagement">
+        <image class="btn-icon" src="./images/manager.png" />
       </view>
-      <view class="btn-title">运费模板</view>
+      <view class="btn-title">人员管理</view>
     </view>
   </view>
 </view>
