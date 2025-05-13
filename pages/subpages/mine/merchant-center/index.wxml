@@ -7,6 +7,18 @@
 </view>
 
 <view class="header" style="margin-top: {{statusBarHeight + 44}}px">
+  <view class="product-menu">
+    <view 
+      class="product-menu-item {{curProductType === index ? 'active' : ''}}" 
+      wx:for="{{['景区管理', '酒店管理', '餐饮管理', '电商管理']}}"
+      wx:key="index"
+      bindtap="selectProductType"
+      data-index="{{index}}"
+    >
+      {{item}}
+    </view>
+  </view>
+
   <view class="shop-info-wrap row">
     <view class="avatar-wrap">
       <image class="shop-logo" src="{{shopInfo.logo}}" />
@@ -18,7 +30,7 @@
     </view>
   </view>
   <view class="data-card">
-    <image class="bg" src="../../images/wallet.png" />
+    <image class="bg" src="./images/wallet.png" />
     <view class="main">
       <view class="balance-data-item">
         <view class="balance-data-title">累计收益(元)</view>

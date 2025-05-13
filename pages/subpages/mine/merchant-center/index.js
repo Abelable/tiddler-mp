@@ -7,6 +7,7 @@ const { statusBarHeight } = getApp().globalData.systemInfo;
 Page({
   data: {
     statusBarHeight,
+    curProductType: 0,
     menuFixed: false,
     menuList: [
       { name: "全部", status: 0 },
@@ -44,6 +45,11 @@ Page({
   async setShopInfo() {
     const shopInfo = await shopService.getShopInfo();
     this.setData({ shopInfo });
+  },
+
+  selectProductType(e) {
+    const { index: curProductType } = e.currentTarget.dataset;
+    this.setData({ curProductType });
   },
 
   selectMenu(e) {
