@@ -1,3 +1,10 @@
 {
-  "navigationBarTitleText": "商家中心"
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "back-icon": "/components/back-icon-white/index",
+    "empty-illus": "/components/empty-illus/index",
+    "goods-order-list": "./components/goods-order-list/index"
+  }
 }
