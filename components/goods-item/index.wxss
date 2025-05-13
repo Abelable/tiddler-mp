@@ -56,7 +56,7 @@
   color: #fff;
   font-size: 20rpx;
   border-radius: 8rpx;
-  background: #f82f45;
+  background: #FF5A6F;
 }
 
 .content {

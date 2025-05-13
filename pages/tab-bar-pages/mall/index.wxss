@@ -66,14 +66,15 @@ page {
 }
 .category-item {
   text-align: center;
+  font-size: 0;
 }
 .category-icon {
-  width: 86rpx;
-  height: 86rpx;
+  width: 88rpx;
+  height: 88rpx;
 }
 .category-desc {
-  color: #666;
-  font-size: 20rpx;
+  color: #999;
+  font-size: 21rpx;
 }
 
 .commodity-list {
