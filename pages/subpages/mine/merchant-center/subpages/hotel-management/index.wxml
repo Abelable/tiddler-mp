@@ -18,7 +18,7 @@
     </view>
   </view>
   <view class="data-card">
-    <image class="bg" src="./images/income-bg.png" />
+    <image class="bg" src="../../images/wallet.png" />
     <view class="main">
       <view class="balance-data-item">
         <view class="balance-data-title">累计收益</view>

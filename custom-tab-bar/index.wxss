@@ -15,25 +15,41 @@
 
 .tab {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   flex: 1;
-  font-size: 0;
-  text-align: center;
 }
-
 .icon {
   width: 24px;
   height: 24px;
 }
-.icon.notice {
-  margin-bottom: 2px;
-  width: 21px;
-  height: 21px;
-}
-
 .text {
   font-size: 10px;
   color: #666;
 }
 .text.selected {
   color: #333;
+}
+
+.promoter-tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 24rpx;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #00A5FF, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradientBG 5s ease infinite;
+}
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.promoter-icon {
+  width: 55rpx;
+  height: 55rpx;
 }

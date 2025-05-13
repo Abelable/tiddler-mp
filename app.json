@@ -2,6 +2,7 @@
   "pages":[
     "pages/tab-bar-pages/home/index",
     "pages/tab-bar-pages/mall/index",
+    "pages/tab-bar-pages/promoter/index",
     "pages/tab-bar-pages/notice/index",
     "pages/tab-bar-pages/mine/index"
   ],
@@ -109,6 +110,9 @@
       },
       {
         "pagePath": "pages/tab-bar-pages/mall/index"
+      },
+       {
+        "pagePath": "pages/tab-bar-pages/promoter/index"
       },
       {
         "pagePath": "pages/tab-bar-pages/notice/index"

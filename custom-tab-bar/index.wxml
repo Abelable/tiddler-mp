@@ -7,8 +7,17 @@
     <image class="icon" src="/images/tab-bar/mall{{tabType === 'mall' ? '_fill' : ''}}.png" />
     <view class="text {{tabType === 'mall' ? 'selected' : ''}}">商城</view>
   </view>
+  <view class="tab" wx:if="{{tabType !== 'promoter'}}" bindtap="switchTab" data-path="/pages/tab-bar-pages/promoter/index">
+    <image class="icon" src="/images/tab-bar/promoter.png" />
+    <view class="text">家乡代言人</view>
+  </view>
+  <view class="tab" wx:if="{{tabType === 'promoter'}}">
+    <view class="promoter-tab">
+      <image class="promoter-icon" src="/images/tab-bar/promoter_fill.png" />
+    </view>
+  </view>
   <view class="tab" bindtap="switchTab" data-path="/pages/tab-bar-pages/notice/index">
-    <image class="icon notice" src="/images/tab-bar/notice{{tabType === 'notice' ? '_fill' : ''}}.png" />
+    <image class="icon" src="/images/tab-bar/notice{{tabType === 'notice' ? '_fill' : ''}}.png" />
     <view class="text {{tabType === 'mall' ? 'selected' : ''}}">消息</view>
   </view>
   <view class="tab" bindtap="switchTab" data-path="/pages/tab-bar-pages/mine/index">

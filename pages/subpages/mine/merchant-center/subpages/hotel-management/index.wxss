@@ -82,9 +82,9 @@
 .data-card {
   position: relative;
   margin-top: 32rpx;
-  height: 320rpx;
+  height: 336rpx;
   color: #fff;
-  border-radius: 24rpx;
+  border-radius: 48rpx;
   background: linear-gradient(270deg, #5E5CDE 0%, #B779E5 100%);
   overflow: hidden;
 }
@@ -114,7 +114,7 @@
   font-weight: bold;
 }
 .data-items-wrap {
-  margin-top: 24rpx;
+  margin-top: 48rpx;
 }
 .data-title, .data-supplement {
   color: #E4DAFF;
