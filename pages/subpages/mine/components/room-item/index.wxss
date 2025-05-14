@@ -67,6 +67,6 @@
   color: #666;
 }
 .count {
-  color: var(--theme-color);
+  color: var(--blue-1);
   font-weight: 500;
 }

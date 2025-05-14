@@ -53,7 +53,7 @@
 }
 .product-menu-item.active {
   color: #fff;
-  background: var(--theme-color);
+  background: var(--blue-1);
 } 
 
 .shop-info-wrap {
@@ -212,7 +212,7 @@
 }
 .menu-item.selected {
   position: relative;
-  color: var(--theme-color);
+  color: var(--blue-1);
   font-size: 15px;
   font-weight: bold;
 }
@@ -225,7 +225,7 @@
   height: 3px;
   content: '';
   border-radius: 1.5px;
-  background: var(--theme-color);
+  background: var(--blue-1);
 }
 
 

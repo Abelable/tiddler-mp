@@ -40,5 +40,5 @@
   color: #fff;
   font-size: 28rpx;
   border-radius: 40rpx;
-  background: var(--theme-color);
+  background: var(--blue-1);
 }

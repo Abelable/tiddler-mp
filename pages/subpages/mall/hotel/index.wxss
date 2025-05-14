@@ -32,7 +32,7 @@
   border-right: 1px solid #e1e1e1;
 }
 .calendar-item {
-  color: var(--theme-color);
+  color: var(--blue-1);
   font-size: 10px;
   font-weight: bold;
   line-height: 1.2;

@@ -25,7 +25,7 @@
   font-size: 24rpx;
 }
 .commission {
-  color: var(--theme-color);
+  color: var(--blue-1);
   font-size: 24rpx;
 }
 .spec-stock {
@@ -67,8 +67,8 @@
   background-color: #F6F6F6;
 }
 .spec-tips.selected {
-  color: var(--theme-color);
-  border: 1px solid var(--theme-color);
+  color: var(--blue-1);
+  border: 1px solid var(--blue-1);
   background: #ebf6f8;
 }
 
@@ -89,7 +89,7 @@
   background: #e6e6e6;
 }
 .cart-btn.active {
-  background: var(--theme-color);
+  background: var(--blue-1);
 }
 .cart-btn.border {
   color: #ccc;
@@ -97,13 +97,13 @@
   background: none !important;
 }
 .cart-btn.border.active {
-  color: var(--theme-color);
-  border: 1px solid var(--theme-color);
+  color: var(--blue-1);
+  border: 1px solid var(--blue-1);
   background: none !important;
 }
 .buy-btn.active {
-  background: var(--theme-color);
+  background: var(--blue-1);
 }
 .edit-btn.active {
-  background: var(--theme-color);
+  background: var(--blue-1);
 }

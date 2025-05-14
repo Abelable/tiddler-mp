@@ -28,7 +28,7 @@
   height: 110rpx;
   color: #fff;
   font-size: 36rpx;
-  background: var(--theme-color);
+  background: var(--blue-1);
   border-radius: 55rpx;
   opacity: 0.5;
 }

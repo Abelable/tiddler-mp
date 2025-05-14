@@ -49,7 +49,7 @@
 }
 .checkbox .wx-checkbox-input.wx-checkbox-input-checked {
   border: none;
-  background: var(--theme-color);
+  background: var(--blue-1);
 }
 .checkbox.danger .wx-checkbox-input.wx-checkbox-input-checked {
   background: #FD0B0A;
@@ -276,7 +276,7 @@
 }
 .submit.active {
   color: #fff;
-  background: var(--theme-color);
+  background: var(--blue-1);
 }
 .delete-btn.active {
   color: #fff;

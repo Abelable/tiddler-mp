@@ -83,7 +83,7 @@
 }
 .label {
   margin-right: 10rpx;
-  color: var(--theme-color);
+  color: var(--blue-1);
   font-size: 18rpx;
   background: #ebf2fd;
   padding: 2rpx 10rpx;

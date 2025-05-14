@@ -197,9 +197,9 @@ page {
   border: 1px solid transparent;
 }
 .date.selected {
-  color: var(--theme-color);
+  color: var(--blue-1);
   background: #FFF3EC;
-  border: 1px solid var(--theme-color);
+  border: 1px solid var(--blue-1);
 }
 
 .daily-data-list {

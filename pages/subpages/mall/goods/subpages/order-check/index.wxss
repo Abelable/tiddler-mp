@@ -56,7 +56,7 @@
   background: #edf0f3;
 }
 .menu-item.active {
-  color: var(--theme-color);
+  color: var(--blue-1);
   font-size: 30rpx;
   font-weight: bold;
   border-radius: 16rpx 16rpx 0 0;
@@ -110,7 +110,7 @@
 }
 .distance {
   margin-left: 2rpx;
-  color: var(--theme-color);
+  color: var(--blue-1);
   font-size: 26rpx;
 }
 .check-map-btn {
@@ -134,7 +134,7 @@
   align-items: center;
   margin-top: 6rpx;
   margin-left: 12rpx;
-  color: var(--theme-color);
+  color: var(--blue-1);
   font-size: 26rpx;
   line-height: 1;
 }
@@ -333,5 +333,5 @@
   background: #e6e6e6;
 }
 .submit-btn.active {
-  background: var(--theme-color);
+  background: var(--blue-1);
 }

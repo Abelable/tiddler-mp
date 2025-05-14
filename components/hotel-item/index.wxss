@@ -69,7 +69,7 @@
   margin-right: 10rpx;
   padding: 2rpx 10rpx;
   max-width: 170rpx;
-  color: var(--theme-color);
+  color: var(--blue-1);
   font-size: 20rpx;
   background: #ebf2fd;
   border-radius: 10rpx;

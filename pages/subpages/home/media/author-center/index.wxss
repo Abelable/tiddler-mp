@@ -189,7 +189,7 @@
   bottom: 0;
   width: 50vw;
   height: 4rpx;
-  background: var(--theme-color);
+  background: var(--blue-1);
   transition: left .2s ease;
 }
 

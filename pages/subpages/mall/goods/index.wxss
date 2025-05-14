@@ -120,7 +120,7 @@
   margin-right: 0;
 }
 .sub-category-tab.active {
-  color: var(--theme-color);
+  color: var(--blue-1);
   font-weight: 550;
   background: #dce7ff;
 }

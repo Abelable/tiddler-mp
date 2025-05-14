@@ -55,9 +55,9 @@
 }
 .menu-item.selected {
   position: relative;
-  color: var(--theme-color);
+  color: var(--blue-1);
   background: #fff;
-  border: 1px solid var(--theme-color);
+  border: 1px solid var(--blue-1);
 }
 
 .sub-menu-wrap {
@@ -77,7 +77,7 @@
 }
 .sub-menu-item.selected {
   position: relative;
-  color: var(--theme-color);
+  color: var(--blue-1);
   font-weight: bold;
 }
 .sub-menu-item.selected::after {
@@ -89,5 +89,5 @@
   height: 3px;
   content: '';
   border-radius: 1.5px;
-  background: var(--theme-color);
+  background: var(--blue-1);
 }

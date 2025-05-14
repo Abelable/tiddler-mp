@@ -42,7 +42,7 @@ page {
   width: 28px;
   height: 1.5px;
   content: '';
-  background-color: var(--theme-color);
+  background-color: var(--blue-1);
 }
 
 .banner-wrap {
@@ -205,7 +205,7 @@ page {
 }
 .goods-intro {
   margin-top: 18rpx;
-  color: var(--theme-color);
+  color: var(--blue-1);
   font-size: 24rpx;
 }
 
@@ -412,7 +412,7 @@ page {
 .buy-btn {
   margin-left: 12rpx;
   color: #fff;
-  background: var(--theme-color);
+  background: var(--blue-1);
 }
 
 .invalid-notice-btn {

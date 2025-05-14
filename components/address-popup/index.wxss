@@ -9,7 +9,7 @@
   font-weight: 550;
 }
 .add-btn {
-  color: var(--theme-color);
+  color: var(--blue-1);
   font-size: 28rpx;
 }
 
@@ -64,5 +64,5 @@
   color: #fff;
   font-size: 28rpx;
   border-radius: 40rpx;
-  background: var(--theme-color);
+  background: var(--blue-1);
 }

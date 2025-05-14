@@ -258,7 +258,7 @@
   border-radius: 16rpx;
 }
 .label.blue {
-  color: var(--theme-color);
+  color: var(--blue-1);
   background: #ebf2fd;
 }
 

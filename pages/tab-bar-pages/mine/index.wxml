@@ -36,7 +36,7 @@
 
     <view class="function-wrap">
       <navigator class="function-item" url="/pages/subpages/mine/order-center/index" hover-class="none">
-        <image class="function-icon" src="https://img.ubo.vip/tiddler/mine/order.png" />
+        <image class="function-icon" src="./images/order.png" />
         <view class="function-desc">订单中心</view>
       </navigator>
       <navigator class="function-item" url="/pages/subpages/mine/address-list/index" hover-class="none">
