@@ -18,7 +18,7 @@
   </view>
   <view class="tab" bindtap="switchTab" data-path="/pages/tab-bar-pages/notice/index">
     <image class="icon" src="/images/tab-bar/notice{{tabType === 'notice' ? '_fill' : ''}}.png" />
-    <view class="text {{tabType === 'mall' ? 'selected' : ''}}">消息</view>
+    <view class="text {{tabType === 'notice' ? 'selected' : ''}}">消息</view>
   </view>
   <view class="tab" bindtap="switchTab" data-path="/pages/tab-bar-pages/mine/index">
     <image class="icon" src="/images/tab-bar/mine{{tabType === 'mine' ? '_fill' : ''}}.png" />
