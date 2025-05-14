@@ -9,7 +9,7 @@
   width: calc(100% - 96rpx);
   height: 110rpx;
   border-radius: 55rpx;
-  box-shadow: 0 0 2rpx 1rpx rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 1px 12px 0px rgba(0,0,0,0.1);
   background: rgba(255, 255, 255, 0.68);
   backdrop-filter: blur(8px);
   z-index: 100;
@@ -28,8 +28,10 @@
   height: 48rpx;
 }
 .text {
+  margin-top: 4rpx;
   font-size: 18rpx;
   color: #999;
+  line-height: 1;
 }
 .text.selected {
   color: #333;
