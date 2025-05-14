@@ -1,106 +1,37 @@
-<view class="nav-bar row" style="padding-top: {{statusBarHeight}}px">
-  <back-icon noBorder />
-  <view class="search-bar row between" bindtap="search">
-    <text class="placeholder">搜索订单</text>
-    <image class="search-icon" src="https://img.ubo.vip/tiddler/nav-icon/search.png" />
-  </view>
+<view class="list-wrap">
+  <navigator class="list row between" wx:if="{{userInfo.scenicProviderId}}" url="./subpages/scenic-management/index" hover-class="none">
+    <view class="title">景区管理</view>
+    <image class="arrow" src="./images/arrow.png" />
+  </navigator>
+  <navigator class="list row between" wx:if="{{userInfo.hotelProviderId}}" url="./subpages/hotel-management/index" hover-class="none">
+    <view class="title">酒店管理</view>
+    <image class="arrow" src="./images/arrow.png" />
+  </navigator>
+  <navigator class="list row between" wx:if="{{userInfo.cateringProviderId}}" url="./subpages/catering-management/index" hover-class="none">
+    <view class="title">餐饮管理</view>
+    <image class="arrow" src="./images/arrow.png" />
+  </navigator>
+  <navigator class="list row between" wx:if="{{userInfo.merchantId}}" url="./subpages/shop-management/index" hover-class="none">
+    <view class="title">电商管理</view>
+    <image class="arrow" src="./images/arrow.png" />
+  </navigator>
 </view>
 
-<view class="header" style="margin-top: {{statusBarHeight + 44}}px">
-  <view class="product-menu">
-    <view 
-      class="product-menu-item {{curProductType === index ? 'active' : ''}}" 
-      wx:for="{{['景区管理', '酒店管理', '餐饮管理', '电商管理']}}"
-      wx:key="index"
-      bindtap="selectProductType"
-      data-index="{{index}}"
-    >
-      {{item}}
-    </view>
+<view class="list-wrap">
+  <view class="list row between" wx:if="{{!userInfo.scenicProviderId}}" bindtap="navToScenicProviderSettleIn">
+    <view class="title">景区服务商入驻</view>
+    <image class="arrow" src="./images/arrow.png" />
   </view>
-
-  <view class="shop-info-wrap row">
-    <view class="avatar-wrap">
-      <image class="shop-logo" src="{{shopInfo.logo}}" />
-      <image class="enterprise-label" wx:if="{{shopInfo.type === 2}}" src="https://img.ubo.vip/mp/selection/goods-detail/firm-icon.png" />
-    </view>
-    <view class="info">
-      <view class="shop-name omit single">{{shopInfo.name}}</view>
-      <view class="authentication row">{{shopInfo.type === 2 ? '企业店铺' : '个人店铺'}}</view>
-    </view>
+  <view class="list row between" wx:if="{{!userInfo.hotelProviderId}}" bindtap="navToHotelProviderSettleIn">
+    <view class="title">酒店服务商入驻</view>
+    <image class="arrow" src="./images/arrow.png" />
   </view>
-  <view class="data-card">
-    <image class="bg" src="./images/wallet.png" />
-    <view class="main">
-      <view class="balance-data-item">
-        <view class="balance-data-title">累计收益(元)</view>
-        <view class="balance-data-amount">8828.92</view>
-      </view>
-      <view class="data-items-wrap row between">
-        <view class="data-item">
-          <view class="data-title">成交额(元)</view>
-          <view class="data-amount">882.88</view>
-          <view class="data-supplement">昨日 682.22</view>
-        </view>
-        <view class="data-item">
-          <view class="data-title">订单数</view>
-          <view class="data-amount">882</view>
-          <view class="data-supplement">昨日 682</view>
-        </view>
-        <view class="data-item">
-          <view class="data-title">访客数</view>
-          <view class="data-amount">882</view>
-          <view class="data-supplement">昨日 682</view>
-        </view>
-      </view>
-    </view>
-    <button class="withdraw-btn" hover-class="none">收益提现</button>
+  <view class="list row between" wx:if="{{!userInfo.cateringProviderId}}" bindtap="navToCateringSettleIn">
+    <view class="title">餐饮商家入驻</view>
+    <image class="arrow" src="./images/arrow.png" />
   </view>
-  
-  <view class="btns-wrap row between">
-    <view class="btn">
-      <view class="btn-icon-wrap" bindtap="navToGoodsManagement">
-        <image class="btn-icon" src="./images/goods.png" />
-      </view>
-      <view class="btn-title">商品管理</view>
-    </view>
-    <view class="btn">
-      <view class="btn-icon-wrap" bindtap="navToFreightTemplateManagement">
-        <image class="btn-icon" src="./images/freight.png" />
-      </view>
-      <view class="btn-title">运费模板</view>
-    </view>
-    <view class="btn">
-      <view class="btn-icon-wrap" bindtap="navToRefundAddressManagement">
-        <image class="btn-icon" src="./images/address.png" />
-      </view>
-      <view class="btn-title">退货地址</view>
-    </view>
-    <view class="btn">
-      <view class="btn-icon-wrap" bindtap="navToPickupAddressManagement">
-        <image class="btn-icon" src="./images/address.png" />
-      </view>
-      <view class="btn-title">提货地址</view>
-    </view>
-    <view class="btn">
-      <view class="btn-icon-wrap" bindtap="navToPickupAddressManagement">
-        <image class="btn-icon" src="./images/manager.png" />
-      </view>
-      <view class="btn-title">人员管理</view>
-    </view>
+  <view class="list row between" wx:if="{{!userInfo.merchantId}}" bindtap="navToMerchantSettleIn">
+    <view class="title">电商商家入驻</view>
+    <image class="arrow" src="./images/arrow.png" />
   </view>
-</view>
-
-<view class="menu-wrap {{ menuFixed ? 'fixed' : '' }}" style="top: {{statusBarHeight + 44}}px;">
-  <view 
-    class="menu-item {{curMenuIndex === index ? 'selected' : ''}} row center" 
-    wx:for="{{menuList}}" wx:key="index" 
-    bindtap="selectMenu" data-index="{{index}}"
-  >{{item.name}}</view>
-</view>
-
-<view class="order-list-wrap {{ menuFixed ? 'fixed' : '' }}">
-  <goods-order-list list="{{orderList}}" bind:update="updateOrderList" />
-  <empty-illus wx:if="{{finished && !orderList.length}}" desc="暂无订单列表" />
-  <view class="no-more-tips" wx:if="{{finished && orderList.length}}">～没有更多了～</view>
 </view>

@@ -1,120 +1,36 @@
+import { createStoreBindings } from "mobx-miniprogram-bindings";
+import { store } from "../../../../store/index";
 import { WEBVIEW_BASE_URL } from "../../../../config";
-import ShopService from "./utils/shopService";
-
-const shopService = new ShopService();
-const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Page({
-  data: {
-    statusBarHeight,
-    curProductType: 0,
-    menuFixed: false,
-    menuList: [
-      { name: "全部", status: 0 },
-      { name: "待发货", status: 2 },
-      { name: "待收货", status: 3 },
-      { name: "售后", status: 5 }
-    ],
-    curMenuIndex: 0,
-    shopInfo: null,
-    orderList: [],
-    finished: false
-  },
-
   onLoad() {
-    this.setMenuTop();
-  },
-
-  async onShow() {
-    if (!this.data.shopInfo) {
-      await this.setShopInfo();
-    }
-    this.setOrderList(true);
-  },
-
-  setMenuTop() {
-    const query = wx.createSelectorQuery();
-    query.select(".menu-wrap").boundingClientRect();
-    query.exec(res => {
-      if (res[0] !== null) {
-        this.menuTop = res[0].top - statusBarHeight - 44;
-      }
+    this.storeBindings = createStoreBindings(this, {
+      store,
+      fields: ["userInfo"],
     });
   },
 
-  async setShopInfo() {
-    const shopInfo = await shopService.getShopInfo();
-    this.setData({ shopInfo });
+  onUnload() {
+    this.storeBindings.destroyStoreBindings();
   },
 
-  selectProductType(e) {
-    const { index: curProductType } = e.currentTarget.dataset;
-    this.setData({ curProductType });
-  },
-
-  selectMenu(e) {
-    const { index: curMenuIndex } = e.currentTarget.dataset;
-    this.setData({ curMenuIndex });
-    this.setOrderList(true);
-  },
-
-  async setOrderList(init = false) {
-    const limit = 10;
-    const { shopInfo, menuList, curMenuIndex, orderList } = this.data;
-    if (init) this.page = 0;
-    const list = await shopService.getOrderList({
-      shopId: shopInfo.id,
-      status: menuList[curMenuIndex].status,
-      page: ++this.page,
-      limit
-    });
-    this.setData({
-      orderList: init ? list : [...orderList, ...list]
-    });
-    if (list.length < limit) {
-      this.setData({ finished: true });
-    }
-  },
-
-  onPullDownRefresh() {
-    this.setOrderList(true);
-    wx.stopPullDownRefresh();
-  },
-
-  onReachBottom() {
-    this.setOrderList();
-  },
-
-  onPageScroll(e) {
-    const { menuFixed } = this.data;
-    if (e.scrollTop >= this.menuTop) {
-      if (!menuFixed) this.setData({ menuFixed: true });
-    } else {
-      if (menuFixed) this.setData({ menuFixed: false });
-    }
-  },
-
-  navToGoodsManagement() {
-    const { id } = this.data.shopInfo;
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/goods/list&shop_id=${id}`;
+  navToScenicProviderSettleIn() {
+    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/scenic/provider/settle_in`;
     wx.navigateTo({ url });
   },
 
-  navToRefundAddressManagement() {
-    const { id } = this.data.shopInfo;
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/refund_address/list&shop_id=${id}`;
+  navToHotelProviderSettleIn() {
+    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/hotel/provider/settle_in`;
     wx.navigateTo({ url });
   },
 
-  navToPickupAddressManagement() {
-    const { id } = this.data.shopInfo;
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/pickup_address/list&shop_id=${id}`;
-    wx.navigateTo({ url });
+  navToCateringSettleIn() {
+    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/catering/provider/settle_in`
+    wx.navigateTo({ url })
   },
 
-  navToFreightTemplateManagement() {
-    const { id } = this.data.shopInfo;
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/freight_template/list&shop_id=${id}`;
+  navToMerchantSettleIn() {
+    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/merchant/settle_in`;
     wx.navigateTo({ url });
-  }
+  },
 });
