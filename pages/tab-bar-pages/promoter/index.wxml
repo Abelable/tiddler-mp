@@ -1,3 +1,53 @@
-<view class="content" style="margin-top: {{statusBarHeight + 128}}px">
-  <empty-illus desc="暂无推广员" />
+<view class="container">
+  <image class="bg" mode="widthFix" src="https://static.tiddler.cn/mp/promoter/bg.png" />
+  <view class="title">
+    <text>为家乡</text>
+    <text style="font-weight: normal;">「</text>
+    <text>千岛湖</text>
+    <text style="font-weight: normal;">」</text>
+    <text>代言</text>
+  </view>
+
+  <view class="content-wrap">
+    <image class="illus" src="https://static.tiddler.cn/mp/promoter/illus.png" />
+    <view class="content-title">初心</view>
+    <view class="content-desc">Our direction</view>
+    <view class="content">
+      <view>我们小时候很少有食品安全问题</view>
+      <view>我们孩子一出生就可能面临这样的问题;必须做出改变为了我们的孩子,也为了更多的孩子。</view>
+    </view>
+    <view class="content-second-title">愿景</view>
+    <view class="content">
+      创建一个与社员共创、共建、共享的有机生活社区。
+    </view>
+    <view class="content-second-title">价值观</view>
+    <view class="content">
+      求真、利他、担当、极致、死磕、创新
+    </view>
+    <view class="jion-us-btn row center">
+      <text>加入我们</text>
+      <image class="arrow" src="https://static.tiddler.cn/mp/promoter/arrow.png" />
+    </view>
+  </view>
+
+  <view class="content-wrap">
+    <view class="content-title">初心</view>
+    <view class="content-desc">Our direction</view>
+    <view class="content">
+      <view>我们小时候很少有食品安全问题</view>
+      <view>我们孩子一出生就可能面临这样的问题;必须做出改变为了我们的孩子,也为了更多的孩子。</view>
+    </view>
+    <view class="content-second-title">愿景</view>
+    <view class="content">
+      创建一个与社员共创、共建、共享的有机生活社区。
+    </view>
+    <view class="content-second-title">价值观</view>
+    <view class="content">
+      求真、利他、担当、极致、死磕、创新
+    </view>
+    <view class="jion-us-btn row center">
+      <text>加入我们</text>
+      <image class="arrow" src="https://static.tiddler.cn/mp/promoter/arrow.png" />
+    </view>
+  </view>
 </view>

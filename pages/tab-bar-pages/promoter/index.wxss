@@ -1,0 +1,71 @@
+.container {
+  padding-bottom: calc(142rpx + env(safe-area-inset-bottom));
+  font-size: 0;
+  background: #fff;
+  min-height: 100vh;
+}
+.bg {
+  width: 100%;
+}
+.title {
+  padding-top: 18rpx;
+  padding-left: 56rpx;
+  color: #333;
+  font-size: 32rpx;
+  font-weight: 500;
+}
+
+.content-wrap {
+  position: relative;
+  margin: 48rpx 32rpx 64rpx;
+  padding: 48rpx;
+  background: #EEFCFE;
+  border-radius: 32rpx;
+}
+.illus {
+  position: absolute;
+  top: -188rpx;
+  right: 0;
+  width: 498rpx;
+  height: 366rpx;
+}
+.content-title {
+  color: #141925;
+  font-size: 48rpx;
+  font-weight: 600;
+}
+.content-desc {
+  color: #333;
+  font-size: 36rpx;
+  line-height: 1;
+}
+.content {
+  margin: 12rpx 0 32rpx;
+  color: #666;
+  font-size: 26rpx;
+}
+.content-second-title {
+  color: #141925;
+  font-size: 36rpx;
+  font-weight: 600;
+  line-height: 1;
+}
+
+
+.jion-us-btn {
+  position: absolute;
+  left: 50%;
+  bottom: -38rpx;
+  transform: translateX(-50%);
+  width: 360rpx;
+  height: 76rpx;
+  color: #fff;
+  font-size: 32rpx;
+  font-weight: 500;
+  background: #000;
+  border-radius: 38rpx;
+}
+.arrow {
+  width: 32rpx;
+  height: 32rpx;
+}
