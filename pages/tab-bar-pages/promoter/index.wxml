@@ -9,16 +9,16 @@
     <view class="content-title">初心</view>
     <view class="content-desc">Our direction</view>
     <view class="content">
-      <view>我们小时候很少有食品安全问题</view>
-      <view>我们孩子一出生就可能面临这样的问题;必须做出改变为了我们的孩子,也为了更多的孩子。</view>
+       <view>童年的千岛湖，是记忆里最澄澈的</view>
+       <view>一抹蓝，是夏日蝉鸣与船橹声交织的美妙乐章。如今家乡却被渐渐淡忘。回归家乡，以青春为诗，以梦想为桥，唤醒沉睡的风景，讲述属于这里的人文故事。</view>
     </view>
     <view class="content-second-title">愿景</view>
     <view class="content">
-      创建一个与社员共创、共建、共享的有机生活社区。
+      为千岛湖注入新鲜血液，成为千岛湖发展的催化剂。
     </view>
     <view class="content-second-title">价值观</view>
     <view class="content">
-      求真、利他、担当、极致、死磕、创新
+      温暖、真诚、热血、求真、极致、创新
     </view>
     <view class="jion-us-btn row center">
       <text>加入我们</text>
@@ -29,7 +29,7 @@
   <view class="rights-wrap">
     <view class="rights-title">深度参与反向定制</view>
     <view class="rights-desc">
-      购买社员储值卡，并获得以下社员权益
+      购买家乡特色商品，可获得以下权益
     </view>
     <view class="rights-list">
       <view class="rights-item" wx:for="{{ARRAY.slice(rightsList, 0, 4)}}" wx::key="index">

@@ -22,13 +22,12 @@
 }
 .illus {
   position: absolute;
-  top: -168rpx;
+  top: -180rpx;
   right: 0;
   width: 498rpx;
   height: 366rpx;
 }
 .content-title {
-  margin-top: 24rpx;
   color: #141925;
   font-size: 48rpx;
   font-weight: 600;
