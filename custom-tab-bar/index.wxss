@@ -28,7 +28,7 @@
   height: 48rpx;
 }
 .text {
-  margin-top: 4rpx;
+  margin-top: 6rpx;
   font-size: 18rpx;
   color: #999;
   line-height: 1;

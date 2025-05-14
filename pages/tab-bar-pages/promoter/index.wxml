@@ -1,12 +1,6 @@
 <view class="container">
   <image class="bg" mode="widthFix" src="https://static.tiddler.cn/mp/promoter/bg.png" />
-  <view class="title">
-    <text>为家乡</text>
-    <text style="font-weight: normal;">「</text>
-    <text>千岛湖</text>
-    <text style="font-weight: normal;">」</text>
-    <text>代言</text>
-  </view>
+  <image class="title" src="https://static.tiddler.cn/mp/promoter/title.png" />
 
   <view class="content-wrap">
     <image class="illus" src="https://static.tiddler.cn/mp/promoter/illus.png" />
