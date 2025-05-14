@@ -50,6 +50,42 @@
   line-height: 1;
 }
 
+.rights-wrap {
+  margin: 80rpx 32rpx 0;
+  padding: 48rpx 0;
+  background: #EEFCFE;
+  border-radius: 32rpx;
+}
+.rights-title {
+  margin-left: 48rpx;
+  color: #141925;
+  font-size: 32rpx;
+  font-weight: 600;
+}
+.rights-desc {
+  margin: 8rpx 0 48rpx 48rpx;
+  color: #333;
+  font-size: 28rpx;
+}
+.rights-list {
+  display: flex;
+  margin-bottom: 32rpx;
+}
+.rights-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+.rights-icon {
+  width: 72rpx;
+  height: 72rpx;
+}
+.rights-name {
+  margin-top: 8rpx;
+  color: #333;
+  font-size: 24rpx;
+}
 
 .jion-us-btn {
   position: absolute;

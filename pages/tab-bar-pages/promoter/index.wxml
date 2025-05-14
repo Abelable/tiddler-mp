@@ -1,3 +1,5 @@
+<wxs module="ARRAY" src="/utils/filters/array.wxs" />
+
 <view class="container">
   <image class="bg" mode="widthFix" src="https://static.tiddler.cn/mp/promoter/bg.png" />
   <image class="title" src="https://static.tiddler.cn/mp/promoter/title.png" />
@@ -24,24 +26,22 @@
     </view>
   </view>
 
-  <view class="content-wrap">
-    <view class="content-title">初心</view>
-    <view class="content-desc">Our direction</view>
-    <view class="content">
-      <view>我们小时候很少有食品安全问题</view>
-      <view>我们孩子一出生就可能面临这样的问题;必须做出改变为了我们的孩子,也为了更多的孩子。</view>
+  <view class="rights-wrap">
+    <view class="rights-title">深度参与反向定制</view>
+    <view class="rights-desc">
+      购买社员储值卡，并获得以下社员权益
     </view>
-    <view class="content-second-title">愿景</view>
-    <view class="content">
-      创建一个与社员共创、共建、共享的有机生活社区。
+    <view class="rights-list">
+      <view class="rights-item" wx:for="{{ARRAY.slice(rightsList, 0, 4)}}" wx::key="index">
+        <image class="rights-icon" src="https://static.tiddler.cn/mp/promoter/{{item.icon}}.png" />
+        <view class="rights-name">{{item.name}}</view>
+      </view>
     </view>
-    <view class="content-second-title">价值观</view>
-    <view class="content">
-      求真、利他、担当、极致、死磕、创新
-    </view>
-    <view class="jion-us-btn row center">
-      <text>加入我们</text>
-      <image class="arrow" src="https://static.tiddler.cn/mp/promoter/arrow.png" />
+    <view class="rights-list">
+      <view class="rights-item" wx:for="{{ARRAY.slice(rightsList, 4)}}" wx::key="index">
+        <image class="rights-icon" src="https://static.tiddler.cn/mp/promoter/{{item.icon}}.png" />
+        <view class="rights-name">{{item.name}}</view>
+      </view>
     </view>
   </view>
 </view>
