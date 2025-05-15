@@ -15,8 +15,8 @@
 
 .content-wrap {
   position: relative;
-  margin: 48rpx 32rpx 64rpx;
-  padding: 48rpx;
+  margin: 48rpx 32rpx;
+  padding: 48rpx 48rpx 64rpx;
   background: #EEFCFE;
   border-radius: 32rpx;
 }
@@ -38,11 +38,12 @@
   line-height: 1;
 }
 .content {
-  margin: 12rpx 0 32rpx;
+  margin-top: 12rpx;
   color: #666;
   font-size: 26rpx;
 }
 .content-second-title {
+  margin-top: 32rpx;
   color: #141925;
   font-size: 36rpx;
   font-weight: 600;
@@ -51,7 +52,7 @@
 
 .rights-wrap {
   margin: 80rpx 32rpx 0;
-  padding: 48rpx 0;
+  padding: 48rpx 0 24rpx;
   background: #EEFCFE;
   border-radius: 32rpx;
 }
