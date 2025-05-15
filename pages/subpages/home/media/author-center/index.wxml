@@ -1,7 +1,7 @@
 <wxs module="NUM" src="/utils/filters/num.wxs" />
 
 <view class="nav-bar row" style="padding-top: {{statusBarHeight}}px;">
-  <image class="nav-bg" wx:if="{{navBarVisible}}" src="{{authorInfo.bg || 'https://img.ubo.vip/tiddler/temp/bg.jpg'}}" />
+  <image class="nav-bg" wx:if="{{navBarVisible}}" src="{{authorInfo.bg || 'https://static.tiddler.cn/mp/bg.png'}}" />
   <view class="bg-cover" wx:if="{{navBarVisible}}" />
   <back-icon style="margin-left: 8px;" noBorder="{{navBarVisible}}" />
   <image class="user-avatar" wx:if="{{navBarVisible}}" src="{{authorInfo.avatar}}" />
@@ -9,7 +9,7 @@
 </view>
 
 <view class="container">
-  <image class="bg" src="{{authorInfo.bg || 'https://img.ubo.vip/tiddler/temp/bg.jpg'}}" mode="aspectFill" />
+  <image class="bg" src="{{authorInfo.bg || 'https://static.tiddler.cn/mp/bg.png'}}" mode="aspectFill" />
   <view class="content">
     <view class="avatar-wrap">
       <image class="avatar" src="{{authorInfo.avatar}}" />

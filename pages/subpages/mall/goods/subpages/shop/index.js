@@ -85,7 +85,7 @@ Page({
         posterInfo: {
           title,
           shopInfo: { type, logo },
-          cover: cover || "https://img.ubo.vip/tiddler/temp/bg.jpg",
+          cover: cover || "https://static.tiddler.cn/mp/bg.png",
           qrcode
         }
       });

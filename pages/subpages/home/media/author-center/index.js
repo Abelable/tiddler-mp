@@ -282,7 +282,7 @@ Page({
       this.setData({
         posterModalVisible: true,
         posterInfo: {
-          cover: bg ? bg : "https://img.ubo.vip/tiddler/temp/bg.jpg",
+          cover: bg ? bg : "https://static.tiddler.cn/mp/bg.png",
           authorInfo: { avatar, nickname },
           auchorDataDesc: `${numOver(beLikedTimes, 100000)}获赞｜${numOver(
             followedAuthorNumber,
