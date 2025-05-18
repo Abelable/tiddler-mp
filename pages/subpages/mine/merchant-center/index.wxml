@@ -20,10 +20,10 @@
   </view>
 </view>
 
-<view class="container" style="padding-top: {{statusBarHeight + 56}}px">
-  <image class="bg" src="./images/bg_blue.png" />
+<view class="container {{titleMenu[curTitleIdx].type}}" style="padding-top: {{statusBarHeight + 56}}px">
+  <image class="bg" src="./images/bg_{{titleMenu[curTitleIdx].type}}.png" />
 
-  <view class="data-card" wx:if="{{titleMenu[curTitleIdx].value === 1}}">
+  <view class="data-card scenic" wx:if="{{titleMenu[curTitleIdx].value === 1}}">
     <image class="data-card-bg" src="./images/wallet.png" />
     <view class="data-card-main">
       <view class="balance-data-item">
@@ -50,7 +50,6 @@
     </view>
     <button class="withdraw-btn" hover-class="none">收益提现</button>
   </view>
-
   <view class="tool-card" wx:if="{{titleMenu[curTitleIdx].value === 1}}">
     <view class="tool-card-title row between">
       <view>商家订单</view>
@@ -74,8 +73,235 @@
       </view>
     </view>
   </view>
-
   <view class="tool-card" wx:if="{{titleMenu[curTitleIdx].value === 1}}">
+    <view class="tool-card-title">常用工具</view>
+    <view class="tool-list row">
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/shop.png" />
+        <view class="tool-name">店铺管理</view>
+      </view>
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/manager.png" />
+        <view class="tool-name">人员管理</view>
+      </view>
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/ticket.png" />
+        <view class="tool-name">门票管理</view>
+      </view>
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/scenic.png" />
+        <view class="tool-name">景点管理</view>
+      </view>
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/bond.png" />
+        <view class="tool-name">保证金</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="data-card hotel" wx:if="{{titleMenu[curTitleIdx].value === 2}}">
+    <image class="data-card-bg" src="./images/wallet.png" />
+    <view class="data-card-main">
+      <view class="balance-data-item">
+        <view class="balance-data-title">累计收益 (元)</view>
+        <view class="balance-data-amount">8828.92</view>
+      </view>
+      <view class="data-items-wrap row between">
+        <view class="data-item">
+          <view class="data-title">成交额 (元)</view>
+          <view class="data-amount">882.88</view>
+          <view class="data-supplement">昨日 682.22</view>
+        </view>
+        <view class="data-item">
+          <view class="data-title">订单数</view>
+          <view class="data-amount">882</view>
+          <view class="data-supplement">昨日 682</view>
+        </view>
+        <view class="data-item">
+          <view class="data-title">访客数</view>
+          <view class="data-amount">882</view>
+          <view class="data-supplement">昨日 682</view>
+        </view>
+      </view>
+    </view>
+    <button class="withdraw-btn" hover-class="none">收益提现</button>
+  </view>
+  <view class="tool-card" wx:if="{{titleMenu[curTitleIdx].value === 2}}">
+    <view class="tool-card-title row between">
+      <view>商家订单</view>
+      <view class="check-btn row">
+        <text>全部订单</text>
+        <image class="check-btn-arrow" src="./images/arrow.png" />
+      </view>
+    </view>
+    <view class="tool-list row around">
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/pay.png" />
+        <view class="tool-name">待付款</view>
+      </view>
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/package.png" />
+        <view class="tool-name">待出行</view>
+      </view>
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/after_sale.png" />
+        <view class="tool-name">售后</view>
+      </view>
+    </view>
+  </view>
+  <view class="tool-card" wx:if="{{titleMenu[curTitleIdx].value === 2}}">
+    <view class="tool-card-title">常用工具</view>
+    <view class="tool-list row">
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/shop.png" />
+        <view class="tool-name">店铺管理</view>
+      </view>
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/manager.png" />
+        <view class="tool-name">人员管理</view>
+      </view>
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/ticket.png" />
+        <view class="tool-name">门票管理</view>
+      </view>
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/scenic.png" />
+        <view class="tool-name">景点管理</view>
+      </view>
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/bond.png" />
+        <view class="tool-name">保证金</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="data-card catering" wx:if="{{titleMenu[curTitleIdx].value === 3}}">
+    <image class="data-card-bg" src="./images/wallet.png" />
+    <view class="data-card-main">
+      <view class="balance-data-item">
+        <view class="balance-data-title">累计收益 (元)</view>
+        <view class="balance-data-amount">8828.92</view>
+      </view>
+      <view class="data-items-wrap row between">
+        <view class="data-item">
+          <view class="data-title">成交额 (元)</view>
+          <view class="data-amount">882.88</view>
+          <view class="data-supplement">昨日 682.22</view>
+        </view>
+        <view class="data-item">
+          <view class="data-title">订单数</view>
+          <view class="data-amount">882</view>
+          <view class="data-supplement">昨日 682</view>
+        </view>
+        <view class="data-item">
+          <view class="data-title">访客数</view>
+          <view class="data-amount">882</view>
+          <view class="data-supplement">昨日 682</view>
+        </view>
+      </view>
+    </view>
+    <button class="withdraw-btn" hover-class="none">收益提现</button>
+  </view>
+  <view class="tool-card" wx:if="{{titleMenu[curTitleIdx].value === 3}}">
+    <view class="tool-card-title row between">
+      <view>商家订单</view>
+      <view class="check-btn row">
+        <text>全部订单</text>
+        <image class="check-btn-arrow" src="./images/arrow.png" />
+      </view>
+    </view>
+    <view class="tool-list row around">
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/pay.png" />
+        <view class="tool-name">待付款</view>
+      </view>
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/package.png" />
+        <view class="tool-name">待出行</view>
+      </view>
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/after_sale.png" />
+        <view class="tool-name">售后</view>
+      </view>
+    </view>
+  </view>
+  <view class="tool-card" wx:if="{{titleMenu[curTitleIdx].value === 3}}">
+    <view class="tool-card-title">常用工具</view>
+    <view class="tool-list row">
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/shop.png" />
+        <view class="tool-name">店铺管理</view>
+      </view>
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/manager.png" />
+        <view class="tool-name">人员管理</view>
+      </view>
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/ticket.png" />
+        <view class="tool-name">门票管理</view>
+      </view>
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/scenic.png" />
+        <view class="tool-name">景点管理</view>
+      </view>
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/bond.png" />
+        <view class="tool-name">保证金</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="data-card goods" wx:if="{{titleMenu[curTitleIdx].value === 4}}">
+    <image class="data-card-bg" src="./images/wallet.png" />
+    <view class="data-card-main">
+      <view class="balance-data-item">
+        <view class="balance-data-title">累计收益 (元)</view>
+        <view class="balance-data-amount">8828.92</view>
+      </view>
+      <view class="data-items-wrap row between">
+        <view class="data-item">
+          <view class="data-title">成交额 (元)</view>
+          <view class="data-amount">882.88</view>
+          <view class="data-supplement">昨日 682.22</view>
+        </view>
+        <view class="data-item">
+          <view class="data-title">订单数</view>
+          <view class="data-amount">882</view>
+          <view class="data-supplement">昨日 682</view>
+        </view>
+        <view class="data-item">
+          <view class="data-title">访客数</view>
+          <view class="data-amount">882</view>
+          <view class="data-supplement">昨日 682</view>
+        </view>
+      </view>
+    </view>
+    <button class="withdraw-btn" hover-class="none">收益提现</button>
+  </view>
+  <view class="tool-card" wx:if="{{titleMenu[curTitleIdx].value === 4}}">
+    <view class="tool-card-title row between">
+      <view>商家订单</view>
+      <view class="check-btn row">
+        <text>全部订单</text>
+        <image class="check-btn-arrow" src="./images/arrow.png" />
+      </view>
+    </view>
+    <view class="tool-list row around">
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/pay.png" />
+        <view class="tool-name">待付款</view>
+      </view>
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/package.png" />
+        <view class="tool-name">待出行</view>
+      </view>
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/after_sale.png" />
+        <view class="tool-name">售后</view>
+      </view>
+    </view>
+  </view>
+  <view class="tool-card" wx:if="{{titleMenu[curTitleIdx].value === 4}}">
     <view class="tool-card-title">常用工具</view>
     <view class="tool-list row">
       <view class="tool-item">

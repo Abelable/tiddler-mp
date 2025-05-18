@@ -24,7 +24,18 @@
   position: relative;
   padding: 24rpx;
   min-height: 100vh;
+}
+.container.scenic {
   background: linear-gradient(180deg, #EDF6FE 20%, #F6F6F6 55%);
+}
+.container.hotel {
+  background: linear-gradient( 180deg, #F3EDFE 20%, #F6F6F6 55%);
+}
+.container.catering {
+  background: linear-gradient( 180deg, #FEF4EA 20%, #F6F6F6 55%);
+}
+.container.goods {
+  background: linear-gradient( 180deg, #FEEDED 20%, #F6F6F6 55%);
 }
 .bg {
   position: absolute;
@@ -39,15 +50,26 @@
   height: 336rpx;
   color: #fff;
   border-radius: 48rpx;
-  background: linear-gradient(135deg, #67BAF6 0%, #2769F7 100%);
   overflow: hidden;
+}
+.data-card.scenic {
+  background: linear-gradient(135deg, #67BAF6 0%, #2769F7 100%);
+}
+.data-card.hotel {
+  background: linear-gradient(270deg, #5E5CDE 0%, #B779E5 100%);
+}
+.data-card.catering {
+  background: linear-gradient( 90deg, #ECD075 0%, #FFB700 100%);
+}
+.data-card.goods {
+  background: linear-gradient(135deg, #FE918D 0%, #FF4B7F 100%);
 }
 .data-card-bg {
   position: absolute;
-  right: -30rpx;
-  bottom: -45rpx;
-  width: 240rpx;
-  height: 266rpx;
+  right: 0;
+  bottom: 0;
+  width: 208rpx;
+  height: 234rpx;
 }
 .data-card-main {
   position: absolute;
