@@ -3,10 +3,19 @@
     <view style="flex: 1;">
       <back-icon />
     </view>
-    <view class="nav-bar-title row center">
-      <text>景区管理</text>
-      <image class="switch-icon" src="./images/switch.png" />
-    </view>
+    <view class="nav-bar-title" wx:if="{{titleMenu.length === 1}}">商家中心</view>
+    <picker 
+      wx:if="{{titleMenu.length > 1}}" 
+      bindchange="selectTitle" 
+      value="{{curTitleIdx}}" 
+      range="{{titleMenu}}"
+      range-key="name"      
+    > 
+      <view class="nav-bar-title row center">
+        <text>{{titleMenu[curTitleIdx].name}}</text>
+        <image class="switch-icon" src="./images/switch.png" />
+      </view>
+    </picker>
     <view style="flex: 1;"></view>
   </view>
 </view>
@@ -14,7 +23,7 @@
 <view class="container" style="padding-top: {{statusBarHeight + 56}}px">
   <image class="bg" src="./images/bg_blue.png" />
 
-  <view class="data-card">
+  <view class="data-card" wx:if="{{titleMenu[curTitleIdx].value === 1}}">
     <image class="data-card-bg" src="./images/wallet.png" />
     <view class="data-card-main">
       <view class="balance-data-item">
@@ -42,7 +51,7 @@
     <button class="withdraw-btn" hover-class="none">收益提现</button>
   </view>
 
-  <view class="tool-card">
+  <view class="tool-card" wx:if="{{titleMenu[curTitleIdx].value === 1}}">
     <view class="tool-card-title row between">
       <view>商家订单</view>
       <view class="check-btn row">
@@ -66,7 +75,7 @@
     </view>
   </view>
 
-  <view class="tool-card">
+  <view class="tool-card" wx:if="{{titleMenu[curTitleIdx].value === 1}}">
     <view class="tool-card-title">常用工具</view>
     <view class="tool-list row">
       <view class="tool-item">
@@ -90,8 +99,5 @@
         <view class="tool-name">保证金</view>
       </view>
     </view>
-     <!-- <view class="tool-list row">
-      
-    </view> -->
   </view>
 </view>

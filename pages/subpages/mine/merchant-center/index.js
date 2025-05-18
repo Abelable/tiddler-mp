@@ -1,20 +1,42 @@
-import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { store } from "../../../../store/index";
-const { statusBarHeight } = getApp().globalData.systemInfo
+const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Page({
   data: {
-    statusBarHeight
-  },
-  
-  onLoad() {
-    this.storeBindings = createStoreBindings(this, {
-      store,
-      fields: ["userInfo"],
-    });
+    statusBarHeight,
+    titleMenu: [],
+    curTitleIdx: 0
   },
 
-  onUnload() {
-    this.storeBindings.destroyStoreBindings();
+  onLoad() {
+    this.setTitleMenu();
   },
+
+  setTitleMenu() {
+    const {
+      scenicProviderId,
+      hotelProviderId,
+      cateringProviderId,
+      merchantId
+    } = store.userInfo;
+    const titleMenu = [];
+    if (scenicProviderId) {
+      titleMenu.push({ name: "景区管理", value: 1 });
+    }
+    if (hotelProviderId) {
+      titleMenu.push({ name: "酒店管理", value: 2 });
+    }
+    if (cateringProviderId) {
+      titleMenu.push({ name: "餐饮管理", value: 3 });
+    }
+    if (merchantId) {
+      titleMenu.push({ name: "电商管理", value: 4 });
+    }
+    this.setData({ titleMenu });
+  },
+
+  selectTitle(e) {
+    const curTitleIdx = +e.detail.value;
+    this.setData({ curTitleIdx });
+  }
 });
