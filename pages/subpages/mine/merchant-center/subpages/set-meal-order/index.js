@@ -1,16 +1,15 @@
-import ScenicService from "./utils/scenicService";
+import CateringService from "../utils/cateringService";
 
-const scenicService = new ScenicService();
+const cateringService = new CateringService();
 const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Page({
   data: {
     statusBarHeight,
-    shopInfo: null,
     menuList: [
       { name: "全部", status: 0 },
       { name: "待付款", status: 1 },
-      { name: "待出行", status: 2 },
+      { name: "待使用", status: 2 },
       { name: "售后", status: 4 }
     ],
     curMenuIndex: 0,
@@ -25,16 +24,8 @@ Page({
     this.setData({ curMenuIndex });
   },
 
-  async onShow() {
-    if (!this.data.shopInfo) {
-      await this.setShopInfo();
-    }
+  onShow() {
     this.setOrderList(true);
-  },
-
-  async setShopInfo() {
-    const shopInfo = await scenicService.getShopInfo();
-    this.setData({ shopInfo });
   },
 
   selectMenu(e) {
@@ -45,10 +36,9 @@ Page({
 
   async setOrderList(init = false) {
     const limit = 10;
-    const { shopInfo, menuList, curMenuIndex, orderList } = this.data;
+    const { menuList, curMenuIndex, orderList } = this.data;
     if (init) this.page = 0;
-    const list = await scenicService.getOrderList({
-      shopId: shopInfo.id,
+    const list = await cateringService.getSetMealOrderList({
       status: menuList[curMenuIndex].status,
       page: ++this.page,
       limit
@@ -93,5 +83,5 @@ Page({
     wx.navigateTo({
       url: "./subpages/search/index"
     });
-  },
+  }
 });

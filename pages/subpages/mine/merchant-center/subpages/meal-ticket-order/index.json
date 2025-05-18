@@ -1,0 +1,10 @@
+{
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "back-icon": "/components/back-icon/index",
+    "empty-illus": "/components/empty-illus/index",
+    "order-item": "./components/order-item/index"
+  }
+}

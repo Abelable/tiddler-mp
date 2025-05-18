@@ -19,7 +19,7 @@ Page({
     finished: false
   },
 
-  async onLoad({ status = "0" }) {
+  onLoad({ status = "0" }) {
     const curMenuIndex = this.data.menuList.findIndex(
       item => item.status === Number(status)
     );

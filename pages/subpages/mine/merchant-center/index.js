@@ -82,9 +82,17 @@ Page({
     }
   },
 
-  checkMealTicketOrders() {},
+  checkMealTicketOrders() {
+    wx.navigateTo({
+      url: "./subpages/meal-ticket-order/index"
+    });
+  },
 
-  checkSetMealOrders() {},
+  checkSetMealOrders() {
+    wx.navigateTo({
+      url: "./subpages/set-meal-order/index"
+    });
+  },
 
   checkAfterSale() {
     const { titleMenu, curTitleIdx } = this.data;
@@ -150,6 +158,21 @@ Page({
 
   manageHotel() {
     const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/hotel/list`;
+    wx.navigateTo({ url });
+  },
+
+  manageRestaurant() {
+    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/catering/restaurant/list`;
+    wx.navigateTo({ url });
+  },
+
+  manageMealTicket() {
+    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/catering/meal_ticket/list`;
+    wx.navigateTo({ url });
+  },
+
+  manageSetMeal() {
+    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/catering/set_meal/list`;
     wx.navigateTo({ url });
   },
 

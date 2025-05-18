@@ -263,15 +263,15 @@
         <image class="tool-icon" src="./images/manager.png" />
         <view class="tool-name">人员管理</view>
       </view>
-      <view class="tool-item">
+      <view class="tool-item" bindtap="manageRestaurant">
         <image class="tool-icon" src="./images/shop.png" />
         <view class="tool-name">门店管理</view>
       </view>
-      <view class="tool-item">
+      <view class="tool-item" bindtap="manageMealTicket">
         <image class="tool-icon" src="./images/ticket.png" />
         <view class="tool-name">餐券管理</view>
       </view>
-      <view class="tool-item">
+      <view class="tool-item" bindtap="manageSetMeal">
         <image class="tool-icon" src="./images/food.png" />
         <view class="tool-name">套餐管理</view>
       </view>
