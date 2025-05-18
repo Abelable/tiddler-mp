@@ -3,7 +3,7 @@
     <view style="flex: 1;">
       <back-icon />
     </view>
-    <view class="nav-bar-title">
+    <view class="nav-bar-title row center">
       <text>景区管理</text>
       <image class="switch-icon" src="./images/switch.png" />
     </view>
