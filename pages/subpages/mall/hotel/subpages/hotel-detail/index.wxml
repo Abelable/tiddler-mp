@@ -244,7 +244,7 @@
       </view>
     </view>
     <scroll-view class="hotel-hotel-list" scroll-x enable-flex wx:if="{{nearbyScenicList.length}}">
-      <scenic-spot-item wx:for="{{nearbyScenicList}}" wx:key="index" info="{{item}}" />
+      <scenic-item wx:for="{{nearbyScenicList}}" wx:key="index" info="{{item}}" />
     </scroll-view>
     <empty-illus wx:if="{{!nearbyScenicList.length}}" desc="暂无附近景点" height="520rpx" />
   </view>

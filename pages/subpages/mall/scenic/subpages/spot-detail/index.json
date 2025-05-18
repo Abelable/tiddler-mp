@@ -6,7 +6,7 @@
     "van-rate": "@vant/weapp/rate/index",
     "evaluation-item": "../../../components/evaluation-item/index",
     "hotel-item": "../../../components/hotel-item/index",
-    "scenic-spot-item": "../../../components/scenic-spot-item/index",
+    "scenic-item": "../../../components/scenic-item/index",
     "empty-illus": "/components/empty-illus/index",
     "fall-flow": "/components/fall-flow/index",
     "media-item": "/components/media-item/index",

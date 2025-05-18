@@ -77,7 +77,7 @@
 <view class="container">
   <view class="row between">
     <view class="row">
-      <view class="scenic-spot-name">{{scenicInfo.name}}</view>
+      <view class="scenic-name">{{scenicInfo.name}}</view>
       <view class="level-tag row" wx:if="{{scenicInfo.level}}">{{scenicInfo.level}}</view>
     </view>
     <image class="share-icon" bindtap="share" src="./images/share.png" />
@@ -229,8 +229,8 @@
       <image class="more-icon" src="./images/more.png" />
     </view>
   </view>
-  <scroll-view class="scenic-spot-list" scroll-x enable-flex wx:if="{{nearbyScenicList.length}}">
-    <scenic-spot-item wx:for="{{nearbyScenicList}}" wx:key="index" info="{{item}}" />
+  <scroll-view class="scenic-list" scroll-x enable-flex wx:if="{{nearbyScenicList.length}}">
+    <scenic-item wx:for="{{nearbyScenicList}}" wx:key="index" info="{{item}}" />
   </scroll-view>
   <empty-illus wx:if="{{!nearbyScenicList.length}}" desc="暂无附近景点" height="520rpx" />
 

@@ -274,7 +274,7 @@ Page({
 
   setNavBarVisibleLimit() {
     const query = wx.createSelectorQuery();
-    query.select(".scenic-spot-name").boundingClientRect();
+    query.select(".scenic-name").boundingClientRect();
     query.exec(res => {
       this.navBarVisibleLimit = res[0].bottom;
     });

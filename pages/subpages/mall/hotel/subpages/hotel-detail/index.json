@@ -12,7 +12,7 @@
     "media-item": "/components/media-item/index",
     "evaluation-item": "../../../components/evaluation-item/index",
     "hotel-item": "../../../components/hotel-item/index",
-    "scenic-spot-item": "../../../components/scenic-spot-item/index",
+    "scenic-item": "../../../components/scenic-item/index",
     "notice-popup": "../../components/notice-popup/index",
     "modal-mask": "/components/modal-mask/index",
     "poster-modal": "/components/poster-modal/index"

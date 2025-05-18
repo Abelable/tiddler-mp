@@ -161,7 +161,7 @@
   background: #fff;
   border-radius: 24rpx 24rpx 0 0;
 }
-.scenic-spot-name {
+.scenic-name {
   color: #333;
   font-size: 38rpx;
   font-weight: bold;
@@ -404,7 +404,7 @@
   height: 380rpx;
 }
 
-.scenic-spot-list {
+.scenic-list {
   display: flex;
   flex-wrap: nowrap;
   margin-top: 24rpx;
