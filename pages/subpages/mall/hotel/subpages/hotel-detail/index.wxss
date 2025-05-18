@@ -265,44 +265,53 @@
 .position-info-wrap {
   position: relative;
   margin: 24rpx 0;
-  height: 180rpx;
+  padding: 0 32rpx;
+  height: 156rpx;
   border-radius: 32rpx;
-  background: #2A254B;
+  background-image: 
+    linear-gradient(to right, #F7F8FA 0%, #F7F8FA 60%, rgba(247, 248, 250, 0) 100%),
+    url('https://static.tiddler.cn/mp/map_illus.png');
+  background-repeat: no-repeat, no-repeat;
+  background-size: 100% 100%, 321rpx 156rpx;
+  background-position: left top, right top;
   overflow: hidden;
 }
-.position-bg {
-  margin-left: 12rpx;
-  width: 180rpx;
-  height: 180rpx;
-}
 .position-info {
-  padding: 24rpx;
-  padding-left: 12rpx;
   flex: 1;
 }
 .position {
-  color: #fff;
-  font-size: 24rpx;
+  color: #333;
+  font-size: 26rpx;
   font-weight: 550;
 }
 .distance {
   margin-top: 12rpx;
-  color: #fff;
+  color: #999;
   font-size: 20rpx;
 }
 .navigation-btn {
-  position: absolute;
-  right: 24rpx;
-  bottom: 24rpx;
-  padding-left: 16rpx;
-  padding-right: 10rpx;
-  height: 40rpx;
-  color: #fff;
-  font-size: 20rpx;
-  line-height: 1;
-  border-radius: 20rpx;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.navigation-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60rpx;
+  height: 60rpx;
+  background: linear-gradient(41deg, #B1D9FF 45%, #50FFD4 100%);
+  border-radius: 50%;
+}
+.navigation-icon {
+  margin-right: 1rpx;
+  width: 36rpx;
+  height: 36rpx;
+}
+.navigation-btn-desc {
+  margin-top: 8rpx;
+  color: #666;
+  font-size: 22rpx;
 }
 
 .condition-picker-wrap {

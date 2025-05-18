@@ -74,15 +74,19 @@
       </view>
       <image class="more-icon" src="./images/more.png" />
     </view>
-    <view class="position-info-wrap row top" bindtap="navigation">
-      <image class="position-bg" src="https://img.ubo.vip/tiddler/temp/hotel/position-bg.jpg" />
+    <view class="position-info-wrap row" bindtap="navigation">
       <view class="position-info">
         <view class="position">位于「国家森林公园」{{hotelInfo.address}}</view>
         <view class="distance">距您{{distance}}km</view>
       </view>
-      <view class="navigation-btn row">
-        <view>导航/周边</view>
-        <image class="more-icon" src="./images/more-white.png" />
+      <view class="navigation-btn">
+        <view class="navigation-icon-wrap">
+          <image class="navigation-icon" src="./images/address.png" />
+        </view>
+        <view class="navigation-btn-desc row">
+          <view>位置/周边</view>
+          <image class="more-icon" src="./images/more.png" />
+        </view>
       </view>
     </view>
   </view>
