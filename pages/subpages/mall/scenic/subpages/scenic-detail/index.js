@@ -450,7 +450,7 @@ Page({
       const scene = store.promoterInfo
         ? `${this.scenicId}-${store.promoterInfo.id}`
         : `${this.scenicId}`;
-      const page = "pages/subpages/mall/scenic/subpages/spot-detail/index";
+      const page = "pages/subpages/mall/scenic/subpages/scenic-detail/index";
       const qrcode = await scenicService.getQRCode(scene, page);
 
       const {
@@ -537,8 +537,8 @@ Page({
   onShareAppMessage() {
     const { id, name, imageList } = this.data.scenicInfo;
     const path = store.promoterInfo
-      ? `/pages/subpages/mall/scenic/subpages/spot-detail/index?id=${id}&superiorId=${store.promoterInfo.id}`
-      : `/pages/subpages/mall/scenic/subpages/spot-detail/index?id=${id}`;
+      ? `/pages/subpages/mall/scenic/subpages/scenic-detail/index?id=${id}&superiorId=${store.promoterInfo.id}`
+      : `/pages/subpages/mall/scenic/subpages/scenic-detail/index?id=${id}`;
     return { path, title: name, imageUrl: imageList[0] };
   },
 

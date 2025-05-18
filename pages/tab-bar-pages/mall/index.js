@@ -140,7 +140,7 @@ Component({
 
         case 2:
           wx.navigateTo({
-            url: `/pages/subpages/mall/scenic/subpages/spot-detail/index?id=${param}`
+            url: `/pages/subpages/mall/scenic/subpages/scenic-detail/index?id=${param}`
           });
           break;
 
