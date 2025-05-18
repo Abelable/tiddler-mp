@@ -73,6 +73,9 @@ Page({
         });
         break;
       case 2:
+        wx.navigateTo({
+          url: "./subpages/hotel-order/index"
+        });
         break;
       case 4:
         break;
@@ -137,6 +140,16 @@ Page({
 
   manageScenicSpot() {
     const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/scenic/spot/list`;
+    wx.navigateTo({ url });
+  },
+
+  manageHotelRoom() {
+    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/hotel/room/list`;
+    wx.navigateTo({ url });
+  },
+
+  manageHotel() {
+    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/hotel/list`;
     wx.navigateTo({ url });
   },
 

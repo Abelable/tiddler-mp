@@ -168,11 +168,11 @@
         <image class="tool-icon" src="./images/manager.png" />
         <view class="tool-name">人员管理</view>
       </view>
-      <view class="tool-item">
+      <view class="tool-item" bindtap="manageHotelRoom">
         <image class="tool-icon" src="./images/room.png" />
         <view class="tool-name">房间管理</view>
       </view>
-      <view class="tool-item">
+      <view class="tool-item" bindtap="manageHotel">
         <image class="tool-icon" src="./images/hotel.png" />
         <view class="tool-name">酒店管理</view>
       </view>
