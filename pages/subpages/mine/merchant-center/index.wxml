@@ -1,37 +1,97 @@
-<view class="list-wrap">
-  <navigator class="list row between" wx:if="{{userInfo.scenicProviderId}}" url="./subpages/scenic-management/index" hover-class="none">
-    <view class="title">景区管理</view>
-    <image class="arrow" src="./images/arrow.png" />
-  </navigator>
-  <navigator class="list row between" wx:if="{{userInfo.hotelProviderId}}" url="./subpages/hotel-management/index" hover-class="none">
-    <view class="title">酒店管理</view>
-    <image class="arrow" src="./images/arrow.png" />
-  </navigator>
-  <navigator class="list row between" wx:if="{{userInfo.cateringProviderId}}" url="./subpages/catering-management/index" hover-class="none">
-    <view class="title">餐饮管理</view>
-    <image class="arrow" src="./images/arrow.png" />
-  </navigator>
-  <navigator class="list row between" wx:if="{{userInfo.merchantId}}" url="./subpages/shop-management/index" hover-class="none">
-    <view class="title">电商管理</view>
-    <image class="arrow" src="./images/arrow.png" />
-  </navigator>
+<view class="nav-bar-wrap" style="padding-top: {{statusBarHeight}}px;">
+  <view class="nav-bar row">
+    <view style="flex: 1;">
+      <back-icon />
+    </view>
+    <view class="nav-bar-title">
+      <text>景区管理</text>
+      <image class="switch-icon" src="./images/switch.png" />
+    </view>
+    <view style="flex: 1;"></view>
+  </view>
 </view>
 
-<view class="list-wrap">
-  <view class="list row between" wx:if="{{!userInfo.scenicProviderId}}" bindtap="navToScenicProviderSettleIn">
-    <view class="title">景区服务商入驻</view>
-    <image class="arrow" src="./images/arrow.png" />
+<view class="container" style="padding-top: {{statusBarHeight + 56}}px">
+  <image class="bg" src="./images/bg_blue.png" />
+
+  <view class="data-card">
+    <image class="data-card-bg" src="./images/wallet.png" />
+    <view class="data-card-main">
+      <view class="balance-data-item">
+        <view class="balance-data-title">累计收益 (元)</view>
+        <view class="balance-data-amount">8828.92</view>
+      </view>
+      <view class="data-items-wrap row between">
+        <view class="data-item">
+          <view class="data-title">成交额 (元)</view>
+          <view class="data-amount">882.88</view>
+          <view class="data-supplement">昨日 682.22</view>
+        </view>
+        <view class="data-item">
+          <view class="data-title">订单数</view>
+          <view class="data-amount">882</view>
+          <view class="data-supplement">昨日 682</view>
+        </view>
+        <view class="data-item">
+          <view class="data-title">访客数</view>
+          <view class="data-amount">882</view>
+          <view class="data-supplement">昨日 682</view>
+        </view>
+      </view>
+    </view>
+    <button class="withdraw-btn" hover-class="none">收益提现</button>
   </view>
-  <view class="list row between" wx:if="{{!userInfo.hotelProviderId}}" bindtap="navToHotelProviderSettleIn">
-    <view class="title">酒店服务商入驻</view>
-    <image class="arrow" src="./images/arrow.png" />
+
+  <view class="tool-card">
+    <view class="tool-card-title row between">
+      <view>商家订单</view>
+      <view class="check-btn row">
+        <text>全部订单</text>
+        <image class="check-btn-arrow" src="./images/arrow.png" />
+      </view>
+    </view>
+    <view class="tool-list row around">
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/pay.png" />
+        <view class="tool-name">待付款</view>
+      </view>
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/package.png" />
+        <view class="tool-name">待出行</view>
+      </view>
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/after_sale.png" />
+        <view class="tool-name">售后</view>
+      </view>
+    </view>
   </view>
-  <view class="list row between" wx:if="{{!userInfo.cateringProviderId}}" bindtap="navToCateringSettleIn">
-    <view class="title">餐饮商家入驻</view>
-    <image class="arrow" src="./images/arrow.png" />
-  </view>
-  <view class="list row between" wx:if="{{!userInfo.merchantId}}" bindtap="navToMerchantSettleIn">
-    <view class="title">电商商家入驻</view>
-    <image class="arrow" src="./images/arrow.png" />
+
+  <view class="tool-card">
+    <view class="tool-card-title">常用工具</view>
+    <view class="tool-list row">
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/shop.png" />
+        <view class="tool-name">店铺管理</view>
+      </view>
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/manager.png" />
+        <view class="tool-name">人员管理</view>
+      </view>
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/ticket.png" />
+        <view class="tool-name">门票管理</view>
+      </view>
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/scenic.png" />
+        <view class="tool-name">景点管理</view>
+      </view>
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/bond.png" />
+        <view class="tool-name">保证金</view>
+      </view>
+    </view>
+     <!-- <view class="tool-list row">
+      
+    </view> -->
   </view>
 </view>
