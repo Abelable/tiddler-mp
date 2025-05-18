@@ -9,6 +9,7 @@ export const store = observable({
   tabType: "home",
   userInfo: null,
   promoterInfo: null,
+  merchantType: 1,
   activeMediaItem: null,
   croppedImagePath: "",
   locationInfo: null,
@@ -24,6 +25,9 @@ export const store = observable({
   }),
   setPromoterInfo: action(function (info) {
     this.promoterInfo = info;
+  }),
+  setMerchantType: action(function (type) {
+    this.merchantType = type;
   }),
   setActiveMediaItem: action(function (info) {
     this.activeMediaItem = info;
