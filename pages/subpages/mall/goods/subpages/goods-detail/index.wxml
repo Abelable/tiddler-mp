@@ -100,7 +100,7 @@
       <view class="sale-volume" wx:if="{{goodsInfo.salesVolume}}">已售{{goodsInfo.salesVolume}}件</view>
     </view>
     <view class="goods-name">
-      <text class="goods-tag" wx:if="{{!goodsInfo.shopInfo}}">自营</text>
+      <image class="self-support-icon" wx:if="{{!goodsInfo.shopInfo}}" src="/images/self-support.png" />
       <text>{{goodsInfo.name}}</text>
     </view>
     <view class="goods-intro" wx:if="{{goodsInfo.introduction}}">{{goodsInfo.introduction}}</view>
