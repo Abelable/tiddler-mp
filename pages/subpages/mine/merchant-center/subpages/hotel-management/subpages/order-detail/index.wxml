@@ -69,6 +69,6 @@
     wx:if="{{item.status === 201}}"
     catchtap="deliverOrder" data-id="{{item.id}}" data-index="{{index}}"
   >去发货</button>
-  <button class="btn active" bindtap="contact">联系买家</button>
+  <button class="btn active" bindtap="contact">联系客户</button>
 </view>
   

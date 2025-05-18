@@ -5,7 +5,7 @@
     <view class="list-header row between">
       <view class="restaurant-info row" catchtap="navToRestaurant" data-id="{{item.restaurantId}}">
         <view class="restaurant-name omit single">{{item.restaurantName}}</view>
-        <image style="width: 20rpx; height: 20rpx;" src="https://img.ubo.vip/mp/to-icon.png" />
+        <image style="width: 20rpx; height: 20rpx;" src="/images/arrow_gray.png" />
       </view>
       <view class="order-status">{{ORDER.statusDesc(item.status)}}</view>
     </view>

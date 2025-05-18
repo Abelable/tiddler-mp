@@ -1,4 +1,4 @@
-import ScenicService from '../../utils/scenicService'
+import ScenicService from '../utils/scenicService'
 
 const scenicService = new ScenicService()
 

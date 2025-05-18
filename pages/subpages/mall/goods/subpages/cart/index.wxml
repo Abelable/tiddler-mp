@@ -21,7 +21,7 @@
         <view class="shop-info" wx:if="{{item.shopInfo}}" bindtap="navToShop" data-id="{{item.shopInfo.id}}">
           <image class="shop-img" src="{{item.shopInfo.logo}}" lazy-load />
           <view>{{item.shopInfo.name}}</view>
-          <image style="width: 20rpx; height: 20rpx;" src="https://img.ubo.vip/mp/to-icon.png" />
+          <image style="width: 20rpx; height: 20rpx;" src="/images/arrow_gray.png" />
         </view>
         <view class="shop-info" wx:if="{{!item.shopInfo}}">官方自营</view>
       </view>
@@ -36,7 +36,7 @@
                 <block wx:if="{{_item.status === 1}}">
                   <view class="goods-sku-wrap" wx:if="{{_item.selectedSkuName}}" catchtap="showSpecPopup" data-info="{{_item}}" data-cart-index="{{index}}" data-goods-index="{{_index}}">
                     <text class="goods-sku omit single">已选：{{_item.selectedSkuName}}</text>
-                    <image class="sku-edit-icon" src="https://img.ubo.vip/mp/to-icon.png" />
+                    <image class="sku-edit-icon" src="/images/arrow_gray.png" />
                   </view>
                   <view class="goods-price-wrap">
                     <view class="goods-price row baseline">

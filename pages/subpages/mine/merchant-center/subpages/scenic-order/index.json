@@ -5,6 +5,6 @@
   "usingComponents": {
     "back-icon": "/components/back-icon-white/index",
     "empty-illus": "/components/empty-illus/index",
-    "order-list": "./components/order-list/index"
+    "order-item": "../components/order-item/index"
   }
 }

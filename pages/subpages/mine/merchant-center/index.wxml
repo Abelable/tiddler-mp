@@ -48,12 +48,12 @@
         </view>
       </view>
     </view>
-    <button class="withdraw-btn" hover-class="none">收益提现</button>
+    <button class="withdraw-btn" bindtap="withdraw" hover-class="none">收益提现</button>
   </view>
   <view class="tool-card" wx:if="{{titleMenu[curTitleIdx].value === 1}}">
     <view class="tool-card-title row between">
       <view>商家订单</view>
-      <view class="check-btn row">
+      <view class="check-btn row" bindtap="checkOrders">
         <text>全部订单</text>
         <image class="check-btn-arrow" src="./images/arrow.png" />
       </view>
@@ -64,10 +64,14 @@
         <view class="tool-name">待付款</view>
       </view>
       <view class="tool-item">
+        <image class="tool-icon" src="./images/time.png" />
+        <view class="tool-name">待确认</view>
+      </view>
+      <view class="tool-item">
         <image class="tool-icon" src="./images/luggage.png" />
         <view class="tool-name">待出行</view>
       </view>
-      <view class="tool-item">
+      <view class="tool-item" bindtap="checkAfterSale">
         <image class="tool-icon" src="./images/after_sale.png" />
         <view class="tool-name">售后</view>
       </view>
@@ -80,19 +84,19 @@
         <image class="tool-icon" src="./images/shop.png" />
         <view class="tool-name">店铺管理</view>
       </view>
-      <view class="tool-item">
+      <view class="tool-item" bindtap="manageStaff">
         <image class="tool-icon" src="./images/manager.png" />
         <view class="tool-name">人员管理</view>
       </view>
-      <view class="tool-item">
+      <view class="tool-item" bindtap="manageScenicTicket">
         <image class="tool-icon" src="./images/ticket.png" />
         <view class="tool-name">门票管理</view>
       </view>
-      <view class="tool-item">
+      <view class="tool-item" bindtap="manageScenicSpot">
         <image class="tool-icon" src="./images/scenic.png" />
         <view class="tool-name">景点管理</view>
       </view>
-      <view class="tool-item">
+      <view class="tool-item" bindtap="manageBond">
         <image class="tool-icon" src="./images/bond.png" />
         <view class="tool-name">保证金</view>
       </view>
@@ -124,12 +128,12 @@
         </view>
       </view>
     </view>
-    <button class="withdraw-btn" hover-class="none">收益提现</button>
+    <button class="withdraw-btn" bindtap="withdraw" hover-class="none">收益提现</button>
   </view>
   <view class="tool-card" wx:if="{{titleMenu[curTitleIdx].value === 2}}">
     <view class="tool-card-title row between">
       <view>商家订单</view>
-      <view class="check-btn row">
+      <view class="check-btn row" bindtap="checkOrders">
         <text>全部订单</text>
         <image class="check-btn-arrow" src="./images/arrow.png" />
       </view>
@@ -147,7 +151,7 @@
         <image class="tool-icon" src="./images/luggage.png" />
         <view class="tool-name">待入住</view>
       </view>
-      <view class="tool-item">
+      <view class="tool-item" bindtap="checkAfterSale">
         <image class="tool-icon" src="./images/after_sale.png" />
         <view class="tool-name">售后</view>
       </view>
@@ -160,7 +164,7 @@
         <image class="tool-icon" src="./images/shop.png" />
         <view class="tool-name">店铺管理</view>
       </view>
-      <view class="tool-item">
+      <view class="tool-item" bindtap="manageStaff">
         <image class="tool-icon" src="./images/manager.png" />
         <view class="tool-name">人员管理</view>
       </view>
@@ -172,7 +176,7 @@
         <image class="tool-icon" src="./images/hotel.png" />
         <view class="tool-name">酒店管理</view>
       </view>
-      <view class="tool-item">
+      <view class="tool-item" bindtap="manageBond">
         <image class="tool-icon" src="./images/bond.png" />
         <view class="tool-name">保证金</view>
       </view>
@@ -204,12 +208,12 @@
         </view>
       </view>
     </view>
-    <button class="withdraw-btn" hover-class="none">收益提现</button>
+    <button class="withdraw-btn" bindtap="withdraw" hover-class="none">收益提现</button>
   </view>
   <view class="tool-card" wx:if="{{titleMenu[curTitleIdx].value === 3}}">
     <view class="tool-card-title row between">
       <view>餐券订单</view>
-      <view class="check-btn row">
+      <view class="check-btn row" bindtap="checkMealTicketOrders">
         <text>全部订单</text>
         <image class="check-btn-arrow" src="./images/arrow.png" />
       </view>
@@ -223,7 +227,7 @@
         <image class="tool-icon" src="./images/time.png" />
         <view class="tool-name">待使用</view>
       </view>
-      <view class="tool-item">
+      <view class="tool-item" bindtap="checkMealTicketOrders">
         <image class="tool-icon" src="./images/after_sale.png" />
         <view class="tool-name">售后</view>
       </view>
@@ -232,7 +236,7 @@
   <view class="tool-card" wx:if="{{titleMenu[curTitleIdx].value === 3}}">
     <view class="tool-card-title row between">
       <view>套餐订单</view>
-      <view class="check-btn row">
+      <view class="check-btn row" bindtap="checkSetMealOrders">
         <text>全部订单</text>
         <image class="check-btn-arrow" src="./images/arrow.png" />
       </view>
@@ -246,7 +250,7 @@
         <image class="tool-icon" src="./images/time.png" />
         <view class="tool-name">待使用</view>
       </view>
-      <view class="tool-item">
+      <view class="tool-item" bindtap="checkSetMealOrders">
         <image class="tool-icon" src="./images/after_sale.png" />
         <view class="tool-name">售后</view>
       </view>
@@ -255,7 +259,7 @@
   <view class="tool-card" wx:if="{{titleMenu[curTitleIdx].value === 3}}">
     <view class="tool-card-title">常用工具</view>
     <view class="tool-list row">
-      <view class="tool-item">
+      <view class="tool-item" bindtap="manageStaff">
         <image class="tool-icon" src="./images/manager.png" />
         <view class="tool-name">人员管理</view>
       </view>
@@ -271,7 +275,7 @@
         <image class="tool-icon" src="./images/food.png" />
         <view class="tool-name">套餐管理</view>
       </view>
-      <view class="tool-item">
+      <view class="tool-item" bindtap="manageBond">
         <image class="tool-icon" src="./images/bond.png" />
         <view class="tool-name">保证金</view>
       </view>
@@ -303,12 +307,12 @@
         </view>
       </view>
     </view>
-    <button class="withdraw-btn" hover-class="none">收益提现</button>
+    <button class="withdraw-btn" bindtap="withdraw" hover-class="none">收益提现</button>
   </view>
   <view class="tool-card" wx:if="{{titleMenu[curTitleIdx].value === 4}}">
     <view class="tool-card-title row between">
       <view>商家订单</view>
-      <view class="check-btn row">
+      <view class="check-btn row" bindtap="checkOrders">
         <text>全部订单</text>
         <image class="check-btn-arrow" src="./images/arrow.png" />
       </view>
@@ -326,7 +330,7 @@
         <image class="tool-icon" src="./images/delivery.png" />
         <view class="tool-name">待收货/使用</view>
       </view>
-      <view class="tool-item">
+      <view class="tool-item" bindtap="checkAfterSale">
         <image class="tool-icon" src="./images/after_sale.png" />
         <view class="tool-name">售后</view>
       </view>
@@ -339,7 +343,7 @@
         <image class="tool-icon" src="./images/shop.png" />
         <view class="tool-name">店铺管理</view>
       </view>
-      <view class="tool-item">
+      <view class="tool-item" bindtap="manageStaff">
         <image class="tool-icon" src="./images/manager.png" />
         <view class="tool-name">人员管理</view>
       </view>
@@ -359,7 +363,7 @@
         <image class="tool-icon" src="./images/address.png" />
         <view class="tool-name">提货地址</view>
       </view>
-      <view class="tool-item">
+      <view class="tool-item" bindtap="manageBond">
         <image class="tool-icon" src="./images/bond.png" />
         <view class="tool-name">保证金</view>
       </view>

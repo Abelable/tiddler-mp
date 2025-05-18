@@ -4,8 +4,8 @@
   <view class="order-item" wx:for="{{list}}" wx:key="index" catchtap="navToDetail" data-id="{{item.id}}">
     <view class="list-header row between">
       <view class="contact-btn row" catchtap="contact">
-        <view>联系买家</view>
-        <image style="width: 20rpx; height: 20rpx;" src="https://img.ubo.vip/mp/to-icon.png" />
+        <view>联系客户</view>
+        <image style="width: 20rpx; height: 20rpx;" src="/images/arrow_gray.png" />
       </view>
       <view class="order-status">{{ORDER.statusDesc(item.status)}}</view>
     </view>

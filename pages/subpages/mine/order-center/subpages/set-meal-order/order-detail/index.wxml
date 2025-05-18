@@ -6,7 +6,7 @@
     <view class="card-header row">
       <view class="restaurant-info row" catchtap="navToRestaurant" data-id="{{orderInfo.restaurantId}}">
         <view class="restaurant-name omit single">{{orderInfo.restaurantName}}</view>
-        <image style="width: 20rpx; height: 20rpx;" src="https://img.ubo.vip/mp/to-icon.png" />
+        <image style="width: 20rpx; height: 20rpx;" src="/images/arrow_gray.png" />
       </view>
     </view>
     <set-meal-item info="{{orderInfo.setMealInfo || null}}" bind:checkDetail="navToSetMealDetail" />

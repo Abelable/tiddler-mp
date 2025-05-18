@@ -7,7 +7,7 @@
       <view class="shop-info row" wx:if="{{item.shopId}}" catchtap="navToShop">
         <image class="shop-logo" wx:if="{{item.shopLogo}}" src="{{item.shopLogo}}" />
         <view class="shop-name omit single">{{item.shopName}}</view>
-        <image style="width: 20rpx; height: 20rpx;" src="https://img.ubo.vip/mp/to-icon.png" />
+        <image style="width: 20rpx; height: 20rpx;" src="/images/arrow_gray.png" />
       </view>
       <view class="shop-name omit single" wx:if="{{!item.shopId}}">官方自营</view>
       <view class="order-status">{{ORDER.statusDesc(item.status)}}</view>
