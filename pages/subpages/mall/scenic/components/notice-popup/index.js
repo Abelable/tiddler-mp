@@ -22,7 +22,7 @@ Component({
       } else {
         store.setScenicPreOrderInfo(this.properties.info);
         wx.navigateTo({
-          url: "/pages/subpages/mall/scenic-spot/subpages/order-check/index",
+          url: "/pages/subpages/mall/scenic/subpages/order-check/index",
         });
       }
     },

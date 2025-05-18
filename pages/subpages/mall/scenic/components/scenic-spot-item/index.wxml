@@ -1,7 +1,7 @@
 <navigator 
   class="scenic-spot"
   wx:key="index"
-  url="/pages/subpages/mall/scenic-spot/subpages/spot-detail/index?id={{item.id}}"
+  url="/pages/subpages/mall/scenic/subpages/spot-detail/index?id={{item.id}}"
   hover-class="none"
 >
   <image class="cover" src="{{item.cover}}" mode="aspectFill" lazy-load />

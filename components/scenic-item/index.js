@@ -24,7 +24,7 @@ Component({
 
     checkDetail() {
       const { id } = this.properties.item;
-      const url = `/pages/subpages/mall/scenic-spot/subpages/spot-detail/index?id=${id}`;
+      const url = `/pages/subpages/mall/scenic/subpages/spot-detail/index?id=${id}`;
       wx.navigateTo({ url });
     }
   }

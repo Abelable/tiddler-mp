@@ -20,7 +20,7 @@ Component({
       let url;
       switch (type) {
         case TYPE_OF_SCENIC:
-          url = `/pages/subpages/mall/scenic-spot/subpages/spot-detail/index?id=${id}`;
+          url = `/pages/subpages/mall/scenic/subpages/spot-detail/index?id=${id}`;
           break;
 
         case TYPE_OF_HOTEL:

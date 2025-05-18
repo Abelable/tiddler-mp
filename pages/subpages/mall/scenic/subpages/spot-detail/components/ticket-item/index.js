@@ -17,7 +17,7 @@ Component({
     booking() {
       store.setScenicPreOrderInfo(this.properties.ticket);
       wx.navigateTo({
-        url: "/pages/subpages/mall/scenic-spot/subpages/order-check/index",
+        url: "/pages/subpages/mall/scenic/subpages/order-check/index",
       });
     },
   },

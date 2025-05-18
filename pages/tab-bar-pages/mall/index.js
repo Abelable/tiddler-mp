@@ -119,7 +119,7 @@ Component({
 
     navTo(e) {
       const pageList = [
-        "/pages/subpages/mall/scenic-spot/index",
+        "/pages/subpages/mall/scenic/index",
         "/pages/subpages/mall/hotel/index",
         "/pages/subpages/mall/catering/index",
         "/pages/subpages/mall/goods/index"
@@ -140,7 +140,7 @@ Component({
 
         case 2:
           wx.navigateTo({
-            url: `/pages/subpages/mall/scenic-spot/subpages/spot-detail/index?id=${param}`
+            url: `/pages/subpages/mall/scenic/subpages/spot-detail/index?id=${param}`
           });
           break;
 
