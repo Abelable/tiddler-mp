@@ -21,7 +21,7 @@
 </view>
 
 <view class="container {{titleMenu[curTitleIdx].type}}" style="padding-top: {{statusBarHeight + 56}}px">
-  <image class="bg" src="./images/bg_{{titleMenu[curTitleIdx].type}}.png" />
+  <image class="bg" wx:if="{{titleMenu.length}}" src="./images/bg_{{titleMenu[curTitleIdx].type}}.png" />
 
   <view class="data-card scenic" wx:if="{{titleMenu[curTitleIdx].value === 1}}">
     <image class="data-card-bg" src="./images/wallet.png" />
