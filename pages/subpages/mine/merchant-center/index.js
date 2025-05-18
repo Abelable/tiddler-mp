@@ -78,6 +78,9 @@ Page({
         });
         break;
       case 4:
+        wx.navigateTo({
+          url: "./subpages/goods-order/index"
+        });
         break;
     }
   },
@@ -173,6 +176,30 @@ Page({
 
   manageSetMeal() {
     const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/catering/set_meal/list`;
+    wx.navigateTo({ url });
+  },
+
+  manageGoods() {
+    const { id } = this.data.shopInfo;
+    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/goods/list&shop_id=${id}`;
+    wx.navigateTo({ url });
+  },
+
+  manageRefundAddress() {
+    const { id } = this.data.shopInfo;
+    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/refund_address/list&shop_id=${id}`;
+    wx.navigateTo({ url });
+  },
+
+  managePickupAddress() {
+    const { id } = this.data.shopInfo;
+    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/pickup_address/list&shop_id=${id}`;
+    wx.navigateTo({ url });
+  },
+
+  manageFreightTemplate() {
+    const { id } = this.data.shopInfo;
+    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/freight_template/list&shop_id=${id}`;
     wx.navigateTo({ url });
   },
 

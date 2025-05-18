@@ -347,19 +347,19 @@
         <image class="tool-icon" src="./images/manager.png" />
         <view class="tool-name">人员管理</view>
       </view>
-      <view class="tool-item">
+      <view class="tool-item" bindtap="manageGoods">
         <image class="tool-icon" src="./images/goods.png" />
         <view class="tool-name">商品管理</view>
       </view>
-      <view class="tool-item">
+      <view class="tool-item" bindtap="manageFreightTemplate">
         <image class="tool-icon" src="./images/text.png" />
         <view class="tool-name">运费模板</view>
       </view>
-      <view class="tool-item">
+      <view class="tool-item" bindtap="manageRefundAddress">
         <image class="tool-icon" src="./images/address.png" />
         <view class="tool-name">退货地址</view>
       </view>
-      <view class="tool-item">
+      <view class="tool-item" bindtap="managePickupAddress">
         <image class="tool-icon" src="./images/address.png" />
         <view class="tool-name">提货地址</view>
       </view>

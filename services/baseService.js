@@ -49,6 +49,13 @@ class BaseService extends Base {
     }
   }
 
+  async getWaybillToken(id) {
+    return await this.get({
+      url: `${this.baseUrl}/order/waybill_token`,
+      data: { id }
+    });
+  }
+
   async getUserInfo() {
     const userInfo = await this.get({ url: `${this.baseUrl}/user/info` });
     store.setUserInfo(userInfo);
@@ -56,11 +63,11 @@ class BaseService extends Base {
   }
 
   async updateUserInfo(userInfo, success) {
-    return await this.post({ 
-      url: `${this.baseUrl}/user/update`, 
+    return await this.post({
+      url: `${this.baseUrl}/user/update`,
       data: cleanObject(userInfo),
       success
-    })
+    });
   }
 
   async getSuperiorInfo(superiorId) {

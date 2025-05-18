@@ -1,6 +1,6 @@
-import ShopService from '../../utils/shopService'
+import GoodsService from '../../utils/goodsService'
 
-const shopService = new ShopService()
+const goodsService = new GoodsService()
 
 Page({
   data: {
@@ -13,7 +13,7 @@ Page({
   },
 
   async setOrderInfo() {
-    const orderInfo = await shopService.getOrderDetail(this.orderId)
+    const orderInfo = await goodsService.getOrderDetail(this.orderId)
     this.setData({ orderInfo })
 
     const titleEnums = {
@@ -53,7 +53,7 @@ Page({
   },
 
   deliverOrder() {
-    shopService.deliverOrder(id, () => {
+    goodsService.deliverOrder(id, () => {
       this.setData({
         ['orderInfo.status']: 301
       })
@@ -61,7 +61,7 @@ Page({
   },
 
   cancelOrder() {
-    shopService.cancelOrder(this.orderId, () => {
+    goodsService.cancelOrder(this.orderId, () => {
       this.setData({
         ['orderInfo.status']: 102
       })
