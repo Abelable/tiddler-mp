@@ -64,7 +64,7 @@
         <view class="tool-name">待付款</view>
       </view>
       <view class="tool-item">
-        <image class="tool-icon" src="./images/package.png" />
+        <image class="tool-icon" src="./images/luggage.png" />
         <view class="tool-name">待出行</view>
       </view>
       <view class="tool-item">
@@ -140,8 +140,12 @@
         <view class="tool-name">待付款</view>
       </view>
       <view class="tool-item">
-        <image class="tool-icon" src="./images/package.png" />
-        <view class="tool-name">待出行</view>
+        <image class="tool-icon" src="./images/time.png" />
+        <view class="tool-name">待确认</view>
+      </view>
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/luggage.png" />
+        <view class="tool-name">待入住</view>
       </view>
       <view class="tool-item">
         <image class="tool-icon" src="./images/after_sale.png" />
@@ -161,12 +165,12 @@
         <view class="tool-name">人员管理</view>
       </view>
       <view class="tool-item">
-        <image class="tool-icon" src="./images/ticket.png" />
-        <view class="tool-name">门票管理</view>
+        <image class="tool-icon" src="./images/room.png" />
+        <view class="tool-name">房间管理</view>
       </view>
       <view class="tool-item">
-        <image class="tool-icon" src="./images/scenic.png" />
-        <view class="tool-name">景点管理</view>
+        <image class="tool-icon" src="./images/hotel.png" />
+        <view class="tool-name">酒店管理</view>
       </view>
       <view class="tool-item">
         <image class="tool-icon" src="./images/bond.png" />
@@ -204,7 +208,7 @@
   </view>
   <view class="tool-card" wx:if="{{titleMenu[curTitleIdx].value === 3}}">
     <view class="tool-card-title row between">
-      <view>商家订单</view>
+      <view>餐券订单</view>
       <view class="check-btn row">
         <text>全部订单</text>
         <image class="check-btn-arrow" src="./images/arrow.png" />
@@ -216,8 +220,31 @@
         <view class="tool-name">待付款</view>
       </view>
       <view class="tool-item">
-        <image class="tool-icon" src="./images/package.png" />
-        <view class="tool-name">待出行</view>
+        <image class="tool-icon" src="./images/time.png" />
+        <view class="tool-name">待使用</view>
+      </view>
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/after_sale.png" />
+        <view class="tool-name">售后</view>
+      </view>
+    </view>
+  </view>
+  <view class="tool-card" wx:if="{{titleMenu[curTitleIdx].value === 3}}">
+    <view class="tool-card-title row between">
+      <view>套餐订单</view>
+      <view class="check-btn row">
+        <text>全部订单</text>
+        <image class="check-btn-arrow" src="./images/arrow.png" />
+      </view>
+    </view>
+    <view class="tool-list row around">
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/pay.png" />
+        <view class="tool-name">待付款</view>
+      </view>
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/time.png" />
+        <view class="tool-name">待使用</view>
       </view>
       <view class="tool-item">
         <image class="tool-icon" src="./images/after_sale.png" />
@@ -229,20 +256,20 @@
     <view class="tool-card-title">常用工具</view>
     <view class="tool-list row">
       <view class="tool-item">
-        <image class="tool-icon" src="./images/shop.png" />
-        <view class="tool-name">店铺管理</view>
-      </view>
-      <view class="tool-item">
         <image class="tool-icon" src="./images/manager.png" />
         <view class="tool-name">人员管理</view>
       </view>
       <view class="tool-item">
-        <image class="tool-icon" src="./images/ticket.png" />
-        <view class="tool-name">门票管理</view>
+        <image class="tool-icon" src="./images/shop.png" />
+        <view class="tool-name">门店管理</view>
       </view>
       <view class="tool-item">
-        <image class="tool-icon" src="./images/scenic.png" />
-        <view class="tool-name">景点管理</view>
+        <image class="tool-icon" src="./images/ticket.png" />
+        <view class="tool-name">餐券管理</view>
+      </view>
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/food.png" />
+        <view class="tool-name">套餐管理</view>
       </view>
       <view class="tool-item">
         <image class="tool-icon" src="./images/bond.png" />
@@ -293,7 +320,11 @@
       </view>
       <view class="tool-item">
         <image class="tool-icon" src="./images/package.png" />
-        <view class="tool-name">待出行</view>
+        <view class="tool-name">待发货</view>
+      </view>
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/delivery.png" />
+        <view class="tool-name">待收货/使用</view>
       </view>
       <view class="tool-item">
         <image class="tool-icon" src="./images/after_sale.png" />
@@ -313,12 +344,20 @@
         <view class="tool-name">人员管理</view>
       </view>
       <view class="tool-item">
-        <image class="tool-icon" src="./images/ticket.png" />
-        <view class="tool-name">门票管理</view>
+        <image class="tool-icon" src="./images/goods.png" />
+        <view class="tool-name">商品管理</view>
       </view>
       <view class="tool-item">
-        <image class="tool-icon" src="./images/scenic.png" />
-        <view class="tool-name">景点管理</view>
+        <image class="tool-icon" src="./images/text.png" />
+        <view class="tool-name">运费模板</view>
+      </view>
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/address.png" />
+        <view class="tool-name">退货地址</view>
+      </view>
+      <view class="tool-item">
+        <image class="tool-icon" src="./images/address.png" />
+        <view class="tool-name">提货地址</view>
       </view>
       <view class="tool-item">
         <image class="tool-icon" src="./images/bond.png" />
