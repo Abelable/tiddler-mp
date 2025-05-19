@@ -1,0 +1,31 @@
+<view class="container">
+  <image class="bg" src="https://static.tiddler.cn/mp/gift/bg.png" mode="widthFix" />
+
+  <view class="back-icon-wrap" style="top: {{statusBarHeight + 5}}px">
+    <back-icon />
+  </view>
+
+  <image class="notice" src="https://static.tiddler.cn/mp/gift/notice.png" />
+
+  <view class="goods-list-wrap">
+    <image class="flower-illus" src="https://static.tiddler.cn/mp/gift/flower.png" />
+
+    <view class="menu row">
+      <view 
+        class="menu-item row center {{curMenuIdx === index ? 'active' : ''}}" 
+        wx:for="{{['爱心助农', '家乡特产', '文创周边']}}" 
+        wx:key="index"
+        bindtap="selectMenu"
+        data-index="{{index}}"
+      >
+        {{item}}
+      </view>
+    </view>
+
+    <scroll-view class="goods-list" bindscrolltolower="loadMore" scroll-y>
+      <fall-flow wx:if="{{goodsList}}" list="{{goodsList}}" generic:item="goods-item" isGift />
+      <empty-illus wx:if="{{finished && !goodsList.length}}" desc="暂无商品列表" />
+      <view class="no-more-tips" wx:if="{{finished && goodsList.length}}">～没有更多了～</view>
+    </scroll-view>
+  </view>
+</view>

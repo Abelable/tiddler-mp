@@ -1,7 +1,8 @@
 Component({
   properties: {
     item: Object,
-    showTag: Boolean
+    showTag: Boolean,
+    isGift: Boolean
   },
 
   data: {

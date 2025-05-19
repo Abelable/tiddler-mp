@@ -1,5 +1,10 @@
 <view class="goods-item {{visible ? 'show' : ''}}" bindtap="navToGoodsDetail">
-  <view class="cover-wrap {{showTag ? 'show-tag' : ''}}">
+  <view class="cover-wrap {{showTag ? 'show-tag' : ''}} {{isGift ? 'gift' : ''}}">
+    <view class="gift-header">
+      <text>代言家乡</text>
+      <text class="duration">100</text>
+      <text>天</text>
+    </view>
     <image class="cover" mode="widthFix" src="{{ item.cover }}" bindload="onCoverLoaded" lazy-load />
     <view class="type-label row" wx:if="{{showTag}}">商品</view>
   </view>

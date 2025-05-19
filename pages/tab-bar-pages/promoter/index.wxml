@@ -20,7 +20,7 @@
     <view class="content">
       温暖、真诚、热血、求真、极致、创新
     </view>
-    <view class="jion-us-btn row center">
+    <view class="jion-us-btn row center" bindtap="navToGiftPage">
       <text>加入我们</text>
       <image class="arrow" src="https://static.tiddler.cn/mp/promoter/arrow.png" />
     </view>

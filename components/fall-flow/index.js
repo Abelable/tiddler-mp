@@ -28,7 +28,8 @@ Component({
     mediaScene: {
       type: Number,
       value: 1
-    }
+    },
+    isGift: Boolean
   },
 
   data: {
