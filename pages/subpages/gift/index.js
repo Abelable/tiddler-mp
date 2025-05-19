@@ -35,7 +35,7 @@ Page({
     }
     const { curMenuIdx, goodsList } = this.data;
     const { list } = await giftService.getGiftList(curMenuIdx + 1, ++this.page);
-    this.setData({ goodsList: init ? [...list, ...list, ...list, ...list, ...list, ...list] : [...goodsList, ...list] });
+    this.setData({ goodsList: init ? list : [...goodsList, ...list] });
     if (!list.length) {
       this.setData({ finished: true });
     }
