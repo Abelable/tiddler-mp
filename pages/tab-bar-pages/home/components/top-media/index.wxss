@@ -107,6 +107,6 @@
   height: 100%;
   content: "";
   border-radius: 18rpx;
-  border: 6.8rpx solid var(--blue-2);
+  border: 6.8rpx solid var(--blue-1);
   box-sizing: border-box;
 }
