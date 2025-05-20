@@ -7,7 +7,7 @@ page {
   --gray-1: #595959;
 
   --theme-color: #00A5FF;
-  --theme-color-gradient: linear-gradient(90deg, #6097f7 0%, #86abeb 100%);
+  --theme-color-gradient: linear-gradient(90deg, var(--blue-2) 0%, #86abeb 100%);
   --theme-color-btn-bg: linear-gradient(90deg, #00cffc 0%, #0095fa 100%);
 }
 

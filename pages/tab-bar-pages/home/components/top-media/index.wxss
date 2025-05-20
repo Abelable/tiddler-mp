@@ -35,7 +35,7 @@
   width: 8rpx;
   height: 40rpx;
   border-radius: 4rpx;
-  background: #6097f7;
+  background: var(--blue-2);
 }
 .time-month, .time-year {
   font-size: 18rpx;
@@ -107,6 +107,6 @@
   height: 100%;
   content: "";
   border-radius: 18rpx;
-  border: 6.8rpx solid #6097f7;
+  border: 6.8rpx solid var(--blue-2);
   box-sizing: border-box;
 }
