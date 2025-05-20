@@ -3,14 +3,14 @@ import { store } from "../../../store/index";
 Component({
   data: {
     rightsList: [
-      { icon: "commission", name: "购买返利" },
-      { icon: "gift", name: "专享产品" },
-      { icon: "culture", name: "专属社群文化" },
-      { icon: "windmill", name: "文旅体验" },
-      { icon: "group", name: "代言人大会" },
-      { icon: "flag", name: "线下活动邀约" },
-      { icon: "cs", name: "1v1服务团队" },
-      { icon: "cake", name: "生日感谢礼" }
+      { icon: "reward", name: "分享奖励" },
+      { icon: "indirect", name: "间推奖励" },
+      { icon: "team", name: "团队奖励" },
+      { icon: "mentor", name: "专属导师" },
+      { icon: "product", name: "专享产品" },
+      { icon: "activity", name: "线下活动" },
+      { icon: "trip", name: "文旅体验" },
+      { icon: "meeting", name: "代言人大会" }
     ]
   },
 
