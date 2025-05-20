@@ -15,19 +15,19 @@ Page({
       { icon: "", text: "综合排序", value: 0 },
       { icon: "", text: "好评排序", value: 1 },
       { icon: "", text: "价格降序", value: 2 },
-      { icon: "", text: "价格升序", value: 3 },
+      { icon: "", text: "价格升序", value: 3 }
     ],
     curCategoryId: 0,
     categoryOptions: [],
     calendarPopupVisibel: false,
     hotelList: [],
-    finished: false,
+    finished: false
   },
 
   async onLoad() {
     this.storeBindings = createStoreBindings(this, {
       store,
-      fields: ["checkInDate", "checkOutDate"],
+      fields: ["checkInDate", "checkOutDate"]
     });
 
     this.initCalendar();
@@ -42,7 +42,7 @@ Page({
     const options = await hotelService.getHotelCategoryOptions();
     const categoryOptions = [
       { icon: "", text: "全部分类", value: 0 },
-      ...options.map((item) => ({ icon: "", text: item.name, value: item.id })),
+      ...options.map(item => ({ icon: "", text: item.name, value: item.id }))
     ];
     this.setData({ categoryOptions });
   },
@@ -66,7 +66,7 @@ Page({
     if (init) {
       this.page = 0;
       this.setData({
-        finished: false,
+        finished: false
       });
     }
     const { curSortIndex, curCategoryId, hotelList } = this.data;
@@ -90,27 +90,36 @@ Page({
         sort,
         order,
         page: ++this.page,
-        limit,
+        limit
       })) || [];
     this.setData({
-      hotelList: init ? list : [...hotelList, ...list],
+      hotelList: init ? list : [...hotelList, ...list]
     });
     if (list.length < limit) {
       this.setData({
-        finished: true,
+        finished: true
       });
     }
   },
 
+  onReachBottom() {
+    this.setHotelList();
+  },
+
+  onPullDownRefresh() {
+    this.setHotelList(true);
+    wx.stopPullDownRefresh();
+  },
+
   showCalendarPopup() {
     this.setData({
-      calendarPopupVisibel: true,
+      calendarPopupVisibel: true
     });
   },
 
   hideCalendarPopup() {
     this.setData({
-      calendarPopupVisibel: false,
+      calendarPopupVisibel: false
     });
   },
 
@@ -127,13 +136,13 @@ Page({
     store.setCheckInDate(start.getTime());
     store.setCheckOutDate(end.getTime());
     this.setData({
-      calendarPopupVisibel: false,
+      calendarPopupVisibel: false
     });
   },
 
   search() {
     wx.navigateTo({
-      url: "/pages/subpages/common/search/index?scene=5",
+      url: "/pages/subpages/common/search/index?scene=5"
     });
   },
 
@@ -143,5 +152,5 @@ Page({
 
   onUnload() {
     this.storeBindings.destroyStoreBindings();
-  },
+  }
 });
