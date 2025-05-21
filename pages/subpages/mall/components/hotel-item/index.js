@@ -15,10 +15,8 @@ Component({
           const { longitude: lo2, latitude: la2 } = info;
           const distance = calcDistance(la1, lo1, la2, lo2);
 
-          const featureTagList = info.featureTagList.slice(0, 2);
+          const featureTagList = info.featureTagList ? info.featureTagList.slice(0, 2) : [];
           this.setData({ distance, featureTagList });
-
-
         }
       },
     },

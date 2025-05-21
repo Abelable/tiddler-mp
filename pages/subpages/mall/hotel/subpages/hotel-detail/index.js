@@ -402,7 +402,7 @@ Component({
           name: title,
           price,
           salesVolume,
-          featureTagList
+          featureTagList = []
         } = this.data.hotelInfo;
 
         this.setData({

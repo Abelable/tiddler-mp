@@ -7,7 +7,7 @@
 </view>
 
 <view class="container">
-  <swiper class="banner custom-dots" style="height: calc({{statusBarHeight + 44}}px + 250rpx);" autoplay indicator-dots circular>
+  <swiper class="banner custom-dots" wx:if="{{bannerList.length}}" style="height: calc({{statusBarHeight + 44}}px + 250rpx);" autoplay indicator-dots circular>
     <swiper-item 
       class="banner-item" 
       wx:for="{{bannerList}}"
@@ -20,7 +20,7 @@
     </swiper-item>
   </swiper>
   
-  <view class="category-wrap">
+  <view class="category-wrap" style="padding-top: {{bannerList.length ? 0 : statusBarHeight + 60}}px;">
     <view class="category-item" wx:for="{{categoryList}}" wx:key="index" bindtap="navTo" data-index="{{index}}">
       <image class="category-icon" src="https://static.tiddler.cn/mp/mall/{{item.icon}}.png" />
       <view class="category-desc">{{item.name}}</view>

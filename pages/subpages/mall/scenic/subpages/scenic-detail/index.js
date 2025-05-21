@@ -458,7 +458,7 @@ Page({
         name: title,
         price,
         salesVolume,
-        featureTagList
+        featureTagList = []
       } = this.data.scenicInfo;
 
       this.setData({
