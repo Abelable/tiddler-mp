@@ -45,11 +45,11 @@
   width: 36rpx;
   height: 36rpx;
   border-radius: 18rpx;
-  background: rgba(255, 255, 255, 0.68);
+  background: rgba(255, 255, 255, 0.8);
 }
 .play-icon {
-  width: 20rpx;
-  height: 20rpx;
+  width: 16rpx;
+  height: 16rpx;
 }
 
 .address-info {
