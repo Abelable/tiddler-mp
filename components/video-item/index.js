@@ -21,9 +21,11 @@ Component({
   methods: {
     onCoverLoaded(e) {
       const { width, height } = e.detail;
-      if (height * (350 / width) > 480) {
-        this.setData({ coverMode: "aspectFill" });
-      }
+      const coverHeight = 350 / width * height;
+      this.setData({
+        [`item.coverHeight`]:
+          coverHeight > 480 ? 480 : coverHeight < 260 ? 260 : coverHeight
+      });
       this.setData({ visible: true });
     },
 

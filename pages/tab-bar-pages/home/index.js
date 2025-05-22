@@ -212,7 +212,7 @@ Component({
           const { height } = res[0][curMenuIndex];
           this.setData({
             [`wrapHeightList[${curMenuIndex}]`]:
-              height < windowHeight ? windowHeight : height
+              height < windowHeight ? windowHeight : height - statusBarHeight - 98
           });
         }
       });

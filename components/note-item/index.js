@@ -2,23 +2,29 @@ import { SCENE_AUTHOR } from "../../utils/emuns/mediaScene";
 
 Component({
   options: {
-    addGlobalClass: true,
+    addGlobalClass: true
   },
 
   properties: {
     item: Object,
     mediaScene: {
       type: Number,
-      value: 1,
-    },
+      value: 1
+    }
   },
 
   data: {
-    visible: false,
+    visible: false
   },
 
   methods: {
-    onCoverLoaded() {
+    onCoverLoaded(e) {
+      const { width, height } = e.detail;
+      const coverHeight = (350 / width) * height;
+      this.setData({
+        [`item.coverHeight`]:
+          coverHeight > 480 ? 480 : coverHeight < 300 ? 300 : coverHeight
+      });
       this.setData({ visible: true });
     },
 
@@ -30,6 +36,6 @@ Component({
         mediaScene === SCENE_AUTHOR ? authorInfo.id : 0
       }`;
       wx.navigateTo({ url });
-    },
-  },
+    }
+  }
 });

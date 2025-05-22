@@ -2,7 +2,8 @@
 
 <view class="note-item {{visible ? 'show' : ''}}" bindtap="navToNoteDetail">
   <view class="cover-wrap">
-    <image class="cover" src="{{item.imageList[0]}}?x-oss-process=image/resize,w_450" bindload="onCoverLoaded" mode="widthFix" lazy-load />
+    <image class="cover" style="height: {{item.coverHeight}}rpx;" wx:if="{{item.coverHeight}}" src="{{item.imageList[0]}}?x-oss-process=image/resize,w_450" mode="aspectFill" />
+    <image class="cover" wx:if="{{!item.coverHeight}}" src="{{item.imageList[0]}}?x-oss-process=image/resize,w_450" bindload="onCoverLoaded" mode="widthFix" lazy-load />
     <view class="private-tag row" wx:if="{{item.isPrivate}}">
       <image class="private-icon" src="/images/private-icon.png" />
       <text>私密</text>

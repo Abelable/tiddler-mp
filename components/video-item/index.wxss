@@ -16,9 +16,6 @@
 .cover {
   width: 350rpx;
 }
-.cover.over-size {
-  height: 480rpx;
-}
 
 .private-tag {
   position: absolute;
