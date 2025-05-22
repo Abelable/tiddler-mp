@@ -35,7 +35,7 @@ Component({
       switch (mediaType) {
         case VIDEO:
           wx.showModal({
-            content: "确定删除该短视频吗？",
+            content: "确定删除该视频游记吗？",
             showCancel: true,
             success: (result) => {
               if (result.confirm) {
@@ -55,7 +55,7 @@ Component({
 
         case NOTE:
           wx.showModal({
-            content: "确定删除该游记吗？",
+            content: "确定删除该图文游记吗？",
             showCancel: true,
             success: (result) => {
               if (result.confirm) {

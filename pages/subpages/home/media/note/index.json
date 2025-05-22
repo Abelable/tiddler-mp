@@ -1,6 +1,6 @@
 {
   "navigationBarBackgroundColor": "#ffffff",
-  "navigationBarTitleText": "游记",
+  "navigationBarTitleText": "图文游记",
   "enablePullDownRefresh": true,
   "usingComponents": {
     "note-item": "./components/note-item/index",

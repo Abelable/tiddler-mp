@@ -85,35 +85,35 @@
 
     <view class="works-wrap {{menuFixed ? 'fixed' : '' }}">
       <view class="works-menu {{menuFixed ? 'fixed' : '' }}" style="top: {{menuFixed ? statusBarHeight + 44 : 0}}px;">
-        <view wx:for="{{['短视频', '游记', '收藏', '点赞']}}" wx:key="index" class="works-menu-item {{curMenuIndex === index ? 'active' : ''}}" bindtap="switchMenu" data-index="{{index}}">{{item}}</view>
+        <view wx:for="{{['视频游记', '图文游记', '收藏', '点赞']}}" wx:key="index" class="works-menu-item {{curMenuIndex === index ? 'active' : ''}}" bindtap="switchMenu" data-index="{{index}}">{{item}}</view>
         <view class="active-underline" style="left: {{curMenuIndex * 25}}vw;"></view>
       </view>
       <swiper style="height: {{wrapHeightList[curMenuIndex]}}px;" current="{{curMenuIndex}}" bindchange="swiperChange">
         <swiper-item>
           <view class="content-wrap">
             <view class="total-info row between">
-              <view class="total-tips">共{{videoListTotal}}条短视频</view>
+              <view class="total-tips">共{{videoListTotal}}条视频游记</view>
               <button class="add-btn" bindtap="navToVideoCreate">
                 <image class="add-icon" src="https://img.ubo.vip/tiddler/mine/add.png" />
-                <text>短视频</text>
+                <text>视频游记</text>
               </button>
             </view>
             <fall-flow class="fall-flow-0" list="{{videoList}}" mediaScene="{{3}}" generic:item="video-item" bind:finish="setWrapHeight" />
-            <empty-illus wx:if="{{videoFinished && !videoList.length}}" desc="暂无短视频作品，快去发布吧～" height="520rpx" />
+            <empty-illus wx:if="{{videoFinished && !videoList.length}}" desc="暂无视频游记作品，快去发布吧～" height="520rpx" />
             <view class="no-more-tips" wx:if="{{videoFinished && videoList.length}}">～没有更多了～</view>
           </view>
         </swiper-item>
         <swiper-item>
           <view class="content-wrap">
             <view class="total-info row between">
-              <view class="total-tips">共{{noteListTotal}}条游记</view>
+              <view class="total-tips">共{{noteListTotal}}条图文游记</view>
               <button class="add-btn" bindtap="navToNoteCreate">
                 <image class="add-icon" src="https://img.ubo.vip/tiddler/mine/add.png" />
-                <text>游记</text>
+                <text>图文游记</text>
               </button>
             </view>
             <fall-flow class="fall-flow-1" list="{{noteList}}" mediaScene="{{3}}" generic:item="note-item" bind:finish="setWrapHeight" />
-            <empty-illus wx:if="{{noteFinished && !noteList.length}}" desc="暂无游记作品，快去发布吧～" height="520rpx" />
+            <empty-illus wx:if="{{noteFinished && !noteList.length}}" desc="暂无图文游记作品，快去发布吧～" height="520rpx" />
             <view class="no-more-tips" wx:if="{{noteFinished && noteList.length}}">～没有更多了～</view>
           </view>
         </swiper-item>

@@ -17,11 +17,11 @@
 
   <view class="card">
     <view class="list row between">
-      <view class="title row">游记标题</view>
+      <view class="title row">图文游记标题</view>
       <input class="list-input" placeholder="有趣的标题更吸引人哦～" bindinput="setTitle" />
     </view>
     <view class="list">
-      <view class="title">游记内容</view>
+      <view class="title">图文游记内容</view>
       <textarea class="title-textarea" bindinput="setContent" placeholder="分享这一刻的心情..." />
     </view>
   </view>

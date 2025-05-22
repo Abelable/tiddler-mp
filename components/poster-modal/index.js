@@ -4,8 +4,8 @@ import { SCENE_GOODS, SCENE_LIVE } from "../../utils/emuns/posterScene";
 
 const descList = [
   "发现精彩直播",
-  "发现趣味短视频",
-  "发现趣味游记",
+  "发现趣味视频游记",
+  "发现趣味图文游记",
   "推荐秀美景点",
   "推荐舒适酒店",
   "推荐美味餐厅",

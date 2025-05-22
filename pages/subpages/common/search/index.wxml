@@ -40,7 +40,7 @@
     scroll-with-animation
   >
     <view 
-      wx:for="{{['综合', '短视频', '游记', '直播', '景点', '酒店', '餐厅', '商品', '用户']}}" 
+      wx:for="{{['综合', '视频游记', '图文游记', '直播', '景点', '酒店', '餐厅', '商品', '用户']}}" 
       wx:key="index" 
       class="menu-tab {{curMenuIdx === index ? 'active' : ''}}" 
       bindtap="selectMenu" 
@@ -128,13 +128,13 @@
 
 <view class="list-wrap" wx:if="{{isSearching && curMenuIdx === 1}}">
   <fall-flow wx:if="{{videoList.length}}" list="{{videoList}}" generic:item="video-item" />
-  <empty-illus wx:if="{{videoFinished && !videoList.length}}" desc="没有找到相关短视频" />
+  <empty-illus wx:if="{{videoFinished && !videoList.length}}" desc="没有找到相关视频游记" />
   <view class="no-more-tips" wx:if="{{videoFinished && videoList.length}}">～没有更多了～</view>
 </view>
 
 <view class="list-wrap" wx:if="{{isSearching && curMenuIdx === 2}}">
   <fall-flow wx:if="{{noteList.length}}" list="{{noteList}}" generic:item="note-item" />
-  <empty-illus wx:if="{{noteFinished && !noteList.length}}" desc="没有找到相关游记" />
+  <empty-illus wx:if="{{noteFinished && !noteList.length}}" desc="没有找到相关图文游记" />
   <view class="no-more-tips" wx:if="{{noteFinished && noteList.length}}">～没有更多了～</view>
 </view>
 

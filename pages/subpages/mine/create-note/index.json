@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "创建游记",
+  "navigationBarTitleText": "创建图文游记",
   "usingComponents": {
     "van-uploader": "@vant/weapp/uploader/index",
     "van-swipe-cell": "@vant/weapp/swipe-cell/index",

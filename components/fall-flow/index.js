@@ -29,16 +29,32 @@ Component({
 
   methods: {
     async render() {
-      for (let i = 0, l = this.list.length; i < l; i++) {
+      for (let i = 0, l = this.list.length / 2; i < l; i++) {
         const { leftHeight, rightHeight } = await this.getListWrapperHeight();
         if (leftHeight <= rightHeight) {
-          this.setData({
-            [`leftList[${this.data.leftList.length}]`]: this.list.shift()
-          });
+          if (rightHeight - leftHeight > 300) {
+            this.setData({
+              [`leftList[${this.data.leftList.length}]`]: this.list.shift(),
+              [`leftList[${this.data.leftList.length}]`]: this.list.shift()
+            });
+          } else {
+            this.setData({
+              [`leftList[${this.data.leftList.length}]`]: this.list.shift(),
+              [`rightList[${this.data.rightList.length}]`]: this.list.shift()
+            });
+          }
         } else {
-          this.setData({
-            [`rightList[${this.data.rightList.length}]`]: this.list.shift()
-          });
+          if (leftHeight - rightHeight > 300) {
+            this.setData({
+              [`rightList[${this.data.rightList.length}]`]: this.list.shift(),
+              [`rightList[${this.data.rightList.length}]`]: this.list.shift()
+            });
+          } else {
+            this.setData({
+              [`rightList[${this.data.rightList.length}]`]: this.list.shift(),
+              [`leftList[${this.data.leftList.length}]`]: this.list.shift()
+            });
+          }
         }
       }
       this.triggerEvent("finish");
