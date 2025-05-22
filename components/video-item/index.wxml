@@ -9,7 +9,7 @@
       <text>私密</text>
     </view>
     <view class="video-symbol">
-      <image class="play-icon" src="https://img.ubo.vip/tiddler/media-item/play.png" />
+      <image class="play-icon" src="/images/play.png" />
     </view>
     <view class="address-info" wx:if="{{item.address}}">
       <image class="address-icon" src="/images/address.png" />

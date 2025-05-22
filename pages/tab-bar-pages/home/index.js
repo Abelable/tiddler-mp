@@ -176,20 +176,11 @@ Component({
 
       if (!finished) {
         const { list = [] } =
-          (await homeService.getMediaList(++this.page)) || {};
+          (await homeService.getMediaList(++this.page, init ? 16 : 10)) || {};
         if (init) {
-          const topMediaList = [];
-          const filterMediaList = [];
-          list.forEach(item => {
-            if (item.type === 3 && topMediaList.length < 5) {
-              topMediaList.push(item);
-            } else {
-              filterMediaList.push(item);
-            }
-          });
           this.setData({
-            topMediaList,
-            mediaList: filterMediaList
+            topMediaList: list.slice(0, 6),
+            mediaList: list.slice(6)
           });
         } else {
           this.setData({

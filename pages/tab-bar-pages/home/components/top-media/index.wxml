@@ -1,31 +1,49 @@
 <view class="top-media-wrap">
-  <view class="top-media" catchtap="navToNoteDetail" data-id="{{topMediaList[curTopMediaIdx].id}}">
-    <image class="top-media-cover" src="{{topMediaList[curTopMediaIdx].imageList[0]}}" mode="aspectFill" />
-    <view class="top-media-time">
-      <view class="time-date">{{timeList[curTopMediaIdx].date}}</view>
-      <view class="time-split"></view>
-      <view>
-        <view class="time-month">{{timeList[curTopMediaIdx].month}}</view>
-        <view class="time-year">{{timeList[curTopMediaIdx].year}}</view>
+  <swiper class="top-media-swiper" current="{{curMediaIdx}}" bindchange="swiperChange" circular>
+    <swiper-item 
+      class="top-media" 
+      wx:for="{{mediaList}}" 
+      wx:key="index"
+      catchtap="navToNoteDetail"
+      data-id="{{item.id}}" 
+      data-type="{{item.type}}"
+    >
+      <image class="top-media-cover" src="{{item.cover}}" mode="aspectFill" lazy-load />
+      <view class="top-media-time row between">
+        <view class="row">
+          <view class="time-date">{{item.date}}</view>
+          <view class="time-split"></view>
+          <view>
+            <view class="time-month">{{item.month}}</view>
+            <view class="time-year">{{item.year}}</view>
+          </view>
+          <image class="top-desc" src="./images/{{curMediaIdx === 0 ? 'today_' : ''}}best_note.png" />
+        </view>
+        <view class="video-symbol" wx:if="{{item.type === 2}}">
+          <image class="play-icon" src="/images/play.png" />
+        </view>
       </view>
-      <image class="top-desc" src="./images/{{curTopMediaIdx === 0 ? 'today_' : ''}}best_note.png" />
-    </view>
-    <view class="top-media-info">
-      <view class="top-media-title omit single">{{topMediaList[curTopMediaIdx].title}}</view>
-      <view class="author-info-wrap">
-        <image class="author-avatar avatar-default" src="{{topMediaList[curTopMediaIdx].authorInfo.avatar}}" />
-        <text class="author-name omit single">{{topMediaList[curTopMediaIdx].authorInfo.nickname}}</text>
-        <text wx:if="{{topMediaList[curTopMediaIdx].address}}" style="margin: 0 8rpx;">·</text>
-        <text class="address-detail omit single" wx:if="{{topMediaList[curTopMediaIdx].address}}">{{topMediaList[curTopMediaIdx].address}}</text>
+      <view class="video-symbol" wx:if="{{item.type === 2}}">
+        <image class="play-icon" src="/images/play.png" />
       </view>
-    </view>
-  </view>
+      <view class="top-media-info">
+        <view class="top-media-title omit single">{{item.title}}</view>
+        <view class="author-info-wrap">
+          <image class="author-avatar avatar-default" src="{{item.authorInfo.avatar}}" />
+          <text class="author-name omit single">{{item.authorInfo.nickname}}</text>
+          <text wx:if="{{item.address}}" style="margin: 0 8rpx;">·</text>
+          <text class="address-detail omit single" wx:if="{{item.address}}">{{item.address}}</text>
+        </view>
+      </view>
+    </swiper-item>
+  </swiper>
+
   <view class="top-media-menu">
     <image 
-      class="top-media-menu-item {{curTopMediaIdx === index ? 'active' : ''}}" 
-      wx:for="{{topMediaList}}" 
+      class="top-media-menu-item {{curMediaIdx === index ? 'active' : ''}}" 
+      wx:for="{{mediaList}}" 
       wx:key="index" 
-      src="{{item.imageList[0]}}?x-oss-process=image/resize,w_120"
+      src="{{item.cover}}?x-oss-process=image/resize,w_120"
       bindtap="selectTopMedia"
       data-index="{{index}}"
       mode="aspectFill"
