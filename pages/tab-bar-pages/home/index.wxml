@@ -29,6 +29,12 @@
     </swiper-item>
     <swiper-item>
       <view class="content-wrap" style="padding-top: {{statusBarHeight + 98}}px;">
+        <view class="type-list row between">
+          <view class="type-item" wx:for="{{typeList}}" wx:key="index">
+            <image class="type-icon" src="https://static.tiddler.cn/mp/home/{{item.icon}}.png" />
+            <view class="type-name">{{item.name}}</view>
+          </view>
+        </view>
         <top-media wx:if="{{topMediaList.length}}" topMediaList="{{topMediaList}}" />
         <fall-flow class="fall-flow" list="{{mediaList}}" generic:item="media-item" bind:finish="setWrapHeight" />
         <empty-illus wx:if="{{finished && !mediaList.length}}" desc="暂无列表" />

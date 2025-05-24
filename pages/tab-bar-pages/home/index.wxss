@@ -77,6 +77,22 @@
   padding: 0 20rpx;
 }
 
+.type-list {
+  margin: 12rpx 24rpx 32rpx;
+}
+.type-item {
+  font-size: 0;
+  text-align: center;
+}
+.type-icon {
+  width: 68rpx;
+  height: 68rpx;
+}
+.type-name {
+  color: #333;
+  font-size: 20rpx;
+}
+
 .no-more-tips {
   padding: 16rpx 0 24rpx;
   color: #999;

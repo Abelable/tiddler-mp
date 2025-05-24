@@ -1,5 +1,5 @@
 <view class="top-media-wrap">
-  <swiper class="top-media-swiper" current="{{curMediaIdx}}" bindchange="swiperChange" autoplay circular>
+  <swiper class="top-media-swiper" current="{{curMediaIdx}}" bindchange="swiperChange" circular>
     <swiper-item 
       class="top-media" 
       wx:for="{{mediaList}}" 
