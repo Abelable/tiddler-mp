@@ -9,7 +9,7 @@ import {
 } from "../../../utils/emuns/listScene";
 
 const homeService = new HomeService();
-const { statusBarHeight, windowHeight } = getApp().globalData.systemInfo;
+const { statusBarHeight } = getApp().globalData.systemInfo;
 const typeList = [
   { icon: "hot", name: "网红打卡" },
   { icon: "ship", name: "乘船游湖" },
@@ -29,13 +29,14 @@ Component({
   data: {
     statusBarHeight,
     typeList,
-    navBarActive: false,
-    wrapHeightList: [windowHeight, windowHeight],
+    navBarActive: [false, false],
     curMenuIndex: 1,
+    isFollowRefreshing: false,
     followMediaList: [],
     followFinished: false,
     topMediaList: [],
     mediaList: [],
+    isRefreshing: false,
     finished: false
   },
 
@@ -59,12 +60,6 @@ Component({
           );
           store.setPromoterInfo(superiorInfo);
         }
-      });
-
-      this.scrollTopArr = [0, 0];
-      wx.pageScrollTo({
-        scrollTop: 0,
-        duration: 0
       });
 
       if (!store.locationInfo) {
@@ -102,20 +97,15 @@ Component({
         this.setData({ curMenuIndex: index }, () => {
           this.setList(SCENE_SWITCH_TAB);
         });
-        this.scrollTopArr[curMenuIndex] = this.scrollTop || 0;
-        wx.pageScrollTo({
-          scrollTop: this.scrollTopArr[index] || 0,
-          duration: 0
-        });
       }
     },
 
-    onPullDownRefresh() {
+    onRefresh() {
       this.setList(SCENE_REFRESH);
       wx.stopPullDownRefresh();
     },
 
-    onReachBottom() {
+    onLoadMore() {
       this.setList(SCENE_LOADMORE);
     },
 
@@ -153,21 +143,23 @@ Component({
       checkLogin(async () => {
         if (init) {
           this.followPage = 0;
-          this.setData({ followFinished: false });
+          this.setData({ isFollowRefreshing: true, followFinished: false });
         }
         const { followFinished, followMediaList } = this.data;
 
         if (!followFinished) {
           const { list = [] } =
             (await homeService.getFollowMediaList(++this.followPage)) || {};
-          this.setData(
-            {
-              followMediaList: init ? list : [...followMediaList, ...list]
-            },
-            () => {
-              this.setWrapHeight();
-            }
-          );
+          if (init) {
+            this.setData({
+              followMediaList: list,
+              isFollowRefreshing: false
+            });
+          } else {
+            this.setData({
+              followMediaList: [...followMediaList, ...list]
+            });
+          }
           if (!list.length) {
             this.setData({ followFinished: true });
           }
@@ -178,7 +170,7 @@ Component({
     async setMediaList(init = false) {
       if (init) {
         this.page = 0;
-        this.setData({ finished: false });
+        this.setData({ isRefreshing: true, finished: false });
       }
       const { finished, mediaList } = this.data;
 
@@ -188,7 +180,8 @@ Component({
         if (init) {
           this.setData({
             topMediaList: list.slice(0, 6),
-            mediaList: list.slice(6)
+            mediaList: list.slice(6),
+            isRefreshing: false
           });
         } else {
           this.setData({
@@ -202,38 +195,25 @@ Component({
       }
     },
 
-    setWrapHeight() {
-      const { curMenuIndex } = this.data;
-      const query = wx.createSelectorQuery();
-      query.selectAll(".content-wrap").boundingClientRect();
-      query.exec(res => {
-        if (res[0][curMenuIndex]) {
-          const { height } = res[0][curMenuIndex];
-          this.setData({
-            [`wrapHeightList[${curMenuIndex}]`]:
-              height < windowHeight ? windowHeight : height
-          });
-        }
-      });
-    },
-
     onPageScroll(e) {
-      if (e.scrollTop >= 10) {
-        if (!this.data.navBarActive) {
+      const { scrollTop } = e.detail;
+      const { navBarActive, curMenuIndex } = this.data;
+
+      if (scrollTop >= 10) {
+        if (!navBarActive[curMenuIndex]) {
           this.setData({
-            navBarActive: true
+            [`navBarActive[${curMenuIndex}]`]: true
           });
         }
       } else {
-        if (this.data.navBarActive) {
+        if (navBarActive[curMenuIndex]) {
           this.setData({
-            navBarActive: false
+            [`navBarActive[${curMenuIndex}]`]: false
           });
         }
       }
 
-      this.scrollTop = e.scrollTop;
-      if (this.data.curMenuIndex === 1) {
+      if (curMenuIndex === 1) {
         this.setActiveMediaItem();
       }
     },

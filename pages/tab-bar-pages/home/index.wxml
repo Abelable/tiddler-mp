@@ -1,11 +1,19 @@
-<view class="nav-bar {{navBarActive ? 'active': ''}}" style="padding-top: {{statusBarHeight}}px">
+<view class="nav-bar {{navBarActive[curMenuIndex] ? 'active': ''}}" style="padding-top: {{statusBarHeight}}px">
   <view class="menu-tabs-wrap">
     <image class="sign-in-icon" src="/images/sign_in.png" />
     <view class="menu-tabs">
-      <view wx:for="{{['关注', '发现']}}" wx:key="index" class="menu-tab {{curMenuIndex === index ? 'active' : ''}}" bindtap="switchMenu" data-index="{{index}}">{{item}}</view>
+      <view 
+        wx:for="{{['关注', '发现']}}" 
+        wx:key="index" 
+        class="menu-tab {{curMenuIndex === index ? 'active' : ''}}" 
+        bindtap="switchMenu" 
+        data-index="{{index}}"
+      >
+        {{item}}
+      </view>
     </view>
   </view>
-  <view class="search-bar {{navBarActive ? 'active': ''}}" bindtap="search">
+  <view class="search-bar {{navBarActive[curMenuIndex] ? 'active': ''}}" bindtap="search">
     <view class="placeholder">搜索达人打卡景点、酒店...</view>
     <view class="search-btn">
       <image style="width: 20px; height: 20px;" src="https://img.ubo.vip/tiddler/nav-icon/search_white.png" />
@@ -13,10 +21,19 @@
   </view>
 </view>
 
-<view class="container">
-  <swiper style="height: {{wrapHeightList[curMenuIndex]}}px;" current="{{curMenuIndex}}" bindchange="swiperChange">
-    <swiper-item>
-      <view class="content-wrap" style="padding-top: {{statusBarHeight + 98}}px; background: #fff;">
+<swiper class="container" current="{{curMenuIndex}}" bindchange="swiperChange">
+  <swiper-item>
+    <scroll-view 
+      class="content-wrap" 
+      style="padding-top: {{statusBarHeight + 96}}px; background: #fff;"
+      refresher-triggered="{{isFollowRefreshing}}"
+      bindrefresherrefresh="onRefresh"
+      bindscrolltolower="onLoadMore"
+      bindscroll="onPageScroll"
+      refresher-enabled
+      scroll-y
+    >
+      <view class="content">
         <follow-media-item wx:for="{{followMediaList}}" wx:key="index" item="{{item}}" />
         <empty-illus 
           wx:if="{{!userInfo || (followFinished && !followMediaList.length)}}" 
@@ -26,20 +43,31 @@
         />
         <view class="no-more-tips" wx:if="{{followFinished && followMediaList.length}}">～没有更多了～</view>
       </view>
-    </swiper-item>
-    <swiper-item>
-      <view class="content-wrap" style="padding-top: {{statusBarHeight + 98}}px;">
+    </scroll-view>
+  </swiper-item>
+  <swiper-item>
+    <scroll-view 
+      class="content-wrap" 
+      style="padding-top: {{statusBarHeight + 96}}px;"
+      refresher-triggered="{{isRefreshing}}"
+      bindrefresherrefresh="onRefresh"
+      bindscrolltolower="onLoadMore"
+      bindscroll="onPageScroll"
+      refresher-enabled
+      scroll-y
+    >
+      <view class="content">
         <view class="type-list row between">
           <view class="type-item" wx:for="{{typeList}}" wx:key="index">
             <image class="type-icon" src="https://static.tiddler.cn/mp/home/{{item.icon}}.png" />
             <view class="type-name">{{item.name}}</view>
           </view>
         </view>
-        <top-media wx:if="{{topMediaList.length}}" topMediaList="{{topMediaList}}" />
-        <fall-flow class="fall-flow" list="{{mediaList}}" generic:item="media-item" bind:finish="setWrapHeight" />
+        <top-media topMediaList="{{topMediaList}}" />
+        <fall-flow class="fall-flow" list="{{mediaList}}" generic:item="media-item" />
         <empty-illus wx:if="{{finished && !mediaList.length}}" desc="暂无列表" />
         <view class="no-more-tips" wx:if="{{finished && mediaList.length}}">～没有更多了～</view>
       </view>
-    </swiper-item>
-  </swiper>
-</view>
+    </scroll-view>
+  </swiper-item>
+</swiper>

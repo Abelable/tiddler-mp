@@ -1,7 +1,5 @@
 {
   "navigationStyle": "custom",
-  "enablePullDownRefresh": true,
-  "onReachBottomDistance": 600,
   "usingComponents": {
     "fall-flow": "/components/fall-flow/index",
     "media-item": "/components/media-item",

@@ -1,7 +1,8 @@
 .nav-bar {
   position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  box-sizing: initial;
   z-index: 100;
 }
 .nav-bar.active {
@@ -71,10 +72,15 @@
 }
 
 .container {
-  padding-bottom: calc(58px + env(safe-area-inset-bottom));
+  height: 100vh;
 }
 .content-wrap {
-  padding: 0 20rpx;
+  height: 100vh;
+  overflow-y: scroll;
+}
+.content {
+  padding: 0 20rpx calc(58px + env(safe-area-inset-bottom));
+  min-height: 100%;
 }
 
 .type-list {
