@@ -11,8 +11,12 @@ Component({
     list: {
       type: Array,
       observer(newList = [], oldList = []) {
-        this.list = newList.slice(oldList.length, newList.length);
-        this.render();
+        if (!newList.length) {
+          this.setData({ leftList: [], rightList: [] });
+        } else {
+          this.list = newList.slice(oldList.length, newList.length);
+          this.render();
+        }
       }
     },
     mediaScene: {

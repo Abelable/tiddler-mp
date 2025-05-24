@@ -37,6 +37,7 @@ Component({
     topMediaList: [],
     mediaList: [],
     isRefreshing: false,
+    isLoading: false,
     finished: false
   },
 
@@ -143,7 +144,11 @@ Component({
       checkLogin(async () => {
         if (init) {
           this.followPage = 0;
-          this.setData({ isFollowRefreshing: true, followFinished: false });
+          this.setData({
+            followMediaList: [],
+            isFollowRefreshing: true,
+            followFinished: false
+          });
         }
         const { followFinished, followMediaList } = this.data;
 
@@ -170,22 +175,25 @@ Component({
     async setMediaList(init = false) {
       if (init) {
         this.page = 0;
-        this.setData({ isRefreshing: true, finished: false });
+        this.setData({ mediaList: [], isRefreshing: true, finished: false });
       }
       const { finished, mediaList } = this.data;
 
       if (!finished) {
+        this.setData({ isLoading: true });
         const { list = [] } =
           (await homeService.getMediaList(++this.page, init ? 16 : 10)) || {};
         if (init) {
           this.setData({
             topMediaList: list.slice(0, 6),
             mediaList: list.slice(6),
+            isLoading: false,
             isRefreshing: false
           });
         } else {
           this.setData({
-            mediaList: [...mediaList, ...list]
+            mediaList: [...mediaList, ...list],
+            isLoading: false
           });
         }
 

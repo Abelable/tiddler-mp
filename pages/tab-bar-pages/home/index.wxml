@@ -65,6 +65,10 @@
         </view>
         <top-media topMediaList="{{topMediaList}}" />
         <fall-flow class="fall-flow" list="{{mediaList}}" generic:item="media-item" />
+        <view class="loading row center" wx:if="{{mediaList.length && isLoading}}">
+          <image class="loading-icon" src="https://static.tiddler.cn/mp/loading.gif" />
+          <text>加载中...</text>
+        </view>
         <empty-illus wx:if="{{finished && !mediaList.length}}" desc="暂无列表" />
         <view class="no-more-tips" wx:if="{{finished && mediaList.length}}">～没有更多了～</view>
       </view>

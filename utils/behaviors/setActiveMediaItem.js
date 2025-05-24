@@ -9,7 +9,7 @@ module.exports = Behavior({
       query.selectAll(".item").boundingClientRect();
       query.exec((res) => {
         const list = res[0].filter((item) => {
-          const { type, status } = item.dataset.info;
+          const { type, status } = item.dataset.info || {};
           if (type === 1 && status === 1) return item;
         });
         if (list.length) {
