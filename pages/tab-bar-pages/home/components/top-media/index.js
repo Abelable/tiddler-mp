@@ -44,11 +44,20 @@ Component({
 
   data: {
     curMediaIdx: 0,
-    mediaList: []
+    mediaList: [],
+    autoplay: true
+  },
+
+  pageLifetimes: {
+    show() {
+      this.setData({ autoplay: true })
+    },
+    hide() {
+      this.setData({ autoplay: false })
+    }
   },
 
   methods: {
-
     swiperChange(e) {
       const curMediaIdx = e.detail.current;
       this.setData({ curMediaIdx });
