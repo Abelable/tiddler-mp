@@ -9,19 +9,14 @@
       data-type="{{item.type}}"
     >
       <image class="top-media-cover" src="{{item.cover}}" mode="aspectFill" lazy-load />
-      <view class="top-media-time row between">
-        <view class="row">
-          <view class="time-date">{{item.date}}</view>
-          <view class="time-split"></view>
-          <view>
-            <view class="time-month">{{item.month}}</view>
-            <view class="time-year">{{item.year}}</view>
-          </view>
-          <image class="top-desc" src="./images/{{curMediaIdx === 0 ? 'today_' : ''}}best_note.png" />
+      <view class="top-media-time row">
+        <view class="time-date">{{item.date}}</view>
+        <view class="time-split"></view>
+        <view>
+          <view class="time-month">{{item.month}}</view>
+          <view class="time-year">{{item.year}}</view>
         </view>
-        <view class="video-symbol" wx:if="{{item.type === 2}}">
-          <image class="play-icon" src="/images/play.png" />
-        </view>
+        <image class="top-desc" src="./images/{{curMediaIdx === 0 ? 'today_' : ''}}best_note.png" />
       </view>
       <view class="video-symbol" wx:if="{{item.type === 2}}">
         <image class="play-icon" src="/images/play.png" />

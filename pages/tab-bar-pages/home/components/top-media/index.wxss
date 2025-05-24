@@ -51,6 +51,9 @@
 }
 
 .video-symbol {
+  position: absolute;
+  top: 24rpx;
+  right: 24rpx;
   display: flex;
   align-items: center;
   justify-content: center;
