@@ -12,7 +12,7 @@ const homeService = new HomeService();
 const { statusBarHeight } = getApp().globalData.systemInfo;
 const typeList = [
   { icon: "hot", name: "网红打卡" },
-  { icon: "ship", name: "乘船游湖" },
+  { icon: "ship", name: "游湖登岛" },
   { icon: "cycle", name: "环湖骑行" },
   { icon: "moon", name: "夜游千岛" },
   { icon: "star", name: "明星同游" }
