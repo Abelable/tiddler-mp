@@ -48,7 +48,6 @@
   position: relative;
   font-size: 0;
   overflow: hidden;
-  padding-bottom: calc(48px + env(safe-area-inset-bottom));
 }
 .bg {
   position: absolute;
@@ -141,6 +140,7 @@
 }
 
 .works-wrap {
+  padding-bottom: calc(48px + env(safe-area-inset-bottom));
   background: #fff;
   box-shadow: 0 -10px 20px -2px #f0f0f0;
 }
