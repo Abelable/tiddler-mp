@@ -38,7 +38,8 @@ Component({
     mediaList: [],
     isRefreshing: false,
     isLoading: false,
-    finished: false
+    finished: false,
+    scrollTop: 0
   },
 
   pageLifetimes: {
@@ -85,13 +86,13 @@ Component({
     },
 
     switchMenu(e) {
-      const index = Number(e.currentTarget.dataset.index)
+      const index = Number(e.currentTarget.dataset.index);
       if (index !== this.data.curMenuIndex) {
         this.setData({ curMenuIndex: index }, () => {
           this.setList(SCENE_SWITCH_TAB);
         });
       } else {
-        this.setList(SCENE_REFRESH);
+        this.setData({ scrollTop: 0 });
       }
     },
 

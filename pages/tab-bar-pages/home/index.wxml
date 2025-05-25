@@ -52,9 +52,11 @@
       refresher-triggered="{{isRefreshing}}"
       bindrefresherrefresh="onRefresh"
       bindscrolltolower="onLoadMore"
+      scroll-top="{{scrollTop}}"
       bindscroll="onPageScroll"
       refresher-enabled
       scroll-y
+      scroll-with-animation
     >
       <view class="content">
         <view class="type-list row between">
