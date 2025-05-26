@@ -1,17 +1,12 @@
 <view class="container">
   <view class="header row center">
     <image class="bg" src="{{userInfo.bg || 'https://static.tiddler.cn/mp/bg.png'}}" mode="aspectFill" />
-    <button 
-      class="avatar-wrap" 
-      bind:chooseavatar="chooseAvatar" 
-      open-type="chooseAvatar" 
-      hover-class="none"
-    >
+    <view class="avatar-wrap" bindtap="cropAvatar">
       <image class="avatar" src="{{userInfo.avatar}}" mode="aspectFill" />
       <view class="avatar-edit-btn row center">
         <image class="edit-icon" src="./images/edit.png" />
       </view>
-    </button>
+    </view>
     <view class="bg-edit-btn row center" bindtap="cropBg">设置背景</view>
   </view>
   
