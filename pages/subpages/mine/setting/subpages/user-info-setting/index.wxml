@@ -1,19 +1,24 @@
 <view class="container">
   <view class="header row center">
     <image class="bg" src="{{userInfo.bg || 'https://static.tiddler.cn/mp/bg.png'}}" mode="aspectFill" />
-    <view class="avatar-wrap" bindtap="cropAvatar">
+    <button 
+      class="avatar-wrap" 
+      bind:chooseavatar="chooseAvatar" 
+      open-type="chooseAvatar" 
+      hover-class="none"
+    >
       <image class="avatar" src="{{userInfo.avatar}}" mode="aspectFill" />
       <view class="avatar-edit-btn row center">
         <image class="edit-icon" src="./images/edit.png" />
       </view>
-    </view>
+    </button>
     <view class="bg-edit-btn row center" bindtap="cropBg">设置背景</view>
   </view>
   
   <view class="form-list">
     <view class="form-item row">
       <view class="form-label">昵 称：</view>
-      <input class="form-input" value="{{ userInfo.nickname }}" bindinput="setNickname" placeholder="未设置" />
+      <input class="form-input" value="{{ userInfo.nickname }}" bindinput="setNickname" type="nickname" placeholder="未设置" />
     </view>
     <view class="form-item row">
       <view class="form-label">性 别：</view>

@@ -36,20 +36,9 @@ Page({
   },
 
   onShow() {
-    if (this.uploadingAvatar) {
-      this.uploadAvatar();
-    }
-
     if (this.uploadingBg) {
       this.uploadBg();
     }
-  },
-
-  cropAvatar() {
-    this.uploadingAvatar = true;
-    wx.navigateTo({
-      url: "/pages/subpages/common/cropper/index",
-    });
   },
 
   cropBg() {
@@ -59,23 +48,15 @@ Page({
     });
   },
 
-  async uploadAvatar() {
-    if (!this.data.uploadAvatarLoading) {
-      this.setData({ uploadAvatarLoading: true });
-      if (store.croppedImagePath) {
-        const avatar = await settingService.uploadFile(store.croppedImagePath);
-        this.setData({
-          ["userInfo.avatar"]: avatar,
-        });
-        if (!this.data.saveBtnActive) {
-          this.setData({
-            saveBtnActive: true,
-          });
-        }
-        store.setCroppedImagePath("");
-        this.uploadingAvatar = false;
-      }
-      this.setData({ uploadAvatarLoading: false });
+  async chooseAvatar(e) {
+    const avatar = (await settingService.uploadFile(e.detail.avatarUrl)) || "";
+    this.setData({
+      ["userInfo.avatar"]: avatar,
+    });
+    if (!this.data.saveBtnActive) {
+      this.setData({
+        saveBtnActive: true,
+      });
     }
   },
 
