@@ -9,7 +9,7 @@ export const store = observable({
   tabType: "home",
   userInfo: null,
   promoterInfo: null,
-  merchantType: 1,
+  merchantType: undefined,
   activeMediaItem: null,
   croppedImagePath: "",
   locationInfo: null,

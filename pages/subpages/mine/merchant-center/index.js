@@ -36,9 +36,9 @@ Page({
       titleMenu.push({ name: "电商管理", type: "goods", value: 4 });
     }
 
-    const curTitleIdx = titleMenu.findIndex(
-      item => item.value === merchantType
-    );
+    const curTitleIdx = merchantType
+      ? titleMenu.findIndex(item => item.value === merchantType)
+      : 0;
 
     this.setData({ titleMenu, curTitleIdx });
   },

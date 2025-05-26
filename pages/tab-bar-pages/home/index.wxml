@@ -1,6 +1,12 @@
 <view class="nav-bar {{navBarActive[curMenuIndex] ? 'active': ''}}" style="padding-top: {{statusBarHeight}}px">
   <view class="menu-tabs-wrap">
-    <image class="sign-in-icon" src="/images/sign_in.png" />
+    <view style="flex: 1">
+      <!-- <image class="sign-in-icon" src="/images/sign_in.png" /> -->
+      <view class="promoter-icon" wx:if="{{promoterInfo}}">
+        <image class="promoter-avatar" src="{{promoterInfo.avatar}}" />
+        <image class="promoter-medal" src="https://static.tiddler.cn/mp/medal.gif" />
+      </view>
+    </view>
     <view class="menu-tabs">
       <view 
         wx:for="{{['关注', '发现']}}" 
@@ -12,6 +18,7 @@
         {{item}}
       </view>
     </view>
+    <view style="flex: 1" />
   </view>
   <view class="search-bar {{navBarActive[curMenuIndex] ? 'active': ''}}" bindtap="search">
     <view class="placeholder">搜索达人打卡景点、酒店...</view>
