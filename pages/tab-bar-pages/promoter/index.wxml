@@ -18,7 +18,7 @@
     </view>
     <view class="content-second-title">价值观</view>
     <view class="content">
-      温暖、真诚、热血、求真、极致、创新
+      温暖、真诚、炽热、求真、极致、创新
     </view>
     <view class="jion-us-btn row center" bindtap="navToGiftPage">
       <text>加入我们</text>

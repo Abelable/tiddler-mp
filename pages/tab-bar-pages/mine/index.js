@@ -24,7 +24,7 @@ Component({
     curMenuIndex: 0,
     navBarVisible: false,
     menuFixed: false,
-    wrapHeightList: [4000, 400, 400, 400],
+    wrapHeightList: [400, 400, 400, 400],
     videoListTotal: 0,
     videoList: [],
     videoFinished: false,
