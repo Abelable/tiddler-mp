@@ -36,7 +36,7 @@ Component({
       for (let i = 0, l = this.list.length / 2; i < l; i++) {
         const { leftHeight, rightHeight } = await this.getListWrapperHeight();
         if (leftHeight <= rightHeight) {
-          if (rightHeight - leftHeight > 300) {
+          if (rightHeight - leftHeight > 200) {
             this.setData({
               [`leftList[${this.data.leftList.length}]`]: this.list.shift(),
               [`leftList[${this.data.leftList.length}]`]: this.list.shift()
@@ -48,7 +48,7 @@ Component({
             });
           }
         } else {
-          if (leftHeight - rightHeight > 300) {
+          if (leftHeight - rightHeight > 200) {
             this.setData({
               [`rightList[${this.data.rightList.length}]`]: this.list.shift(),
               [`rightList[${this.data.rightList.length}]`]: this.list.shift()
