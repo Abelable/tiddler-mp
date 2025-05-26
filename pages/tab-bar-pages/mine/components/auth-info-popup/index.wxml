@@ -1,4 +1,4 @@
-<van-popup show="{{show}}" round position="bottom" bind:close="hide">
+<van-popup show="{{show}}" bind:close="hide" safe-area-inset-bottom="{{false}}" round position="bottom">
   <view class="user-info-popup">
     <view class="row">
       <image class="logo" src="https://static.tiddler.cn/mp/logo.png" />

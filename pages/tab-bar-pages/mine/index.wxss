@@ -34,23 +34,24 @@
 .mine-avatar-wrap {
   position: relative;
   margin-left: 8px;
-  width: 30px;
-  height: 30px;
+  width: 34px;
+  height: 34px;
   font-size: 0;
 }
 .mine-avatar {
-  width: 30px;
-  height: 30px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   border: 2px solid #fff;
 }
 .mine-medal {
   position: absolute;
   right: -6px;
-  bottom: -4px;
+  bottom: -2px;
   width: 22px;
   height: 22px;
 }
+
 .mine-name {
   margin-left: 12px;
   color: #fff;

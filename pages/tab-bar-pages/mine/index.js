@@ -70,7 +70,7 @@ Component({
             this.setData({ authInfoPopupVisible: true });
           }
         }, false);
-      }, 500);
+      }, 1000);
     },
 
     updateUserInfo() {
