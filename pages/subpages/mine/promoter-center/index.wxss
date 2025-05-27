@@ -1,7 +1,3 @@
-page {
-  background: #fff;
-}
-
 .title {
   color: #111;
   font-size: 28rpx;
@@ -17,21 +13,29 @@ page {
 }
 .nav-bar-wrap.show-bg {
   overflow: hidden;
-  background-position: top center;
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-size: 400rpx 400rpx, 100% 100vh;
+  background-repeat: no-repeat, no-repeat;
+  background-position: top right, top;
 }
-.nav-bar-wrap.show-bg.level-0, .nav-bar-wrap.show-bg.level-1 {
-  background-image: url("https://static.youbozhenxuan.cn/mp/mine_bg_default.png");
+.nav-bar-wrap.show-bg.level-1 {
+  background-image: 
+    url("https://static.tiddler.cn/mp/promoter/level_1/bg.png"), 
+    linear-gradient(180deg, #EDF6FE 20%, #FFFFFF 55%);
 }
 .nav-bar-wrap.show-bg.level-2 {
-  background-image: url("https://static.youbozhenxuan.cn/mp/mine_bg_level_2.png");
+   background-image: 
+    url("https://static.tiddler.cn/mp/promoter/level_2/bg.png"), 
+    linear-gradient(180deg, #EDFEEF 20%, #FFFFFF 55%);
 }
 .nav-bar-wrap.show-bg.level-3 {
-  background-image: url("https://static.youbozhenxuan.cn/mp/mine_bg_level_3.png");
+   background-image: 
+    url("https://static.tiddler.cn/mp/promoter/level_3/bg.png"), 
+    linear-gradient(180deg, #F3EDFE 20%, #FFFFFF 55%);
 }
 .nav-bar-wrap.show-bg.level-4 {
-  background-image: url("https://static.youbozhenxuan.cn/mp/mine_bg_level_4.png");
+   background-image: 
+    url("https://static.tiddler.cn/mp/promoter/level_4/bg.png"), 
+    linear-gradient(333deg, rgba(255,255,255,0) 50%, #FFFFFF 100%);
 }
 .nav-bar {
   padding: 0 8px;
@@ -49,20 +53,29 @@ page {
   position: relative;
   padding: 24rpx;
   min-height: 100vh;
-  background-size: 100%;
-  background-repeat: no-repeat;
+  background-size: 400rpx 400rpx, 100% 100vh;
+  background-repeat: no-repeat, no-repeat;
+  background-position: top right, top;
 }
-.container.level-0, .container.level-1 {
-  background-image: url("https://static.youbozhenxuan.cn/mp/mine_bg_default.png");
+.container.level-1 {
+  background-image: 
+    url("https://static.tiddler.cn/mp/promoter/level_1/bg.png"), 
+    linear-gradient(180deg, #EDF6FE 20%, #FFFFFF 55%);
 }
 .container.level-2 {
-  background-image: url("https://static.youbozhenxuan.cn/mp/mine_bg_level_2.png");
+   background-image: 
+    url("https://static.tiddler.cn/mp/promoter/level_2/bg.png"), 
+    linear-gradient(180deg, #EDFEEF 20%, #FFFFFF 55%);
 }
 .container.level-3 {
-  background-image: url("https://static.youbozhenxuan.cn/mp/mine_bg_level_3.png");
+   background-image: 
+    url("https://static.tiddler.cn/mp/promoter/level_3/bg.png"), 
+    linear-gradient(180deg, #F3EDFE 20%, #FFFFFF 55%);
 }
 .container.level-4 {
-  background-image: url("https://static.youbozhenxuan.cn/mp/mine_bg_level_4.png");
+   background-image: 
+    url("https://static.tiddler.cn/mp/promoter/level_4/bg.png"), 
+    linear-gradient(333deg, rgba(255,255,255,0) 50%, #FFFFFF 100%);
 }
 
 .upgradation-wrap {

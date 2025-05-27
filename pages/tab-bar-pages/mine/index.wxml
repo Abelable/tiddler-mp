@@ -6,7 +6,7 @@
   <image class="sign-in-icon" wx:if="{{!navBarVisible}}" src="/images/sign_in.png" />
   <view class="mine-avatar-wrap" wx:if="{{navBarVisible}}">
     <image class="mine-avatar" src="{{userInfo.avatar}}" />
-    <image class="mine-medal" src="https://static.tiddler.cn/mp/medal.gif" />
+    <image class="mine-medal" src="https://static.tiddler.cn/mp/promoter/level_{{userInfo.level}}/medal.gif" />
   </view>
   <view class="mine-name" wx:if="{{navBarVisible}}">{{userInfo.nickname}}</view>
 </view>
@@ -17,7 +17,7 @@
     <view class="user-info-wrap">
       <view class="avatar-wrap">
         <image class="avatar" bindtap="navToUserInfoSetting" src="{{userInfo.avatar}}" />
-        <image class="promoter-medal" src="https://static.tiddler.cn/mp/medal.gif" />
+        <image class="promoter-medal" src="https://static.tiddler.cn/mp/promoter/level_{{userInfo.level}}/medal.gif" />
       </view>
       <view class="data-wrap">
         <view class="data-item">

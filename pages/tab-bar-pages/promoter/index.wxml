@@ -33,13 +33,13 @@
     </view>
     <view class="rights-list">
       <view class="rights-item" wx:for="{{ARRAY.slice(rightsList, 0, 4)}}" wx:key="index">
-        <image class="rights-icon" src="https://static.tiddler.cn/mp/promoter/{{item.icon}}.png" />
+        <image class="rights-icon" src="https://static.tiddler.cn/mp/promoter/level_1/{{item.icon}}.png" />
         <view class="rights-name">{{item.name}}</view>
       </view>
     </view>
     <view class="rights-list">
       <view class="rights-item" wx:for="{{ARRAY.slice(rightsList, 4)}}" wx:key="index">
-        <image class="rights-icon" src="https://static.tiddler.cn/mp/promoter/{{item.icon}}.png" />
+        <image class="rights-icon" src="https://static.tiddler.cn/mp/promoter/level_1/{{item.icon}}.png" />
         <view class="rights-name">{{item.name}}</view>
       </view>
     </view>

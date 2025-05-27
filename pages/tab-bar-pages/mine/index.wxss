@@ -46,10 +46,10 @@
 }
 .mine-medal {
   position: absolute;
-  right: -6px;
-  bottom: -2px;
-  width: 22px;
-  height: 22px;
+  right: -4px;
+  bottom: -1px;
+  width: 20px;
+  height: 20px;
 }
 
 .mine-name {
@@ -102,10 +102,10 @@
 }
 .promoter-medal {
   position: absolute;
-  right: -12rpx;
-  bottom: -12rpx;
-  width: 80rpx;
-  height: 80rpx;
+  right: -8rpx;
+  bottom: -6rpx;
+  width: 68rpx;
+  height: 68rpx;
 }
 
 .data-wrap {

@@ -9,6 +9,7 @@ const { statusBarHeight } = getApp().globalData.systemInfo;
 Page({
   data: {
     statusBarHeight,
+    curLevel: 1,
     achievementInfo: null,
     commissionSumInfo: null,
     dateList: ["今日", "昨日", "本月", "上月"],
