@@ -4,6 +4,8 @@ page {
   background-color: #f5f6f8;
   --blue-1: #00A5FF;
   --blue-2: #00C8FF;
+  --blue-3: #C6EFFF;
+  --blue-linear-1: linear-gradient(135deg, #76DCFF 0%, #05A8FF 100%);
   --gray-1: #595959;
 
   --theme-color: #00A5FF;

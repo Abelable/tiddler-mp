@@ -51,7 +51,6 @@
 
 .container {
   position: relative;
-  padding: 24rpx;
   min-height: 100vh;
   background-size: 400rpx 400rpx, 100% 100vh;
   background-repeat: no-repeat, no-repeat;
@@ -75,18 +74,28 @@
 .container.level-4 {
    background-image: 
     url("https://static.tiddler.cn/mp/promoter/level_4/bg.png"), 
-    linear-gradient(333deg, rgba(255,255,255,0) 50%, #FFFFFF 100%);
+    linear-gradient(180deg, #FEF4EA 20%, #FFFFFF 55%);
 }
 
 .upgradation-wrap {
-  margin-top: 150rpx;
-  margin-bottom: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%; 
+  height: 100%;
+}
+.upgradation-card {
   padding: 0 24rpx;
-  height: 200rpx;
-  background-size: calc(100% + 32rpx) calc(100% + 24rpx);
-  background-position: -16rpx -12rpx;
+  width: 640rpx; 
+  height: 358rpx;
+  background-size: contain;
   background-repeat: no-repeat;
   overflow: hidden;
+  transition: .2s ease;
+}
+.upgradation-card.active {
+  zoom: 1.0625;
+  transition: .2s ease;
 }
 .progress-desc {
   margin-top: 76rpx;
@@ -136,13 +145,67 @@
   border-radius: 24rpx;
 }
 
-.account-info {
+.achievement-wrap {
+  padding: 0 24rpx;
+}
+
+.promoter-rights-title {
   margin-top: 24rpx;
+  padding-left: 24rpx;
+  color: #333;
+  font-size: 32rpx;
+  font-weight: bolder;
+}
+.promoter-rights-wrap {
+  margin-top: 32rpx;
+}
+.rights-list {
+  display: flex;
+  margin-bottom: 32rpx;
+}
+.rights-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+.rights-icon-wrap {
+  position: relative;
+  width: 72rpx;
+  height: 72rpx;
+  font-size: 0;
+}
+.rights-icon {
+  width: 72rpx;
+  height: 72rpx;
+}
+.rights-lock {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 30rpx;
+  height: 30rpx;
+}
+.rights-name {
+  margin-top: 8rpx;
+  color: #333;
+  font-size: 24rpx;
+}
+
+.reward-wrap {
+  position: relative;
+  margin-top: 48rpx;
+  padding: 26rpx 24rpx calc(env(safe-area-inset-bottom) + 24rpx);
+  border-radius: 60rpx 60rpx 0 0;
+  background: #f5f6f8;
+}
+
+.account-info {
   background: #fff;
-  border-radius: 16rpx;
+  border-radius: 42rpx;
 }
 .account-amount {
-  padding: 24rpx;
+  padding: 32rpx;
   padding-bottom: 48rpx;
 }
 .account-amount-header {
@@ -160,11 +223,11 @@
   align-items: center;
   justify-content: center;
   width: 116rpx;
-  height: 48rpx;
+  height: 52rpx;
   color: #fff;
   font-size: 24rpx;
-  background: linear-gradient( 135deg, #FFA266 0%, #FF3D39 64%, #FF3636 100%);
-  border-radius: 24rpx;
+  background: var(--blue-linear-1);
+  border-radius: 26rpx;
 }
 
 .amount-list {
@@ -190,9 +253,9 @@
 }
 
 .account-daily-data {
-  padding: 24rpx;
+  padding: 32rpx;
   padding-bottom: 48rpx;
-  border-top: 1px solid #eee;
+  border-top: 1px solid #f5f6f8;
 }
 .date-menu {
   display: flex;
@@ -211,7 +274,7 @@
 }
 .date.selected {
   color: var(--blue-1);
-  background: #FFF3EC;
+  background: var(--blue-3);
   border: 1px solid var(--blue-1);
 }
 
@@ -239,8 +302,8 @@
 
 .customer-data-center {
   margin-top: 24rpx;
-  padding: 24rpx;
-  border-radius: 16rpx;
+  padding: 32rpx;
+  border-radius: 42rpx;
   background: #fff;
 }
 .customer-data-list {

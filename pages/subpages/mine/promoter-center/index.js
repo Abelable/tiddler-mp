@@ -5,10 +5,22 @@ import PromoterService from "./utils/promoterService";
 
 const promoterService = new PromoterService();
 const { statusBarHeight } = getApp().globalData.systemInfo;
+const rightsList = [
+  { icon: "reward", name: "分享奖励" },
+  { icon: "indirect", name: "间推奖励" },
+  { icon: "team", name: "团队奖励" },
+  { icon: "mentor", name: "专属导师" },
+  { icon: "product", name: "专享产品" },
+  { icon: "activity", name: "线下活动" },
+  { icon: "trip", name: "文旅体验" },
+  { icon: "meeting", name: "代言人大会" }
+];
 
 Page({
   data: {
     statusBarHeight,
+    rightsList,
+    navBarBgVisible: false,
     curLevel: 1,
     achievementInfo: null,
     commissionSumInfo: null,
@@ -66,6 +78,23 @@ Page({
   async setCustomerData() {
     const customerData = await promoterService.getCustomerData();
     this.setData({ customerData });
+  },
+
+  swiperChange(e) {
+    const curLevel = e.detail.current + 1;
+    this.setData({ curLevel });
+  },
+
+  onPageScroll(e) {
+    if (e.scrollTop >= 10) {
+      if (!this.data.navBarBgVisible) {
+        this.setData({ navBarBgVisible: true });
+      }
+    } else {
+      if (this.data.navBarBgVisible) {
+        this.setData({ navBarBgVisible: false });
+      }
+    }
   },
 
   withdraw() {
