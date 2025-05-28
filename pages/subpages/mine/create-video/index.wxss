@@ -156,5 +156,5 @@
   background: #DEDEDE;
 }
 .publish-btn.active {
-  background: #161F4E;
+  background: var(--blue-1);
 }

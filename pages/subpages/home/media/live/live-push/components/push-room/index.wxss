@@ -43,7 +43,7 @@
   height: 44px;
   color: #fff;
   font-size: 16px;
-  background: #161F4E;
+  background: var(--blue-1);
   border-radius: 22px;
 }
 

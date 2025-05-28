@@ -194,5 +194,5 @@
   background: #e6e6e6;
 }
 .submit-btn.active {
-  background: #161F4E;
+  background: var(--blue-1);
 }

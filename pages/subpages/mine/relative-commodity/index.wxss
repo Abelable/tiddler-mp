@@ -18,7 +18,7 @@
   height: 80rpx;
   background: #fff;
   border-radius: 40rpx;
-  border: 1px solid #161F4E;
+  border: 1px solid var(--blue-1);
 }
 .search-icon {
   width: 30rpx;
@@ -51,7 +51,7 @@
   font-size: 28rpx;
   color: #fff;
   border-radius: 40rpx;
-  background: #161F4E;
+  background: var(--blue-1);
 }
 
 .menu-tab-list {
@@ -128,6 +128,6 @@
   height: 88rpx;
   color: #fff;
   font-size: 32rpx;
-  background: linear-gradient(128deg, #53678d 0%, #161F4E 100%);
+  background: linear-gradient(128deg, #53678d 0%, var(--blue-1) 100%);
   border-radius: 44rpx;
 }

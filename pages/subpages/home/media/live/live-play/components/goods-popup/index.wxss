@@ -73,7 +73,7 @@
   height: 24px;
   color: #fff;
   font-size: 12px;
-  background: #161F4E;
+  background: var(--blue-1);
   border-radius: 12px;
 }
 

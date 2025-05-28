@@ -16,7 +16,7 @@
   height: 72rpx;
   background: #fff;
   border-radius: 36rpx;
-  border: 1px solid #161f4e;
+  border: 1px solid var(--blue-1);
 }
 .calendar-bar {
   margin-left: 32rpx;
@@ -61,7 +61,7 @@
   font-size: 26rpx;
   color: #fff;
   border-radius: 36rpx;
-  background: #161f4e;
+  background: var(--blue-1);
 }
 
 .menu-tab-list {

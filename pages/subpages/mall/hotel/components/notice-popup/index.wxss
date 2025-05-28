@@ -162,6 +162,6 @@
   height: 88rpx;
   color: #fff;
   font-size: 32rpx;
-  background: linear-gradient(128deg, #53678d 0%, #161F4E 100%);
+  background: linear-gradient(128deg, #53678d 0%, var(--blue-1) 100%);
   border-radius: 44rpx;
 }
