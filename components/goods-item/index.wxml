@@ -6,7 +6,7 @@
       <text>天</text>
     </view>
     <image class="cover" style="height: {{item.coverHeight}}rpx;" wx:if="{{item.coverHeight}}" src="{{item.cover}}?x-oss-process=image/resize,w_450" mode="aspectFill" />
-    <image class="cover" wx:if="{{!item.coverHeight}}" src="{{item.cover}}?x-oss-process=image/resize,w_450" bindload="onCoverLoaded" mode="widthFix" lazy-load />
+    <image class="cover" wx:if="{{!item.coverHeight}}" src="{{item.cover}}?x-oss-process=image/resize,w_450" bindload="onCoverLoaded" mode="widthFix" />
     <view class="type-label row" wx:if="{{showTag}}">商品</view>
   </view>
   <view class="content">
