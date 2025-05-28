@@ -12,11 +12,11 @@
 </view>
 
 <view class="container level-{{curLevel}}" style="padding-top: {{statusBarHeight + 56}}px;">
-  <swiper style="height: 380rpx;" bindchange="swiperChange" current="{{curLevel - 1}}" previous-margin="40rpx" next-margin="40rpx">
+  <swiper style="height: 380rpx;" bindchange="swiperChange" current="{{curLevel - 1}}" previous-margin="48rpx" next-margin="48rpx">
     <swiper-item wx:for="{{4}}" wx:key="index">
       <view class="upgradation-wrap">
         <view
-          class="upgradation-card {{curLevel === index + 1 ? 'active' : ''}}"
+          class="upgradation-card {{curLevel !== index + 1 ? 'not-active' : ''}}"
           style="background-image: url('https://static.tiddler.cn/mp/promoter/level_{{index + 1}}/achievement_bg.png')"
         >
           <!-- <view class="progress-desc">
