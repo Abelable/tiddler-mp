@@ -6,7 +6,7 @@
   <image class="sign-in-icon" wx:if="{{!navBarVisible}}" src="/images/sign_in.png" />
   <view class="mine-avatar-wrap" wx:if="{{navBarVisible}}">
     <image class="mine-avatar" src="{{userInfo.avatar}}" />
-    <image class="mine-medal" src="https://static.tiddler.cn/mp/promoter/level_{{userInfo.level}}/medal.gif" />
+    <image class="mine-medal" wx:if="{{userInfo.level}}" src="https://static.tiddler.cn/mp/promoter/level_{{userInfo.level}}/medal.gif" />
   </view>
   <view class="mine-name" wx:if="{{navBarVisible}}">{{userInfo.nickname}}</view>
 </view>
@@ -17,7 +17,7 @@
     <view class="user-info-wrap">
       <view class="avatar-wrap">
         <image class="avatar" bindtap="navToUserInfoSetting" src="{{userInfo.avatar}}" />
-        <image class="promoter-medal" src="https://static.tiddler.cn/mp/promoter/level_{{userInfo.level}}/medal.gif" />
+        <image class="promoter-medal" wx:if="{{userInfo.level}}" src="https://static.tiddler.cn/mp/promoter/level_{{userInfo.level}}/medal.gif" />
       </view>
       <view class="data-wrap">
         <view class="data-item">
@@ -42,15 +42,15 @@
 
     <view class="function-wrap">
       <navigator class="function-item" url="/pages/subpages/mine/order-center/index" hover-class="none">
-        <image class="function-icon" src="./images/order.png" />
+        <image class="function-icon" src="https://static.tiddler.cn/mp/mine/order.png" />
         <view class="function-desc">订单中心</view>
       </navigator>
       <navigator class="function-item" url="/pages/subpages/mine/address-list/index" hover-class="none">
-        <image class="function-icon" src="./images/address.png" />
+        <image class="function-icon" src="https://static.tiddler.cn/mp/mine/address.png" />
         <view class="function-desc">收货地址</view>
       </navigator>
       <navigator class="function-item" url="/pages/subpages/mine/coupon-list/index" hover-class="none">
-        <image class="function-icon" src="./images/coupon.png" />
+        <image class="function-icon" src="https://static.tiddler.cn/mp/mine/coupon.png" />
         <view class="function-desc">优惠券</view>
       </navigator>
       <navigator 
@@ -59,11 +59,11 @@
         url="/pages/subpages/mine/balance/index" 
         hover-class="none"
       >
-        <image class="function-icon" src="./images/balance.png" />
+        <image class="function-icon" src="https://static.tiddler.cn/mp/mine/balance.png" />
         <view class="function-desc">我的余额</view>
       </navigator>
       <view class="function-item" wx:if="{{userInfo.level}}" bindtap="navToPromoterCenter">
-        <image class="function-icon" src="./images/promoter.png" />
+        <image class="function-icon" src="https://static.tiddler.cn/mp/mine/medal.png" />
         <view class="function-desc">代言奖励</view>
       </view>
       <navigator 
@@ -72,19 +72,19 @@
         url="/pages/subpages/mine/merchant-center/index" 
         hover-class="none"
       >
-        <image class="function-icon" src="./images/merchant.png" />
+        <image class="function-icon" src="https://static.tiddler.cn/mp/mine/merchant.png" />
         <view class="function-desc">商家中心</view>
       </navigator>
       <!-- <view class="function-item" bindtap="navToLive">
-        <image class="function-icon" src="./images/live.png" />
+        <image class="function-icon" src="https://static.tiddler.cn/mp/mine/live.png" />
         <view class="function-desc">我的直播</view>
       </view> -->
       <navigator class="function-item" url="/pages/subpages/mine/history/index" hover-class="none">
-        <image class="function-icon" src="./images/history.png" />
+        <image class="function-icon" src="https://static.tiddler.cn/mp/mine/history.png" />
         <view class="function-desc">浏览历史</view>
       </navigator>
       <view class="function-item" bindtap="navToSetting">
-        <image class="function-icon" src="./images/setting.png" />
+        <image class="function-icon" src="https://static.tiddler.cn/mp/mine/setting.png" />
         <view class="function-desc">更多设置</view>
       </view>
     </view>

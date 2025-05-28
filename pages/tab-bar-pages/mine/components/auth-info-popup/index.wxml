@@ -12,7 +12,7 @@
         <view class="modal-list-title">头像</view>
         <button class="avatar-wrapper" bind:chooseavatar="chooseAvatar" open-type="chooseAvatar" hover-class="none">
           <image class="avatar-img" src="{{avatar || 'https://static.tiddler.cn/mp/default_avatar.png'}}" />
-          <image class="avatar-arrow" src="../../images/arrow.png" />
+          <image class="avatar-arrow" src="./images/arrow.png" />
         </button> 
       </view>
       <view class="auth-modal-list">
