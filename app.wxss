@@ -2,7 +2,7 @@ page {
   position: relative;
   min-height: 100vh;
   background-color: #f5f6f8;
-  --blue-1: #00A5FF;
+  --blue-1: #09AFFF;
   --blue-2: #00C8FF;
   --blue-3: #C6EFFF;
   --blue-linear-1: linear-gradient(135deg, #76DCFF 0%, #05A8FF 100%);

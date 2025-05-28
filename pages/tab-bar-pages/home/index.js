@@ -69,7 +69,8 @@ Component({
       }
       this.initCalendar();
 
-      this.setList(SCENE_REFRESH);
+      // scroll-view特效，设置isRefreshing值，即可触发初始化
+      this.setData({ isRefreshing: true });
 
       wx.showShareMenu({
         withShareTicket: true,
@@ -123,9 +124,13 @@ Component({
       switch (scene) {
         case SCENE_SWITCH_TAB:
           if (curMenuIndex === 0) {
-            if (!followMediaList.length) this.setFollowMediaList(true);
+            if (!followMediaList.length) {
+              this.setData({ isFollowRefreshing: true })
+            }
           } else {
-            if (!mediaList.length) this.setMediaList(true);
+            if (!mediaList.length) {
+              this.setData({ isRefreshing: true });
+            }
           }
           this.setActiveMediaItem();
           break;

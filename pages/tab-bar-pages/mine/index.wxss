@@ -207,7 +207,7 @@
   bottom: 0;
   width: 25vw;
   height: 4rpx;
-  background: var(--blue-1);
+  background: var(--blue-2);
   transition: left .2s ease;
 }
 
