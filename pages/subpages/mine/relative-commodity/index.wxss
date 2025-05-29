@@ -126,8 +126,8 @@
   transform: translateX(-50%);
   width: calc(100% - 48rpx);
   height: 88rpx;
-  color: #fff;
+  color: var(--gold-1);
   font-size: 32rpx;
-  background: linear-gradient(128deg, #53678d 0%, var(--blue-1) 100%);
+  background: var(--blue-linear-2);
   border-radius: 44rpx;
 }

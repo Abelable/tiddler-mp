@@ -73,8 +73,8 @@
 }
 .resolution-selection.active {
   position: relative;
-  color: #fff;
-  background: linear-gradient(128deg, #53678d 0%, var(--blue-1) 100%);
+  color: var(--gold-1);
+  background: var(--blue-linear-2);
 }
 .resolution-name {
   margin-top: 16rpx;

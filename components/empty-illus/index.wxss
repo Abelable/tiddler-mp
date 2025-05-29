@@ -14,10 +14,10 @@
 .btn {
   margin-top: 24rpx;
   padding: 0 28rpx;
-  height: 60rpx;
-  color: #fff;
+  height: 58rpx;
+  color: var(--gold-1);
   font-size: 26rpx;
-  line-height: 1;
-  background: linear-gradient(128deg, #53678d 0%, var(--blue-1) 100%);
-  border-radius: 12rpx;
+  font-weight: bold;
+  background: var(--blue-linear-2);
+  border-radius: 24rpx;
 }

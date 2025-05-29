@@ -6,11 +6,9 @@ page {
   --blue-2: #00C8FF;
   --blue-3: #C6EFFF;
   --blue-linear-1: linear-gradient(135deg, #76DCFF 0%, #05A8FF 100%);
+  --blue-linear-2: linear-gradient(180deg, #0d61d7 0%, #063e82 100%);
   --gray-1: #595959;
-
-  --theme-color: #00A5FF;
-  --theme-color-gradient: linear-gradient(90deg, var(--blue-2) 0%, #86abeb 100%);
-  --theme-color-btn-bg: linear-gradient(90deg, #00cffc 0%, #0095fa 100%);
+  --gold-1: rgb(224, 214, 203);
 }
 
 view, text, image, scroll-view, navigator, swiper, swiper-item {
