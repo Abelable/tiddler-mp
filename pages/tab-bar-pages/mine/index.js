@@ -10,6 +10,17 @@ import {
 
 const mineService = new MineService();
 const { statusBarHeight } = getApp().globalData.systemInfo;
+const toolList = [
+  { name: "订单中心", icon: "order" },
+  { name: "收货地址", icon: "address" },
+  { name: "优惠券", icon: "coupon" },
+  { name: "我的余额", icon: "balance" },
+  { name: "代言奖励", icon: "promoter" },
+  { name: "商家中心", icon: "merchant" },
+  { name: "我的直播", icon: "live" },
+  { name: "浏览历史", icon: "history" },
+  { name: "更多设置", icon: "setting" },
+];
 
 Component({
   behaviors: [storeBindingsBehavior],

@@ -150,21 +150,21 @@
   height: 24rpx;
 }
 
-.function-wrap {
+.tool-wrap {
   display: flex;
   flex-wrap: wrap;
   margin: 40rpx 0 8rpx;
 }
-.function-item {
+.tool-item {
   margin-bottom: 32rpx;
   width: 20%;
   text-align: center;
 }
-.function-icon {
+.tool-icon {
   width: 60rpx;
   height: 60rpx;
 }
-.function-desc {
+.tool-desc {
   margin-top: 6rpx;
   color: #666;
   font-size: 20rpx;
