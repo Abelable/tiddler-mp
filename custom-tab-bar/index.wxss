@@ -54,6 +54,7 @@
   100% { background-position: 0% 50%; }
 }
 .promoter-icon {
-  width: 55rpx;
-  height: 55rpx;
+  margin-bottom: 2rpx;
+  width: 50rpx;
+  height: 50rpx;
 }
