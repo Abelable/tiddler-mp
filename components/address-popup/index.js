@@ -63,7 +63,7 @@ Component({
     navToAddressListPage() {
       checkLogin(() => {
         wx.navigateTo({
-          url: "/pages/subpages/mine/address-list/index"
+          url: "/pages/subpages/mine/address/index"
         });
       });
     }

@@ -322,10 +322,15 @@ Component({
       this.scrollTop = e.scrollTop;
     },
 
-    navToSetting() {
-      wx.navigateTo({
-        url: "/pages/subpages/mine/setting/index"
-      });
+    navTo(e) {
+      const { type } = e.currentTarget.dataset;
+      if (type === "live") {
+        this.navToLive();
+      } else {
+        wx.navigateTo({
+          url: `/pages/subpages/mine/${type}/index`
+        });
+      }
     },
 
     async navToLive() {
@@ -402,12 +407,6 @@ Component({
     checkFanList() {
       const url = "/pages/subpages/mine/fan-follow-list/index?scene=2";
       wx.navigateTo({ url });
-    },
-
-    navToPromoterCenter() {
-      wx.navigateTo({
-        url: "/pages/subpages/mine/promoter-center/index"
-      });
     },
 
     hideAuthInfoPopup() {

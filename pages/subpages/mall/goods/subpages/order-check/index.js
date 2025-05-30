@@ -204,7 +204,7 @@ Page({
 
   async pay(orderIds) {
     const { curMenuIdx } = this.data;
-    const url = `/pages/subpages/mine/order-center/index?type=5&status=${
+    const url = `/pages/subpages/mine/order/index?type=5&status=${
       curMenuIdx === 0 ? 2 : 3
     }`;
     const payParams = await goodsService.getPayParams(orderIds);
@@ -216,7 +216,7 @@ Page({
         },
         fail: () => {
           wx.navigateTo({
-            url: "/pages/subpages/mine/order-center/index?type=5&status=1"
+            url: "/pages/subpages/mine/order/index?type=5&status=1"
           });
         }
       });

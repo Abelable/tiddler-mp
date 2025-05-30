@@ -41,15 +41,15 @@
     </view>
 
     <view class="function-wrap">
-      <navigator class="function-item" url="/pages/subpages/mine/order-center/index" hover-class="none">
+      <navigator class="function-item" url="/pages/subpages/mine/order/index" hover-class="none">
         <image class="function-icon" src="https://static.tiddler.cn/mp/mine/order.png" />
         <view class="function-desc">订单中心</view>
       </navigator>
-      <navigator class="function-item" url="/pages/subpages/mine/address-list/index" hover-class="none">
+      <navigator class="function-item" url="/pages/subpages/mine/address/index" hover-class="none">
         <image class="function-icon" src="https://static.tiddler.cn/mp/mine/address.png" />
         <view class="function-desc">收货地址</view>
       </navigator>
-      <navigator class="function-item" url="/pages/subpages/mine/coupon-list/index" hover-class="none">
+      <navigator class="function-item" url="/pages/subpages/mine/coupon/index" hover-class="none">
         <image class="function-icon" src="https://static.tiddler.cn/mp/mine/coupon.png" />
         <view class="function-desc">优惠券</view>
       </navigator>
@@ -69,7 +69,7 @@
       <navigator 
         class="function-item" 
         wx:if="{{userInfo.merchantId || userInfo.scenicProviderId || userInfo.hotelProviderId || userInfo.cateringProviderId}}" 
-        url="/pages/subpages/mine/merchant-center/index" 
+        url="/pages/subpages/mine/merchant/index" 
         hover-class="none"
       >
         <image class="function-icon" src="https://static.tiddler.cn/mp/mine/merchant.png" />
