@@ -28,10 +28,12 @@
   padding: 24rpx;
   padding-bottom: calc(142rpx + env(safe-area-inset-bottom));
   min-height: 100vh;
-  background-image: url("https://static.youbozhenxuan.cn/mp/account_bg.png");
-  background-position: top center;
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-image: 
+    url("https://static.tiddler.cn/mp/promoter/account/bg.png"), 
+    linear-gradient(180deg, #EDF6FE 20%, #F6F6F6 55%);
+  background-size: 550rpx 550rpx, 100% 100vh;
+  background-repeat: no-repeat, no-repeat;
+  background-position: top left, top;
 }
 
 .amount-label {
