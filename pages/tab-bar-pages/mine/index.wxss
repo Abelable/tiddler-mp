@@ -153,10 +153,14 @@
 .tool-wrap {
   display: flex;
   flex-wrap: wrap;
-  margin: 40rpx 0 8rpx;
+  margin-top: 8rpx;
+  margin-bottom: 40rpx;
+}
+.tool-wrap.overflow {
+  margin-bottom: 12rpx;
 }
 .tool-item {
-  margin-bottom: 32rpx;
+  margin-top: 32rpx;
   width: 20%;
   text-align: center;
 }
@@ -170,10 +174,19 @@
   font-size: 20rpx;
 }
 
+.tool-visible-bar {
+  height: 55rpx;
+  text-align: center;
+}
+.visible-arrow {
+  width: 28rpx;
+  height: 28rpx;
+}
+
 .works-wrap {
   padding-bottom: calc(48px + env(safe-area-inset-bottom));
   background: #fff;
-  box-shadow: 0 -10px 20px -2px #f0f0f0;
+  box-shadow: 0 -40px 20px -2px #f0f0f0;
 }
 .works-wrap.fixed {
   padding-top: 80rpx;

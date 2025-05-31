@@ -1,4 +1,5 @@
 <wxs module="NUM" src="/utils/filters/num.wxs" />
+<wxs module="ARRAY" src="/utils/filters/array.wxs" />
 
 <view class="nav-bar row" style="padding-top: {{statusBarHeight}}px;">
   <image class="nav-bg" wx:if="{{navBarVisible}}" src="{{userInfo.bg || 'https://static.tiddler.cn/mp/bg.png'}}" />
@@ -40,53 +41,21 @@
       <image class="edit-icon" wx:if="{{!userInfo.signature}}" src="https://img.ubo.vip/tiddler/mine/edit.png" />
     </view>
 
-    <view class="tool-wrap">
-      <navigator class="tool-item" url="/pages/subpages/mine/order/index" hover-class="none">
-        <image class="tool-icon" src="https://static.tiddler.cn/mp/mine/order.png" />
-        <view class="tool-desc">订单中心</view>
-      </navigator>
-      <navigator class="tool-item" url="/pages/subpages/mine/address/index" hover-class="none">
-        <image class="tool-icon" src="https://static.tiddler.cn/mp/mine/address.png" />
-        <view class="tool-desc">收货地址</view>
-      </navigator>
-      <navigator class="tool-item" url="/pages/subpages/mine/coupon/index" hover-class="none">
-        <image class="tool-icon" src="https://static.tiddler.cn/mp/mine/coupon.png" />
-        <view class="tool-desc">优惠券</view>
-      </navigator>
-      <navigator 
+    <view class="tool-wrap {{toolList.length > 5 ? 'overflow' : ''}}">
+      <view 
         class="tool-item" 
-        wx:if="{{userInfo.level || userInfo.merchantId || userInfo.scenicProviderId || userInfo.hotelProviderId || userInfo.cateringProviderId}}" 
-        url="/pages/subpages/mine/balance/index" 
-        hover-class="none"
+        wx:for="{{showAllTools ? toolList : ARRAY.slice(toolList, 0, 5)}}" 
+        wx:key="index" 
+        bindtap="navTo" 
+        data-type="{{item.icon}}"
       >
-        <image class="tool-icon" src="https://static.tiddler.cn/mp/mine/balance.png" />
-        <view class="tool-desc">我的余额</view>
-      </navigator>
-      <view class="tool-item" wx:if="{{userInfo.level}}" bindtap="navToPromoterCenter">
-        <image class="tool-icon" src="https://static.tiddler.cn/mp/mine/medal.png" />
-        <view class="tool-desc">代言奖励</view>
+        <image class="tool-icon" src="https://static.tiddler.cn/mp/mine/{{item.icon}}.png" />
+        <view class="tool-desc">{{item.name}}</view>
       </view>
-      <navigator 
-        class="tool-item" 
-        wx:if="{{userInfo.merchantId || userInfo.scenicProviderId || userInfo.hotelProviderId || userInfo.cateringProviderId}}" 
-        url="/pages/subpages/mine/merchant/index" 
-        hover-class="none"
-      >
-        <image class="tool-icon" src="https://static.tiddler.cn/mp/mine/merchant.png" />
-        <view class="tool-desc">商家中心</view>
-      </navigator>
-      <!-- <view class="tool-item" bindtap="navToLive">
-        <image class="tool-icon" src="https://static.tiddler.cn/mp/mine/live.png" />
-        <view class="tool-desc">我的直播</view>
-      </view> -->
-      <navigator class="tool-item" url="/pages/subpages/mine/history/index" hover-class="none">
-        <image class="tool-icon" src="https://static.tiddler.cn/mp/mine/history.png" />
-        <view class="tool-desc">浏览历史</view>
-      </navigator>
-      <view class="tool-item" bindtap="navToSetting">
-        <image class="tool-icon" src="https://static.tiddler.cn/mp/mine/setting.png" />
-        <view class="tool-desc">更多设置</view>
-      </view>
+    </view>
+
+    <view class="tool-visible-bar" wx:if="{{toolList.length > 5}}" bindtap="toggleToolsVisible">
+      <image class="visible-arrow" src="./images/{{showAllTools ? 'up' : 'down'}}_arrow.png" />
     </view>
 
     <view class="works-wrap {{menuFixed ? 'fixed' : '' }}">

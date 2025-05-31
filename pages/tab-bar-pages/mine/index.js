@@ -10,17 +10,6 @@ import {
 
 const mineService = new MineService();
 const { statusBarHeight } = getApp().globalData.systemInfo;
-const toolList = [
-  { name: "订单中心", icon: "order" },
-  { name: "收货地址", icon: "address" },
-  { name: "优惠券", icon: "coupon" },
-  { name: "我的余额", icon: "balance" },
-  { name: "代言奖励", icon: "promoter" },
-  { name: "商家中心", icon: "merchant" },
-  { name: "我的直播", icon: "live" },
-  { name: "浏览历史", icon: "history" },
-  { name: "更多设置", icon: "setting" },
-];
 
 Component({
   behaviors: [storeBindingsBehavior],
@@ -32,6 +21,8 @@ Component({
 
   data: {
     statusBarHeight,
+    toolList: [],
+    showAllTools: false,
     curMenuIndex: 0,
     navBarVisible: false,
     menuFixed: false,
@@ -47,6 +38,19 @@ Component({
     likeMediaList: [],
     likeFinished: false,
     authInfoPopupVisible: false
+  },
+
+  observers: {
+    userInfo: function (userInfo) {
+      if (userInfo) {
+        const { avatar = "" } = store.userInfo || {};
+        if (!avatar || avatar.includes("default_avatar")) {
+          this.setData({ authInfoPopupVisible: true });
+        }
+
+        this.initToolList();
+      }
+    }
   },
 
   lifetimes: {
@@ -73,19 +77,40 @@ Component({
   },
 
   methods: {
-    onLoad() {
-      setTimeout(() => {
-        checkLogin(() => {
-          const { avatar = "" } = store.userInfo || {};
-          if (!avatar || avatar.includes("default_avatar")) {
-            this.setData({ authInfoPopupVisible: true });
-          }
-        }, false);
-      }, 1000);
-    },
-
     updateUserInfo() {
       mineService.getUserInfo();
+    },
+
+    initToolList() {
+      const {
+        level,
+        merchantId,
+        scenicProviderId,
+        hotelProviderId,
+        cateringProviderId
+      } = store.userInfo;
+
+      // { name: "我的直播", icon: "live" },
+      const toolList = [
+        { name: "订单中心", icon: "order" },
+        { name: "收货地址", icon: "address" },
+        { name: "优惠券", icon: "coupon" },
+        merchantId || scenicProviderId || hotelProviderId || cateringProviderId
+          ? { name: "商家中心", icon: "merchant" }
+          : undefined,
+        level ? { name: "代言奖励", icon: "promoter" } : undefined,
+
+        level ||
+        merchantId ||
+        scenicProviderId ||
+        hotelProviderId ||
+        cateringProviderId
+          ? { name: "我的余额", icon: "balance" }
+          : undefined,
+        { name: "浏览历史", icon: "history" },
+        { name: "更多设置", icon: "setting" }
+      ].filter(item => !!item);
+      this.setData({ toolList });
     },
 
     switchMenu(e) {
@@ -331,6 +356,12 @@ Component({
       }
 
       this.scrollTop = e.scrollTop;
+    },
+
+    toggleToolsVisible() {
+      this.setData({
+        showAllTools: !this.data.showAllTools
+      });
     },
 
     navTo(e) {
