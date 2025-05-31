@@ -22,7 +22,9 @@
           </view>
           <view class="upgradation-content">
             <view class="level-name">家乡代言人Lv.{{index + 1}}</view>
-            <view class="level-expiration">2026.02.02到期</view>
+            <view class="level-expiration" wx:if="{{userInfo.level === index + 1}}">
+              2026.02.02到期
+            </view>
             <view class="progress-wrap" wx:if="{{userInfo.level === index + 1}}">
               <view class="progress-bar-wrap row">
                 <view class="progress-bar row">
