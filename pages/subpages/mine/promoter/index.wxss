@@ -86,11 +86,9 @@
   height: 100%;
 }
 .upgradation-card {
-  padding: 0 24rpx;
+  position: relative;
   width: 680rpx; 
   height: 368rpx;
-  background-size: contain;
-  background-repeat: no-repeat;
   overflow: hidden;
   transform: scale(1);
   transition: transform 0.2s ease;
@@ -99,52 +97,154 @@
 .upgradation-card.not-active {
   transform: scale(0.92);
 }
-.progress-desc {
-  margin-top: 76rpx;
-  color: #14191f;
-  font-size: 24rpx;
-}
-.progress-bar-wrap {
-  display: flex;
-  align-items: center;
-  margin-top: 6rpx;
-}
-.progress-bar-tips {
-  color: #6a6f75;
-  font-size: 20rpx;
-}
-.progress-bar {
-  position: relative;
-  margin: 0 10rpx;
-  flex: 1;
-  height: 24rpx;
-  background: #fff;
-  border-radius: 12rpx;
-}
-.progress-bar-inner {
+.upgradation-bg {
   position: absolute;
   top: 0;
   left: 0;
-  height: 24rpx;
-  background: linear-gradient(
-    135deg,
-    #ffa266 0%,
-    #ff3d39 64%,
-    #ff3636 100%
-  );
-  border-radius: 12rpx;
+  width: 100%;
+  height: 100%;
 }
-.upgrade-btn {
+.status-tag {
+  position: absolute;
+  top: 56rpx;
+  left: 0;
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-left: 40rpx;
-  width: 106rpx;
-  height: 48rpx;
+  padding: 4rpx 32rpx 0;
+  height: 50rpx;
   color: #fff;
+  font-size: 20rpx;
+  background: rgba(255,255,255,0.2);
+  border-radius: 40rpx 0 32rpx 0;
+}
+.upgradation-content {
+  position: absolute;
+  top: 100rpx;
+  left: 0;
+  padding: 24rpx 32rpx;
+  width: 100%;
+  color: #fff;
+}
+.level-name {
+  font-size: 34rpx;
+  font-weight: bolder;
+}
+.level-expiration {
+  margin-top: 4rpx;
+  font-size: 20rpx;
+}
+.progress-wrap {
+  margin-top: 60rpx;
+}
+.progress-bar-wrap {
+  height: 40rpx;
+}
+.progress-bar {
+  flex: 1;
+  height: 16rpx;
+  border-radius: 8rpx;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.progress-bar-inner {
+  position: relative;
+  min-width: 20%;
+  max-width: 50%;
+  height: 16rpx;
+  border-radius: 8rpx 0 0 8rpx;
+}
+.progress-bar-inner.stripe {
+  border-radius: 0 8rpx 8rpx 0;
+}
+.progress-bar-inner.level_1 {
+  background: #7CDFFF;
+}
+.progress-bar-inner.stripe.level_1 {
+  background: repeating-linear-gradient(
+    135deg,
+    #fff,    
+    #fff 4rpx,
+    #C6EFFF 4rpx,
+    #C6EFFF 8rpx
+  );
+}
+.progress-bar-inner.level_2 {
+  background: #7CDF9B;
+}
+.progress-bar-inner.stripe.level_2 {
+  background: repeating-linear-gradient(
+    135deg,
+    #fff,    
+    #fff 4rpx,
+    #A8E494 4rpx,
+    #A8E494 8rpx
+  );
+}
+.progress-bar-inner.level_3 {
+  background: #BA66DF;
+}
+.progress-bar-inner.stripe.level_3 {
+  background: repeating-linear-gradient(
+    135deg,
+    #fff,    
+    #fff 4rpx,
+    #DD76D3 4rpx,
+    #DD76D3 8rpx
+  );
+}
+.progress-bar-inner.level_4 {
+  background: #f2dbb0;
+}
+.progress-bar-inner.stripe.level_4 {
+  background: repeating-linear-gradient(
+    135deg,
+    #fff,    
+    #fff 4rpx,
+    #F9E6C1 4rpx,
+    #F9E6C1 8rpx
+  );
+}
+
+.proportion-tag {
+  position: absolute;
+  top: -44rpx;
+  left: 50%;
+  transform: translate(-50%);
+  padding: 0 8rpx;
+  height: 32rpx;
+  font-size: 18rpx;
+  background: rgba(255,255,255,0.2);
+  border-radius: 8rpx;
+}
+.proportion-tag::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -8rpx;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8rpx solid transparent;
+  border-right: 8rpx solid transparent;
+  border-top: 9rpx solid rgba(255,255,255,0.2);
+}
+
+.progress-level {
+  margin-left: 12rpx;
   font-size: 24rpx;
-  background: linear-gradient(135deg, #ffa266 0%, #ff3d39 64%, #ff3636 100%);
-  border-radius: 24rpx;
+  font-weight: 500;
+}
+.progress-desc {
+  font-size: 22rpx;
+}
+.progress-arrow {
+  width: 24rpx;
+  height: 24rpx;
+}
+
+.progress-tips {
+  margin-top: 100rpx;
+  font-size: 22rpx;
 }
 
 .achievement-wrap {
@@ -153,7 +253,7 @@
 
 .promoter-rights-title {
   margin-top: 24rpx;
-  padding-left: 24rpx;
+  padding-left: 48rpx;
   color: #333;
   font-size: 32rpx;
   font-weight: bolder;

@@ -15,52 +15,68 @@
   <swiper style="height: 380rpx;" bindchange="swiperChange" current="{{curLevel - 1}}" previous-margin="48rpx" next-margin="48rpx">
     <swiper-item wx:for="{{4}}" wx:key="index">
       <view class="upgradation-wrap">
-        <view
-          class="upgradation-card {{curLevel !== index + 1 ? 'not-active' : ''}}"
-          style="background-image: url('https://static.tiddler.cn/mp/promoter/level_{{index + 1}}/achievement_bg.png')"
-        >
-          <!-- <view class="progress-desc">
-            <text>距离C{{ curLevel }}，仅差</text>
-            <text style="color: #f5701d">{{ NUM.toFixed(100 - (achievementInfo.percent || 0), 2) }}%</text>
+        <view class="upgradation-card {{curLevel !== index + 1 ? 'not-active' : ''}}">
+          <image class="upgradation-bg" src="https://static.tiddler.cn/mp/promoter/level_{{index + 1}}/achievement_bg.png" />
+          <view class="status-tag">
+            {{userInfo.level === index + 1 ? '当前等级' : userInfo.level > index + 1 ? '已超越' : '待升级'}}
           </view>
-          <view class="progress-bar-wrap">
-            <view class="progress-bar-tips">涨分进度</view>
-            <view class="progress-bar">
-              <view
-                class="progress-bar-inner"
-                style="width: {{achievementInfo.percent}}%"
-              ></view>
+          <view class="upgradation-content">
+            <view class="level-name">家乡代言人Lv.{{index + 1}}</view>
+            <view class="level-expiration">2026.02.02到期</view>
+            <view class="progress-wrap" wx:if="{{userInfo.level === index + 1}}">
+              <view class="progress-bar-wrap row">
+                <view class="progress-bar row">
+                  <view class="progress-bar-inner level_{{index + 1}}" style="width: 30%;">
+                    <view class="proportion-tag row">4000/30000</view>
+                  </view>
+                  <view class="progress-bar-inner stripe level_{{index + 1}}" style="width: 20%;">
+                    <view class="proportion-tag row">20/100</view>
+                  </view>
+                </view>
+                <view class="progress-level" wx:if="{{index !== 3}}">Lv.{{index + 2}}</view>
+              </view>
+              <view class="progress-desc row" bindtap="upgrade">
+                <view>{{index === 3 ? '保' : '升'}}级还需1000荣誉值、90位代言人</view>
+                <image class="progress-arrow" src="./images/arrow_white.png" />
+              </view>
             </view>
-            <view class="progress-bar-tips">
-              {{ NUM.toFixed(achievementInfo.percent || 0, 2) }}%
+            <view class="progress-tips row" wx:if="{{userInfo.level !== index + 1}}" bindtap="upgrade">
+              <view>
+                {{
+                  userInfo.level > index + 1 ? 
+                  '已超越当前等级' : 
+                  [
+                    '近三月累计3万荣誉值，邀请100位代言人可升级Lv.2', 
+                    '近三月累计10万荣誉值，邀请1000位代言人可升级Lv.3', 
+                    '近三月累计50万荣誉值，邀请5000位代言人可升级Lv.4'
+                  ][index - 1]
+                }}
+              </view> 
+              <image class="progress-arrow" src="./images/arrow_white.png" />
             </view>
-            <view class="upgrade-btn" bindtap="upgrade">
-              {{
-                achievementInfo.percent === 100 && !userInfo.enterpriseInfoId
-                  ? "去升级"
-                  : "去查看"
-              }}
-            </view>
-          </view> -->
+          </view>
         </view>
       </view>
     </swiper-item>
   </swiper>
   <view class="achievement-wrap">
-    <view class="promoter-rights-title">当前权益</view>
+    <view class="promoter-rights-title">Lv.{{curLevel}}可享权益</view>
     <view class="promoter-rights-wrap">
       <view class="rights-list">
         <view class="rights-item" wx:for="{{ARRAY.slice(rightsList, 0, 4)}}" wx:key="index">
           <view class="rights-icon-wrap">
             <image class="rights-icon" src="https://static.tiddler.cn/mp/promoter/level_{{curLevel}}/{{item.icon}}.png" />
-            <image class="rights-lock" wx:if="{{curLevel === 1 && (index === 1 || index === 2)}}" src="https://static.tiddler.cn/mp/promoter/lock.png" />
+            <image class="rights-lock" wx:if="{{userInfo.level === 1 && (index === 1 || index === 2 || index === 3)}}" src="https://static.tiddler.cn/mp/promoter/lock.png" />
           </view>
           <view class="rights-name">{{item.name}}</view>
         </view>
       </view>
       <view class="rights-list">
         <view class="rights-item" wx:for="{{ARRAY.slice(rightsList, 4)}}" wx:key="index">
-          <image class="rights-icon" src="https://static.tiddler.cn/mp/promoter/level_{{curLevel}}/{{item.icon}}.png" />
+          <view class="rights-icon-wrap">
+            <image class="rights-icon" src="https://static.tiddler.cn/mp/promoter/level_{{curLevel}}/{{item.icon}}.png" />
+            <image class="rights-lock" wx:if="{{userInfo.level === 1}}" src="https://static.tiddler.cn/mp/promoter/lock.png" />
+          </view>
           <view class="rights-name">{{item.name}}</view>
         </view>
       </view>
@@ -71,21 +87,21 @@
     <view class="account-info">
       <view class="account-amount" wx:if="{{curLevel}}">
         <view class="account-amount-header">
-          <view class="account-amount-title">我的账户</view>
+          <view class="account-amount-title">我的奖励</view>
           <view class="withdraw-btn" bindtap="withdraw">提现</view>
         </view>
         <view class="amount-list">
           <view class="amount-item">
             <view class="amount">{{commissionSumInfo ? NUM.toFixed(commissionSumInfo.cashAmount, 2) : '0.00'}}</view>
-            <view class="amount-desc">可提现金额</view>
+            <view class="amount-desc">可提现奖励</view>
           </view>
           <view class="amount-item">
             <view class="amount">{{commissionSumInfo ? NUM.toFixed(commissionSumInfo.pendingAmount, 2) : '0.00'}}</view>
-            <view class="amount-desc">待结算金额</view>
+            <view class="amount-desc">待结算奖励</view>
           </view>
           <view class="amount-item">
             <view class="amount">{{commissionSumInfo ? NUM.toFixed(commissionSumInfo.settledAmount, 2) : '0.00'}}</view>
-            <view class="amount-desc">累积已结算金额</view>
+            <view class="amount-desc">累积已结算奖励</view>
           </view>
         </view>
       </view>
@@ -114,11 +130,11 @@
           </view>
           <view class="daily-data-item">
             <view class="daily-data">{{commissionTimeData ? NUM.toFixed(commissionTimeData.pendingAmount, 2) : '0.00'}}</view>
-            <view class="daily-data-desc">待结算金额</view>
+            <view class="daily-data-desc">待结算奖励</view>
           </view>
           <view class="daily-data-item">
             <view class="daily-data">{{commissionTimeData ? NUM.toFixed(commissionTimeData.settledAmount, 2) : '0.00'}}</view>
-            <view class="daily-data-desc">已结算金额</view>
+            <view class="daily-data-desc">已结算奖励</view>
           </view>
         </view>
       </view>
@@ -126,7 +142,7 @@
   
     <view class="customer-data-center">
       <view class="title-wrap row between">
-        <view class="title">我的客户</view>
+        <view class="title">我的伙伴</view>
         <view class="check-more-btn row" bindtap="navToCustomer" data-type="0">
           <text>查看全部</text>
           <image class="more-icon" src="./images/arrow.png" />
@@ -134,15 +150,15 @@
       </view>
       <view class="customer-data-list">
         <view class="customer-data-item" catchtap="navToCustomer" data-type="1">
-          <view class="customer-data-desc">今日新增客户数</view>
+          <view class="customer-data-desc">今日新增伙伴数</view>
           <view class="customer-data">{{customerData.todayNewCount || '-'}}</view>
         </view>
         <view class="customer-data-item" catchtap="navToCustomer" data-type="2">
-          <view class="customer-data-desc">今日下单客户数</view>
+          <view class="customer-data-desc">今日下单伙伴数</view>
           <view class="customer-data">{{customerData.todayOrderingCount || '-'}}</view>
         </view>
         <view class="customer-data-item" catchtap="navToCustomer" data-type="3">
-          <view class="customer-data-desc">累积客户总数</view>
+          <view class="customer-data-desc">累积伙伴总数</view>
           <view class="customer-data">{{customerData.totalCount || '-'}}</view>
         </view>
       </view>
