@@ -82,12 +82,6 @@
 .withdraw-option {
   margin-top: 32rpx;
 }
-/* .withdraw-option:first-child {
-  margin-top: 32rpx;
-} */
-/* .withdraw-option:last-child {
-  margin-top: 48rpx;
-} */
 .option-icon {
   width: 42rpx;
   height: 42rpx;
@@ -141,7 +135,7 @@
   background: var(--blue-1);
   border-radius: 47rpx;
   z-index: 100%;
-  opacity: 0.5;
+  opacity: 0.3;
 } 
 .withdraw-btn.active {
   opacity: 1;

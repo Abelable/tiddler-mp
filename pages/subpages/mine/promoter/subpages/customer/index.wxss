@@ -10,9 +10,9 @@
   display: flex;
   align-items: center;
   margin: 16rpx 24rpx;
-  height: 64rpx;
+  height: 72rpx;
   background: #f7f7fa;
-  border-radius: 32rpx;
+  border-radius: 36rpx;
 }
 .search-icon {
   margin-left: 20rpx;
@@ -34,12 +34,12 @@
   justify-content: center;
   margin-left: 12rpx;
   margin-right: 8rpx;
-  width: 106rpx;
-  height: 48rpx;
+  width: 120rpx;
+  height: 60rpx;
+  font-size: 26rpx;
   color: #fff;
-  font-size: 24rpx;
-  background: var(--blue-linear-1);
-  border-radius: 24rpx;
+  border-radius: 30rpx;
+  background: var(--blue-1);
 }
 
 .menu {
@@ -76,8 +76,8 @@
 }
 
 .container {
-  margin-top: 200rpx;
-  padding: 1rpx 24rpx 24rpx;
+  margin-top: 190rpx;
+  padding: 24rpx;
 }
 .container.searching {
   margin-top: 120rpx;
