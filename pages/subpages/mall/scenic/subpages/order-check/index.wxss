@@ -58,7 +58,7 @@
   border-radius: 8rpx;
 }
 .date-picker-item.active {
-  border: 1px solid #1986F8;
+  border: 1px solid var(--blue-1);
   background: #EFF0FF;
 }
 .date-picker-item.unvalid {
@@ -69,7 +69,7 @@
   font-size: 24rpx;
 }
 .date-picker-item.active .date {
-  color: #1986F8;
+  color: var(--blue-1);
 }
 .unvalid-tips {
   font-size: 26rpx;

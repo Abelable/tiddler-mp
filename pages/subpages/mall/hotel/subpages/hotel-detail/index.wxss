@@ -605,7 +605,7 @@
   font-size: 20rpx;
   font-weight: bold;
   line-height: 30rpx;
-  background: #1986F8;
+  background: var(--blue-1);
   border-radius: 0 6rpx 6rpx 6rpx;
 }
 

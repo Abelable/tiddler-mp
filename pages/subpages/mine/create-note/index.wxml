@@ -29,11 +29,11 @@
   <view class="card">
     <view class="list row between">
       <view class="title row">设置私密</view>
-      <switch color="#0095fa" bindchange="toggleIsPrivate" />
+      <switch color="#09AFFF" bindchange="toggleIsPrivate" />
     </view>
     <view class="list row between">
       <view class="title row">显示位置</view>
-      <switch color="#0095fa" checked="{{addressVisible}}" bindchange="toggleAddressVisible" />
+      <switch color="#09AFFF" checked="{{addressVisible}}" bindchange="toggleAddressVisible" />
     </view>
     <view class="list row between" wx:if="{{addressVisible}}">
       <view class="title">位置信息</view>

@@ -102,5 +102,5 @@
   formatter="{{ formatter }}"
   bind:close="hideCalendarPopup" 
   bind:confirm="onCalendarConfirm" 
-  color="#1986F8" 
+  color="#09AFFF" 
 />

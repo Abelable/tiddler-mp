@@ -144,7 +144,7 @@
 }
 
 .contact-btn {
-  color: #1986F8;
+  color: var(--blue-1);
 }
 .contact-icon {
   margin-right: 6rpx;

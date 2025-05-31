@@ -95,6 +95,6 @@
   border: 1px solid #999;
 }
 .save-btn.active {
-  color: #0095fa;
-  border: 1px solid #0095fa;
+  color: var(--blue-1);
+  border: 1px solid var(--blue-1);
 }

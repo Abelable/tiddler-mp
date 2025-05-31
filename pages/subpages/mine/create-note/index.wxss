@@ -79,7 +79,7 @@
 }
 
 .add-btn {
-  color: #1986F8;
+  color: var(--blue-1);
   font-size: 26rpx;
 }
 .arrow {

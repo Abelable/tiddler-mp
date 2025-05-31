@@ -46,10 +46,10 @@
 .notice-info-tag {
   margin-right: 8rpx;
   padding: 0 6rpx;
-  color: #1986F8;
+  color: var(--blue-1);
   font-size: 20rpx;
   line-height: 1;
-  border: 1px solid #1986F8;
+  border: 1px solid var(--blue-1);
   border-radius: 6rpx;
 }
 
@@ -72,7 +72,7 @@
 }
 
 .contact-btn {
-  color: #1986F8;
+  color: var(--blue-1);
 }
 .contact-icon {
   margin-right: 6rpx;

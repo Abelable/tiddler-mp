@@ -47,5 +47,5 @@
   color: #fff;
   font-size: 24rpx;
   border-radius: 30rpx;
-  background: #1986F8;
+  background: var(--blue-1);
 }

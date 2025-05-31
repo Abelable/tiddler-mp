@@ -50,7 +50,7 @@
       <view class="withdraw-time-tips">每月25～31号可提现上月的结算收益</view>
       <view class="withdraw-rules-btn" bindtap="checkWithdrawRules">
         <view>提现规则</view>
-        <image class="arrow" src="./images/more.png" />
+        <image class="arrow" src="/images/arrow.png" />
       </view>
     </view>
   </view>
@@ -64,7 +64,7 @@
       data-index="{{index}}"
     >
       <view>{{item}}</view>
-      <image class="active-tag" wx:if="{{curMenuIdx === index}}" src="./images/tag.png" />
+      <image class="active-tag" wx:if="{{curMenuIdx === index}}" src="https://static.tiddler.cn/mp/promoter/selected_sign.png" />
     </view>
   </view>
 

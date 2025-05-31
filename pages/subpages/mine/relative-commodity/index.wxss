@@ -76,7 +76,7 @@
   width: 32rpx;
   height: 6rpx;
   content: "";
-  background: #0095fa;
+  background: var(--blue-1);
   border-radius: 4rpx;
 }
 

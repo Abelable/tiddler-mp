@@ -27,10 +27,12 @@
   position: relative;
   padding: 24rpx;
   min-height: 100vh;
-  background-image: url("https://static.youbozhenxuan.cn/mp/account_bg.png");
-  background-position: top center;
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-image: 
+    url("https://static.tiddler.cn/mp/promoter/account/bg.png"), 
+    linear-gradient(180deg, #EDF6FE 20%, #F6F6F6 55%);
+  background-size: 550rpx 550rpx, 100% 100vh;
+  background-repeat: no-repeat, no-repeat;
+  background-position: top left, top;
 }
 
 .amount-card {
@@ -58,7 +60,7 @@
   justify-content: center;
   width: 130rpx;
   height: 48rpx;
-  color: #FF4747;
+  color: var(--blue-1);
   font-size: 24rpx;
   background: #FDF8F7;
   border-radius: 24rpx;
@@ -142,7 +144,7 @@
   left: 50%;
   bottom: 28rpx;
   transform: translateX(-50%);
-  width: 40rpx;
+  width: 84rpx;
   height: 16rpx;
 }
 
@@ -169,7 +171,7 @@
 }
 .date.selected {
   color: var(--blue-1);
-  background: #FFF3EC;
+  background: var(--blue-3);
   border: 1px solid var(--blue-1);
 }
 
