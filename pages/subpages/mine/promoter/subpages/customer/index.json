@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "我的客户",
+  "navigationBarTitleText": "我的伙伴",
   "enablePullDownRefresh": true,
   "usingComponents": {
     "empty-illus": "/components/empty-illus/index",

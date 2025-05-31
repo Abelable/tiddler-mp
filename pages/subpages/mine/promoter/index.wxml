@@ -95,15 +95,15 @@
         <view class="amount-list">
           <view class="amount-item">
             <view class="amount">{{commissionSumInfo ? NUM.toFixed(commissionSumInfo.cashAmount, 2) : '0.00'}}</view>
-            <view class="amount-desc">可提现奖励</view>
+            <view class="amount-desc">可提现金额</view>
           </view>
           <view class="amount-item">
             <view class="amount">{{commissionSumInfo ? NUM.toFixed(commissionSumInfo.pendingAmount, 2) : '0.00'}}</view>
-            <view class="amount-desc">待结算奖励</view>
+            <view class="amount-desc">待结算金额</view>
           </view>
           <view class="amount-item">
             <view class="amount">{{commissionSumInfo ? NUM.toFixed(commissionSumInfo.settledAmount, 2) : '0.00'}}</view>
-            <view class="amount-desc">累积已结算奖励</view>
+            <view class="amount-desc">累积已结算金额</view>
           </view>
         </view>
       </view>
@@ -132,11 +132,11 @@
           </view>
           <view class="daily-data-item">
             <view class="daily-data">{{commissionTimeData ? NUM.toFixed(commissionTimeData.pendingAmount, 2) : '0.00'}}</view>
-            <view class="daily-data-desc">待结算奖励</view>
+            <view class="daily-data-desc">待结算金额</view>
           </view>
           <view class="daily-data-item">
             <view class="daily-data">{{commissionTimeData ? NUM.toFixed(commissionTimeData.settledAmount, 2) : '0.00'}}</view>
-            <view class="daily-data-desc">已结算奖励</view>
+            <view class="daily-data-desc">已结算金额</view>
           </view>
         </view>
       </view>

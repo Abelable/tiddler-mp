@@ -48,9 +48,9 @@
 .amount-type {
   margin-left: 8rpx;
   padding: 0 6rpx;
-  color: #f9635d;
+  color: var(--blue-1);
   font-size: 20rpx;
-  border: 1px solid #f9635d;
+  border: 1px solid var(--blue-1);
   border-radius: 8rpx;
 }
 .record-commission {

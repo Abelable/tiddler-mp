@@ -37,7 +37,7 @@
 
 .amount-card {
   margin-top: 24rpx;
-  background: linear-gradient( 90deg, #FFF8F7 0%, #FFEBE6 100%);
+  background: #ebf5fd;
   border-radius: 20rpx;
   overflow: hidden;
 }
@@ -45,9 +45,8 @@
   position: relative;
   padding: 32rpx;
   height: 180rpx;
-  background-image: url('https://static.youbozhenxuan.cn/mp/account_amount_bg.png');
-  background-position: -20rpx -20rpx;
-  background-size: calc(100% + 40rpx) calc(100% + 40rpx);
+  background-image: url('https://static.tiddler.cn/mp/promoter/account/card_bg.png');
+  background-size: 100%;
   background-repeat: no-repeat;
 }
 .amount-title {
@@ -99,7 +98,7 @@
   height: 48rpx;
   color: #fff;
   font-size: 24rpx;
-  background: linear-gradient( 135deg, #FFA266 0%, #FF3D39 64%, #FF3636 100%);
+  background: var(--blue-linear-1);
   border-radius: 24rpx;
 }
 .withdraw-tips-wrap {
@@ -117,8 +116,8 @@
   font-size: 24rpx;
 }
 .arrow {
-  width: 32rpx;
-  height: 32rpx;
+  width: 24rpx;
+  height: 24rpx;
 }
 
 .menu-tabs {
