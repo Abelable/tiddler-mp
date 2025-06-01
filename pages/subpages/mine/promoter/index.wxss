@@ -77,7 +77,6 @@
     linear-gradient(180deg, #FEF4EA 20%, #FFFFFF 55%);
 }
 
-
 .upgradation-wrap {
   display: flex;
   align-items: center;
