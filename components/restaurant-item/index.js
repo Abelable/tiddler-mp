@@ -6,7 +6,7 @@ Component({
   properties: {
     item: {
       type: Object,
-      observer({ facilityList }) {
+      observer({ facilityList = [] }) {
         this.setData({ facilityList: facilityList.slice(0, 2) });
       }
     }

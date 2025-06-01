@@ -482,7 +482,7 @@ Page({
         name: title,
         price,
         salesVolume,
-        facilityList
+        facilityList = []
       } = this.data.restaurantInfo;
 
       this.setData({
