@@ -25,6 +25,10 @@ Component({
       wx.navigateTo({
         url: "/pages/subpages/gift/index"
       });
-    }
+    },
+
+    onShareAppMessage() {},
+
+    onShareTimeline() {}
   }
 });
