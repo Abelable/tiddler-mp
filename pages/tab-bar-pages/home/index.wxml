@@ -78,7 +78,7 @@
           <image class="loading-icon" src="https://static.tiddler.cn/mp/loading.gif" />
           <text>加载中...</text>
         </view>
-        <view class="no-more-tips" wx:if="{{isLoading && finished && mediaList.length}}">～没有更多了～</view>
+        <view class="no-more-tips" wx:if="{{!isLoading && finished && mediaList.length}}">～没有更多了～</view>
         <empty-illus wx:if="{{finished && !mediaList.length}}" desc="暂无列表" />
       </view>
     </scroll-view>
