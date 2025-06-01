@@ -1,6 +1,6 @@
 .header {
   padding-bottom: 100rpx;
-  background: linear-gradient( 135deg, #FFA266 0%, #FF3D39 64%, #FF3636 100%);
+  background: linear-gradient(135deg, #93DBFA 0%, #0EB6FE 64%, #00B2FF 100%);
 }
 .nav-bar {
   padding-left: 8px;
@@ -81,7 +81,7 @@
   font-weight: bold;
 }
 .change-amount.income {
-  color: #E82A20;
+  color: var(--blue-1);
 }
 
 .no-more-tips {

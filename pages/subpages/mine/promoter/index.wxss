@@ -19,22 +19,22 @@
 }
 .nav-bar-wrap.show-bg.level-1 {
   background-image: 
-    url("https://static.tiddler.cn/mp/promoter/level-1/bg.png"), 
+    url("https://static.tiddler.cn/mp/promoter/level_1/bg.png"), 
     linear-gradient(180deg, #EDF6FE 20%, #FFFFFF 55%);
 }
 .nav-bar-wrap.show-bg.level-2 {
    background-image: 
-    url("https://static.tiddler.cn/mp/promoter/level-2/bg.png"), 
+    url("https://static.tiddler.cn/mp/promoter/level_2/bg.png"), 
     linear-gradient(180deg, #EDFEEF 20%, #FFFFFF 55%);
 }
 .nav-bar-wrap.show-bg.level-3 {
    background-image: 
-    url("https://static.tiddler.cn/mp/promoter/level-3/bg.png"), 
+    url("https://static.tiddler.cn/mp/promoter/level_3/bg.png"), 
     linear-gradient(180deg, #F3EDFE 20%, #FFFFFF 55%);
 }
 .nav-bar-wrap.show-bg.level-4 {
    background-image: 
-    url("https://static.tiddler.cn/mp/promoter/level-4/bg.png"), 
+    url("https://static.tiddler.cn/mp/promoter/level_4/bg.png"), 
     linear-gradient(333deg, rgba(255,255,255,0) 50%, #FFFFFF 100%);
 }
 .nav-bar {
@@ -58,22 +58,22 @@
 }
 .container.level-1 {
   background-image: 
-    url("https://static.tiddler.cn/mp/promoter/level-1/bg.png"), 
+    url("https://static.tiddler.cn/mp/promoter/level_1/bg.png"), 
     linear-gradient(180deg, #EDF6FE 20%, #FFFFFF 55%);
 }
 .container.level-2 {
    background-image: 
-    url("https://static.tiddler.cn/mp/promoter/level-2/bg.png"), 
+    url("https://static.tiddler.cn/mp/promoter/level_2/bg.png"), 
     linear-gradient(180deg, #EDFEEF 20%, #FFFFFF 55%);
 }
 .container.level-3 {
    background-image: 
-    url("https://static.tiddler.cn/mp/promoter/level-3/bg.png"), 
+    url("https://static.tiddler.cn/mp/promoter/level_3/bg.png"), 
     linear-gradient(180deg, #F3EDFE 20%, #FFFFFF 55%);
 }
 .container.level-4 {
    background-image: 
-    url("https://static.tiddler.cn/mp/promoter/level-4/bg.png"), 
+    url("https://static.tiddler.cn/mp/promoter/level_4/bg.png"), 
     linear-gradient(180deg, #FEF4EA 20%, #FFFFFF 55%);
 }
 

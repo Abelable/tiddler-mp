@@ -132,6 +132,8 @@ Page({
       case 3:
         break;
       case 4:
+        const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/bond`;
+         wx.navigateTo({ url });
         break;
     }
   },
