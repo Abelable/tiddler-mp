@@ -27,8 +27,18 @@ Component({
       });
     },
 
-    onShareAppMessage() {},
+    onShareAppMessage() {
+      const { id } = store.promoterInfo || {};
+      const path = id
+        ? `/pages/tab-bar-pages/promoter/index?superiorId=${id}`
+        : "/pages/tab-bar-pages/promoter/index";
+      return { path };
+    },
 
-    onShareTimeline() {}
+    onShareTimeline() {
+      const { id } = store.promoterInfo || {};
+      const query = id ? `superiorId=${id}` : "";
+      return { query };
+    }
   }
 });
