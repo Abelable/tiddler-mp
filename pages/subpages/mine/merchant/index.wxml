@@ -48,7 +48,7 @@
         </view>
       </view>
     </view>
-    <button class="withdraw-btn" bindtap="checkIncome" hover-class="none">收益提现</button>
+    <button class="withdraw-btn" bindtap="withdraw" hover-class="none">收益提现</button>
   </view>
   <view class="tool-card" wx:if="{{titleMenu[curTitleIdx].value === 1}}">
     <view class="tool-card-title row between">

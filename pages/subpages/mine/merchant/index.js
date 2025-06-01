@@ -48,7 +48,7 @@ Page({
     this.setData({ curTitleIdx });
   },
 
-  checkIncome() {
+  withdraw() {
     const { titleMenu, curTitleIdx } = this.data;
     const merchantType = titleMenu[curTitleIdx].value;
     const url = `./subpages/income-detail/index?merchantType=${merchantType}`;
