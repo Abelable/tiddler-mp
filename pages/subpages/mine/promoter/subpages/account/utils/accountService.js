@@ -23,15 +23,6 @@ class AccountService extends PromoterService {
     return list;
   }
 
-  async getWithdrawRecordList(page, limit = 10) {
-    const { list } = await this.get({
-      url: `${this.baseUrl}/withdraw/record_list`,
-      data: { page, limit },
-      loadingTitle: "加载中..."
-    });
-    return list;
-  }
-
   async applyWithdraw({ scene, withdrawAmount, path, remark }, success) {
     await this.post({
       url: `${this.baseUrl}/withdraw/submit`,

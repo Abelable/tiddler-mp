@@ -124,7 +124,7 @@ Page({
 
   checkWithdrawRecord() {
     wx.navigateTo({
-      url: "./subpages/withdraw-record/index"
+      url: `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/agreements/withdraw_record`
     });
   },
 
