@@ -190,29 +190,27 @@ Component({
         this.page = 0;
         this.setData({ mediaList: [], isRefreshing: true, finished: false });
       }
-      const { finished, mediaList } = this.data;
+      const { mediaList } = this.data;
 
-      if (!finished) {
-        this.setData({ isLoading: true });
-        const { list = [] } =
-          (await homeService.getMediaList(++this.page, init ? 16 : 10)) || {};
-        if (init) {
-          this.setData({
-            topMediaList: list.slice(0, 6),
-            mediaList: list.slice(6),
-            isLoading: false,
-            isRefreshing: false
-          });
-        } else {
-          this.setData({
-            mediaList: [...mediaList, ...list],
-            isLoading: false
-          });
-        }
+      this.setData({ isLoading: true });
+      const { list = [] } =
+        (await homeService.getMediaList(++this.page, init ? 16 : 10)) || {};
+      if (init) {
+        this.setData({
+          topMediaList: list.slice(0, 6),
+          mediaList: list.slice(6),
+          isLoading: false,
+          isRefreshing: false
+        });
+      } else {
+        this.setData({
+          mediaList: [...mediaList, ...list],
+          isLoading: false
+        });
+      }
 
-        if (!list.length) {
-          this.setData({ finished: true });
-        }
+      if (!list.length) {
+        this.setData({ finished: true });
       }
     },
 

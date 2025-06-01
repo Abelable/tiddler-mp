@@ -16,6 +16,7 @@ Component({
     ],
     navBarActive: false,
     commodityList: [],
+    isLoading: false,
     finished: false
   },
 
@@ -76,10 +77,12 @@ Component({
         this.setData({ finished: false });
       }
       const { commodityList } = this.data;
+      this.setData({ isLoading: true });
       const { list = [] } =
         (await mallService.getCommodityList(++this.page, limit)) || {};
       this.setData({
-        commodityList: init ? list : [...commodityList, ...list]
+        commodityList: init ? list : [...commodityList, ...list],
+        isLoading: false
       });
       if (list.length < limit) {
         this.setData({ finished: true });
