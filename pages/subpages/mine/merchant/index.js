@@ -48,19 +48,11 @@ Page({
     this.setData({ curTitleIdx });
   },
 
-  withdraw() {
+  checkIncome() {
     const { titleMenu, curTitleIdx } = this.data;
     const merchantType = titleMenu[curTitleIdx].value;
-    switch (merchantType) {
-      case 1:
-        break;
-      case 2:
-        break;
-      case 3:
-        break;
-      case 4:
-        break;
-    }
+    const url = `./subpages/income-detail/index?merchantType=${merchantType}`;
+    wx.navigateTo({ url });
   },
 
   checkOrders() {

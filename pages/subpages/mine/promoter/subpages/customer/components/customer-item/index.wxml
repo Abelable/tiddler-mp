@@ -15,7 +15,7 @@
     </view>
   </view>
   <view
-    class="identity-tag level_{{item.level}}"
+    class="identity-tag level-{{item.level}}"
     wx:if="{{item.level}}"
   >
     家乡代言人Lv.{{ item.level }}

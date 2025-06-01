@@ -78,6 +78,7 @@
       "mine/order/subpages/set-meal-order/order-detail/index",
       "mine/order/subpages/set-meal-order/evaluation/index",
       "mine/merchant/index",
+      "mine/merchant/subpages/income-detail/index",
       "mine/merchant/subpages/scenic-order/index",
       "mine/merchant/subpages/scenic-order/subpages/order-detail/index",
       "mine/merchant/subpages/scenic-order/subpages/search/index",

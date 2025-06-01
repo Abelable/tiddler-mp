@@ -1,0 +1,112 @@
+<wxs module="NUM" src="/utils/filters/num.wxs" />
+<wxs module="TIME" src="/utils/filters/time.wxs" />
+
+<view 
+  class="nav-bar-wrap type-{{merchantType}} {{navBarBgVisible ? 'show-bg' : ''}}" 
+  style="padding-top: {{statusBarHeight}}px;"
+>
+  <view class="nav-bar row">
+    <view style="flex: 1;">
+      <back-icon />
+    </view>
+    <view class="nav-bar-title">收益明细</view>
+    <view style="flex: 1;"></view>
+  </view>
+</view>
+
+<view 
+  class="container type-{{merchantType}}" 
+  style="padding-top: {{statusBarHeight + 56}}px;"
+>
+  <view class="income-card">
+    <view class="row top">
+      <view class="income-unit">
+        <view class="income-desc">可提现(元)</view>
+        <view class="income-amount withdrawable">905.99</view>
+      </view>
+      <view class="record-btn row" bindtap="checkWithdrawRecord">
+        <view>提现记录</view>
+        <image class="arrow" src="/images/arrow_gray.png" />
+      </view>
+    </view>
+    <view class="income-wrap row">
+       <view class="income-unit">
+        <view class="income-desc">待入帐(元)</view>
+        <view class="income-amount">905.99</view>
+      </view>
+      <view class="income-unit">
+        <view class="income-desc">提现中(元)</view>
+        <view class="income-amount">905.99</view>
+      </view> 
+      <view class="income-unit">
+        <view class="income-desc">已提现(元)</view>
+        <view class="income-amount">905.99</view>
+      </view>
+    </view>
+    <view class="withdraw-btn row center type-{{merchantType}}" bindtap="withdraw">立即提现</view>
+  </view>
+
+  <view class="daily-data-wrap">
+    <view class="date-menu">
+      <view
+        class="date {{curDateIdx === index ? 'selected' : ''}}"
+        wx:for="{{dateList}}"
+        wx:key="index"
+        bindtap="selectDate"
+        data-index="{{index}}"
+      >
+        {{item.text}}
+      </view>
+    </view>
+    <view class="daily-data-list">
+      <view class="daily-data-item">
+        <view class="daily-data">{{timeData ? timeData.orderCount : 0}}</view>
+        <view class="daily-data-desc">订单量</view>
+      </view>
+      <view class="daily-data-item">
+        <view class="daily-data">{{timeData ? NUM.toFixed(timeData.salesVolume, 2) : '0.00'}}</view>
+        <view class="daily-data-desc">销售额</view>
+      </view>
+      <view class="daily-data-item">
+        <view class="daily-data">{{timeData ? NUM.toFixed(timeData.pendingAmount, 2) : '0.00'}}</view>
+        <view class="daily-data-desc">待结算金额</view>
+      </view>
+      <view class="daily-data-item">
+        <view class="daily-data">{{timeData ? NUM.toFixed(timeData.settledAmount, 2) : '0.00'}}</view>
+        <view class="daily-data-desc">已结算金额</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="sales-record-list" wx:if="{{orderList.length}}">
+    <view class="sales-record-item" wx:for="{{orderList}}" wx:key="index">
+      <view class="order-info">
+        <view class="order-sn-wrap">
+          <view class="order-sn" bindtap="checkOrderDetail" data-id="{{item.id}}" data-scene="{{item.scene}}">
+            <view>订单编号：{{item.orderSn}}</view>
+            <image class="order-sn-arrow" wx:if="{{item.scene === 1}}" src="./images/more-gray.png" />
+          </view>
+          <view class="order-status-wrap">
+            <view class="order-status">{{item.status === 1 ? '待结算' : '已结算'}}</view>
+            <view class="order-time">下单时间：{{TIME.transform(item.createdAt, 'YYYY.MM.DD')}}</view>
+          </view>
+        </view>
+        <view class="order-commission-wrap">
+          <view class="order-commission">+{{item.payAmount}}</view>
+        </view>
+      </view>
+      <view class="goods-list">
+        <view class="goods-info-wrap" wx:for="{{item.goodsList}}" wx:key="id" wx:for-item="goods">
+          <image class="goods-cover" src="{{goods.cover}}" />
+          <view class="goods-info">
+            <view class="goods-name omit">{{goods.name}}</view>
+            <view class="goods-spec omit single">{{goods.selectedSkuName}}</view>
+            <view class="goods-commission">收益¥{{goods.commission}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="no-more-tips" wx:if="{{finished && orderList.length}}">～没有更多了～</view>
+  <empty-illus wx:if="{{!orderList.length}}" desc="暂无订单记录" height="500rpx" />
+</view>
