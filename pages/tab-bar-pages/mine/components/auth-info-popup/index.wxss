@@ -1,6 +1,6 @@
 .user-info-popup {
   padding: 32rpx;
-  padding-bottom: 220rpx;
+  padding-bottom: 170rpx;
   background-color: #fff;
   border-radius: 16rpx 16rpx 0 0;
 }

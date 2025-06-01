@@ -99,7 +99,7 @@
   overflow-y: scroll;
 }
 .content {
-  padding: 0 20rpx calc(58px + env(safe-area-inset-bottom));
+  padding: 0 20rpx 138rpx;
   min-height: 100%;
 }
 
