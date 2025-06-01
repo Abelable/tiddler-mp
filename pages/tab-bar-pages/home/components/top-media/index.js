@@ -27,7 +27,7 @@ Component({
           const time = dayjs().subtract(index, "day");
           const year = time.year();
           const monthIdx = time.month();
-          const date = time.date();
+          const date = `${time.date()}`.padStart(2, "0");
           return {
             ...item,
             cover: item.type === 3 ? item.imageList[0] : item.cover,
