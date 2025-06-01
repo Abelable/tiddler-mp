@@ -11,7 +11,7 @@ Page({
 
   checkRecord() {
     wx.navigateTo({
-      url: `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/agreements/withdraw_record`
+      url: `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/promoter/withdraw_record`
     });
   }
 });
