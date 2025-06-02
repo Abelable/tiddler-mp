@@ -1,7 +1,7 @@
 <wxs module="ARRAY" src="/utils/filters/array.wxs" />
 
 <view class="container">
-  <image class="bg" mode="widthFix" src="https://static.tiddler.cn/mp/promoter/bg.png" />
+  <image class="bg" src="https://static.tiddler.cn/mp/promoter/bg.png" />
   <image class="title" src="https://static.tiddler.cn/mp/promoter/title.png" />
 
   <view class="content-wrap">
