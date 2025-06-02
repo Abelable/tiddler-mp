@@ -80,7 +80,7 @@
   <view class="tool-card" wx:if="{{titleMenu[curTitleIdx].value === 1}}">
     <view class="tool-card-title">常用工具</view>
     <view class="tool-list row">
-      <view class="tool-item">
+      <view class="tool-item" bindtap="manageShopInfo">
         <image class="tool-icon" src="./images/shop.png" />
         <view class="tool-name">店铺管理</view>
       </view>
@@ -160,7 +160,7 @@
   <view class="tool-card" wx:if="{{titleMenu[curTitleIdx].value === 2}}">
     <view class="tool-card-title">常用工具</view>
     <view class="tool-list row">
-      <view class="tool-item">
+      <view class="tool-item" bindtap="manageShopInfo">
         <image class="tool-icon" src="./images/shop.png" />
         <view class="tool-name">店铺管理</view>
       </view>
@@ -339,7 +339,7 @@
   <view class="tool-card" wx:if="{{titleMenu[curTitleIdx].value === 4}}">
     <view class="tool-card-title">常用工具</view>
     <view class="tool-list row">
-      <view class="tool-item">
+      <view class="tool-item" bindtap="manageShopInfo">
         <image class="tool-icon" src="./images/shop.png" />
         <view class="tool-name">店铺管理</view>
       </view>

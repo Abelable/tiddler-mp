@@ -61,6 +61,9 @@
   height: 120rpx;
   border-bottom: 1px solid #eee;
 }
+.form-item:last-child {
+  border-bottom: none;
+}
 .form-label {
   margin-right: 24rpx;
 }

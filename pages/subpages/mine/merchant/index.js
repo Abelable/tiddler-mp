@@ -106,6 +106,23 @@ Page({
 
   checkSetMealAfterSale() {},
 
+  manageShopInfo() {
+    const { titleMenu, curTitleIdx } = this.data;
+    const merchantType = titleMenu[curTitleIdx].value;
+    switch (merchantType) {
+      case 1:
+        break;
+      case 2:
+        break;
+      case 3:
+        break;
+      case 4:
+        const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/shop_info`;
+        wx.navigateTo({ url });
+        break;
+    }
+  },
+
   manageStaff() {
     const { titleMenu, curTitleIdx } = this.data;
     const merchantType = titleMenu[curTitleIdx].value;
@@ -133,7 +150,7 @@ Page({
         break;
       case 4:
         const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/bond`;
-         wx.navigateTo({ url });
+        wx.navigateTo({ url });
         break;
     }
   },
