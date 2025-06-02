@@ -12,7 +12,7 @@
   >
     <view class="commodity-item row">
       <view class="commodity-image-wrap">
-        <image class="commodity-image" src="{{item.cover}}" />
+        <image class="commodity-image" src="{{item.cover}}" mode="aspectFill" />
         <view class="type-tag row">{{['景点', '酒店',  '餐厅', '商品'][item.type - 1]}}</view>
       </view>
       <view class="commodity-info">
