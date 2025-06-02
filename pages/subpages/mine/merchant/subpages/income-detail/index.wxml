@@ -2,7 +2,7 @@
 <wxs module="TIME" src="/utils/filters/time.wxs" />
 
 <view 
-  class="nav-bar-wrap type-{{merchantType}} {{navBarBgVisible ? 'show-bg' : ''}}" 
+  class="nav-bar-wrap {{navBarBgVisible ? 'show-bg' : ''}}" 
   style="padding-top: {{statusBarHeight}}px;"
 >
   <view class="nav-bar row">
@@ -15,7 +15,7 @@
 </view>
 
 <view 
-  class="container type-{{merchantType}}" 
+  class="container" 
   style="padding-top: {{statusBarHeight + 56}}px;"
 >
   <view class="income-card">
@@ -43,7 +43,7 @@
         <view class="income-amount">905.99</view>
       </view>
     </view>
-    <view class="withdraw-btn row center type-{{merchantType}}" bindtap="withdraw">立即提现</view>
+    <view class="withdraw-btn row center" bindtap="withdraw">立即提现</view>
   </view>
 
   <view class="daily-data-wrap">

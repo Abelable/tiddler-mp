@@ -5,7 +5,6 @@ const { statusBarHeight } = getApp().globalData.systemInfo;
 Page({
   data: {
     statusBarHeight,
-    merchantType: 1,
     navBarBgVisible: false,
     dateList: [
       { text: "今日", value: 1 },
@@ -20,9 +19,8 @@ Page({
     finished: false
   },
 
-  onLoad(options) {
-    const merchantType = +options.merchantType;
-    this.setData({ merchantType });
+  onLoad({ merchantType }) {
+    this.merchantType = +merchantType;
   },
 
   onPageScroll(e) {
