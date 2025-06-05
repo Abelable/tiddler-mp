@@ -5,26 +5,27 @@
     <back-icon />
   </view>
 
-  <image class="notice" src="https://static.tiddler.cn/mp/gift/notice.png" />
+  <image class="illus" src="https://static.tiddler.cn/mp/gift/illus.png" />
 
   <view class="goods-list-wrap">
-    <image class="flower-illus" src="https://static.tiddler.cn/mp/gift/flower.png" />
+    <image class="process" src="https://static.tiddler.cn/mp/gift/process.png" />
 
     <view class="menu row">
       <view 
         class="menu-item row center {{curMenuIdx === index ? 'active' : ''}}" 
-        wx:for="{{['爱心助农', '家乡特产', '文创周边']}}" 
+        wx:for="{{['爱心助农', '家乡特产', '童年回忆', '文创周边']}}" 
         wx:key="index"
         bindtap="selectMenu"
         data-index="{{index}}"
       >
-        {{item}}
+        <image class="active-tag" wx:if="{{curMenuIdx === index}}" src="https://static.tiddler.cn/mp/gift/active.png" />
+        <view class="menu-item-content">{{item}}</view>
       </view>
     </view>
 
-    <scroll-view class="goods-list" bindscrolltolower="loadMore" scroll-y>
+    <scroll-view class="goods-list" bindscrolltolower="loadMore" scroll-y enhanced show-scrollbar="{{false}}">
       <fall-flow wx:if="{{goodsList}}" list="{{goodsList}}" generic:item="goods-item" isGift />
-      <empty-illus wx:if="{{finished && !goodsList.length}}" desc="暂无商品列表" />
+      <empty-illus wx:if="{{finished && !goodsList.length}}" desc="暂无家乡好物" />
       <view class="no-more-tips" wx:if="{{finished && goodsList.length}}">～没有更多了～</view>
     </scroll-view>
   </view>
