@@ -5,6 +5,9 @@
 .row.between {
   justify-content: space-between;
 }
+.row.center {
+  justify-content: center;
+}
 .row.baseline {
   align-items: baseline;
 }
@@ -41,32 +44,58 @@
   overflow: hidden;
 }
 .cover-wrap.gift {
-  border: 4px solid #C6EFFF;
+  padding-bottom: 36rpx;
+  border: 6rpx solid #43C7F3;
+  background: #43C7F3;
   border-radius: 32rpx;
+  overflow: hidden;
 }
-.gift-header {
+.cover {
+  width: 350rpx;
+}
+
+.gift-bar {
   position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  padding-top: 2rpx;
-  width: 240rpx;
-  height: 43rpx;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 45rpx;
   color: #333;
   font-size: 22rpx;
   font-weight: bold;
   text-align: center;
-  background-image: url('https://static.tiddler.cn/mp/gift/gift_header_bg.png');
-  background-size: 100%;
+  background-image: url('https://static.tiddler.cn/mp/gift/bar_bg.png');
+  background-size: 100% 100%;
   background-repeat: no-repeat;
 }
-.duration {
-  color: var(--blue-1);
-  font-size: 24rpx;
-  font-weight: bolder;
+.bar-title {
+  position: absolute;
+  left: 12rpx;
+  bottom: 8rpx;
+  width: 86rpx;
+  height: 27rpx;
 }
-.cover {
-  width: 350rpx;
+.bar-content {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 226rpx;
+  height: 38rpx;
+}
+.bar-slogan {
+  width: 89rpx;
+  height: 17rpx;
+}
+.bar-duration {
+  margin-left: 10rpx;
+  padding: 0 8rpx;
+  height: 24rpx;
+  color: #fff;
+  font-size: 14rpx;
+  line-height: 1;
+  font-style: italic;
+  background: #3FC3F4;
+  border-radius: 22.5rpx;
 }
 
 .type-label {

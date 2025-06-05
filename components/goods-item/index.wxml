@@ -1,9 +1,11 @@
 <view class="goods-item {{visible ? 'show' : ''}}" bindtap="navToGoodsDetail">
   <view class="cover-wrap {{showTag ? 'show-tag' : ''}} {{isGift ? 'gift' : ''}}">
-    <view class="gift-header" wx:if="{{isGift}}">
-      <text>代言家乡</text>
-      <text class="duration">100</text>
-      <text>天</text>
+    <view class="gift-bar" wx:if="{{isGift}}">
+      <image class="bar-title" src="https://static.tiddler.cn/mp/gift/bar_title.png" />
+      <view class="bar-content row center">
+        <image class="bar-slogan" src="https://static.tiddler.cn/mp/gift/bar_slogan.png" />
+        <view class="bar-duration row">代言家乡100天</view>
+      </view>
     </view>
     <image class="cover" style="height: {{item.coverHeight}}rpx;" wx:if="{{item.coverHeight}}" src="{{item.cover}}?x-oss-process=image/resize,w_450" mode="aspectFill" />
     <image class="cover" wx:if="{{!item.coverHeight}}" src="{{item.cover}}?x-oss-process=image/resize,w_450" bindload="onCoverLoaded" mode="widthFix" />
