@@ -99,7 +99,7 @@ Component({
           ? { name: "商家中心", icon: "merchant" }
           : undefined,
         merchantId || scenicProviderId || hotelProviderId || cateringProviderId
-          ? { name: "核销扫码", icon: "scan" }
+          ? { name: "扫码核销", icon: "scan" }
           : undefined,
         level ||
         merchantId ||
