@@ -28,17 +28,17 @@
             <view class="progress-wrap" wx:if="{{userInfo.level === index + 1}}">
               <view class="progress-bar-wrap row">
                 <view class="progress-bar row">
-                  <view class="progress-bar-inner level-{{index + 1}}" style="width: 30%;">
-                    <view class="proportion-tag row">4000/30000</view>
-                  </view>
-                  <view class="progress-bar-inner stripe level-{{index + 1}}" style="width: 20%;">
+                  <view class="progress-bar-inner level-{{index + 1}}" style="width: 20%;">
                     <view class="proportion-tag row">20/100</view>
+                  </view>
+                  <view class="progress-bar-inner stripe level-{{index + 1}}" style="width: 30%;">
+                    <view class="proportion-tag row">4000/30000</view>
                   </view>
                 </view>
                 <view class="progress-level" wx:if="{{index !== 3}}">Lv.{{index + 2}}</view>
               </view>
               <view class="progress-desc row" bindtap="upgrade">
-                <view>{{index === 3 ? '保' : '升'}}级还需1000荣誉值、90位代言人</view>
+                <view>{{index === 3 ? '保' : '升'}}级还需80位家乡代言人、1000荣誉值</view>
                 <image class="progress-arrow" src="./images/arrow_white.png" />
               </view>
             </view>
@@ -48,9 +48,9 @@
                   userInfo.level > index + 1 ? 
                   '已超越当前等级' : 
                   [
-                    '近三月累计3万荣誉值，邀请100位代言人可升级Lv.2', 
-                    '近三月累计10万荣誉值，邀请1000位代言人可升级Lv.3', 
-                    '近三月累计50万荣誉值，邀请5000位代言人可升级Lv.4'
+                    '邀请100位家乡代言人，近三月累计3万荣誉值可升级Lv.2', 
+                    '邀请1000位家乡代言人，近三月累计10万荣誉值可升级Lv.3', 
+                    '邀请5000位家乡代言人，近三月累计50万荣誉值可升级Lv.4'
                   ][index - 1]
                 }}
               </view> 
