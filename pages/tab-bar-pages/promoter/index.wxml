@@ -29,7 +29,7 @@
   <view class="rights-wrap">
     <view class="rights-title">深度参与反向定制</view>
     <view class="rights-desc">
-      购买家乡特色商品，可获得以下权益
+      升级家乡代言人，可获得以下权益
     </view>
     <view class="rights-list">
       <view class="rights-item" wx:for="{{ARRAY.slice(rightsList, 0, 4)}}" wx:key="index">
