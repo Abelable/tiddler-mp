@@ -84,22 +84,23 @@ Component({
     initToolList() {
       const {
         level,
+        authInfoId,
         merchantId,
         scenicProviderId,
         hotelProviderId,
         cateringProviderId
       } = store.userInfo;
 
-      // { name: "我的直播", icon: "live" },
       const toolList = [
         { name: "订单中心", icon: "order" },
         { name: "收货地址", icon: "address" },
-        { name: "优惠券", icon: "coupon" },
+        level ? { name: "代言奖励", icon: "promoter" } : undefined,
         merchantId || scenicProviderId || hotelProviderId || cateringProviderId
           ? { name: "商家中心", icon: "merchant" }
           : undefined,
-        level ? { name: "代言奖励", icon: "promoter" } : undefined,
-
+        merchantId || scenicProviderId || hotelProviderId || cateringProviderId
+          ? { name: "核销扫码", icon: "scan" }
+          : undefined,
         level ||
         merchantId ||
         scenicProviderId ||
@@ -107,7 +108,9 @@ Component({
         cateringProviderId
           ? { name: "我的余额", icon: "balance" }
           : undefined,
+        { name: "优惠券", icon: "coupon" },
         { name: "浏览历史", icon: "history" },
+        authInfoId ? { name: "我的直播", icon: "live" } : undefined,
         { name: "更多设置", icon: "setting" }
       ].filter(item => !!item);
       this.setData({ toolList });
@@ -368,6 +371,8 @@ Component({
       const { type } = e.currentTarget.dataset;
       if (type === "live") {
         this.navToLive();
+      } else if (type === "scan") {
+        console.log("scan");
       } else {
         wx.navigateTo({
           url: `/pages/subpages/mine/${type}/index`
@@ -376,35 +381,6 @@ Component({
     },
 
     async navToLive() {
-      const {
-        userInfoId,
-        merchantId,
-        scenicProviderId,
-        hotelProviderId,
-        cateringProviderId
-      } = store.userInfo;
-      if (
-        !userInfoId &&
-        !merchantId &&
-        !scenicProviderId &&
-        !hotelProviderId &&
-        !cateringProviderId
-      ) {
-        wx.showModal({
-          title: "温馨提示",
-          content: "直播需要认证您的真实身份，请先完成实名认证",
-          showCancel: false,
-          confirmText: "确定",
-          success: result => {
-            if (result.confirm) {
-              const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/auth`;
-              wx.navigateTo({ url });
-            }
-          }
-        });
-        return;
-      }
-
       const statusInfo = await mineService.getRoomStatus();
       if (!statusInfo) {
         wx.navigateTo({
