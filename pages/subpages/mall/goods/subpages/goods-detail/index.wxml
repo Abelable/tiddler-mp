@@ -16,7 +16,7 @@
 
  <!-- 轮播 -->
 <view class="banner-wrap">
-  <swiper style="height: 1000rpx;" current="{{curDot - 1}}" circular bindchange="bannerChange">
+  <swiper style="height: 900rpx;" current="{{curDot - 1}}" circular bindchange="bannerChange">
     <swiper-item 
       wx:if="{{goodsInfo.video}}"
       bindtap="previewMedia" 
@@ -79,21 +79,24 @@
   </view>
 </view>
 
-<view class="wrap">
+<view class="wrap {{goodsInfo.isGift ? 'gift' : ''}}">
   <!-- 商品基本信息 -->
+  <view class="gift-bar" wx:if="{{goodsInfo.isGift}}">
+    <view class="gift-duration row">代言家乡100天</view>
+  </view>
   <view class="goods-info-wrap">
     <view class="price-wrap row">
       <view class="row baseline">
         <price-unit 
           price="{{goodsInfo.price || 0}}" 
-          color="#f8305a"
+          color="#FD2D55"
           fontSize="32rpx" 
           integerFontSize="52rpx"
         />
         <view class="market-price" wx:if="{{goodsInfo.marketPrice}}">￥{{goodsInfo.marketPrice}}</view>
       </view>
-      <view class="commission-tag" bindtap="toggleCommissionVisible">
-        <text wx:if="{{commissionVisible}}">利润¥{{commission}}</text>
+      <view class="commission-tag" wx:if="{{!goodsInfo.isGift}}" bindtap="toggleCommissionVisible">
+        <text wx:if="{{commissionVisible}}">奖励¥{{commission}}</text>
         <text wx:if="{{!commissionVisible}}" style="padding-top: 8rpx; font-size: 28rpx;">******</text>
         <image class="commission-visible-icon" src="./images/{{commissionVisible ? '' : 'in'}}visible.png" />
       </view>

@@ -15,7 +15,7 @@
           fontSize="32rpx" 
           integerFontSize="50rpx"
         />
-        <view class="commission" wx:if="{{commissionVisible}}">利润：¥{{commission}}</view>
+        <view class="commission" wx:if="{{commissionVisible}}">奖励：¥{{commission}}</view>
         <view class="spec-stock">库存{{selectedSkuIndex !== -1 ? goodsInfo.skuList[selectedSkuIndex].stock : goodsInfo.stock}}</view>
         <view class="omit single">{{ selectedSkuName ? '已选：' + selectedSkuName : '请选择规格'}}</view>
       </view>
