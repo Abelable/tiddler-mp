@@ -1,6 +1,6 @@
 <view class="goods-item {{visible ? 'show' : ''}}" bindtap="navToGoodsDetail">
   <view class="cover-wrap {{showTag ? 'show-tag' : ''}} {{isGift ? 'gift' : ''}}">
-    <view class="gift-header">
+    <view class="gift-header" wx:if="{{isGift}}">
       <text>代言家乡</text>
       <text class="duration">100</text>
       <text>天</text>
