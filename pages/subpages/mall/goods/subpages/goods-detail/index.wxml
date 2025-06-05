@@ -16,7 +16,7 @@
 
  <!-- 轮播 -->
 <view class="banner-wrap">
-  <swiper style="height: 900rpx;" current="{{curDot - 1}}" circular bindchange="bannerChange">
+  <swiper style="height: 800rpx;" current="{{curDot - 1}}" circular bindchange="bannerChange">
     <swiper-item 
       wx:if="{{goodsInfo.video}}"
       bindtap="previewMedia" 

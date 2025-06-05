@@ -138,7 +138,7 @@ page {
 .wrap {
   position: absolute;
   left: 0;
-  top: 840rpx;
+  top: 740rpx;
   width: 100%;
 }
 .wrap.gift {
