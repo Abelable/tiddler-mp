@@ -68,8 +68,8 @@
   position: absolute;
   right: 0;
   bottom: 0;
-  width: 208rpx;
-  height: 234rpx;
+  width: 240rpx;
+  height: 240rpx;
 }
 .data-card-main {
   position: absolute;

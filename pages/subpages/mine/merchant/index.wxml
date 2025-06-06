@@ -21,10 +21,10 @@
 </view>
 
 <view class="container {{titleMenu[curTitleIdx].type}}" style="padding-top: {{statusBarHeight + 56}}px">
-  <image class="bg" wx:if="{{titleMenu.length}}" src="./images/bg_{{titleMenu[curTitleIdx].type}}.png" />
+  <image class="bg" wx:if="{{titleMenu.length}}" src="https://static.tiddler.cn/mp/merchant/{{titleMenu[curTitleIdx].type}}/bg.png" />
 
-  <view class="data-card scenic" wx:if="{{titleMenu[curTitleIdx].value === 1}}">
-    <image class="data-card-bg" src="./images/wallet.png" />
+  <view class="data-card {{titleMenu[curTitleIdx].type}}">
+    <image class="data-card-bg" wx:if="{{titleMenu.length}}" src="https://static.tiddler.cn/mp/merchant/{{titleMenu[curTitleIdx].type}}/card_bg.png" />
     <view class="data-card-main">
       <view class="balance-data-item">
         <view class="balance-data-title">累计收益 (元)</view>
@@ -50,6 +50,7 @@
     </view>
     <button class="withdraw-btn" bindtap="withdraw" hover-class="none">收益提现</button>
   </view>
+
   <view class="tool-card" wx:if="{{titleMenu[curTitleIdx].value === 1}}">
     <view class="tool-card-title row between">
       <view>商家订单</view>
@@ -103,33 +104,6 @@
     </view>
   </view>
 
-  <view class="data-card hotel" wx:if="{{titleMenu[curTitleIdx].value === 2}}">
-    <image class="data-card-bg" src="./images/wallet.png" />
-    <view class="data-card-main">
-      <view class="balance-data-item">
-        <view class="balance-data-title">累计收益 (元)</view>
-        <view class="balance-data-amount">8828.92</view>
-      </view>
-      <view class="data-items-wrap row between">
-        <view class="data-item">
-          <view class="data-title">成交额 (元)</view>
-          <view class="data-amount">882.88</view>
-          <view class="data-supplement">昨日 682.22</view>
-        </view>
-        <view class="data-item">
-          <view class="data-title">订单数</view>
-          <view class="data-amount">882</view>
-          <view class="data-supplement">昨日 682</view>
-        </view>
-        <view class="data-item">
-          <view class="data-title">访客数</view>
-          <view class="data-amount">882</view>
-          <view class="data-supplement">昨日 682</view>
-        </view>
-      </view>
-    </view>
-    <button class="withdraw-btn" bindtap="withdraw" hover-class="none">收益提现</button>
-  </view>
   <view class="tool-card" wx:if="{{titleMenu[curTitleIdx].value === 2}}">
     <view class="tool-card-title row between">
       <view>商家订单</view>
@@ -183,33 +157,6 @@
     </view>
   </view>
 
-  <view class="data-card catering" wx:if="{{titleMenu[curTitleIdx].value === 3}}">
-    <image class="data-card-bg" src="./images/wallet.png" />
-    <view class="data-card-main">
-      <view class="balance-data-item">
-        <view class="balance-data-title">累计收益 (元)</view>
-        <view class="balance-data-amount">8828.92</view>
-      </view>
-      <view class="data-items-wrap row between">
-        <view class="data-item">
-          <view class="data-title">成交额 (元)</view>
-          <view class="data-amount">882.88</view>
-          <view class="data-supplement">昨日 682.22</view>
-        </view>
-        <view class="data-item">
-          <view class="data-title">订单数</view>
-          <view class="data-amount">882</view>
-          <view class="data-supplement">昨日 682</view>
-        </view>
-        <view class="data-item">
-          <view class="data-title">访客数</view>
-          <view class="data-amount">882</view>
-          <view class="data-supplement">昨日 682</view>
-        </view>
-      </view>
-    </view>
-    <button class="withdraw-btn" bindtap="withdraw" hover-class="none">收益提现</button>
-  </view>
   <view class="tool-card" wx:if="{{titleMenu[curTitleIdx].value === 3}}">
     <view class="tool-card-title row between">
       <view>餐券订单</view>
@@ -282,33 +229,6 @@
     </view>
   </view>
 
-  <view class="data-card goods" wx:if="{{titleMenu[curTitleIdx].value === 4}}">
-    <image class="data-card-bg" src="./images/wallet.png" />
-    <view class="data-card-main">
-      <view class="balance-data-item">
-        <view class="balance-data-title">累计收益 (元)</view>
-        <view class="balance-data-amount">8828.92</view>
-      </view>
-      <view class="data-items-wrap row between">
-        <view class="data-item">
-          <view class="data-title">成交额 (元)</view>
-          <view class="data-amount">882.88</view>
-          <view class="data-supplement">昨日 682.22</view>
-        </view>
-        <view class="data-item">
-          <view class="data-title">订单数</view>
-          <view class="data-amount">882</view>
-          <view class="data-supplement">昨日 682</view>
-        </view>
-        <view class="data-item">
-          <view class="data-title">访客数</view>
-          <view class="data-amount">882</view>
-          <view class="data-supplement">昨日 682</view>
-        </view>
-      </view>
-    </view>
-    <button class="withdraw-btn" bindtap="withdraw" hover-class="none">收益提现</button>
-  </view>
   <view class="tool-card" wx:if="{{titleMenu[curTitleIdx].value === 4}}">
     <view class="tool-card-title row between">
       <view>商家订单</view>
