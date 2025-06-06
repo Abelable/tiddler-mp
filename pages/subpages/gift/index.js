@@ -7,27 +7,18 @@ Page({
   data: {
     statusBarHeight,
     navBarVisible: false,
+    menuList: [],
     curMenuIdx: 0,
     goodsList: [],
     finished: false
   },
 
   async onLoad() {
+    await this.setMenuList();
     await this.setGoodsList(true);
 
     this.setMenuTop();
   },
-
-  setMenuTop() {
-    const query = wx.createSelectorQuery();
-    query.select(".menu-wrap").boundingClientRect();
-    query.exec(res => {
-      this.menuTop = res[0].top;
-    });
-  },
-
-  // todo
-  setMenuList() {},
 
   selectMenu(e) {
     const { index: curMenuIdx } = e.currentTarget.dataset;
@@ -44,13 +35,29 @@ Page({
     this.setGoodsList();
   },
 
+  setMenuTop() {
+    const query = wx.createSelectorQuery();
+    query.select(".menu-wrap").boundingClientRect();
+    query.exec(res => {
+      this.menuTop = res[0].top;
+    });
+  },
+
+  async setMenuList() {
+    const menuList = await giftService.getGiftTypeOptions();
+    this.setData({ menuList });
+  },
+
   async setGoodsList(init = false) {
     if (init) {
       this.setData({ finished: false });
       this.page = 0;
     }
-    const { curMenuIdx, goodsList } = this.data;
-    const { list } = await giftService.getGiftList(curMenuIdx + 1, ++this.page);
+    const { menuList, curMenuIdx, goodsList } = this.data;
+    const { list } = await giftService.getGiftList(
+      menuList[curMenuIdx].id,
+      ++this.page
+    );
     this.setData({
       goodsList: init ? list : [...goodsList, ...list]
     });

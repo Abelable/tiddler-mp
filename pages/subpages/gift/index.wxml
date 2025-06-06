@@ -20,13 +20,13 @@
       <view class="menu row">
         <view 
           class="menu-item row center {{curMenuIdx === index ? 'active' : ''}}" 
-          wx:for="{{['爱心助农', '家乡特产', '童年回忆', '文创周边']}}" 
+          wx:for="{{menuList}}" 
           wx:key="index"
           bindtap="selectMenu"
           data-index="{{index}}"
         >
           <image class="active-tag" wx:if="{{curMenuIdx === index}}" src="https://static.tiddler.cn/mp/gift/active.png" />
-          <view class="menu-item-content">{{item}}</view>
+          <view class="menu-item-content">{{item.name}}</view>
         </view>
       </view>
     </view>
