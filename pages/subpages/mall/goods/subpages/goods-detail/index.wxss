@@ -151,10 +151,22 @@ page {
   position: relative;
   height: 100rpx;
 }
-.gift-duration {
+.gift-bar-content {
   position: absolute;
-  right: 26rpx;
-  bottom: 24rpx;
+  right: 12rpx;
+  bottom: 11rpx;
+  padding: 13rpx;
+  width: 530rpx;
+  height: 68rpx;
+}
+.gift-bar-slogan-wrap {
+  flex: 1;
+}
+.gift-bar-slogan {
+  width: 290rpx;
+  height: 26rpx;
+}
+.gift-duration {
   padding: 0 12rpx;
   height: 42rpx;
   color: #fff;

@@ -82,7 +82,12 @@
 <view class="wrap {{goodsInfo.isGift ? 'gift' : ''}}">
   <!-- 商品基本信息 -->
   <view class="gift-bar" wx:if="{{goodsInfo.isGift}}">
-    <view class="gift-duration row">代言家乡100天</view>
+    <view class="gift-bar-content row">
+      <view class="gift-bar-slogan-wrap row center">
+        <image class="gift-bar-slogan" src="https://static.tiddler.cn/mp/gift_bar_slogan.png" />
+      </view>
+      <view class="gift-duration row">代言家乡100天</view>
+    </view>
   </view>
   <view class="goods-info-wrap">
     <view class="price-wrap row">

@@ -71,7 +71,7 @@
 .bar-title {
   position: absolute;
   left: 12rpx;
-  bottom: 8rpx;
+  bottom: 10rpx;
   width: 86rpx;
   height: 27rpx;
 }
@@ -87,15 +87,18 @@
   height: 17rpx;
 }
 .bar-duration {
-  margin-left: 10rpx;
-  padding: 0 8rpx;
-  height: 24rpx;
+  margin-left: -28rpx;
+  margin-right: -40rpx;
+  padding: 0 14rpx;
+  height: 46rpx;
   color: #fff;
-  font-size: 14rpx;
+  font-size: 24rpx;
   line-height: 1;
+  white-space: nowrap;
   font-style: italic;
   background: #3FC3F4;
-  border-radius: 22.5rpx;
+  border-radius: 23rpx;
+  transform: scale(0.58);
 }
 
 .type-label {

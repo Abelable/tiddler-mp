@@ -86,9 +86,7 @@
   transition: border-radius .2s ease;
 }
 .menu {
-  padding: 0 6rpx;
-  width: 100%;
-  height: 68rpx;
+  padding: 6rpx;
   background: #A3DB62;
   border-radius: 34rpx;
 }
