@@ -6,13 +6,24 @@ const { statusBarHeight } = getApp().globalData.systemInfo;
 Page({
   data: {
     statusBarHeight,
+    navBarVisible: false,
     curMenuIdx: 0,
     goodsList: [],
     finished: false
   },
 
-  onLoad() {
-    this.setGoodsList(true);
+  async onLoad() {
+    await this.setGoodsList(true);
+
+    this.setMenuTop();
+  },
+
+  setMenuTop() {
+    const query = wx.createSelectorQuery();
+    query.select(".menu-wrap").boundingClientRect();
+    query.exec(res => {
+      this.menuTop = res[0].top;
+    });
   },
 
   // todo
@@ -24,7 +35,12 @@ Page({
     this.setGoodsList(true);
   },
 
-  loadMore() {
+  onPullDownRefresh() {
+    this.setGoodsList(true);
+    wx.stopPullDownRefresh();
+  },
+
+  onReachBottom() {
     this.setGoodsList();
   },
 
@@ -35,9 +51,23 @@ Page({
     }
     const { curMenuIdx, goodsList } = this.data;
     const { list } = await giftService.getGiftList(curMenuIdx + 1, ++this.page);
-    this.setData({ goodsList: init ? [...list, ...list,...list, ...list,...list, ...list,...list, ...list,] : [...goodsList, ...list] });
+    this.setData({
+      goodsList: init
+        ? [...list, ...list, ...list, ...list, ...list, ...list]
+        : [...goodsList, ...list]
+    });
     if (!list.length) {
       this.setData({ finished: true });
+    }
+  },
+
+  onPageScroll(e) {
+    const { navBarVisible } = this.data;
+
+    if (e.scrollTop >= this.menuTop - statusBarHeight - 44) {
+      if (!navBarVisible) this.setData({ navBarVisible: true });
+    } else {
+      if (navBarVisible) this.setData({ navBarVisible: false });
     }
   }
 });

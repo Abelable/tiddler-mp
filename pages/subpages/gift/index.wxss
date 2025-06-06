@@ -1,10 +1,32 @@
-.container {
+.nav-bar-wrap {
   position: fixed;
   top: 0;
   left: 0;
+  width: 100%;
+  z-index: 100;
+  background: transparent;
+  transition: background .2s ease;
+}
+.nav-bar-wrap.show {
+  background: #f2fff3;
+  transition: background .2s ease;
+}
+.nav-bar {
+  padding: 0 8px;
+  height: 44px;
+}
+.title {
+  flex: 1;
+  color: #333;
+  font-size: 16px;
+  font-weight: 550;
+  text-align: center;
+}
+
+.container {
+  position: relative;
   padding-top: 80rpx;
   width: 100vw;
-  height: 100vh;
 }
 
 .bg {
@@ -33,10 +55,11 @@
 .goods-list-wrap {
   position: relative;
   margin-top: 80rpx;
-  padding: 20rpx;
-  width: 100%;
-  background: linear-gradient(180deg, #F2FFF3 0%, #E6FFE7 100%);
+  background: #f2fff3;
   border-radius: 48rpx 48rpx 0 0;
+}
+.goods-list-wrap.fixed {
+  padding-top: 108rpx;
 }
 
 .process {
@@ -48,6 +71,20 @@
   z-index: -1;
 }
 
+.menu-wrap {
+  padding: 20rpx;
+  background: #f2fff3;
+  border-radius: 48rpx 48rpx 0 0;
+  transition: border-radius .2s ease;
+}
+.menu-wrap.fixed {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  border-radius: 0;
+  z-index: 100;
+  transition: border-radius .2s ease;
+}
 .menu {
   padding: 0 6rpx;
   width: 100%;
@@ -83,9 +120,8 @@
 }
 
 .goods-list {
-  margin-top: 20rpx;
-  height: calc(100vh - 720rpx);
-  overflow-y: scroll;
+  padding: 0 20rpx;
+  min-height: calc(100vh - 720rpx);
 }
 
 .no-more-tips {
