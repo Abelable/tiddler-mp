@@ -225,12 +225,12 @@ page {
   font-size: 32rpx;
   font-weight: 600;
 }
-.self-support-icon {
+.self-support-tag {
   margin-right: 12rpx;
   margin-bottom: 6rpx;
   vertical-align: bottom;
-  width: 57.5rpx;
-  height: 32rpx;
+  width: 102rpx;
+  height: 34rpx;
 }
 .goods-intro {
   margin-top: 18rpx;

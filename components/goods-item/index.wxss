@@ -122,11 +122,11 @@
   font-size: 26rpx;
   font-weight: bold;
 }
-.self-support-icon {
+.self-support-tag {
   margin-right: 8rpx;
   margin-bottom: 4rpx;
   vertical-align: bottom;
-  width: 52rpx;
+  width: 90rpx;
   height: 30rpx;
 }
 

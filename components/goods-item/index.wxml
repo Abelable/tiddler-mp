@@ -13,7 +13,7 @@
   </view>
   <view class="content">
     <view class="goods-name omit">
-      <image class="self-support-icon" wx:if="{{!item.shopInfo}}" src="/images/self-support.png" />
+      <image class="self-support-tag" wx:if="{{!item.shopInfo}}" src="https://static.tiddler.cn/mp/self_support.png" />
       <text>{{item.name}}</text>
     </view>
     <view class="info-wrap row between">
