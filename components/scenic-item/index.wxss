@@ -21,13 +21,13 @@
 .type-label {
   position: absolute;
   top: 18rpx;
-  left: 18rpx;
+  right: 18rpx;
   padding: 0 12rpx;
-  height: 34rpx;
-  color: #fff;
-  font-size: 20rpx;
-  border-radius: 8rpx;
-  background: #00A5FF;
+  height: 36rpx;
+  color: #000;
+  font-size: 18rpx;
+  border-radius: 18rpx;
+  background: rgba(255, 255, 255, 0.8);
 }
 
 .address-info {
