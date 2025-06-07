@@ -77,7 +77,7 @@ page {
   font-size: 21rpx;
 }
 
-.commodity-list {
+.product-list {
   margin-top: 30rpx;
   padding: 20rpx;
   border-radius: 42rpx 42rpx 0 0;

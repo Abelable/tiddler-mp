@@ -6,7 +6,7 @@ import {
   TYPE_OF_HOTEL,
   TYPE_OF_RESTAURANT,
   TYPE_OF_SCENIC
-} from "../../../../../../../utils/emuns/commodityType";
+} from "../../../../../../../utils/emuns/productType";
 
 Component({
   options: {
@@ -147,7 +147,7 @@ Component({
       this.triggerEvent("more");
     },
 
-    checkCommodityDetail(e) {
+    checkProductDetail(e) {
       const { type, id } = e.currentTarget.dataset;
       let url;
       switch (type) {

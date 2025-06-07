@@ -50,24 +50,24 @@
 
     <view class="video-title">{{item.title}}</view>
 
-    <scroll-view class="commodity-list row" wx:if="{{item.commodityList.length}}" scroll-x>
+    <scroll-view class="product-list row" wx:if="{{item.productList.length}}" scroll-x>
       <view 
-        class="commodity-item" 
+        class="product-item" 
         style="background-image: url({{_item.cover}});"
-        wx:for="{{item.commodityList}}" 
+        wx:for="{{item.productList}}" 
         wx:key="_index" 
         wx:for-item="_item" 
         wx:for-index="_index"
-        catchtap="checkCommodityDetail"
+        catchtap="checkProductDetail"
         data-type="{{_item.type}}"
         data-id="{{_item.id}}"
       >
-        <view class="commodity-item-inner">
-          <view class="commodity-name-wrap row">
+        <view class="product-item-inner">
+          <view class="product-name-wrap row">
             <image class="comodity-icon" src="./images/{{['scenic', 'hotel', 'restaurant', 'goods'][_item.type - 1]}}.png" />
-            <view class="commodity-name omit single">{{STRING.slice(_item.name || '', 8)}}</view>
+            <view class="product-name omit single">{{STRING.slice(_item.name || '', 8)}}</view>
           </view>
-          <view class="commodity-data-wrap row between baseline">
+          <view class="product-data-wrap row between baseline">
             <view class="row baseline" wx:if="{{_item.price}}">
               <price-unit price="{{_item.price || 0}}" unit="{{_item.type !== 4 ? '起' : ''}}" color="#FFDD00" unitColor="#fff" fontSize="22rpx" integerFontSize="28rpx" unitFontSize="18rpx" />
               <view class="market-price" wx:if="{{_item.marketPrice}}">¥{{_item.marketPrice}}</view>

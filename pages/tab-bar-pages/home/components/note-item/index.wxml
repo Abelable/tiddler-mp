@@ -22,7 +22,7 @@
   <view class="title">{{item.title}}</view>
   <view class="content omit" wx:if="{{item.content}}">{{item.content}}</view>
 
-  <commodity-list wx:if="{{item.commodityList.length}}" list="{{item.commodityList}}" />
+  <product-list wx:if="{{item.productList.length}}" list="{{item.productList}}" />
   
   <view class="btn-wrap">
     <view class="btn-item">

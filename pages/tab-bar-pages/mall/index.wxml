@@ -27,13 +27,13 @@
     </view>
   </view>
   
-  <view class="commodity-list">
-    <fall-flow list="{{commodityList}}" generic:item="commodity-item" />
-    <view class="loading row center" wx:if="{{commodityList.length && isLoading}}">
+  <view class="product-list">
+    <fall-flow list="{{productList}}" generic:item="product-item" />
+    <view class="loading row center" wx:if="{{productList.length && isLoading}}">
       <image class="loading-icon" src="https://static.tiddler.cn/mp/loading.gif" />
       <text>加载中...</text>
     </view>
-    <view class="no-more-tips" wx:if="{{!isLoading && finished && commodityList.length}}">～没有更多了～</view>
-    <empty-illus wx:if="{{finished && !commodityList.length}}" desc="暂无列表" />
+    <view class="no-more-tips" wx:if="{{!isLoading && finished && productList.length}}">～没有更多了～</view>
+    <empty-illus wx:if="{{finished && !productList.length}}" desc="暂无列表" />
   </view>
 </view>

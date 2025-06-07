@@ -1,6 +1,6 @@
 {
   "component": true,
   "usingComponents": {
-    "commodity-list": "/components/commodity-list/index"
+    "product-list": "/components/product-list/index"
   }
 }

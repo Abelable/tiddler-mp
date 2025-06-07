@@ -1,5 +1,5 @@
 <swiper 
-  class="commodity-list custom-dots {{ list.length > 1 ? 'show-dots' : '' }}" 
+  class="product-list custom-dots {{ list.length > 1 ? 'show-dots' : '' }}" 
   indicator-dots="{{list.length > 1}}" 
   circular
 >
@@ -10,13 +10,13 @@
     data-type="{{item.type}}" 
     data-id="{{item.id}}"
   >
-    <view class="commodity-item row">
-      <view class="commodity-image-wrap">
-        <image class="commodity-image" src="{{item.cover}}" mode="aspectFill" />
+    <view class="product-item row">
+      <view class="product-image-wrap">
+        <image class="product-image" src="{{item.cover}}" mode="aspectFill" />
         <view class="type-tag row">{{['景点', '酒店',  '餐厅', '商品'][item.type - 1]}}</view>
       </view>
-      <view class="commodity-info">
-        <view class="commodity-name omit single">{{item.name}}</view>
+      <view class="product-info">
+        <view class="product-name omit single">{{item.name}}</view>
         <view class="row between baseline">
           <view class="row baseline" wx:if="{{item.price}}">
             <price-unit price="{{item.price || 0}}" unit="{{item.type !== 4 ? '起' : ''}}" fontSize="22rpx" integerFontSize="26rpx" />

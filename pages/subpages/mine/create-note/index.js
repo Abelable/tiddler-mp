@@ -20,7 +20,7 @@ Page({
   async onLoad() {
     this.storeBindings = createStoreBindings(this, {
       store,
-      fields: ["mediaCommodityList"]
+      fields: ["mediaProductList"]
     });
 
     if (!store.locationInfo) {
@@ -122,13 +122,13 @@ Page({
     });
   }, 200),
 
-  pickRelativeCommodity() {
+  pickRelativeProduct() {
     wx.navigateTo({
-      url: "../relative-commodity/index"
+      url: "../relative-product/index"
     });
   },
 
-  deleteCommodity(e) {
+  deleteProduct(e) {
     const { index } = e.currentTarget.dataset;
     const { position, instance } = e.detail;
     if (position === "right") {
@@ -138,9 +138,9 @@ Page({
         showCancel: true,
         success: async res => {
           if (res.confirm) {
-            const commodityList = [...store.mediaCommodityList];
-            commodityList.splice(index, 1);
-            store.setMediaCommodityList(commodityList);
+            const productList = [...store.mediaProductList];
+            productList.splice(index, 1);
+            store.setMediaProductList(productList);
             instance.close();
           } else {
             instance.close();
@@ -157,7 +157,7 @@ Page({
       content,
       address,
       addressVisible,
-      mediaCommodityList
+      mediaProductList
     } = this.data;
     const { longitude, latitude, isPrivate } = this;
 
@@ -170,14 +170,14 @@ Page({
       title,
       content,
       isPrivate,
-      commodityList: mediaCommodityList.map(({ type, id }) => ({ type, id })),
+      productList: mediaProductList.map(({ type, id }) => ({ type, id })),
       longitude: addressVisible ? longitude : 0,
       latitude: addressVisible ? latitude : 0,
       address: addressVisible ? address : ""
     };
 
     noteService.createNote(noteInfo, () => {
-      store.setMediaCommodityList([]);
+      store.setMediaProductList([]);
       wx.navigateBack();
     });
   },

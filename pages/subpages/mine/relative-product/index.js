@@ -4,10 +4,10 @@ import {
   TYPE_OF_HOTEL,
   TYPE_OF_RESTAURANT,
   TYPE_OF_SCENIC
-} from "../../../../utils/emuns/commodityType";
-import CommodityService from "./utils/commodityService";
+} from "../../../../utils/emuns/productType";
+import ProductService from "./utils/productService";
 
-const commodityService = new CommodityService();
+const productService = new ProductService();
 
 Page({
   data: {
@@ -24,20 +24,20 @@ Page({
   },
 
   async onLoad() {
-    this.selectedScenicIds = store.mediaCommodityList
+    this.selectedScenicIds = store.mediaProductList
       .filter(item => item.type === TYPE_OF_SCENIC)
       .map(item => item.id);
-    this.selectedHotelIds = store.mediaCommodityList
+    this.selectedHotelIds = store.mediaProductList
       .filter(item => item.type === TYPE_OF_HOTEL)
       .map(item => item.id);
-    this.selectedRestaurantIds = store.mediaCommodityList
+    this.selectedRestaurantIds = store.mediaProductList
       .filter(item => item.type === TYPE_OF_RESTAURANT)
       .map(item => item.id);
-    this.selectedGoodsIds = store.mediaCommodityList
+    this.selectedGoodsIds = store.mediaProductList
       .filter(item => item.type === TYPE_OF_GOODS)
       .map(item => item.id);
 
-    await this.getUserRelativeCommodityIds();
+    await this.getUserRelativeProductIds();
     this.setList(true);
   },
 
@@ -139,7 +139,7 @@ Page({
     const selectedHotel = hotelList.filter(item => item.selected);
     const selectedRestaurant = restaurantList.filter(item => item.selected);
     const selectedGoods = goodsList.filter(item => item.selected);
-    const commodityList = [
+    const productList = [
       ...selectedScenic.map(item => ({ ...item, type: TYPE_OF_SCENIC })),
       ...selectedHotel.map(item => ({ ...item, type: TYPE_OF_HOTEL })),
       ...selectedRestaurant.map(item => ({
@@ -149,7 +149,7 @@ Page({
       ...selectedGoods.map(item => ({ ...item, type: TYPE_OF_GOODS }))
     ];
 
-    if (!commodityList.length) {
+    if (!productList.length) {
       wx.showToast({
         title: "请至少选择一个商品",
         icon: "none"
@@ -157,12 +157,12 @@ Page({
       return;
     }
 
-    store.setMediaCommodityList(commodityList);
+    store.setMediaProductList(productList);
     wx.navigateBack();
   },
 
   // todo 获取用户相关商品id数组
-  async getUserRelativeCommodityIds() {
+  async getUserRelativeProductIds() {
     this.relativeScenicIds = [];
     this.relativeHotelIds = [];
     this.relativeRestaurantIds = [];
@@ -176,7 +176,7 @@ Page({
       this.setData({ scenicFinished: false });
     }
     let { list = [] } =
-      (await commodityService.getScenicList({
+      (await productService.getScenicList({
         scenicIds: this.relativeScenicIds,
         keywords,
         page: ++this.scenicPage
@@ -200,7 +200,7 @@ Page({
       this.setData({ hotelFinished: false });
     }
     let { list = [] } =
-      (await commodityService.getHotelList({
+      (await productService.getHotelList({
         hotelIds: this.relativeHotelIds,
         keywords,
         page: ++this.hotelPage
@@ -224,7 +224,7 @@ Page({
       this.setData({ restaurantFinished: false });
     }
     let { list = [] } =
-      (await commodityService.getRestaurantList({
+      (await productService.getRestaurantList({
         restaurantIds: this.relativeRestaurantIds,
         keywords,
         page: ++this.restaurantPage
@@ -248,7 +248,7 @@ Page({
       this.setData({ goodsFinished: false });
     }
     let { list = [] } =
-      (await commodityService.getGoodsList({
+      (await productService.getGoodsList({
         goodsIds: this.relativeGoodsIds,
         keywords,
         page: ++this.goodsPage

@@ -32,7 +32,7 @@
     <text wx:if="{{item.content.length > 50}}" bindtap="toggleContentFold" style="color: #000; font-weight: bold;"> {{contentFold ? '展开' : '收起'}}</text>
   </view>
 
-  <commodity-list wx:if="{{item.commodityList.length}}" list="{{item.commodityList}}" />
+  <product-list wx:if="{{item.productList.length}}" list="{{item.productList}}" />
   
   <view class="comment-wrap" wx:if="{{item.commentsNumber}}" bindtap="showCommentPopup">
     <view class="comment-list">

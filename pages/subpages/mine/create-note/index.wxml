@@ -48,21 +48,21 @@
   <view class="card">
     <view class="title-wrap row between">
       <view class="title">相关商品</view>
-      <view class="add-btn row" bindtap="pickRelativeCommodity">
+      <view class="add-btn row" bindtap="pickRelativeProduct">
         <view>选择商品</view>
         <image class="arrow" src="/images/arrow.png" />
       </view>
     </view>
 
-    <view class="commodity-list">
-      <van-swipe-cell wx:for="{{mediaCommodityList}}" wx:key="index" bind:close="deleteCommodity" data-index="{{index}}" async-close right-width="{{ 40 }}">
-        <view class="commodity-item row">
-          <view class="commodity-image-wrap">
-            <image class="commodity-image" src="{{item.cover}}" />
+    <view class="product-list">
+      <van-swipe-cell wx:for="{{mediaProductList}}" wx:key="index" bind:close="deleteProduct" data-index="{{index}}" async-close right-width="{{ 40 }}">
+        <view class="product-item row">
+          <view class="product-image-wrap">
+            <image class="product-image" src="{{item.cover}}" />
             <view class="type-tag row">{{ ['景点', '酒店', '餐厅', '商品'][item.type -1] }}</view>
           </view>
-          <view class="commodity-info">
-            <view class="commodity-name omit single">{{item.name}}</view>
+          <view class="product-info">
+            <view class="product-name omit single">{{item.name}}</view>
             <view class="row end">
               <price-unit price="{{item.price || 0}}" unit="{{ item.type !== 4 ? '起' : '' }}" fontSize="22rpx" integerFontSize="26rpx" />
             </view>
@@ -74,7 +74,7 @@
       </van-swipe-cell>
     </view>
 
-    <empty-illus wx:if="{{!mediaCommodityList.length}}" desc="暂未选择商品" height="520rpx" />
+    <empty-illus wx:if="{{!mediaProductList.length}}" desc="暂未选择商品" height="520rpx" />
   </view>
 </view>
 

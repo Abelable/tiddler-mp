@@ -7,9 +7,9 @@ class MallService extends BaseService {
     });
   }
 
-  async getCommodityList(page, limit = 10) {
+  async getProductList(page, limit = 10) {
     return await this.get({
-      url: `${this.baseUrl}/mall/commodity_list`,
+      url: `${this.baseUrl}/mall/product_list`,
       data: { page, limit }
     });
   }

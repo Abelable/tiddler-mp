@@ -18,7 +18,7 @@ Page({
   async onLoad({ tempFilePath }) {
     this.storeBindings = createStoreBindings(this, {
       store,
-      fields: ["mediaCommodityList"]
+      fields: ["mediaProductList"]
     });
 
     this.setVideoUrl(tempFilePath);
@@ -92,13 +92,13 @@ Page({
     }
   },
 
-  pickRelativeCommodity() {
+  pickRelativeProduct() {
     wx.navigateTo({
-      url: "../relative-commodity/index"
+      url: "../relative-product/index"
     });
   },
 
-  deleteCommodity(e) {
+  deleteProduct(e) {
     const { index } = e.currentTarget.dataset;
     const { position, instance } = e.detail;
     if (position === "right") {
@@ -108,9 +108,9 @@ Page({
         showCancel: true,
         success: async res => {
           if (res.confirm) {
-            const commodityList = [...store.mediaCommodityList];
-            commodityList.splice(index, 1);
-            store.setMediaCommodityList(commodityList);
+            const productList = [...store.mediaProductList];
+            productList.splice(index, 1);
+            store.setMediaProductList(productList);
             instance.close();
           } else {
             instance.close();
@@ -125,7 +125,7 @@ Page({
   },
 
   publish() {
-    const { title, cover, address, addressVisible, mediaCommodityList } =
+    const { title, cover, address, addressVisible, mediaProductList } =
       this.data;
     const { videoUrl, longitude, latitude, isPrivate } = this;
 
@@ -138,14 +138,14 @@ Page({
       cover,
       videoUrl,
       isPrivate,
-      commodityList: mediaCommodityList.map(({ type, id }) => ({ type, id })),
+      productList: mediaProductList.map(({ type, id }) => ({ type, id })),
       longitude: addressVisible ? longitude : 0,
       latitude: addressVisible ? latitude : 0,
       address: addressVisible ? address : ""
     };
 
     videoService.createVideo(videoInfo, () => {
-      store.setMediaCommodityList([]);
+      store.setMediaProductList([]);
       wx.navigateBack();
     });
   },

@@ -4,7 +4,7 @@
   "backgroundColor": "#ffffff",
   "usingComponents": {
     "fall-flow": "/components/fall-flow/index",
-    "commodity-item": "./components/commodity-item/index",
+    "product-item": "./components/product-item/index",
     "empty-illus": "/components/empty-illus/index"
   }
 }

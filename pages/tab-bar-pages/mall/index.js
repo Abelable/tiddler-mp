@@ -15,7 +15,7 @@ Component({
       { name: "特色商品", icon: "goods" }
     ],
     navBarActive: false,
-    commodityList: [],
+    productList: [],
     isLoading: false,
     finished: false
   },
@@ -47,8 +47,8 @@ Component({
       }
       this.initCalendar();
       this.setBannerList();
-      if (!this.data.commodityList.length) {
-        this.setCommodityList(true);
+      if (!this.data.productList.length) {
+        this.setProductList(true);
       }
 
       wx.showShareMenu({
@@ -70,18 +70,18 @@ Component({
       this.setData({ bannerList });
     },
 
-    async setCommodityList(init = false) {
+    async setProductList(init = false) {
       const limit = 10;
       if (init) {
         this.page = 0;
         this.setData({ finished: false });
       }
-      const { commodityList } = this.data;
+      const { productList } = this.data;
       this.setData({ isLoading: true });
       const { list = [] } =
-        (await mallService.getCommodityList(++this.page, limit)) || {};
+        (await mallService.getProductList(++this.page, limit)) || {};
       this.setData({
-        commodityList: init ? list : [...commodityList, ...list],
+        productList: init ? list : [...productList, ...list],
         isLoading: false
       });
       if (list.length < limit) {
@@ -106,11 +106,11 @@ Component({
     },
 
     onReachBottom() {
-      this.setCommodityList();
+      this.setProductList();
     },
 
     onPullDownRefresh() {
-      this.setCommodityList(true);
+      this.setProductList(true);
       wx.stopPullDownRefresh();
     },
 

@@ -1,18 +1,18 @@
-.commodity-list {
+.product-list {
   margin-bottom: 24rpx;
   padding: 0 24rpx;
   height: 136rpx;
 }
-.commodity-list.show-dots {
+.product-list.show-dots {
   margin-bottom: 0;
   height: 178rpx;
 }
-.commodity-item {
+.product-item {
   padding: 16rpx;
   border-radius: 20rpx;
   border: 1px solid #eee;
 }
-.commodity-image-wrap {
+.product-image-wrap {
   position: relative;
   font-size: 0;
   width: 100rpx;
@@ -20,7 +20,7 @@
   border-radius: 10rpx;
   overflow: hidden;
 }
-.commodity-image {
+.product-image {
   width: 100%;
   height: 100%;
 }
@@ -36,7 +36,7 @@
   border-bottom-right-radius: 6rpx;
   background: rgba(0, 0, 0, 0.6);
 }
-.commodity-info {
+.product-info {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -44,7 +44,7 @@
   flex: 1;
   height: 100rpx;
 }
-.commodity-name {
+.product-name {
   color: #333;
   font-size: 24rpx;
   font-weight: bold;

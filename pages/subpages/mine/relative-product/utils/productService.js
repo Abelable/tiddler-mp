@@ -1,7 +1,7 @@
 import BaseService from "../../../../../services/baseService";
 import { cleanObject } from "../../../../../utils/index";
 
-class CommodityService extends BaseService {
+class ProductService extends BaseService {
   async getScenicList({ keywords, scenicIds, page, limit = 10 }) {
     return await this.post({
       url: `${this.baseUrl}/scenic/media_relative_list`,
@@ -35,4 +35,4 @@ class CommodityService extends BaseService {
   }
 }
 
-export default CommodityService;
+export default ProductService;

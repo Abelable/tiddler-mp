@@ -32,10 +32,10 @@ class MallService extends BaseService {
     });
   }
 
-  async getRelativeMediaList(commodityType, commodityId, page, limit = 10) {
+  async getRelativeMediaList(productType, productId, page, limit = 10) {
     return await this.get({
-      url: `${this.baseUrl}/media/commodity_relative_list`,
-      data: { commodityType, commodityId, page, limit },
+      url: `${this.baseUrl}/media/product_relative_list`,
+      data: { productType, productId, page, limit },
       loadingTitle: "加载中..."
     });
   }
