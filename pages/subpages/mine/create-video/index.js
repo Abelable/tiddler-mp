@@ -133,12 +133,36 @@ Page({
       return;
     }
 
+    const scenicIds = [];
+    const hotelIds = [];
+    const restaurantIds = [];
+    const goodsIds = [];
+    mediaProductList.forEach(({ type, id }) => {
+      switch (type) {
+        case 1:
+          scenicIds.push(id);
+          break;
+       case 2:
+          hotelIds.push(id);
+          break;
+           case 3:
+          restaurantIds.push(id);
+          break;
+           case 4:
+          goodsIds.push(id);
+          break;
+      }
+    })
+
     const videoInfo = {
       title,
       cover,
       videoUrl,
       isPrivate,
-      productList: mediaProductList.map(({ type, id }) => ({ type, id })),
+      scenicIds,
+      hotelIds,
+      restaurantIds,
+      goodsIds,
       longitude: addressVisible ? longitude : 0,
       latitude: addressVisible ? latitude : 0,
       address: addressVisible ? address : ""
