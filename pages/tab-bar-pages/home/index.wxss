@@ -97,6 +97,7 @@
 .content-wrap {
   height: 100vh;
   overflow-y: scroll;
+  background: #fff;
 }
 .content {
   padding: 0 20rpx 138rpx;

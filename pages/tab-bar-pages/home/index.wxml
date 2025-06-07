@@ -32,7 +32,7 @@
   <swiper-item>
     <scroll-view 
       class="content-wrap" 
-      style="padding-top: {{statusBarHeight + 96}}px; background: #fff;"
+      style="padding-top: {{statusBarHeight + 96}}px;"
       refresher-triggered="{{isFollowRefreshing}}"
       bindrefresherrefresh="onRefresh"
       bindscrolltolower="onLoadMore"
