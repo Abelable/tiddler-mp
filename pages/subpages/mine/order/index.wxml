@@ -51,7 +51,7 @@
   <view class="content" wx:if="{{curMenuIdx === 4}}">
     <view class="order-list">
       <goods-order-item 
-        wx:for="{{orderList}}" 
+        wx:for="{{goodsOrderList}}" 
         wx:key="index" 
         item="{{item}}" 
         index="{{index}}" 
