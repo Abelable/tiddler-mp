@@ -134,37 +134,35 @@ Component({
     },
 
     linkTo(e) {
-      const { scene, param } = e.currentTarget.dataset;
-      switch (scene) {
-        case 1:
-          wx.navigateTo({
-            url: `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}${param}`
-          });
-          break;
-
-        case 2:
-          wx.navigateTo({
-            url: `/pages/subpages/mall/scenic/subpages/scenic-detail/index?id=${param}`
-          });
-          break;
-
-        case 3:
-          wx.navigateTo({
-            url: `/pages/subpages/mall/hotel/subpages/hotel-detail/index?id=${param}`
-          });
-          break;
-
-        case 4:
-          wx.navigateTo({
-            url: `/pages/subpages/mall/catering/subpages/restaurant-detail/index?id=${param}`
-          });
-          break;
-
-        case 5:
-          wx.navigateTo({
-            url: `/pages/subpages/mall/goods/subpages/goods-detail/index?id=${param}`
-          });
-          break;
+      const { scene, param } = e.currentTarget.dataset || {};
+      if (scene) {
+        switch (scene) {
+          case 1:
+            wx.navigateTo({
+              url: `/pages/subpages/mall/scenic/subpages/scenic-detail/index?id=${param}`
+            });
+            break;
+          case 2:
+            wx.navigateTo({
+              url: `/pages/subpages/mall/hotel/subpages/hotel-detail/index?id=${param}`
+            });
+            break;
+          case 3:
+            wx.navigateTo({
+              url: `/pages/subpages/mall/catering/subpages/restaurant-detail/index?id=${param}`
+            });
+            break;
+          case 4:
+            wx.navigateTo({
+              url: `/pages/subpages/mall/goods/subpages/goods-detail/index?id=${param}`
+            });
+            break;
+          case 5:
+            wx.navigateTo({
+              url: `/pages/common/webview/index?url=${param}`
+            });
+            break;
+        }
       }
     },
 
