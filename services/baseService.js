@@ -88,6 +88,17 @@ class BaseService extends Base {
     });
   }
 
+  async getAdInfo() {
+    return await this.get({ url: `${this.baseUrl}/banner/pop` });
+  }
+
+  async getBannerList(position = 2) {
+    return await this.get({
+      url: `${this.baseUrl}/banner/list`,
+      data: { position }
+    });
+  }
+
   async getRoomStatus() {
     return await this.get({ url: `${this.baseUrl}/media/live/room_status` });
   }

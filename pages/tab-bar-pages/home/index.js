@@ -69,6 +69,9 @@ Component({
       }
       this.initCalendar();
 
+      this.setAdInfo();
+      this.setBannerList();
+      
       // scroll-view特效，设置isRefreshing值，即可触发初始化
       this.setData({ isRefreshing: true });
 
@@ -111,6 +114,7 @@ Component({
     },
 
     onRefresh() {
+      this.setBannerList();
       this.setList(SCENE_REFRESH);
       wx.stopPullDownRefresh();
     },
@@ -151,6 +155,18 @@ Component({
           }
           break;
       }
+    },
+
+    async setAdInfo() {
+      const adInfo = await homeService.getAdInfo();
+      if (adInfo) {
+        this.setData({ adInfo, adModalVisible: true });
+      }
+    },
+
+    async setBannerList() {
+      const bannerList = await homeService.getBannerList();
+      this.setData({ bannerList });
     },
 
     setFollowMediaList(init = false) {
