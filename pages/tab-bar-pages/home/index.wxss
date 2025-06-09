@@ -104,18 +104,19 @@
   min-height: 100%;
 }
 
-.type-list {
+.category-list {
   margin: 18rpx 24rpx 32rpx;
 }
-.type-item {
+.category-item {
   font-size: 0;
   text-align: center;
 }
-.type-icon {
+.category-icon {
   width: 68rpx;
   height: 68rpx;
 }
-.type-name {
+.category-name {
+  margin-top: 4rpx;
   color: #333;
   font-size: 20rpx;
 }

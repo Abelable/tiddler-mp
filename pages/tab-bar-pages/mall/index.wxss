@@ -60,13 +60,13 @@ page {
   width: 100vw;
 }
 
-.category-wrap {
+.category-list {
   display: flex;
   justify-content: space-around;
 }
 .category-item {
-  text-align: center;
   font-size: 0;
+  text-align: center;
 }
 .category-icon {
   width: 88rpx;
@@ -74,7 +74,7 @@ page {
 }
 .category-desc {
   color: #999;
-  font-size: 21rpx;
+  font-size: 20rpx;
 }
 
 .product-list {

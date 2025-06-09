@@ -66,10 +66,10 @@
       scroll-with-animation
     >
       <view class="content">
-        <view class="type-list row between">
-          <view class="type-item" wx:for="{{typeList}}" wx:key="index">
-            <image class="type-icon" src="https://static.tiddler.cn/mp/home/{{item.icon}}.png" />
-            <view class="type-name">{{item.name}}</view>
+        <view class="category-list row between">
+          <view class="category-item" wx:for="{{categoryList}}" wx:key="index">
+            <image class="category-icon" src="https://static.tiddler.cn/mp/home/{{item.icon}}.png" />
+            <view class="category-name">{{item.name}}</view>
           </view>
         </view>
         <top-media wx:if="{{topMediaList.length}}" topMediaList="{{topMediaList}}" />

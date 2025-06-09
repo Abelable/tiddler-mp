@@ -10,7 +10,7 @@ import {
 
 const homeService = new HomeService();
 const { statusBarHeight } = getApp().globalData.systemInfo;
-const typeList = [
+const categoryList = [
   { icon: "hot", name: "网红打卡" },
   { icon: "ship", name: "游湖登岛" },
   { icon: "cycle", name: "环湖骑行" },
@@ -28,7 +28,7 @@ Component({
 
   data: {
     statusBarHeight,
-    typeList,
+    categoryList,
     navBarActive: [false, false],
     curMenuIndex: 1,
     followMediaList: [],
