@@ -27,7 +27,6 @@
   margin-bottom: 12rpx;
   width: 350rpx;
   font-size: 0;
-  background: #fff;
   border-radius: 32rpx;
   overflow: hidden;
   opacity: 0;
@@ -44,11 +43,8 @@
   overflow: hidden;
 }
 .cover-wrap.gift {
-  padding-bottom: 36rpx;
   border: 6rpx solid #43C7F3;
   background: #43C7F3;
-  border-radius: 32rpx;
-  overflow: hidden;
 }
 .cover {
   width: 350rpx;
@@ -114,7 +110,7 @@
 }
 
 .content {
-  padding: 18rpx;
+  padding: 10rpx;
 }
 
 .goods-name {
