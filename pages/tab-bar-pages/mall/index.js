@@ -66,7 +66,7 @@ Component({
     },
 
     async setBannerList() {
-      const bannerList = await mallService.getBannerList();
+      const bannerList = await mallService.getBannerList(3);
       this.setData({ bannerList });
     },
 
