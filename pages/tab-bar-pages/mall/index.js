@@ -1,4 +1,4 @@
-import { WEBVIEW_BASE_URL } from "../../../config";
+import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
 import { store } from "../../../store/index";
 import MallService from "./utils/mallService";
 
@@ -6,6 +6,13 @@ const mallService = new MallService();
 const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Component({
+  behaviors: [storeBindingsBehavior],
+  
+  storeBindings: {
+    store,
+    fields: ["promoterInfo"]
+  },
+
   data: {
     statusBarHeight,
     categoryList: [
