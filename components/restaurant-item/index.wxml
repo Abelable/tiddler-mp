@@ -26,7 +26,7 @@
       <text class="num" style="color: #ff5040; font-size: 32rpx;">{{ item.price || 0 }}</text>
       <text style="margin-left: 2rpx;">起</text>
     </view>
-    <view class="sales">
+    <view class="sales" wx:if="{{item.salesVolume}}">
       <text>已售</text>
       <text style="font-weight: bold;">{{ item.salesVolume || 0 }}</text>
     </view>

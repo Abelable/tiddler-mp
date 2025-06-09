@@ -21,7 +21,7 @@
         <price-unit price="{{item.price || 0}}" />
         <view class="market-price" wx:if="{{item.marketPrice}}">¥{{item.marketPrice}}</view>
       </view>
-      <view class="sales-volume">
+      <view class="sales-volume" wx:if="{{item.salesVolume}}">
         已售{{ item.salesVolume }}
       </view>
     </view>
