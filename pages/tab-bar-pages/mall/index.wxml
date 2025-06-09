@@ -6,7 +6,13 @@
   </view>
 </view>
 
-<swiper class="banner" wx:if="{{bannerList.length}}" style="height: calc({{statusBarHeight + 44}}px + 300rpx);" autoplay circular>
+<swiper 
+  class="banner" 
+  wx:if="{{bannerList.length}}" 
+  style="height: calc({{statusBarHeight + 44}}px + 300rpx);" 
+  autoplay 
+  circular
+>
   <swiper-item 
     class="banner-item" 
     wx:for="{{bannerList}}"
