@@ -66,6 +66,26 @@
       scroll-with-animation
     >
       <view class="content">
+        <swiper 
+          class="banner" 
+          wx:if="{{bannerList.length}}"
+          autoplay 
+          circular 
+          indicator-dots="{{bannerList.length > 1}}"
+          indicator-color="#dcf0fa" 
+          indicator-active-color="#169cff"
+        >
+          <swiper-item 
+            class="banner-item"
+            wx:for="{{bannerList}}"
+            wx:key="index"
+            bindtap="linkTo"
+            data-scene="{{item.scene}}"
+            data-param="{{item.param}}"
+          >
+            <image class="banner-img" src="{{item.cover}}" mode="aspectFill" lazy-load />
+          </swiper-item>
+        </swiper>
         <view class="category-list row between">
           <view class="category-item" wx:for="{{categoryList}}" wx:key="index">
             <image class="category-icon" src="https://static.tiddler.cn/mp/home/{{item.icon}}.png" />

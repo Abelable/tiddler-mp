@@ -31,6 +31,7 @@ Component({
     categoryList,
     navBarActive: [false, false],
     curMenuIndex: 1,
+    bannerList: [],
     followMediaList: [],
     isFollowRefreshing: false,
     followFinished: false,
