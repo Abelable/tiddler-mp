@@ -6,34 +6,36 @@
   </view>
 </view>
 
-<view class="container">
-  <swiper class="banner custom-dots" wx:if="{{bannerList.length}}" style="height: calc({{statusBarHeight + 44}}px + 250rpx);" autoplay indicator-dots circular>
-    <swiper-item 
-      class="banner-item" 
-      wx:for="{{bannerList}}"
-      wx:key="index"
-      bindtap="linkTo"
-      data-scene="{{item.scene}}"
-      data-param="{{item.param}}"
-    >
-      <image class="banner-img" mode="widthFix" src="{{ item.cover }}" />
-    </swiper-item>
-  </swiper>
-  
-  <view class="category-list" style="padding-top: {{bannerList.length ? 0 : statusBarHeight + 60}}px;">
+<swiper class="banner" wx:if="{{bannerList.length}}" style="height: calc({{statusBarHeight + 44}}px + 300rpx);" autoplay circular>
+  <swiper-item 
+    class="banner-item" 
+    wx:for="{{bannerList}}"
+    wx:key="index"
+    bindtap="linkTo"
+    data-scene="{{item.scene}}"
+    data-param="{{item.param}}"
+  >
+    <image class="banner-img" mode="widthFix" src="{{ item.cover }}" />
+  </swiper-item>
+</swiper>
+
+<view 
+  class="container" 
+  style="top: {{bannerList.length ? 'calc(' + (statusBarHeight + 44) + 'px + 250rpx)' : (statusBarHeight + 44) + 'px'}}; border-radius: {{bannerList.length ? '36rpx 36rpx 0 0' : '0'}};"
+>
+  <view class="category-list">
     <view class="category-item" wx:for="{{categoryList}}" wx:key="index" bindtap="navTo" data-index="{{index}}">
       <image class="category-icon" src="https://static.tiddler.cn/mp/mall/{{item.icon}}.png" />
       <view class="category-desc">{{item.name}}</view>
     </view>
   </view>
-  
   <view class="product-list">
     <fall-flow list="{{productList}}" generic:item="product-item" />
-    <view class="loading row center" wx:if="{{productList.length && isLoading}}">
-      <image class="loading-icon" src="https://static.tiddler.cn/mp/loading.gif" />
-      <text>加载中...</text>
-    </view>
-    <view class="no-more-tips" wx:if="{{!isLoading && finished && productList.length}}">～没有更多了～</view>
-    <empty-illus wx:if="{{finished && !productList.length}}" desc="暂无列表" />
   </view>
+  <view class="loading row center" wx:if="{{productList.length && isLoading}}">
+    <image class="loading-icon" src="https://static.tiddler.cn/mp/loading.gif" />
+    <text>加载中...</text>
+  </view>
+  <view class="no-more-tips" wx:if="{{!isLoading && finished && productList.length}}">～没有更多了～</view>
+  <empty-illus wx:if="{{finished && !productList.length}}" desc="暂无列表" />
 </view>

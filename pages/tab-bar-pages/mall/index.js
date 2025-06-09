@@ -110,6 +110,7 @@ Component({
     },
 
     onPullDownRefresh() {
+      this.setBannerList();
       this.setProductList(true);
       wx.stopPullDownRefresh();
     },
