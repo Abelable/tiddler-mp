@@ -31,7 +31,7 @@
 
 <view 
   class="container" 
-  style="top: {{bannerList.length ? 'calc(' + (statusBarHeight + 44) + 'px + 250rpx)' : (statusBarHeight + 44) + 'px'}}; border-radius: {{bannerList.length ? '36rpx 36rpx 0 0' : '0'}};"
+  style="top: {{bannerList.length ? 'calc(' + (statusBarHeight + 44) + 'px + 250rpx)' : (statusBarHeight + 44) + 'px'}}; border-radius: {{bannerList.length ? '40rpx 40rpx 0 0' : '0'}};"
 >
   <view class="category-list">
     <view class="category-item" wx:for="{{categoryList}}" wx:key="index" bindtap="navTo" data-index="{{index}}">
