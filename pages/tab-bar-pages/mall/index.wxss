@@ -97,8 +97,8 @@ page {
   text-align: center;
 }
 .category-icon {
-  width: 88rpx;
-  height: 88rpx;
+  width: 68rpx;
+  height: 68rpx;
 }
 .category-desc {
   color: #999;
