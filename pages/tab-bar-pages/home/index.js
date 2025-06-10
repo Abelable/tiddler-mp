@@ -211,7 +211,7 @@ Component({
 
       this.setData({ isLoading: true });
       const { list = [] } =
-        (await homeService.getMediaList(++this.page, init ? 16 : 10)) || {};
+        (await homeService.getMediaList(++this.page)) || {};
       if (init) {
         this.setData({
           topMediaList: list.slice(0, 6),
