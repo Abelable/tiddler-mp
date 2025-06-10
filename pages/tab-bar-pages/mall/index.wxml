@@ -16,7 +16,6 @@
   style="height: calc({{statusBarHeight + 44}}px + 300rpx);" 
   autoplay 
   circular
-  interval="6000"
 >
   <swiper-item 
     class="banner-item" 
