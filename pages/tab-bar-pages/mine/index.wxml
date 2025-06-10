@@ -74,7 +74,7 @@
               </button>
             </view>
             <fall-flow class="fall-flow-0" list="{{videoList}}" mediaScene="{{3}}" generic:item="video-item" bind:finish="setWrapHeight" />
-            <empty-illus wx:if="{{videoFinished && !videoList.length}}" desc="暂无视频游记作品，快去发布吧～" height="520rpx" />
+            <empty-illus wx:if="{{videoFinished && !videoList.length}}" desc="暂无作品，快去发布吧～" height="520rpx" />
             <view class="no-more-tips" wx:if="{{videoFinished && videoList.length}}">～没有更多了～</view>
           </view>
         </swiper-item>
@@ -88,7 +88,7 @@
               </button>
             </view>
             <fall-flow class="fall-flow-1" list="{{noteList}}" mediaScene="{{3}}" generic:item="note-item" bind:finish="setWrapHeight" />
-            <empty-illus wx:if="{{noteFinished && !noteList.length}}" desc="暂无图文游记作品，快去发布吧～" height="520rpx" />
+            <empty-illus wx:if="{{noteFinished && !noteList.length}}" desc="暂无作品，快去发布吧～" height="520rpx" />
             <view class="no-more-tips" wx:if="{{noteFinished && noteList.length}}">～没有更多了～</view>
           </view>
         </swiper-item>
