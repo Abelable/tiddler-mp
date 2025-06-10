@@ -71,7 +71,7 @@
           wx:if="{{bannerList.length}}"
           autoplay 
           circular 
-          interval="8000"
+          interval="6000"
           indicator-dots="{{bannerList.length > 1}}"
           indicator-color="#dcf0fa" 
           indicator-active-color="#169cff"
