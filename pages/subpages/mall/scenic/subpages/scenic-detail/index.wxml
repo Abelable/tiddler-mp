@@ -139,7 +139,13 @@
       bind:showNoticePopup="showNoticePopup"
     />
   </view>
-  <empty-illus wx:if="{{!ticketTypeList.length}}" desc="暂无景点门票" btnContent="商家入驻" bind:btnClick="settleIn" height="520rpx" />
+  <empty-illus 
+    wx:if="{{!ticketTypeList.length}}" 
+    desc="暂无景点门票" 
+    height="520rpx" 
+  >
+    <view class="merchant-btn row center" bindtap="settleIn">商家入驻</view>
+  </empty-illus>
 
   <view class="content-title-wrap" wx:if="{{combinedTicketTypeList.length}}">
     <view class="content-title">多景点联票</view>
@@ -208,7 +214,13 @@
       <image class="more-icon" src="./images/more.png" />
     </view>
   </view>
-  <empty-illus wx:if="{{!qaSummary.total}}" desc="暂无问答" btnContent="去提问" bind:btnClick="checkQa" height="520rpx" />
+  <empty-illus 
+    wx:if="{{!qaSummary.total}}" 
+    desc="暂无问答"
+    height="520rpx"
+  >
+    <view class="qa-btn row center" bindtap="checkQa">去提问</view>
+  </empty-illus>
 
   <view class="content-title-wrap row between">
     <view class="content-title">附近酒店</view>

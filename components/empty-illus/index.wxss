@@ -11,13 +11,3 @@
   width: 240rpx;
   height: 240rpx;
 }
-.btn {
-  margin-top: 24rpx;
-  padding: 0 28rpx;
-  height: 58rpx;
-  color: var(--gold-1);
-  font-size: 26rpx;
-  font-weight: bold;
-  background: var(--blue-linear-2);
-  border-radius: 24rpx;
-}

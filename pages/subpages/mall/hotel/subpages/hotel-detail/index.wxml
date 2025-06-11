@@ -177,7 +177,13 @@
           </view>
         </van-index-bar>
       </view>
-      <empty-illus wx:if="{{roomTypeIndexList.length === 1}}" desc="暂无相关房间信息" btnContent="商家入驻" bind:btnClick="settleIn" height="520rpx" />
+      <empty-illus 
+        wx:if="{{roomTypeIndexList.length === 1}}" 
+        desc="暂无相关房间信息" 
+        height="520rpx" 
+      >
+        <view class="merchant-btn row center" bindtap="settleIn">商家入驻</view>
+      </empty-illus>
 
       <view class="content-wrap" wx:if="{{combinedTicketTypeList.length}}">
         <view class="content-title-wrap">
@@ -236,7 +242,13 @@
         <image class="more-icon" src="./images/more.png" />
       </view>
     </view>
-    <empty-illus wx:if="{{!qaSummary.total}}" desc="暂无问答" btnContent="去提问" bind:btnClick="checkQa" height="520rpx" />
+    <empty-illus 
+      wx:if="{{!qaSummary.total}}" 
+      desc="暂无问答"
+      height="520rpx"
+    >
+      <view class="qa-btn row center" bindtap="checkQa">去提问</view>
+    </empty-illus>
   </view>
 
   <view class="content-wrap">
