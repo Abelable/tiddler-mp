@@ -1,3 +1,5 @@
+<wxs module="TIME" src="/utils/filters/time.wxs" />
+
 <view class="container">
   <view class="card err row" wx:if="{{preOrderInfo.errMsg}}">
     <image class="err-icon" src="./images/err-icon.png" />
@@ -141,7 +143,12 @@
     <text>合计：</text>
     <price-unit price="{{preOrderInfo.paymentAmount || 0}}" fontSize="28rpx" integerFontSize="42rpx" />
   </view>
-  <button class="submit-btn {{preOrderInfo.addressInfo && !preOrderInfo.errMsg ? 'active' : ''}}" bindtap="submit">提交订单</button>
+  <button 
+    class="submit-btn {{!preOrderInfo.errMsg && (((goodsDeliveryMode === 1 || (goodsDeliveryMode === 3 && curMenuIdx === 0)) && preOrderInfo.addressInfo) || ((goodsDeliveryMode === 2 || (goodsDeliveryMode === 3 && curMenuIdx === 1)) && pickupTime && pickupMobile)) ? 'active' : ''}}" 
+    bindtap="submit"
+  >
+    提交订单
+  </button>
 </view>
 
 <address-popup 
