@@ -16,6 +16,11 @@ export const store = observable({
   scenicPreOrderInfo: null,
   hotelPreOrderInfo: null,
   mediaProductList: [],
+  scenicOrderTotal: [],
+  hotelOrderTotal: [],
+  setMealOrderTotal: [],
+  mealTicketOrderTotal: [],
+  goodsOrderTotal: [],
 
   setTabType: action(function (type) {
     this.tabType = type;
@@ -46,6 +51,21 @@ export const store = observable({
   }),
   setMediaProductList: action(function (list) {
     this.mediaProductList = list;
+  }),
+  setScenicOrderTotal: action(function (list) {
+    this.scenicOrderTotal = list;
+  }),
+  setHotelOrderTotal: action(function (list) {
+    this.hotelOrderTotal = list;
+  }),
+  setSetMealOrderTotal: action(function (list) {
+    this.setMealOrderTotal = list;
+  }),
+  setMealTicketOrderTotal: action(function (list) {
+    this.mealTicketOrderTotal = list;
+  }),
+  setGoodsOrderTotal: action(function (list) {
+    this.goodsOrderTotal = list;
   }),
 
   ...tim,

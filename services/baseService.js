@@ -443,6 +443,14 @@ class BaseService extends Base {
       })) || {};
     return list;
   }
+
+  async getGoodsOrderTotal() {
+    const total = await this.get({
+      url: `${this.baseUrl}/order/total`
+    });
+    store.setGoodsOrderTotal(total);
+    return total;
+  }
 }
 
 export default BaseService;

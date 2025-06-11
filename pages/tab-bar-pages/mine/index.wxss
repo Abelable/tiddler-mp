@@ -164,9 +164,25 @@
   width: 20%;
   text-align: center;
 }
+.tool-icon-wrap {
+  position: relative;
+  margin: 0 auto;
+  width: 60rpx;
+  height: 60rpx;
+  font-size: 0;
+}
 .tool-icon {
   width: 60rpx;
   height: 60rpx;
+}
+.total-spot {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background: #fb301e;
 }
 .tool-desc {
   margin-top: 6rpx;

@@ -23,9 +23,10 @@ Component({
     statusBarHeight,
     toolList: [],
     showAllTools: false,
-    curMenuIndex: 0,
+    orderTotal: 0,
     navBarVisible: false,
     menuFixed: false,
+    curMenuIndex: 0,
     wrapHeightList: [400, 400, 400, 400],
     videoListTotal: 0,
     videoList: [],
@@ -70,7 +71,10 @@ Component({
           scrollTop: 0,
           duration: 0
         });
+
         this.updateUserInfo();
+        this.updateOrderTotal();
+
         this.setList(SCENE_REFRESH);
       });
     }
@@ -79,6 +83,12 @@ Component({
   methods: {
     updateUserInfo() {
       mineService.getUserInfo();
+    },
+
+    async updateOrderTotal() {
+      const goodsOrderTotal = await mineService.getGoodsOrderTotal();
+      const orderTotal = goodsOrderTotal.reduce((sum, total) => sum + total, 0);
+      this.setData({ orderTotal });
     },
 
     initToolList() {

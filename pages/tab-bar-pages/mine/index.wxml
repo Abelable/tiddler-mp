@@ -49,7 +49,10 @@
         bindtap="navTo" 
         data-type="{{item.icon}}"
       >
-        <image class="tool-icon" src="https://static.tiddler.cn/mp/mine/{{item.icon}}.png" />
+        <view class="tool-icon-wrap">
+          <image class="tool-icon" src="https://static.tiddler.cn/mp/mine/{{item.icon}}.png" />
+          <view class="total-spot" wx:if="{{index === 0 && orderTotal > 0}}" />
+        </view>
         <view class="tool-desc">{{item.name}}</view>
       </view>
     </view>
