@@ -8,8 +8,8 @@
   text-align: center;
 }
 .illus {
-  width: 260rpx;
-  height: 260rpx;
+  width: 240rpx;
+  height: 240rpx;
 }
 .btn {
   margin-top: 24rpx;

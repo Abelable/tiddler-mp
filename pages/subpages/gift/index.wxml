@@ -17,7 +17,7 @@
     <image class="process" src="https://static.tiddler.cn/mp/gift/process.png" />
 
     <view class="menu-wrap {{navBarVisible ? 'fixed' : ''}}" style="top: {{statusBarHeight + 44}}px;">
-      <view class="menu row">
+      <view class="menu row" wx:if="{{menuList.length}}">
         <view 
           class="menu-item row center {{curMenuIdx === index ? 'active' : ''}}" 
           wx:for="{{menuList}}" 
