@@ -80,6 +80,10 @@
       <view class="title">{{ORDER.paymentDesc(orderInfo.status)}}</view>
       <price-unit price="{{orderInfo.paymentAmount}}" />
     </view>
+    <view class="list row between" wx:if="{{orderInfo.status === 204}}">
+      <view class="title">退款金额</view>
+      <price-unit price="{{orderInfo.refundAmount}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />
+    </view>
     <view class="more-info-wrap">
       <view class="list row top">
         <view class="title">收货信息：</view>
@@ -110,6 +114,10 @@
       <view class="list row between" wx:if="{{orderInfo.confirmTime}}">
         <view class="title">成交时间：</view>
         <text>{{TIME.transform(orderInfo.confirmTime, 'YYYY-MM-DD hh:mm:ss')}}</text>
+      </view>
+      <view class="list row between" wx:if="{{orderInfo.refundTime}}">
+        <view class="title">退款时间：</view>
+        <text>{{TIME.transform(orderInfo.refundTime, 'YYYY-MM-DD hh:mm:ss')}}</text>
       </view>
     </view>
   </view>
