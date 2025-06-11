@@ -1,3 +1,5 @@
+import { createStoreBindings } from "mobx-miniprogram-bindings";
+import { store } from "../../../../../../../store/index";
 import dayjs from "dayjs";
 import OrderService from "../../../utils/orderService";
 
@@ -17,6 +19,11 @@ Page({
   },
 
   onLoad({ id }) {
+    this.storeBindings = createStoreBindings(this, {
+      store,
+      fields: ["userInfo"]
+    });
+
     this.orderId = id;
     this.setOrderInfo();
   },
