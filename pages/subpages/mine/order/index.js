@@ -93,6 +93,7 @@ Page({
 
   onLoad({ type = "1", status = "0" }) {
     this.initMenu(type, status);
+    this.setOrderList(true);
   },
 
   onShow() {
