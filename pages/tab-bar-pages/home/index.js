@@ -167,7 +167,7 @@ Component({
 
     async setBannerList() {
       const bannerList = await homeService.getBannerList();
-      this.setData({ bannerList: [...bannerList, ...bannerList] });
+      this.setData({ bannerList });
     },
 
     setFollowMediaList(init = false) {

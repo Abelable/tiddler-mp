@@ -16,7 +16,12 @@
 
 
 <view class="container" style="padding-top: {{statusBarHeight + 44}}px;">
-  <swiper class="note-imgs small-dots" indicator-dots indicator-color="#dcf0fa" indicator-active-color="#00C8FF">
+  <swiper 
+    class="note-imgs small-dots" 
+    indicator-dots="{{noteInfo.imageList.length > 1}}"
+    indicator-color="#dcf0fa" 
+    indicator-active-color="#00C8FF"
+  >
     <swiper-item wx:for="{{noteInfo.imageList}}" wx:key="index" wx:for-item="image">
       <image class="note-img" src="{{image}}" bindtap="previewImage" data-current="{{image}}" mode="aspectFill" lazy-load />
     </swiper-item>
