@@ -4,11 +4,11 @@ function statusDesc(status) {
     desc = '待付款';
   } else if (status === 102 || status === 103 || status === 104) {
     desc = '交易关闭';
-  } else if (status === 201) {
+  } else if (status === 201 || status === 202) {
     desc = '待发货';
-  } else if (status === 202) {
-    desc = '退款申请中';
   } else if (status === 203) {
+    desc = '退款申请中';
+  } else if (status === 204) {
     desc = '退款成功';
   } else if (status === 301) {
     desc = '待收货';

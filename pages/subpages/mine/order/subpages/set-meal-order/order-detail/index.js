@@ -56,7 +56,7 @@ Page({
   refundOrder() {
     orderService.refundSetMealOrder(this.orderId, () => {
       this.setData({
-        ["orderInfo.status"]: 202,
+        ["orderInfo.status"]: 203,
       });
     });
   },

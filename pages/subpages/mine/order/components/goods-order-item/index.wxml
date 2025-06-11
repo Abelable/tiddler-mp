@@ -30,7 +30,7 @@
       <view class="btn-wrap">
         <button 
           class="btn" 
-          wx:if="{{item.status === 102 || item.status === 103 || item.status === 104 || item.status === 203}}" 
+          wx:if="{{item.status === 102 || item.status === 103 || item.status === 104}}" 
           catchtap="deleteOrder"
           hover-class="none"
         >删除订单</button>

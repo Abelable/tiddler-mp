@@ -57,7 +57,7 @@ Page({
   refundOrder() {
     orderService.refundScenicOrder(this.orderId, () => {
       this.setData({
-        ["orderInfo.status"]: 202,
+        ["orderInfo.status"]: 203,
       });
     });
   },
