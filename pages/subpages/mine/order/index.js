@@ -384,7 +384,7 @@ Page({
   },
 
   showGoodsQrCodeModal(e) {
-    const { goodsVerifyCode } = e.detail;
+    const { verifyCode: goodsVerifyCode } = e.detail;
     this.setData({
       goodsVerifyCode,
       goodsQrCodeModalVisible: true
