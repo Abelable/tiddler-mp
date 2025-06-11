@@ -45,6 +45,7 @@
   border-top: 1px solid #f5f6f8;
 }
 .menu-item {
+  position: relative;
   padding: 8rpx 30rpx;
   color: #212121;
   font-size: 14px;
@@ -71,7 +72,9 @@
   border-top: 1px solid #f5f6f8;
 }
 .sub-menu-item {
-  height: 44px;
+  position: relative;
+  padding: 0 2px;
+  height: 20px;
   color: #666;
   font-size: 14px;
 }
@@ -82,7 +85,7 @@
 }
 .sub-menu-item.selected::after {
   position: absolute;
-  bottom: 2px;
+  bottom: -6px;
   left: 50%;
   transform: translateX(-50%);
   width: 15px;
@@ -90,6 +93,16 @@
   content: '';
   border-radius: 1.5px;
   background: var(--blue-1);
+}
+
+.total-spot {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background: #fb301e;
 }
 
 .container {

@@ -11,39 +11,45 @@
       class="menu-item {{curMenuIdx === index ? 'selected' : ''}} row center" 
       wx:for="{{menuList}}" wx:key="index" 
       bindtap="selectMenu" data-index="{{index}}"
-    >{{item.name}}</view>
+    >
+      <view>{{item.name}}</view>
+      <view class="total-spot" wx:if="{{item.total > 0}}" />
+    </view>
   </view>
   <view class="sub-menu-wrap">
     <view 
       class="sub-menu-item {{menuList[curMenuIdx].curSubMenuIdx === index ? 'selected' : ''}} row center" 
       wx:for="{{menuList[curMenuIdx].subMenuList}}" wx:key="index" 
       bindtap="selectSubMenu" data-index="{{index}}"
-    >{{item.name}}</view>
+    >
+      <view>{{item.name}}</view>
+      <view class="total-spot" wx:if="{{item.total > 0}}" />
+    </view>
   </view>
 </view>
 
 
 <view class="container" style="margin-top: {{statusBarHeight + 138}}px;">
   <view class="content" wx:if="{{curMenuIdx === 0}}">
-    <scenic-order-list list="{{scenicOrderList}}" bind:update="updateScenicOrderList"/>
+    <scenic-order-list list="{{scenicOrderList}}" bind:update="init"/>
     <empty-illus wx:if="{{scenicFinished && !scenicOrderList.length}}" desc="暂无景点订单" />
     <view class="no-more-tips" wx:if="{{scenicFinished && scenicOrderList.length}}">～没有更多了～</view>
   </view>
 
   <view class="content" wx:if="{{curMenuIdx === 1}}">
-    <order-list list="{{hotelOrderList}}" bind:update="updateHotelOrderList"/>
+    <order-list list="{{hotelOrderList}}" bind:update="init"/>
     <empty-illus wx:if="{{hotelFinished && !hotelOrderList.length}}" desc="暂无酒店订单" />
     <view class="no-more-tips" wx:if="{{hotelFinished && hotelOrderList.length}}">～没有更多了～</view>
   </view>
 
   <view class="content" wx:if="{{curMenuIdx === 2}}">
-    <meal-ticket-order-list list="{{mealTicketOrderList}}" bind:update="updateMealTicketOrderList"/>
+    <meal-ticket-order-list list="{{mealTicketOrderList}}" bind:update="init"/>
     <empty-illus wx:if="{{mealTicketFinished && !mealTicketOrderList.length}}" desc="暂无餐券订单" />
     <view class="no-more-tips" wx:if="{{mealTicketFinished && mealTicketOrderList.length}}">～没有更多了～</view>
   </view>
 
   <view class="content" wx:if="{{curMenuIdx === 3}}">
-    <set-meal-order-list list="{{setMealOrderList}}" bind:update="updateSetMealOrderList"/>
+    <set-meal-order-list list="{{setMealOrderList}}" bind:update="init"/>
     <empty-illus wx:if="{{setMealFinished && !setMealOrderList.length}}" desc="暂无套餐订单" />
     <view class="no-more-tips" wx:if="{{setMealFinished && setMealOrderList.length}}">～没有更多了～</view>
   </view>
@@ -55,7 +61,7 @@
         wx:key="index" 
         item="{{item}}" 
         index="{{index}}" 
-        bind:update="updateGoodsOrderList"
+        bind:update="init"
         bind:checkQrCode="showGoodsQrCodeModal"
       />
     </view>

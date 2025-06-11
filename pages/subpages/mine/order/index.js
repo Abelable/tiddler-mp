@@ -1,70 +1,73 @@
+import { store } from "../../../../store/index";
 import OrderService from "./utils/orderService";
 
 const orderService = new OrderService();
 const { statusBarHeight } = getApp().globalData.systemInfo;
+const menuList = [
+  {
+    name: "景点",
+    total: 0,
+    curSubMenuIdx: 0,
+    subMenuList: [
+      { name: "全部", status: 0 },
+      { name: "待付款", status: 1, total: 0 },
+      { name: "待出行", status: 2, total: 0 },
+      { name: "待评价", status: 3, total: 0 },
+      { name: "售后", status: 4, total: 0 }
+    ]
+  },
+  {
+    name: "酒店",
+    curSubMenuIdx: 0,
+    subMenuList: [
+      { name: "全部", status: 0 },
+      { name: "待付款", status: 1, total: 0 },
+      { name: "待商家确认", status: 2, total: 0 },
+      { name: "待入住", status: 3, total: 0 },
+      { name: "待评价", status: 4, total: 0 },
+      { name: "售后", status: 5, total: 0 }
+    ]
+  },
+  {
+    name: "餐券",
+    curSubMenuIdx: 0,
+    subMenuList: [
+      { name: "全部", status: 0 },
+      { name: "待付款", status: 1, total: 0 },
+      { name: "待使用", status: 2, total: 0 },
+      { name: "待评价", status: 3, total: 0 },
+      { name: "售后", status: 4, total: 0 }
+    ]
+  },
+  {
+    name: "套餐",
+    curSubMenuIdx: 0,
+    subMenuList: [
+      { name: "全部", status: 0 },
+      { name: "待付款", status: 1, total: 0 },
+      { name: "待使用", status: 2, total: 0 },
+      { name: "待评价", status: 3, total: 0 },
+      { name: "售后", status: 4, total: 0 }
+    ]
+  },
+  {
+    name: "商品",
+    curSubMenuIdx: 0,
+    subMenuList: [
+      { name: "全部", status: 0 },
+      { name: "待付款", status: 1, total: 0 },
+      { name: "待发货", status: 2, total: 0 },
+      { name: "待收货/使用", status: 3, total: 0 },
+      { name: "评价", status: 4, total: 0 },
+      { name: "售后", status: 5, total: 0 }
+    ]
+  }
+];
 
 Page({
   data: {
     statusBarHeight,
-    menuList: [
-      {
-        name: "景点",
-        curSubMenuIdx: 0,
-        subMenuList: [
-          { name: "全部", status: 0 },
-          { name: "待付款", status: 1 },
-          { name: "待出行", status: 2 },
-          { name: "待评价", status: 3 },
-          { name: "售后", status: 4 }
-        ]
-      },
-      {
-        name: "酒店",
-        curSubMenuIdx: 0,
-        subMenuList: [
-          { name: "全部", status: 0 },
-          { name: "待付款", status: 1 },
-          { name: "待商家确认", status: 2 },
-          { name: "待入住", status: 3 },
-          { name: "待评价", status: 4 },
-          { name: "售后", status: 5 }
-        ]
-      },
-      {
-        name: "餐券",
-        curSubMenuIdx: 0,
-        subMenuList: [
-          { name: "全部", status: 0 },
-          { name: "待付款", status: 1 },
-          { name: "待使用", status: 2 },
-          { name: "待评价", status: 3 },
-          { name: "售后", status: 4 }
-        ]
-      },
-      {
-        name: "套餐",
-        curSubMenuIdx: 0,
-        subMenuList: [
-          { name: "全部", status: 0 },
-          { name: "待付款", status: 1 },
-          { name: "待使用", status: 2 },
-          { name: "待评价", status: 3 },
-          { name: "售后", status: 4 }
-        ]
-      },
-      {
-        name: "商品",
-        curSubMenuIdx: 0,
-        subMenuList: [
-          { name: "全部", status: 0 },
-          { name: "待付款", status: 1 },
-          { name: "待发货", status: 2 },
-          { name: "待收货/使用", status: 3 },
-          { name: "评价", status: 4 },
-          { name: "售后", status: 5 }
-        ]
-      }
-    ],
+    menuList: [],
     curMenuIdx: 0,
     scenicOrderList: [],
     scenicFinished: false,
@@ -88,16 +91,16 @@ Page({
     goodsQrCodeModalVisible: false
   },
 
-  async onLoad({ type = "1", status = "0" }) {
-    const curMenuIdx = type - 1;
-    const curSubMenuIdx = this.data.menuList.findIndex(
-      item => item.status === Number(status)
-    );
-    this.setData({ curMenuIdx, curSubMenuIdx });
+  onLoad({ type = "1", status = "0" }) {
+    this.initMenu(type, status);
   },
 
   onShow() {
-    this.setOrderList(true);
+    if (this.loaded) {
+      this.init();
+    } else {
+      this.loaded = true;
+    }
   },
 
   selectMenu(e) {
@@ -116,12 +119,81 @@ Page({
   },
 
   onPullDownRefresh() {
-    this.setOrderList(true);
+    this.init();
     wx.stopPullDownRefresh();
   },
 
   onReachBottom() {
     this.setOrderList();
+  },
+
+  init() {
+    this.setOrderTotal();
+    this.setOrderList(true);
+  },
+
+  initMenu(type, status) {
+    this.menuList = menuList;
+
+    const {
+      scenicOrderTotal,
+      hotelOrderTotal,
+      mealTicketOrderTotal,
+      setMealOrderTotal,
+      goodsOrderTotal
+    } = store;
+    this.setMenuTotal(scenicOrderTotal, 0);
+    this.setMenuTotal(hotelOrderTotal, 1);
+    this.setMenuTotal(mealTicketOrderTotal, 2);
+    this.setMenuTotal(setMealOrderTotal, 3);
+    this.setMenuTotal(goodsOrderTotal, 4);
+
+    const curMenuIdx = type - 1;
+    const curSubMenuIdx = this.menuList.findIndex(
+      item => item.status === Number(status)
+    );
+
+    this.setData({ menuList: this.menuList, curMenuIdx, curSubMenuIdx });
+  },
+
+  async setOrderTotal() {
+    const { curMenuIdx } = this.data;
+    let orderTotal = [];
+    switch (curMenuIdx) {
+      case 0:
+        // todo orderTotal = await orderService.getScenicOrderTotal();
+        break;
+      case 1:
+        // todo orderTotal = await orderService.getOrderTotal();
+        break;
+      case 2:
+        // todo orderTotal = await orderService.getMealTicketOrderTotal();
+        break;
+      case 3:
+        // todo orderTotal = await orderService.getSetMealOrderTotal();
+        break;
+      case 4:
+        orderTotal = await orderService.getGoodsOrderTotal();
+        break;
+    }
+    this.setMenuTotal(orderTotal, curMenuIdx);
+    this.setData({ menuList: this.menuList });
+  },
+
+  async setMenuTotal(orderTotal, curMenuIdx) {
+    if (orderTotal.length) {
+      this.menuList[curMenuIdx].total = orderTotal.reduce(
+        (sum, total) => sum + total,
+        0
+      );
+      this.menuList[curMenuIdx].subMenuList[1].total = orderTotal[0];
+      this.menuList[curMenuIdx].subMenuList[2].total = orderTotal[1];
+      this.menuList[curMenuIdx].subMenuList[3].total = orderTotal[2];
+      this.menuList[curMenuIdx].subMenuList[4].total = orderTotal[3];
+      if ([1, 4].includes(curMenuIdx)) {
+        this.menuList[curMenuIdx].subMenuList[5].total = orderTotal[4];
+      }
+    }
   },
 
   setOrderList(init = false) {
@@ -247,106 +319,6 @@ Page({
     });
     if (list.length < limit) {
       this.setData({ goodsFinished: true });
-    }
-  },
-
-  updateScenicOrderList(e) {
-    const statusEmuns = {
-      cancel: 102,
-      pay: 201,
-      refund: 202,
-      confirm: 401
-    };
-    const { type, index } = e.detail;
-    const { menuList, scenicOrderList } = this.data;
-    const { curSubMenuIdx } = menuList[0];
-    if (type === "delete" || curSubMenuIdx !== 0) {
-      scenicOrderList.splice(index, 1);
-      this.setData({ scenicOrderList });
-    } else {
-      this.setData({
-        [`scenicOrderList[${index}].status`]: statusEmuns[type]
-      });
-    }
-  },
-
-  updateHotelOrderList(e) {
-    const statusEmuns = {
-      cancel: 102,
-      pay: 201,
-      refund: 202,
-      confirm: 401
-    };
-    const { type, index } = e.detail;
-    const { menuList, hotelOrderList } = this.data;
-    const { curSubMenuIdx } = menuList[1];
-    if (type === "delete" || curSubMenuIdx !== 0) {
-      hotelOrderList.splice(index, 1);
-      this.setData({ hotelOrderList });
-    } else {
-      this.setData({
-        [`hotelOrderList[${index}].status`]: statusEmuns[type]
-      });
-    }
-  },
-
-  updateMealTicketOrderList(e) {
-    const statusEmuns = {
-      cancel: 102,
-      pay: 201,
-      refund: 202,
-      confirm: 401
-    };
-    const { type, index } = e.detail;
-    const { menuList, mealTicketOrderList } = this.data;
-    const { curSubMenuIdx } = menuList[4];
-    if (type === "delete" || curSubMenuIdx !== 0) {
-      mealTicketOrderList.splice(index, 1);
-      this.setData({ mealTicketOrderList });
-    } else {
-      this.setData({
-        [`mealTicketOrderList[${index}].status`]: statusEmuns[type]
-      });
-    }
-  },
-
-  updateSetMealOrderList(e) {
-    const statusEmuns = {
-      cancel: 102,
-      pay: 201,
-      refund: 202,
-      confirm: 401
-    };
-    const { type, index } = e.detail;
-    const { menuList, setMealOrderList } = this.data;
-    const { curSubMenuIdx } = menuList[4];
-    if (type === "delete" || curSubMenuIdx !== 0) {
-      setMealOrderList.splice(index, 1);
-      this.setData({ setMealOrderList });
-    } else {
-      this.setData({
-        [`setMealOrderList[${index}].status`]: statusEmuns[type]
-      });
-    }
-  },
-
-  updateGoodsOrderList(e) {
-    const statusEmuns = {
-      cancel: 102,
-      pay: 201,
-      refund: 203,
-      confirm: 401
-    };
-    const { type, index } = e.detail;
-    const { menuList, goodsOrderList } = this.data;
-    const { curSubMenuIdx } = menuList[4];
-    if (type === "delete" || curSubMenuIdx !== 0) {
-      goodsOrderList.splice(index, 1);
-      this.setData({ goodsOrderList });
-    } else {
-      this.setData({
-        [`goodsOrderList[${index}].status`]: statusEmuns[type]
-      });
     }
   },
 
