@@ -40,8 +40,8 @@ switch {
 }
 
 .small-dots .wx-swiper-dot {
-  width: 10rpx;
-  height: 10rpx;
+  width: 8rpx;
+  height: 8rpx;
 }
 .custom-dots .wx-swiper-dot {
   width: 8rpx;

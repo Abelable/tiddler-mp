@@ -1,17 +1,69 @@
-<note-item 
-  wx:for="{{noteList}}" 
-  wx:key="index" 
-  item="{{item}}" 
-  index="{{index}}"
-  bind:showCommentPopup="showCommentPopup"
-  bind:follow="follow"
-  bind:comment="showInputModal"
-  bind:share="share"
-  bind:like="like"
-  bind:collect="collect"
-  bind:more="showFeaturePopup"
-/>
-<view class="no-more-tips" wx:if="{{finished}}">～没有更多了～</view>
+<wxs module="TIME" src="/utils/filters/time.wxs" />
+<wxs module="NUM" src="/utils/filters/num.wxs" />
+
+<view class="header" style="padding-top: {{statusBarHeight}}px;">
+  <view class="author-info-wrap row" bindtap="navToAuthorCenter">
+    <back-icon />
+    <image class="author-avatar avatar-default" src="{{noteInfo.authorInfo.avatar}}" lazy-load />
+    <view class="name-wrap">
+      <view class="author-name omit single">{{noteInfo.authorInfo.nickname}}</view>
+      <view class="time">{{TIME.timeDiff(noteInfo.createdAt)}}</view>
+    </view>
+    <view class="follow-btn" wx:if="{{!noteInfo.isFollow}}" catchtap="follow">关注</view>
+    <image class="more-icon" wx:if="{{userInfo.id === noteInfo.authorInfo.id}}" catchtap="more" src="/images/media-item/more.png" />
+  </view>
+</view>
+
+
+<view class="container" style="padding-top: {{statusBarHeight + 44}}px;">
+  <swiper class="note-imgs small-dots" indicator-dots indicator-color="#dcf0fa" indicator-active-color="#00C8FF">
+    <swiper-item wx:for="{{noteInfo.imageList}}" wx:key="index" wx:for-item="image">
+      <image class="note-img" src="{{image}}" bindtap="previewImage" data-current="{{image}}" mode="aspectFill" lazy-load />
+    </swiper-item>
+  </swiper>
+
+  <view class="address row" wx:if="{{noteInfo.address}}">
+    <image class="address-icon" src="/images/media-item/address.png" />
+    <text class="address-detail omit single">{{noteInfo.address}}</text>
+  </view>
+  
+  <view class="title">{{noteInfo.title}}</view>
+  <view class="content">
+    <text>{{noteInfo.content}}</text>
+  </view>
+  
+  <product-list wx:if="{{noteInfo.productList.length}}" list="{{noteInfo.productList}}" />
+  
+  <view class="comment-wrap" wx:if="{{noteInfo.commentsNumber}}" bindtap="showCommentPopup">
+    <view class="comment-list">
+      <view class="comment-item" wx:for="{{comments}}" wx:key="index" wx:for-item="comment">
+        <view class="commentator-name">{{comment.nickname}}：</view>
+        <view class="comment-content omit single">{{comment.content}}</view>
+      </view>
+    </view>
+    <view class="explain">共{{NUM.over(noteInfo.commentsNumber, 100000)}}条评论</view>
+  </view>
+  <view class="no-more-tips" wx:if="{{finished}}">～没有更多了～</view>
+</view>
+
+<view class="btn-wrap">
+  <image class="user-avatar avatar-default" src="{{userInfo.avatar}}" />
+  <view class="comment-btn-desc row" bindtap="showInputModal">说点什么...</view>
+  <view class="other-btns">
+    <view class="btn-item" bindtap="share">
+      <image class="btn-icon" src="/images/media-item/share.png" />
+      <view class="btn-data">{{NUM.over(noteInfo.shareTimes, 100000)}}</view>
+    </view>
+    <view class="btn-item" bindtap="like">
+      <image class="btn-icon" src="/images/media-item/heart{{noteInfo.isLike ? '-active' : ''}}.png" />
+      <view class="btn-data">{{NUM.over(noteInfo.likeNumber, 100000)}}</view>
+    </view>
+    <view class="btn-item" bindtap="collect">
+      <image class="btn-icon" src="/images/media-item/collection{{noteInfo.isCollected ? '-active' : ''}}.png" />
+      <view class="btn-data">{{NUM.over(noteInfo.collectionTimes, 100000)}}</view>
+    </view>
+  </view>
+</view>
 
 <feature-popup 
   wx:if="{{featurePopupVisible}}" 
@@ -44,5 +96,10 @@
   mediaId="{{noteList[curNoteIdx].id}}" 
   bind:finish="finishComment"
 />
-<poster-modal wx:if="{{posterModalVisible}}" scene="3" info="{{posterInfo}}" bind:hide="hideModal" />
+<poster-modal 
+  wx:if="{{posterModalVisible}}" 
+  scene="3" 
+  info="{{posterInfo}}" 
+  bind:hide="hideModal"
+/>
 

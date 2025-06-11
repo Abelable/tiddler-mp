@@ -1,5 +1,6 @@
-import { checkLogin, numOver } from "../../../../../utils/index";
+import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { store } from "../../../../../store/index";
+import { checkLogin, numOver } from "../../../../../utils/index";
 import {
   SCENE_MINE,
   SCENE_COLLECT,
@@ -13,6 +14,7 @@ const { statusBarHeight } = getApp().globalData.systemInfo;
 Page({
   data: {
     statusBarHeight,
+    noteInfo: {},
     noteList: [],
     finished: false,
     curNoteIdx: 0,
@@ -24,6 +26,11 @@ Page({
   },
 
   async onLoad(options) {
+    this.storeBindings = createStoreBindings(this, {
+      store,
+      fields: ["userInfo"],
+    });
+
     const {
       id,
       authorId,
@@ -45,7 +52,8 @@ Page({
       }
     });
 
-    this.setNoteList(true);
+    this.setNoteInfo()
+    // this.setNoteList(true);
 
     wx.showShareMenu({
       withShareTicket: true,
@@ -54,12 +62,17 @@ Page({
   },
 
   onPullDownRefresh() {
-    this.setNoteList(true);
+    // this.setNoteList(true);
     wx.stopPullDownRefresh();
   },
 
   onReachBottom() {
-    this.setNoteList(false);
+    // this.setNoteList(false);
+  },
+
+  async setNoteInfo() {
+    const noteInfo = await noteService.getNoteInfo(this.noteId)
+    this.setData({ noteInfo })
   },
 
   async setNoteList(init) {
@@ -107,10 +120,8 @@ Page({
     }
   },
 
-  showCommentPopup(e) {
-    const { curNoteIdx } = e.detail;
+  showCommentPopup() {
     this.setData({
-      curNoteIdx,
       commentPopupVisible: true
     });
   },
@@ -150,10 +161,8 @@ Page({
     }
   },
 
-  showInputModal(e) {
-    const { curNoteIdx } = e.detail;
+  showInputModal() {
     this.setData({
-      curNoteIdx,
       inputPopupVisible: true
     });
   },
@@ -266,6 +275,10 @@ Page({
     });
   },
 
+  onUnload() {
+    this.storeBindings.destroyStoreBindings();
+  },
+
   onShareAppMessage() {
     const { noteList, curNoteIdx } = this.data;
     const { id, title, cover: imageUrl } = noteList[curNoteIdx];
@@ -282,5 +295,5 @@ Page({
     ? `id=${id}&superiorId=${promoterInfo.id}`
     : `id=${id}`;
     return { query, title, imageUrl };
-  }
+  },
 });

@@ -1,9 +1,8 @@
 {
-  "navigationBarBackgroundColor": "#ffffff",
-  "navigationBarTitleText": "图文游记",
+  "navigationStyle": "custom",
   "enablePullDownRefresh": true,
   "usingComponents": {
-    "note-item": "./components/note-item/index",
+    "back-icon": "/components/back-icon/index",
     "modal-mask": "/components/modal-mask/index",
     "poster-modal": "/components/poster-modal/index",
     "comment-popup": "../components/comment-popup/index",

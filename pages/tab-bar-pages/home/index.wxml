@@ -68,13 +68,13 @@
     >
       <view class="content">
         <swiper 
-          class="banner" 
+          class="banner small-dots" 
           wx:if="{{bannerList.length}}"
           autoplay 
           circular 
           indicator-dots="{{bannerList.length > 1}}"
           indicator-color="#dcf0fa" 
-          indicator-active-color="#169cff"
+          indicator-active-color="#00C8FF"
         >
           <swiper-item 
             class="banner-item"
