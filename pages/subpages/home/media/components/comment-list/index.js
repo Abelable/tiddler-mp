@@ -9,66 +9,18 @@ Component({
   },
 
   properties: {
+    commentList: Array,
     mediaType: Number,
-    mediaId: Number,
     authorId: Number,
     total: Number
   },
 
   data: {
-    commentList: [],
-    finished: false,
     commentId: 0,
     nickname: "",
-    inputPopupVisible: false
-  },
-
-  lifetimes: {
-    attached() {
-      this.setCommentList(true);
-    }
   },
 
   methods: {
-    loadMore() {
-      this.setCommentList();
-    },
-
-    async setCommentList(init = false) {
-      if (init) {
-        this.setData({ finished: false });
-        this.page = 0;
-      }
-
-      const { mediaType, mediaId, commentList, finished } = this.data;
-
-      if (!finished) {
-        let list;
-        switch (mediaType) {
-          case VIDEO:
-            list = await mediaService.getVideoCommentList(mediaId, ++this.page);
-            break;
-
-          case NOTE:
-            list = await mediaService.getNoteCommentList(mediaId, ++this.page);
-            break;
-        }
-        list = list.map(item => ({
-          ...item,
-          replies: [],
-          repliesVisible: false
-        }));
-
-        this.setData({
-          commentList: init ? list : [...commentList, ...list]
-        });
-
-        if (!list.length) {
-          this.setData({ finished: true });
-        }
-      }
-    },
-
     async toggleRepliesVisible(e) {
       const { index } = e.currentTarget.dataset;
       if (!this.replyPageArr) this.replyPageArr = [];
@@ -106,18 +58,6 @@ Component({
           [`commentList[${index}].repliesVisible`]: !repliesVisible
         });
       }
-    },
-
-    showInputModal() {
-      this.setData({
-        inputPopupVisible: true
-      });
-    },
-
-    hideInputModal() {
-      this.setData({
-        inputPopupVisible: false
-      });
     },
 
     reply(e) {

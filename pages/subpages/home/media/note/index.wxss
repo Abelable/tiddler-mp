@@ -109,33 +109,6 @@
   font-size: 30rpx;
 }
 
-.comment-wrap {
-  margin: 24rpx;
-  margin-top: 0;
-  padding: 20rpx 24rpx;
-  background: #f5f6f8;
-  border-radius: 20rpx;
-}
-.comment-item {
-  display: flex;
-  align-items: baseline;
-  margin-bottom: 6rpx;
-  font-size: 26rpx;
-}
-.commentator-name {
-  color: #333;
-  font-weight: bold;
-}
-.comment-content {
-  flex: 1;
-  color: #666;
-}
-.explain {
-  margin-top: 6rpx;
-  color: #999;
-  font-size: 24rpx;
-}
-
 .btn-wrap {
   position: fixed;
   left: 0;
