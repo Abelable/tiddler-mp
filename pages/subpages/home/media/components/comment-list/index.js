@@ -11,8 +11,7 @@ Component({
   properties: {
     commentList: Array,
     mediaType: Number,
-    authorId: Number,
-    total: Number
+    authorId: Number
   },
 
   methods: {
@@ -56,13 +55,7 @@ Component({
     },
 
     reply(e) {
-      const { commentId, nickname, index } = e.detail;
-      this.setData({
-        commentId,
-        nickname,
-        inputPopupVisible: true
-      });
-      this.commentIdx = index;
+      this.triggerEvent("reply", e.detail);
     },
 
     delete(e) {

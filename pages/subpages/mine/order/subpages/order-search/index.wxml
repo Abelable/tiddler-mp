@@ -55,7 +55,7 @@
     />
   </view>
   <empty-illus wx:if="{{!orderList.length}}" desc="暂无{{['景点', '酒店', '餐券', '套餐', '商品'][type - 1]}}订单" />
-  <view class="no-more-tips" wx:if="{{orderList.length}}">～到底了～</view>
+  <view class="no-more-tips" wx:if="{{orderList.length}}">～到底啦～</view>
 </view>
 
 <goods-qr-code-modal 

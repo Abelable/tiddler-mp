@@ -50,5 +50,5 @@
     />
   </view>
   <empty-illus wx:if="{{!orderList.length}}" desc="暂无订单列表" />
-  <view class="no-more-tips" wx:if="{{orderList.length}}">～到底了～</view>
+  <view class="no-more-tips" wx:if="{{orderList.length}}">～到底啦～</view>
 </view>

@@ -252,7 +252,7 @@
   <view class="media-wrap">
     <fall-flow wx:if="{{mediaList.length}}" list="{{mediaList}}" generic:item="media-item" />
     <empty-illus wx:if="{{finished && !mediaList.length}}" desc="暂无达人打卡" height="520rpx" />
-    <view class="no-more-tips" wx:if="{{finished && mediaList.length}}">～到底了～</view>
+    <view class="no-more-tips" wx:if="{{finished && mediaList.length}}">～到底啦～</view>
   </view>
 </view>
 

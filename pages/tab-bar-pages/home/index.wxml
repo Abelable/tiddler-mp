@@ -49,7 +49,7 @@
         >
           <view class="login-btn row center" wx:if="{{!userInfo}}" bindtap="register">点击登录</view>
         </empty-illus>
-        <view class="no-more-tips" wx:if="{{followFinished && followMediaList.length}}">～到底了～</view>
+        <view class="no-more-tips" wx:if="{{followFinished && followMediaList.length}}">～到底啦～</view>
       </view>
     </scroll-view>
   </swiper-item>
@@ -99,7 +99,7 @@
           <image class="loading-icon" src="https://static.tiddler.cn/mp/loading.gif" />
           <text>加载中...</text>
         </view>
-        <view class="no-more-tips" wx:if="{{!isLoading && finished && mediaList.length}}">～到底了～</view>
+        <view class="no-more-tips" wx:if="{{!isLoading && finished && mediaList.length}}">～到底啦～</view>
         <empty-illus wx:if="{{finished && !mediaList.length}}" desc="暂无游记" />
       </view>
     </scroll-view>

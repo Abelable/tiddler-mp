@@ -39,7 +39,7 @@
       </view>
     </view>
     <empty-illus wx:if="{{scenicFinished && !scenicList.length}}" desc="暂无相关景点" />
-    <view class="no-more-tips" wx:if="{{scenicFinished && scenicList.length}}">～到底了～</view>
+    <view class="no-more-tips" wx:if="{{scenicFinished && scenicList.length}}">～到底啦～</view>
   </view>
 
   <view class="list-wrap" wx:if="{{ curMenuIdx === 1 }}">
@@ -54,7 +54,7 @@
       </view>
     </view>
     <empty-illus wx:if="{{hotelFinished && !hotelList.length}}" desc="暂无相关酒店" />
-    <view class="no-more-tips" wx:if="{{hotelFinished && hotelList.length}}">～到底了～</view>
+    <view class="no-more-tips" wx:if="{{hotelFinished && hotelList.length}}">～到底啦～</view>
   </view>
 
   <view class="list-wrap" wx:if="{{ curMenuIdx === 2 }}">
@@ -69,7 +69,7 @@
       </view>
     </view>
     <empty-illus wx:if="{{restaurantFinished && !restaurantList.length}}" desc="暂无相关餐厅" />
-    <view class="no-more-tips" wx:if="{{restaurantFinished && restaurantList.length}}">～到底了～</view>
+    <view class="no-more-tips" wx:if="{{restaurantFinished && restaurantList.length}}">～到底啦～</view>
   </view>
 
   <view class="list-wrap" wx:if="{{ curMenuIdx === 3 }}">
@@ -84,7 +84,7 @@
       </view>
     </view>
     <empty-illus wx:if="{{goodsFinished && !goodsList.length}}" desc="暂无相关商品" />
-    <view class="no-more-tips" wx:if="{{goodsFinished && goodsList.length}}">～到底了～</view>
+    <view class="no-more-tips" wx:if="{{goodsFinished && goodsList.length}}">～到底啦～</view>
   </view>
 </view>
 

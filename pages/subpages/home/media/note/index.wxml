@@ -47,7 +47,7 @@
     bind:update="updateComments"
     bind:delete="deleteComment"
   />
-  <view class="no-more-tips" wx:if="{{commentList.length && finished}}">～到底了～</view>
+  <view class="no-more-tips" wx:if="{{commentList.length && finished}}">～到底啦～</view>
 </view>
 
 <view class="btn-wrap">
