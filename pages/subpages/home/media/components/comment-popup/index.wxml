@@ -11,7 +11,14 @@
     <view class="empty-tips" wx:if="{{!total}}">——暂无评论，来抢沙发——</view>
 
     <scroll-view class="comment-list" bindscrolltolower="loadMore" scroll-y>
-      <comment-item
+      <comment-list 
+        commentList="{{commentList}}"
+        mediaType="{{mediaType}}"
+        authorId="{{authorId}}"
+        bind:reply="reply"
+        bind:delete="delete"
+      />
+      <!-- <comment-item
         wx:for="{{commentList}}"
         wx:key="index"
         mediaType="{{mediaType}}"
@@ -39,8 +46,8 @@
           <text>{{(item.repliesCount > item.replies.length || !item.repliesVisible) ? ('展开' + (!item.repliesVisible ? item.repliesCount : (item.repliesCount - item.replies.length)) + '条回复') : '收起'}} </text>
           <image class="arrow-icon" src="{{(item.repliesCount > item.replies.length || !item.repliesVisible) ? './images/down-arrow.png' : './images/up-arrow.png'}}" />
         </view>
-      </comment-item>
-      <view class="nomore-tips" wx:if="{{finished}}">——暂时没有更多了——</view>
+      </comment-item> -->
+      <view class="nomore-tips" wx:if="{{commentList.length && finished}}">～到底啦～</view>
     </scroll-view>
 
     <view class="input-bar">

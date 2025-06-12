@@ -2,7 +2,6 @@
   <comment-item
     wx:for="{{commentList}}"
     wx:key="index"
-    mediaType="{{mediaType}}"
     item="{{item}}"
     index="{{index}}"
     authorId="{{authorId}}"
@@ -15,7 +14,6 @@
       wx:key="replyIndex" 
       wx:for-index="replyIndex"
       wx:for-item="reply"
-      mediaType="{{mediaType}}"
       item="{{reply}}"
       index="{{index}}"
       replyIndex="{{replyIndex}}"

@@ -14,7 +14,6 @@ Component({
   },
 
   properties: {
-    mediaType: Number,
     item: Object,
     index: Number,
     replyIndex: Number,
