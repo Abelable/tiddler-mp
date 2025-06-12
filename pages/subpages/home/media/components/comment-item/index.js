@@ -1,5 +1,5 @@
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
-import { store } from "../../store/index";
+import { store } from "../../../../../../store/index";
 
 Component({
   options: {
@@ -27,7 +27,7 @@ Component({
       const { id } = this.properties.item.userInfo;
       if (store.userInfo.id !== id) {
         wx.navigateTo({
-          url: `/pages/subpages/index/short-video/subpages/personal-center/index?id=${user_id}`,
+          url: `/pages/subpages/home/media/author-center/index?id=${id}`,
         });
       }
     },
