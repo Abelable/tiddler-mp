@@ -39,20 +39,31 @@
   
   <product-list wx:if="{{noteInfo.productList.length}}" list="{{noteInfo.productList}}" />
   
+  <view class="comment-total">
+    <text wx:if="{{noteInfo.commentsNumber}}">{{noteInfo.commentsNumber}}条</text>
+    <text>评论</text>
+  </view>
   <comment-list
-    mediaType="{{3}}"
-    mediaId="{{noteInfo.id}}"
+    wx:if="{{commentList.length}}"
+    commentList="{{commentList}}"
     authorId="{{noteInfo.authorInfo.id}}"
-    total="{{noteInfo.commentsNumber}}"
-    bind:update="updateComments"
-    bind:delete="deleteComment"
+    bind:toggleRepliesVisible="toggleRepliesVisible"
+    bind:reply="reply"
+    bind:delete="delete"
   />
+  <empty-illus 
+    wx:if="{{!commentList.length}}" 
+    desc="还没有评论哦" 
+    height="520rpx" 
+  >
+    <view class="comment-btn row center" bindtap="showInputModal">抢首评</view>
+  </empty-illus>
   <view class="no-more-tips" wx:if="{{commentList.length && finished}}">～到底啦～</view>
 </view>
 
 <view class="btn-wrap">
   <image class="user-avatar avatar-default" src="{{userInfo.avatar}}" />
-  <view class="comment-btn-desc row" bindtap="showInputModal">说点什么...</view>
+  <view class="comment-input row" bindtap="showInputModal">说点什么...</view>
   <view class="other-btns">
     <view class="btn-item" bindtap="share">
       <image class="btn-icon" src="/images/media-item/share.png" />
@@ -77,10 +88,8 @@
   bind:hide="hideFeaturePopup" 
 />
 
-
 <modal-mask 
   wx:if="{{inputPopupVisible || posterModalVisible}}"
-  opacity="{{inputPopupVisible ? 0 : 0.3}}" 
   filter="{{posterModalVisible}}" 
   bindtap="hideModal" 
 />
@@ -88,6 +97,8 @@
   wx:if="{{inputPopupVisible}}" 
   mediaType="{{3}}" 
   mediaId="{{noteInfo.id}}" 
+  commentId="{{commentId}}" 
+  nickname="{{nickname}}" 
   bind:finish="finishComment"
 />
 <poster-modal 

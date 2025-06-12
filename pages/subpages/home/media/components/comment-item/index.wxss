@@ -10,8 +10,8 @@
 }
 
 .user-avatar {
-  width: 68rpx;
-  height: 68rpx;
+  width: 60rpx;
+  height: 60rpx;
   border-radius: 50%;
 }
 .user-avatar.is-reply {

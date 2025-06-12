@@ -72,8 +72,7 @@ class MediaService extends BaseService {
     const { list = [] } =
       (await this.get({
         url: `${this.baseUrl}/media/tourism_note/comment_list`,
-        data: { mediaId, page, limit },
-        loadingTitle: "加载中..."
+        data: { mediaId, page, limit }
       })) || {};
     return list;
   }
@@ -83,7 +82,6 @@ class MediaService extends BaseService {
       (await this.get({
         url: `${this.baseUrl}/media/tourism_note/reply_comment_list`,
         data: { mediaId, commentId, page, limit },
-        loadingTitle: "加载中..."
       })) || {};
     return list;
   }

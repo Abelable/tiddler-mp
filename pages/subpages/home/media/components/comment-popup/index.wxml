@@ -8,45 +8,24 @@
       <image class="close-icon" catchtap="hide" src="./images/close-icon.png" />
     </view>
 
-    <view class="empty-tips" wx:if="{{!total}}">——暂无评论，来抢沙发——</view>
+    <!-- <view class="empty-tips" wx:if="{{!total}}">——暂无评论，来抢沙发——</view> -->
+
+    <empty-illus 
+      wx:if="{{!total}}" 
+      desc="还没有评论哦" 
+      height="880rpx" 
+    >
+      <view class="comment-btn row center" bindtap="showInputModal">抢首评</view>
+    </empty-illus>
 
     <scroll-view class="comment-list" bindscrolltolower="loadMore" scroll-y>
       <comment-list 
         commentList="{{commentList}}"
-        mediaType="{{mediaType}}"
         authorId="{{authorId}}"
+        bind:toggleRepliesVisible="toggleRepliesVisible"
         bind:reply="reply"
         bind:delete="delete"
       />
-      <!-- <comment-item
-        wx:for="{{commentList}}"
-        wx:key="index"
-        mediaType="{{mediaType}}"
-        item="{{item}}"
-        index="{{index}}"
-        authorId="{{authorId}}"
-        bind:reply="reply"
-        bind:delete="delete"
-      >
-        <comment-item
-          wx:if="{{item.repliesVisible}}"
-          wx:for="{{item.replies}}"
-          wx:key="replyIndex" 
-          wx:for-index="replyIndex"
-          wx:for-item="reply"
-          mediaType="{{mediaType}}"
-          item="{{reply}}"
-          index="{{index}}"
-          replyIndex="{{replyIndex}}"
-          authorId="{{authorId}}"
-          isReply
-          bind:delete="delete"
-        />
-        <view class="replies-btn row" wx:if="{{item.repliesCount}}" bindtap="toggleRepliesVisible" data-index="{{index}}">
-          <text>{{(item.repliesCount > item.replies.length || !item.repliesVisible) ? ('展开' + (!item.repliesVisible ? item.repliesCount : (item.repliesCount - item.replies.length)) + '条回复') : '收起'}} </text>
-          <image class="arrow-icon" src="{{(item.repliesCount > item.replies.length || !item.repliesVisible) ? './images/down-arrow.png' : './images/up-arrow.png'}}" />
-        </view>
-      </comment-item> -->
       <view class="nomore-tips" wx:if="{{commentList.length && finished}}">～到底啦～</view>
     </scroll-view>
 

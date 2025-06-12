@@ -5,7 +5,7 @@ const mediaService = new MediaService();
 
 Component({
   options: {
-    addGlobalClass: true,
+    addGlobalClass: true
   },
 
   properties: {
@@ -13,7 +13,7 @@ Component({
     curMediaIdx: Number,
     mediaId: Number,
     authorId: Number,
-    total: Number,
+    total: Number
   },
 
   data: {
@@ -21,13 +21,13 @@ Component({
     finished: false,
     commentId: 0,
     nickname: "",
-    inputPopupVisible: false,
+    inputPopupVisible: false
   },
 
   lifetimes: {
     attached() {
       this.setCommentList(true);
-    },
+    }
   },
 
   methods: {
@@ -39,6 +39,7 @@ Component({
       if (init) {
         this.setData({ finished: false });
         this.page = 0;
+        this.limit = 10;
       }
 
       const { mediaType, mediaId, commentList, finished } = this.data;
@@ -47,31 +48,31 @@ Component({
         let list;
         switch (mediaType) {
           case VIDEO:
-            list = await mediaService.getVideoCommentList(mediaId, ++this.page);
+            list = await mediaService.getVideoCommentList(mediaId, ++this.page, this.limit);
             break;
 
           case NOTE:
-            list = await mediaService.getNoteCommentList(mediaId, ++this.page);
+            list = await mediaService.getNoteCommentList(mediaId, ++this.page, this.limit);
             break;
         }
-        list = list.map((item) => ({
+        list = list.map(item => ({
           ...item,
           replies: [],
-          repliesVisible: false,
+          repliesVisible: false
         }));
 
         this.setData({
-          commentList: init ? list : [...commentList, ...list],
+          commentList: init ? list : [...commentList, ...list]
         });
 
-        if (!list.length) {
+        if (list.length < this.limit) {
           this.setData({ finished: true });
         }
       }
     },
 
     async toggleRepliesVisible(e) {
-      const { index } = e.currentTarget.dataset;
+      const { index } = e.detail;
       if (!this.replyPageArr) this.replyPageArr = [];
       if (!this.replyPageArr[index]) this.replyPageArr[index] = 0;
 
@@ -100,24 +101,26 @@ Component({
           this.setData({ [`commentList[${index}].repliesVisible`]: true });
         }
         this.setData({
-          [`commentList[${index}].replies`]: [...replies, ...list],
+          [`commentList[${index}].replies`]: [...replies, ...list]
         });
       } else {
         this.setData({
-          [`commentList[${index}].repliesVisible`]: !repliesVisible,
+          [`commentList[${index}].repliesVisible`]: !repliesVisible
         });
       }
     },
 
     showInputModal() {
       this.setData({
-        inputPopupVisible: true,
+        inputPopupVisible: true
       });
     },
 
     hideInputModal() {
       this.setData({
-        inputPopupVisible: false,
+        commentId: 0,
+        nickname: "",
+        inputPopupVisible: false
       });
     },
 
@@ -126,7 +129,7 @@ Component({
       this.setData({
         commentId,
         nickname,
-        inputPopupVisible: true,
+        inputPopupVisible: true
       });
       this.commentIdx = index;
     },
@@ -140,11 +143,11 @@ Component({
           [`commentList[${this.commentIdx}]`]: {
             ...curComment,
             repliesCount: curComment.repliesCount + 1,
-            replies: [e.detail, ...curComment.replies],
+            replies: [e.detail, ...curComment.replies]
           },
           commentId: 0,
           nickname: "",
-          inputPopupVisible: false,
+          inputPopupVisible: false
         });
       } else {
         this.setData({
@@ -153,52 +156,43 @@ Component({
               ...e.detail,
               repliesCount: 0,
               replies: [],
-              repliesVisible: false,
+              repliesVisible: false
             },
-            ...commentList,
+            ...commentList
           ],
-          inputPopupVisible: false,
+          inputPopupVisible: false
         });
       }
 
       this.triggerEvent("update", {
         commentsNumber: total + 1,
         curMediaIdx,
-        comment: !this.data.commentId ? e.detail : null,
+        comment: !this.data.commentId ? e.detail : null
       });
     },
 
     delete(e) {
       const { commentId, index, replyIndex, isReply } = e.detail;
+      this.deleteComment(commentId, res => {
+        const { commentList, curMediaIdx } = this.data;
 
-      wx.showModal({
-        content: "确定删除该评论吗",
-        showCancel: true,
-        success: (result) => {
-          if (result.confirm) {
-            this.deleteComment(commentId, (res) => {
-              const { commentList, curMediaIdx } = this.data;
+        if (isReply) {
+          const { replies, repliesCount } = commentList[index];
+          replies.splice(replyIndex, 1);
+          this.setData({
+            [`commentList[${index}].replies`]: replies,
+            [`commentList[${index}].repliesCount`]: repliesCount - 1
+          });
+        } else {
+          commentList.splice(index, 1);
+          this.setData({ commentList });
+        }
 
-              if (isReply) {
-                const { replies, repliesCount } = commentList[index];
-                replies.splice(replyIndex, 1);
-                this.setData({
-                  [`commentList[${index}].replies`]: replies,
-                  [`commentList[${index}].repliesCount`]: repliesCount - 1,
-                });
-              } else {
-                commentList.splice(index, 1);
-                this.setData({ commentList });
-              }
-
-              this.triggerEvent("delete", {
-                commentsNumber: res.data,
-                curMediaIdx,
-                commentIdx: !isReply && index < 8 ? index : -1,
-              });
-            });
-          }
-        },
+        this.triggerEvent("delete", {
+          commentsNumber: res.data,
+          curMediaIdx,
+          commentIdx: !isReply && index < 8 ? index : -1
+        });
       });
     },
 
@@ -214,8 +208,12 @@ Component({
       }
     },
 
+    comment() {
+      this.triggerEvent("comment");
+    },
+
     hide() {
       this.triggerEvent("hide");
-    },
-  },
+    }
+  }
 });

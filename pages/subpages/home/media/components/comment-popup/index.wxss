@@ -21,29 +21,25 @@
   height: 32rpx;
 }
 
-.empty-tips, .nomore-tips {
-  padding: 26rpx 30rpx 40rpx;
-  color: #666;
-  font-size: 24rpx;
-  text-align: center;
-}
-
 .comment-list {
   padding-top: 6rpx;
   flex: 1;
   overflow-y: scroll;
 }
-
-.replies-btn {
-  margin-top: 14rpx;
-  color: #666;
+.comment-btn {
+  margin-top: 24rpx;
+  width: 140rpx;
+  height: 56rpx;
+  color: #fff;
   font-size: 24rpx;
-  font-weight: 500;
+  background: var(--blue-1);
+  border-radius: 28rpx;
 }
-.arrow-icon {
-  margin-left: 8rpx;
-  width: 24rpx;
-  height: 24rpx;
+.nomore-tips {
+  padding: 26rpx 30rpx 40rpx;
+  color: #999;
+  font-size: 24rpx;
+  text-align: center;
 }
 
 .input-bar {

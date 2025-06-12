@@ -109,6 +109,23 @@
   font-size: 30rpx;
 }
 
+.comment-total {
+  margin-left: 24rpx;
+  margin-bottom: 12rpx;
+  color: #333;
+  font-size: 24rpx;
+  font-weight: bold;
+}
+.comment-btn {
+  margin-top: 24rpx;
+  width: 140rpx;
+  height: 56rpx;
+  color: #fff;
+  font-size: 24rpx;
+  background: var(--blue-1);
+  border-radius: 28rpx;
+}
+
 .btn-wrap {
   position: fixed;
   left: 0;
@@ -120,16 +137,12 @@
   background: #fff;
   box-shadow: 0 0.8px 5px 0 rgba(0, 0, 0, .08);
 }
-.comment-btn {
-  display: flex;
-  align-items: center;
-}
 .user-avatar {
   width: 60rpx;
   height: 60rpx;
   border-radius: 50%;
 }
-.comment-btn-desc {
+.comment-input {
   margin-left: 12rpx;
   padding: 0 24rpx;
   flex: 1;

@@ -3,14 +3,14 @@ import { store } from "../../../../../../store/index";
 
 Component({
   options: {
-    addGlobalClass: true,
+    addGlobalClass: true
   },
 
   behaviors: [storeBindingsBehavior],
 
   storeBindings: {
     store,
-    fields: ["userInfo"],
+    fields: ["userInfo"]
   },
 
   properties: {
@@ -18,7 +18,7 @@ Component({
     index: Number,
     replyIndex: Number,
     isReply: Boolean,
-    authorId: Number,
+    authorId: Number
   },
 
   methods: {
@@ -26,7 +26,7 @@ Component({
       const { id } = this.properties.item.userInfo;
       if (store.userInfo.id !== id) {
         wx.navigateTo({
-          url: `/pages/subpages/home/media/author-center/index?id=${id}`,
+          url: `/pages/subpages/home/media/author-center/index?id=${id}`
         });
       }
     },
@@ -39,13 +39,21 @@ Component({
     },
 
     delete() {
-      const { item, index, replyIndex, isReply } = this.properties;
-      this.triggerEvent("delete", {
-        commentId: item.id,
-        index,
-        replyIndex,
-        isReply,
+      wx.showModal({
+        content: "确定删除该评论吗",
+        showCancel: true,
+        success: result => {
+          if (result.confirm) {
+            const { item, index, replyIndex, isReply } = this.properties;
+            this.triggerEvent("delete", {
+              commentId: item.id,
+              index,
+              replyIndex,
+              isReply
+            });
+          }
+        }
       });
-    },
-  },
+    }
+  }
 });

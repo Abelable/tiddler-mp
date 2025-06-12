@@ -14,6 +14,7 @@ Page({
     finished: false,
     curNoteIdx: 0,
     curPositonIdx: 0,
+    commentId: 0,
     inputPopupVisible: false,
     featurePopupVisible: false,
     posterInfo: null,
@@ -26,13 +27,7 @@ Page({
       fields: ["userInfo"]
     });
 
-    const {
-      id,
-      authorId,
-      mediaScene,
-      superiorId = "",
-      scene = ""
-    } = options || {};
+    const { id, superiorId = "", scene = "" } = options || {};
     const decodedSceneList = scene ? decodeURIComponent(scene).split("-") : [];
     this.noteId = +id || decodedSceneList[0];
     this.superiorId = +superiorId || decodedSceneList[1];
@@ -72,12 +67,13 @@ Page({
     if (init) {
       this.setData({ finished: false });
       this.page = 0;
+      this.limit = 10;
     }
 
     const { commentList } = this.data;
 
     const list = (
-      await noteService.getNoteCommentList(this.noteId, ++this.page)
+      await noteService.getNoteCommentList(this.noteId, ++this.page, this.limit)
     ).map(item => ({
       ...item,
       replies: [],
@@ -88,20 +84,54 @@ Page({
       commentList: init ? list : [...commentList, ...list]
     });
 
-    if (!list.length) {
+    if (list.length < this.limit) {
       this.setData({ finished: true });
     }
   },
 
-  updateComments(e) {
-    this.setData({
-      ["noteInfo.commentsNumber"]: e.detail.commentsNumber
-    });
+  async toggleRepliesVisible(e) {
+    const { index } = e.detail;
+    if (!this.replyPageArr) this.replyPageArr = [];
+    if (!this.replyPageArr[index]) this.replyPageArr[index] = 0;
+
+    const { noteInfo, commentList } = this.data;
+    const { id, replies, repliesCount, repliesVisible } = commentList[index];
+    if (replies.length < repliesCount) {
+      const list = await noteService.getNoteReplies(
+        noteInfo.id,
+        id,
+        ++this.replyPageArr[index]
+      );
+      if (!repliesVisible) {
+        this.setData({ [`commentList[${index}].repliesVisible`]: true });
+      }
+      this.setData({
+        [`commentList[${index}].replies`]: [...replies, ...list]
+      });
+    } else {
+      this.setData({
+        [`commentList[${index}].repliesVisible`]: !repliesVisible
+      });
+    }
   },
 
-  deleteComment(e) {
-    this.setData({
-      [`noteInfo.commentsNumber`]: e.detail.commentsNumber
+  delete(e) {
+    const { commentId, index, replyIndex, isReply } = e.detail;
+    noteService.deleteNoteComment(commentId, res => {
+      const { commentList } = this.data;
+
+      if (isReply) {
+        const { replies, repliesCount } = commentList[index];
+        replies.splice(replyIndex, 1);
+        this.setData({
+          [`commentList[${index}].replies`]: replies,
+          [`commentList[${index}].repliesCount`]: repliesCount - 1,
+          ["noteInfo.commentsNumber"]: res.data
+        });
+      } else {
+        commentList.splice(index, 1);
+        this.setData({ commentList, ["noteInfo.commentsNumber"]: res.data });
+      }
     });
   },
 
@@ -111,13 +141,48 @@ Page({
     });
   },
 
-  finishComment(e) {
-    const { noteList, curNoteIdx } = this.data;
-    const { commentsNumber } = noteList[curNoteIdx];
+  reply(e) {
+    const { commentId, nickname, index } = e.detail;
     this.setData({
-      ["noteInfo.commentsNumber"]: commentsNumber + 1,
-      inputPopupVisible: false
+      commentId,
+      nickname,
+      inputPopupVisible: true
     });
+    this.commentIdx = index;
+  },
+
+  finishComment(e) {
+    const { commentId, noteInfo, commentList } = this.data;
+    const { commentsNumber } = noteInfo;
+
+    if (commentId) {
+      const curComment = commentList[this.commentIdx];
+      this.setData({
+        [`commentList[${this.commentIdx}]`]: {
+          ...curComment,
+          repliesCount: curComment.repliesCount + 1,
+          replies: [e.detail, ...curComment.replies]
+        },
+        commentId: 0,
+        nickname: "",
+        ["noteInfo.commentsNumber"]: commentsNumber + 1,
+        inputPopupVisible: false
+      });
+    } else {
+      this.setData({
+        commentList: [
+          {
+            ...e.detail,
+            repliesCount: 0,
+            replies: [],
+            repliesVisible: false
+          },
+          ...commentList
+        ],
+        ["noteInfo.commentsNumber"]: commentsNumber + 1,
+        inputPopupVisible: false
+      });
+    }
   },
 
   follow() {
@@ -184,6 +249,8 @@ Page({
     const { inputPopupVisible, posterModalVisible } = this.data;
     if (inputPopupVisible) {
       this.setData({
+        commentId: 0,
+        nickname: "",
         inputPopupVisible: false
       });
     }
