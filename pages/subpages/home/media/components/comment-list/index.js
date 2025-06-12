@@ -15,11 +15,6 @@ Component({
     total: Number
   },
 
-  data: {
-    commentId: 0,
-    nickname: "",
-  },
-
   methods: {
     async toggleRepliesVisible(e) {
       const { index } = e.currentTarget.dataset;
@@ -68,39 +63,6 @@ Component({
         inputPopupVisible: true
       });
       this.commentIdx = index;
-    },
-
-    finishComment(e) {
-      const { total, commentList } = this.data;
-
-      if (this.data.commentId) {
-        const curComment = commentList[this.commentIdx];
-        this.setData({
-          [`commentList[${this.commentIdx}]`]: {
-            ...curComment,
-            repliesCount: curComment.repliesCount + 1,
-            replies: [e.detail, ...curComment.replies]
-          },
-          commentId: 0,
-          nickname: "",
-          inputPopupVisible: false
-        });
-      } else {
-        this.setData({
-          commentList: [
-            {
-              ...e.detail,
-              repliesCount: 0,
-              replies: [],
-              repliesVisible: false
-            },
-            ...commentList
-          ],
-          inputPopupVisible: false
-        });
-      }
-
-      this.triggerEvent("update", { commentsNumber: total + 1 });
     },
 
     delete(e) {
