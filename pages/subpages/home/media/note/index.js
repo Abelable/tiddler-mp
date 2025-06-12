@@ -18,6 +18,7 @@ Page({
     noteList: [],
     finished: false,
     curNoteIdx: 0,
+    curPositonIdx: 0,
     commentPopupVisible: false,
     inputPopupVisible: false,
     featurePopupVisible: false,
@@ -28,7 +29,7 @@ Page({
   async onLoad(options) {
     this.storeBindings = createStoreBindings(this, {
       store,
-      fields: ["userInfo"],
+      fields: ["userInfo"]
     });
 
     const {
@@ -52,7 +53,7 @@ Page({
       }
     });
 
-    this.setNoteInfo()
+    this.setNoteInfo();
     // this.setNoteList(true);
 
     wx.showShareMenu({
@@ -71,8 +72,8 @@ Page({
   },
 
   async setNoteInfo() {
-    const noteInfo = await noteService.getNoteInfo(this.noteId)
-    this.setData({ noteInfo })
+    const noteInfo = await noteService.getNoteInfo(this.noteId);
+    this.setData({ noteInfo });
   },
 
   async setNoteList(init) {
@@ -209,43 +210,12 @@ Page({
     });
   },
 
-  hideModal() {
-    const { inputPopupVisible, posterModalVisible } = this.data;
-    if (inputPopupVisible) {
-      this.setData({
-        inputPopupVisible: false
-      });
-    }
-    if (posterModalVisible) {
-      this.setData({
-        posterModalVisible: false
-      });
-    }
-  },
-
-  showFeaturePopup(e) {
-    const { curNoteIdx } = e.detail;
-    this.setData({
-      curNoteIdx,
-      featurePopupVisible: true
-    });
-  },
-
-  hideFeaturePopup() {
-    this.setData({
-      featurePopupVisible: false
-    });
-  },
-
-  follow(e) {
-    const { curNoteIdx } = e.detail;
-    const { id } = this.data.noteList[curNoteIdx].authorInfo;
+  follow() {
+    const { id } = this.data.noteInfo.authorInfo;
     noteService.followAuthor(id, () => {
-      const noteList = this.data.noteList.map(item => ({
-        ...item,
-        isFollow: item.authorInfo.id === id
-      }));
-      this.setData({ noteList });
+      this.setData({
+        ['noteInfo.isFollow']: true
+      })
     });
   },
 
@@ -275,6 +245,49 @@ Page({
     });
   },
 
+  previewImage(e) {
+    const { current } = e.currentTarget.dataset;
+    const urls = this.data.noteInfo.imageList;
+    wx.previewImage({ current, urls });
+  },
+
+  navToAuthorCenter() {
+    const { id } = this.data.noteInfo.authorInfo;
+    if (store.userInfo.id !== id) {
+      wx.navigateTo({
+        url: `/pages/subpages/home/media/author-center/index?id=${id}`
+      });
+    }
+  },
+
+  showFeaturePopup(e) {
+    const { curNoteIdx } = e.detail;
+    this.setData({
+      curNoteIdx,
+      featurePopupVisible: true
+    });
+  },
+
+  hideFeaturePopup() {
+    this.setData({
+      featurePopupVisible: false
+    });
+  },
+
+    hideModal() {
+    const { inputPopupVisible, posterModalVisible } = this.data;
+    if (inputPopupVisible) {
+      this.setData({
+        inputPopupVisible: false
+      });
+    }
+    if (posterModalVisible) {
+      this.setData({
+        posterModalVisible: false
+      });
+    }
+  },
+
   onUnload() {
     this.storeBindings.destroyStoreBindings();
   },
@@ -292,8 +305,8 @@ Page({
     const { noteList, curNoteIdx } = this.data;
     const { id, title, cover: imageUrl } = noteList[curNoteIdx];
     const query = store.promoterInfo
-    ? `id=${id}&superiorId=${promoterInfo.id}`
-    : `id=${id}`;
+      ? `id=${id}&superiorId=${promoterInfo.id}`
+      : `id=${id}`;
     return { query, title, imageUrl };
-  },
+  }
 });

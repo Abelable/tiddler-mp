@@ -3,6 +3,7 @@
   "enablePullDownRefresh": true,
   "usingComponents": {
     "back-icon": "/components/back-icon/index",
+    "product-list": "/components/product-list/index",
     "modal-mask": "/components/modal-mask/index",
     "poster-modal": "/components/poster-modal/index",
     "comment-popup": "../components/comment-popup/index",

@@ -27,9 +27,9 @@
     </swiper-item>
   </swiper>
 
-  <view class="address row" wx:if="{{noteInfo.address}}">
-    <image class="address-icon" src="/images/media-item/address.png" />
-    <text class="address-detail omit single">{{noteInfo.address}}</text>
+  <view class="address row {{curPositonIdx === 0 ? 'active' : ''}}" wx:if="{{noteInfo.address}}">
+    <image class="address-icon" src="./images/position{{curPositonIdx === 0 ? '_white' : ''}}.png" />
+    <view>{{noteInfo.address}}</view>
   </view>
   
   <view class="title">{{noteInfo.title}}</view>
