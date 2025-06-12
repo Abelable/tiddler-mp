@@ -28,6 +28,6 @@
       <view class="change-amount {{item.amount > 0 ? 'income' : ''}}">{{item.amount > 0 ? '+' + item.amount : item.amount}}</view>
     </view>
     <empty-illus wx:if="{{finished && !recordList.length}}" desc="暂无记录" />
-    <view class="no-more-tips" wx:if="{{finished && recordList.length}}">～没有更多了～</view>
+    <view class="no-more-tips" wx:if="{{finished && recordList.length}}">～到底了～</view>
   </scroll-view>
 </view>

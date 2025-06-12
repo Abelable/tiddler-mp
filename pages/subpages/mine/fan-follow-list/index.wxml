@@ -40,7 +40,7 @@
       wx:if="{{!followList.length}}" 
       desc="暂未关注任何人"
     />
-    <view class="no-more-tips" wx:if="{{followFinished && followList.length}}">～没有更多了～</view>
+    <view class="no-more-tips" wx:if="{{followFinished && followList.length}}">～到底了～</view>
   </view>
 
   <view wx:else>
@@ -66,6 +66,6 @@
       wx:if="{{!fanList.length}}" 
       desc="您还没有粉丝哦"
     />
-    <view class="no-more-tips" wx:if="{{fanFinished && fanList.length}}">～没有更多了～</view>
+    <view class="no-more-tips" wx:if="{{fanFinished && fanList.length}}">～到底了～</view>
   </view>
 </view>

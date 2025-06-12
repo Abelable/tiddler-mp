@@ -48,7 +48,7 @@
     </view>
     <view class="explain">共{{NUM.over(noteInfo.commentsNumber, 100000)}}条评论</view>
   </view>
-  <view class="no-more-tips" wx:if="{{finished}}">～没有更多了～</view>
+  <view class="no-more-tips" wx:if="{{finished}}">～到底了～</view>
 </view>
 
 <view class="btn-wrap">
@@ -73,17 +73,17 @@
 <feature-popup 
   wx:if="{{featurePopupVisible}}" 
   mediaType="{{3}}"
-  isPrivate="{{noteList[curNoteIdx].isPrivate}}"
-  noteId="{{noteList[curNoteIdx].id}}" 
+  isPrivate="{{noteInfo.isPrivate}}"
+  noteId="{{noteInfo.id}}" 
   bind:hide="hideFeaturePopup" 
 />
 <comment-popup 
   wx:if="{{commentPopupVisible}}"
   mediaType="{{3}}"
   curMediaIdx="{{curNoteIdx}}"
-  mediaId="{{noteList[curNoteIdx].id}}"
-  authorId="{{noteList[curNoteIdx].authorInfo.id}}"
-  total="{{noteList[curNoteIdx].commentsNumber}}"
+  mediaId="{{noteInfo.id}}"
+  authorId="{{noteInfo.authorInfo.id}}"
+  total="{{noteInfo.commentsNumber}}"
   bind:update="updateComments"
   bind:delete="deleteComment"
   bind:hide="hideCommentPopup" 
@@ -98,7 +98,7 @@
 <input-popup 
   wx:if="{{inputPopupVisible}}" 
   mediaType="{{3}}" 
-  mediaId="{{noteList[curNoteIdx].id}}" 
+  mediaId="{{noteInfo.id}}" 
   bind:finish="finishComment"
 />
 <poster-modal 
@@ -107,4 +107,3 @@
   info="{{posterInfo}}" 
   bind:hide="hideModal"
 />
-

@@ -25,7 +25,7 @@
 <view class="goods-list-wrap">
   <fall-flow list="{{goodsList}}" generic:item="goods-item" />
   <empty-illus wx:if="{{finished && !goodsList.length}}" desc="暂无列表" />
-  <view class="no-more-tips" wx:if="{{finished && goodsList.length}}">～没有更多了～</view>
+  <view class="no-more-tips" wx:if="{{finished && goodsList.length}}">～到底了～</view>
 </view>
 
 <modal-mask wx:if="{{posterModalVisible}}" filter bindtap="hidePosterModal" />

@@ -16,5 +16,5 @@
 <view class="container" style="padding-top: {{statusBarHeight + 94}}px;">
   <scenic-item wx:for="{{scenicList}}" wx:key="index" item="{{item}}" />
   <empty-illus wx:if="{{finished && !scenicList.length}}" desc="暂无列表" />
-  <view class="no-more-tips" wx:if="{{finished && scenicList.length}}">～没有更多了～</view>
+  <view class="no-more-tips" wx:if="{{finished && scenicList.length}}">～到底了～</view>
 </view>

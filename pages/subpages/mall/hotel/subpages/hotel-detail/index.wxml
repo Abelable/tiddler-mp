@@ -286,7 +286,7 @@
     <view class="media-wrap">
       <fall-flow wx:if="{{mediaList.length}}" list="{{mediaList}}" generic:item="media-item" />
       <empty-illus wx:if="{{finished && !mediaList.length}}" desc="达人入住" height="520rpx" />
-      <view class="no-more-tips" wx:if="{{finished && mediaList.length}}">～没有更多了～</view>
+      <view class="no-more-tips" wx:if="{{finished && mediaList.length}}">～到底了～</view>
     </view>
   </view>
 </view>

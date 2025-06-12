@@ -24,7 +24,7 @@
   </view>
   
   <empty-illus wx:if="{{!qaList.length}}" desc="暂无提问" />
-  <view class="no-more-tips" wx:if="{{finished && qaList.length}}">～没有更多了～</view>
+  <view class="no-more-tips" wx:if="{{finished && qaList.length}}">～到底了～</view>
 </view>
 
 <view class="footer row">

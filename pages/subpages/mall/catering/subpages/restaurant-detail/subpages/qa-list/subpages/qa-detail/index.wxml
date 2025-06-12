@@ -41,7 +41,7 @@
     </view>
   </view>
   <empty-illus wx:if="{{!answerList.length}}" desc="暂无回答" />
-  <view class="no-more-tips" wx:if="{{finished && answerList.length}}">～没有更多了～</view>
+  <view class="no-more-tips" wx:if="{{finished && answerList.length}}">～到底了～</view>
 </view>
 
 <view class="footer row" wx:if="{{userInfo.id !== questionInfo.userId}}">
