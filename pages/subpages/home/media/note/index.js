@@ -115,6 +115,16 @@ Page({
     }
   },
 
+  reply(e) {
+    const { commentId, nickname, index } = e.detail;
+    this.setData({
+      commentId,
+      nickname,
+      inputPopupVisible: true
+    });
+    this.commentIdx = index;
+  },
+
   delete(e) {
     const { commentId, index, replyIndex, isReply } = e.detail;
     noteService.deleteNoteComment(commentId, res => {
@@ -133,22 +143,6 @@ Page({
         this.setData({ commentList, ["noteInfo.commentsNumber"]: res.data });
       }
     });
-  },
-
-  showInputModal() {
-    this.setData({
-      inputPopupVisible: true
-    });
-  },
-
-  reply(e) {
-    const { commentId, nickname, index } = e.detail;
-    this.setData({
-      commentId,
-      nickname,
-      inputPopupVisible: true
-    });
-    this.commentIdx = index;
   },
 
   finishComment(e) {
@@ -222,19 +216,14 @@ Page({
     wx.previewImage({ current, urls });
   },
 
-  navToAuthorCenter() {
-    const { id } = this.data.noteInfo.authorInfo;
-    if (store.userInfo.id !== id) {
-      wx.navigateTo({
-        url: `/pages/subpages/home/media/author-center/index?id=${id}`
-      });
-    }
+  showInputModal() {
+    this.setData({
+      inputPopupVisible: true
+    });
   },
 
-  showFeaturePopup(e) {
-    const { curNoteIdx } = e.detail;
+  showFeaturePopup() {
     this.setData({
-      curNoteIdx,
       featurePopupVisible: true
     });
   },
@@ -257,6 +246,15 @@ Page({
     if (posterModalVisible) {
       this.setData({
         posterModalVisible: false
+      });
+    }
+  },
+
+  navToAuthorCenter() {
+    const { id } = this.data.noteInfo.authorInfo;
+    if (store.userInfo.id !== id) {
+      wx.navigateTo({
+        url: `/pages/subpages/home/media/author-center/index?id=${id}`
       });
     }
   },

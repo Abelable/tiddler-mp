@@ -10,7 +10,7 @@
       <view class="time">{{TIME.timeDiff(noteInfo.createdAt)}}</view>
     </view>
     <view class="follow-btn" wx:if="{{!noteInfo.isFollow}}" catchtap="follow">关注</view>
-    <image class="more-icon" wx:if="{{userInfo.id === noteInfo.authorInfo.id}}" catchtap="more" src="/images/media-item/more.png" />
+    <image class="more-icon" wx:if="{{userInfo.id === noteInfo.authorInfo.id}}" catchtap="showFeaturePopup" src="/images/media-item/more.png" />
   </view>
 </view>
 
