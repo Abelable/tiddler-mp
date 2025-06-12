@@ -32,24 +32,21 @@ Component({
 
   methods: {
     async render() {
-      for (let i = 0, l = this.list.length / 2; i < l; i++) {
-        if (i === l - 1) {
-          const { leftHeight, rightHeight } = await this.getListWrapperHeight();
-          if (rightHeight - leftHeight > 200) {
-            this.setData({
-              [`leftList[${this.data.leftList.length}]`]: this.list.shift(),
-              [`leftList[${this.data.leftList.length}]`]: this.list.shift()
-            });
-          } else if (leftHeight - rightHeight > 200) {
-            this.setData({
-              [`rightList[${this.data.rightList.length}]`]: this.list.shift(),
-              [`rightList[${this.data.rightList.length}]`]: this.list.shift()
-            });
-          } else {
-             this.setData({
-              [`leftList[${this.data.leftList.length}]`]: this.list.shift(),
-              [`rightList[${this.data.rightList.length}]`]: this.list.shift()
-            });
+      for (let i = 0, l = this.list.length / 2 + 1; i < l; i++) {
+        if (i >= l - 2) {
+          const media = this.list.shift();
+          if (media) {
+            const { leftHeight, rightHeight } =
+              await this.getListWrapperHeight();
+            if (leftHeight < rightHeight) {
+              this.setData({
+                [`leftList[${this.data.leftList.length}]`]: media
+              });
+            } else {
+              this.setData({
+                [`rightList[${this.data.rightList.length}]`]: media
+              });
+            }
           }
         } else {
           this.setData({
