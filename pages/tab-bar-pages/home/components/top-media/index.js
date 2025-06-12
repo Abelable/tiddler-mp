@@ -80,7 +80,7 @@ Component({
           url = `/pages/subpages/home/media/video/index?id=${id}&mediaScene=1&authorId=0`;
           break;
         case 3:
-          url = `/pages/subpages/home/media/note/index?id=${id}&mediaScene=1&authorId=0`;
+          url = `/pages/subpages/home/media/note/index?id=${id}`;
           break;
       }
 

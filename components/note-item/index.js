@@ -29,12 +29,8 @@ Component({
     },
 
     navToNoteDetail() {
-      const { item, mediaScene } = this.properties;
-      const { id, authorInfo } = item;
-
-      const url = `/pages/subpages/home/media/note/index?id=${id}&mediaScene=${mediaScene}&authorId=${
-        mediaScene === SCENE_AUTHOR ? authorInfo.id : 0
-      }`;
+      const { id } = this.properties.item;
+      const url = `/pages/subpages/home/media/note/index?id=${id}`;
       wx.navigateTo({ url });
     }
   }

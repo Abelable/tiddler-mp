@@ -39,16 +39,15 @@
   
   <product-list wx:if="{{noteInfo.productList.length}}" list="{{noteInfo.productList}}" />
   
-  <view class="comment-wrap" wx:if="{{noteInfo.commentsNumber}}" bindtap="showCommentPopup">
-    <view class="comment-list">
-      <view class="comment-item" wx:for="{{comments}}" wx:key="index" wx:for-item="comment">
-        <view class="commentator-name">{{comment.nickname}}：</view>
-        <view class="comment-content omit single">{{comment.content}}</view>
-      </view>
-    </view>
-    <view class="explain">共{{NUM.over(noteInfo.commentsNumber, 100000)}}条评论</view>
-  </view>
-  <view class="no-more-tips" wx:if="{{finished}}">～到底了～</view>
+  <comment-list
+    mediaType="{{3}}"
+    mediaId="{{noteInfo.id}}"
+    authorId="{{noteInfo.authorInfo.id}}"
+    total="{{noteInfo.commentsNumber}}"
+    bind:update="updateComments"
+    bind:delete="deleteComment"
+  />
+  <view class="no-more-tips" wx:if="{{commentList.length && finished}}">～到底了～</view>
 </view>
 
 <view class="btn-wrap">
@@ -77,17 +76,7 @@
   noteId="{{noteInfo.id}}" 
   bind:hide="hideFeaturePopup" 
 />
-<comment-popup 
-  wx:if="{{commentPopupVisible}}"
-  mediaType="{{3}}"
-  curMediaIdx="{{curNoteIdx}}"
-  mediaId="{{noteInfo.id}}"
-  authorId="{{noteInfo.authorInfo.id}}"
-  total="{{noteInfo.commentsNumber}}"
-  bind:update="updateComments"
-  bind:delete="deleteComment"
-  bind:hide="hideCommentPopup" 
-/>
+
 
 <modal-mask 
   wx:if="{{inputPopupVisible || posterModalVisible}}"

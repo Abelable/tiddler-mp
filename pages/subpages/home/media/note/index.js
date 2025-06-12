@@ -1,11 +1,6 @@
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { store } from "../../../../../store/index";
 import { checkLogin, numOver } from "../../../../../utils/index";
-import {
-  SCENE_MINE,
-  SCENE_COLLECT,
-  SCENE_LIKE
-} from "../../../../../utils/emuns/mediaScene";
 import NoteService from "./utils/noteService";
 
 const noteService = new NoteService();
@@ -15,11 +10,10 @@ Page({
   data: {
     statusBarHeight,
     noteInfo: {},
-    noteList: [],
+    commentList: [],
     finished: false,
     curNoteIdx: 0,
     curPositonIdx: 0,
-    commentPopupVisible: false,
     inputPopupVisible: false,
     featurePopupVisible: false,
     posterInfo: null,
@@ -42,8 +36,6 @@ Page({
     const decodedSceneList = scene ? decodeURIComponent(scene).split("-") : [];
     this.noteId = +id || decodedSceneList[0];
     this.superiorId = +superiorId || decodedSceneList[1];
-    this.authorId = authorId ? +authorId : 0;
-    this.mediaScene = mediaScene ? +mediaScene : 0;
 
     getApp().onLaunched(async () => {
       if (this.superiorId && !store.promoterInfo) {
@@ -54,7 +46,7 @@ Page({
     });
 
     this.setNoteInfo();
-    // this.setNoteList(true);
+    this.setCommentList(true);
 
     wx.showShareMenu({
       withShareTicket: true,
@@ -63,12 +55,12 @@ Page({
   },
 
   onPullDownRefresh() {
-    // this.setNoteList(true);
+    this.setCommentList(true);
     wx.stopPullDownRefresh();
   },
 
   onReachBottom() {
-    // this.setNoteList(false);
+    this.setCommentList();
   },
 
   async setNoteInfo() {
@@ -76,90 +68,41 @@ Page({
     this.setData({ noteInfo });
   },
 
-  async setNoteList(init) {
+  async setCommentList(init = false) {
     if (init) {
-      this.page = 0;
       this.setData({ finished: false });
+      this.page = 0;
     }
-    if (!this.data.finished) {
-      let res;
-      switch (this.mediaScene) {
-        case SCENE_MINE:
-          res = await noteService.getUserNoteList({
-            id: this.noteId,
-            page: ++this.page,
-            withComments: 1
-          });
-          break;
 
-        case SCENE_COLLECT:
-          res = await noteService.getUserCollectNoteList(
-            this.noteId,
-            ++this.page
-          );
-          break;
+    const { commentList } = this.data;
 
-        case SCENE_LIKE:
-          res = await noteService.getUserLikeNoteList(this.noteId, ++this.page);
-          break;
+    const list = (
+      await noteService.getNoteCommentList(this.noteId, ++this.page)
+    ).map(item => ({
+      ...item,
+      replies: [],
+      repliesVisible: false
+    }));
 
-        default:
-          res = await noteService.getNoteList({
-            id: this.noteId,
-            authorId: this.authorId,
-            withComments: 1,
-            page: ++this.page
-          });
-          break;
-      }
-      this.setData({
-        noteList: init ? res.list : [...this.data.noteList, ...res.list]
-      });
-      if (!res.list.length) {
-        this.setData({ finished: true });
-      }
+    this.setData({
+      commentList: init ? list : [...commentList, ...list]
+    });
+
+    if (!list.length) {
+      this.setData({ finished: true });
     }
-  },
-
-  showCommentPopup() {
-    this.setData({
-      commentPopupVisible: true
-    });
-  },
-
-  hideCommentPopup() {
-    this.setData({
-      commentPopupVisible: false
-    });
   },
 
   updateComments(e) {
-    const { commentsNumber, curMediaIdx, comment } = e.detail;
     this.setData({
-      [`noteList[${curMediaIdx}].commentsNumber`]: commentsNumber
+      ["noteInfo.commentsNumber"]: e.detail.commentsNumber
     });
-    if (comment) {
-      this.setData({
-        [`noteList[${curMediaIdx}].comments`]: [
-          { nickname: comment.userInfo.nickname, content: comment.content },
-          ...this.data.noteList[curMediaIdx].comments
-        ]
-      });
-    }
   },
 
   deleteComment(e) {
-    const { commentsNumber, curMediaIdx, commentIdx } = e.detail;
-    const { comments } = this.data.noteList[curMediaIdx];
     this.setData({
-      [`noteList[${curMediaIdx}].commentsNumber`]: commentsNumber
+      [`noteInfo.commentsNumber`]: e.detail.commentsNumber
     });
-    if (commentIdx !== -1) {
-      comments.splice(commentIdx, 1);
-      this.setData({
-        [`noteList[${curMediaIdx}].comments`]: comments
-      });
-    }
   },
 
   showInputModal() {
@@ -170,43 +113,10 @@ Page({
 
   finishComment(e) {
     const { noteList, curNoteIdx } = this.data;
-    let { commentsNumber, comments } = noteList[curNoteIdx];
+    const { commentsNumber } = noteList[curNoteIdx];
     this.setData({
-      [`noteList[${curNoteIdx}].commentsNumber`]: ++commentsNumber,
-      [`noteList[${curNoteIdx}].comments`]: [
-        { nickname: e.detail.userInfo.nickname, content: e.detail.content },
-        ...comments
-      ],
+      ["noteInfo.commentsNumber"]: commentsNumber + 1,
       inputPopupVisible: false
-    });
-  },
-
-  share(e) {
-    checkLogin(async () => {
-      const { curNoteIdx } = e.detail;
-      const { noteList } = this.data;
-      const { id, imageList, title, content, authorInfo, likeNumber } =
-        noteList[curNoteIdx];
-      const scene = store.promoterInfo
-        ? `${id}-${store.promoterInfo.id}`
-        : `${id}`;
-      const page = "pages/subpages/home/media/note/index";
-
-      noteService.shareTourismNote(id, scene, page, res => {
-        const { qrcode, shareTimes } = res.data;
-        this.setData({
-          posterModalVisible: true,
-          posterInfo: {
-            cover: imageList[0],
-            title,
-            content,
-            authorInfo,
-            likeNumber: numOver(likeNumber, 100000),
-            qrcode
-          },
-          [`noteList[${curNoteIdx}].shareTimes`]: shareTimes
-        });
-      });
     });
   },
 
@@ -214,33 +124,29 @@ Page({
     const { id } = this.data.noteInfo.authorInfo;
     noteService.followAuthor(id, () => {
       this.setData({
-        ['noteInfo.isFollow']: true
-      })
-    });
-  },
-
-  like(e) {
-    const { curNoteIdx } = e.detail;
-    let { id, isLike, likeNumber } = this.data.noteList[curNoteIdx];
-    noteService.toggleTourismNoteLikeStatus(id, () => {
-      this.setData({
-        [`noteList[${curNoteIdx}].isLike`]: !isLike,
-        [`noteList[${curNoteIdx}].likeNumber`]: isLike
-          ? --likeNumber
-          : ++likeNumber
+        ["noteInfo.isFollow"]: true
       });
     });
   },
 
-  collect(e) {
-    const { curNoteIdx } = e.detail;
-    let { id, isCollected, collectionTimes } = this.data.noteList[curNoteIdx];
+  like() {
+    const { id, isLike, likeNumber } = this.data.noteInfo;
+    noteService.toggleTourismNoteLikeStatus(id, () => {
+      this.setData({
+        [`noteInfo.isLike`]: !isLike,
+        [`noteInfo.likeNumber`]: isLike ? likeNumber - 1 : likeNumber + 1
+      });
+    });
+  },
+
+  collect() {
+    const { id, isCollected, collectionTimes } = this.data.noteInfo;
     noteService.toggleTourismNoteCollectStatus(id, () => {
       this.setData({
-        [`noteList[${curNoteIdx}].isCollected`]: !isCollected,
-        [`noteList[${curNoteIdx}].collectionTimes`]: isCollected
-          ? --collectionTimes
-          : ++collectionTimes
+        [`noteInfo.isCollected`]: !isCollected,
+        [`noteInfo.collectionTimes`]: isCollected
+          ? collectionTimes - 1
+          : collectionTimes + 1
       });
     });
   },
@@ -274,7 +180,7 @@ Page({
     });
   },
 
-    hideModal() {
+  hideModal() {
     const { inputPopupVisible, posterModalVisible } = this.data;
     if (inputPopupVisible) {
       this.setData({
@@ -288,8 +194,31 @@ Page({
     }
   },
 
-  onUnload() {
-    this.storeBindings.destroyStoreBindings();
+  share() {
+    checkLogin(async () => {
+      const { id, imageList, title, content, authorInfo, likeNumber } =
+        this.data.noteInfo;
+      const scene = store.promoterInfo
+        ? `${id}-${store.promoterInfo.id}`
+        : `${id}`;
+      const page = "pages/subpages/home/media/note/index";
+
+      noteService.shareTourismNote(id, scene, page, res => {
+        const { qrcode, shareTimes } = res.data;
+        this.setData({
+          posterModalVisible: true,
+          posterInfo: {
+            cover: imageList[0],
+            title,
+            content,
+            authorInfo,
+            likeNumber: numOver(likeNumber, 100000),
+            qrcode
+          },
+          [`noteInfo.shareTimes`]: shareTimes
+        });
+      });
+    });
   },
 
   onShareAppMessage() {
@@ -308,5 +237,9 @@ Page({
       ? `id=${id}&superiorId=${promoterInfo.id}`
       : `id=${id}`;
     return { query, title, imageUrl };
+  },
+
+  onUnload() {
+    this.storeBindings.destroyStoreBindings();
   }
 });
