@@ -1,29 +1,27 @@
-<view class="comment-list">
   <comment-item
-    wx:for="{{commentList}}"
-    wx:key="index"
-    item="{{item}}"
+  wx:for="{{commentList}}"
+  wx:key="index"
+  item="{{item}}"
+  index="{{index}}"
+  authorId="{{authorId}}"
+  bind:reply="reply"
+  bind:delete="delete"
+>
+  <comment-item
+    wx:if="{{item.repliesVisible}}"
+    wx:for="{{item.replies}}"
+    wx:key="replyIndex" 
+    wx:for-index="replyIndex"
+    wx:for-item="reply"
+    item="{{reply}}"
     index="{{index}}"
+    replyIndex="{{replyIndex}}"
     authorId="{{authorId}}"
-    bind:reply="reply"
+    isReply
     bind:delete="delete"
-  >
-    <comment-item
-      wx:if="{{item.repliesVisible}}"
-      wx:for="{{item.replies}}"
-      wx:key="replyIndex" 
-      wx:for-index="replyIndex"
-      wx:for-item="reply"
-      item="{{reply}}"
-      index="{{index}}"
-      replyIndex="{{replyIndex}}"
-      authorId="{{authorId}}"
-      isReply
-      bind:delete="delete"
-    />
-    <view class="replies-btn row" wx:if="{{item.repliesCount}}" bindtap="toggleRepliesVisible" data-index="{{index}}">
-      <text>{{(item.repliesCount > item.replies.length || !item.repliesVisible) ? ('展开' + (!item.repliesVisible ? item.repliesCount : (item.repliesCount - item.replies.length)) + '条回复') : '收起'}} </text>
-      <image class="arrow-icon" src="{{(item.repliesCount > item.replies.length || !item.repliesVisible) ? './images/down-arrow.png' : './images/up-arrow.png'}}" />
-    </view>
-  </comment-item>
-</view>
+  />
+  <view class="replies-btn row" wx:if="{{item.repliesCount}}" bindtap="toggleRepliesVisible" data-index="{{index}}">
+    <text>{{(item.repliesCount > item.replies.length || !item.repliesVisible) ? ('展开' + (!item.repliesVisible ? item.repliesCount : (item.repliesCount - item.replies.length)) + '条回复') : '收起'}} </text>
+    <image class="arrow-icon" src="{{(item.repliesCount > item.replies.length || !item.repliesVisible) ? './images/down-arrow.png' : './images/up-arrow.png'}}" />
+  </view>
+</comment-item>

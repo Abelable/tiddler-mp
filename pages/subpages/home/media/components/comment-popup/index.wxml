@@ -8,8 +8,6 @@
       <image class="close-icon" catchtap="hide" src="./images/close-icon.png" />
     </view>
 
-    <!-- <view class="empty-tips" wx:if="{{!total}}">——暂无评论，来抢沙发——</view> -->
-
     <empty-illus 
       wx:if="{{!total}}" 
       desc="还没有评论哦" 
