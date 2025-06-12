@@ -6,14 +6,17 @@
   background: #fff;
   z-index: 100;
 }
-
-.author-info-wrap {
+.header-main {
   padding-left: 8px;
   height: 44px;
   width: 540rpx;
 }
-.author-avatar {
+
+.author-info-wrap {
   margin-left: 10px;
+  flex: 1;
+}
+.author-avatar {
   width: 34px;
   height: 34px;
   border-radius: 50%;
@@ -117,7 +120,7 @@
   font-weight: bold;
 }
 .comment-btn {
-  margin-top: 24rpx;
+  margin: 24rpx 0 80rpx;
   width: 140rpx;
   height: 56rpx;
   color: #fff;

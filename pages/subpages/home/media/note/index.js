@@ -9,7 +9,7 @@ const { statusBarHeight } = getApp().globalData.systemInfo;
 Page({
   data: {
     statusBarHeight,
-    noteInfo: {},
+    noteInfo: null,
     commentList: [],
     finished: false,
     curNoteIdx: 0,

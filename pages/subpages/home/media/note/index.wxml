@@ -2,20 +2,21 @@
 <wxs module="NUM" src="/utils/filters/num.wxs" />
 
 <view class="header" style="padding-top: {{statusBarHeight}}px;">
-  <view class="author-info-wrap row" bindtap="navToAuthorCenter">
+  <view class="header-main row">
     <back-icon />
-    <image class="author-avatar avatar-default" src="{{noteInfo.authorInfo.avatar}}" lazy-load />
-    <view class="name-wrap">
-      <view class="author-name omit single">{{noteInfo.authorInfo.nickname}}</view>
-      <view class="time">{{TIME.timeDiff(noteInfo.createdAt)}}</view>
+    <view class="author-info-wrap row" wx:if="{{noteInfo}}" bindtap="navToAuthorCenter">
+      <image class="author-avatar avatar-default" src="{{noteInfo.authorInfo.avatar}}" lazy-load />
+      <view class="name-wrap">
+        <view class="author-name omit single">{{noteInfo.authorInfo.nickname}}</view>
+        <view class="time">{{TIME.timeDiff(noteInfo.createdAt)}}</view>
+      </view>
+      <view class="follow-btn" wx:if="{{!noteInfo.isFollow}}" catchtap="follow">关注</view>
+      <image class="more-icon" wx:if="{{userInfo.id === noteInfo.authorInfo.id}}" catchtap="showFeaturePopup" src="/images/media-item/more.png" />
     </view>
-    <view class="follow-btn" wx:if="{{!noteInfo.isFollow}}" catchtap="follow">关注</view>
-    <image class="more-icon" wx:if="{{userInfo.id === noteInfo.authorInfo.id}}" catchtap="showFeaturePopup" src="/images/media-item/more.png" />
   </view>
 </view>
 
-
-<view class="container" style="padding-top: {{statusBarHeight + 44}}px;">
+<view class="container" wx:if="{{noteInfo}}" style="padding-top: {{statusBarHeight + 44}}px;">
   <swiper 
     class="note-imgs small-dots" 
     indicator-dots="{{noteInfo.imageList.length > 1}}"
