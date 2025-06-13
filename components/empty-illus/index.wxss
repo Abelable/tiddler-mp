@@ -8,6 +8,6 @@
   text-align: center;
 }
 .illus {
-  width: 240rpx;
-  height: 240rpx;
+  width: 218rpx;
+  height: 218rpx;
 }

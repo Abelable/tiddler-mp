@@ -416,7 +416,7 @@
 }
 
 .merchant-btn {
-  margin-top: 24rpx;
+  margin: 24rpx 0;
   width: 160rpx;
   height: 58rpx;
   color: var(--gold-1);
@@ -427,7 +427,7 @@
 }
 
 .qa-btn {
-  margin-top: 24rpx;
+  margin: 24rpx 0;
   width: 140rpx;
   height: 56rpx;
   color: #fff;
