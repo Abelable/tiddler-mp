@@ -38,7 +38,7 @@ Component({
           if (media) {
             const { leftHeight, rightHeight } =
               await this.getListWrapperHeight();
-            if (leftHeight < rightHeight) {
+            if (leftHeight <= rightHeight) {
               this.setData({
                 [`leftList[${this.data.leftList.length}]`]: media
               });

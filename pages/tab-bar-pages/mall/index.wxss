@@ -90,17 +90,18 @@ page {
 .category-list {
   display: flex;
   justify-content: space-around;
-  padding: 20rpx 0 10rpx;
+  padding: 26rpx 0 10rpx;
 }
 .category-item {
   font-size: 0;
   text-align: center;
 }
 .category-icon {
-  width: 68rpx;
-  height: 68rpx;
+  width: 60rpx;
+  height: 60rpx;
 }
 .category-desc {
+  margin-top: 4rpx;
   color: #999;
   font-size: 20rpx;
 }
