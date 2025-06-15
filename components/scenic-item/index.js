@@ -9,7 +9,8 @@ Component({
       observer({ featureTagList = [] }) {
         this.setData({ featureTagList: featureTagList.slice(0, 2) });
       }
-    }
+    },
+    showTag: Boolean
   },
 
   data: {

@@ -1,0 +1,50 @@
+<view class="menu-wrap">
+  <view 
+    class="menu-item {{curMenuIdx === index ? 'selected' : ''}} row center" 
+    wx:for="{{menuList}}" wx:key="index" 
+    bindtap="selectMenu" data-index="{{index}}"
+  >
+    {{item}}
+  </view>
+</view>
+
+<view class="container">
+  <block wx:if="{{curMenuIdx === 0}}">
+    <fall-flow class="fall-flow" list="{{mediaList}}" generic:item="media-item" />
+    <view class="no-more-tips" wx:if="{{!isLoading && finished && mediaList.length}}">～到底啦～</view>
+    <empty-illus wx:if="{{finished && !mediaList.length}}" desc="暂无历史记录" height="1200rpx" />
+  </block>
+
+  <block wx:if="{{curMenuIdx === 1}}">
+    <fall-flow class="fall-flow" list="{{productLists[0].list}}" generic:item="scenic-item" />
+    <view class="no-more-tips" wx:if="{{!isLoading && productLists[0].finished && productLists[0].list.length}}">～到底啦～</view>
+    <empty-illus wx:if="{{productLists[0].finished && !productLists[0].list.length}}" desc="暂无历史记录" height="1200rpx" />
+  </block>
+
+  <block wx:if="{{curMenuIdx === 2}}">
+    <fall-flow class="fall-flow" list="{{productLists[1].list}}" generic:item="hotel-item" />
+    <view class="no-more-tips" wx:if="{{!isLoading && productLists[1].finished && productLists[1].list.length}}">～到底啦～</view>
+    <empty-illus wx:if="{{productLists[1].finished && !productLists[1].list.length}}" desc="暂无历史记录" height="1200rpx" />
+  </block>
+
+  <block wx:if="{{curMenuIdx === 3}}">
+    <fall-flow class="fall-flow" list="{{productLists[2].list}}" generic:item="restaurant-item" />
+    <view class="no-more-tips" wx:if="{{!isLoading && productLists[2].finished && productLists[2].list.length}}">～到底啦～</view>
+    <empty-illus wx:if="{{productLists[2].finished && !productLists[2].list.length}}" desc="暂无历史记录" height="1200rpx" />
+  </block>
+
+  <block wx:if="{{curMenuIdx === 4}}">
+    <fall-flow class="fall-flow" list="{{productLists[3].list}}" generic:item="goods-item" />
+    <view class="no-more-tips" wx:if="{{!isLoading && productLists[3].finished && productLists[3].list.length}}">～到底啦～</view>
+    <empty-illus wx:if="{{productLists[3].finished && !productLists[3].list.length}}" desc="暂无历史记录" height="1200rpx" />
+  </block>
+
+
+  <view 
+    class="loading row center" 
+    wx:if="{{(mediaList.length || productLists[curMenuIdx - 1].list.length) && isLoading}}"
+  >
+    <image class="loading-icon" src="https://static.tiddler.cn/mp/loading.gif" />
+    <text>加载中...</text>
+  </view>
+</view>

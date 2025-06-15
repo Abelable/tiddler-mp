@@ -9,7 +9,8 @@ Component({
       observer({ facilityList = [] }) {
         this.setData({ facilityList: facilityList.slice(0, 2) });
       }
-    }
+    },
+    showTag: Boolean
   },
 
   data: {

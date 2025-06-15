@@ -1,5 +1,5 @@
 <view class="goods-item {{visible ? 'show' : ''}}" bindtap="navToGoodsDetail">
-  <view class="cover-wrap {{showTag ? 'show-tag' : ''}} {{item.isGift ? 'gift' : ''}}">
+  <view class="cover-wrap {{item.isGift ? 'gift' : ''}}">
     <view class="gift-bar" wx:if="{{item.isGift}}">
       <image class="bar-title" src="https://static.tiddler.cn/mp/gift/bar_title.png" />
       <view class="bar-content row center">
