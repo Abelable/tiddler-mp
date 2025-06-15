@@ -7,6 +7,9 @@ import {
   TYPE_OF_RESTAURANT,
   TYPE_OF_SCENIC
 } from "../../../../../../../utils/emuns/productType";
+import VideoService from "../../utils/videoService";
+
+const videoService = new VideoService();
 
 Component({
   options: {
@@ -37,6 +40,10 @@ Component({
       if (index === curIdx) {
         this.player = wx.createVideoContext("video-player", this);
         this.player.play();
+
+        checkLogin(() => {
+          videoService.createViewHistory(this.properties.item.id);
+        });
       } else if (this.player) {
         this.player.pause();
       }
