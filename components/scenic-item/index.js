@@ -24,8 +24,11 @@ Component({
       const coverHeight = 350 / width * height;
       this.setData({
         [`item.coverHeight`]:
-          coverHeight > 480 ? 480 : coverHeight < 260 ? 260 : coverHeight
+          coverHeight > 480 ? 480 : coverHeight < 300 ? 300 : coverHeight
       });
+    },
+
+    onVisible() {
       this.setData({ visible: true });
     },
 

@@ -1,5 +1,27 @@
-<view class="goods-item {{visible ? 'show' : ''}}" bindtap="navToGoodsDetail">
+<view class="goods-item {{item.coverHeight ? 'show' : ''}}" bindtap="navToGoodsDetail">
   <view class="cover-wrap {{item.isGift ? 'gift' : ''}}">
+    <image 
+      class="final-cover {{visible ? 'show' : ''}}" 
+      style="height: {{item.coverHeight}}rpx;" 
+      src="{{item.cover}}?x-oss-process=image/resize,w_500" 
+      bindload="onVisible" 
+      mode="aspectFill" 
+    />
+    <image 
+      class="cover" 
+      style="height: {{item.coverHeight}}rpx;" 
+      wx:if="{{item.coverHeight}}" 
+      src="{{item.cover}}?x-oss-process=image/resize,w_10" 
+      mode="aspectFill" 
+    />
+    <image 
+      class="cover" 
+      wx:if="{{!item.coverHeight}}" 
+      src="{{item.cover}}?x-oss-process=image/resize,w_10" 
+      bindload="onCoverLoaded" 
+      mode="widthFix" 
+    />
+    <view class="type-label row" wx:if="{{showTag}}">商品</view>
     <view class="gift-bar" wx:if="{{item.isGift}}">
       <image class="bar-title" src="https://static.tiddler.cn/mp/gift/bar_title.png" />
       <view class="bar-content row center">
@@ -7,9 +29,6 @@
         <view class="bar-duration row">代言家乡100天</view>
       </view>
     </view>
-    <image class="cover" style="height: {{item.coverHeight}}rpx;" wx:if="{{item.coverHeight}}" src="{{item.cover}}?x-oss-process=image/resize,w_450" mode="aspectFill" />
-    <image class="cover" wx:if="{{!item.coverHeight}}" src="{{item.cover}}?x-oss-process=image/resize,w_450" bindload="onCoverLoaded" mode="widthFix" />
-    <view class="type-label row" wx:if="{{showTag}}">商品</view>
   </view>
   <view class="content">
     <view class="goods-name omit">

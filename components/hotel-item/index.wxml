@@ -1,7 +1,26 @@
-<view class="hotel-item {{visible ? 'show' : ''}}" bindtap="checkDetail">
+<view class="hotel-item {{item.coverHeight ? 'show' : ''}}" bindtap="checkDetail">
   <view class="cover-wrap">
-    <image class="cover" style="height: {{item.coverHeight}}rpx;" wx:if="{{item.coverHeight}}" src="{{item.cover}}?x-oss-process=image/resize,w_450" mode="aspectFill" />
-    <image class="cover" wx:if="{{!item.coverHeight}}" src="{{item.cover}}?x-oss-process=image/resize,w_450" bindload="onCoverLoaded" mode="widthFix" />
+    <image 
+      class="final-cover {{visible ? 'show' : ''}}" 
+      style="height: {{item.coverHeight}}rpx;" 
+      src="{{item.cover}}?x-oss-process=image/resize,w_500" 
+      bindload="onVisible" 
+      mode="aspectFill" 
+    />
+    <image 
+      class="cover" 
+      style="height: {{item.coverHeight}}rpx;" 
+      wx:if="{{item.coverHeight}}" 
+      src="{{item.cover}}?x-oss-process=image/resize,w_10" 
+      mode="aspectFill" 
+    />
+    <image 
+      class="cover" 
+      wx:if="{{!item.coverHeight}}" 
+      src="{{item.cover}}?x-oss-process=image/resize,w_10" 
+      bindload="onCoverLoaded" 
+      mode="widthFix" 
+    />
     <view class="type-label row" wx:if="{{showTag}}">酒店</view>
     <view class="address-info">
       <image class="address-icon" src="/images/address.png" />
