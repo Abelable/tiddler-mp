@@ -93,7 +93,7 @@
             <view class="category-name">{{item.name}}</view>
           </view>
         </view>
-        <top-media wx:if="{{topMediaList.length}}" topMediaList="{{topMediaList}}" />
+        <top-media />
         <fall-flow class="fall-flow" list="{{mediaList}}" generic:item="media-item" />
         <view class="loading row center" wx:if="{{mediaList.length && isLoading}}">
           <image class="loading-icon" src="https://static.tiddler.cn/mp/loading.gif" />

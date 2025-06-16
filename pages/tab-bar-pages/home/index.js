@@ -35,7 +35,6 @@ Component({
     followMediaList: [],
     isFollowRefreshing: false,
     followFinished: false,
-    topMediaList: [],
     mediaList: [],
     isRefreshing: false,
     isLoading: false,
@@ -214,8 +213,7 @@ Component({
         (await homeService.getMediaList(++this.page)) || {};
       if (init) {
         this.setData({
-          topMediaList: list.slice(0, 6),
-          mediaList: list.slice(6),
+          mediaList: list,
           isLoading: false,
           isRefreshing: false
         });

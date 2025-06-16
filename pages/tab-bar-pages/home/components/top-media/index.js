@@ -1,45 +1,11 @@
-const dayjs = require("dayjs");
+import dayjs from "dayjs";
+import HomeService from "../../utils/homeService";
+
+const homeService = new HomeService();
 
 Component({
   options: {
     addGlobalClass: true
-  },
-
-  properties: {
-    topMediaList: {
-      type: Array,
-      observer(list) {
-        const monthDescList = [
-          "JAN",
-          "FEB",
-          "MAR",
-          "APR",
-          "MAY",
-          "JUN",
-          "JUL",
-          "AUG",
-          "SEP",
-          "OCT",
-          "NOV",
-          "DEC"
-        ];
-        const mediaList = list.map((item, index) => {
-          const time = dayjs().subtract(index, "day");
-          const year = time.year();
-          const monthIdx = time.month();
-          const date = `${time.date()}`.padStart(2, "0");
-          return {
-            ...item,
-            cover: item.type === 3 ? item.imageList[0] : item.cover,
-            year,
-            month: monthDescList[monthIdx],
-            date
-          };
-        });
-
-        this.setData({ mediaList });
-      }
-    }
   },
 
   data: {
@@ -48,16 +14,53 @@ Component({
     autoplay: true
   },
 
+  lifetimes: {
+    attached() {
+      this.setMediaList();
+    }
+  },
+
   pageLifetimes: {
     show() {
-      this.setData({ autoplay: true })
+      this.setData({ autoplay: true });
     },
     hide() {
-      this.setData({ autoplay: false })
+      this.setData({ autoplay: false });
     }
   },
 
   methods: {
+    async setMediaList() {
+      const { list = [] } = await homeService.getTopMediaList(1, 6);
+      const monthDescList = [
+        "JAN",
+        "FEB",
+        "MAR",
+        "APR",
+        "MAY",
+        "JUN",
+        "JUL",
+        "AUG",
+        "SEP",
+        "OCT",
+        "NOV",
+        "DEC"
+      ];
+      const mediaList = list.map((item, index) => {
+        const time = dayjs().subtract(index, "day");
+        const year = time.year();
+        const monthIdx = time.month();
+        const date = `${time.date()}`.padStart(2, "0");
+        return {
+          ...item,
+          year,
+          month: monthDescList[monthIdx],
+          date
+        };
+      });
+      this.setData({ mediaList });
+    },
+
     swiperChange(e) {
       const curMediaIdx = e.detail.current;
       this.setData({ curMediaIdx });
