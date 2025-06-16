@@ -1,9 +1,28 @@
 <wxs module="NUM" src="/utils/filters/num.wxs" />
 
-<view class="note-item {{visible ? 'show' : ''}}" bindtap="navToNoteDetail">
+<view class="note-item {{item.coverHeight ? 'show' : ''}}" bindtap="navToNoteDetail">
   <view class="cover-wrap">
-    <image class="cover" style="height: {{item.coverHeight}}rpx;" wx:if="{{item.coverHeight}}" src="{{item.imageList[0]}}?x-oss-process=image/resize,w_450" mode="aspectFill" />
-    <image class="cover" wx:if="{{!item.coverHeight}}" src="{{item.imageList[0]}}?x-oss-process=image/resize,w_450" bindload="onCoverLoaded" mode="widthFix" />
+    <image 
+      class="final-cover {{visible ? 'show' : ''}}" 
+      style="height: {{item.coverHeight}}rpx;"
+      src="{{item.imageList[0]}}?x-oss-process=image/resize,w_500" 
+      bindload="onVisible" 
+      mode="aspectFill" 
+    />
+    <image 
+      class="cover" 
+      style="height: {{item.coverHeight}}rpx;" 
+      wx:if="{{item.coverHeight}}" 
+      src="{{item.imageList[0]}}?x-oss-process=image/resize,w_10" 
+      mode="aspectFill" 
+    />
+    <image 
+      class="cover" 
+      wx:if="{{!item.coverHeight}}" 
+      src="{{item.imageList[0]}}?x-oss-process=image/resize,w_10" 
+      bindload="onCoverLoaded" 
+      mode="widthFix" 
+    />
     <view class="private-tag row" wx:if="{{item.isPrivate}}">
       <image class="private-icon" src="/images/private-icon.png" />
       <text>私密</text>

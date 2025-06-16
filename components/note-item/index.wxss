@@ -17,6 +17,17 @@
 .cover {
   width: 350rpx;
 }
+.final-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+}
+.final-cover.show {
+  opacity: 1;
+  transition: opacity .5s ease;
+}
 
 .private-tag {
   position: absolute;

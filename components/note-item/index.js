@@ -1,5 +1,3 @@
-import { SCENE_AUTHOR } from "../../utils/emuns/mediaScene";
-
 Component({
   options: {
     addGlobalClass: true
@@ -25,6 +23,9 @@ Component({
         [`item.coverHeight`]:
           coverHeight > 480 ? 480 : coverHeight < 300 ? 300 : coverHeight
       });
+    },
+
+    onVisible() {
       this.setData({ visible: true });
     },
 

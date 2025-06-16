@@ -26,6 +26,9 @@ Component({
         [`item.coverHeight`]:
           coverHeight > 480 ? 480 : coverHeight < 260 ? 260 : coverHeight
       });
+    },
+
+    onVisible() {
       this.setData({ visible: true });
     },
 
