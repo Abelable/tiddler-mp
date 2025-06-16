@@ -21,7 +21,7 @@
       <view class="video-symbol" wx:if="{{item.type === 2}}">
         <image class="play-icon" src="/images/play.png" />
       </view>
-      <view class="top-media-info">
+      <view class="top-media-info row">
         <view class="top-media-title omit single">{{item.title}}</view>
         <view class="author-info-wrap">
           <image class="author-avatar avatar-default" src="{{item.authorInfo.avatar}}" />
