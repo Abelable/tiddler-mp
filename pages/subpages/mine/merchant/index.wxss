@@ -133,6 +133,9 @@
 .tool-list {
   flex-wrap: wrap;
 }
+.tool-list.around {
+  flex-wrap: nowrap;
+}
 .tool-item {
   margin-bottom: 32rpx;
   width: 25%;

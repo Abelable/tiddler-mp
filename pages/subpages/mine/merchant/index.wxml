@@ -237,18 +237,18 @@
         <image class="check-btn-arrow" src="https://static.tiddler.cn/mp/merchant/arrow.png" />
       </view>
     </view>
-    <view class="tool-list row around">
-      <view class="tool-item">
-        <image class="tool-icon" src="https://static.tiddler.cn/mp/merchant/pay.png" />
-        <view class="tool-name">待付款</view>
-      </view>
+    <view class="tool-list row">
       <view class="tool-item">
         <image class="tool-icon" src="https://static.tiddler.cn/mp/merchant/package.png" />
         <view class="tool-name">待发货</view>
       </view>
       <view class="tool-item">
         <image class="tool-icon" src="https://static.tiddler.cn/mp/merchant/delivery.png" />
-        <view class="tool-name">待收货/使用</view>
+        <view class="tool-name">待收货</view>
+      </view>
+       <view class="tool-item">
+        <image class="tool-icon" src="https://static.tiddler.cn/mp/merchant/time.png" />
+        <view class="tool-name">待使用</view>
       </view>
       <view class="tool-item" bindtap="checkAfterSale">
         <image class="tool-icon" src="https://static.tiddler.cn/mp/merchant/after_sale.png" />
@@ -259,14 +259,6 @@
   <view class="tool-card" wx:if="{{titleMenu[curTitleIdx].value === 4}}">
     <view class="tool-card-title">常用工具</view>
     <view class="tool-list row">
-      <view class="tool-item" bindtap="manageShopInfo">
-        <image class="tool-icon" src="https://static.tiddler.cn/mp/merchant/shop.png" />
-        <view class="tool-name">店铺管理</view>
-      </view>
-      <view class="tool-item" bindtap="manageStaff">
-        <image class="tool-icon" src="https://static.tiddler.cn/mp/merchant/manager.png" />
-        <view class="tool-name">人员管理</view>
-      </view>
       <view class="tool-item" bindtap="manageGoods">
         <image class="tool-icon" src="https://static.tiddler.cn/mp/merchant/goods.png" />
         <view class="tool-name">商品管理</view>
@@ -283,9 +275,17 @@
         <image class="tool-icon" src="https://static.tiddler.cn/mp/merchant/address.png" />
         <view class="tool-name">提货地址</view>
       </view>
+      <view class="tool-item" bindtap="manageShopInfo">
+        <image class="tool-icon" src="https://static.tiddler.cn/mp/merchant/shop.png" />
+        <view class="tool-name">店铺管理</view>
+      </view>
       <view class="tool-item" bindtap="manageDeposit">
         <image class="tool-icon" src="https://static.tiddler.cn/mp/merchant/bond.png" />
         <view class="tool-name">保证金</view>
+      </view>
+      <view class="tool-item" bindtap="manageStaff">
+        <image class="tool-icon" src="https://static.tiddler.cn/mp/merchant/manager.png" />
+        <view class="tool-name">人员管理</view>
       </view>
     </view>
   </view>
