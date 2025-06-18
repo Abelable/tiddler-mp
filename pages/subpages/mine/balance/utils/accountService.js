@@ -7,9 +7,9 @@ class AccountService extends BaseService {
     })
   }
 
-  async getTransactionRecordList(accountId, page, limit = 10) {
+  async getAccountChangeLogList(accountId, page, limit = 10) {
     const { list = [] } = await this.get({
-      url: `${this.baseUrl}/account/transaction_record_list`,
+      url: `${this.baseUrl}/account/change_log_list`,
       data: { accountId, page, limit },
       loadingTitle: "加载中..."
     });

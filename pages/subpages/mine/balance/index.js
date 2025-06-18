@@ -8,7 +8,7 @@ Page({
     statusBarHeight,
     integerPart: "",
     floatPart: "",
-    recordList: [],
+    logList: [],
     finished: false
   },
 
@@ -29,12 +29,12 @@ Page({
       this.page = 0;
       this.setData({ finished: false });
     }
-    const { recordList } = this.data;
-    const list = await accountService.getTransactionRecordList(
+    const { logList } = this.data;
+    const list = await accountService.getAccountChangeLogList(
       this.accountId,
       ++this.page
     );
-    this.setData({ recordList: init ? list : [...recordList, ...list] });
+    this.setData({ logList: init ? list : [...logList, ...list] });
     if (list.length < 10) {
       this.setData({ finished: true });
     }
