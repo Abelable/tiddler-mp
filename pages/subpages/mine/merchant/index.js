@@ -1,12 +1,17 @@
-import { WEBVIEW_BASE_URL } from "../../../../config";
 import { store } from "../../../../store/index";
+import { WEBVIEW_BASE_URL } from "../../../../config";
+import MerchantService from "./utils/merchantService";
+
+const merchantService = new MerchantService();
+
 const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Page({
   data: {
     statusBarHeight,
     titleMenu: [],
-    curTitleIdx: 0
+    curTitleIdx: 0,
+    shopInfo: {}
   },
 
   onLoad() {
@@ -34,6 +39,8 @@ Page({
     }
     if (merchantId) {
       titleMenu.push({ name: "电商管理", type: "goods", value: 4 });
+
+      this.setShopInfo();
     }
 
     const curTitleIdx = merchantType
@@ -41,6 +48,11 @@ Page({
       : 0;
 
     this.setData({ titleMenu, curTitleIdx });
+  },
+
+  async setShopInfo() {
+    const shopInfo = await merchantService.getShopInfo();
+    this.setData({ shopInfo });
   },
 
   selectTitle(e) {
@@ -140,8 +152,8 @@ Page({
     }
   },
 
-  manageBond() {
-    const { titleMenu, curTitleIdx } = this.data;
+  manageDeposit() {
+    const { titleMenu, curTitleIdx, shopInfo } = this.data;
     const merchantType = titleMenu[curTitleIdx].value;
     switch (merchantType) {
       case 1:
@@ -151,7 +163,7 @@ Page({
       case 3:
         break;
       case 4:
-        const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/bond`;
+        const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/deposit&shop_id=${shopInfo.id}`;
         wx.navigateTo({ url });
         break;
     }

@@ -16,16 +16,21 @@
   </view>
 </view>
 
-<view class="change-logs-wrap" style="top: {{statusBarHeight + 180}}px;height: calc(100vh - {{statusBarHeight + 180}}px);">
+<view 
+  class="change-logs-wrap" 
+  style="top: {{statusBarHeight + 180}}px;height: calc(100vh - {{statusBarHeight + 180}}px);"
+>
   <view class="change-log-title">余额变更记录</view>
   <scroll-view class="change-logs" bindscrolltolower="onReachBottom" scroll-y>
     <view class="change-log row" wx:for="{{logList}}" wx:key="index">
       <view class="log-info">
-        <view class="log-title">{{['佣金提现', '消费抵扣', '订单退款'][item.type - 1]}}</view>
+        <view class="log-title">{{['佣金提现', '消费抵扣', '订单退款'][item.changeType - 1]}}</view>
         <view class="log-content" wx:if="{{item.referenceId}}">订单号：{{item.referenceId}}</view>
         <view class="log-time">{{TIME.transform(item.createdAt, 'YYYY-MM-DD hh:mm:ss')}}</view>
       </view>
-      <view class="change-amount {{item.amount > 0 ? 'income' : ''}}">{{item.amount > 0 ? '+' + item.amount : item.amount}}</view>
+      <view class="change-amount {{item.changeAmount > 0 ? 'income' : ''}}">
+        {{item.changeAmount > 0 ? '+' + item.changeAmount : item.changeAmount}}
+      </view>
     </view>
     <empty-illus wx:if="{{finished && !logList.length}}" desc="暂无记录" />
     <view class="no-more-tips" wx:if="{{finished && logList.length}}">～到底啦～</view>

@@ -1,12 +1,6 @@
 import BaseService from '../../../../../../../services/baseService'
 
 class GoodsService extends BaseService {
-  async getShopInfo() {
-    return await this.get({
-      url: `${this.baseUrl}/shop/my_shop_info`
-    })
-  }
-
   async getOrderList({ shopId, status, page, limit = 10 }) {
     const { list = [] } =
       (await this.get({

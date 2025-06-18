@@ -14,7 +14,7 @@ Page({
 
   async onLoad() {
     await this.setAccountInfo();
-    this.setRecordList(true);
+    this.setLogList(true);
   },
 
   async setAccountInfo() {
@@ -24,7 +24,7 @@ Page({
     this.setData({ integerPart: list[0], floatPart: list[1] });
   },
 
-  async setRecordList(init = false) {
+  async setLogList(init = false) {
     if (init) {
       this.page = 0;
       this.setData({ finished: false });
@@ -41,6 +41,6 @@ Page({
   },
 
   onReachBottom() {
-    this.setRecordList();
+    this.setLogList();
   }
 });

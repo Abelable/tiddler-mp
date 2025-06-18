@@ -97,7 +97,7 @@
         <image class="tool-icon" src="https://static.tiddler.cn/mp/merchant/scenic.png" />
         <view class="tool-name">景点管理</view>
       </view>
-      <view class="tool-item" bindtap="manageBond">
+      <view class="tool-item" bindtap="manageDeposit">
         <image class="tool-icon" src="https://static.tiddler.cn/mp/merchant/bond.png" />
         <view class="tool-name">保证金</view>
       </view>
@@ -150,7 +150,7 @@
         <image class="tool-icon" src="https://static.tiddler.cn/mp/merchant/hotel.png" />
         <view class="tool-name">酒店管理</view>
       </view>
-      <view class="tool-item" bindtap="manageBond">
+      <view class="tool-item" bindtap="manageDeposit">
         <image class="tool-icon" src="https://static.tiddler.cn/mp/merchant/bond.png" />
         <view class="tool-name">保证金</view>
       </view>
@@ -222,7 +222,7 @@
         <image class="tool-icon" src="https://static.tiddler.cn/mp/merchant/food.png" />
         <view class="tool-name">套餐管理</view>
       </view>
-      <view class="tool-item" bindtap="manageBond">
+      <view class="tool-item" bindtap="manageDeposit">
         <image class="tool-icon" src="https://static.tiddler.cn/mp/merchant/bond.png" />
         <view class="tool-name">保证金</view>
       </view>
@@ -283,7 +283,7 @@
         <image class="tool-icon" src="https://static.tiddler.cn/mp/merchant/address.png" />
         <view class="tool-name">提货地址</view>
       </view>
-      <view class="tool-item" bindtap="manageBond">
+      <view class="tool-item" bindtap="manageDeposit">
         <image class="tool-icon" src="https://static.tiddler.cn/mp/merchant/bond.png" />
         <view class="tool-name">保证金</view>
       </view>
