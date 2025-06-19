@@ -107,6 +107,6 @@
       </view>
     </view>
   </view>
-  <view class="no-more-tips" wx:if="{{finished && orderList.length}}">～到底啦～</view>
+  <view class="no-more-tips" wx:if="{{finished && orderList.length}}">～没有更多啦～</view>
   <empty-illus wx:if="{{!orderList.length}}" desc="暂无订单记录" height="500rpx" />
 </view>

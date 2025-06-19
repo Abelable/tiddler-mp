@@ -51,14 +51,14 @@
           <view class="content-wrap">
             <fall-flow class="fall-flow-0" list="{{videoList}}" mediaScene="{{2}}" generic:item="video-item" bind:finish="setWrapHeight" />
             <empty-illus wx:if="{{videoFinished && !videoList.length}}" desc="暂无视频游记列表" height="520rpx" />
-            <view class="no-more-tips" wx:if="{{videoFinished && videoList.length}}">～到底啦～</view>
+            <view class="no-more-tips" wx:if="{{videoFinished && videoList.length}}">～没有更多啦～</view>
           </view>
         </swiper-item>
         <swiper-item>
           <view class="content-wrap">
             <fall-flow class="fall-flow-1" list="{{noteList}}" mediaScene="{{2}}" generic:item="note-item" bind:finish="setWrapHeight" />
             <empty-illus wx:if="{{noteFinished && !noteList.length}}" desc="暂无图文游记列表" height="520rpx" />
-            <view class="no-more-tips" wx:if="{{noteFinished && noteList.length}}">～到底啦～</view>
+            <view class="no-more-tips" wx:if="{{noteFinished && noteList.length}}">～没有更多啦～</view>
           </view>
         </swiper-item>
       </swiper>

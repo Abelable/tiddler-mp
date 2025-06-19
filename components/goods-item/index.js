@@ -1,7 +1,11 @@
 Component({
   properties: {
     item: Object,
-    showTag: Boolean
+    showTag: Boolean,
+    showShopInfo: {
+      type: Boolean,
+      value: true
+    }
   },
 
   data: {

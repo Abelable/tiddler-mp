@@ -31,7 +31,7 @@
   </view>
 
   <empty-illus wx:if="{{finished && !hotelList.length}}" desc="没有找到相关酒店" />
-  <view class="no-more-tips" wx:if="{{finished && hotelList.length}}">～到底啦～</view>
+  <view class="no-more-tips" wx:if="{{finished && hotelList.length}}">～没有更多啦～</view>
 </view>
 
 <van-calendar 

@@ -22,6 +22,10 @@ Component({
     mediaScene: {
       type: Number,
       value: 1
+    },
+    showShopInfo: {
+      type: Boolean,
+      value: true
     }
   },
 

@@ -17,7 +17,7 @@
         </view>
       </view>
       <empty-illus wx:if="{{finished && !goodsList.length}}" desc="暂无商品" />
-      <view class="no-more-tips" wx:if="{{finished && goodsList.length}}">～到底啦～</view>
+      <view class="no-more-tips" wx:if="{{finished && goodsList.length}}">～没有更多啦～</view>
     </scroll-view>
   </view>
 </popup>

@@ -59,7 +59,7 @@
   >
     <view class="comment-btn row center" bindtap="showInputModal">抢首评</view>
   </empty-illus>
-  <view class="no-more-tips" wx:if="{{commentList.length && finished}}">～到底啦～</view>
+  <view class="no-more-tips" wx:if="{{commentList.length && finished}}">～没有更多啦～</view>
 </view>
 
 <view class="btn-wrap">

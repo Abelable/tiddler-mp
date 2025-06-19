@@ -33,25 +33,25 @@
   <view class="content" wx:if="{{curMenuIdx === 0}}">
     <scenic-order-list list="{{scenicOrderList}}" bind:update="init"/>
     <empty-illus wx:if="{{scenicFinished && !scenicOrderList.length}}" desc="暂无景点订单" />
-    <view class="no-more-tips" wx:if="{{scenicFinished && scenicOrderList.length}}">～到底啦～</view>
+    <view class="no-more-tips" wx:if="{{scenicFinished && scenicOrderList.length}}">～没有更多啦～</view>
   </view>
 
   <view class="content" wx:if="{{curMenuIdx === 1}}">
     <order-list list="{{hotelOrderList}}" bind:update="init"/>
     <empty-illus wx:if="{{hotelFinished && !hotelOrderList.length}}" desc="暂无酒店订单" />
-    <view class="no-more-tips" wx:if="{{hotelFinished && hotelOrderList.length}}">～到底啦～</view>
+    <view class="no-more-tips" wx:if="{{hotelFinished && hotelOrderList.length}}">～没有更多啦～</view>
   </view>
 
   <view class="content" wx:if="{{curMenuIdx === 2}}">
     <meal-ticket-order-list list="{{mealTicketOrderList}}" bind:update="init"/>
     <empty-illus wx:if="{{mealTicketFinished && !mealTicketOrderList.length}}" desc="暂无餐券订单" />
-    <view class="no-more-tips" wx:if="{{mealTicketFinished && mealTicketOrderList.length}}">～到底啦～</view>
+    <view class="no-more-tips" wx:if="{{mealTicketFinished && mealTicketOrderList.length}}">～没有更多啦～</view>
   </view>
 
   <view class="content" wx:if="{{curMenuIdx === 3}}">
     <set-meal-order-list list="{{setMealOrderList}}" bind:update="init"/>
     <empty-illus wx:if="{{setMealFinished && !setMealOrderList.length}}" desc="暂无套餐订单" />
-    <view class="no-more-tips" wx:if="{{setMealFinished && setMealOrderList.length}}">～到底啦～</view>
+    <view class="no-more-tips" wx:if="{{setMealFinished && setMealOrderList.length}}">～没有更多啦～</view>
   </view>
 
   <view class="content" wx:if="{{curMenuIdx === 4}}">
@@ -66,7 +66,7 @@
       />
     </view>
     <empty-illus wx:if="{{goodsFinished && !goodsOrderList.length}}" desc="暂无商品订单" />
-    <view class="no-more-tips" wx:if="{{goodsFinished && goodsOrderList.length}}">～到底啦～</view>
+    <view class="no-more-tips" wx:if="{{goodsFinished && goodsOrderList.length}}">～没有更多啦～</view>
   </view>
 </view>
 

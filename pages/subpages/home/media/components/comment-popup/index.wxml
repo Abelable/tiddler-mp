@@ -24,7 +24,7 @@
         bind:reply="reply"
         bind:delete="delete"
       />
-      <view class="nomore-tips" wx:if="{{commentList.length && finished}}">～到底啦～</view>
+      <view class="nomore-tips" wx:if="{{commentList.length && finished}}">～没有更多啦～</view>
     </scroll-view>
 
     <view class="input-bar">

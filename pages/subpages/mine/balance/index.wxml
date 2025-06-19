@@ -33,6 +33,6 @@
       </view>
     </view>
     <empty-illus wx:if="{{finished && !logList.length}}" desc="暂无记录" />
-    <view class="no-more-tips" wx:if="{{finished && logList.length}}">～到底啦～</view>
+    <view class="no-more-tips" wx:if="{{finished && logList.length}}">～没有更多啦～</view>
   </scroll-view>
 </view>

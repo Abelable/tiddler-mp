@@ -32,7 +32,7 @@
   </view>
   <view class="content">
     <view class="goods-name omit">
-      <image class="self-support-tag" wx:if="{{!item.shopInfo}}" src="https://static.tiddler.cn/mp/self_support.png" />
+      <image class="self-support-tag" wx:if="{{showShopInfo && !item.shopInfo}}" src="https://static.tiddler.cn/mp/self_support.png" />
       <text>{{item.name}}</text>
     </view>
     <view class="info-wrap row between">
@@ -44,7 +44,7 @@
         已售{{ item.salesVolume }}
       </view>
     </view>
-    <view class="shop-info row" wx:if="{{item.shopInfo}}" catchtap="navToShop">
+    <view class="shop-info row" wx:if="{{showShopInfo && item.shopInfo}}" catchtap="navToShop">
       <image class="shop-logo" src="{{item.shopInfo.logo}}" lazy-load />
       <view class="shop-name omit single">{{item.shopInfo.name}}</view>
     </view>

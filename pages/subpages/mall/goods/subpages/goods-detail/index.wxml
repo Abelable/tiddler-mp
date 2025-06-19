@@ -197,7 +197,7 @@
   </view>
 
   <!-- nomore -->
-  <view class="nomore-tip">～到底啦～</view>
+  <view class="nomore-tip">～没有更多啦～</view>
 </view>
 
 <!-- 底部工具栏 -->
