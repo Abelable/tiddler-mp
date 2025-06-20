@@ -114,10 +114,10 @@ Page({
       skuSalesCommissionRate || baseSalesCommissionRate;
     const commission =
       Math.round(
-        price * (salesCommissionRate / 100) * (promotionCommissionRate || 20)
+        price * (salesCommissionRate / 100) * (promotionCommissionRate)
       ) / 100;
     this.setData({
-      commission: Math.min(commission, promotionCommissionUpperLimit || 20)
+      commission: Math.min(commission, promotionCommissionUpperLimit)
     });
   },
 

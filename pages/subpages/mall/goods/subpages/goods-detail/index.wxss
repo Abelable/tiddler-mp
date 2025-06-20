@@ -199,7 +199,8 @@ page {
   align-items: center;
   margin-left: 24rpx;
   margin-bottom: 2rpx;
-  padding: 0 20rpx;
+  padding-left: 20rpx;
+  padding-right: 16rpx;
   height: 50rpx;
   color: #fff;
   font-size: 24rpx;
@@ -207,7 +208,7 @@ page {
   border-radius: 25rpx;
 }
 .commission-visible-icon {
-  margin-left: 12rpx;
+  margin-left: 8rpx;
   width: 32rpx;
   height: 32rpx;
 }
