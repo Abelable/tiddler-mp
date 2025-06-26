@@ -25,7 +25,7 @@ class AccountService extends PromoterService {
 
   async applyWithdraw({ scene, withdrawAmount, path, remark }, success) {
     await this.post({
-      url: `${this.baseUrl}/withdraw/submit`,
+      url: `${this.baseUrl}/commission/withdraw/submit`,
       data: cleanObject({ scene, withdrawAmount, path, remark }),
       success
     })
