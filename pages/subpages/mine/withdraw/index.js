@@ -1,7 +1,7 @@
 import { store } from "../../../../../../../../store/index";
-import AccountService from "../../utils/accountService";
+import WithdrawService from "./utils/withdrawService";
 
-const accountService = new AccountService();
+const withdrawService = new WithdrawService();
 
 const { statusBarHeight } = getApp().globalData.systemInfo;
 
@@ -61,7 +61,7 @@ Page({
   },
 
   async setBankCardInfo() {
-    const bancCardInfo = await accountService.getBankCardInfo();
+    const bancCardInfo = await withdrawService.getBankCardInfo();
     if (bancCardInfo) {
       const { code, ...rest } = bancCardInfo;
       this.setData({
@@ -111,7 +111,7 @@ Page({
     }
     if (store.userInfo.authInfoId) {
       const path = pathOptions[curOptionIdx].value;
-      accountService.applyWithdraw(
+      withdrawService.applyWithdraw(
         { scene, withdrawAmount, path, remark },
         () => {
           if (curOptionIdx === 0) {

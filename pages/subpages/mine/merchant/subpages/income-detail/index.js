@@ -118,7 +118,7 @@ Page({
     const { selfPurchase, share, team } = this.data.cashInfo || {};
     const amount = [selfPurchase, share, team][scene - 1];
     wx.navigateTo({
-      url: `./subpages/withdraw/index?scene=${scene}&amount=${amount}`
+      url: `/pages/subpages/mine/withdraw/index?scene=${scene}&amount=${amount}`
     });
   },
 
@@ -138,7 +138,7 @@ Page({
     // todo
     const amount = 100;
     wx.navigateTo({
-      url: `./subpages/withdraw/index?scene=4&amount=${amount}`
+      url: `/pages/subpages/mine/withdraw/index?scene=4&amount=${amount}`
     });
   },
 

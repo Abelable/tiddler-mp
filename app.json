@@ -100,10 +100,10 @@
       "mine/fan-follow-list/index",
       "mine/promoter/index",
       "mine/promoter/subpages/account/index",
-      "mine/promoter/subpages/account/subpages/withdraw/index",
-      "mine/promoter/subpages/account/subpages/withdraw-result/index",
-      "mine/promoter/subpages/account/subpages/bind-bank/index",
       "mine/promoter/subpages/customer/index",
+      "mine/withdraw/index",
+      "mine/withdraw/subpages/withdraw-result/index",
+      "mine/withdraw/subpages/bind-bank/index",
       "mine/balance/index",
       "mine/coupon/index",
       "mine/history/index"
