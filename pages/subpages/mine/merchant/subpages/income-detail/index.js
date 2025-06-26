@@ -82,7 +82,7 @@ Page({
     const { dateList, curDateIdx } = this.data;
     const timeData = await merchantService.getShopTimeData(
       this.shopId,
-      dateList[curDateIdx].value,
+      dateList[curDateIdx].value
     );
     this.setData({ timeData });
   },
@@ -113,15 +113,6 @@ Page({
     }
   },
 
-  withdraw(e) {
-    const { scene } = e.currentTarget.dataset;
-    const { selfPurchase, share, team } = this.data.cashInfo || {};
-    const amount = [selfPurchase, share, team][scene - 1];
-    wx.navigateTo({
-      url: `/pages/subpages/mine/withdraw/index?scene=${scene}&amount=${amount}`
-    });
-  },
-
   onPageScroll(e) {
     if (e.scrollTop >= 10) {
       if (!this.data.navBarBgVisible) {
@@ -135,16 +126,17 @@ Page({
   },
 
   withdraw() {
-    // todo
-    const amount = 100;
+    const { cashAmount } = this.data.incomeSum;
     wx.navigateTo({
-      url: `/pages/subpages/mine/withdraw/index?scene=4&amount=${amount}`
+      url: `/pages/subpages/mine/withdraw/index?scene=${
+        this.merchantType + 3
+      }&amount=${cashAmount}`
     });
   },
 
   checkWithdrawRecord() {
     wx.navigateTo({
-      url: `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/promoter/withdraw_record`
+      url: `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/withdraw_record`
     });
   }
 });

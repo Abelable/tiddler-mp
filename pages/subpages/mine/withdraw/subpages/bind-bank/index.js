@@ -1,6 +1,6 @@
-import AccountService from "../../utils/accountService";
+import WithdrawService from "../../utils/withdrawService";
 
-const accountService = new AccountService();
+const withdrawService = new WithdrawService();
 
 Page({
   data: {
@@ -14,7 +14,7 @@ Page({
   },
 
   async setBankCardInfo() {
-    const bancCardInfo = await accountService.getBankCardInfo();
+    const bancCardInfo = await withdrawService.getBankCardInfo();
     if (bancCardInfo) {
       const { id, name, code, bankName } = bancCardInfo;
       this.bancCardId = id;
@@ -41,7 +41,7 @@ Page({
     const { name, code, bankName } = this.data;
     if (name && code && bankName) {
       if (this.bancCardId) {
-        accountService.editBankCard(name, code, bankName, () => {
+        withdrawService.editBankCard(name, code, bankName, () => {
           wx.showToast({
             title: "提交成功",
             icon: "none"
@@ -51,7 +51,7 @@ Page({
           }, 2000);
         });
       } else {
-        accountService.addBankCard(name, code, bankName, () => {
+        withdrawService.addBankCard(name, code, bankName, () => {
           wx.showToast({
             title: "提交成功",
             icon: "none"

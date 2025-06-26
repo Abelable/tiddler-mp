@@ -2,10 +2,18 @@ import { cleanObject } from "../../../../../utils/index";
 import BaseService from "../../../../../services/baseService";
 
 class WithdrawService extends BaseService {
-  async applyWithdraw({ scene, withdrawAmount, path, remark }, success) {
+  async applyCommissionWithdraw({ scene, withdrawAmount, path, remark }, success) {
     await this.post({
       url: `${this.baseUrl}/commission/withdraw/submit`,
       data: cleanObject({ scene, withdrawAmount, path, remark }),
+      success
+    })
+  }
+
+  async applyShopWithdraw({ withdrawAmount, path, remark }, success) {
+    await this.post({
+      url: `${this.baseUrl}/shop/income/withdraw/submit`,
+      data: cleanObject({ withdrawAmount, path, remark }),
       success
     })
   }

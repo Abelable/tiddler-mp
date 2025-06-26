@@ -87,7 +87,7 @@ Page({
 
   bindBank() {
     wx.navigateTo({
-      url: "../bind-bank/index"
+      url: "./subpages/bind-bank/index"
     });
   },
 
@@ -111,27 +111,40 @@ Page({
     }
     if (store.userInfo.authInfoId) {
       const path = pathOptions[curOptionIdx].value;
-      withdrawService.applyWithdraw(
-        { scene, withdrawAmount, path, remark },
-        () => {
-          if (curOptionIdx === 0) {
-            this.setData({ amount: 0 });
-            wx.showToast({
-              title: "提现成功",
-              icon: "none"
-            });
-            setTimeout(() => {
-              wx.navigateBack();
-            }, 2000);
-          } else {
-            wx.navigateTo({
-              url: "../withdraw-result/index"
-            });
-          }
+      if (scene < 4) {
+        withdrawService.applyCommissionWithdraw(
+          { scene, withdrawAmount, path, remark },
+          this.withdrawSuccess
+        );
+      } else {
+        switch (scene) {
+          case 7:
+            withdrawService.applyShopWithdraw(
+              { withdrawAmount, path, remark },
+              this.withdrawSuccess
+            );
+            break;
         }
-      );
+      }
     } else {
       this.setData({ authModalVisible: true });
+    }
+  },
+
+  withdrawSuccess() {
+    if (this.dcurOptionIdx === 0) {
+      this.setData({ amount: 0 });
+      wx.showToast({
+        title: "提现成功",
+        icon: "none"
+      });
+      setTimeout(() => {
+        wx.navigateBack();
+      }, 2000);
+    } else {
+      wx.navigateTo({
+        url: "./subpages/withdraw-result/index"
+      });
     }
   },
 
