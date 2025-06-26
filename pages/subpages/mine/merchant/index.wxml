@@ -30,23 +30,23 @@
     <view class="data-card-main">
       <view class="balance-data-item">
         <view class="balance-data-title">累计收益 (元)</view>
-        <view class="balance-data-amount">{{NUM.toFixed(shopIncomeOverview.totalIncome || 0, 2)}}</view>
+        <view class="balance-data-amount">{{shopIncomeOverview ? NUM.toFixed(shopIncomeOverview.totalIncome, 2) : '0.00'}}</view>
       </view>
       <view class="data-items-wrap row between">
         <view class="data-item">
           <view class="data-title">成交额 (元)</view>
-          <view class="data-amount">{{NUM.toFixed(shopIncomeOverview.todaySalesVolume || 0, 2)}}</view>
-          <view class="data-supplement">昨日 {{NUM.toFixed(shopIncomeOverview.yesterdaySalesVolume || 0, 2)}}</view>
+          <view class="data-amount">{{shopIncomeOverview ? NUM.toFixed(shopIncomeOverview.todaySalesVolume, 2) : '0.00'}}</view>
+          <view class="data-supplement">昨日 {{shopIncomeOverview ? NUM.toFixed(shopIncomeOverview.yesterdaySalesVolume, 2) : '0.00'}}</view>
         </view>
         <view class="data-item">
           <view class="data-title">订单数</view>
-          <view class="data-amount">{{shopIncomeOverview.todayOrderCount}}</view>
-          <view class="data-supplement">昨日 {{shopIncomeOverview.yesterdayOrderCount}}</view>
+          <view class="data-amount">{{shopIncomeOverview ? shopIncomeOverview.todayOrderCount : 0}}</view>
+          <view class="data-supplement">昨日 {{shopIncomeOverview ? shopIncomeOverview.yesterdayOrderCount : 0}}</view>
         </view>
         <view class="data-item">
           <view class="data-title">访客数</view>
-          <view class="data-amount">{{shopIncomeOverview.todayVisitorCount}}</view>
-          <view class="data-supplement">昨日 {{shopIncomeOverview.yesterdayVisitorCount}}</view>
+          <view class="data-amount">{{shopIncomeOverview ? shopIncomeOverview.todayVisitorCount : 0}}</view>
+          <view class="data-supplement">昨日 {{shopIncomeOverview ? shopIncomeOverview.yesterdayVisitorCount : 0}}</view>
         </view>
       </view>
     </view>

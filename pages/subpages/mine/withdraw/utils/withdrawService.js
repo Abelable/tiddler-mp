@@ -1,4 +1,4 @@
-import { cleanObject } from "../../../../../../../utils/index";
+import { cleanObject } from "../../../../../utils/index";
 import BaseService from "../../../../../services/baseService";
 
 class WithdrawService extends BaseService {

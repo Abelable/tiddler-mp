@@ -12,7 +12,7 @@ Page({
     titleMenu: [],
     curTitleIdx: 0,
     shopInfo: {},
-    shopIncomeOverview: {}
+    shopIncomeOverview: null
   },
 
   onLoad() {

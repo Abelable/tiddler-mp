@@ -1,4 +1,4 @@
-import { store } from "../../../../../../../../store/index";
+import { store } from "../../../../store/index";
 import WithdrawService from "./utils/withdrawService";
 
 const withdrawService = new WithdrawService();
