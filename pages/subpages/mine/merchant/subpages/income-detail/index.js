@@ -136,7 +136,7 @@ Page({
 
   checkWithdrawRecord() {
     wx.navigateTo({
-      url: `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/withdraw_record`
+      url: `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/withdrawal_record`
     });
   }
 });

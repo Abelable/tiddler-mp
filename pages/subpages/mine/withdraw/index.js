@@ -132,7 +132,8 @@ Page({
   },
 
   withdrawSuccess() {
-    if (this.dcurOptionIdx === 0) {
+    const { scene, curOptionIdx } = this.data
+    if (curOptionIdx === 0) {
       this.setData({ amount: 0 });
       wx.showToast({
         title: "提现成功",
@@ -143,7 +144,7 @@ Page({
       }, 2000);
     } else {
       wx.navigateTo({
-        url: "./subpages/withdraw-result/index"
+        url: `./subpages/withdraw-result/index?scene=${scene}`
       });
     }
   },
