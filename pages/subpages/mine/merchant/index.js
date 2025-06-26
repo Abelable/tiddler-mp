@@ -11,14 +11,15 @@ Page({
     statusBarHeight,
     titleMenu: [],
     curTitleIdx: 0,
-    shopInfo: {}
+    shopInfo: {},
+    shopIncomeOverview: {}
   },
 
   onLoad() {
     this.setTitleMenu();
   },
 
-  setTitleMenu() {
+  async setTitleMenu() {
     const { merchantType, userInfo } = store;
     const {
       scenicProviderId,
@@ -40,7 +41,8 @@ Page({
     if (merchantId) {
       titleMenu.push({ name: "电商管理", type: "goods", value: 4 });
 
-      this.setShopInfo();
+      await this.setShopInfo();
+      this.setShopIncomeOverview();
     }
 
     const curTitleIdx = merchantType
@@ -55,15 +57,21 @@ Page({
     this.setData({ shopInfo });
   },
 
+  async setShopIncomeOverview() {
+    const { id } = this.data.shopInfo;
+    const shopIncomeOverview = await merchantService.getShopIncomeOverview(id);
+    this.setData({ shopIncomeOverview });
+  },
+
   selectTitle(e) {
     const curTitleIdx = +e.detail.value;
     this.setData({ curTitleIdx });
   },
 
   withdraw() {
-    const { titleMenu, curTitleIdx } = this.data;
+    const { titleMenu, curTitleIdx, shopInfo } = this.data;
     const merchantType = titleMenu[curTitleIdx].value;
-    const url = `./subpages/income-detail/index?merchantType=${merchantType}`;
+    const url = `./subpages/income-detail/index?merchantType=${merchantType}&shopId=${shopInfo.id}`;
     wx.navigateTo({ url });
   },
 

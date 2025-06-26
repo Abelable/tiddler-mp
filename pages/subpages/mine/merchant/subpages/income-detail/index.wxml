@@ -22,7 +22,9 @@
     <view class="row top">
       <view class="income-unit">
         <view class="income-desc">可提现(元)</view>
-        <view class="income-amount withdrawable">905.99</view>
+        <view class="income-amount withdrawable">
+          {{incomeSum ? NUM.toFixed(incomeSum.cashAmount, 2) : '0.00'}}
+        </view>
       </view>
       <view class="record-btn row" bindtap="checkWithdrawRecord">
         <view>提现记录</view>
@@ -32,15 +34,21 @@
     <view class="income-wrap row">
        <view class="income-unit">
         <view class="income-desc">待入帐(元)</view>
-        <view class="income-amount">905.99</view>
+        <view class="income-amount">
+          {{incomeSum ? NUM.toFixed(incomeSum.pendingAmount, 2) : '0.00'}}
+        </view>
       </view>
       <view class="income-unit">
         <view class="income-desc">提现中(元)</view>
-        <view class="income-amount">905.99</view>
+        <view class="income-amount">
+          {{incomeSum ? NUM.toFixed(incomeSum.withdrawingAmount, 2) : '0.00'}}
+        </view>
       </view> 
       <view class="income-unit">
         <view class="income-desc">已提现(元)</view>
-        <view class="income-amount">905.99</view>
+        <view class="income-amount">
+          {{incomeSum ? NUM.toFixed(incomeSum.settledAmount, 2) : '0.00'}}
+        </view>
       </view>
     </view>
     <view class="withdraw-btn row center" bindtap="withdraw">立即提现</view>
@@ -60,19 +68,27 @@
     </view>
     <view class="daily-data-list">
       <view class="daily-data-item">
-        <view class="daily-data">{{timeData ? timeData.orderCount : 0}}</view>
+        <view class="daily-data">
+          {{timeData ? timeData.orderCount : 0}}
+        </view>
         <view class="daily-data-desc">订单量</view>
       </view>
       <view class="daily-data-item">
-        <view class="daily-data">{{timeData ? NUM.toFixed(timeData.salesVolume, 2) : '0.00'}}</view>
+        <view class="daily-data">
+          {{timeData ? NUM.toFixed(timeData.salesVolume, 2) : '0.00'}}
+        </view>
         <view class="daily-data-desc">销售额</view>
       </view>
       <view class="daily-data-item">
-        <view class="daily-data">{{timeData ? NUM.toFixed(timeData.pendingAmount, 2) : '0.00'}}</view>
+        <view class="daily-data">
+          {{timeData ? NUM.toFixed(timeData.pendingAmount, 2) : '0.00'}}
+        </view>
         <view class="daily-data-desc">待结算金额</view>
       </view>
       <view class="daily-data-item">
-        <view class="daily-data">{{timeData ? NUM.toFixed(timeData.settledAmount, 2) : '0.00'}}</view>
+        <view class="daily-data">
+          {{timeData ? NUM.toFixed(timeData.settledAmount, 2) : '0.00'}}
+        </view>
         <view class="daily-data-desc">已结算金额</view>
       </view>
     </view>

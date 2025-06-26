@@ -1,3 +1,5 @@
+<wxs module="NUM" src="/utils/filters/num.wxs" />
+
 <view class="nav-bar-wrap" style="padding-top: {{statusBarHeight}}px;">
   <view class="nav-bar row">
     <view style="flex: 1;">
@@ -28,23 +30,23 @@
     <view class="data-card-main">
       <view class="balance-data-item">
         <view class="balance-data-title">累计收益 (元)</view>
-        <view class="balance-data-amount">8828.92</view>
+        <view class="balance-data-amount">{{NUM.toFixed(shopIncomeOverview.totalIncome || 0, 2)}}</view>
       </view>
       <view class="data-items-wrap row between">
         <view class="data-item">
           <view class="data-title">成交额 (元)</view>
-          <view class="data-amount">882.88</view>
-          <view class="data-supplement">昨日 682.22</view>
+          <view class="data-amount">{{NUM.toFixed(shopIncomeOverview.todaySalesVolume || 0, 2)}}</view>
+          <view class="data-supplement">昨日 {{NUM.toFixed(shopIncomeOverview.yesterdaySalesVolume || 0, 2)}}</view>
         </view>
         <view class="data-item">
           <view class="data-title">订单数</view>
-          <view class="data-amount">882</view>
-          <view class="data-supplement">昨日 682</view>
+          <view class="data-amount">{{shopIncomeOverview.todayOrderCount}}</view>
+          <view class="data-supplement">昨日 {{shopIncomeOverview.yesterdayOrderCount}}</view>
         </view>
         <view class="data-item">
           <view class="data-title">访客数</view>
-          <view class="data-amount">882</view>
-          <view class="data-supplement">昨日 682</view>
+          <view class="data-amount">{{shopIncomeOverview.todayVisitorCount}}</view>
+          <view class="data-supplement">昨日 {{shopIncomeOverview.yesterdayVisitorCount}}</view>
         </view>
       </view>
     </view>
