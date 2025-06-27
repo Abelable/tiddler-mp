@@ -25,7 +25,7 @@ Page({
       scenicProviderId,
       hotelProviderId,
       cateringProviderId,
-      merchantId
+      merchantInfo
     } = userInfo;
 
     const titleMenu = [];
@@ -38,7 +38,7 @@ Page({
     if (cateringProviderId) {
       titleMenu.push({ name: "餐饮管理", type: "catering", value: 3 });
     }
-    if (merchantId) {
+    if (merchantInfo.id) {
       titleMenu.push({ name: "电商管理", type: "goods", value: 4 });
 
       await this.setShopInfo();

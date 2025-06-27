@@ -95,7 +95,7 @@ Component({
       const {
         level,
         authInfoId,
-        merchantId,
+        merchantInfo,
         scenicProviderId,
         hotelProviderId,
         cateringProviderId
@@ -105,14 +105,14 @@ Component({
         { name: "订单中心", icon: "order" },
         { name: "收货地址", icon: "address" },
         level ? { name: "代言奖励", icon: "promoter" } : undefined,
-        merchantId || scenicProviderId || hotelProviderId || cateringProviderId
+        merchantInfo.id || scenicProviderId || hotelProviderId || cateringProviderId
           ? { name: "商家中心", icon: "merchant" }
           : undefined,
-        merchantId || scenicProviderId || hotelProviderId || cateringProviderId
+        merchantInfo.id || scenicProviderId || hotelProviderId || cateringProviderId
           ? { name: "扫码核销", icon: "scan" }
           : undefined,
         level ||
-        merchantId ||
+        merchantInfo.id ||
         scenicProviderId ||
         hotelProviderId ||
         cateringProviderId
