@@ -88,12 +88,6 @@ class BaseService extends Base {
     });
   }
 
-  async getShopInfo() {
-    return await this.get({
-      url: `${this.baseUrl}/shop/my_shop_info`
-    })
-  }
-
   async getAdInfo() {
     return await this.get({ url: `${this.baseUrl}/banner/pop` });
   }

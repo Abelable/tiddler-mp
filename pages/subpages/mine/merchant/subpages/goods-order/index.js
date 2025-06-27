@@ -1,3 +1,4 @@
+import { store } from "../../../../../../store/index";
 import GoodsService from "./utils/goodsService";
 
 const goodsService = new GoodsService();
