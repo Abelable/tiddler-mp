@@ -1,4 +1,5 @@
 import { WEBVIEW_BASE_URL } from "../../../../../../config";
+import { store } from "../../../../../../store/index";
 import MerchantService from "../../utils/merchantService";
 
 const merchantService = new MerchantService();
@@ -22,9 +23,8 @@ Page({
     finished: false
   },
 
-  onLoad({ merchantType, shopId = 0 }) {
+  onLoad({ merchantType }) {
     this.merchantType = +merchantType;
-    this.shopId = +shopId;
   },
 
   onShow() {
@@ -74,14 +74,16 @@ Page({
   },
 
   async setShopIncomeSum() {
-    const incomeSum = await merchantService.getShopIncomeSum(this.shopId);
+    const shopId = store.userInfo.merchantInfo.shopIds[0];
+    const incomeSum = await merchantService.getShopIncomeSum(shopId);
     this.setData({ incomeSum });
   },
 
   async setShopTimeData() {
+    const shopId = store.userInfo.merchantInfo.shopIds[0];
     const { dateList, curDateIdx } = this.data;
     const timeData = await merchantService.getShopTimeData(
-      this.shopId,
+      shopId,
       dateList[curDateIdx].value
     );
     this.setData({ timeData });
@@ -92,9 +94,10 @@ Page({
       this.page = 0;
       this.setData({ finished: false });
     }
+    const shopId = store.userInfo.merchantInfo.shopIds[0];
     const { dateList, curDateIdx, orderList } = this.data;
     const list = await merchantService.getShopIncomeOrderList({
-      shopId: this.shopId,
+      shopId,
       timeType: dateList[curDateIdx].value,
       statusList: [1, 2, 3, 4],
       page: ++this.page

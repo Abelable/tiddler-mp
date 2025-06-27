@@ -11,7 +11,6 @@ Page({
     statusBarHeight,
     titleMenu: [],
     curTitleIdx: 0,
-    shopInfo: {},
     shopIncomeOverview: null
   },
 
@@ -41,7 +40,6 @@ Page({
     if (merchantInfo.id) {
       titleMenu.push({ name: "电商管理", type: "goods", value: 4 });
 
-      await this.setShopInfo();
       this.setShopIncomeOverview();
     }
 
@@ -52,14 +50,9 @@ Page({
     this.setData({ titleMenu, curTitleIdx });
   },
 
-  async setShopInfo() {
-    const shopInfo = await merchantService.getShopInfo();
-    this.setData({ shopInfo });
-  },
-
   async setShopIncomeOverview() {
-    const { id } = this.data.shopInfo;
-    const shopIncomeOverview = await merchantService.getShopIncomeOverview(id);
+    const shopId = store.userInfo.merchantInfo.shopIds[0];
+    const shopIncomeOverview = await merchantService.getShopIncomeOverview(shopId);
     this.setData({ shopIncomeOverview });
   },
 
@@ -69,9 +62,9 @@ Page({
   },
 
   withdraw() {
-    const { titleMenu, curTitleIdx, shopInfo } = this.data;
+    const { titleMenu, curTitleIdx } = this.data;
     const merchantType = titleMenu[curTitleIdx].value;
-    const url = `./subpages/income-detail/index?merchantType=${merchantType}&shopId=${shopInfo.id}`;
+    const url = `./subpages/income-detail/index?merchantType=${merchantType}`;
     wx.navigateTo({ url });
   },
 
@@ -161,8 +154,10 @@ Page({
   },
 
   manageDeposit() {
-    const { titleMenu, curTitleIdx, shopInfo } = this.data;
+    const shopId = store.userInfo.merchantInfo.shopIds[0];
+    const { titleMenu, curTitleIdx } = this.data;
     const merchantType = titleMenu[curTitleIdx].value;
+
     switch (merchantType) {
       case 1:
         break;
@@ -171,7 +166,7 @@ Page({
       case 3:
         break;
       case 4:
-        const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/deposit&shop_id=${shopInfo.id}`;
+        const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/deposit&shop_id=${shopId}`;
         wx.navigateTo({ url });
         break;
     }
@@ -213,26 +208,26 @@ Page({
   },
 
   manageGoods() {
-    const { id } = this.data.shopInfo;
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/goods/list&shop_id=${id}`;
+    const shopId = store.userInfo.merchantInfo.shopIds[0];
+    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/goods/list&shop_id=${shopId}`;
     wx.navigateTo({ url });
   },
 
   manageRefundAddress() {
-    const { id } = this.data.shopInfo;
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/refund_address/list&shop_id=${id}`;
+    const shopId = store.userInfo.merchantInfo.shopIds[0];
+    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/refund_address/list&shop_id=${shopId}`;
     wx.navigateTo({ url });
   },
 
   managePickupAddress() {
-    const { id } = this.data.shopInfo;
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/pickup_address/list&shop_id=${id}`;
+    const shopId = store.userInfo.merchantInfo.shopIds[0];
+    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/pickup_address/list&shop_id=${shopId}`;
     wx.navigateTo({ url });
   },
 
   manageFreightTemplate() {
-    const { id } = this.data.shopInfo;
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/freight_template/list&shop_id=${id}`;
+    const shopId = store.userInfo.merchantInfo.shopIds[0];
+    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/freight_template/list&shop_id=${shopId}`;
     wx.navigateTo({ url });
   },
 
