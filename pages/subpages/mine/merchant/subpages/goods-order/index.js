@@ -6,7 +6,6 @@ const { statusBarHeight } = getApp().globalData.systemInfo;
 Page({
   data: {
     statusBarHeight,
-    shopInfo: null,
     menuList: [
       { name: "全部", status: 0 },
       { name: "待发货", status: 2 },
@@ -25,16 +24,8 @@ Page({
     this.setData({ curMenuIndex });
   },
 
-  async onShow() {
-    if (!this.data.shopInfo) {
-      await this.setShopInfo();
-    }
+  onShow() {
     this.setOrderList(true);
-  },
-
-  async setShopInfo() {
-    const shopInfo = await goodsService.getShopInfo();
-    this.setData({ shopInfo });
   },
 
   selectMenu(e) {
@@ -45,10 +36,11 @@ Page({
 
   async setOrderList(init = false) {
     const limit = 10;
-    const { shopInfo, menuList, curMenuIndex, orderList } = this.data;
+    const shopId = store.userInfo.merchantInfo.shopIds[0];
+    const { menuList, curMenuIndex, orderList } = this.data;
     if (init) this.page = 0;
     const list = await goodsService.getOrderList({
-      shopId: shopInfo.id,
+      shopId,
       status: menuList[curMenuIndex].status,
       page: ++this.page,
       limit
