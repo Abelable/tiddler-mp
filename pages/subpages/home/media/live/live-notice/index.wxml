@@ -19,7 +19,7 @@
 
   <view class="time-wrap">
     <view>开始时间：{{TIME.transform(roomInfo.noticeTime, 'YYYY-MM-DD hh:mm')}}</view>
-    <view>倒计时：{{TIME.countDown(countDown, 'd天hh时mm分ss秒')}}</view>
+    <view>倒计时：{{TIME.countdown(countDown, 'd天hh时mm分ss秒')}}</view>
   </view>
 
   <view class="btn-wrap row between">

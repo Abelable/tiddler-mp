@@ -3,15 +3,148 @@
 }
 
 .card {
+  margin-bottom: 24rpx;
   padding: 24rpx;
   background: #fff;
   border-radius: 20rpx;
 }
-
 .card-header {
   margin-bottom: 24rpx;
   font-size: 28rpx;
 }
+
+.ship-info-wrap {
+  margin-bottom: 24rpx;
+  padding-bottom: 24rpx;
+  border-bottom: 1px solid #f0f0f0;
+}
+.ship-icon {
+  width: 42rpx; 
+  height: 42rpx;
+}
+.ship-code {
+  margin: 0 24rpx;
+  flex: 1;
+  color: #333;
+  font-size: 26rpx;
+  font-weight: bold;
+}
+.more-btn {
+  padding-left: 8rpx;
+  width: 140rpx;
+  height: 48rpx;
+  color: #fff;
+  font-size: 22rpx;
+  background: var(--blue-1);
+  border-radius: 24rpx;
+}
+.more-icon {
+  width: 24rpx; 
+  height: 24rpx;
+}
+
+.package-info {
+  margin-bottom: 24rpx;
+}
+.package-list-wrap {
+  flex: 1;
+  overflow-x: scroll;
+}
+.package-list {
+  display: flex;
+  align-items: center;
+}
+.package {
+  display: flex;
+  margin-right: 12rpx;
+  padding: 12rpx;
+  border: 1px solid #aaa;
+  border-radius: 22rpx;
+}
+.package.selected {
+  padding: 8rpx;
+  border: 3px solid var(--blue-1);
+}
+.package-goods {
+  position: relative;
+  margin-right: 12rpx;
+  font-size: 0;
+}
+.package-goods:last-child {
+  margin-right: 0;
+}
+.package-goods-cover {
+  width: 68rpx;
+  height: 68rpx;
+  border-radius: 8rpx;
+}
+.package-goods-num {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 2rpx 6rpx;
+  color: #fff;
+  font-size: 18rpx;
+  background: rgba(0, 0, 0, 0.68);
+  border-radius: 8rpx 0 8rpx 0;
+}
+.package-num {
+  padding-left: 24rpx;
+  color: #333;
+  font-size: 24rpx;
+  font-weight: bold;
+}
+
+.address-icon {
+  width: 42rpx; 
+  height: 42rpx;
+}
+.consignee-info {
+  margin-left: 24rpx;
+  flex: 1;
+  color: #999;
+  font-size: 26rpx;
+}
+.consignee-name {
+  color: #333;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+.consignee-mobile {
+  margin-left: 20rpx; 
+  color: #333;
+  font-size: 26rpx;
+}
+.address-detail {
+  margin-top: 6rpx;
+  color: #333;
+  font-size: 26rpx;
+}
+
+.pickup-address-info {
+  flex: 1;
+}
+.pickup-address-name {
+  color: #333;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+.pickup-address-detail {
+  margin-top: 8rpx;
+  color: #999;
+  font-size: 26rpx;
+}
+.navgation-btn {
+  margin-left: 24rpx;
+  color: var(--blue-1);
+  font-size: 26rpx;
+}
+.navgation-btn-arrow {
+  width: 24rpx;
+  height: 24rpx;
+}
+
+
 .shop-logo {
   margin-right: 16rpx;
   width: 40rpx;
@@ -22,6 +155,27 @@
   flex: 1;
   color: #333;
   font-weight: 500;
+}
+
+.countdown-wrap {
+  display: flex;
+  align-items: center;
+  padding: 0 20rpx;
+  height: 60rpx;
+  color: #666;
+  font-size: 22rpx;
+  background: #f5f6f8;
+  border-radius: 8rpx;
+}
+.alarm-icon {
+  margin-right: 6rpx;
+  width: 32rpx;
+  height: 32rpx;
+}
+.countdown {
+  margin-left: 6rpx;
+  width: 92rpx;
+  color: var(--blue-1);
 }
 
 .list {

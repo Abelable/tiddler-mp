@@ -13,15 +13,7 @@ Component({
   },
 
   methods: {
-    cancelOrder(e) {
-      const { item, index } = this.properties;
-      const { id } = item;
-      goodsService.cancelOrder(id, () => {
-        this.triggerEvent("update", { type: "cancel", index });
-      });
-    },
-
-    deliverOrder(e) {
+    deliverOrder() {
       const { item, index } = this.properties;
       const { id } = item;
       goodsService.deleteOrder(id, () => {
@@ -29,9 +21,9 @@ Component({
       });
     },
 
-    navToDetail(e) {
-      const id = e.currentTarget.dataset.id;
-      const url = `../../subpages/order-detail/index?id=${id}`;
+    navToDetail() {
+      const { id } = this.properties.item;
+      const url = `/pages/subpages/mine/merchant/subpages/goods-order/subpages/order-detail/index?id=${id}`;
       wx.navigateTo({ url });
     },
 

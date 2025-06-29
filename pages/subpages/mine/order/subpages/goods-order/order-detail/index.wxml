@@ -59,13 +59,18 @@
   </view>
 
   <view class="card">
-    <view class="card-header row">
+    <view class="card-header row between">
       <view class="shop-info row" wx:if="{{orderInfo.shopId}}" catchtap="navToShop" data-id="{{orderInfo.shopId}}">
         <image class="shop-logo" wx:if="{{orderInfo.shopLogo}}" src="{{orderInfo.shopLogo}}" />
         <view class="shop-name omit single">{{orderInfo.shopName}}</view>
         <image style="width: 20rpx; height: 20rpx;" src="/images/arrow_gray.png" />
       </view>
       <view class="shop-name omit single" wx:if="{{!orderInfo.shopId}}">官方自营</view>
+      <view class="countdown-wrap" wx:if="{{orderInfo.status === 101}}">
+        <image class="alarm-icon" src="./images/alarm.png" />
+        <view style="color: #666;">剩余 </view>
+        <view class="countdown">{{TIME.countdown(countdown, 'hh:mm:ss')}}</view>
+      </view>
     </view>
     <goods-list list="{{orderInfo.goodsList}}" status="{{orderInfo.status}}" />
     <view class="list row between">
@@ -76,6 +81,13 @@
       <view class="title">运费</view>
       <price-unit price="{{orderInfo.freightPrice}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />
     </view>
+    <view class="list row between" wx:if="{{orderInfo.deductionBalance}}">
+      <view class="title">余额抵扣</view>
+      <view class="row">
+        <text>-</text>
+        <price-unit price="{{orderInfo.deductionBalance}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />
+      </view>
+    </view>
     <view class="list row between">
       <view class="title">{{ORDER.paymentDesc(orderInfo.status)}}</view>
       <price-unit price="{{orderInfo.paymentAmount}}" />
@@ -85,12 +97,6 @@
       <price-unit price="{{orderInfo.refundAmount}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />
     </view>
     <view class="more-info-wrap">
-      <view class="list row top">
-        <view class="title">收货信息：</view>
-        <view class="content">
-          {{orderInfo.consignee}}，{{orderInfo.mobile}}，{{orderInfo.address}}
-        </view>
-      </view>
       <view class="list row between">
         <view class="title">订单编号：</view>
         <view>
