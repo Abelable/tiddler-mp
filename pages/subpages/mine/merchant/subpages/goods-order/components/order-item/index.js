@@ -13,24 +13,6 @@ Component({
   },
 
   methods: {
-    deliverOrder() {
-      // todo 发货
-
-      // const { item, index } = this.properties;
-      // const { id } = item;
-      // goodsService.deliverOrder(id, () => {
-      //   this.triggerEvent("update", { type: "deliver", index });
-      // });
-    },
-
-    navToDetail() {
-      const { id } = this.properties.item;
-      const url = `/pages/subpages/mine/merchant/subpages/goods-order/subpages/order-detail/index?id=${id}`;
-      wx.navigateTo({ url });
-    },
-
-    contact() {},
-
     copyOrderSn() {
       const { orderSn } = this.properties.item;
       wx.setClipboardData({
@@ -49,6 +31,24 @@ Component({
           wx.showToast({ title: "复制成功", icon: "none" });
         }
       });
-    }
+    },
+
+     deliverOrder() {
+      // todo 发货
+
+      // const { item, index } = this.properties;
+      // const { id } = item;
+      // goodsService.deliverOrder(id, () => {
+      //   this.triggerEvent("update", { type: "deliver", index });
+      // });
+    },
+
+    contact() {},
+
+    navToDetail() {
+      const { id } = this.properties.item;
+      const url = `/pages/subpages/mine/merchant/subpages/goods-order/subpages/order-detail/index?id=${id}`;
+      wx.navigateTo({ url });
+    },
   }
 });

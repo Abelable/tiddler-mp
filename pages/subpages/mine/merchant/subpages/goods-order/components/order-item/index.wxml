@@ -16,13 +16,13 @@
       <view>{{ORDER.paymentDesc(item.status)}}：</view>
       <price-unit price="{{item.paymentAmount || 0}}" color="#333" fontSize="26rpx" integerFontSize="36rpx" />
     </view>
-    <view class="deliver-info-wrap" wx:if="{{item.status === 201}}">
+    <view class="deliver-info-wrap">
       <view class="deliver-info row" catchtap="copyOrderSn">
         <image class="order-icon" src="./images/order.png" />
         <view class="order-sn">订单编号 {{item.orderSn}}</view>
         <image class="copy-icon" src="./images/copy.png" />
       </view>
-      <view class="deliver-info row top" catchtap="copyAddress">
+      <view class="deliver-info row top" wx:if="{{item.deliveryMode === 1}}" catchtap="copyAddress">
         <image class="address-icon" src="./images/address.png" />
         <view class="address-detail">{{item.consignee}}，{{item.mobile}}，{{item.address}}</view>
         <image class="copy-icon" src="./images/copy.png" />

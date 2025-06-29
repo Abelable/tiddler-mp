@@ -43,8 +43,6 @@
 }
 .order-sn, .address-detail {
   margin: 0 10rpx;
-}
-.address-detail {
   flex: 1;
 }
 .order-icon, .copy-icon, .address-icon {
