@@ -65,12 +65,15 @@ Page({
     // })
   },
 
-  navToShipping(e) {
-    const id = e.currentTarget.dataset.id
-    const url = `/pages/subpages/mine/order/subpages/goods-order-list/subpages/shipping/index?id=${id}`
-    wx.navigateTo({ url })
+  async checkShippingInfo() {
+    const { packageList, selectedPackageIdx } = this.data;
+    const waybillToken = await orderService.getWaybillToken(
+      packageList[selectedPackageIdx].id
+    );
+    plugin.openWaybillTracking({ waybillToken });
   },
 
+  // todo 联系客户：电话or私聊
   contact() {
   },
 })

@@ -40,7 +40,7 @@
       <view class="consignee-info">
         <view class="row">
           <text class="consignee-name">{{orderInfo.consignee}}</text>
-          <text class="consignee-mobile">{{NUM.mobileFormat(orderInfo.mobile)}}</text>
+          <text class="consignee-mobile">{{orderInfo.mobile}}</text>
         </view>
         <view class="address-detail">{{orderInfo.address}}</view>
       </view>
