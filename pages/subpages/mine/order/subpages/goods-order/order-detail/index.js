@@ -35,19 +35,21 @@ Page({
     const {
       id,
       status,
-      createdAt,
       payTime,
       packageList = [],
       shipChannel,
-      shipSn
+      shipSn,
+      createdAt
     } = orderInfo;
     if (status === 101) {
       const countdown = Math.floor(
         (dayjs(createdAt).valueOf() + 24 * 60 * 60 * 1000 - dayjs().valueOf()) /
           1000
       );
-      this.setData({ countdown });
-      this.setCountdown();
+      if (countdown > 0) {
+        this.setData({ countdown });
+        this.setCountdown();
+      }
     }
 
     if (status === 201 || status === 302) {
@@ -81,7 +83,7 @@ Page({
       502: "交易完成"
     };
     wx.setNavigationBarTitle({
-      title: titleEnums[orderInfo.status],
+      title: titleEnums[orderInfo.status]
     });
   },
 
@@ -118,7 +120,7 @@ Page({
       data: this.data.orderInfo.orderSn,
       success: () => {
         wx.showToast({ title: "复制成功", icon: "none" });
-      },
+      }
     });
   },
 
@@ -128,9 +130,9 @@ Page({
       ...params,
       success: () => {
         this.setData({
-          ["orderInfo.status"]: 201,
+          ["orderInfo.status"]: 201
         });
-      },
+      }
     });
   },
 
@@ -248,7 +250,9 @@ Page({
 
   navToEvaluation() {
     const { id, goodsList } = this.data.orderInfo;
-    const url = `../evaluation/index?orderId=${id}&goodsList=${JSON.stringify(goodsList)}`;
+    const url = `../evaluation/index?orderId=${id}&goodsList=${JSON.stringify(
+      goodsList
+    )}`;
     wx.navigateTo({ url });
   },
 

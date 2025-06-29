@@ -30,8 +30,10 @@ Component({
             dayjs().valueOf()) /
             1000
         );
-        this.setData({ countdown });
-        this.setCountdown();
+        if (countdown > 0) {
+          this.setData({ countdown });
+          this.setCountdown();
+        }
       }
 
       if (status === 201 || status === 302) {

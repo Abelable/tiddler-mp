@@ -160,7 +160,9 @@
     catchtap="navToEvaluation"
     hover-class="none"
   >查看评价</button>
-  <button 
+
+  <!-- todo 客服 -->
+  <!-- <button 
     class="btn active"
     send-message-title="订单编号：{{orderInfo.orderSn}}"
     send-message-img="{{orderInfo.goodsList[0].cover}}"
@@ -171,7 +173,8 @@
     hover-class="none"
   >
     联系客服
-  </button>
+  </button> -->
+  
   <button class="btn active" wx:if="{{orderInfo.status === 101}}" bindtap="payOrder" hover-class="none">继续付款</button>
 </view>
 
