@@ -63,14 +63,6 @@ Page({
     })
   },
 
-  cancelOrder() {
-    goodsService.cancelOrder(this.orderId, () => {
-      this.setData({
-        ['orderInfo.status']: 102
-      })
-    })
-  },
-
   navToShipping(e) {
     const id = e.currentTarget.dataset.id
     const url = `/pages/subpages/mine/order/subpages/goods-order-list/subpages/shipping/index?id=${id}`

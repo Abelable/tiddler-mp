@@ -60,11 +60,6 @@
     bindtap="navToShipping" data-id="{{orderInfo.id}}"
   >查看物流</button>
   <button 
-    class="btn" 
-    wx:if="{{orderInfo.status === 101}}" 
-    bindtap="cancelOrder" data-id="{{orderInfo.id}}" data-index="{{index}}"
-  >取消订单</button>
-  <button 
     class="btn active" 
     wx:if="{{item.status === 201}}"
     catchtap="deliverOrder" data-id="{{item.id}}" data-index="{{index}}"
