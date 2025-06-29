@@ -8,12 +8,12 @@ Page({
   data: {
     statusBarHeight,
     menuList: [
-      { name: "全部", status: 0 },
-      { name: "待发货", status: 1 },
-      { name: "待收货", status: 2 },
-      { name: "待核销", status: 3 },
-      { name: "已评价", status: 4 },
-      { name: "售后", status: 5 }
+      { name: "全部", status: 0, total: 0 },
+      { name: "待发货", status: 1, total: 0 },
+      { name: "待收货", status: 2, total: 0 },
+      { name: "待核销", status: 3, total: 0 },
+      { name: "已评价", status: 4, total: 0 },
+      { name: "售后", status: 5, total: 0 }
     ],
     curMenuIndex: 0,
     orderList: [],
@@ -28,6 +28,7 @@ Page({
   },
 
   onShow() {
+    this.setShopOrderTotal();
     this.setOrderList(true);
   },
 
@@ -35,6 +36,17 @@ Page({
     const { index: curMenuIndex } = e.currentTarget.dataset;
     this.setData({ curMenuIndex });
     this.setOrderList(true);
+  },
+
+  async setShopOrderTotal() {
+    const shopId = store.userInfo.merchantInfo.shopIds[0];
+    const orderTotal = await goodsOrderService.getShopOrderTotal(shopId);
+    this.setData({
+      ["menuList[1].total"]: orderTotal[0],
+      ["menuList[2].total"]: orderTotal[1],
+      ["menuList[3].total"]: orderTotal[2],
+      ["menuList[5].total"]: orderTotal[3]
+    });
   },
 
   async setOrderList(init = false) {
@@ -88,5 +100,5 @@ Page({
     wx.navigateTo({
       url: "./subpages/search/index"
     });
-  },
+  }
 });
