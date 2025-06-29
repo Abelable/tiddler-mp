@@ -56,11 +56,13 @@ Page({
   },
 
   deliverOrder() {
-    goodsService.deliverOrder(id, () => {
-      this.setData({
-        ['orderInfo.status']: 301
-      })
-    })
+    // todo 发货
+    
+    // goodsService.deliverOrder(id, () => {
+    //   this.setData({
+    //     ['orderInfo.status']: 301
+    //   })
+    // })
   },
 
   navToShipping(e) {

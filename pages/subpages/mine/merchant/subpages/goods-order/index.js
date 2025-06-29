@@ -9,8 +9,10 @@ Page({
     statusBarHeight,
     menuList: [
       { name: "全部", status: 0 },
-      { name: "待发货", status: 2 },
-      { name: "待收货", status: 3 },
+      { name: "待发货", status: 1 },
+      { name: "待收货", status: 2 },
+      { name: "待核销", status: 3 },
+      { name: "已评价", status: 4 },
       { name: "售后", status: 5 }
     ],
     curMenuIndex: 0,

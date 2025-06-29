@@ -14,11 +14,13 @@ Component({
 
   methods: {
     deliverOrder() {
-      const { item, index } = this.properties;
-      const { id } = item;
-      goodsService.deleteOrder(id, () => {
-        this.triggerEvent("update", { type: "deliver", index });
-      });
+      // todo 发货
+      
+      // const { item, index } = this.properties;
+      // const { id } = item;
+      // goodsService.deliverOrder(id, () => {
+      //   this.triggerEvent("update", { type: "deliver", index });
+      // });
     },
 
     navToDetail() {
