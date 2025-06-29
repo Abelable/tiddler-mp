@@ -22,6 +22,13 @@ class MerchantService extends BaseService {
     });
   }
 
+  getShopOrderTotal(shopId) {
+    return this.get({
+      url: `${this.baseUrl}/order/shop_total`,
+      data: { shopId }
+    });
+  }
+
   async getMealTicketOrderList({ status, page, limit = 10 }) {
     const { list = [] } =
       (await this.get({

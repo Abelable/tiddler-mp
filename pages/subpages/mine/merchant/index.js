@@ -11,7 +11,8 @@ Page({
     statusBarHeight,
     titleMenu: [],
     curTitleIdx: 0,
-    shopIncomeOverview: null
+    shopIncomeOverview: null,
+    shopOrderTotal: null
   },
 
   onLoad() {
@@ -41,6 +42,7 @@ Page({
       titleMenu.push({ name: "电商管理", type: "goods", value: 4 });
 
       this.setShopIncomeOverview();
+      this.setShopOrderTotal();
     }
 
     const curTitleIdx = merchantType
@@ -52,8 +54,16 @@ Page({
 
   async setShopIncomeOverview() {
     const shopId = store.userInfo.merchantInfo.shopIds[0];
-    const shopIncomeOverview = await merchantService.getShopIncomeOverview(shopId);
+    const shopIncomeOverview = await merchantService.getShopIncomeOverview(
+      shopId
+    );
     this.setData({ shopIncomeOverview });
+  },
+
+  async setShopOrderTotal() {
+    const shopId = store.userInfo.merchantInfo.shopIds[0];
+    const shopOrderTotal = await merchantService.getShopOrderTotal(shopId);
+    this.setData({ shopOrderTotal });
   },
 
   selectTitle(e) {
