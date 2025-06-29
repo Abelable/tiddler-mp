@@ -1,6 +1,6 @@
-import CateringService from "../utils/cateringService";
+import MerchantService from "../../utils/merchantService";
 
-const cateringService = new CateringService();
+const merchantService = new MerchantService();
 const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Page({
@@ -38,7 +38,7 @@ Page({
     const limit = 10;
     const { menuList, curMenuIndex, orderList } = this.data;
     if (init) this.page = 0;
-    const list = await cateringService.getMealTicketOrderList({
+    const list = await merchantService.getMealTicketOrderList({
       status: menuList[curMenuIndex].status,
       page: ++this.page,
       limit,

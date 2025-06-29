@@ -1,16 +1,16 @@
-import BaseService from '../../../../../../../services/baseService'
+import MerchantService from '../../../utils/merchantService'
 
-class HotelService extends BaseService {
+class ScenicOrderService extends MerchantService {
   async getShopInfo() {
     return await this.get({
-      url: `${this.baseUrl}/hotel/shop/my_shop_info`
+      url: `${this.baseUrl}/scenic/shop/my_shop_info`
     })
   }
 
   async getOrderList({ shopId, status, page, limit = 10 }) {
     const { list = [] } =
       (await this.get({
-        url: `${this.baseUrl}/hotel/order/shop_list`,
+        url: `${this.baseUrl}/scenic/order/shop_list`,
         data: { status, page, limit, shopId },
         loadingTitle: "加载中...",
       })) || {};
@@ -19,7 +19,7 @@ class HotelService extends BaseService {
 
   async getOrderDetail(id) {
     return await this.get({
-      url: `${this.baseUrl}/hotel/order/detail`,
+      url: `${this.baseUrl}/scenic/order/detail`,
       data: { id },
       loadingTitle: '加载中...'
     })
@@ -27,7 +27,7 @@ class HotelService extends BaseService {
 
   async cancelOrder(id, success) {
     await this.post({ 
-      url: `${this.baseUrl}/hotel/order/cancel`, 
+      url: `${this.baseUrl}/scenic/order/cancel`, 
       data: { id },
       success
     })
@@ -35,7 +35,7 @@ class HotelService extends BaseService {
 
   async publishComment(order_id, comment_type, commentLists, success) {
     return await this.post({ 
-      url: `${this.baseUrl}/hotel/order/comment`, 
+      url: `${this.baseUrl}/scenic/order/comment`, 
       data: { order_id, comment_type, json_data: JSON.stringify(commentLists) }, 
       success, 
       loadingTitle: '发布中...' 
@@ -43,4 +43,4 @@ class HotelService extends BaseService {
   }
 }
 
-export default HotelService
+export default ScenicOrderService

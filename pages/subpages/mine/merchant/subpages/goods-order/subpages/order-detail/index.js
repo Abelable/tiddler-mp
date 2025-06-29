@@ -1,4 +1,4 @@
-import GoodsService from '../../utils/goodsService'
+import GoodsService from '../../utils/goodsOrderService'
 
 const goodsService = new GoodsService()
 
@@ -57,7 +57,7 @@ Page({
 
   deliverOrder() {
     // todo 发货
-    
+
     // goodsService.deliverOrder(id, () => {
     //   this.setData({
     //     ['orderInfo.status']: 301

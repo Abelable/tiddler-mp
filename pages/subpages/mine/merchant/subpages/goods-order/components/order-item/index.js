@@ -1,4 +1,4 @@
-import GoodsService from "../../utils/goodsService";
+import GoodsService from "../../utils/goodsOrderService";
 
 const goodsService = new GoodsService();
 
@@ -15,7 +15,7 @@ Component({
   methods: {
     deliverOrder() {
       // todo 发货
-      
+
       // const { item, index } = this.properties;
       // const { id } = item;
       // goodsService.deliverOrder(id, () => {

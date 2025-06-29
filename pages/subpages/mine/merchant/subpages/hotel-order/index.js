@@ -1,6 +1,6 @@
-import HotelService from "./utils/hotelService";
+import HotelOrderService from "./utils/hotelOrderService";
 
-const hotelService = new HotelService();
+const hotelOrderService = new HotelOrderService();
 const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Page({
@@ -34,7 +34,7 @@ Page({
   },
 
   async setShopInfo() {
-    const shopInfo = await hotelService.getShopInfo();
+    const shopInfo = await hotelOrderService.getShopInfo();
     this.setData({ shopInfo });
   },
 
@@ -48,7 +48,7 @@ Page({
     const limit = 10;
     const { shopInfo, menuList, curMenuIndex, orderList } = this.data;
     if (init) this.page = 0;
-    const list = await hotelService.getOrderList({
+    const list = await hotelOrderService.getOrderList({
       shopId: shopInfo.id,
       status: menuList[curMenuIndex].status,
       page: ++this.page,

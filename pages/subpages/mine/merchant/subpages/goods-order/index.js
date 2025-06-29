@@ -1,7 +1,7 @@
 import { store } from "../../../../../../store/index";
-import GoodsService from "./utils/goodsService";
+import GoodsOrderService from "./utils/goodsOrderService";
 
-const goodsService = new GoodsService();
+const goodsOrderService = new GoodsOrderService();
 const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Page({
@@ -42,7 +42,7 @@ Page({
     const shopId = store.userInfo.merchantInfo.shopIds[0];
     const { menuList, curMenuIndex, orderList } = this.data;
     if (init) this.page = 0;
-    const list = await goodsService.getOrderList({
+    const list = await goodsOrderService.getOrderList({
       shopId,
       status: menuList[curMenuIndex].status,
       page: ++this.page,

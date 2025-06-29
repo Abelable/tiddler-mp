@@ -1,6 +1,6 @@
-import ScenicService from "./utils/scenicService";
+import ScenicOrderService from "./utils/scenicOrderService";
 
-const scenicService = new ScenicService();
+const scenicOrderService = new ScenicOrderService();
 const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Page({
@@ -33,7 +33,7 @@ Page({
   },
 
   async setShopInfo() {
-    const shopInfo = await scenicService.getShopInfo();
+    const shopInfo = await scenicOrderService.getShopInfo();
     this.setData({ shopInfo });
   },
 
@@ -47,7 +47,7 @@ Page({
     const limit = 10;
     const { shopInfo, menuList, curMenuIndex, orderList } = this.data;
     if (init) this.page = 0;
-    const list = await scenicService.getOrderList({
+    const list = await scenicOrderService.getOrderList({
       shopId: shopInfo.id,
       status: menuList[curMenuIndex].status,
       page: ++this.page,

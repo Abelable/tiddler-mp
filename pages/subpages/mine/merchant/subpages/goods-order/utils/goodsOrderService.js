@@ -1,6 +1,6 @@
-import BaseService from '../../../../../../../services/baseService'
+import MerchantService from '../../../utils/merchantService'
 
-class GoodsService extends BaseService {
+class GoodsOrderService extends MerchantService {
   async getOrderList({ shopId, status, page, limit = 10 }) {
     const { list = [] } =
       (await this.get({
@@ -41,4 +41,4 @@ class GoodsService extends BaseService {
   }
 }
 
-export default GoodsService
+export default GoodsOrderService
