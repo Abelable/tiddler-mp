@@ -22,21 +22,6 @@ class MerchantService extends BaseService {
     });
   }
 
-  async getShopIncomeOrderList({
-    shopId,
-    timeType,
-    statusList,
-    page,
-    limit = 10
-  }) {
-    const { list = [] } = await this.post({
-      url: `${this.baseUrl}/shop/income/order_list`,
-      data: { shopId, timeType, statusList, page, limit },
-      loadingTitle: "加载中..."
-    });
-    return list;
-  }
-
   async getMealTicketOrderList({ status, page, limit = 10 }) {
     const { list = [] } =
       (await this.get({
