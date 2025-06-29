@@ -37,7 +37,7 @@
 .income-card {
   padding: 38rpx 32rpx 32rpx;
   background: linear-gradient( 218deg, rgba(255,255,255,0) 0%, #FFFFFF 36%);
-  border-radius: 48rpx;
+  border-radius: 32rpx;
 }
 .income-unit {
   flex: 1;
@@ -83,7 +83,7 @@
   padding: 28rpx;
   padding-bottom: 32rpx;
   background: #fff;
-  border-radius: 48rpx;
+  border-radius: 32rpx;
 }
 .date-menu {
   display: flex;

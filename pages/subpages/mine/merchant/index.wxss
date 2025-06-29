@@ -49,7 +49,7 @@
   position: relative;
   height: 336rpx;
   color: #fff;
-  border-radius: 48rpx;
+  border-radius: 40rpx;
   overflow: hidden;
 }
 .data-card.scenic {
@@ -113,7 +113,7 @@
 .tool-card {
   margin-top: 24rpx;
   background: #fff;
-  border-radius: 48rpx;
+  border-radius: 32rpx;
 }
 .tool-card-title {
   padding: 32rpx;
