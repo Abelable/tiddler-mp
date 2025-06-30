@@ -29,7 +29,7 @@
       </view>
     </view>
     <view class="btn-wrap">
-      <button class="btn active" wx:if="{{item.status === 201}}" catchtap="deliverOrder" hover-class="none">去发货</button>
+      <button class="btn active" wx:if="{{item.status === 201}}" catchtap="ship" hover-class="none">去发货</button>
       <button class="btn" catchtap="navToDetail" hover-class="none">查看详情</button>
     </view>
   </view>

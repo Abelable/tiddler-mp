@@ -1,3 +1,4 @@
+import { WEBVIEW_BASE_URL } from "../../../../../../../../config";
 import { store } from "../../../../../../../../store/index";
 import GoodsOrderService from "../../utils/goodsOrderService";
 
@@ -15,7 +16,10 @@ Page({
 
   async setOrderInfo() {
     const shopId = store.userInfo.merchantInfo.shopIds[0];
-    const orderInfo = await goodsOrderService.getOrderDetail(shopId, this.orderId);
+    const orderInfo = await goodsOrderService.getOrderDetail(
+      shopId,
+      this.orderId
+    );
     this.setData({ orderInfo });
 
     const titleEnums = {
@@ -57,13 +61,10 @@ Page({
     });
   },
 
-  deliverOrder() {
-    // todo 发货
-    // goodsOrderService.deliverOrder(id, () => {
-    //   this.setData({
-    //     ['orderInfo.status']: 301
-    //   })
-    // })
+  ship() {
+    const shopId = store.userInfo.merchantInfo.shopIds[0];
+    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/ship&shop_id=${shopId}&order_id=${this.orderId}`;
+    wx.navigateTo({ url });
   },
 
   async checkShippingInfo() {

@@ -90,7 +90,7 @@
         <view>
           <text>{{orderInfo.orderSn}}</text>
           <text>｜</text>
-          <text style="color: #169dfe" bindtap="copyOrderSn">复制</text>
+          <text style="color: #333" bindtap="copyOrderSn">复制</text>
         </view>
       </view>
       <view class="list row between">
@@ -114,11 +114,7 @@
 </view>
 
 <view class="bottom-bar">
-  <button 
-    class="btn active" 
-    wx:if="{{item.status === 201}}"
-    catchtap="deliverOrder" data-id="{{item.id}}" data-index="{{index}}"
-  >去发货</button>
-  <button class="btn active" bindtap="contact">联系客户</button>
+  <button class="btn" bindtap="contact">联系客户</button>
+  <button class="btn active" wx:if="{{item.status === 201}}" catchtap="ship">去发货</button>
 </view>
   
