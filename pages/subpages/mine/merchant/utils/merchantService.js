@@ -24,7 +24,7 @@ class MerchantService extends BaseService {
 
   getShopOrderTotal(shopId) {
     return this.get({
-      url: `${this.baseUrl}/order/shop_total`,
+      url: `${this.baseUrl}/shop/order/total`,
       data: { shopId }
     });
   }
