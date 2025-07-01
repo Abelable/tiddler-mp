@@ -157,7 +157,7 @@ Page({
       case 3:
         break;
       case 4:
-        const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/staff/list`;
+        const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/manager/list`;
         wx.navigateTo({ url });
         break;
     }
