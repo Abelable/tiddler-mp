@@ -78,9 +78,11 @@ Page({
     wx.navigateTo({ url });
   },
 
-  checkOrders() {
+  checkOrders(e) {
+    const { status = 0 } = e.currentTarget.dataset;
     const { titleMenu, curTitleIdx } = this.data;
     const merchantType = titleMenu[curTitleIdx].value;
+
     switch (merchantType) {
       case 1:
         wx.navigateTo({
@@ -94,7 +96,7 @@ Page({
         break;
       case 4:
         wx.navigateTo({
-          url: "./subpages/goods-order/index"
+          url: `./subpages/goods-order/index?status=${status}`
         });
         break;
     }

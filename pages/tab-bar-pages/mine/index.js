@@ -96,6 +96,7 @@ Component({
         level,
         authInfoId,
         merchantInfo,
+        shopManagerList,
         scenicProviderId,
         hotelProviderId,
         cateringProviderId
@@ -105,10 +106,18 @@ Component({
         { name: "订单中心", icon: "order" },
         { name: "收货地址", icon: "address" },
         level ? { name: "代言奖励", icon: "promoter" } : undefined,
-        merchantInfo.id || scenicProviderId || hotelProviderId || cateringProviderId
+        merchantInfo.id ||
+        shopManagerList.findIndex(item => item.roleId !== 3) !== -1 ||
+        scenicProviderId ||
+        hotelProviderId ||
+        cateringProviderId
           ? { name: "商家中心", icon: "merchant" }
           : undefined,
-        merchantInfo.id || scenicProviderId || hotelProviderId || cateringProviderId
+        merchantInfo.id ||
+        shopManagerList.length ||
+        scenicProviderId ||
+        hotelProviderId ||
+        cateringProviderId
           ? { name: "扫码核销", icon: "scan" }
           : undefined,
         level ||

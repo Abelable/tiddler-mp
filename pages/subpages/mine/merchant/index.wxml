@@ -240,29 +240,29 @@
       </view>
     </view>
     <view class="order-list row around">
-      <view class="order-item row">
+      <view class="order-item row" bindtap="checkOrders" data-status="1">
         <view class="order-icon-wrap">
           <image class="order-icon" src="https://static.tiddler.cn/mp/merchant/package.png" />
           <view class="total-spot" wx:if="{{shopOrderTotal[0] > 0}}" />
         </view>
         <view class="order-name">待发货</view>
       </view>
-      <view class="order-item row">
+      <view class="order-item row" bindtap="checkOrders" data-status="2">
         <view class="order-icon-wrap">
           <image class="order-icon" src="https://static.tiddler.cn/mp/merchant/delivery.png" />
           <view class="total-spot" wx:if="{{shopOrderTotal[1] > 0}}" />
         </view>
         <view class="order-name">待收货</view>
       </view>
-      <view class="order-item row">
+      <view class="order-item row" bindtap="checkOrders" data-status="3">
         <view class="order-icon-wrap">
           <image class="order-icon" src="https://static.tiddler.cn/mp/merchant/time.png" />
           <view class="total-spot" wx:if="{{shopOrderTotal[2] > 0}}" />
         </view>
         <view class="order-name">待使用</view>
       </view>
-      <view class="order-item row">
-        <image class="order-icon" src="https://static.tiddler.cn/mp/merchant/time.png" />
+      <view class="order-item row" bindtap="checkOrders" data-status="4">
+        <image class="order-icon" src="https://static.tiddler.cn/mp/merchant/evaluate.png" />
         <view class="order-name">已评价</view>
       </view>
       <view class="order-item row" bindtap="checkAfterSale">
