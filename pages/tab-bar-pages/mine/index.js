@@ -391,12 +391,42 @@ Component({
       if (type === "live") {
         this.navToLive();
       } else if (type === "scan") {
-        console.log("scan");
+        this.scan();
       } else {
         wx.navigateTo({
           url: `/pages/subpages/mine/${type}/index`
         });
       }
+    },
+
+    scan() {
+      const {
+        merchantInfo,
+        shopManagerList,
+        scenicProviderId,
+        hotelProviderId,
+        cateringProviderId
+      } = store.userInfo;
+      wx.scanCode({
+        success: res => {
+          const code = res.result;
+          if (code.length === 8) {
+            if (merchantInfo.id || shopManagerList.length) {
+              mineService.verifyGoodsCode(code, () => {
+                wx.showToast({
+                  title: "核销成功",
+                  icon: "none"
+                });
+              });
+            } else {
+              wx.showToast({
+                title: "暂无商品核销权限",
+                icon: "none"
+              });
+            }
+          }
+        }
+      });
     },
 
     async navToLive() {

@@ -16,6 +16,14 @@ class MineService extends BaseService {
       loadingTitle: "加载中...",
     });
   }
+
+  async verifyGoodsCode(code, success) {
+    return await this.post({
+      url: `${this.baseUrl}/shop/order/verify`,
+      data: { code },
+      success
+    });
+  }
 }
 
 export default MineService;

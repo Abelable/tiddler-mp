@@ -131,6 +131,10 @@
 }
 
 .pickup-address-info {
+  padding-bottom: 24rpx;
+  border-bottom: 1px solid #f0f0f0;
+}
+.pickup-address {
   flex: 1;
 }
 .pickup-address-name {
