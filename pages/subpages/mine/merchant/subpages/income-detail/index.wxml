@@ -108,7 +108,7 @@
           </view>
         </view>
         <view class="order-commission-wrap">
-          <view class="order-commission">+{{item.incomeAmount}}</view>
+          <view class="order-commission">+{{NUM.toFixed(item.incomeAmount, 2)}}</view>
         </view>
       </view>
       <view class="goods-list">
@@ -117,7 +117,7 @@
           <view class="goods-info">
             <view class="goods-name omit">{{goods.name}}</view>
             <view class="goods-spec omit single">{{goods.selectedSkuName}}</view>
-            <view class="goods-commission">收益¥{{NUM.toFixed(goods.income, 2)}}</view>
+            <view class="goods-commission">收益¥{{NUM.toFixed(goods.incomeAmount, 2)}}</view>
           </view>
         </view>
       </view>

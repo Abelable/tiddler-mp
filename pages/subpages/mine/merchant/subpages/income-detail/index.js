@@ -96,12 +96,37 @@ Page({
     }
     const shopId = store.userInfo.merchantInfo.shopIds[0];
     const { dateList, curDateIdx, orderList } = this.data;
-    const list = await incomeService.getShopIncomeOrderList({
+    const incomeList = await incomeService.getShopIncomeOrderList({
       shopId,
       timeType: dateList[curDateIdx].value,
       statusList: [1, 2, 3, 4],
       page: ++this.page
     });
+
+    const list = [];
+    incomeList.forEach(item => {
+      const orderIndex = list.findIndex(
+        _item => _item.orderId === item.orderId
+      );
+      if (orderIndex === -1) {
+        const { goodsInfo, ...rest } = item;
+        list.push({
+          ...rest,
+          goodsList: [{ ...goodsInfo, incomeAmount: item.incomeAmount }]
+        });
+      } else {
+        const order = list[orderIndex];
+        list[orderIndex] = {
+          ...order,
+          incomeAmount: order.incomeAmount + item.incomeAmount,
+          goodsList: [
+            ...order.goodsList,
+            { ...item.goodsInfo, incomeAmount: item.incomeAmount }
+          ]
+        };
+      }
+    });
+
     this.setData({ orderList: init ? list : [...orderList, ...list] });
     if (!list.length) {
       this.setData({ finished: true });
