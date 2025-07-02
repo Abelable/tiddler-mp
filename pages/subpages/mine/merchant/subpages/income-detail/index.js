@@ -96,7 +96,7 @@ Page({
     }
     const shopId = store.userInfo.merchantInfo.shopIds[0];
     const { dateList, curDateIdx, orderList } = this.data;
-    
+
     const incomeList = await incomeService.getShopIncomeOrderList({
       shopId,
       timeType: dateList[curDateIdx].value,
@@ -125,7 +125,7 @@ Page({
 
     this.setData({ orderList });
 
-    if (!list.length) {
+    if (!incomeList.length) {
       this.setData({ finished: true });
     }
   },
