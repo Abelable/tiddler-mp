@@ -96,6 +96,7 @@ Page({
     }
     const shopId = store.userInfo.merchantInfo.shopIds[0];
     const { dateList, curDateIdx, orderList } = this.data;
+    
     const incomeList = await incomeService.getShopIncomeOrderList({
       shopId,
       timeType: dateList[curDateIdx].value,
@@ -103,31 +104,27 @@ Page({
       page: ++this.page
     });
 
-    const list = [];
     incomeList.forEach(item => {
-      const orderIndex = list.findIndex(
-        _item => _item.orderId === item.orderId
+      const { orderId, goodsInfo, incomeAmount, ...rest } = item;
+      const orderIndex = orderList.findIndex(
+        order => order.orderId === orderId
       );
       if (orderIndex === -1) {
-        const { goodsInfo, ...rest } = item;
-        list.push({
+        orderList.push({
           ...rest,
-          goodsList: [{ ...goodsInfo, incomeAmount: item.incomeAmount }]
+          orderId,
+          incomeAmount,
+          goodsList: [{ ...goodsInfo, incomeAmount }]
         });
       } else {
-        const order = list[orderIndex];
-        list[orderIndex] = {
-          ...order,
-          incomeAmount: order.incomeAmount + item.incomeAmount,
-          goodsList: [
-            ...order.goodsList,
-            { ...item.goodsInfo, incomeAmount: item.incomeAmount }
-          ]
-        };
+        const order = orderList[orderIndex];
+        order.incomeAmount += incomeAmount;
+        order.goodsList.push({ ...goodsInfo, incomeAmount });
       }
     });
 
-    this.setData({ orderList: init ? list : [...orderList, ...list] });
+    this.setData({ orderList });
+
     if (!list.length) {
       this.setData({ finished: true });
     }
