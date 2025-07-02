@@ -113,19 +113,21 @@ Page({
     for (const item of incomeList) {
       const { orderId, goodsInfo, incomeAmount, ...rest } = item;
 
-      if (!orderMap.has(orderId)) {
+      const goods = { ...goodsInfo, incomeAmount };
+      const existingOrder = orderMap.get(orderId);
+      
+      if (existingOrder) {
+        existingOrder.incomeAmount += incomeAmount;
+        existingOrder.goodsList.push(goods);
+      } else {
         const newOrder = {
           ...rest,
           orderId,
           incomeAmount,
-          goodsList: [{ ...goodsInfo, incomeAmount }]
+          goodsList: [goods]
         };
         orderList.push(newOrder);
         orderMap.set(orderId, newOrder);
-      } else {
-        const existingOrder = orderMap.get(orderId);
-        existingOrder.incomeAmount += incomeAmount;
-        existingOrder.goodsList.push({ ...goodsInfo, incomeAmount });
       }
     }
 

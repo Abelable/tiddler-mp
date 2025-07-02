@@ -71,8 +71,8 @@ Page({
       this.page = 0;
       this.setData({ finished: false });
     }
-    const { curMenuIdx, dateList, curDateIdx, orderList } = this.data;
 
+    const { curMenuIdx, dateList, curDateIdx } = this.data;
     const commissionList = await accountService.getCommissionOrderList({
       scene: curMenuIdx + 1,
       timeType: dateList[curDateIdx].value,
@@ -80,12 +80,18 @@ Page({
       page: ++this.page
     });
 
-    commissionList.forEach(item => {
+    const orderList = [...this.data.orderList];
+
+    for (const item of commissionList) {
       const { orderId, productType, product, commissionAmount, ...rest } = item;
-      const index = orderList.findIndex(
+      const existingOrder = orderList.find(
         order => order.orderId === orderId && order.productType === productType
       );
-      if (index === -1) {
+
+      if (existingOrder) {
+        existingOrder.commissionAmount += commissionAmount;
+        existingOrder.productList.push({ ...product, commissionAmount });
+      } else {
         orderList.push({
           ...rest,
           orderId,
@@ -93,18 +99,13 @@ Page({
           commissionAmount,
           productList: [{ ...product, commissionAmount }]
         });
-      } else {
-        const order = orderList[index];
-        (order.commissionAmount += commissionAmount),
-          order.productList.push({ ...product, commissionAmount });
       }
-    });
-
-    this.setData({ orderList });
-
-    if (!commissionList.length) {
-      this.setData({ finished: true });
     }
+
+    this.setData({
+      orderList,
+      finished: commissionList.length === 0
+    });
   },
 
   checkOrderDetail(e) {
