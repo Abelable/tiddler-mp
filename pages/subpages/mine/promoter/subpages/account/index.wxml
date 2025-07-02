@@ -114,17 +114,19 @@
           </view>
         </view>
         <view class="order-commission-wrap">
-          <view class="order-commission">+{{item.commissionAmount}}</view>
+          <view class="order-commission">+{{NUM.toFixed(item.commissionAmount, 2)}}</view>
           <view class="order-type">{{item.scene === 1 ? "自购" : "分享"}}</view>
         </view>
       </view>
       <view class="goods-list">
-        <view class="goods-info-wrap" wx:for="{{item.goodsList}}" wx:key="id" wx:for-item="goods">
+        <view class="goods-info-wrap" wx:for="{{item.productList}}" wx:key="id" wx:for-item="goods">
           <image class="goods-cover" src="{{goods.cover}}" />
           <view class="goods-info">
             <view class="goods-name omit">{{goods.name}}</view>
             <view class="goods-spec omit single">{{goods.selectedSkuName}}</view>
-            <view class="goods-commission">返现¥{{goods.commission}}</view>
+            <view class="goods-commission">
+              {{item.scene === 1 ? "返现" : "奖励"}}¥{{NUM.toFixed(goods.commissionAmount, 2)}}
+            </view>
           </view>
         </view>
       </view>

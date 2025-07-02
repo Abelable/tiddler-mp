@@ -72,14 +72,37 @@ Page({
       this.setData({ finished: false });
     }
     const { curMenuIdx, dateList, curDateIdx, orderList } = this.data;
-    const list = await accountService.getCommissionOrderList({
+
+    const commissionList = await accountService.getCommissionOrderList({
       scene: curMenuIdx + 1,
       timeType: dateList[curDateIdx].value,
       statusList: [1, 2, 3],
       page: ++this.page
     });
-    this.setData({ orderList: init ? list : [...orderList, ...list] });
-    if (!list.length) {
+
+    commissionList.forEach(item => {
+      const { orderId, productType, product, commissionAmount, ...rest } = item;
+      const index = orderList.findIndex(
+        order => order.orderId === orderId && order.productType === productType
+      );
+      if (index === -1) {
+        orderList.push({
+          ...rest,
+          orderId,
+          productType,
+          commissionAmount,
+          productList: [{ ...product, commissionAmount }]
+        });
+      } else {
+        const order = orderList[index];
+        (order.commissionAmount += commissionAmount),
+          order.productList.push({ ...product, commissionAmount });
+      }
+    });
+
+    this.setData({ orderList });
+
+    if (!commissionList.length) {
       this.setData({ finished: true });
     }
   },
