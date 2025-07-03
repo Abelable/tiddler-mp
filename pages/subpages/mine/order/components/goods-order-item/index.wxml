@@ -36,12 +36,6 @@
         >确认收货</button>
         <button 
           class="btn active" 
-          wx:if="{{item.status === 302}}" 
-          catchtap="checkQrCode"
-          hover-class="none"
-        >查看券码</button>
-        <button 
-          class="btn active" 
           wx:if="{{item.status === 101}}" 
           catchtap="payOrder"
           hover-class="none"
@@ -52,6 +46,12 @@
           catchtap="refundOrder"
           hover-class="none"
         >申请退款</button>
+        <button 
+          class="btn active" 
+          wx:if="{{item.status === 302}}" 
+          catchtap="checkQrCode"
+          hover-class="none"
+        >查看券码</button>
         <button 
           class="btn active" 
           wx:if="{{item.status === 401 || item.status === 402 || item.status === 403}}"
