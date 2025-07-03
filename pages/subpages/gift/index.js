@@ -50,7 +50,7 @@ Page({
 
   async setGoodsList(init = false) {
     if (init) {
-      this.setData({ finished: false });
+      this.setData({ goodsList: [], finished: false });
       this.page = 0;
     }
     const { menuList, curMenuIdx, goodsList } = this.data;
