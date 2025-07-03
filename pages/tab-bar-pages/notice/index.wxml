@@ -1,8 +1,15 @@
 <view class="header" style="padding-top: {{ statusBarHeight }}px;">
   <view class="nav-bar row">
-    <image class="sign-in-icon" src="/images/sign_in.png" />
-    <view class="all-read-btn row center">全部已读</view>
+    <view class="row" style="flex: 1;">
+      <!-- <image class="sign-in-icon" src="https://static.tiddler.cn/mp/sign_in.png" /> -->
+      <view class="promoter-icon" wx:if="{{userInfo.level === 0 && promoterInfo}}">
+        <image class="promoter-avatar" src="{{promoterInfo.avatar}}" />
+        <image class="promoter-medal" src="https://static.tiddler.cn/mp/promoter/level_{{promoterInfo.level}}/medal.gif" />
+      </view>
+      <view class="all-read-btn row center">全部已读</view>
+    </view>
     <view class="nav-bar-title row center">消息中心</view>
+    <view style="flex: 1;" />
   </view>
   <view class="message-bar row around">
     <view class="message-type-item row">
