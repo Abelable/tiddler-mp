@@ -21,7 +21,7 @@ Component({
 
   storeBindings: {
     store,
-    fields: ["userInfo", "promoterInfo"]
+    fields: ["userInfo"]
   },
 
   data: {
@@ -29,7 +29,7 @@ Component({
     rightsList,
     navBarBgVisible: false,
     curLevel: 1,
-    achievementInfo: null,
+    promoterInfo: null,
     commissionSumInfo: null,
     dateList: ["今日", "昨日", "本月", "上月"],
     curDateIdx: 0,
@@ -49,21 +49,21 @@ Component({
 
   methods: {
     onLoad() {
-      this.setAchievementInfo();
+      this.setPromoterInfo();
       this.setCommissionSumInfo();
       this.setCommissionTimeData();
       this.setCustomerData();
     },
 
-    async setAchievementInfo() {
-      const achievementInfo = await promoterService.getPromoterAchievement();
-      this.setData({ achievementInfo });
+    async setPromoterInfo() {
+      const promoterInfo = await promoterService.getPromoterInfo();
+      this.setData({ promoterInfo });
     },
 
     upgrade() {
-      const { achievementInfo, userInfo } = this.data;
+      const { promoterInfo, userInfo } = this.data;
       const scene =
-        achievementInfo.percent === 100 && !userInfo.enterpriseInfoId
+        promoterInfo.percent === 100 && !userInfo.enterpriseInfoId
           ? "certification"
           : "performance";
       const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/promoter/${scene}`;

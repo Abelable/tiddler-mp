@@ -1,4 +1,5 @@
 <wxs module="NUM" src="/utils/filters/num.wxs" />
+<wxs module="TIME" src="/utils/filters/time.wxs" />
 <wxs module="ARRAY" src="/utils/filters/array.wxs" />
 
 <view class="nav-bar-wrap {{navBarBgVisible ? 'show-bg' : ''}} level-{{curLevel}}" style="padding-top: {{statusBarHeight}}px;">
@@ -23,22 +24,30 @@
           <view class="upgradation-content">
             <view class="level-name">家乡代言人Lv.{{index + 1}}</view>
             <view class="level-expiration" wx:if="{{userInfo.level === index + 1}}">
-              2026.02.02到期 每月8日更新等级
+              {{TIME.transform(promoterInfo.expirationTime, 'YYYY.MM.DD')}}到期 每月8日更新等级
             </view>
             <view class="progress-wrap" wx:if="{{userInfo.level === index + 1}}">
               <view class="progress-bar-wrap row">
                 <view class="progress-bar row">
-                  <view class="progress-bar-inner level-{{index + 1}}" style="width: 20%;">
-                    <view class="proportion-tag row">20/100</view>
+                  <view 
+                    class="progress-bar-inner level-{{index + 1}}" 
+                    style="width: {{promoterInfo.subPromoterCount / [100, 1000, 5000, 5000][index] * 100}}%;"
+                    wx:if="{{promoterInfo.subPromoterCount}}"
+                  >
+                    <view class="proportion-tag row">{{promoterInfo.subPromoterCount}}/{{[100, 1000, 5000, 5000][index]}}</view>
                   </view>
-                  <view class="progress-bar-inner stripe level-{{index + 1}}" style="width: 30%;">
-                    <view class="proportion-tag row">4000/30000</view>
+                  <view 
+                    class="progress-bar-inner stripe level-{{index + 1}}" 
+                    style="width: {{promoterInfo.achievement / [30000, 100000, 500000, 500000][index] * 100}}%;"
+                    wx:if="{{promoterInfo.achievement}}"
+                  >
+                    <view class="proportion-tag row">{{promoterInfo.achievement}}/{{[30000, 100000, 500000, 500000][index]}}</view>
                   </view>
                 </view>
                 <view class="progress-level" wx:if="{{index !== 3}}">Lv.{{index + 2}}</view>
               </view>
               <view class="progress-desc row" bindtap="upgrade">
-                <view>{{index === 3 ? '保' : '升'}}级还需80位家乡代言人、1000荣誉值</view>
+                <view>{{index === 3 ? '保' : '升'}}级还需邀请{{[100, 1000, 5000, 5000][index] - promoterInfo.subPromoterCount}}位家乡代言人、{{[30000, 100000, 500000, 500000][index] - promoterInfo.achievement}}荣誉值</view>
                 <image class="progress-arrow" src="./images/arrow_white.png" />
               </view>
             </view>
@@ -48,9 +57,9 @@
                   userInfo.level > index + 1 ? 
                   '已超越当前等级' : 
                   [
-                    '邀请100位家乡代言人，近三月累计3万荣誉值可升级Lv.2', 
-                    '邀请1000位家乡代言人，近三月累计10万荣誉值可升级Lv.3', 
-                    '邀请5000位家乡代言人，近三月累计50万荣誉值可升级Lv.4'
+                    '升级需邀请100位家乡代言人，近三月累计3万荣誉值', 
+                    '升级需邀请1000位家乡代言人，近三月累计10万荣誉值', 
+                    '升级需邀请5000位家乡代言人，近三月累计50万荣誉值'
                   ][index - 1]
                 }}
               </view> 
