@@ -23,7 +23,7 @@ Component({
 
   storeBindings: {
     store,
-    fields: ["userInfo", "promoterInfo"]
+    fields: ["userInfo", "superiorInfo"]
   },
 
   data: {
@@ -55,12 +55,12 @@ Component({
       this.superiorId = superiorId || decodedScene.split("-")[0];
 
       getApp().onLaunched(async () => {
-        if (this.superiorId && !store.promoterInfo) {
+        if (this.superiorId && !store.superiorInfo) {
           wx.setStorageSync("superiorId", this.superiorId);
-          const superiorInfo = await homeService.getSuperiorInfo(
-            this.superiorId
-          );
-          store.setPromoterInfo(superiorInfo);
+          const superiorInfo = await homeService.getUserInfo(this.superiorId);
+          if (superiorInfo.promoterInfo) {
+            store.setSuperiorInfo(superiorInfo);
+          }
         }
       });
 
@@ -209,8 +209,7 @@ Component({
       const { mediaList } = this.data;
 
       this.setData({ isLoading: true });
-      const { list = [] } =
-        (await homeService.getMediaList(++this.page)) || {};
+      const { list = [] } = (await homeService.getMediaList(++this.page)) || {};
       if (init) {
         this.setData({
           mediaList: list,
@@ -302,7 +301,7 @@ Component({
     },
 
     onShareAppMessage() {
-      const { id } = store.promoterInfo || {};
+      const { id } = store.superiorInfo || {};
       const path = id
         ? `/pages/tab-bar-pages/home/index?superiorId=${id}`
         : "/pages/tab-bar-pages/home/index";
@@ -310,7 +309,7 @@ Component({
     },
 
     onShareTimeline() {
-      const { id } = store.promoterInfo || {};
+      const { id } = store.superiorInfo || {};
       const query = id ? `superiorId=${id}` : "";
       return { query };
     }

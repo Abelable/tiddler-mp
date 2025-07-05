@@ -7,7 +7,7 @@ const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Component({
   behaviors: [storeBindingsBehavior],
-  
+
   storeBindings: {
     store,
     fields: ["userInfo", "promoterInfo"]
@@ -40,12 +40,12 @@ Component({
       this.superiorId = superiorId || decodedScene.split("-")[0];
 
       getApp().onLaunched(async () => {
-        if (this.superiorId && !store.promoterInfo) {
+        if (this.superiorId && !store.superiorInfo) {
           wx.setStorageSync("superiorId", this.superiorId);
-          const superiorInfo = await mallService.getSuperiorInfo(
-            this.superiorId
-          );
-          store.setPromoterInfo(superiorInfo);
+          const superiorInfo = await mallService.getUserInfo(this.superiorId);
+          if (superiorInfo.promoterInfo) {
+            store.setSuperiorInfo(superiorInfo);
+          }
         }
       });
 
@@ -174,7 +174,7 @@ Component({
     },
 
     onShareAppMessage() {
-      const { id } = store.promoterInfo || {};
+      const { id } = store.superiorInfo || {};
       const path = id
         ? `/pages/tab-bar-pages/mall/index?superiorId=${id}`
         : "/pages/tab-bar-pages/mall/index";
@@ -182,7 +182,7 @@ Component({
     },
 
     onShareTimeline() {
-      const { id } = store.promoterInfo || {};
+      const { id } = store.superiorInfo || {};
       const query = id ? `superiorId=${id}` : "";
       return { query };
     }

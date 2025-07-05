@@ -34,12 +34,12 @@ Page({
     this.superiorId = +superiorId || decodedSceneList[1];
 
     getApp().onLaunched(async () => {
-      if (this.superiorId && !store.promoterInfo) {
+      if (this.superiorId && !store.superiorInfo) {
         wx.setStorageSync("superiorId", this.superiorId);
-        const superiorInfo = await mediaService.getSuperiorInfo(
-          this.superiorId
-        );
-        store.setPromoterInfo(superiorInfo);
+        const superiorInfo = await mediaService.getUserInfo(this.superiorId);
+        if (superiorInfo.promoterInfo) {
+          store.setSuperiorInfo(superiorInfo);
+        }
       }
     });
 
@@ -273,8 +273,8 @@ Page({
         fansNumber
       } = this.data.authorInfo;
 
-      const scene = store.promoterInfo
-        ? `${id}-${store.promoterInfo.id}`
+      const scene = store.superiorInfo
+        ? `${id}-${store.superiorInfo.id}`
         : `${id}`;
       const page = "pages/subpages/home/media/author-center/index";
       const qrcode = await mediaService.getQRCode(scene, page);
@@ -299,17 +299,17 @@ Page({
   },
 
   onShareAppMessage() {
-    const { id, nickname: title } = this.data.authorInfo
-    const path = store.promoterInfo
-      ? `/pages/subpages/home/media/author-center/index?id=${id}&superiorId=${store.promoterInfo.id}`
+    const { id, nickname: title } = this.data.authorInfo;
+    const path = store.superiorInfo
+      ? `/pages/subpages/home/media/author-center/index?id=${id}&superiorId=${store.superiorInfo.id}`
       : `/pages/subpages/home/media/author-center/index?id=${id}`;
     return { path, title };
   },
 
   onShareTimeline() {
-    const { id, nickname: title } = this.data.authorInfo
-    const query = store.promoterInfo
-      ? `id=${id}&superiorId=${promoterInfo.id}`
+    const { id, nickname: title } = this.data.authorInfo;
+    const query = store.superiorInfo
+      ? `id=${id}&superiorId=${store.superiorInfo.id}`
       : `id=${id}`;
     return { query, title };
   }

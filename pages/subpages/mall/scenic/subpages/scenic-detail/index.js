@@ -44,10 +44,12 @@ Page({
     this.superiorId = +superiorId || decodedSceneList[1];
 
     getApp().onLaunched(async () => {
-      if (this.superiorId && !store.promoterInfo) {
+      if (this.superiorId && !store.superiorInfo) {
         wx.setStorageSync("superiorId", this.superiorId);
-        const superiorInfo = await scenicService.getSuperiorInfo(this.superiorId);
-        store.setPromoterInfo(superiorInfo);
+        const superiorInfo = await scenicService.getUserInfo(this.superiorId);
+        if (superiorInfo.promoterInfo) {
+          store.setSuperiorInfo(superiorInfo);
+        }
       }
     });
 
@@ -447,8 +449,8 @@ Page({
 
   share() {
     checkLogin(async () => {
-      const scene = store.promoterInfo
-        ? `${this.scenicId}-${store.promoterInfo.id}`
+      const scene = store.superiorInfo
+        ? `${this.scenicId}-${store.superiorInfo.id}`
         : `${this.scenicId}`;
       const page = "pages/subpages/mall/scenic/subpages/scenic-detail/index";
       const qrcode = await scenicService.getQRCode(scene, page);
@@ -536,16 +538,16 @@ Page({
 
   onShareAppMessage() {
     const { id, name, imageList } = this.data.scenicInfo;
-    const path = store.promoterInfo
-      ? `/pages/subpages/mall/scenic/subpages/scenic-detail/index?id=${id}&superiorId=${store.promoterInfo.id}`
+    const path = store.superiorInfo
+      ? `/pages/subpages/mall/scenic/subpages/scenic-detail/index?id=${id}&superiorId=${store.superiorInfo.id}`
       : `/pages/subpages/mall/scenic/subpages/scenic-detail/index?id=${id}`;
     return { path, title: name, imageUrl: imageList[0] };
   },
 
   onShareTimeline() {
     const { id, name, imageList } = this.data.scenicInfo;
-    const query = store.promoterInfo
-      ? `id=${id}&superiorId=${promoterInfo.id}`
+    const query = store.superiorInfo
+      ? `id=${id}&superiorId=${store.superiorInfo.id}`
       : `id=${id}`;
     return { query, title: name, imageUrl: imageList[0] };
   }

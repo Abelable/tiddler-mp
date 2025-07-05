@@ -34,7 +34,7 @@ Page({
   async onLoad(options) {
     this.storeBindings = createStoreBindings(this, {
       store,
-      fields: ["userInfo"],
+      fields: ["userInfo"]
     });
 
     const { id, superiorId = "", scene = "" } = options || {};
@@ -43,12 +43,12 @@ Page({
     this.superiorId = +superiorId || decodedSceneList[1];
 
     getApp().onLaunched(async () => {
-      if (this.superiorId && !store.promoterInfo) {
+      if (this.superiorId && !store.superiorInfo) {
         wx.setStorageSync("superiorId", this.superiorId);
-        const superiorInfo = await goodsService.getSuperiorInfo(
-          this.superiorId
-        );
-        store.setPromoterInfo(superiorInfo);
+        const superiorInfo = await goodsService.getUserInfo(this.superiorId);
+        if (superiorInfo.promoterInfo) {
+          store.setSuperiorInfo(superiorInfo);
+        }
       }
     });
 
@@ -114,7 +114,7 @@ Page({
       skuSalesCommissionRate || baseSalesCommissionRate;
     const commission =
       Math.round(
-        price * (salesCommissionRate / 100) * (promotionCommissionRate)
+        price * (salesCommissionRate / 100) * promotionCommissionRate
       ) / 100;
     this.setData({
       commission: Math.min(commission, promotionCommissionUpperLimit)
@@ -327,8 +327,8 @@ Page({
 
   share() {
     checkLogin(async () => {
-      const scene = store.promoterInfo
-        ? `${this.goodsId}-${store.promoterInfo.id}`
+      const scene = store.superiorInfo
+        ? `${this.goodsId}-${store.superiorInfo.id}`
         : `${this.goodsId}`;
       const page = "pages/subpages/mall/goods/subpages/goods-detail/index";
       const qrcode = await goodsService.getQRCode(scene, page);
@@ -379,16 +379,16 @@ Page({
   // 分享
   onShareAppMessage() {
     const { id, name: title, cover: imageUrl } = this.data.goodsInfo;
-    const path = store.promoterInfo
-      ? `/pages/subpages/mall/goods/subpages/goods-detail/index?id=${id}&superiorId=${store.promoterInfo.id}`
+    const path = store.superiorInfo
+      ? `/pages/subpages/mall/goods/subpages/goods-detail/index?id=${id}&superiorId=${store.superiorInfo.id}`
       : `/pages/subpages/mall/goods/subpages/goods-detail/index?id=${id}`;
     return { title, imageUrl, path };
   },
 
   onShareTimeline() {
     const { id, name: title, cover: imageUrl } = this.data.goodsInfo;
-    const query = store.promoterInfo
-      ? `id=${id}&superiorId=${promoterInfo.id}`
+    const query = store.superiorInfo
+      ? `id=${id}&superiorId=${store.superiorInfo.id}`
       : `id=${id}`;
     return { query, title, imageUrl };
   }

@@ -2,9 +2,9 @@
   <view class="menu-tabs-wrap">
     <view style="flex: 1">
       <!-- <image class="sign-in-icon" src="https://static.tiddler.cn/mp/sign_in.png" /> -->
-      <view class="promoter-icon" wx:if="{{userInfo.level === 0 && promoterInfo}}">
-        <image class="promoter-avatar" src="{{promoterInfo.avatar}}" />
-        <image class="promoter-medal" src="https://static.tiddler.cn/mp/promoter/level_{{promoterInfo.level}}/medal.gif" />
+      <view class="promoter-icon" wx:if="{{!userInfo.promoterInfo && superiorInfo}}">
+        <image class="promoter-avatar" src="{{superiorInfo.avatar}}" />
+        <image class="promoter-medal" src="https://static.tiddler.cn/mp/promoter/level_{{superiorInfo.promoterInfo.level}}/medal.gif" />
       </view>
     </view>
     <view class="menu-tabs">

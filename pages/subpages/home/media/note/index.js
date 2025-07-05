@@ -33,10 +33,12 @@ Page({
     this.superiorId = +superiorId || decodedSceneList[1];
 
     getApp().onLaunched(async () => {
-      if (this.superiorId && !store.promoterInfo) {
+      if (this.superiorId && !store.superiorInfo) {
         wx.setStorageSync("superiorId", this.superiorId);
-        const superiorInfo = await noteService.getSuperiorInfo(this.superiorId);
-        store.setPromoterInfo(superiorInfo);
+        const superiorInfo = await noteService.getUserInfo(this.superiorId);
+        if (superiorInfo.promoterInfo) {
+          store.setSuperiorInfo(superiorInfo);
+        }
       }
     });
 
@@ -263,8 +265,8 @@ Page({
     checkLogin(async () => {
       const { id, imageList, title, content, authorInfo, likeNumber } =
         this.data.noteInfo;
-      const scene = store.promoterInfo
-        ? `${id}-${store.promoterInfo.id}`
+      const scene = store.superiorInfo
+        ? `${id}-${store.superiorInfo.id}`
         : `${id}`;
       const page = "pages/subpages/home/media/note/index";
 
@@ -289,8 +291,8 @@ Page({
   onShareAppMessage() {
     const { noteList, curNoteIdx } = this.data;
     const { id, title, cover: imageUrl } = noteList[curNoteIdx];
-    const path = store.promoterInfo
-      ? `/pages/subpages/home/media/note/index?id=${id}&superiorId=${store.promoterInfo.id}`
+    const path = store.superiorInfo
+      ? `/pages/subpages/home/media/note/index?id=${id}&superiorId=${store.superiorInfo.id}`
       : `/pages/subpages/home/media/note/index?id=${id}`;
     return { path, title, imageUrl };
   },
@@ -298,8 +300,8 @@ Page({
   onShareTimeline() {
     const { noteList, curNoteIdx } = this.data;
     const { id, title, cover: imageUrl } = noteList[curNoteIdx];
-    const query = store.promoterInfo
-      ? `id=${id}&superiorId=${promoterInfo.id}`
+    const query = store.superiorInfo
+      ? `id=${id}&superiorId=${store.superiorInfo.id}`
       : `id=${id}`;
     return { query, title, imageUrl };
   },

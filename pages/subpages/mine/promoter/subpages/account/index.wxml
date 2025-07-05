@@ -37,7 +37,7 @@
         </view>
         <view class="type-withdraw-btn" bindtap="withdraw" data-scene="{{2}}">提现</view>
       </view>
-      <view class="amount-type-item" wx:if="{{userInfo.level > 1}}">
+      <view class="amount-type-item" wx:if="{{userInfo.promoterInfo.level > 1}}">
         <view class="amount-type-name">团队奖励</view>
         <view class="type-amount">
           <text style="font-size: 28rpx;">¥</text>
@@ -58,7 +58,7 @@
   <view class="menu-tabs">
     <view 
       class="menu-tab {{ curMenuIdx === index ? 'active' : '' }}"
-      wx:for="{{userInfo.level > 1 ? ['自购返现', '分享奖励', '团队奖励'] : ['自购返现', '分享奖励']}}"
+      wx:for="{{userInfo.promoterInfo.level > 1 ? ['自购返现', '分享奖励', '团队奖励'] : ['自购返现', '分享奖励']}}"
       wx:key="index"
       bindtap="selectMenu"
       data-index="{{index}}"

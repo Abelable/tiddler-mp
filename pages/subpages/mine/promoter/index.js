@@ -40,8 +40,8 @@ Component({
   observers: {
     userInfo: function (userInfo) {
       if (userInfo) {
-        this.setData({ 
-          curLevel: store.userInfo.level 
+        this.setData({
+          curLevel: store.userInfo.promoterInfo.level
         });
       }
     }
@@ -58,16 +58,6 @@ Component({
     async setAchievement() {
       const achievement = await promoterService.getPromoterAchievement();
       this.setData({ achievement });
-    },
-
-    upgrade() {
-      const { promoterInfo, userInfo } = this.data;
-      const scene =
-        promoterInfo.percent === 100 && !userInfo.enterpriseInfoId
-          ? "certification"
-          : "performance";
-      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/promoter/${scene}`;
-      wx.navigateTo({ url });
     },
 
     async setCommissionSumInfo() {
@@ -114,6 +104,11 @@ Component({
       wx.navigateTo({
         url: "./subpages/account/index"
       });
+    },
+
+    checkAchievementDetail() {
+      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/promoter/performance`;
+      wx.navigateTo({ url });
     },
 
     navToCustomer(e) {

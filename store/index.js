@@ -8,7 +8,7 @@ configure({ enforceActions: "observed" }); // 不允许在动作外部修改状�
 export const store = observable({
   tabType: "home",
   userInfo: null,
-  promoterInfo: null,
+  superiorInfo: null,
   merchantType: undefined,
   activeMediaItem: null,
   croppedImagePath: "",
@@ -28,8 +28,8 @@ export const store = observable({
   setUserInfo: action(function (info) {
     this.userInfo = info;
   }),
-  setPromoterInfo: action(function (info) {
-    this.promoterInfo = info;
+  setSuperiorInfo: action(function (info) {
+    this.superiorInfo = info;
   }),
   setMerchantType: action(function (type) {
     this.merchantType = type;

@@ -5,13 +5,17 @@
   <image class="nav-bg" wx:if="{{navBarVisible}}" src="{{userInfo.bg || 'https://static.tiddler.cn/mp/bg.png'}}" />
   <view class="bg-cover" wx:if="{{navBarVisible}}" />
   <!-- <image class="sign-in-icon" wx:if="{{!navBarVisible}}" src="https://static.tiddler.cn/mp/sign_in.png" /> -->
-  <view class="promoter-icon" wx:if="{{userInfo.level === 0 && promoterInfo}}">
-    <image class="promoter-avatar" src="{{promoterInfo.avatar}}" />
-    <image class="promoter-medal" src="https://static.tiddler.cn/mp/promoter/level_{{promoterInfo.level}}/medal.gif" />
+  <view class="promoter-icon" wx:if="{{!userInfo.promoterInfo && superiorInfo}}">
+    <image class="promoter-avatar" src="{{superiorInfo.avatar}}" />
+    <image class="promoter-medal" src="https://static.tiddler.cn/mp/promoter/level_{{superiorInfo.promoterInfo.level}}/medal.gif" />
   </view>
   <view class="mine-avatar-wrap" wx:if="{{navBarVisible}}">
     <image class="mine-avatar" src="{{userInfo.avatar}}" />
-    <image class="mine-medal" wx:if="{{userInfo.level}}" src="https://static.tiddler.cn/mp/promoter/level_{{userInfo.level}}/medal.gif" />
+    <image 
+      class="mine-medal" 
+      wx:if="{{userInfo.promoterInfo}}" 
+      src="https://static.tiddler.cn/mp/promoter/level_{{userInfo.promoterInfo.level}}/medal.gif" 
+    />
   </view>
   <view class="mine-name" wx:if="{{navBarVisible}}">{{userInfo.nickname}}</view>
 </view>
@@ -22,7 +26,11 @@
     <view class="user-info-wrap">
       <view class="avatar-wrap">
         <image class="avatar" bindtap="navToUserInfoSetting" src="{{userInfo.avatar}}" />
-        <image class="promoter-medal" wx:if="{{userInfo.level}}" src="https://static.tiddler.cn/mp/promoter/level_{{userInfo.level}}/medal.gif" />
+        <image 
+          class="promoter-medal" 
+          wx:if="{{userInfo.promoterInfo}}" 
+          src="https://static.tiddler.cn/mp/promoter/level_{{userInfo.promoterInfo.level}}/medal.gif" 
+        />
       </view>
       <view class="data-wrap">
         <view class="data-item">

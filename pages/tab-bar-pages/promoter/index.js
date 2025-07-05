@@ -28,7 +28,7 @@ Component({
     },
 
     onShareAppMessage() {
-      const { id } = store.promoterInfo || {};
+      const { id } = store.superiorInfo || {};
       const path = id
         ? `/pages/tab-bar-pages/promoter/index?superiorId=${id}`
         : "/pages/tab-bar-pages/promoter/index";
@@ -36,7 +36,7 @@ Component({
     },
 
     onShareTimeline() {
-      const { id } = store.promoterInfo || {};
+      const { id } = store.superiorInfo || {};
       const query = id ? `superiorId=${id}` : "";
       return { query };
     }

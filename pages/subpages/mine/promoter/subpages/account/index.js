@@ -28,7 +28,7 @@ Page({
   onLoad() {
     this.storeBindings = createStoreBindings(this, {
       store,
-      fields: ["userInfo", "promoterInfo"]
+      fields: ["userInfo"]
     });
   },
 

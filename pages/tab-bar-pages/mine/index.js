@@ -82,7 +82,7 @@ Component({
 
   methods: {
     updateUserInfo() {
-      mineService.getUserInfo();
+      mineService.getMyInfo();
     },
 
     async updateOrderTotal() {

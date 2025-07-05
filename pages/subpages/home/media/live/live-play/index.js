@@ -24,10 +24,12 @@ Page({
     this.superiorId = +superiorId || decodedSceneList[1];
 
     getApp().onLaunched(async () => {
-      if (this.superiorId && !store.promoterInfo) {
+      if (this.superiorId && !store.superiorInfo) {
         wx.setStorageSync("superiorId", this.superiorId);
-        const superiorInfo = await liveService.getSuperiorInfo(this.superiorId);
-        store.setPromoterInfo(superiorInfo);
+        const superiorInfo = await liveService.getUserInfo(this.superiorId);
+        if (superiorInfo.promoterInfo) {
+          store.setSuperiorInfo(superiorInfo);
+        }
       }
     });
 
@@ -101,8 +103,8 @@ Page({
     } = roomList[curRoomIdx];
 
     const scene =
-      wx.getStorageSync("token") && store.promoterInfo
-        ? `${id}-${store.promoterInfo.id}`
+      wx.getStorageSync("token") && store.superiorInfo
+        ? `${id}-${store.superiorInfo.id}`
         : `${id}`;
     const page = "pages/subpages/home/media/live/live-play/index";
     const qrcode = await liveService.getQRCode(scene, page);
@@ -145,8 +147,8 @@ Page({
     const { roomList, curRoomIdx } = this.data;
     const roomInfo = roomList[curRoomIdx];
     const { id, title, cover: imageUrl } = roomInfo;
-    const path = store.promoterInfo
-      ? `/pages/subpages/home/media/live/live-play/index?id=${id}&superiorId=${store.promoterInfo.id}`
+    const path = store.superiorInfo
+      ? `/pages/subpages/home/media/live/live-play/index?id=${id}&superiorId=${store.superiorInfo.id}`
       : `/pages/subpages/home/media/live/live-play/index?id=${id}}`;
     return { path, title, imageUrl };
   },
@@ -156,8 +158,8 @@ Page({
     const roomInfo = roomList[curRoomIdx];
     const { id, title, cover: imageUrl } = roomInfo;
     title = `有播直播间：${title}`;
-    const query = store.promoterInfo
-      ? `id=${id}&superiorId=${promoterInfo.id}`
+    const query = store.superiorInfo
+      ? `id=${id}&superiorId=${store.superiorInfo.id}`
       : `id=${id}`;
     return { query, title, imageUrl };
   }

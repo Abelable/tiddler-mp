@@ -19,14 +19,14 @@
         <view class="upgradation-card {{curLevel !== index + 1 ? 'not-active' : ''}}">
           <image class="upgradation-bg" src="https://static.tiddler.cn/mp/promoter/level_{achievement_bg.png" />
           <view class="status-tag">
-            {{userInfo.level === index + 1 ? '当前等级' : userInfo.level > index + 1 ? '已超越' : '待升级'}}
+            {{userInfo.promoterInfo.level === index + 1 ? '当前等级' : userInfo.promoterInfo.level > index + 1 ? '已超越' : '待升级'}}
           </view>
           <view class="upgradation-content">
             <view class="level-name">家乡代言人Lv.{{index + 1}}</view>
-            <view class="level-expiration" wx:if="{{userInfo.level === index + 1}}">
+            <view class="level-expiration" wx:if="{{userInfo.promoterInfo.level === index + 1}}">
               {{TIME.transform(promoterInfo.expirationTime, 'YYYY.MM.DD')}}到期 每月8日更新等级
             </view>
-            <view class="progress-wrap" wx:if="{{userInfo.level === index + 1}}">
+            <view class="progress-wrap" wx:if="{{userInfo.promoterInfo.level === index + 1}}">
               <view class="progress-bar-wrap row">
                 <view class="progress-bar row">
                   <view 
@@ -46,15 +46,15 @@
                 </view>
                 <view class="progress-level" wx:if="{{index !== 3}}">Lv.{{index + 2}}</view>
               </view>
-              <view class="progress-desc row" bindtap="upgrade">
+              <view class="progress-desc row" bindtap="checkAchievementDetail">
                 <view>{{index === 3 ? '保' : '升'}}级还需邀请{{[100, 1000, 5000, 5000][index] - promoterInfo.subPromoterCount}}位家乡代言人、{{[30000, 100000, 500000, 500000][index] - achievement}}荣誉值</view>
                 <image class="progress-arrow" src="./images/arrow_white.png" />
               </view>
             </view>
-            <view class="progress-tips row" wx:if="{{userInfo.level !== index + 1}}" bindtap="upgrade">
+            <view class="progress-tips row" wx:if="{{userInfo.promoterInfo.level !== index + 1}}" bindtap="upgrade">
               <view>
                 {{
-                  userInfo.level > index + 1 ? 
+                  userInfo.promoterInfo.level > index + 1 ? 
                   '已超越当前等级' : 
                   [
                     '升级需邀请100位家乡代言人，近三月累计3万荣誉值', 
@@ -77,7 +77,7 @@
         <view class="rights-item" wx:for="{{ARRAY.slice(rightsList, 0, 4)}}" wx:key="index">
           <view class="rights-icon-wrap">
             <image class="rights-icon" src="https://static.tiddler.cn/mp/promoter/level_{{curLevel}}/{{item.icon}}.png" />
-            <image class="rights-lock" wx:if="{{userInfo.level === 1 && (index === 1 || index === 2 || index === 3)}}" src="https://static.tiddler.cn/mp/promoter/lock.png" />
+            <image class="rights-lock" wx:if="{{userInfo.promoterInfo.level === 1 && (index === 1 || index === 2 || index === 3)}}" src="https://static.tiddler.cn/mp/promoter/lock.png" />
           </view>
           <view class="rights-name">{{item.name}}</view>
         </view>
@@ -86,7 +86,7 @@
         <view class="rights-item" wx:for="{{ARRAY.slice(rightsList, 4)}}" wx:key="index">
           <view class="rights-icon-wrap">
             <image class="rights-icon" src="https://static.tiddler.cn/mp/promoter/level_{{curLevel}}/{{item.icon}}.png" />
-            <image class="rights-lock" wx:if="{{userInfo.level === 1}}" src="https://static.tiddler.cn/mp/promoter/lock.png" />
+            <image class="rights-lock" wx:if="{{userInfo.promoterInfo.level === 1}}" src="https://static.tiddler.cn/mp/promoter/lock.png" />
           </view>
           <view class="rights-name">{{item.name}}</view>
         </view>

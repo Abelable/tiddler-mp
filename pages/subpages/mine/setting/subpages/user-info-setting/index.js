@@ -178,7 +178,7 @@ Page({
       });
       return;
     }
-    settingService.updateUserInfo(userInfo, () => {
+    settingService.updateMyInfo(userInfo, () => {
       store.setUserInfo({ ...store.userInfo, ...userInfo });
       wx.navigateBack();
     });

@@ -37,10 +37,12 @@ Page({
     this.mediaScene = mediaScene ? +mediaScene : 0;
 
     getApp().onLaunched(async () => {
-      if (this.superiorId && !store.promoterInfo) {
+      if (this.superiorId && !store.superiorInfo) {
         wx.setStorageSync("superiorId", this.superiorId);
-        const superiorInfo = await videoService.getSuperiorInfo(this.superiorId);
-        store.setPromoterInfo(superiorInfo);
+        const superiorInfo = await videoService.getUserInfo(this.superiorId);
+        if (superiorInfo.promoterInfo) {
+          store.setSuperiorInfo(superiorInfo);
+        }
       }
     });
 
@@ -184,8 +186,8 @@ Page({
     const { videoList, curVideoIdx } = this.data;
     const { id, cover, title, authorInfo, likeNumber } = videoList[curVideoIdx];
     const scene =
-      wx.getStorageSync("token") && store.promoterInfo
-        ? `${id}-${store.promoterInfo.id}`
+      wx.getStorageSync("token") && store.superiorInfo
+        ? `${id}-${store.superiorInfo.id}`
         : `${id}`;
     const page = "pages/subpages/home/media/video/index";
 
@@ -234,8 +236,8 @@ Page({
   onShareAppMessage() {
     const { videoList, curVideoIdx } = this.data;
     const { id, title, cover: imageUrl } = videoList[curVideoIdx];
-    const path = store.promoterInfo
-      ? `/pages/subpages/home/media/video/index?id=${id}&superiorId=${store.promoterInfo.id}`
+    const path = store.superiorInfo
+      ? `/pages/subpages/home/media/video/index?id=${id}&superiorId=${store.superiorInfo.id}`
       : `/pages/subpages/home/media/video/index?id=${id}`;
     return { path, title, imageUrl };
   },
@@ -243,8 +245,8 @@ Page({
   onShareTimeline() {
     const { videoList, curVideoIdx } = this.data;
     const { id, title, cover: imageUrl } = videoList[curVideoIdx];
-    const query = store.promoterInfo
-      ? `id=${id}&superiorId=${promoterInfo.id}`
+    const query = store.superiorInfo
+      ? `id=${id}&superiorId=${store.superiorInfo.id}`
       : `id=${id}`;
     return { query, title, imageUrl };
   }

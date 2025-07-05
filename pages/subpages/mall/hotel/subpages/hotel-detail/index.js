@@ -68,12 +68,12 @@ Component({
       this.superiorId = +superiorId || decodedSceneList[1];
 
       getApp().onLaunched(async () => {
-        if (this.superiorId && !store.promoterInfo) {
+        if (this.superiorId && !store.superiorInfo) {
           wx.setStorageSync("superiorId", this.superiorId);
-          const superiorInfo = await hotelService.getSuperiorInfo(
-            this.superiorId
-          );
-          store.setPromoterInfo(superiorInfo);
+          const superiorInfo = await hotelService.getUserInfo(this.superiorId);
+          if (superiorInfo.promoterInfo) {
+            store.setSuperiorInfo(superiorInfo);
+          }
         }
       });
 
@@ -391,8 +391,8 @@ Component({
 
     share() {
       checkLogin(async () => {
-        const scene = store.promoterInfo
-          ? `${this.hotelId}-${store.promoterInfo.id}`
+        const scene = store.superiorInfo
+          ? `${this.hotelId}-${store.superiorInfo.id}`
           : `${this.hotelId}`;
         const page = "pages/subpages/mall/hotel/subpages/hotel-detail/index";
         const qrcode = await hotelService.getQRCode(scene, page);
@@ -526,16 +526,16 @@ Component({
 
     onShareAppMessage() {
       const { id, name, cover } = this.data.hotelInfo;
-      const path = store.promoterInfo
-        ? `/pages/subpages/mall/hotel/subpages/hotel-detail/index?id=${id}&superiorId=${store.promoterInfo.id}`
+      const path = store.superiorInfo
+        ? `/pages/subpages/mall/hotel/subpages/hotel-detail/index?id=${id}&superiorId=${store.superiorInfo.id}`
         : `/pages/subpages/mall/hotel/subpages/hotel-detail/index?id=${id}`;
       return { path, title: name, imageUrl: cover };
     },
-  
+
     onShareTimeline() {
       const { id, name, cover } = this.data.hotelInfo;
-      const query = store.promoterInfo
-        ? `id=${id}&superiorId=${promoterInfo.id}`
+      const query = store.superiorInfo
+        ? `id=${id}&superiorId=${store.superiorInfo.id}`
         : `id=${id}`;
       return { query, title: name, imageUrl: cover };
     }

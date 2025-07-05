@@ -22,20 +22,24 @@ App({
       const { userId, sdkAppId, userSig } = await baseService.getTimLoginInfo();
       tim.init(Number(sdkAppId), String(userId), userSig);
 
-      const userInfo = await baseService.getUserInfo();
-      if (userInfo.level) {
-        store.setPromoterInfo(userInfo);
+      const userInfo = await baseService.getMyInfo();
+      if (userInfo.promoterInfo) {
+        store.setSuperiorInfo(userInfo);
       } else if (userInfo.superiorId) {
-        const superiorInfo = await baseService.getSuperiorInfo(
+        const superiorInfo = await baseService.getUserInfo(
           userInfo.superiorId
         );
-        store.setPromoterInfo(superiorInfo);
+        if (superiorInfo.promoterInfo) {
+          store.setSuperiorInfo(superiorInfo);
+        }
       }
     } else {
       const superiorId = wx.getStorageSync("superiorId");
       if (superiorId) {
-        const superiorInfo = await baseService.getSuperiorInfo(superiorId);
-        store.setPromoterInfo(superiorInfo);
+        const superiorInfo = await baseService.getUserInfo(superiorId);
+        if (superiorInfo.promoterInfo) {
+          store.setSuperiorInfo(superiorInfo);
+        }
       }
     }
 

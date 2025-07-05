@@ -44,12 +44,12 @@ Page({
     this.superiorId = +superiorId || decodedSceneList[1];
 
     getApp().onLaunched(async () => {
-      if (this.superiorId && !store.promoterInfo) {
+      if (this.superiorId && !store.superiorInfo) {
         wx.setStorageSync("superiorId", this.superiorId);
-        const superiorInfo = await cateringService.getSuperiorInfo(
-          this.superiorId
-        );
-        store.setPromoterInfo(superiorInfo);
+        const superiorInfo = await cateringService.getUserInfo(this.superiorId);
+        if (superiorInfo.promoterInfo) {
+          store.setSuperiorInfo(superiorInfo);
+        }
       }
     });
 
@@ -470,8 +470,8 @@ Page({
 
   share() {
     checkLogin(async () => {
-      const scene = store.promoterInfo
-        ? `${this.restaurantId}-${store.promoterInfo.id}`
+      const scene = store.superiorInfo
+        ? `${this.restaurantId}-${store.superiorInfo.id}`
         : `${this.restaurantId}`;
       const page =
         "pages/subpages/mall/catering/subpages/restaurant-detail/index";
@@ -554,16 +554,16 @@ Page({
 
   onShareAppMessage() {
     const { id, name, cover } = this.data.restaurantInfo;
-    const path = store.promoterInfo
-      ? `/pages/subpages/mall/hotel/subpages/hotel-detail/index?id=${id}&superiorId=${store.promoterInfo.id}`
+    const path = store.superiorInfo
+      ? `/pages/subpages/mall/hotel/subpages/hotel-detail/index?id=${id}&superiorId=${store.superiorInfo.id}`
       : `/pages/subpages/mall/hotel/subpages/hotel-detail/index?id=${id}`;
     return { path, title: name, imageUrl: cover };
   },
 
   onShareTimeline() {
     const { id, name, cover } = this.data.restaurantInfo;
-    const query = store.promoterInfo
-      ? `id=${id}&superiorId=${promoterInfo.id}`
+    const query = store.superiorInfo
+      ? `id=${id}&superiorId=${store.superiorInfo.id}`
       : `id=${id}`;
     return { query, title: name, imageUrl: cover };
   }

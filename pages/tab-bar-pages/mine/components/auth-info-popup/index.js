@@ -42,7 +42,7 @@ Component({
         });
         return;
       }
-      mineService.updateUserInfo(
+      mineService.updateMyInfo(
         { ...store.userInfo, avatar, nickname },
         () => {
           store.setUserInfo({ ...store.userInfo, avatar, nickname });
