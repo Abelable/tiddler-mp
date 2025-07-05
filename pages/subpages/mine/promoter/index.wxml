@@ -17,7 +17,7 @@
     <swiper-item wx:for="{{4}}" wx:key="index">
       <view class="upgradation-wrap">
         <view class="upgradation-card {{curLevel !== index + 1 ? 'not-active' : ''}}">
-          <image class="upgradation-bg" src="https://static.tiddler.cn/mp/promoter/level_{{index + 1}}/achievement_bg.png" />
+          <image class="upgradation-bg" src="https://static.tiddler.cn/mp/promoter/level_{achievement_bg.png" />
           <view class="status-tag">
             {{userInfo.level === index + 1 ? '当前等级' : userInfo.level > index + 1 ? '已超越' : '待升级'}}
           </view>
@@ -38,16 +38,16 @@
                   </view>
                   <view 
                     class="progress-bar-inner stripe level-{{index + 1}}" 
-                    style="width: {{promoterInfo.achievement / [30000, 100000, 500000, 500000][index] * 100}}%;"
-                    wx:if="{{promoterInfo.achievement}}"
+                    style="width: {{achievement / [30000, 100000, 500000, 500000][index] * 100}}%;"
+                    wx:if="{{achievement}}"
                   >
-                    <view class="proportion-tag row">{{promoterInfo.achievement}}/{{[30000, 100000, 500000, 500000][index]}}</view>
+                    <view class="proportion-tag row">{{achievement}}/{{[30000, 100000, 500000, 500000][index]}}</view>
                   </view>
                 </view>
                 <view class="progress-level" wx:if="{{index !== 3}}">Lv.{{index + 2}}</view>
               </view>
               <view class="progress-desc row" bindtap="upgrade">
-                <view>{{index === 3 ? '保' : '升'}}级还需邀请{{[100, 1000, 5000, 5000][index] - promoterInfo.subPromoterCount}}位家乡代言人、{{[30000, 100000, 500000, 500000][index] - promoterInfo.achievement}}荣誉值</view>
+                <view>{{index === 3 ? '保' : '升'}}级还需邀请{{[100, 1000, 5000, 5000][index] - promoterInfo.subPromoterCount}}位家乡代言人、{{[30000, 100000, 500000, 500000][index] - achievement}}荣誉值</view>
                 <image class="progress-arrow" src="./images/arrow_white.png" />
               </view>
             </view>
@@ -70,7 +70,7 @@
       </view>
     </swiper-item>
   </swiper>
-  <view class="achievement-wrap">
+  achievement-wrap">
     <view class="promoter-rights-title">Lv.{{curLevel}}可享权益</view>
     <view class="promoter-rights-wrap">
       <view class="rights-list">

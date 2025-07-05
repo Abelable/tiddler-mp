@@ -2,9 +2,9 @@ import { cleanObject } from "../../../../../utils/index";
 import BaseService from "../../../../../services/baseService";
 
 class PromoterService extends BaseService {
-  async getPromoterInfo() {
+  async getPromoterAchievement() {
     return await this.get({
-      url: `${this.baseUrl}/promoter/info`
+      url: `${this.baseUrl}/promoter/achievement`
     });
   }
 

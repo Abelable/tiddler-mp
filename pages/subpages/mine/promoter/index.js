@@ -29,7 +29,7 @@ Component({
     rightsList,
     navBarBgVisible: false,
     curLevel: 1,
-    promoterInfo: null,
+    achievement: 0,
     commissionSumInfo: null,
     dateList: ["今日", "昨日", "本月", "上月"],
     curDateIdx: 0,
@@ -49,15 +49,15 @@ Component({
 
   methods: {
     onLoad() {
-      this.setPromoterInfo();
+      this.setAchievement();
       this.setCommissionSumInfo();
       this.setCommissionTimeData();
       this.setCustomerData();
     },
 
-    async setPromoterInfo() {
-      const promoterInfo = await promoterService.getPromoterInfo();
-      this.setData({ promoterInfo });
+    async setAchievement() {
+      const achievement = await promoterService.getPromoterAchievement();
+      this.setData({ achievement });
     },
 
     upgrade() {
