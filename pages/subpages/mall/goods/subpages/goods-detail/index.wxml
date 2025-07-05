@@ -86,7 +86,9 @@
       <view class="gift-bar-slogan-wrap row center">
         <image class="gift-bar-slogan" src="https://static.tiddler.cn/mp/gift_bar_slogan.png" />
       </view>
-      <view class="gift-duration row">代言家乡100天</view>
+      <view class="gift-duration row">
+        {{userInfo.promoterInfo ? '助力家乡千岛湖' : '代言家乡' + goodsInfo.giftDuration + '天'}}
+      </view>
     </view>
   </view>
   <view class="goods-info-wrap">
