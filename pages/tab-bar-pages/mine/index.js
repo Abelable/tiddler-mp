@@ -93,7 +93,7 @@ Component({
 
     initToolList() {
       const {
-        level,
+        promoterInfo,
         authInfoId,
         merchantInfo,
         shopManagerList,
@@ -105,7 +105,7 @@ Component({
       const toolList = [
         { name: "订单中心", icon: "order" },
         { name: "收货地址", icon: "address" },
-        level ? { name: "代言奖励", icon: "promoter" } : undefined,
+        promoterInfo ? { name: "代言奖励", icon: "promoter" } : undefined,
         merchantInfo.id ||
         shopManagerList.findIndex(item => item.roleId !== 3) !== -1 ||
         scenicProviderId ||
@@ -120,7 +120,7 @@ Component({
         cateringProviderId
           ? { name: "扫码核销", icon: "scan" }
           : undefined,
-        level ||
+        promoterInfo ||
         merchantInfo.id ||
         scenicProviderId ||
         hotelProviderId ||
