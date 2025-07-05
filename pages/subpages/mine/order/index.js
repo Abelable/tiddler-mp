@@ -308,7 +308,7 @@ Page({
     const { subMenuList, curSubMenuIdx } = menuList[4];
     if (init) {
       this.goodsPage = 0;
-      this.setData({ goodsFinished: false });
+      this.setData({ goodsOrderList: [], goodsFinished: false });
     }
     const list = await orderService.getGoodsOrderList({
       status: subMenuList[curSubMenuIdx].status,
