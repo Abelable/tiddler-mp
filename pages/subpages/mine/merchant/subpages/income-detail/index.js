@@ -92,7 +92,7 @@ Page({
   async setOrderList(init = false) {
     if (init) {
       this.page = 0;
-      this.setData({ finished: false });
+      this.setData({ orderList: [], finished: false });
     }
 
     const shopId = store.userInfo.merchantInfo.shopIds[0];

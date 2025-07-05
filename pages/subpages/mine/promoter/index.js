@@ -107,7 +107,7 @@ Component({
     },
 
     checkAchievementDetail() {
-      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/promoter/performance`;
+      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/promoter/achievement`;
       wx.navigateTo({ url });
     },
 

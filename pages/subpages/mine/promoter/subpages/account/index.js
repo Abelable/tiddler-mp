@@ -69,14 +69,14 @@ Page({
   async setOrderList(init = false) {
     if (init) {
       this.page = 0;
-      this.setData({ finished: false });
+      this.setData({ orderList: [], finished: false });
     }
 
     const { curMenuIdx, dateList, curDateIdx } = this.data;
     const commissionList = await accountService.getCommissionOrderList({
       scene: curMenuIdx + 1,
       timeType: dateList[curDateIdx].value,
-      statusList: [1, 2, 3],
+      statusList: [1, 2, 3, 4],
       page: ++this.page
     });
 
