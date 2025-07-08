@@ -11,8 +11,8 @@ const orderToolList = [
   { icon: "after_sale", name: "售后" }
 ];
 const toolList = [
-  { icon: "ticket", name: "门票管理", route: "goods/list" },
-  { icon: "scenic", name: "景点管理", route: "freight_template/list" },
+  { icon: "ticket", name: "门票管理", route: "ticket/list" },
+  { icon: "scenic", name: "景点管理", route: "spot/list" },
   { icon: "shop", name: "店铺管理", route: "info" },
   { icon: "bond", name: "保证金", route: "deposit" },
   { icon: "manager", name: "人员管理", route: "manager/list" }
