@@ -39,7 +39,7 @@ Page({
   },
 
   async setShopOrderTotal() {
-    const shopId = store.userInfo.merchantInfo.shopIds[0];
+    const shopId = store.userInfo.shopId;
     const orderTotal = await goodsOrderService.getShopOrderTotal(shopId);
     this.setData({
       ["menuList[1].total"]: orderTotal[0],
@@ -51,7 +51,7 @@ Page({
 
   async setOrderList(init = false) {
     const limit = 10;
-    const shopId = store.userInfo.merchantInfo.shopIds[0];
+    const shopId = store.userInfo.shopId;
     const { menuList, curMenuIndex, orderList } = this.data;
     if (init) this.page = 0;
     const list = await goodsOrderService.getOrderList({

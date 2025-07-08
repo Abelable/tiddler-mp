@@ -95,34 +95,34 @@ Component({
       const {
         promoterInfo,
         authInfoId,
-        merchantInfo,
-        shopManagerList,
-        scenicProviderId,
+        scenicShopId,
         hotelProviderId,
-        cateringProviderId
+        cateringProviderId,
+        shopId,
+        shopManagerList
       } = store.userInfo;
 
       const toolList = [
         { name: "订单中心", icon: "order" },
         { name: "收货地址", icon: "address" },
         promoterInfo ? { name: "代言奖励", icon: "promoter" } : undefined,
-        merchantInfo ||
+        shopId ||
         shopManagerList.findIndex(item => item.roleId !== 3) !== -1 ||
-        scenicProviderId ||
+        scenicShopId ||
         hotelProviderId ||
         cateringProviderId
           ? { name: "商家中心", icon: "merchant" }
           : undefined,
-        merchantInfo ||
+        shopId ||
         shopManagerList.length ||
-        scenicProviderId ||
+        scenicShopId ||
         hotelProviderId ||
         cateringProviderId
           ? { name: "扫码核销", icon: "scan" }
           : undefined,
         promoterInfo ||
-        merchantInfo ||
-        scenicProviderId ||
+        shopId ||
+        scenicShopId ||
         hotelProviderId ||
         cateringProviderId
           ? { name: "我的余额", icon: "balance" }
@@ -401,9 +401,9 @@ Component({
 
     scan() {
       const {
-        merchantInfo,
+        shopId,
         shopManagerList,
-        scenicProviderId,
+        scenicShopId,
         hotelProviderId,
         cateringProviderId
       } = store.userInfo;
@@ -411,7 +411,7 @@ Component({
         success: res => {
           const code = res.result;
           if (code.length === 8) {
-            if (merchantInfo.id || shopManagerList.length) {
+            if (shopId.id || shopManagerList.length) {
               mineService.verifyGoodsCode(code, () => {
                 wx.showToast({
                   title: "核销成功",

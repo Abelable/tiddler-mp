@@ -22,14 +22,14 @@ Page({
   async setTitleMenu() {
     const { merchantType, userInfo } = store;
     const {
-      scenicProviderId,
+      scenicShopId,
       hotelProviderId,
       cateringProviderId,
-      merchantInfo
+      shopId
     } = userInfo;
 
     const titleMenu = [];
-    if (scenicProviderId) {
+    if (scenicShopId) {
       titleMenu.push({ name: "景区管理", type: "scenic", value: 1 });
     }
     if (hotelProviderId) {
@@ -38,7 +38,7 @@ Page({
     if (cateringProviderId) {
       titleMenu.push({ name: "餐饮管理", type: "catering", value: 3 });
     }
-    if (merchantInfo.id) {
+    if (shopId) {
       titleMenu.push({ name: "电商管理", type: "goods", value: 4 });
 
       this.setShopIncomeOverview();
@@ -53,7 +53,7 @@ Page({
   },
 
   async setShopIncomeOverview() {
-    const shopId = store.userInfo.merchantInfo.shopIds[0];
+    const shopId = store.userInfo.shopId;
     const shopIncomeOverview = await merchantService.getShopIncomeOverview(
       shopId
     );
@@ -61,7 +61,7 @@ Page({
   },
 
   async setShopOrderTotal() {
-    const shopId = store.userInfo.merchantInfo.shopIds[0];
+    const shopId = store.userInfo.shopId;
     const shopOrderTotal = await merchantService.getShopOrderTotal(shopId);
     this.setData({ shopOrderTotal });
   },
@@ -166,7 +166,7 @@ Page({
   },
 
   manageDeposit() {
-    const shopId = store.userInfo.merchantInfo.shopIds[0];
+    const shopId = store.userInfo.shopId;
     const { titleMenu, curTitleIdx } = this.data;
     const merchantType = titleMenu[curTitleIdx].value;
 
@@ -220,25 +220,25 @@ Page({
   },
 
   manageGoods() {
-    const shopId = store.userInfo.merchantInfo.shopIds[0];
+    const shopId = store.userInfo.shopId;
     const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/goods/list&shop_id=${shopId}`;
     wx.navigateTo({ url });
   },
 
   manageRefundAddress() {
-    const shopId = store.userInfo.merchantInfo.shopIds[0];
+    const shopId = store.userInfo.shopId;
     const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/refund_address/list&shop_id=${shopId}`;
     wx.navigateTo({ url });
   },
 
   managePickupAddress() {
-    const shopId = store.userInfo.merchantInfo.shopIds[0];
+    const shopId = store.userInfo.shopId;
     const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/pickup_address/list&shop_id=${shopId}`;
     wx.navigateTo({ url });
   },
 
   manageFreightTemplate() {
-    const shopId = store.userInfo.merchantInfo.shopIds[0];
+    const shopId = store.userInfo.shopId;
     const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/freight_template/list&shop_id=${shopId}`;
     wx.navigateTo({ url });
   },
