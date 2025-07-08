@@ -74,13 +74,13 @@ Page({
   },
 
   async setShopIncomeSum() {
-    const shopId = store.userInfo.shopId;
+    const { shopId } = store.userInfo;
     const incomeSum = await incomeService.getShopIncomeSum(shopId);
     this.setData({ incomeSum });
   },
 
   async setShopTimeData() {
-    const shopId = store.userInfo.shopId;
+    const { shopId } = store.userInfo;
     const { dateList, curDateIdx } = this.data;
     const timeData = await incomeService.getShopTimeData(
       shopId,
@@ -95,7 +95,7 @@ Page({
       this.setData({ orderList: [], finished: false });
     }
 
-    const shopId = store.userInfo.shopId;
+    const { shopId } = store.userInfo;
     const { dateList, curDateIdx } = this.data;
     const page = ++this.page;
 

@@ -15,7 +15,7 @@ Page({
   },
 
   async setOrderInfo() {
-    const shopId = store.userInfo.shopId;
+    const { shopId } = store.userInfo;
     const orderInfo = await goodsOrderService.getOrderDetail(
       shopId,
       this.orderId
@@ -62,7 +62,7 @@ Page({
   },
 
   ship() {
-    const shopId = store.userInfo.shopId;
+    const { shopId } = store.userInfo;
     const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/ship&shop_id=${shopId}&order_id=${this.orderId}`;
     wx.navigateTo({ url });
   },

@@ -33,7 +33,7 @@ Component({
     },
 
     ship() {
-      const shopId = store.userInfo.shopId;
+      const { shopId } = store.userInfo;
       const { id } = this.properties.item;
       const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/ship&shop_id=${shopId}&order_id=${id}`;
       wx.navigateTo({ url });
