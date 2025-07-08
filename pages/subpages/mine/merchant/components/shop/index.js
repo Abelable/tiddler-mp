@@ -1,8 +1,8 @@
 import { store } from "../../../../../../store/index";
 import { WEBVIEW_BASE_URL } from "../../../../../../config";
-import MerchantService from "../../utils/merchantService";
+import ShopService from "./utils/shopService";
 
-const merchantService = new MerchantService();
+const shopService = new ShopService();
 
 const orderToolList = [
   { icon: "package", name: "待发货" },
@@ -39,7 +39,7 @@ Component({
   methods: {
     async setShopIncomeOverview() {
       const { shopId } = store.userInfo;
-      const shopIncomeOverview = await merchantService.getShopIncomeOverview(
+      const shopIncomeOverview = await shopService.getShopIncomeOverview(
         shopId
       );
       this.setData({ shopIncomeOverview });
@@ -47,7 +47,7 @@ Component({
 
     async setShopOrderTotal() {
       const { shopId } = store.userInfo;
-      const shopOrderTotal = await merchantService.getShopOrderTotal(shopId);
+      const shopOrderTotal = await shopService.getShopOrderTotal(shopId);
       this.setData({ shopOrderTotal });
     },
 
