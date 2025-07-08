@@ -6,14 +6,15 @@ const shopService = new ShopService();
 
 const orderToolList = [
   { icon: "time", name: "待确认" },
-  { icon: "luggage", name: "待出行" },
+  { icon: "time", name: "待使用" },
   { icon: "evaluate", name: "已评价" },
   { icon: "after_sale", name: "售后" }
 ];
+
 const toolList = [
-  { icon: "ticket", name: "门票管理", route: "ticket/list" },
-  { icon: "scenic", name: "景点管理", route: "scenic/list" },
-  { icon: "shop", name: "店铺管理", route: "info" },
+  { icon: "ticket", name: "餐券管理", route: "ticket/list" },
+  { icon: "food", name: "套餐管理", route: "set_meal/list" },
+  { icon: "shop", name: "门店管理", route: "info" },
   { icon: "bond", name: "保证金", route: "deposit" },
   { icon: "manager", name: "人员管理", route: "manager/list" }
 ];
@@ -63,17 +64,30 @@ Component({
     },
 
     withdraw() {
-      const url = `/pages/subpages/mine/merchant/subpages/income-detail/index?merchantType=1`;
+      const url = `/pages/subpages/mine/merchant/subpages/income-detail/index?merchantType=3`;
       wx.navigateTo({ url });
     },
 
-    checkOrders(e) {
+    checkTicketOrders(e) {
       const { status } = e.currentTarget.dataset;
       if (status === 4) {
         // todo 售后
       } else {
         wx.navigateTo({
-          url: `/pages/subpages/mine/merchant/subpages/scenic-order/index?status=${
+          url: `/pages/subpages/mine/merchant/subpages/meal-ticket-order/index?status=${
+            status || 0
+          }`
+        });
+      }
+    },
+
+    checkSetMealOrders(e) {
+      const { status } = e.currentTarget.dataset;
+      if (status === 4) {
+        // todo 售后
+      } else {
+        wx.navigateTo({
+          url: `/pages/subpages/mine/merchant/subpages/set-meal-order/index?status=${
             status || 0
           }`
         });
@@ -82,8 +96,8 @@ Component({
 
     checkTool(e) {
       const { route } = e.currentTarget.dataset;
-      const { scenicShopId } = store.userInfo;
-      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/scenic_shop/${route}&shop_id=${scenicShopId}`;
+      const { hotelShopId } = store.userInfo;
+      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/hotel_shop/${route}&shop_id=${hotelShopId}`;
       wx.navigateTo({ url });
     }
   }

@@ -1,0 +1,94 @@
+<wxs module="NUM" src="/utils/filters/num.wxs" />
+
+<view class="data-card scenic">
+  <image class="data-card-bg" src="https://static.tiddler.cn/mp/merchant/scenic/card_bg.png" />
+  <view class="data-card-main">
+    <view class="balance-data-item">
+      <view class="balance-data-title">累计收益 (元)</view>
+      <view class="balance-data-amount">{{shopIncomeOverview ? NUM.toFixed(shopIncomeOverview.totalIncome, 2) : '0.00'}}</view>
+    </view>
+    <view class="data-items-wrap row between">
+      <view class="data-item">
+        <view class="data-title">成交额 (元)</view>
+        <view class="data-amount">{{shopIncomeOverview ? NUM.toFixed(shopIncomeOverview.todaySalesVolume, 2) : '0.00'}}</view>
+        <view class="data-supplement">昨日 {{shopIncomeOverview ? NUM.toFixed(shopIncomeOverview.yesterdaySalesVolume, 2) : '0.00'}}</view>
+      </view>
+      <view class="data-item">
+        <view class="data-title">订单数</view>
+        <view class="data-amount">{{shopIncomeOverview ? shopIncomeOverview.todayOrderCount : 0}}</view>
+        <view class="data-supplement">昨日 {{shopIncomeOverview ? shopIncomeOverview.yesterdayOrderCount : 0}}</view>
+      </view>
+      <view class="data-item">
+        <view class="data-title">访客数</view>
+        <view class="data-amount">{{shopIncomeOverview ? shopIncomeOverview.todayVisitorCount : 0}}</view>
+        <view class="data-supplement">昨日 {{shopIncomeOverview ? shopIncomeOverview.yesterdayVisitorCount : 0}}</view>
+      </view>
+    </view>
+  </view>
+  <button class="withdraw-btn" bindtap="withdraw" hover-class="none">收益提现</button>
+</view>
+
+<view class="tool-card">
+  <view class="tool-card-title row between">
+    <view>餐券订单</view>
+    <view class="check-btn row" bindtap="checkTicketOrders">
+      <text>全部订单</text>
+      <image class="check-btn-arrow" src="https://static.tiddler.cn/mp/merchant/arrow.png" />
+    </view>
+  </view>
+  <view class="order-list row around">
+    <view 
+      class="order-item row" 
+      wx:for="{{orderToolList}}" 
+      wx:key="index" 
+      bindtap="checkOrders" 
+      data-status="{{index + 1}}"
+    >
+      <view class="order-icon-wrap">
+        <image class="order-icon" src="https://static.tiddler.cn/mp/merchant/{{item.icon}}.png" />
+        <view class="total-spot" wx:if="{{shopOrderTotal[index] > 0}}" />
+      </view>
+      <view class="order-name">{{item.name}}</view>
+    </view>
+  </view>
+</view>
+
+<view class="tool-card">
+  <view class="tool-card-title row between">
+    <view>套餐订单</view>
+    <view class="check-btn row" bindtap="checkSetMealOrders">
+      <text>全部订单</text>
+      <image class="check-btn-arrow" src="https://static.tiddler.cn/mp/merchant/arrow.png" />
+    </view>
+  </view>
+  <view class="order-list row around">
+    <view 
+      class="order-item row" 
+      wx:for="{{orderToolList}}" 
+      wx:key="index" 
+      bindtap="checkOrders" 
+      data-status="{{index + 1}}"
+    >
+      <view class="order-icon-wrap">
+        <image class="order-icon" src="https://static.tiddler.cn/mp/merchant/{{item.icon}}.png" />
+        <view class="total-spot" wx:if="{{shopOrderTotal[index] > 0}}" />
+      </view>
+      <view class="order-name">{{item.name}}</view>
+    </view>
+  </view>
+</view>
+
+<view class="tool-card">
+  <view class="tool-card-title">常用工具</view>
+  <view class="tool-list row">
+    <view class="tool-item" 
+      wx:for="{{toolList}}" 
+      wx:key="index" 
+      bindtap="checkTool" 
+      data-route="{{item.route}}"
+    >
+      <image class="tool-icon" src="https://static.tiddler.cn/mp/merchant/{{item.icon}}.png" />
+      <view class="tool-name">{{item.name}}</view>
+    </view>
+  </view>
+</view>
