@@ -53,17 +53,17 @@ Component({
     },
 
     withdraw() {
-      const url = `../../subpages/income-detail/index?merchantType=1`;
+      const url = `/pages/subpages/mine/merchant/subpages/income-detail/index?merchantType=1`;
       wx.navigateTo({ url });
     },
 
     checkOrders(e) {
       const { status } = e.currentTarget.dataset;
-      if (status === 3) {
+      if (status === 4) {
         // todo 售后
       } else {
         wx.navigateTo({
-          url: `../../subpages/scenic-order/index?status=${status || 0}`
+          url: `/pages/subpages/mine/merchant/subpages/scenic-order/index?status=${status || 0}`
         });
       }
     },
