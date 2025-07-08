@@ -25,8 +25,8 @@ Component({
 
   lifetimes: {
     attached() {
-      this.setShopIncomeOverview();
-      this.setShopOrderTotal();
+      // this.setShopIncomeOverview();
+      // this.setShopOrderTotal();
     }
   },
 

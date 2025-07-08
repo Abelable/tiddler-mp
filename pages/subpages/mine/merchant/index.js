@@ -29,9 +29,6 @@ Page({
     } = userInfo;
 
     const titleMenu = [];
-    if (shopId) {
-      titleMenu.push({ name: "电商管理", type: "goods", value: 4 });
-    }
     if (scenicShopId) {
       titleMenu.push({ name: "景区管理", type: "scenic", value: 1 });
     }
@@ -40,6 +37,9 @@ Page({
     }
     if (cateringProviderId) {
       titleMenu.push({ name: "餐饮管理", type: "catering", value: 3 });
+    }
+    if (shopId) {
+      titleMenu.push({ name: "电商管理", type: "goods", value: 4 });
     }
 
     const curTitleIdx = merchantType
