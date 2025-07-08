@@ -29,6 +29,9 @@ Page({
     } = userInfo;
 
     const titleMenu = [];
+    if (shopId) {
+      titleMenu.push({ name: "电商管理", type: "goods", value: 4 });
+    }
     if (scenicShopId) {
       titleMenu.push({ name: "景区管理", type: "scenic", value: 1 });
     }
@@ -38,32 +41,12 @@ Page({
     if (cateringProviderId) {
       titleMenu.push({ name: "餐饮管理", type: "catering", value: 3 });
     }
-    if (shopId) {
-      titleMenu.push({ name: "电商管理", type: "goods", value: 4 });
-
-      this.setShopIncomeOverview();
-      this.setShopOrderTotal();
-    }
 
     const curTitleIdx = merchantType
       ? titleMenu.findIndex(item => item.value === merchantType)
       : 0;
 
     this.setData({ titleMenu, curTitleIdx });
-  },
-
-  async setShopIncomeOverview() {
-    const { shopId } = store.userInfo;
-    const shopIncomeOverview = await merchantService.getShopIncomeOverview(
-      shopId
-    );
-    this.setData({ shopIncomeOverview });
-  },
-
-  async setShopOrderTotal() {
-    const { shopId } = store.userInfo;
-    const shopOrderTotal = await merchantService.getShopOrderTotal(shopId);
-    this.setData({ shopOrderTotal });
   },
 
   selectTitle(e) {

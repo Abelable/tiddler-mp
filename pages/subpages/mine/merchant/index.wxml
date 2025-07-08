@@ -25,7 +25,9 @@
 <view class="container {{titleMenu[curTitleIdx].type}}" style="padding-top: {{statusBarHeight + 56}}px">
   <image class="bg" wx:if="{{titleMenu.length}}" src="https://static.tiddler.cn/mp/merchant/{{titleMenu[curTitleIdx].type}}/bg.png" />
 
-  <view class="data-card {{titleMenu[curTitleIdx].type}}">
+  <shop wx:if="{{titleMenu[curTitleIdx].value === 4}}" />
+
+  <!-- <view class="data-card {{titleMenu[curTitleIdx].type}}">
     <image class="data-card-bg" wx:if="{{titleMenu.length}}" src="https://static.tiddler.cn/mp/merchant/{{titleMenu[curTitleIdx].type}}/card_bg.png" />
     <view class="data-card-main">
       <view class="balance-data-item">
@@ -306,5 +308,5 @@
         <view class="tool-name">人员管理</view>
       </view>
     </view>
-  </view>
+  </view> -->
 </view>

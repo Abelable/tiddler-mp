@@ -39,7 +39,7 @@
   <view class="order-list row around">
     <view 
       class="order-item row" 
-      wx:if="{{orderToolList}}" 
+      wx:for="{{orderToolList}}" 
       wx:key="index" 
       bindtap="checkOrders" 
       data-status="{{index + 1}}"
