@@ -38,7 +38,7 @@
                   </view>
                   <view 
                     class="progress-bar-inner stripe level-{{index + 1}}" 
-                    style="width: {{achievement / [30000, 100000, 500000, 500000][index] * 100}}%;"
+                    style="width: {{achievement / [30000, 100000, 500000, 500000][index] * 100}}%"
                     wx:if="{{achievement}}"
                   >
                     <view class="proportion-tag row">{{achievement}}/{{[30000, 100000, 500000, 500000][index]}}</view>
