@@ -28,11 +28,15 @@ Component({
 
   lifetimes: {
     attached() {
-      this.setShopIncomeOverview();
-      this.setShopOrderTotal();
+      this.init();
     }
   },
 
+  pageLifetimes: {
+    show() {
+      this.init();
+    }
+  },
   data: {
     shopIncomeOverview: null,
     shopOrderTotal: null,
@@ -41,6 +45,11 @@ Component({
   },
 
   methods: {
+    init() {
+      this.setShopIncomeOverview();
+      this.setShopOrderTotal();
+    },
+
     async setShopIncomeOverview() {
       const { shopId } = store.userInfo;
       const shopIncomeOverview = await shopService.getShopIncomeOverview(
@@ -66,7 +75,9 @@ Component({
         // todo 售后
       } else {
         wx.navigateTo({
-          url: `/pages/subpages/mine/merchant/subpages/goods-order/index?status=${status || 0}`
+          url: `/pages/subpages/mine/merchant/subpages/goods-order/index?status=${
+            status || 0
+          }`
         });
       }
     },

@@ -25,6 +25,7 @@
 <view class="container {{titleMenu[curTitleIdx].type}}" style="padding-top: {{statusBarHeight + 56}}px">
   <image class="bg" wx:if="{{titleMenu.length}}" src="https://static.tiddler.cn/mp/merchant/{{titleMenu[curTitleIdx].type}}/bg.png" />
 
+  <scenic-shop wx:if="{{titleMenu[curTitleIdx].value === 1}}" />
   <shop wx:if="{{titleMenu[curTitleIdx].value === 4}}" />
 
   <!-- <view class="data-card {{titleMenu[curTitleIdx].type}}">

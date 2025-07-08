@@ -25,8 +25,13 @@ Component({
 
   lifetimes: {
     attached() {
-      // this.setShopIncomeOverview();
-      // this.setShopOrderTotal();
+      this.init();
+    }
+  },
+
+  pageLifetimes: {
+    show() {
+      this.init();
     }
   },
 
@@ -38,6 +43,11 @@ Component({
   },
 
   methods: {
+    init() {
+      this.setShopIncomeOverview();
+      this.setShopOrderTotal();
+    },
+
     async setShopIncomeOverview() {
       const { shopId } = store.userInfo;
       const shopIncomeOverview = await shopService.getShopIncomeOverview(
@@ -63,7 +73,9 @@ Component({
         // todo 售后
       } else {
         wx.navigateTo({
-          url: `/pages/subpages/mine/merchant/subpages/scenic-order/index?status=${status || 0}`
+          url: `/pages/subpages/mine/merchant/subpages/scenic-order/index?status=${
+            status || 0
+          }`
         });
       }
     },
