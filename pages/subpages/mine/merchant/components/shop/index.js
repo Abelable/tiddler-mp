@@ -52,7 +52,7 @@ Component({
     },
 
     withdraw() {
-      const url = `./subpages/income-detail/index?merchantType=4`;
+      const url = `../../subpages/income-detail/index?merchantType=4`;
       wx.navigateTo({ url });
     },
 
@@ -62,7 +62,7 @@ Component({
         // todo 售后
       } else {
         wx.navigateTo({
-          url: `./subpages/goods-order/index?status=${status || 0}`
+          url: `../../subpages/goods-order/index?status=${status || 0}`
         });
       }
     },

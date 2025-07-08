@@ -1,251 +1,74 @@
-import { store } from "../../../../store/index";
-import { WEBVIEW_BASE_URL } from "../../../../config";
-import MerchantService from "./utils/merchantService";
+import { store } from "../../../../../../store/index";
+import { WEBVIEW_BASE_URL } from "../../../../../../config";
+import ShopService from "./utils/shopService";
 
-const merchantService = new MerchantService();
+const shopService = new ShopService();
 
-const { statusBarHeight } = getApp().globalData.systemInfo;
+const orderToolList = [
+  { icon: "time", name: "待确认" },
+  { icon: "luggage", name: "待出行" },
+  { icon: "evaluate", name: "已评价" },
+  { icon: "after_sale", name: "售后" }
+];
+const toolList = [
+  { icon: "ticket", name: "门票管理", route: "goods/list" },
+  { icon: "scenic", name: "景点管理", route: "freight_template/list" },
+  { icon: "shop", name: "店铺管理", route: "info" },
+  { icon: "bond", name: "保证金", route: "deposit" },
+  { icon: "manager", name: "人员管理", route: "manager/list" }
+];
 
-Page({
-  data: {
-    statusBarHeight,
-    titleMenu: [],
-    curTitleIdx: 0,
-    shopIncomeOverview: null,
-    shopOrderTotal: null
-  },
-
-  onLoad() {
-    this.setTitleMenu();
-  },
-
-  async setTitleMenu() {
-    const { merchantType, userInfo } = store;
-    const {
-      scenicShopId,
-      hotelProviderId,
-      cateringProviderId,
-      shopId
-    } = userInfo;
-
-    const titleMenu = [];
-    if (scenicShopId) {
-      titleMenu.push({ name: "景区管理", type: "scenic", value: 1 });
-    }
-    if (hotelProviderId) {
-      titleMenu.push({ name: "酒店管理", type: "hotel", value: 2 });
-    }
-    if (cateringProviderId) {
-      titleMenu.push({ name: "餐饮管理", type: "catering", value: 3 });
-    }
-    if (shopId) {
-      titleMenu.push({ name: "电商管理", type: "goods", value: 4 });
-
+Component({
+  lifetimes: {
+    attached() {
       this.setShopIncomeOverview();
       this.setShopOrderTotal();
     }
-
-    const curTitleIdx = merchantType
-      ? titleMenu.findIndex(item => item.value === merchantType)
-      : 0;
-
-    this.setData({ titleMenu, curTitleIdx });
   },
 
-  async setShopIncomeOverview() {
-    const { shopId } = store.userInfo;
-    const shopIncomeOverview = await merchantService.getShopIncomeOverview(
-      shopId
-    );
-    this.setData({ shopIncomeOverview });
+  data: {
+    shopIncomeOverview: null,
+    shopOrderTotal: null,
+    orderToolList,
+    toolList
   },
 
-  async setShopOrderTotal() {
-    const { shopId } = store.userInfo;
-    const shopOrderTotal = await merchantService.getShopOrderTotal(shopId);
-    this.setData({ shopOrderTotal });
-  },
+  methods: {
+    async setShopIncomeOverview() {
+      const { shopId } = store.userInfo;
+      const shopIncomeOverview = await shopService.getShopIncomeOverview(
+        shopId
+      );
+      this.setData({ shopIncomeOverview });
+    },
 
-  selectTitle(e) {
-    const curTitleIdx = +e.detail.value;
-    this.setData({ curTitleIdx });
-  },
+    async setShopOrderTotal() {
+      const { shopId } = store.userInfo;
+      const shopOrderTotal = await shopService.getShopOrderTotal(shopId);
+      this.setData({ shopOrderTotal });
+    },
 
-  withdraw() {
-    const { titleMenu, curTitleIdx } = this.data;
-    const merchantType = titleMenu[curTitleIdx].value;
-    const url = `./subpages/income-detail/index?merchantType=${merchantType}`;
-    wx.navigateTo({ url });
-  },
+    withdraw() {
+      const url = `../../subpages/income-detail/index?merchantType=1`;
+      wx.navigateTo({ url });
+    },
 
-  checkOrders(e) {
-    const { status = 0 } = e.currentTarget.dataset;
-    const { titleMenu, curTitleIdx } = this.data;
-    const merchantType = titleMenu[curTitleIdx].value;
-
-    switch (merchantType) {
-      case 1:
+    checkOrders(e) {
+      const { status } = e.currentTarget.dataset;
+      if (status === 3) {
+        // todo 售后
+      } else {
         wx.navigateTo({
-          url: "./subpages/scenic-order/index"
+          url: `../../subpages/scenic-order/index?status=${status || 0}`
         });
-        break;
-      case 2:
-        wx.navigateTo({
-          url: "./subpages/hotel-order/index"
-        });
-        break;
-      case 4:
-        wx.navigateTo({
-          url: `./subpages/goods-order/index?status=${status}`
-        });
-        break;
+      }
+    },
+
+    checkTool(e) {
+      const { route } = e.currentTarget.dataset;
+      const { scenicShopId } = store.userInfo;
+      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/scenic_shop/${route}&shop_id=${scenicShopId}`;
+      wx.navigateTo({ url });
     }
-  },
-
-  checkMealTicketOrders() {
-    wx.navigateTo({
-      url: "./subpages/meal-ticket-order/index"
-    });
-  },
-
-  checkSetMealOrders() {
-    wx.navigateTo({
-      url: "./subpages/set-meal-order/index"
-    });
-  },
-
-  checkAfterSale() {
-    const { titleMenu, curTitleIdx } = this.data;
-    const merchantType = titleMenu[curTitleIdx].value;
-    switch (merchantType) {
-      case 1:
-        break;
-      case 2:
-        break;
-      case 4:
-        break;
-    }
-  },
-
-  checkMealTicketAfterSale() {},
-
-  checkSetMealAfterSale() {},
-
-  manageShopInfo() {
-    const { titleMenu, curTitleIdx } = this.data;
-    const merchantType = titleMenu[curTitleIdx].value;
-    switch (merchantType) {
-      case 1:
-        break;
-      case 2:
-        break;
-      case 3:
-        break;
-      case 4:
-        const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/shop_info`;
-        wx.navigateTo({ url });
-        break;
-    }
-  },
-
-  manageStaff() {
-    const { titleMenu, curTitleIdx } = this.data;
-    const merchantType = titleMenu[curTitleIdx].value;
-    switch (merchantType) {
-      case 1:
-        break;
-      case 2:
-        break;
-      case 3:
-        break;
-      case 4:
-        const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/manager/list`;
-        wx.navigateTo({ url });
-        break;
-    }
-  },
-
-  manageDeposit() {
-    const { shopId } = store.userInfo;
-    const { titleMenu, curTitleIdx } = this.data;
-    const merchantType = titleMenu[curTitleIdx].value;
-
-    switch (merchantType) {
-      case 1:
-        break;
-      case 2:
-        break;
-      case 3:
-        break;
-      case 4:
-        const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/deposit&shop_id=${shopId}`;
-        wx.navigateTo({ url });
-        break;
-    }
-  },
-
-  manageScenicTicket() {
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/scenic/ticket/list`;
-    wx.navigateTo({ url });
-  },
-
-  manageScenicSpot() {
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/scenic/spot/list`;
-    wx.navigateTo({ url });
-  },
-
-  manageHotelRoom() {
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/hotel/room/list`;
-    wx.navigateTo({ url });
-  },
-
-  manageHotel() {
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/hotel/list`;
-    wx.navigateTo({ url });
-  },
-
-  manageRestaurant() {
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/catering/restaurant/list`;
-    wx.navigateTo({ url });
-  },
-
-  manageMealTicket() {
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/catering/meal_ticket/list`;
-    wx.navigateTo({ url });
-  },
-
-  manageSetMeal() {
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/catering/set_meal/list`;
-    wx.navigateTo({ url });
-  },
-
-  manageGoods() {
-    const { shopId } = store.userInfo;
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/goods/list&shop_id=${shopId}`;
-    wx.navigateTo({ url });
-  },
-
-  manageRefundAddress() {
-    const { shopId } = store.userInfo;
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/refund_address/list&shop_id=${shopId}`;
-    wx.navigateTo({ url });
-  },
-
-  managePickupAddress() {
-    const { shopId } = store.userInfo;
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/pickup_address/list&shop_id=${shopId}`;
-    wx.navigateTo({ url });
-  },
-
-  manageFreightTemplate() {
-    const { shopId } = store.userInfo;
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/freight_template/list&shop_id=${shopId}`;
-    wx.navigateTo({ url });
-  },
-
-  onUnload() {
-    const { titleMenu, curTitleIdx } = this.data;
-    const merchantType = titleMenu[curTitleIdx].value;
-    store.setMerchantType(merchantType);
   }
 });
