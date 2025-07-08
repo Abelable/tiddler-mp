@@ -19,6 +19,10 @@ const toolList = [
 ];
 
 Component({
+  options: {
+    addGlobalClass: true
+  },
+
   lifetimes: {
     attached() {
       this.setShopIncomeOverview();
