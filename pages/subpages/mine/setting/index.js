@@ -3,7 +3,7 @@ import { WEBVIEW_BASE_URL } from "../../../../config";
 Page({
   editUserInfo() {
     wx.navigateTo({
-      url: "./subpages/user-info-setting/index",
+      url: "./subpages/user-info-setting/index"
     });
   },
 
@@ -12,8 +12,8 @@ Page({
     wx.navigateTo({ url });
   },
 
-  navToScenicProviderSettleIn() {
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/scenic/provider/settle_in`;
+  navToScenicMerchantSettleIn() {
+    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/scenic/merchant/settle_in`;
     wx.navigateTo({ url });
   },
 
@@ -30,5 +30,5 @@ Page({
   navToMerchantSettleIn() {
     const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/merchant/settle_in`;
     wx.navigateTo({ url });
-  },
+  }
 });
