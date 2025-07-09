@@ -28,5 +28,5 @@
   <scenic-shop wx:if="{{titleMenu[curTitleIdx].value === 1}}" />
   <hotel-shop wx:if="{{titleMenu[curTitleIdx].value === 2}}" />
   <catering-shop wx:if="{{titleMenu[curTitleIdx].value === 3}}" />
-  <shop wx:if="{{titleMenu[curTitleIdx].value === 4}}" />
+  <goods-shop wx:if="{{titleMenu[curTitleIdx].value === 4}}" />
 </view>

@@ -83,7 +83,7 @@ Component({
     checkTool(e) {
       const { route } = e.currentTarget.dataset;
       const { scenicShopId } = store.userInfo;
-      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/scenic_shop/${route}&shop_id=${scenicShopId}`;
+      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/scenic/shop/${route}&shop_id=${scenicShopId}`;
       wx.navigateTo({ url });
     }
   }

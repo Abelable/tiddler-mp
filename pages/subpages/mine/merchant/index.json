@@ -5,6 +5,6 @@
     "scenic-shop": "./components/scenic-shop/index",
     "hotel-shop": "./components/hotel-shop/index",
     "catering-shop": "./components/catering-shop/index",
-    "shop": "./components/shop/index"
+    "goods-shop": "./components/goods-shop/index"
   }
 }

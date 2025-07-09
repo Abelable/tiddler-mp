@@ -85,7 +85,7 @@ Component({
     checkTool(e) {
       const { route } = e.currentTarget.dataset;
       const { shopId } = store.userInfo;
-      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/${route}&shop_id=${shopId}`;
+      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/goods/shop/${route}&shop_id=${shopId}`;
       wx.navigateTo({ url });
     }
   }
