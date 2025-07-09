@@ -1,13 +1,13 @@
-const { statusBarHeight } = getApp().globalData.systemInfo
+const { statusBarHeight } = getApp().globalData.systemInfo;
 
-Component({ 
+Component({
   options: {
     addGlobalClass: true
   },
-  
+
   properties: {
     custom: Boolean,
-    title: String,
+    title: String
   },
 
   data: {
@@ -16,7 +16,7 @@ Component({
 
   methods: {
     navigateBack() {
-      this.triggerEvent('navigateBack')
-    },
+      this.triggerEvent("navigateBack");
+    }
   }
-})
+});

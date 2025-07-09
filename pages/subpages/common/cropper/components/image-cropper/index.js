@@ -155,7 +155,7 @@ Component({
     },
     data: {
         el: 'image-cropper', //暂时无用
-        info: wx.getSystemInfoSync(),
+        info: wx.getWindowInfo(),
         MOVE_THROTTLE: null, //触摸移动节流settimeout
         MOVE_THROTTLE_FLAG: true, //节流标识
         INIT_IMGWIDTH: 0, //图片设置尺寸,此值不变（记录最初设定的尺寸）
@@ -176,8 +176,8 @@ Component({
         origin_x: 0.5, //图片旋转中心
         origin_y: 0.5, //图片旋转中心
         _cut_animation: false, //是否开启图片和裁剪框过渡
-        _img_top: wx.getSystemInfoSync().windowHeight / 2, //图片上边距
-        _img_left: wx.getSystemInfoSync().windowWidth / 2, //图片左边距
+        _img_top: wx.getWindowInfo().windowHeight / 2, //图片上边距
+        _img_left: wx.getWindowInfo().windowWidth / 2, //图片左边距
         watch: {
             //监听截取框宽高变化
             width(value, that) {
@@ -254,7 +254,7 @@ Component({
         }
     },
     attached() {
-        this.data.info = wx.getSystemInfoSync();
+        this.data.info = wx.getWindowInfo();
         //启用数据监听
         this._watcher();
         this.data.INIT_IMGWIDTH = this.data.img_width;
@@ -453,8 +453,8 @@ Component({
                 this.setData({
                     scale: 1,
                     angle: 0,
-                    _img_top: wx.getSystemInfoSync().windowHeight / 2,
-                    _img_left: wx.getSystemInfoSync().windowWidth / 2,
+                    _img_top: wx.getWindowInfo().windowHeight / 2,
+                    _img_left: wx.getWindowInfo().windowWidth / 2,
                 })
             },
             /**
