@@ -40,15 +40,20 @@
 </view>
 
 <view class="banner-wrap">
-  <swiper style="height: 420rpx;" circular bindchange="bannerChange">
-    <swiper-item wx:if="{{scenicInfo.video}}">
-      <view class="video-wrap" bindtap="fullScreenPlay">
+  <swiper style="height: 680rpx;" circular bindchange="bannerChange">
+    <swiper-item 
+      wx:if="{{scenicInfo.video}}"
+      bindtap="previewMedia" 
+      data-current="{{0}}"
+    >
+      <view class="video-wrap">
         <video
           class="video-player"
           src="{{scenicInfo.video}}"
           muted="{{muted}}"
           autoplay
           loop
+          object-fit="cover"
           controls="{{false}}"
           show-center-play-btn="{{false}}" 
           show-fullscreen-btn="{{false}}"
@@ -58,11 +63,10 @@
     <swiper-item 
       wx:for="{{scenicInfo.imageList}}" 
       wx:key="index" 
-      bindtap="previewImage" 
-      data-current="{{item}}" 
-      data-urls="{{scenicInfo.imageList}}"
+      bindtap="previewMedia" 
+      data-current="{{scenicInfo.video ? index + 1 : index}}"
     >
-      <image style="width:100%; height:100%;" src="{{item}}" mode='aspectFill' lazy-load />
+      <image style="width:100%; height:100%;" src="{{item}}" mode="aspectFill" lazy-load />
     </swiper-item>
   </swiper>
   <view class="mute-icon-wrap row center" wx:if="{{scenicInfo.video && curDot === 1}}" catchtap="toggleMuted">

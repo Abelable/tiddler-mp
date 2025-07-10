@@ -304,15 +304,14 @@ Page({
     });
   },
 
-  fullScreenPlay() {
-    const { video } = this.data.scenicInfo;
-    const url = `/pages/subpages/common/video-play/index?url=${video}`;
-    wx.navigateTo({ url });
-  },
-
-  previewImage(e) {
-    const { current, urls } = e.currentTarget.dataset;
-    wx.previewImage({ current, urls });
+  previewMedia(e) {
+    const { current } = e.currentTarget.dataset;
+    const { video, imageList } = this.data.scenicInfo;
+    const sources = imageList.map(url => ({ url, type: "image" }));
+    wx.previewMedia({
+      sources: video ? [{ url: video, type: "video" }, ...sources] : sources,
+      current
+    });
   },
 
   selectMenu(e) {

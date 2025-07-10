@@ -32,7 +32,7 @@ class ScenicService extends MallService {
 
   async getScenicTicketList(scenicId) {
     return await this.get({
-      url: `${this.baseUrl}/scenic/ticket/list_of_scenic`,
+      url: `${this.baseUrl}/scenic/ticket/list`,
       data: { scenicId },
       loadingTitle: "加载中...",
     });

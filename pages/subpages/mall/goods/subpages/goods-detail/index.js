@@ -245,8 +245,7 @@ Page({
     const curDot = e.currentTarget.dataset.index;
     this.setData({ curDot });
   },
-
-  // 视频、图片预览
+  
   previewMedia(e) {
     const { current } = e.currentTarget.dataset;
     const { video, imageList } = this.data.goodsInfo;
