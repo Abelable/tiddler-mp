@@ -8,6 +8,7 @@ const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Page({
   data: {
+    loading: true,
     statusBarHeight,
     navBarVisible: false,
     menuList: [],
@@ -23,12 +24,6 @@ Page({
     combinedTicketTypeList: [],
     curCombinedTicketTypeIdx: 0,
     combinedTicketList: [],
-    evaluationSummary: null,
-    qaSummary: null,
-    nearbyHotelList: [],
-    nearbyHotelTotal: 0,
-    nearbyScenicList: [],
-    nearbyScenicTotal: 0,
     mediaList: [],
     finished: false,
     curTicketInfo: null,
@@ -53,15 +48,12 @@ Page({
       }
     });
 
-    await this.setScenicCategoryOptions();
     await this.setScenicInfo();
+    await this.setScenicCategoryOptions();
     await this.setSourceTicketList();
-    await this.setEvaluationSummary();
-    await this.setQaSummary();
-    await this.setNearbyHotelList();
-    await this.setNearbyScenicList();
-    await this.setMediaList(true);
     this.setMenuList();
+    this.setData({ loading: false });
+    await this.setMediaList(true);
 
     wx.showShareMenu({
       withShareTicket: true,
@@ -237,37 +229,19 @@ Page({
     return ticketList;
   },
 
-  async setEvaluationSummary() {
-    const { list = [], total } =
-      (await scenicService.getScenicEvaluationList(this.scenicId, 1, 2)) || {};
-    this.setData({ evaluationSummary: { list, total } });
-  },
-
-  async setQaSummary() {
-    const qaSummary = await scenicService.getScenicQaSummary(this.scenicId);
-    this.setData({ qaSummary });
-  },
-
   setMenuList() {
-    const { combinedTicketTypeList } = this.data;
-    const menuList = combinedTicketTypeList.length
-      ? [
-          "景点门票",
-          "多景点联票",
-          "用户点评",
-          "热门问答",
-          "附近酒店",
-          "附近景点",
-          "达人打卡"
-        ]
-      : [
-          "景点门票",
-          "用户点评",
-          "热门问答",
-          "附近酒店",
-          "附近景点",
-          "达人打卡"
-        ];
+    const { scenicInfo, combinedTicketTypeList } = this.data;
+    const { evaluationSummary, nearbyHotelSummary, nearbyScenicSummary } =
+      scenicInfo;
+    const menuList = [
+      "景点门票",
+      combinedTicketTypeList.length ? "多景点联票" : "",
+      evaluationSummary.total ? "用户点评" : "",
+      "热门问答",
+      nearbyHotelSummary.total ? "附近酒店" : "",
+      nearbyScenicSummary ? "附近景点" : "",
+      "达人打卡"
+    ].filter(item => !!item);
     this.setData({ menuList }, () => {
       this.setNavBarVisibleLimit();
       this.setMenuChangeLimitList();
@@ -402,29 +376,6 @@ Page({
 
   onReachBottom() {
     this.setMediaList();
-  },
-
-  async setNearbyHotelList() {
-    const { longitude, latitude } = this.data.scenicInfo;
-    const { list: nearbyHotelList = [], total: nearbyHotelTotal } =
-      await scenicService.getNearbyHotelList({
-        longitude,
-        latitude,
-        page: 1
-      });
-    this.setData({ nearbyHotelList, nearbyHotelTotal });
-  },
-
-  async setNearbyScenicList() {
-    const { id, longitude, latitude } = this.data.scenicInfo;
-    const { list: nearbyScenicList = [], total: nearbyScenicTotal } =
-      await scenicService.getNearbyScenicList({
-        id,
-        longitude,
-        latitude,
-        page: 1
-      });
-    this.setData({ nearbyScenicList, nearbyScenicTotal });
   },
 
   async setMediaList(init = false) {

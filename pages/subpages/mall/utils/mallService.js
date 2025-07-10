@@ -36,7 +36,6 @@ class MallService extends BaseService {
     return await this.get({
       url: `${this.baseUrl}/media/product_relative_list`,
       data: { productType, productId, page, limit },
-      loadingTitle: "加载中..."
     });
   }
 }

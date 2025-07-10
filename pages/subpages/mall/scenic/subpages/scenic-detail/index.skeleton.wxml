@@ -1,0 +1,106 @@
+<template name="skeleton">
+  <view class="sk-container">
+    <view class="banner-wrap">
+      <swiper circular="true" style="height: 290px;" current="0" autoplay="false">
+        <swiper-item data-current="0" style="position: absolute; width: 100%; height: 100%; transform: translate(0%, 0px) translateZ(0px);">
+          <view class="video-wrap">
+            <view autoplay="true" loop="true" class="video-player sk-image" muted="true" object-fit="cover" src="https://static.tiddler.cn/tiddler/20250521/1747818093640130j1i000001hutbwA5D1.mp4" unit-id="true"></view>
+          </view>
+        </swiper-item>
+      </swiper>
+    </view>
+    <view class="container">
+      <view class="row between">
+        <view class="row">
+          <view class="scenic-name sk-transparent sk-text-14-2857-762 sk-text">中心湖区</view>
+          <view class="level-tag row sk-transparent sk-text-0-0000-691 sk-text">5A</view>
+        </view>
+        <image class="share-icon sk-image"></image>
+      </view>
+      <view class="score-wrap row">
+        <view is="miniprogram_npm/@vant/weapp/rate/index">
+          <view class="van-rate rate-index--van-rate ">
+            <view class="van-rate__item rate-index--van-rate__item" style="padding-right:0px">
+              <view is="miniprogram_npm/@vant/weapp/icon/index" class="van-rate__icon rate-index--van-rate__icon" data-score="0" style="font-size:18px">
+                <view class="van-icon icon-index--van-icon van-icon-star icon-index--van-icon-star sk-pseudo sk-pseudo-circle" style="color:#fedbe4"></view>
+              </view>
+              <view is="miniprogram_npm/@vant/weapp/icon/index" class="van-rate__icon rate-index--van-rate__icon van-rate__icon--half rate-index--van-rate__icon--half" data-score="-0.5" style="font-size:18px">
+                <view class="van-icon icon-index--van-icon van-icon-star icon-index--van-icon-star sk-pseudo sk-pseudo-circle" style="color:#fedbe4"></view>
+              </view>
+            </view>
+            <view class="van-rate__item rate-index--van-rate__item" style="padding-right:0px">
+              <view is="miniprogram_npm/@vant/weapp/icon/index" class="van-rate__icon rate-index--van-rate__icon" data-score="1" style="font-size:18px">
+                <view class="van-icon icon-index--van-icon van-icon-star icon-index--van-icon-star sk-pseudo sk-pseudo-circle" style="color:#fedbe4"></view>
+              </view>
+              <view is="miniprogram_npm/@vant/weapp/icon/index" class="van-rate__icon rate-index--van-rate__icon van-rate__icon--half rate-index--van-rate__icon--half" data-score="0.5" style="font-size:18px">
+                <view class="van-icon icon-index--van-icon van-icon-star icon-index--van-icon-star sk-pseudo sk-pseudo-circle" style="color:#fedbe4"></view>
+              </view>
+            </view>
+            <view class="van-rate__item rate-index--van-rate__item" style="padding-right:0px">
+              <view is="miniprogram_npm/@vant/weapp/icon/index" class="van-rate__icon rate-index--van-rate__icon" data-score="2" style="font-size:18px">
+                <view class="van-icon icon-index--van-icon van-icon-star icon-index--van-icon-star sk-pseudo sk-pseudo-circle" style="color:#fedbe4"></view>
+              </view>
+              <view is="miniprogram_npm/@vant/weapp/icon/index" class="van-rate__icon rate-index--van-rate__icon van-rate__icon--half rate-index--van-rate__icon--half" data-score="1.5" style="font-size:18px">
+                <view class="van-icon icon-index--van-icon van-icon-star icon-index--van-icon-star sk-pseudo sk-pseudo-circle" style="color:#fedbe4"></view>
+              </view>
+            </view>
+            <view class="van-rate__item rate-index--van-rate__item" style="padding-right:0px">
+              <view is="miniprogram_npm/@vant/weapp/icon/index" class="van-rate__icon rate-index--van-rate__icon" data-score="3" style="font-size:18px">
+                <view class="van-icon icon-index--van-icon van-icon-star icon-index--van-icon-star sk-pseudo sk-pseudo-circle" style="color:#fedbe4"></view>
+              </view>
+              <view is="miniprogram_npm/@vant/weapp/icon/index" class="van-rate__icon rate-index--van-rate__icon van-rate__icon--half rate-index--van-rate__icon--half" data-score="2.5" style="font-size:18px">
+                <view class="van-icon icon-index--van-icon van-icon-star icon-index--van-icon-star sk-pseudo sk-pseudo-circle" style="color:#fedbe4"></view>
+              </view>
+            </view>
+            <view class="van-rate__item rate-index--van-rate__item" style="true">
+              <view is="miniprogram_npm/@vant/weapp/icon/index" class="van-rate__icon rate-index--van-rate__icon" data-score="4" style="font-size:18px">
+                <view class="van-icon icon-index--van-icon van-icon-star icon-index--van-icon-star sk-pseudo sk-pseudo-circle" style="color:#fedbe4"></view>
+              </view>
+              <view is="miniprogram_npm/@vant/weapp/icon/index" class="van-rate__icon rate-index--van-rate__icon van-rate__icon--half rate-index--van-rate__icon--half" data-score="3.5" style="font-size:18px">
+                <view class="van-icon icon-index--van-icon van-icon-star icon-index--van-icon-star sk-pseudo sk-pseudo-circle" style="color:#fedbe4"></view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <text class="no-score sk-transparent sk-text-14-2857-796 sk-text">暂无评分</text>
+      </view>
+      <view class="info-list-wrap">
+        <view class="info-list row between">
+          <view class="row">
+            <image class="clock-icon sk-image"></image>
+            <!-- <view class="opening-status row closed sk-transparent sk-text-16-6667-483 sk-text">已闭园</view> -->
+            <view class="opening-hours sk-transparent sk-text-14-2857-74 sk-text">08:00-16:00开放（中心湖区、快艇入园）</view>
+          </view>
+          <view class="row">
+            <view class="more-detail sk-transparent sk-text-14-2857-941 sk-text">详情</view>
+            <!-- <image class="more-icon sk-image"></image> -->
+          </view>
+        </view>
+        <view class="info-list row between">
+          <view class="row">
+            <image class="position-icon sk-image"></image>
+            <view class="opening-hours sk-transparent sk-text-14-2857-721 sk-text">千岛湖镇中心湖区旅游码头</view>
+          </view>
+          <button class="navigation-btn sk-button sk-pseudo sk-pseudo-circle" hover-class="none">
+            <image class="navigation-icon sk-image"></image>
+            <view class="sk-transparent sk-text-0-0000-121 sk-text" style="background-position-x: 50%;">导航</view>
+          </button>
+        </view>
+      </view>
+      <view class="content-title-wrap row between">
+        <view class="content-title sk-transparent sk-text-14-2857-839 sk-text sk-pseudo sk-pseudo-circle">景点门票</view>
+        <view class="content-title-tips row">
+          <text class="sk-transparent sk-text-14-2857-682 sk-text">优待政策</text>
+        </view>
+      </view>
+      <scroll-view scroll-x="true" class="ticket-type-menu"></scroll-view>
+      <view class="collapse"></view>
+      <view is="components/empty-illus/index">
+        <view class="illus-index--empty" style="height: 260px;">
+          <image class="illus-index--illus sk-image"></image>
+          <view class="sk-transparent sk-text-14-2857-40 sk-text" style="background-position-x: 50%;">暂无景点门票</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
