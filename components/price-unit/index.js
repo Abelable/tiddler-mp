@@ -32,7 +32,7 @@ Component({
     unit: String,
     unitFontSize: {
       type: String,
-      value: "22rpx",
+      value: "18rpx",
     },
     unitColor: {
       type: String,

@@ -14,6 +14,6 @@
   </view>
   <view class="buy-btn-wrap">
     <button class="buy-btn" catchtap="buy">抢购</button>
-     <view class="sales">已售 {{info.salesVolume}}</view>
+    <view class="sales">已售 {{info.salesVolume}}</view>
   </view>
 </view>

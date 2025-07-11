@@ -102,10 +102,10 @@
         />
         <view class="market-price" wx:if="{{goodsInfo.marketPrice}}">￥{{goodsInfo.marketPrice}}</view>
       </view>
-      <view class="commission-tag" wx:if="{{!goodsInfo.isGift}}" bindtap="toggleCommissionVisible">
+      <view class="commission-tag" wx:if="{{userInfo.promoterInfo && !goodsInfo.isGift && commission}}" bindtap="toggleCommissionVisible">
         <text wx:if="{{commissionVisible}}">奖励¥{{commission}}</text>
         <text wx:if="{{!commissionVisible}}" style="padding-top: 8rpx; font-size: 28rpx;">******</text>
-        <image class="commission-visible-icon" src="./images/{{commissionVisible ? '' : 'in'}}visible.png" />
+        <image class="commission-visible-icon" src="/images/{{commissionVisible ? '' : 'in'}}visible.png" />
       </view>
       <view class="sale-volume" wx:if="{{goodsInfo.salesVolume}}">已售{{goodsInfo.salesVolume}}件</view>
     </view>

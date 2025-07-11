@@ -14,17 +14,22 @@
     <view class="tips-wrap row">
       <view class="tips stress">{{['随时可退', '有条件退', '不可退'][ticket.refundStatus - 1]}}</view>
       <view class="tips" wx:if="{{!ticket.needExchange}}">无需换票</view>
-    </view>
-    <view class="tips-wrap row">
-      <view class="tips">已售{{ticket.salesVolume}}</view>
       <view class="tips stress row">
         <text>预订须知</text>
         <image class="more-icon" src="./images/more-blue.png" />
       </view>
     </view>
+    <view class="price-wrap row">
+      <price-unit price="{{ticket.price || 0}}" unit="起" />
+      <view class="commission-tag" wx:if="{{userInfo.promoterInfo}}" catchtap="toggleCommissionVisible">
+        <text wx:if="{{commissionVisible}}">奖励¥{{commission}}起</text>
+        <text wx:if="{{!commissionVisible}}" style="padding-top: 8rpx; font-size: 28rpx;">******</text>
+        <image class="commission-visible-icon" src="/images/{{commissionVisible ? '' : 'in'}}visible.png" />
+      </view>
+    </view>
   </view>
   <view class="booking-wrap">
-    <price-unit price="{{ticket.price || 0}}" unit="起" />
     <button class="booking-btn" catchtap="booking">预订</button>
+    <view class="sales">已售 {{ticket.salesVolume}}</view>
   </view>
 </view>
