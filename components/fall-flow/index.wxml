@@ -1,8 +1,15 @@
 <view class="fall-flow-wrap">
-  <view class="left-list">
-    <item class="item" wx:for="{{leftList}}" wx:key="index" item="{{item}}" mediaScene="{{mediaScene}}" data-info="{{item}}" showShopInfo="{{showShopInfo}}" />
+  <view class="fall-flow">
+    <view class="left-list">
+      <item class="item" wx:for="{{leftList}}" wx:key="index" item="{{item}}" mediaScene="{{mediaScene}}" data-info="{{item}}" showShopInfo="{{showShopInfo}}" />
+    </view>
+    <view class="right-list">
+      <item class="item" wx:for="{{rightList}}" wx:key="index" item="{{item}}" mediaScene="{{mediaScene}}" data-info="{{item}}" showShopInfo="{{showShopInfo}}" />
+    </view>
   </view>
-  <view class="right-list">
-    <item class="item" wx:for="{{rightList}}" wx:key="index" item="{{item}}" mediaScene="{{mediaScene}}" data-info="{{item}}" showShopInfo="{{showShopInfo}}" />
+  <view class="loading row center" wx:if="{{list.length && loading}}">
+    <image class="loading-icon" src="https://static.tiddler.cn/mp/loading.gif" />
+    <text>加载中...</text>
   </view>
+  <view class="no-more-tips" wx:if="{{!loading && finished && list.length}}">～没有更多啦～</view>
 </view>

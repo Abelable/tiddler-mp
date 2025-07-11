@@ -19,6 +19,8 @@ Component({
         }
       }
     },
+    loading: Boolean,
+    finished: Boolean,
     mediaScene: {
       type: Number,
       value: 1
