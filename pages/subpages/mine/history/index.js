@@ -7,14 +7,14 @@ Page({
     menuList: ["游记", "景点", "酒店", "美食", "商品"],
     curMenuIdx: 0,
     mediaList: [],
+    loading: false,
     finished: false,
     productLists: [
-      { list: [], finished: false },
-      { list: [], finished: false },
-      { list: [], finished: false },
-      { list: [], finished: false }
-    ],
-    isLoading: false
+      { list: [], loading: false, finished: false },
+      { list: [], loading: false, finished: false },
+      { list: [], loading: false, finished: false },
+      { list: [], loading: false, finished: false }
+    ]
   },
 
   onLoad() {
@@ -47,16 +47,16 @@ Page({
   },
 
   async setMediaList(init = false) {
-    this.setData({ isLoading: true })
     if (init) {
       this.mediaPage = 0;
-      this.setData({ finished: false });
+      this.setData({ mediaList: [], finished: false });
     }
 
+    this.setData({ loading: true });
     const list = await historyService.getMediaHistoryList(++this.mediaPage);
     this.setData({
       mediaList: init ? list : [...this.data.mediaList, ...list],
-      isLoading: false
+      loading: false
     });
 
     if (!list.length) {
@@ -65,18 +65,22 @@ Page({
   },
 
   async setProductList(init = false) {
-    this.setData({ isLoading: true })
     const { curMenuIdx, productLists } = this.data;
+
     if (init) {
       if (!this.productPages) {
         this.productPages = [0, 0, 0, 0];
       }
       this.productPages[curMenuIdx - 1] = 0;
       this.setData({
-        [`productLists[${curMenuIdx - 1}].finished`]: false,
+        [`productLists[${curMenuIdx - 1}].list`]: [],
+        [`productLists[${curMenuIdx - 1}].finished`]: false
       });
     }
 
+    this.setData({
+      [`productLists[${curMenuIdx - 1}].loading`]: true
+    });
     const list = await historyService.getProductHistoryList(
       curMenuIdx,
       ++this.productPages[curMenuIdx - 1]
@@ -85,7 +89,7 @@ Page({
       [`productLists[${curMenuIdx - 1}].list`]: init
         ? list
         : [...productLists[curMenuIdx - 1].list, ...list],
-        isLoading: false
+      [`productLists[${curMenuIdx - 1}].loading`]: false
     });
 
     if (!list.length) {

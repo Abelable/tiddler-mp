@@ -88,9 +88,16 @@
                 <text>视频游记</text>
               </button>
             </view>
-            <fall-flow class="fall-flow-0" list="{{videoList}}" mediaScene="{{3}}" generic:item="video-item" bind:finish="setWrapHeight" />
+            <fall-flow 
+              class="fall-flow-0" 
+              list="{{videoList}}" 
+              loading="{{videoLoading}}"
+              finished="{{videoFinished}}"
+              mediaScene="{{3}}" 
+              generic:item="video-item" 
+              bind:finish="setWrapHeight" 
+            />
             <empty-illus wx:if="{{videoFinished && !videoList.length}}" desc="暂无作品，快去发布吧" height="520rpx" />
-            <view class="no-more-tips" wx:if="{{videoFinished && videoList.length}}">～没有更多啦～</view>
           </view>
         </swiper-item>
         <swiper-item>
@@ -102,23 +109,44 @@
                 <text>图文游记</text>
               </button>
             </view>
-            <fall-flow class="fall-flow-1" list="{{noteList}}" mediaScene="{{3}}" generic:item="note-item" bind:finish="setWrapHeight" />
+            <fall-flow 
+              class="fall-flow-1" 
+              list="{{noteList}}" 
+              loading="{{noteLoading}}"
+              finished="{{noteFinished}}"
+              mediaScene="{{3}}" 
+              generic:item="note-item" 
+              bind:finish="setWrapHeight" 
+            />
             <empty-illus wx:if="{{noteFinished && !noteList.length}}" desc="暂无作品，快去发布吧" height="520rpx" />
-            <view class="no-more-tips" wx:if="{{noteFinished && noteList.length}}">～没有更多啦～</view>
           </view>
         </swiper-item>
         <swiper-item>
           <view class="content-wrap">
-            <fall-flow class="fall-flow-2" list="{{collectMediaList}}" mediaScene="{{4}}" generic:item="media-item" bind:finish="setWrapHeight" />
+            <fall-flow 
+              class="fall-flow-2" 
+              list="{{collectMediaList}}" 
+              loading="{{collectLoading}}"
+              finished="{{collectFinished}}"
+              mediaScene="{{4}}" 
+              generic:item="media-item" 
+              bind:finish="setWrapHeight" 
+            />
             <empty-illus wx:if="{{collectFinished && !collectMediaList.length}}" desc="您还未收藏任何作品" height="680rpx" />
-            <view class="no-more-tips" wx:if="{{collectFinished && collectMediaList.length}}">～没有更多啦～</view>
           </view>
         </swiper-item>
         <swiper-item>
           <view class="content-wrap">
-            <fall-flow class="fall-flow-3" list="{{likeMediaList}}" mediaScene="{{5}}" generic:item="media-item" bind:finish="setWrapHeight" />
+            <fall-flow 
+              class="fall-flow-3" 
+              list="{{likeMediaList}}" 
+              loading="{{likeLoading}}"
+              finished="{{likeFinished}}"
+              mediaScene="{{5}}" 
+              generic:item="media-item" 
+              bind:finish="setWrapHeight" 
+            />
             <empty-illus wx:if="{{likeFinished && !likeMediaList.length}}" desc="您还未点赞任何作品" height="680rpx" />
-            <view class="no-more-tips" wx:if="{{likeFinished && likeMediaList.length}}">～没有更多啦～</view>
           </view>
         </swiper-item>
       </swiper>

@@ -10,28 +10,37 @@ Page({
     historyKeywords: [],
     hotKeywords: [],
     keywords: "",
-    isSearching: false,
+    searching: false,
     tabScroll: 0,
     curMenuIdx: 0,
     mediaList: [],
+    mediaLoading: false,
     mediaFinished: false,
     videoList: [],
+    videoLoading: false,
     videoFinished: false,
     noteList: [],
+    noteLoading: false,
     noteFinished: false,
     liveList: [],
+    liveLoading: false,
     liveFinished: false,
     scenicList: [],
+    scenicLoading: false,
     scenicFinished: false,
     hotelList: [],
+    hotelLoading: false,
     hotelFinished: false,
-    calendarPopupVisibel: false,
     restaurantList: [],
+    restaurantLoading: false,
     restaurantFinished: false,
     goodsList: [],
+    goodsLoading: false,
     goodsFinished: false,
     userList: [],
-    userFinished: false
+    userLoading: false,
+    userFinished: false,
+    calendarPopupVisible: false
   },
 
   onLoad({ scene = 0 }) {
@@ -65,14 +74,14 @@ Page({
     }
     baseService.saveKeywords(keywords);
     this.setList(true);
-    this.setData({ isSearching: true });
+    this.setData({ searching: true });
   },
 
   cancelSearch() {
     this.setHistoryKeywords();
     this.setData({
       keywords: "",
-      isSearching: false,
+      searching: false,
       mediaList: [],
       mediaFinished: false,
       videoList: [],
@@ -152,178 +161,181 @@ Page({
   },
 
   async setMediaList(init = false) {
-    const limit = 10;
     if (init) {
       this.mediaPage = 0;
-      this.setData({ mediaFinished: false });
+      this.setData({ mediaList: [], mediaFinished: false });
     }
     const { keywords, mediaList } = this.data;
+
+    this.setData({ mediaLoading: true });
     const { list = [] } =
-      (await baseService.searchMediaList(keywords, ++this.mediaPage, limit)) ||
-      {};
+      (await baseService.searchMediaList(keywords, ++this.mediaPage)) || {};
     this.setData({
-      mediaList: init ? list : [...mediaList, ...list]
+      mediaList: init ? list : [...mediaList, ...list],
+      mediaLoading: false
     });
-    if (list.length < limit) {
+    if (!list.length) {
       this.setData({ mediaFinished: true });
     }
   },
 
   async setVideoList(init = false) {
-    const limit = 10;
     if (init) {
       this.videoPage = 0;
-      this.setData({ videoFinished: false });
+      this.setData({ videoList: [], videoFinished: false });
     }
     const { keywords, videoList } = this.data;
+
+    this.setData({ videoLoading: true });
     const { list = [] } =
-      (await baseService.searchVideoList(keywords, ++this.videoPage, limit)) ||
-      {};
+      (await baseService.searchVideoList(keywords, ++this.videoPage)) || {};
     this.setData({
-      videoList: init ? list : [...videoList, ...list]
+      videoList: init ? list : [...videoList, ...list],
+      videoLoading: false
     });
-    if (list.length < limit) {
+    if (!list.length) {
       this.setData({ videoFinished: true });
     }
   },
 
   async setNoteList(init = false) {
-    const limit = 10;
     if (init) {
       this.notePage = 0;
-      this.setData({ noteFinished: false });
+      this.setData({ noteList: [], noteFinished: false });
     }
     const { keywords, noteList } = this.data;
+
+    this.setData({ noteLoading: true });
     const { list = [] } =
-      (await baseService.searchNoteList(keywords, ++this.notePage, limit)) ||
-      {};
+      (await baseService.searchNoteList(keywords, ++this.notePage)) || {};
     this.setData({
-      noteList: init ? list : [...noteList, ...list]
+      noteList: init ? list : [...noteList, ...list],
+      noteLoading: false
     });
-    if (list.length < limit) {
+    if (!list.length) {
       this.setData({ noteFinished: true });
     }
   },
 
   async setLiveList(init = false) {
-    const limit = 10;
     if (init) {
       this.livePage = 0;
-      this.setData({ liveFinished: false });
+      this.setData({ liveList: [], liveFinished: false });
     }
     const { keywords, liveList } = this.data;
+
+    this.setData({ liveLoading: true });
     const { list = [] } =
-      (await baseService.searchLiveRoomList(
-        keywords,
-        ++this.livePage,
-        limit
-      )) || {};
+      (await baseService.searchLiveRoomList(keywords, ++this.livePage)) || {};
     this.setData({
-      liveList: init ? list : [...liveList, ...list]
+      liveList: init ? list : [...liveList, ...list],
+      liveLoading: false
     });
-    if (list.length < limit) {
+    if (!list.length) {
       this.setData({ liveFinished: true });
     }
   },
 
   async setScenicList(init = false) {
-    const limit = 10;
     if (init) {
       this.scenicPage = 0;
-      this.setData({ scenicFinished: false });
+      this.setData({ scenicList: [], scenicFinished: false });
     }
     const { keywords, scenicList } = this.data;
+
+    this.setData({ scenicLoading: true });
     const { list = [] } =
-      (await baseService.searchScenicList(
-        keywords,
-        ++this.scenicPage,
-        limit
-      )) || {};
+      (await baseService.searchScenicList(keywords, ++this.scenicPage)) || {};
     this.setData({
-      scenicList: init ? list : [...scenicList, ...list]
+      scenicList: init ? list : [...scenicList, ...list],
+      scenicLoading: false
     });
-    if (list.length < limit) {
+    if (!list.length) {
       this.setData({ scenicFinished: true });
     }
   },
 
   async setHotelList(init = false) {
-    const limit = 10;
     if (init) {
       this.hotelPage = 0;
-      this.setData({ hotelFinished: false });
+      this.setData({ hotelList: [], hotelFinished: false });
     }
     const { keywords, hotelList } = this.data;
+
+    this.setData({ hotelLoading: true });
     const { list = [] } =
-      (await baseService.searchHotelList(keywords, ++this.hotelPage, limit)) ||
-      {};
+      (await baseService.searchHotelList(keywords, ++this.hotelPage)) || {};
     this.setData({
-      hotelList: init ? list : [...hotelList, ...list]
+      hotelList: init ? list : [...hotelList, ...list],
+      hotelLoading: false
     });
-    if (list.length < limit) {
+    if (!list.length) {
       this.setData({ hotelFinished: true });
     }
   },
 
   async setRestaurantList(init = false) {
-    const limit = 10;
     if (init) {
       this.restaurantPage = 0;
-      this.setData({ restaurantFinished: false });
+      this.setData({ restaurantList: [], restaurantFinished: false });
     }
     const { keywords, restaurantList } = this.data;
+
+    this.setData({ restaurantLoading: true });
     const { list = [] } =
       (await baseService.searchRestaurantList(
         keywords,
-        ++this.restaurantPage,
-        limit
+        ++this.restaurantPage
       )) || {};
     this.setData({
-      restaurantList: init ? list : [...restaurantList, ...list]
+      restaurantList: init ? list : [...restaurantList, ...list],
+      restaurantLoading: false
     });
-    if (list.length < limit) {
+    if (!list.length) {
       this.setData({ restaurantFinished: true });
     }
   },
 
   async setGoodsList(init = false) {
-    const limit = 10;
     if (init) {
       this.goodsPage = 0;
-      this.setData({ goodsFinished: false });
+      this.setData({ goodsList: [], goodsFinished: false });
     }
     const { keywords, goodsList } = this.data;
+
+    this.setData({ goodsLoading: true });
     const list =
       (await baseService.searchGoodsList({
         keywords,
-        page: ++this.goodsPage,
-        limit
+        page: ++this.goodsPage
       })) || [];
     this.setData({
-      goodsList: init ? list : [...goodsList, ...list]
+      goodsList: init ? list : [...goodsList, ...list],
+      goodsLoading: false
     });
-    if (list.length < limit) {
+    if (!list.length) {
       this.setData({ goodsFinished: true });
     }
   },
 
   async setUserList(init = false) {
-    const limit = 10;
     if (init) {
       this.userPage = 0;
-      this.setData({ userFinished: false });
+      this.setData({ userList: [], userFinished: false });
     }
     const { keywords, userList } = this.data;
+
+    this.setData({ userLoading: true });
     const list =
       (await baseService.searchUserList({
         keywords,
-        page: ++this.userPage,
-        limit
+        page: ++this.userPage
       })) || [];
     this.setData({
-      userList: init ? list : [...userList, ...list]
+      userList: init ? list : [...userList, ...list],
+      userLoading: false
     });
-    if (list.length < limit) {
+    if (!list.length) {
       this.setData({ userFinished: true });
     }
   },
@@ -355,13 +367,13 @@ Page({
 
   showCalendarPopup() {
     this.setData({
-      calendarPopupVisibel: true
+      calendarPopupVisible: true
     });
   },
 
   hideCalendarPopup() {
     this.setData({
-      calendarPopupVisibel: false
+      calendarPopupVisible: false
     });
   },
 
@@ -378,7 +390,7 @@ Page({
     store.setCheckInDate(start.getTime());
     store.setCheckOutDate(end.getTime());
     this.setData({
-      calendarPopupVisibel: false
+      calendarPopupVisible: false
     });
   },
 

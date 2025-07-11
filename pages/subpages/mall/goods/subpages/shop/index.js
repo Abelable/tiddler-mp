@@ -10,6 +10,7 @@ Page({
     navBarVisible: false,
     shopInfo: null,
     goodsList: [],
+    loading: false,
     finished: false,
     posterInfo: null,
     posterModalVisible: false
@@ -36,18 +37,19 @@ Page({
   },
 
   async setGoodsList(init = false) {
-    const limit = 10;
     if (init) {
       this.page = 0;
-      this.setData({ finished: false });
+      this.setData({ goodsList: [], finished: false });
     }
+    this.setData({ loading: true });
     const list =
-      (await goodsService.getShopGoodsList(this.shopId, ++this.page, limit)) ||
+      (await goodsService.getShopGoodsList(this.shopId, ++this.page)) ||
       [];
     this.setData({
-      goodsList: init ? list : [...this.data.goodsList, ...list]
+      goodsList: init ? list : [...this.data.goodsList, ...list],
+      loading: false
     });
-    if (list.length < limit) {
+    if (!list.length) {
       this.setData({ finished: true });
     }
   },

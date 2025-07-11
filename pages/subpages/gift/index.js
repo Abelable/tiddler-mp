@@ -10,6 +10,7 @@ Page({
     menuList: [],
     curMenuIdx: 0,
     goodsList: [],
+    loading: false,
     finished: false
   },
 
@@ -54,12 +55,15 @@ Page({
       this.page = 0;
     }
     const { menuList, curMenuIdx, goodsList } = this.data;
+
+    this.setData({ loading: true });
     const { list } = await giftService.getGiftList(
       menuList[curMenuIdx].id,
       ++this.page
     );
     this.setData({
-      goodsList: init ? list : [...goodsList, ...list]
+      goodsList: init ? list : [...goodsList, ...list],
+      loading: false
     });
     if (!list.length) {
       this.setData({ finished: true });

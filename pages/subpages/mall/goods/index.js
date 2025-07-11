@@ -14,6 +14,7 @@ Page({
     activeSubTabIdx: 0,
     tabScroll: 0,
     goodsList: [],
+    loading: false,
     finished: false
   },
 
@@ -33,7 +34,7 @@ Page({
     this.setData({
       activeTabIdx,
       activeSubTabIdx: 0,
-      tabScroll: (activeTabIdx - 2) * 80,
+      tabScroll: (activeTabIdx - 2) * 80
     });
     if (activeTabIdx === 0) {
       this.setData({ subCategoryOptions: [] });
@@ -52,7 +53,7 @@ Page({
   async setCategoryOptions() {
     const options = await goodsService.getShopCategoryOptions();
     this.setData({
-      categoryOptions: [{ id: 0, name: "推荐" }, ...options],
+      categoryOptions: [{ id: 0, name: "推荐" }, ...options]
     });
   },
 
@@ -62,41 +63,37 @@ Page({
       categoryOptions[activeTabIdx].id
     );
     this.setData({
-      subCategoryOptions: [{ id: 0, name: "全部商品" }, ...options],
+      subCategoryOptions: [{ id: 0, name: "全部商品" }, ...options]
     });
   },
 
   async setGoodsList(init = false) {
-    const limit = 10;
     if (init) {
       this.page = 0;
-      this.setData({
-        finished: false,
-      });
+      this.setData({ goodsList: [], finished: false });
     }
     const {
       categoryOptions,
       activeTabIdx,
       subCategoryOptions,
       activeSubTabIdx,
-      goodsList,
+      goodsList
     } = this.data;
+    this.setData({ loading: true });
     const list =
       (await goodsService.getGoodsList({
         shopCategoryId: categoryOptions[activeTabIdx].id || undefined,
         categoryId: subCategoryOptions.length
           ? subCategoryOptions[activeSubTabIdx].id
           : undefined,
-        page: ++this.page,
-        limit,
+        page: ++this.page
       })) || [];
     this.setData({
       goodsList: init ? list : [...goodsList, ...list],
+      loading: false
     });
-    if (list.length < limit) {
-      this.setData({
-        finished: true,
-      });
+    if (!list.length) {
+      this.setData({ finished: true });
     }
   },
 
@@ -120,7 +117,7 @@ Page({
 
   search() {
     wx.navigateTo({
-      url: "/pages/subpages/common/search/index?scene=7",
+      url: "/pages/subpages/common/search/index?scene=7"
     });
-  },
+  }
 });

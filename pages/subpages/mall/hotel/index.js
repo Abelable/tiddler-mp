@@ -19,7 +19,7 @@ Page({
     ],
     curCategoryId: 0,
     categoryOptions: [],
-    calendarPopupVisibel: false,
+    calendarPopupVisible: false,
     hotelList: [],
     finished: false
   },
@@ -113,13 +113,13 @@ Page({
 
   showCalendarPopup() {
     this.setData({
-      calendarPopupVisibel: true
+      calendarPopupVisible: true
     });
   },
 
   hideCalendarPopup() {
     this.setData({
-      calendarPopupVisibel: false
+      calendarPopupVisible: false
     });
   },
 
@@ -136,7 +136,7 @@ Page({
     store.setCheckInDate(start.getTime());
     store.setCheckOutDate(end.getTime());
     this.setData({
-      calendarPopupVisibel: false
+      calendarPopupVisible: false
     });
   },
 

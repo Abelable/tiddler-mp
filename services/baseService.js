@@ -196,11 +196,11 @@ class BaseService extends Base {
     });
   }
 
-  async getUserNoteList({ id, page, limit = 10, withComments = 0 }) {
+  async getUserNoteList({ id, page, limit = 10, withComments = 0, loadingTitle }) {
     return await this.get({
       url: `${this.baseUrl}/media/tourism_note/user_list`,
       data: cleanObject({ id, page, limit, withComments }),
-      loadingTitle: "加载中..."
+      loadingTitle
     });
   }
 
@@ -215,7 +215,6 @@ class BaseService extends Base {
     return await this.get({
       url: `${this.baseUrl}/media/tourism_note/collect_list`,
       data: { id, page, limit },
-      loadingTitle: "加载中..."
     });
   }
 
@@ -230,7 +229,6 @@ class BaseService extends Base {
     return await this.get({
       url: `${this.baseUrl}/media/tourism_note/like_list`,
       data: { id, page, limit },
-      loadingTitle: "加载中..."
     });
   }
 
@@ -343,8 +341,7 @@ class BaseService extends Base {
   async searchMediaList(keywords, page, limit = 10) {
     return await this.get({
       url: `${this.baseUrl}/media/search`,
-      data: { keywords, page, limit },
-      loadingTitle: "加载中..."
+      data: { keywords, page, limit }
     });
   }
 
@@ -352,7 +349,6 @@ class BaseService extends Base {
     return await this.get({
       url: `${this.baseUrl}/media/short_video/search`,
       data: { keywords, page, limit },
-      loadingTitle: "加载中..."
     });
   }
 
@@ -360,39 +356,34 @@ class BaseService extends Base {
     return await this.get({
       url: `${this.baseUrl}/media/tourism_note/search`,
       data: { keywords, page, limit },
-      loadingTitle: "加载中..."
     });
   }
 
   async searchLiveRoomList(keywords, page, limit = 10) {
     return await this.get({
       url: `${this.baseUrl}/media/live/search`,
-      data: { keywords, page, limit },
-      loadingTitle: "加载中..."
+      data: { keywords, page, limit }
     });
   }
 
   async searchScenicList(keywords, page, limit = 10) {
     return await this.get({
       url: `${this.baseUrl}/scenic/search`,
-      data: { keywords, page, limit },
-      loadingTitle: "加载中..."
+      data: { keywords, page, limit }
     });
   }
 
   async searchHotelList(keywords, page, limit = 10) {
     return await this.get({
       url: `${this.baseUrl}/hotel/search`,
-      data: { keywords, page, limit },
-      loadingTitle: "加载中..."
+      data: { keywords, page, limit }
     });
   }
 
   async searchRestaurantList(keywords, page, limit = 10) {
     return await this.get({
       url: `${this.baseUrl}/catering/restaurant/search`,
-      data: { keywords, page, limit },
-      loadingTitle: "加载中..."
+      data: { keywords, page, limit }
     });
   }
 
@@ -418,8 +409,7 @@ class BaseService extends Base {
     const { list = [] } =
       (await this.get({
         url: `${this.baseUrl}/goods/search`,
-        data: cleanObject({ keywords, categoryId, sort, order, page, limit }),
-        loadingTitle: "加载中..."
+        data: cleanObject({ keywords, categoryId, sort, order, page, limit })
       })) || {};
     return list;
   }
@@ -429,7 +419,6 @@ class BaseService extends Base {
       (await this.post({
         url: `${this.baseUrl}/goods/recommend_list`,
         data: { goodsIds, shopCategoryIds, page, limit },
-        loadingTitle: "加载中..."
       })) || {};
     return list;
   }
@@ -438,8 +427,7 @@ class BaseService extends Base {
     const { list = [] } =
       (await this.get({
         url: `${this.baseUrl}/user/search`,
-        data: { keywords, page, limit },
-        loadingTitle: "加载中..."
+        data: { keywords, page, limit }
       })) || {};
     return list;
   }

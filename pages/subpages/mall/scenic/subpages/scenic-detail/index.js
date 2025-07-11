@@ -8,8 +8,8 @@ const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Page({
   data: {
-    loading: true,
     statusBarHeight,
+    pageLoaded: false,
     navBarVisible: false,
     menuList: [],
     curMenuIdx: -1,
@@ -25,6 +25,7 @@ Page({
     curCombinedTicketTypeIdx: 0,
     combinedTicketList: [],
     mediaList: [],
+    loading: false,
     finished: false,
     curTicketInfo: null,
     noticePopupVisible: false,
@@ -52,7 +53,7 @@ Page({
     await this.setScenicCategoryOptions();
     await this.setSourceTicketList();
     this.setMenuList();
-    this.setData({ loading: false });
+    this.setData({ pageLoaded: true });
     await this.setMediaList(true);
 
     wx.showShareMenu({
@@ -381,8 +382,9 @@ Page({
   async setMediaList(init = false) {
     if (init) {
       this.page = 0;
-      this.setData({ finished: false });
+      this.setData({ mediaList: [], finished: false });
     }
+    this.setData({ loading: true });
     const { list = [] } =
       (await scenicService.getRelativeMediaList(
         1,
@@ -390,7 +392,8 @@ Page({
         ++this.page
       )) || {};
     this.setData({
-      mediaList: init ? list : [...this.data.mediaList, ...list]
+      mediaList: init ? list : [...this.data.mediaList, ...list],
+      loading: false
     });
     if (!list.length) {
       this.setData({ finished: true });

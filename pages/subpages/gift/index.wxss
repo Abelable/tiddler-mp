@@ -121,11 +121,3 @@
   padding: 0 20rpx;
   min-height: calc(100vh - 720rpx);
 }
-
-.no-more-tips {
-  padding: 18rpx 0 36rpx;
-  color: #999;
-  font-size: 24rpx;
-  text-align: center;
-}
-

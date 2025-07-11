@@ -32,9 +32,14 @@
     </view>
 
     <view class="goods-list">
-      <fall-flow wx:if="{{goodsList}}" list="{{goodsList}}" generic:item="goods-item" />
+      <fall-flow 
+        wx:if="{{goodsList}}" 
+        list="{{goodsList}}" 
+        loading="{{loading}}"
+        finished="{{finished}}"
+        generic:item="goods-item" 
+      />
       <empty-illus wx:if="{{finished && !goodsList.length}}" desc="暂无家乡好物" />
-      <view class="no-more-tips" wx:if="{{finished && goodsList.length}}">～没有更多啦～</view>
     </view>
   </view>
 </view>

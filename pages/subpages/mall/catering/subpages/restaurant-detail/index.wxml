@@ -207,9 +207,14 @@
     <view class="content-title">达人打卡</view>
   </view>
   <view class="media-wrap">
-    <fall-flow wx:if="{{mediaList.length}}" list="{{mediaList}}" generic:item="media-item" />
-      <empty-illus wx:if="{{finished && !mediaList.length}}" desc="暂无达人打卡" height="520rpx" />
-      <view class="no-more-tips" wx:if="{{finished && mediaList.length}}">～没有更多啦～</view>
+    <fall-flow 
+      wx:if="{{mediaList.length}}" 
+      list="{{mediaList}}" 
+      loading="{{loading}}"
+      finished="{{finished}}"
+      generic:item="media-item" 
+    />
+    <empty-illus wx:if="{{finished && !mediaList.length}}" desc="暂无达人打卡" height="520rpx" />
   </view>
 </view>
 

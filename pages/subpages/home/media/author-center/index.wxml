@@ -49,16 +49,30 @@
       <swiper style="height: {{wrapHeightList[curMenuIndex]}}px;" current="{{curMenuIndex}}" bindchange="swiperChange">
         <swiper-item>
           <view class="content-wrap">
-            <fall-flow class="fall-flow-0" list="{{videoList}}" mediaScene="{{2}}" generic:item="video-item" bind:finish="setWrapHeight" />
+            <fall-flow 
+              class="fall-flow-0" 
+              list="{{videoList}}" 
+              loading="{{videoLoading}}"
+              finished="{{videoFinished}}"
+              mediaScene="{{2}}" 
+              bind:finish="setWrapHeight" 
+              generic:item="video-item" 
+            />
             <empty-illus wx:if="{{videoFinished && !videoList.length}}" desc="暂无视频游记列表" height="520rpx" />
-            <view class="no-more-tips" wx:if="{{videoFinished && videoList.length}}">～没有更多啦～</view>
           </view>
         </swiper-item>
         <swiper-item>
           <view class="content-wrap">
-            <fall-flow class="fall-flow-1" list="{{noteList}}" mediaScene="{{2}}" generic:item="note-item" bind:finish="setWrapHeight" />
+            <fall-flow 
+              class="fall-flow-1" 
+              list="{{noteList}}" 
+              loading="{{noteLoading}}"
+              finished="{{noteFinished}}"
+              mediaScene="{{2}}" 
+              bind:finish="setWrapHeight" 
+              generic:item="note-item" 
+            />
             <empty-illus wx:if="{{noteFinished && !noteList.length}}" desc="暂无图文游记列表" height="520rpx" />
-            <view class="no-more-tips" wx:if="{{noteFinished && noteList.length}}">～没有更多啦～</view>
           </view>
         </swiper-item>
       </swiper>

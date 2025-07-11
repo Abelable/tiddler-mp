@@ -284,9 +284,12 @@
       <view class="content-title">达人入住</view>
     </view>
     <view class="media-wrap">
-      <fall-flow wx:if="{{mediaList.length}}" list="{{mediaList}}" generic:item="media-item" />
+      <fall-flow 
+        wx:if="{{mediaList.length}}" 
+        list="{{mediaList}}" 
+        generic:item="media-item" 
+      />
       <empty-illus wx:if="{{finished && !mediaList.length}}" desc="达人入住" height="520rpx" />
-      <view class="no-more-tips" wx:if="{{finished && mediaList.length}}">～没有更多啦～</view>
     </view>
   </view>
 </view>
@@ -295,7 +298,7 @@
 
 <van-calendar 
   default-date="{{[checkInDate, checkOutDate]}}"
-  show="{{calendarPopupVisibel}}" 
+  show="{{calendarPopupVisible}}" 
   formatter="{{ formatter }}" 
   bind:close="hideCalendarPopup" 
   bind:confirm="setCalendar" 

@@ -23,7 +23,7 @@ Component({
     ],
     navBarActive: false,
     productList: [],
-    isLoading: false,
+    loading: false,
     finished: false
   },
 
@@ -81,15 +81,15 @@ Component({
       const limit = 10;
       if (init) {
         this.page = 0;
-        this.setData({ finished: false });
+        this.setData({ productList: [], finished: false });
       }
       const { productList } = this.data;
-      this.setData({ isLoading: true });
+      this.setData({ loading: true });
       const { list = [] } =
         (await mallService.getProductList(++this.page, limit)) || {};
       this.setData({
         productList: init ? list : [...productList, ...list],
-        isLoading: false
+        loading: false
       });
       if (list.length < limit) {
         this.setData({ finished: true });

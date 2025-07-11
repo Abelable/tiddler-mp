@@ -30,6 +30,7 @@ Page({
     evaluationSummary: null,
     qaSummary: null,
     mediaList: [],
+    loading: false,
     finished: false,
     noticePopupVisible: false,
     telPopupVisible: false,
@@ -313,8 +314,10 @@ Page({
   async setMediaList(init = false) {
     if (init) {
       this.page = 0;
-      this.setData({ finished: false });
+      this.setData({ mediaList: [], finished: false });
     }
+
+    this.setData({ loading: true });
     const { list = [] } =
       (await cateringService.getRelativeMediaList(
         3,
@@ -322,7 +325,8 @@ Page({
         ++this.page
       )) || {};
     this.setData({
-      mediaList: init ? list : [...this.data.mediaList, ...list]
+      mediaList: init ? list : [...this.data.mediaList, ...list],
+      loading: false
     });
     if (!list.length) {
       this.setData({ finished: true });

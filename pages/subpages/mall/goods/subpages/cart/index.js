@@ -9,6 +9,7 @@ Page({
     statusBarHeight,
     cartList: [],
     recommendGoodsList: [],
+    loading: false,
     finished: false,
     isSelectAll: false,
     totalPrice: 0,
@@ -44,7 +45,7 @@ Page({
   async setRecommendGoodsList(init = false) {
     if (init) {
       this.page = 0;
-      this.setData({ finished: false });
+      this.setData({ recommendGoodsList: [], finished: false });
     }
     const { cartList, recommendGoodsList } = this.data;
     const goodsIds = [];
@@ -54,13 +55,15 @@ Page({
       shopCategoryIds.push(shopCategoryId);
     });
 
+    this.setData({ loading: true });
     const list = await goodsService.getRecommedGoodsList(
       goodsIds,
       shopCategoryIds,
       ++this.page
     );
     this.setData({
-      recommendGoodsList: init ? list : [...recommendGoodsList, ...list]
+      recommendGoodsList: init ? list : [...recommendGoodsList, ...list],
+      loading: false
     });
     if (!list.length) {
       this.setData({ finished: true });

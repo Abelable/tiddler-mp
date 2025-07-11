@@ -30,13 +30,17 @@ Component({
     wrapHeightList: [400, 400, 400, 400],
     videoListTotal: 0,
     videoList: [],
+    videoLoading: false,
     videoFinished: false,
     noteListTotal: 0,
     noteList: [],
+    noteLoading: false,
     noteFinished: false,
     collectMediaList: [],
+    collectLoading: false,
     collectFinished: false,
     likeMediaList: [],
+    likeLoading: false,
     likeFinished: false,
     authInfoPopupVisible: false
   },
@@ -240,85 +244,84 @@ Component({
     async setVideoList(init = false) {
       if (init) {
         this.videoPage = 0;
-        this.setData({ videoFinished: false });
+        this.setData({ videoList: [], videoFinished: false });
       }
-      const { videoFinished, videoList } = this.data;
+      const { videoList } = this.data;
 
-      if (!videoFinished) {
-        const { list = [], total = 0 } =
-          (await mineService.getUserVideoList({
-            page: ++this.videoPage,
-            loadingTitle: "加载中..."
-          })) || {};
-        this.setData({
-          videoList: init ? list : [...videoList, ...list]
-        });
-        if (init) {
-          this.setData({ videoListTotal: total });
-        }
-        if (!list.length) {
-          this.setData({ videoFinished: true });
-        }
+      this.setData({ videoLoading: true });
+      const { list = [], total = 0 } =
+        (await mineService.getUserVideoList({
+          page: ++this.videoPage
+        })) || {};
+      this.setData({
+        videoList: init ? list : [...videoList, ...list],
+        videoLoading: false
+      });
+      if (init) {
+        this.setData({ videoListTotal: total });
+      }
+      if (!list.length) {
+        this.setData({ videoFinished: true });
       }
     },
 
     async setNoteList(init = false) {
       if (init) {
         this.notePage = 0;
-        this.setData({ noteFinished: false });
+        this.setData({ noteList: [], noteFinished: false });
       }
-      const { noteFinished, noteList } = this.data;
+      const { noteList } = this.data;
 
-      if (!noteFinished) {
-        const { list = [], total = 0 } =
-          (await mineService.getUserNoteList({ page: ++this.notePage })) || {};
-        this.setData({
-          noteList: init ? list : [...noteList, ...list]
-        });
-        if (init) {
-          this.setData({ noteListTotal: total });
-        }
-        if (!list.length) {
-          this.setData({ noteFinished: true });
-        }
+      this.setData({ noteLoading: true });
+      const { list = [], total = 0 } =
+        (await mineService.getUserNoteList({ page: ++this.notePage })) || {};
+      this.setData({
+        noteList: init ? list : [...noteList, ...list],
+        noteLoading: false
+      });
+      if (init) {
+        this.setData({ noteListTotal: total });
+      }
+      if (!list.length) {
+        this.setData({ noteFinished: true });
       }
     },
 
     async setCollectMediaList(init = false) {
       if (init) {
         this.collectPage = 0;
-        this.setData({ collectFinished: false });
+        this.setData({ collectMediaList: [], collectFinished: false });
       }
-      const { collectFinished, collectMediaList } = this.data;
+      const { collectMediaList } = this.data;
 
-      if (!collectFinished) {
-        const { list = [] } =
-          (await mineService.getUserCollectMediaList(++this.collectPage)) || {};
-        this.setData({
-          collectMediaList: init ? list : [...collectMediaList, ...list]
-        });
-        if (!list.length) {
-          this.setData({ collectFinished: true });
-        }
+      this.setData({ collectLoading: true });
+      const { list = [] } =
+        (await mineService.getUserCollectMediaList(++this.collectPage)) || {};
+      this.setData({
+        collectMediaList: init ? list : [...collectMediaList, ...list],
+        collectLoading: false
+      });
+      if (!list.length) {
+        this.setData({ collectFinished: true });
       }
     },
 
     async setLikeMediaList(init = false) {
       if (init) {
         this.likePage = 0;
-        this.setData({ likeFinished: false });
+        this.setData({ likeMediaList: [], likeFinished: false });
       }
-      const { likeFinished, likeMediaList } = this.data;
+      const { likeMediaList } = this.data;
 
-      if (!likeFinished) {
-        const { list = [] } =
-          (await mineService.getUserLikeMediaList(++this.likePage)) || {};
-        this.setData({
-          likeMediaList: init ? list : [...likeMediaList, ...list]
-        });
-        if (!list.length) {
-          this.setData({ likeFinished: true });
-        }
+      this.setData({ likeLoading: true });
+      const { list = [] } =
+        (await mineService.getUserLikeMediaList(++this.likePage)) || {};
+      this.setData({
+        likeMediaList: init ? list : [...likeMediaList, ...list],
+        likeLoading: false
+      });
+      if (!list.length) {
+        this.setData({ likeFinished: true });
       }
     },
 

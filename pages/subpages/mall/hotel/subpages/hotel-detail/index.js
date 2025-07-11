@@ -39,10 +39,11 @@ Component({
     nearbyHotelList: [],
     nearbyHotelTotal: 0,
     mediaList: [],
+    loading: false,
     finished: false,
     curRoomInfo: null,
     noticePopupVisible: false,
-    calendarPopupVisibel: false,
+    calendarPopupVisible: false,
     posterInfo: null,
     posterModalVisible: false
   },
@@ -373,8 +374,9 @@ Component({
     async setMediaList(init = false) {
       if (init) {
         this.page = 0;
-        this.setData({ finished: false });
+        this.setData({ mediaList: [], finished: false });
       }
+      this.setData({ loading: true });
       const { list = [] } =
         (await hotelService.getRelativeMediaList(
           2,
@@ -382,7 +384,8 @@ Component({
           ++this.page
         )) || {};
       this.setData({
-        mediaList: init ? list : [...this.data.mediaList, ...list]
+        mediaList: init ? list : [...this.data.mediaList, ...list],
+        loading: false
       });
       if (!list.length) {
         this.setData({ finished: true });
@@ -479,13 +482,13 @@ Component({
 
     showCalendarPopup() {
       this.setData({
-        calendarPopupVisibel: true
+        calendarPopupVisible: true
       });
     },
 
     hideCalendarPopup() {
       this.setData({
-        calendarPopupVisibel: false
+        calendarPopupVisible: false
       });
     },
 
@@ -494,7 +497,7 @@ Component({
       store.setCheckInDate(start.getTime());
       store.setCheckOutDate(end.getTime());
       this.setData({
-        calendarPopupVisibel: false
+        calendarPopupVisible: false
       });
       this.setRoomTypeList();
     },

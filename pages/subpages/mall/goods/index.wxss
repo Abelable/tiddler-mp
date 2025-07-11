@@ -124,10 +124,3 @@
   font-weight: 550;
   background: #dce7ff;
 }
-
-.no-more-tips {
-  padding: 24rpx 0 36rpx;
-  color: #999;
-  font-size: 24rpx;
-  text-align: center;
-}

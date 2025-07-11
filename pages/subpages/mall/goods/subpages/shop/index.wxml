@@ -19,9 +19,14 @@
   </view>
   
   <view class="goods-list-wrap">
-    <fall-flow list="{{goodsList}}" generic:item="goods-item" showShopInfo="{{false}}" />
+    <fall-flow 
+      list="{{goodsList}}"
+      loading="{{loading}}"
+      finished="{{finished}}"
+      generic:item="goods-item" 
+      showShopInfo="{{false}}" 
+    />
     <empty-illus wx:if="{{finished && !goodsList.length}}" desc="暂无列表" />
-    <view class="no-more-tips" wx:if="{{finished && goodsList.length}}">～没有更多啦～</view>
   </view>
 </view>
 

@@ -26,6 +26,7 @@ Page({
     actionMode: 0,
     addressPopupVisible: false,
     recommendGoodsList: [],
+    loading: false,
     finished: false,
     posterInfo: null,
     posterModalVisible: false
@@ -124,18 +125,20 @@ Page({
   async setRecommendGoodsList(init = false) {
     if (init) {
       this.page = 0;
-      this.setData({ finished: false });
+      this.setData({ recommendGoodsList: [], finished: false });
     }
     const { goodsInfo, recommendGoodsList } = this.data;
     const { id, shopCategoryId } = goodsInfo;
 
+    this.setData({ loading: true });
     const list = await goodsService.getRecommedGoodsList(
       [id],
       [shopCategoryId],
       ++this.page
     );
     this.setData({
-      recommendGoodsList: init ? list : [...recommendGoodsList, ...list]
+      recommendGoodsList: init ? list : [...recommendGoodsList, ...list],
+      loading: false
     });
     if (!list.length) {
       this.setData({ finished: true });

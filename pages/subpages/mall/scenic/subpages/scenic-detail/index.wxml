@@ -3,7 +3,7 @@
 
 <page-meta page-style="{{ noticePopupVisible ? 'overflow: hidden;' : '' }}" />
 
-<template is="skeleton" wx:if="{{loading}}" />
+<template is="skeleton" wx:if="{{!pageLoaded}}" />
 
 <view class="nav-bar-wrap">
   <view class="nav-bar row" style="padding-top: {{statusBarHeight}}px;">
@@ -43,7 +43,7 @@
 </view>
 
 <view class="banner-wrap">
-  <swiper style="height: 580rpx;" wx:if="{{!loading}}" circular bindchange="bannerChange">
+  <swiper style="height: 580rpx;" wx:if="{{pageLoaded}}" circular bindchange="bannerChange">
     <swiper-item 
       wx:if="{{scenicInfo.video}}"
       bindtap="previewMedia" 
@@ -81,7 +81,7 @@
   </view>
 </view>
 
-<view class="container"  wx:if="{{!loading}}">
+<view class="container"  wx:if="{{pageLoaded}}">
   <view class="row between">
     <view class="row">
       <view class="scenic-name">{{scenicInfo.name}}</view>
@@ -254,9 +254,14 @@
     <view class="content-title">达人打卡</view>
   </view>
   <view class="media-wrap">
-    <fall-flow wx:if="{{mediaList.length}}" list="{{mediaList}}" generic:item="media-item" />
+    <fall-flow 
+      wx:if="{{mediaList.length}}" 
+      list="{{mediaList}}" 
+      loading="{{loading}}"
+      finished="{{finished}}"
+      generic:item="media-item" 
+    />
     <empty-illus wx:if="{{finished && !mediaList.length}}" desc="暂无达人打卡" height="520rpx" />
-    <view class="no-more-tips" wx:if="{{finished && mediaList.length}}">～没有更多啦～</view>
   </view>
 </view>
 

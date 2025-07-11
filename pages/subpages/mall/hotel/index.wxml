@@ -36,7 +36,7 @@
 
 <van-calendar 
   default-date="{{[checkInDate, checkOutDate]}}"
-  show="{{calendarPopupVisibel}}" 
+  show="{{calendarPopupVisible}}" 
   formatter="{{ formatter }}" 
   bind:close="hideCalendarPopup" 
   bind:confirm="setCalendar" 

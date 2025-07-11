@@ -7,7 +7,6 @@ class GoodsService extends MallService {
       (await this.get({
         url: `${this.baseUrl}/goods/list`,
         data: cleanObject({ shopCategoryId, categoryId, sort, order, page, limit }),
-        loadingTitle: "加载中...",
       })) || {};
     return list;
   }
@@ -45,7 +44,6 @@ class GoodsService extends MallService {
       (await this.get({
         url: `${this.baseUrl}/shop/goods/on_sale_list`,
         data: { shopId, page, limit },
-        loadingTitle: "加载中...",
       })) || {};
     return list;
   }

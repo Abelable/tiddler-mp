@@ -20,8 +20,10 @@ Page({
     authorInfo: null,
     isFollow: false,
     videoList: [],
+    videoLoading: false,
     videoFinished: false,
     noteList: [],
+    noteLoading: false,
     noteFinished: false,
     posterInfo: null,
     posterModalVisible: false
@@ -160,46 +162,45 @@ Page({
   async setVideoList(init = false) {
     if (init) {
       this.videoPage = 0;
-      this.setData({ videoFinished: false });
+      this.setData({ videoList: [], videoFinished: false });
     }
-    const { videoFinished, videoList } = this.data;
+    const { videoList } = this.data;
 
-    if (!videoFinished) {
-      const { list = [] } =
-        (await mediaService.getVideoList({
-          authorId: this.authorId,
-          page: ++this.videoPage,
-          loadingTitle: "加载中..."
-        })) || {};
-      this.setData({
-        videoList: init ? list : [...videoList, ...list]
-      });
-      if (!list.length) {
-        this.setData({ videoFinished: true });
-      }
+    this.setData({ videoLoading: true });
+    const { list = [] } =
+      (await mediaService.getVideoList({
+        authorId: this.authorId,
+        page: ++this.videoPage
+      })) || {};
+    this.setData({
+      videoList: init ? list : [...videoList, ...list],
+      videoLoading: false
+    });
+    if (!list.length) {
+      this.setData({ videoFinished: true });
     }
   },
 
   async setNoteList(init = false) {
     if (init) {
       this.notePage = 0;
-      this.setData({ noteFinished: false });
+      this.setData({ noteList: [], noteFinished: false });
     }
-    const { noteFinished, noteList } = this.data;
+    const { noteList } = this.data;
 
-    if (!noteFinished) {
-      const { list = [] } =
-        (await mediaService.getNoteList({
-          authorId: this.authorId,
-          page: ++this.notePage,
-          loadingTitle: "加载中..."
-        })) || {};
-      this.setData({
-        noteList: init ? list : [...noteList, ...list]
-      });
-      if (!list.length) {
-        this.setData({ noteFinished: true });
-      }
+    this.setData({ noteLoading: true });
+    const { list = [] } =
+      (await mediaService.getNoteList({
+        authorId: this.authorId,
+        page: ++this.notePage,
+        loadingTitle: "加载中..."
+      })) || {};
+    this.setData({
+      noteList: init ? list : [...noteList, ...list],
+      noteLoading: false
+    });
+    if (!list.length) {
+      this.setData({ noteFinished: true });
     }
   },
 
