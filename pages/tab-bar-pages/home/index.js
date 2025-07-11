@@ -34,6 +34,7 @@ Component({
     bannerList: [],
     followMediaList: [],
     followRefreshing: false,
+    followLoading: false,
     followFinished: false,
     mediaList: [],
     refreshing: false,
@@ -179,24 +180,25 @@ Component({
             followFinished: false
           });
         }
-        const { followFinished, followMediaList } = this.data;
+        const { followMediaList } = this.data;
 
-        if (!followFinished) {
-          const { list = [] } =
-            (await homeService.getFollowMediaList(++this.followPage)) || {};
-          if (init) {
-            this.setData({
-              followMediaList: list,
-              followRefreshing: false
-            });
-          } else {
-            this.setData({
-              followMediaList: [...followMediaList, ...list]
-            });
-          }
-          if (!list.length) {
-            this.setData({ followFinished: true });
-          }
+        this.setData({ followLoading: true });
+        const { list = [] } =
+          (await homeService.getFollowMediaList(++this.followPage)) || {};
+        if (init) {
+          this.setData({
+            followMediaList: list,
+            followLoading: false,
+            followRefreshing: false
+          });
+        } else {
+          this.setData({
+            followMediaList: [...followMediaList, ...list],
+            followLoading: false,
+          });
+        }
+        if (!list.length) {
+          this.setData({ followFinished: true });
         }
       }, false);
     },
