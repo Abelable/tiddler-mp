@@ -21,7 +21,7 @@
     </view>
     <view class="price-wrap row">
       <price-unit price="{{ticket.price || 0}}" unit="起" />
-      <view class="commission-tag" wx:if="{{userInfo.promoterInfo}}" catchtap="toggleCommissionVisible">
+      <view class="commission-tag" wx:if="{{userInfo.promoterInfo && commission}}" catchtap="toggleCommissionVisible">
         <text wx:if="{{commissionVisible}}">奖励¥{{commission}}起</text>
         <text wx:if="{{!commissionVisible}}" style="padding-top: 8rpx; font-size: 28rpx;">******</text>
         <image class="commission-visible-icon" src="/images/{{commissionVisible ? '' : 'in'}}visible.png" />
