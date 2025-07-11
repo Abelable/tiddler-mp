@@ -158,7 +158,6 @@
   left: 0;
   top: 560rpx;
   padding: 20rpx;
-  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
   width: 100%;
   background: #fff;
   border-radius: 24rpx 24rpx 0 0;
