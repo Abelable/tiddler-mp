@@ -122,7 +122,11 @@
     <user-item wx:for="{{ARRAY.slice(userList, 0, 3)}}" wx:key="index" item="{{item}}" />
   </view>
 
-  <fall-flow wx:if="{{mediaList.length}}" list="{{mediaList}}" generic:item="media-item" />
+  <fall-flow 
+    wx:if="{{mediaList.length}}" 
+    list="{{mediaList}}" 
+    generic:item="media-item" 
+  />
   <view class="no-more-tips" wx:if="{{mediaFinished && mediaList.length}}">～没有更多啦～</view>
 </view>
 

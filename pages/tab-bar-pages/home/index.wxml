@@ -33,7 +33,7 @@
     <scroll-view 
       class="content-wrap" 
       style="padding-top: {{statusBarHeight + 96}}px;"
-      refresher-triggered="{{isFollowRefreshing}}"
+      refresher-triggered="{{followRefreshing}}"
       bindrefresherrefresh="onRefresh"
       bindscrolltolower="onLoadMore"
       bindscroll="onPageScroll"
@@ -57,7 +57,7 @@
     <scroll-view 
       class="content-wrap" 
       style="padding-top: {{statusBarHeight + 96}}px;"
-      refresher-triggered="{{isRefreshing}}"
+      refresher-triggered="{{refreshing}}"
       bindrefresherrefresh="onRefresh"
       bindscrolltolower="onLoadMore"
       scroll-top="{{scrollTop}}"
@@ -97,7 +97,7 @@
         <fall-flow 
           class="fall-flow" 
           list="{{mediaList}}" 
-          loading="{{isLoading}}"
+          loading="{{loading}}"
           finished="{{finished}}"
           generic:item="media-item" 
         />

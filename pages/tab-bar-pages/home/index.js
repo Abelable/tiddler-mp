@@ -33,11 +33,11 @@ Component({
     curMenuIndex: 1,
     bannerList: [],
     followMediaList: [],
-    isFollowRefreshing: false,
+    followRefreshing: false,
     followFinished: false,
     mediaList: [],
-    isRefreshing: false,
-    isLoading: false,
+    refreshing: false,
+    loading: false,
     finished: false,
     scrollTop: 0
   },
@@ -72,8 +72,8 @@ Component({
       this.setAdInfo();
       this.setBannerList();
 
-      // scroll-view特效，设置isRefreshing值，即可触发初始化
-      this.setData({ isRefreshing: true });
+      // scroll-view特效，设置refreshing值，即可触发初始化
+      this.setData({ refreshing: true });
 
       wx.showShareMenu({
         withShareTicket: true,
@@ -129,11 +129,11 @@ Component({
         case SCENE_SWITCH_TAB:
           if (curMenuIndex === 0) {
             if (!followMediaList.length) {
-              this.setData({ isFollowRefreshing: true });
+              this.setData({ followRefreshing: true });
             }
           } else {
             if (!mediaList.length) {
-              this.setData({ isRefreshing: true });
+              this.setData({ refreshing: true });
             }
           }
           this.setActiveMediaItem();
@@ -175,7 +175,7 @@ Component({
           this.followPage = 0;
           this.setData({
             followMediaList: [],
-            isFollowRefreshing: true,
+            followRefreshing: true,
             followFinished: false
           });
         }
@@ -187,7 +187,7 @@ Component({
           if (init) {
             this.setData({
               followMediaList: list,
-              isFollowRefreshing: false
+              followRefreshing: false
             });
           } else {
             this.setData({
@@ -204,22 +204,22 @@ Component({
     async setMediaList(init = false) {
       if (init) {
         this.page = 0;
-        this.setData({ mediaList: [], isRefreshing: true, finished: false });
+        this.setData({ mediaList: [], refreshing: true, finished: false });
       }
       const { mediaList } = this.data;
 
-      this.setData({ isLoading: true });
+      this.setData({ loading: true });
       const { list = [] } = (await homeService.getMediaList(++this.page)) || {};
       if (init) {
         this.setData({
           mediaList: list,
-          isLoading: false,
-          isRefreshing: false
+          loading: false,
+          refreshing: false
         });
       } else {
         this.setData({
           mediaList: [...mediaList, ...list],
-          isLoading: false
+          loading: false
         });
       }
 
