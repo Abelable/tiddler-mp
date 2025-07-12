@@ -5,7 +5,7 @@ import ShopService from "./utils/shopService";
 const shopService = new ShopService();
 
 const orderToolList = [
-  { icon: "time", name: "待确认" },
+  { icon: "confirm", name: "待确认" },
   { icon: "time", name: "待使用" },
   { icon: "evaluate", name: "已评价" },
   { icon: "after_sale", name: "售后" }
