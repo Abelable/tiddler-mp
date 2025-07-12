@@ -27,6 +27,25 @@
   margin: 24rpx 0;
 }
 
+.countdown-wrap {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24rpx;
+  padding: 0 24rpx;
+  height: 60rpx;
+  background: #f5f6f8;
+  border-radius: 8rpx;
+}
+.alarm-icon {
+  width: 32rpx;
+  height: 32rpx;
+}
+.countdown {
+  margin-left: 12rpx;
+  color: var(--blue-1);
+  font-size: 22rpx;
+}
+
 .total-info {
   justify-content: flex-end;
   color: #333;

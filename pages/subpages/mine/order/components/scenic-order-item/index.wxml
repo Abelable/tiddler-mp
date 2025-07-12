@@ -1,18 +1,17 @@
 <wxs module="TIME" src="/utils/filters/time.wxs" />
-<wxs module="ORDER" src="../../../utils/hotelOrder.wxs" />
+<wxs module="ORDER" src="../../../utils/scenicOrder.wxs" />
 
 <view class="order-item" catchtap="navToDetail">
   <view class="list-header row between">
-    <view class="shop-info row" wx:if="{{item.shopId}}" catchtap="navToShop">
-      <image class="shop-logo" wx:if="{{item.shopLogo}}" src="{{item.shopLogo}}" />
+    <view class="shop-info row" catchtap="navToShop">
+      <image class="shop-logo" src="{{item.shopLogo}}" />
       <view class="shop-name omit single">{{item.shopName}}</view>
       <image style="width: 20rpx; height: 20rpx;" src="/images/arrow_gray.png" />
     </view>
-    <view class="shop-name omit single" wx:if="{{!item.shopId}}">官方自营</view>
     <view class="order-status">{{ORDER.statusDesc(item.status)}}</view>
   </view>
   <view class="list-content">
-    <room-item info="{{item.roomInfo}}" />
+    <ticket-item ticketInfo="{{item.ticketInfo || null}}" />
   </view>
   <view class="countdown-wrap" wx:if="{{item.status === 101}}">
     <image class="alarm-icon" src="/images/alarm.png" />
@@ -24,12 +23,28 @@
   <view class="list-footer">
     <view class="total-info row baseline">
       <view>{{ORDER.paymentDesc(item.status)}}：</view>
-      <price-unit price="{{item.paymentAmount}}" fontSize="26rpx" integerFontSize="36rpx" />
+      <price-unit price="{{item.paymentAmount}}" color="#333" fontSize="26rpx" integerFontSize="36rpx" />
     </view>
     <view class="btn-wrap">
       <button 
+        class="btn active" 
+        wx:if="{{item.status === 101}}" 
+        catchtap="payOrder"
+        hover-class="none"
+      >
+        继续付款
+      </button>
+      <button 
+        class="btn active"
+        wx:if="{{refundBtnVisible}}"
+        catchtap="refundOrder"
+        hover-class="none"
+      >
+        申请退款
+      </button>
+      <button 
         class="btn" 
-        wx:if="{{item.status === 102 || item.status === 103 || item.status === 104 || item.status === 401 || item.status === 402}}" 
+        wx:if="{{item.status === 102 || item.status === 103 || item.status === 104}}" 
         catchtap="deleteOrder"
         hover-class="none"
       >
@@ -45,23 +60,7 @@
       </button>
       <button 
         class="btn active" 
-        wx:if="{{item.status === 101}}" 
-        catchtap="payOrder"
-        hover-class="none"
-      >
-        继续付款
-      </button>
-      <button 
-        class="btn active" 
-        wx:if="{{refundBtnVisible}}"
-        catchtap="refundOrder"
-        hover-class="none"
-      >
-        申请退款
-      </button>
-      <button 
-        class="btn active" 
-        wx:if="{{item.status === 401 || item.status === 402}}" 
+        wx:if="{{item.status === 301 || item.status === 302}}" 
         catchtap="navToEvaluation"
         hover-class="none"
       >

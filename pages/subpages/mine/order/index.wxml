@@ -31,9 +31,18 @@
 
 <view class="container" style="margin-top: {{statusBarHeight + 138}}px;">
   <view class="content" wx:if="{{curMenuIdx === 0}}">
-    <scenic-order-list list="{{scenicOrderList}}" bind:update="init"/>
-    <empty-illus wx:if="{{scenicFinished && !scenicOrderList.length}}" desc="暂无景点订单" />
+    <view class="order-list">
+      <scenic-order-item 
+        wx:for="{{scenicOrderList}}" 
+        wx:key="index" 
+        item="{{item}}" 
+        index="{{index}}" 
+        bind:update="init"
+        bind:checkQrCode="showScenicQrCodeModal"
+      />
+    </view>
     <view class="no-more-tips" wx:if="{{scenicFinished && scenicOrderList.length}}">～没有更多啦～</view>
+    <empty-illus wx:if="{{scenicFinished && !scenicOrderList.length}}" desc="暂无景点订单" />
   </view>
 
   <view class="content" wx:if="{{curMenuIdx === 1}}">
@@ -47,8 +56,8 @@
         bind:checkQrCode="showHotelQrCodeModal"
       />
     </view>
-    <empty-illus wx:if="{{hotelFinished && !hotelOrderList.length}}" desc="暂无酒店订单" />
     <view class="no-more-tips" wx:if="{{hotelFinished && hotelOrderList.length}}">～没有更多啦～</view>
+    <empty-illus wx:if="{{hotelFinished && !hotelOrderList.length}}" desc="暂无酒店订单" />
   </view>
 
   <view class="content" wx:if="{{curMenuIdx === 2}}">

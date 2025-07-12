@@ -40,7 +40,16 @@
 </view>
 
 <view class="list-wrap" wx:if="{{isSearching}}">
-  <scenic-order-list wx:if="{{type === 1}}" list="{{orderList}}" bind:update="updateScenicOrderList"/>
+  <view class="order-list" wx:if="{{type === 1}}">
+    <scenic-order-item 
+      wx:for="{{orderList}}" 
+      wx:key="index" 
+      item="{{item}}" 
+      index="{{index}}" 
+      bind:update="updateScenicOrderList"
+      bind:checkQrCode="showScenicQrCodeModal"
+    />
+  </view>
   <view class="order-list" wx:if="{{type === 2}}">
     <hotel-order-item 
       wx:for="{{orderList}}" 

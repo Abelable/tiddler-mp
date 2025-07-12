@@ -20,7 +20,7 @@ Component({
 
   lifetimes: {
     attached() {
-      const { status, createdAt, payTime, roomInfo } = this.properties.item;
+      const { status, createdAt, payTime } = this.properties.item;
       if (status === 101) {
         const countdown = Math.floor(
           (dayjs(createdAt).valueOf() +
@@ -34,7 +34,7 @@ Component({
         }
       }
 
-      if (status === 201 || (status === 302 && cancellable)) {
+      if (status === 201 || status === 301) {
         if (dayjs().diff(dayjs(payTime), "minute") <= 30) {
           this.setData({ refundBtnVisible: true });
         }
@@ -62,7 +62,7 @@ Component({
 
     async payOrder() {
       const { item, index } = this.properties;
-      const params = await orderService.getHotelPayParams([item.id]);
+      const params = await orderService.getScenicPayParams(item.id);
       wx.requestPayment({
         ...params,
         success: () => {
@@ -77,7 +77,7 @@ Component({
         success: result => {
           if (result.confirm) {
             const { item, index } = this.properties;
-            orderService.refundHotelOrder(item.id, () => {
+            orderService.refundScenicOrder(item.id, () => {
               this.setData({ refundBtnVisible: false });
               this.triggerEvent("update", { type: "refund", index });
             });
@@ -99,18 +99,18 @@ Component({
 
     cancelOrder() {
       const { item, index } = this.properties;
-      orderService.cancelHotelOrder(item.id, () => {
+      orderService.cancelScenicOrder(item.id, () => {
         this.triggerEvent("update", { type: "cancel", index });
       });
     },
 
-    deleteOrder() {
+    deleteOrder(e) {
       wx.showModal({
         title: "确定删除该订单吗？",
         success: result => {
           if (result.confirm) {
             const { item, index } = this.properties;
-            orderService.deleteHotelOrder([item.id], () => {
+            orderService.deleteScenicOrder([item.id], () => {
               this.triggerEvent("update", { type: "delete", index });
             });
           }
@@ -120,21 +120,21 @@ Component({
 
     navToDetail() {
       const { id } = this.properties.item;
-      const url = `/pages/subpages/mine/order/subpages/hotel-order/order-detail/index?id=${id}`;
+      const url = `/pages/subpages/mine/order/subpages/scenic-order/order-detail/index?id=${id}`;
       wx.navigateTo({ url });
     },
 
     navToEvaluation() {
-      const { id, roomInfo } = this.properties.item;
-      const url = `/pages/subpages/mine/order/subpages/hotel-order/evaluation/index?orderId=${id}&hotelId=${roomInfo.hotelId}`;
+      const { id } = this.properties.item;
+      const url = `/pages/subpages/mine/order/subpages/scenic-order/evaluation/index?id=${id}`;
       wx.navigateTo({ url });
     }
 
     // todo
     // navToShop(e) {
-    //   const { id } = e.currentTarget.dataset;
-    //   const url = `/pages/subpages/mall/goods/subpages/shop/index?id=${id}`;
-    //   wx.navigateTo({ url });
+    //   const { id } = e.currentTarget.dataset
+    //   const url = `/pages/subpages/mall/goods/subpages/shop/index?id=${id}`
+    //   wx.navigateTo({ url })
     // },
   }
 });
