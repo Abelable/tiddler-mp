@@ -15,14 +15,12 @@ Component({
 
   data: {
     countdown: 0,
-    refundBtnVisible: false,
-    editEvaluationBtnContent: "",
-    editEvaluationBtnVisile: false
+    refundBtnVisible: false
   },
 
   lifetimes: {
     attached() {
-      const { status, createdAt, payTime, goodsList } = this.properties.item;
+      const { status, createdAt, payTime } = this.properties.item;
       if (status === 101) {
         const countdown = Math.floor(
           (dayjs(createdAt).valueOf() +
@@ -37,11 +35,7 @@ Component({
       }
 
       if (status === 201 || status === 302) {
-        const giftGoodsIdx = goodsList.findIndex(item => item.isGift);
-        if (
-          giftGoodsIdx === -1 &&
-          dayjs().diff(dayjs(payTime), "minute") <= 30
-        ) {
+        if (dayjs().diff(dayjs(payTime), "minute") <= 30) {
           this.setData({ refundBtnVisible: true });
         }
       }
@@ -68,7 +62,7 @@ Component({
 
     async payOrder() {
       const { item, index } = this.properties;
-      const params = await orderService.getPayParams([item.id]);
+      const params = await orderService.getHotelPayParams([item.id]);
       wx.requestPayment({
         ...params,
         success: () => {
@@ -83,33 +77,13 @@ Component({
         success: result => {
           if (result.confirm) {
             const { item, index } = this.properties;
-            orderService.refundGoodsOrder(item.id, () => {
+            orderService.refundHotelOrder(item.id, () => {
               this.setData({ refundBtnVisible: false });
               this.triggerEvent("update", { type: "refund", index });
             });
           }
         }
       });
-    },
-
-    confirmOrder() {
-      wx.showModal({
-        title: "确认收到货了吗？",
-        success: result => {
-          if (result.confirm) {
-            const { item, index } = this.properties;
-            orderService.confirmGoodsOrder(item.id, () => {
-              this.triggerEvent("update", { type: "confirm", index });
-            });
-          }
-        }
-      });
-    },
-
-    async checkQrCode() {
-      const { id } = this.properties.item;
-      const verifyCode = await orderService.getGoodsVerifyCode(id);
-      this.triggerEvent("checkQrCode", { verifyCode });
     },
 
     confirmOrderCancel() {
@@ -125,7 +99,7 @@ Component({
 
     cancelOrder() {
       const { item, index } = this.properties;
-      orderService.cancelOrder(item.id, () => {
+      orderService.cancelHotelOrder(item.id, () => {
         this.triggerEvent("update", { type: "cancel", index });
       });
     },
@@ -136,7 +110,7 @@ Component({
         success: result => {
           if (result.confirm) {
             const { item, index } = this.properties;
-            orderService.deleteOrder([item.id], () => {
+            orderService.deleteHotelOrder([item.id], () => {
               this.triggerEvent("update", { type: "delete", index });
             });
           }
@@ -146,22 +120,21 @@ Component({
 
     navToDetail() {
       const { id } = this.properties.item;
-      const url = `/pages/subpages/mine/order/subpages/goods-order/order-detail/index?id=${id}`;
+      const url = `/pages/subpages/mine/order/subpages/hotel-order/order-detail/index?id=${id}`;
       wx.navigateTo({ url });
     },
 
     navToEvaluation() {
-      const { id, status, goodsList } = this.properties.item;
-      const url = `/pages/subpages/mine/order/subpages/goods-order/evaluation/index?orderId=${id}&status=${status}&goodsList=${JSON.stringify(
-        goodsList
-      )}`;
-      wx.navigateTo({ url });
-    },
-
-    navToShop() {
-      const { shopId } = this.properties.item;
-      const url = `/pages/subpages/mall/goods/subpages/shop/index?id=${shopId}`;
+      const { id, roomInfo } = this.properties.item;
+      const url = `/pages/subpages/mine/order/subpages/hotel-order/evaluation/index?orderId=${id}&hotelId=${roomInfo.hotelId}`;
       wx.navigateTo({ url });
     }
+
+    // todo
+    // navToShop(e) {
+    //   const { id } = e.currentTarget.dataset;
+    //   const url = `/pages/subpages/mall/goods/subpages/shop/index?id=${id}`;
+    //   wx.navigateTo({ url });
+    // },
   }
 });

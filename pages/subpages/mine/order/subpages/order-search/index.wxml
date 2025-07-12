@@ -41,7 +41,16 @@
 
 <view class="list-wrap" wx:if="{{isSearching}}">
   <scenic-order-list wx:if="{{type === 1}}" list="{{orderList}}" bind:update="updateScenicOrderList"/>
-  <hotel-order-list wx:if="{{type === 2}}" list="{{orderList}}" bind:update="updateScenicOrderList"/>
+  <view class="order-list" wx:if="{{type === 2}}">
+    <hotel-order-item 
+      wx:for="{{orderList}}" 
+      wx:key="index" 
+      item="{{item}}" 
+      index="{{index}}" 
+      bind:update="updateHotelOrderList"
+      bind:checkQrCode="showHotelQrCodeModal"
+    />
+  </view>
   <meal-ticket-order-list wx:if="{{type === 3}}" list="{{orderList}}" bind:update="updateScenicOrderList"/>
   <set-meal-order-list wx:if="{{type === 4}}" list="{{orderList}}" bind:update="updateScenicOrderList"/>
   <view class="order-list" wx:if="{{type === 5}}">

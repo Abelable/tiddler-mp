@@ -37,7 +37,16 @@
   </view>
 
   <view class="content" wx:if="{{curMenuIdx === 1}}">
-    <order-list list="{{hotelOrderList}}" bind:update="init"/>
+    <view class="order-list">
+      <hotel-order-item 
+        wx:for="{{hotelOrderList}}" 
+        wx:key="index" 
+        item="{{item}}" 
+        index="{{index}}" 
+        bind:update="init"
+        bind:checkQrCode="showHotelQrCodeModal"
+      />
+    </view>
     <empty-illus wx:if="{{hotelFinished && !hotelOrderList.length}}" desc="暂无酒店订单" />
     <view class="no-more-tips" wx:if="{{hotelFinished && hotelOrderList.length}}">～没有更多啦～</view>
   </view>

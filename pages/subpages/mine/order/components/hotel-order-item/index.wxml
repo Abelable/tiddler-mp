@@ -1,5 +1,5 @@
 <wxs module="TIME" src="/utils/filters/time.wxs" />
-<wxs module="ORDER" src="../../../utils/order.wxs" />
+<wxs module="ORDER" src="../../../utils/hotelOrder.wxs" />
 
 <view class="order-item" catchtap="navToDetail">
   <view class="list-header row between">
@@ -12,7 +12,7 @@
     <view class="order-status">{{ORDER.statusDesc(item.status)}}</view>
   </view>
   <view class="list-content">
-    <goods-list list="{{item.goodsList || []}}" />
+    <room-item info="{{item.roomInfo}}" />
   </view>
   <view class="countdown-wrap" wx:if="{{item.status === 101}}">
     <image class="alarm-icon" src="/images/alarm.png" />
@@ -24,58 +24,35 @@
   <view class="list-footer">
     <view class="total-info row baseline">
       <view>{{ORDER.paymentDesc(item.status)}}：</view>
-      <price-unit price="{{item.paymentAmount || 0}}" color="#333" fontSize="26rpx" integerFontSize="36rpx" />
+      <price-unit price="{{item.paymentAmount}}" fontSize="26rpx" integerFontSize="36rpx" />
     </view>
     <view class="btn-wrap">
       <button 
-        class="btn active" 
-        wx:if="{{item.status === 301}}" 
-        catchtap="confirmOrder"
-        hover-class="none"
-      >确认收货</button>
-      <button 
-        class="btn active" 
-        wx:if="{{item.status === 101}}" 
-        catchtap="payOrder"
-        hover-class="none"
-      >继续付款</button>
-      <button 
-        class="btn active" 
-        wx:if="{{refundBtnVisible}}"
-        catchtap="refundOrder"
-        hover-class="none"
-      >申请退款</button>
-      <button 
-        class="btn active" 
-        wx:if="{{item.status === 302}}" 
-        catchtap="checkQrCode"
-        hover-class="none"
-      >查看券码</button>
-      <button 
-        class="btn active" 
-        wx:if="{{item.status === 401 || item.status === 402 || item.status === 403}}"
-        catchtap="navToEvaluation"
-        hover-class="none"
-      >评价</button>
+        class="btn" 
+        wx:if="{{item.status === 102 || item.status === 103 || item.status === 104 || item.status === 401 || item.status === 402}}" 
+        catchtap="deleteOrder"
+      >删除订单</button>
       <button 
         class="btn" 
         wx:if="{{item.status === 101}}" 
         catchtap="confirmOrderCancel"
-        hover-class="none"
       >取消订单</button>
-      <button 
-        class="btn" 
-        wx:if="{{item.status === 102 || item.status === 103 || item.status === 104}}" 
-        catchtap="deleteOrder"
-        hover-class="none"
-      >删除订单</button>
-      <button 
-        class="btn" 
-        wx:if="{{item.status === 501}}"
-        catchtap="navToEvaluation"
-        hover-class="none"
-      >查看评价</button>
       <button class="btn" catchtap="navToDetail">查看详情</button>
+      <button 
+        class="btn active" 
+        wx:if="{{item.status === 101}}" 
+        catchtap="payOrder"
+      >继续付款</button>
+      <button 
+        class="btn active" 
+        wx:if="{{item.status === 201 || (item.status === 301 && item.roomInfo.cancellable)}}"
+        catchtap="refundOrder"
+      >申请退款</button>
+      <button 
+        class="btn active" 
+        wx:if="{{item.status === 401 || item.status === 402}}" 
+        catchtap="navToEvaluation"
+      >评价</button>
     </view>
   </view>
 </view>

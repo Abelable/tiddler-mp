@@ -16,7 +16,7 @@ Component({
 
   storeBindings: {
     store,
-    fields: ["userInfo", "promoterInfo"]
+    fields: ["userInfo", "superiorInfo"]
   },
 
   data: {

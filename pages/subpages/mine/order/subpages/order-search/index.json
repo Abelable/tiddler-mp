@@ -4,7 +4,7 @@
     "empty-illus": "/components/empty-illus/index",
     "fall-flow": "/components/fall-flow/index",
     "scenic-order-list": "../../components/scenic-order-list/index",
-    "hotel-order-list": "../../components/hotel-order-list/index",
+    "hotel-order-item": "../../components/hotel-order-item/index",
     "meal-ticket-order-list": "../../components/meal-ticket-order-list/index",
     "set-meal-order-list": "../../components/set-meal-order-list/index",
     "goods-order-item": "../../components/goods-order-item/index",
