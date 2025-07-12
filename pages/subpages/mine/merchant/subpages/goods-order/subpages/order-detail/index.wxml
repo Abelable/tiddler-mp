@@ -73,26 +73,26 @@
     <goods-list list="{{orderInfo.goodsList}}" status="{{orderInfo.status}}" />
     <view class="list row between">
       <view class="title">商品总价</view>
-      <price-unit price="{{orderInfo.goodsPrice}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />
+      <price-unit price="{{orderInfo.goodsPrice || 0}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />
     </view>
     <view class="list row between" wx:if="{{orderInfo.deliveryMode === 1}}">
       <view class="title">运费</view>
-      <price-unit price="{{orderInfo.freightPrice}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />
+      <price-unit price="{{orderInfo.freightPrice || 0}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />
     </view>
     <view class="list row between" wx:if="{{orderInfo.deductionBalance}}">
       <view class="title">余额抵扣</view>
       <view class="row">
         <text>-</text>
-        <price-unit price="{{orderInfo.deductionBalance}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />
+        <price-unit price="{{orderInfo.deductionBalance || 0}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />
       </view>
     </view>
     <view class="list row between">
       <view class="title">{{ORDER.paymentDesc(orderInfo.status)}}</view>
-      <price-unit price="{{orderInfo.paymentAmount}}" />
+      <price-unit price="{{orderInfo.paymentAmount || 0}}" />
     </view>
     <view view class="list row between" wx:if="{{orderInfo.status === 204}}">
       <view class="title">退款金额</view>
-      <price-unit price="{{orderInfo.refundAmount}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />
+      <price-unit price="{{orderInfo.refundAmount || 0}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />
     </view>
     <view class="more-info-wrap">
       <view class="list row between">

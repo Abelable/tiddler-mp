@@ -6,7 +6,7 @@
           <image class="goods-img" src="{{item.cover}}" mode="aspectFill" lazy-load />
           <view class="goods-name omit single">{{item.name}}</view>
           <view class="goods-price-wrap">
-            <price-unit price="{{item.price}}" />
+            <price-unit price="{{item.price || 0}}" />
             <image class="pick-icon" src="./images/{{item.checked ? 'checked' : 'unchecked'}}.png" />
           </view>
         </view>

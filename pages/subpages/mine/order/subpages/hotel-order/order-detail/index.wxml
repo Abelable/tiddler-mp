@@ -14,7 +14,7 @@
     <room-item info="{{orderInfo.roomInfo}}" />
     <view class="list row between">
       <view class="title">{{ORDER.paymentDesc(orderInfo.status)}}</view>
-      <price-unit price="{{orderInfo.paymentAmount}}" />
+      <price-unit price="{{orderInfo.paymentAmount || 0}}" />
     </view>
     <view class="more-info-wrap">
       <view class="list row top">

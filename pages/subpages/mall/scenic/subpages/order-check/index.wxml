@@ -16,7 +16,7 @@
             <view class="date">{{item.date}}</view>
             <block>
               <view class="unvalid-tips" wx:if="{{index === 0 && !scenicPreOrderInfo.todayBookable}}">不可定</view>
-              <price-unit wx:else price="{{item.price}}" color="#333" fontSize="22rpx" integerFontSize="28rpx" />
+              <price-unit wx:else price="{{item.price || 0}}" color="#333" fontSize="22rpx" integerFontSize="28rpx" />
             </block>
           </view>
           <view class="more-date-btn row" bindtap="showCalendarPopup">
@@ -78,7 +78,7 @@
 
 <view class="bottom-bar row" style="z-index: {{ priceDetailPopupVisible ? 100 : 'auto' }}">
   <view class="total-price-wrap row baseline">
-    <price-unit price="{{paymentAmount}}" fontSize="28rpx" integerFontSize="42rpx" />
+    <price-unit price="{{paymentAmount || 0}}" fontSize="28rpx" integerFontSize="42rpx" />
     <view class="price-detail-tips row" bindtap="togglePriceDetailPopupVisible">
       <text>明细</text>
       <image class="arrow" src="{{priceDetailPopupVisible ? './images/arrow-down.png' : './images/arrow-up.png'}}" />

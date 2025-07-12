@@ -36,7 +36,7 @@
             <view class="goods-name omit">{{item.name}}</view>
             <view class="goods-stock">库存：{{item.stock}}</view>
             <view class="row between">
-              <price-unit price="{{item.price}}" fontSize="12px" integerFontSize="16px" />
+              <price-unit price="{{item.price || 0}}" fontSize="12px" integerFontSize="16px" />
               <view class="row">
                 <button 
                   class="recommend-btn {{item.isHot ? 'invalid' : ''}}" 

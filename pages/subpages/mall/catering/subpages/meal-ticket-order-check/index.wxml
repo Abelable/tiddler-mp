@@ -38,7 +38,7 @@
 <view class="bottom-bar row between">
   <view class="row">
     <view class="price-label">合计</view>
-    <price-unit price="{{paymentAmount}}" fontSize="28rpx" integerFontSize="42rpx" color="#F66B38" unitColor="#F66B38" />
+    <price-unit price="{{paymentAmount || 0}}" fontSize="28rpx" integerFontSize="42rpx" color="#F66B38" unitColor="#F66B38" />
   </view>
   <button class="submit-btn {{consignee && mobile ? 'active' : ''}}" bindtap="submit">提交订单</button>
 </view>
