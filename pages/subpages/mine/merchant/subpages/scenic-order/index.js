@@ -79,21 +79,13 @@ Page({
 
   updateOrderList(e) {
     const statusEmuns = {
-      cancel: 102,
-      pay: 201,
       refund: 203,
-      confirm: 401
+      approve: 301
     };
     const { type, index } = e.detail;
-    const { curMenuIndex, orderList } = this.data;
-    if (type === "delete" || curMenuIndex !== 0) {
-      orderList.splice(index, 1);
-      this.setData({ orderList });
-    } else {
-      this.setData({
-        [`orderList[${index}].status`]: statusEmuns[type]
-      });
-    }
+    this.setData({
+      [`orderList[${index}].status`]: statusEmuns[type]
+    });
   },
 
   search() {

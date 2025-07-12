@@ -11,7 +11,10 @@
       class="menu-item {{curMenuIndex === index ? 'selected' : ''}} row center" 
       wx:for="{{menuList}}" wx:key="index" 
       bindtap="selectMenu" data-index="{{index}}"
-    >{{item.name}}</view>
+    >
+      <view>{{item.name}}</view>
+      <view class="total-spot" wx:if="{{item.total > 0}}" />
+    </view>
   </view>
 </view>
 
@@ -19,7 +22,7 @@
   <view class="order-list">
     <order-item 
       wx:for="{{orderList}}" 
-      wx:key="index" 
+      wx:key="id" 
       item="{{item}}" 
       index="{{index}}" 
       bind:update="updateOrderList"

@@ -1,4 +1,4 @@
-import MerchantService from '../../../utils/merchantService'
+import MerchantService from "../../../utils/merchantService";
 
 class ScenicOrderService extends MerchantService {
   async getOrderList({ shopId, status, page, limit = 10 }) {
@@ -6,7 +6,7 @@ class ScenicOrderService extends MerchantService {
       (await this.get({
         url: `${this.baseUrl}/scenic/shop/order/list`,
         data: { status, page, limit, shopId },
-        loadingTitle: "加载中...",
+        loadingTitle: "加载中..."
       })) || {};
     return list;
   }
@@ -15,9 +15,25 @@ class ScenicOrderService extends MerchantService {
     return await this.get({
       url: `${this.baseUrl}/scenic/shop/order/detail`,
       data: { shopId, orderId },
-      loadingTitle: '加载中...'
-    })
+      loadingTitle: "加载中..."
+    });
+  }
+
+  async approveOrder(shopId, orderId, success) {
+    await this.post({
+      url: `${this.baseUrl}/scenic/shop/order/approve`,
+      data: { shopId, orderId },
+      success
+    });
+  }
+
+  async refundOrder(shopId, orderId, success) {
+    await this.post({
+      url: `${this.baseUrl}/scenic/shop/order/refund`,
+      data: { shopId, orderId },
+      success
+    });
   }
 }
 
-export default ScenicOrderService
+export default ScenicOrderService;
