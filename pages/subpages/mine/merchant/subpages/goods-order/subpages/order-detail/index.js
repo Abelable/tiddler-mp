@@ -35,7 +35,9 @@ Page({
       302: "待使用",
       401: "交易成功",
       402: "交易成功",
-      403: "交易成功"
+      403: "交易成功",
+      501: "交易成功",
+      502: "交易成功"
     };
     wx.setNavigationBarTitle({
       title: titleEnums[orderInfo.status]

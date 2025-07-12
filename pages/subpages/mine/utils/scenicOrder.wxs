@@ -1,11 +1,11 @@
-function statusDesc(status) {
+function statusDesc(status, isShop = false) {
   var desc = "";
   if (status === 101) {
     desc = "待付款";
   } else if (status === 102 || status === 103 || status === 104) {
     desc = "交易关闭";
   } else if (status === 201) {
-    desc = "待商家确认";
+    desc = isShop ? "待确认" : "待商家确认";
   } else if (status === 202) {
     desc = "退款申请中";
   } else if (status === 203) {

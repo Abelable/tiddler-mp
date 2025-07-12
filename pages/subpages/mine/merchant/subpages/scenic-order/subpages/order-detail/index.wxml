@@ -3,7 +3,7 @@
 
 <view class="container">
   <view class="card">
-    <goods-list list="{{orderInfo.goodsList}}" status="{{orderInfo.status}}" />
+    <ticket-item ticketInfo="{{orderInfo.ticketInfo || null}}" />
     <view class="list row between">
       <view class="title">商品总价</view>
       <price-unit price="{{orderInfo.goodsPrice || 0}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />
@@ -13,14 +13,6 @@
       <price-unit price="{{orderInfo.paymentAmount || 0}}" />
     </view>
     <view class="more-info-wrap">
-      <view class="list row top">
-        <view class="title">收货信息：</view>
-        <view class="content">{{orderInfo.consignee}}，{{orderInfo.mobile}}，{{orderInfo.address}}</view>
-        <view class="copy-btn">
-          <text>｜</text>
-          <text style="color: #169dfe" bindtap="copyAddress">复制</text>
-        </view>
-      </view>
       <view class="list row between">
         <view class="title">订单编号：</view>
         <view>
@@ -46,16 +38,6 @@
 </view>
 
 <view class="bottom-bar">
-  <button 
-    class="btn" 
-    wx:if="{{orderInfo.status === 101}}" 
-    bindtap="cancelOrder" data-id="{{orderInfo.id}}" data-index="{{index}}"
-  >取消订单</button>
-  <button 
-    class="btn active" 
-    wx:if="{{item.status === 201}}"
-    catchtap="deliverOrder" data-id="{{item.id}}" data-index="{{index}}"
-  >去发货</button>
   <button class="btn active" bindtap="contact">联系客户</button>
 </view>
   

@@ -27,31 +27,6 @@
   font-weight: 550;
 }
 
-.deliver-info-wrap {
-  margin-top: 24rpx;
-  padding: 24rpx;
-  background: #f5f6f7;
-  border-radius: 24rpx;
-}
-.deliver-info {
-  margin-bottom: 16rpx;
-  color: #666;
-  font-size: 24rpx;
-}
-.deliver-info:last-child {
-  margin-bottom: 0;
-}
-.order-sn, .address-detail {
-  margin: 0 10rpx;
-}
-.address-detail {
-  flex: 1;
-}
-.order-icon, .copy-icon, .address-icon {
-  width: 32rpx;
-  height: 32rpx;
-}
-
 .btn-wrap {
   margin-top: 24rpx;
   display: flex;

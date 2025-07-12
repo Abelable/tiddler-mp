@@ -9,32 +9,12 @@ Component({
   },
 
   methods: {
-    copyOrderSn() {
-      const { orderSn } = this.properties.item;
-      wx.setClipboardData({
-        data: orderSn,
-        success: () => {
-          wx.showToast({ title: "复制成功", icon: "none" });
-        }
-      });
-    },
-
-    copyAddress() {
-      const { consignee, mobile, address } = this.properties.item;
-      wx.setClipboardData({
-        data: `${consignee}，${mobile}，${address}`,
-        success: () => {
-          wx.showToast({ title: "复制成功", icon: "none" });
-        }
-      });
-    },
-
     // todo 联系客户
     contact() {},
 
     navToDetail() {
       const { id } = this.properties.item;
-      const url = `/pages/subpages/mine/order/subpages/scenic-order/order-detail/index?id=${id}`;
+      const url = `/pages/subpages/mine/merchant/subpages/scenic-order/subpages/order-detail/index?id=${id}`;
       wx.navigateTo({ url });
     },
   }
