@@ -420,10 +420,10 @@ class OrderService extends BaseService {
     });
   }
 
-  async deleteGoodsOrder(id, success) {
+  async deleteGoodsOrder(ids, success) {
     await this.post({
       url: `${this.baseUrl}/order/delete`,
-      data: { id },
+      data: { ids },
       success
     });
   }

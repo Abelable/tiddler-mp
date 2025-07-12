@@ -1,7 +1,3 @@
-import ScenicService from "../../utils/scenicService";
-
-const scenicService = new ScenicService();
-
 Component({
   options: {
     addGlobalClass: true
@@ -13,30 +9,6 @@ Component({
   },
 
   methods: {
-    cancelOrder() {
-      const { item, index } = this.properties;
-      const { id } = item;
-      scenicService.cancelOrder(id, () => {
-        this.triggerEvent("update", { type: "cancel", index });
-      });
-    },
-
-    deliverOrder() {
-      const { item, index } = this.properties;
-      const { id } = item;
-      scenicService.deleteOrder(id, () => {
-        this.triggerEvent("update", { type: "deliver", index });
-      });
-    },
-
-    navToDetail() {
-      const { id } = this.properties.item;
-      const url = `../../subpages/order-detail/index?id=${id}`;
-      wx.navigateTo({ url });
-    },
-
-    contact() {},
-
     copyOrderSn() {
       const { orderSn } = this.properties.item;
       wx.setClipboardData({
@@ -55,6 +27,15 @@ Component({
           wx.showToast({ title: "复制成功", icon: "none" });
         }
       });
-    }
+    },
+
+    // todo 联系客户
+    contact() {},
+
+    navToDetail() {
+      const { id } = this.properties.item;
+      const url = `/pages/subpages/mine/order/subpages/scenic-order/order-detail/index?id=${id}`;
+      wx.navigateTo({ url });
+    },
   }
 });

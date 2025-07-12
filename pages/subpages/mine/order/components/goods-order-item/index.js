@@ -125,7 +125,7 @@ Component({
 
     cancelOrder() {
       const { item, index } = this.properties;
-      orderService.cancelOrder(item.id, () => {
+      orderService.cancelGoodsOrder(item.id, () => {
         this.triggerEvent("update", { type: "cancel", index });
       });
     },
@@ -136,7 +136,7 @@ Component({
         success: result => {
           if (result.confirm) {
             const { item, index } = this.properties;
-            orderService.deleteOrder([item.id], () => {
+            orderService.deleteGoodsOrder([item.id], () => {
               this.triggerEvent("update", { type: "delete", index });
             });
           }

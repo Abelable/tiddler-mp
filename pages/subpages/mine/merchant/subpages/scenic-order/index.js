@@ -1,3 +1,4 @@
+import { store } from "../../../../../../store/index";
 import ScenicOrderService from "./utils/scenicOrderService";
 
 const scenicOrderService = new ScenicOrderService();
@@ -6,7 +7,6 @@ const { statusBarHeight } = getApp().globalData.systemInfo;
 Page({
   data: {
     statusBarHeight,
-    shopInfo: null,
     menuList: [
       { name: "全部", status: 0, total: 0 },
       { name: "待确认", status: 1, total: 0 },
@@ -31,11 +31,6 @@ Page({
     this.setOrderList(true);
   },
 
-  async setShopInfo() {
-    const shopInfo = await scenicOrderService.getShopInfo();
-    this.setData({ shopInfo });
-  },
-
   selectMenu(e) {
     const { index: curMenuIndex } = e.currentTarget.dataset;
     this.setData({ curMenuIndex });
@@ -50,16 +45,17 @@ Page({
     this.setData({
       ["menuList[1].total"]: orderTotal[0],
       ["menuList[2].total"]: orderTotal[1],
-      ["menuList[4].total"]: orderTotal[3],
+      ["menuList[4].total"]: orderTotal[3]
     });
   },
 
   async setOrderList(init = false) {
     const limit = 10;
-    const { shopInfo, menuList, curMenuIndex, orderList } = this.data;
+    const { scenicShopId } = store.userInfo;
+    const { menuList, curMenuIndex, orderList } = this.data;
     if (init) this.page = 0;
     const list = await scenicOrderService.getOrderList({
-      shopId: shopInfo.id,
+      shopId: scenicShopId,
       status: menuList[curMenuIndex].status,
       page: ++this.page,
       limit
