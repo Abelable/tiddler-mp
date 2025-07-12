@@ -11,9 +11,10 @@ const menuList = [
     subMenuList: [
       { name: "全部", status: 0 },
       { name: "待付款", status: 1, total: 0 },
-      { name: "待出行", status: 2, total: 0 },
-      { name: "待评价", status: 3, total: 0 },
-      { name: "售后", status: 4, total: 0 }
+      { name: "待商家确认", status: 2, total: 0 },
+      { name: "待出行", status: 3, total: 0 },
+      { name: "待评价", status: 4, total: 0 },
+      { name: "售后", status: 5, total: 0 }
     ]
   },
   {
@@ -162,10 +163,10 @@ Page({
     let orderTotal = [];
     switch (curMenuIdx) {
       case 0:
-        // todo orderTotal = await orderService.getScenicOrderTotal();
+        orderTotal = await orderService.getScenicOrderTotal();
         break;
       case 1:
-        // todo orderTotal = await orderService.getOrderTotal();
+        // todo orderTotal = await orderService.getHotelOrderTotal();
         break;
       case 2:
         // todo orderTotal = await orderService.getMealTicketOrderTotal();
@@ -191,7 +192,7 @@ Page({
       this.menuList[curMenuIdx].subMenuList[2].total = orderTotal[1];
       this.menuList[curMenuIdx].subMenuList[3].total = orderTotal[2];
       this.menuList[curMenuIdx].subMenuList[4].total = orderTotal[3];
-      if ([1, 4].includes(curMenuIdx)) {
+      if ([0, 1, 4].includes(curMenuIdx)) {
         this.menuList[curMenuIdx].subMenuList[5].total = orderTotal[4];
       }
     }

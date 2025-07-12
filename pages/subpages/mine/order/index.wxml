@@ -34,7 +34,7 @@
     <view class="order-list">
       <scenic-order-item 
         wx:for="{{scenicOrderList}}" 
-        wx:key="index" 
+        wx:key="id" 
         item="{{item}}" 
         index="{{index}}" 
         bind:update="init"
@@ -49,7 +49,7 @@
     <view class="order-list">
       <hotel-order-item 
         wx:for="{{hotelOrderList}}" 
-        wx:key="index" 
+        wx:key="id" 
         item="{{item}}" 
         index="{{index}}" 
         bind:update="init"
@@ -76,7 +76,7 @@
     <view class="order-list">
       <goods-order-item 
         wx:for="{{goodsOrderList}}" 
-        wx:key="index" 
+        wx:key="id" 
         item="{{item}}" 
         index="{{index}}" 
         bind:update="init"

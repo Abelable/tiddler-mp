@@ -5,12 +5,22 @@ function statusDesc(status) {
   } else if (status === 102 || status === 103 || status === 104) {
     desc = "交易关闭";
   } else if (status === 201) {
-    desc = "待出行";
+    desc = "待商家确认";
   } else if (status === 202) {
     desc = "退款申请中";
   } else if (status === 203) {
     desc = "退款成功";
-  } else if (status === 301 || status === 302 || status === 401) {
+  } else if (status === 204) {
+    desc = "商家已驳回";
+  } else if (status === 301) {
+    desc = "待出行";
+  } else if (
+    status === 401 ||
+    status === 402 ||
+    status === 403 ||
+    status === 501 ||
+    status === 502
+  ) {
     desc = "交易成功";
   }
   return desc;
@@ -33,5 +43,5 @@ function paymentDesc(status) {
 
 module.exports = {
   statusDesc: statusDesc,
-  paymentDesc: paymentDesc,
+  paymentDesc: paymentDesc
 };

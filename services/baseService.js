@@ -196,7 +196,13 @@ class BaseService extends Base {
     });
   }
 
-  async getUserNoteList({ id, page, limit = 10, withComments = 0, loadingTitle }) {
+  async getUserNoteList({
+    id,
+    page,
+    limit = 10,
+    withComments = 0,
+    loadingTitle
+  }) {
     return await this.get({
       url: `${this.baseUrl}/media/tourism_note/user_list`,
       data: cleanObject({ id, page, limit, withComments }),
@@ -214,7 +220,7 @@ class BaseService extends Base {
   async getUserCollectNoteList(id, page, limit = 10) {
     return await this.get({
       url: `${this.baseUrl}/media/tourism_note/collect_list`,
-      data: { id, page, limit },
+      data: { id, page, limit }
     });
   }
 
@@ -228,7 +234,7 @@ class BaseService extends Base {
   async getUserLikeNoteList(id, page, limit = 10) {
     return await this.get({
       url: `${this.baseUrl}/media/tourism_note/like_list`,
-      data: { id, page, limit },
+      data: { id, page, limit }
     });
   }
 
@@ -348,14 +354,14 @@ class BaseService extends Base {
   async searchVideoList(keywords, page, limit = 10) {
     return await this.get({
       url: `${this.baseUrl}/media/short_video/search`,
-      data: { keywords, page, limit },
+      data: { keywords, page, limit }
     });
   }
 
   async searchNoteList(keywords, page, limit = 10) {
     return await this.get({
       url: `${this.baseUrl}/media/tourism_note/search`,
-      data: { keywords, page, limit },
+      data: { keywords, page, limit }
     });
   }
 
@@ -418,7 +424,7 @@ class BaseService extends Base {
     const { list = [] } =
       (await this.post({
         url: `${this.baseUrl}/goods/recommend_list`,
-        data: { goodsIds, shopCategoryIds, page, limit },
+        data: { goodsIds, shopCategoryIds, page, limit }
       })) || {};
     return list;
   }
@@ -430,6 +436,14 @@ class BaseService extends Base {
         data: { keywords, page, limit }
       })) || {};
     return list;
+  }
+
+  async getScenicOrderTotal() {
+    const total = await this.get({
+      url: `${this.baseUrl}/scenic/order/total`
+    });
+    store.setScenicOrderTotal(total);
+    return total;
   }
 
   async getGoodsOrderTotal() {

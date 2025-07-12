@@ -90,9 +90,11 @@ Component({
     },
 
     async updateOrderTotal() {
-      const goodsOrderTotal = await mineService.getGoodsOrderTotal();
-      const orderTotal = goodsOrderTotal.reduce((sum, total) => sum + total, 0);
-      this.setData({ orderTotal });
+      const scenicOrderTotals = await mineService.getScenicOrderTotal();
+      const scenicOrderTotal = scenicOrderTotals.reduce((sum, total) => sum + total, 0);
+      const goodsOrderTotals = await mineService.getGoodsOrderTotal();
+      const goodsOrderTotal = goodsOrderTotals.reduce((sum, total) => sum + total, 0);
+      this.setData({ orderTotal: scenicOrderTotal + goodsOrderTotal });
     },
 
     initToolList() {
