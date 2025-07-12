@@ -1,9 +1,9 @@
 import BaseService from "../../../../../services/baseService";
 
 class MerchantService extends BaseService {
-  getShopIncomeOverview(shopId) {
+  getShopOrderTotal(shopId) {
     return this.get({
-      url: `${this.baseUrl}/shop/income/data_overview`,
+      url: `${this.baseUrl}/shop/order/total`,
       data: { shopId }
     });
   }
@@ -22,9 +22,9 @@ class MerchantService extends BaseService {
     });
   }
 
-  getShopOrderTotal(shopId) {
+  getScenicShopOrderTotal(shopId) {
     return this.get({
-      url: `${this.baseUrl}/shop/order/total`,
+      url: `${this.baseUrl}/scenic/shop/order/total`,
       data: { shopId }
     });
   }
@@ -47,28 +47,6 @@ class MerchantService extends BaseService {
     });
   }
 
-  async cancelMealTicketOrder(id, success) {
-    await this.post({
-      url: `${this.baseUrl}/catering/meal_ticket/order/cancel`,
-      data: { id },
-      success
-    });
-  }
-
-  async publishMealTicketComment(
-    order_id,
-    comment_type,
-    commentLists,
-    success
-  ) {
-    return await this.post({
-      url: `${this.baseUrl}/catering/meal_ticket/order/comment`,
-      data: { order_id, comment_type, json_data: JSON.stringify(commentLists) },
-      success,
-      loadingTitle: "发布中..."
-    });
-  }
-
   async getSetMealOrderList({ status, page, limit = 10 }) {
     const { list = [] } =
       (await this.get({
@@ -84,23 +62,6 @@ class MerchantService extends BaseService {
       url: `${this.baseUrl}/catering/set_meal/order/detail`,
       data: { id },
       loadingTitle: "加载中..."
-    });
-  }
-
-  async cancelSetMealOrder(id, success) {
-    await this.post({
-      url: `${this.baseUrl}/catering/set_meal/order/cancel`,
-      data: { id },
-      success
-    });
-  }
-
-  async publishSetMealComment(order_id, comment_type, commentLists, success) {
-    return await this.post({
-      url: `${this.baseUrl}/catering/set_meal/order/comment`,
-      data: { order_id, comment_type, json_data: JSON.stringify(commentLists) },
-      success,
-      loadingTitle: "发布中..."
     });
   }
 }

@@ -25,13 +25,13 @@ Component({
 
   lifetimes: {
     attached() {
-      // this.init();
+      this.init();
     }
   },
 
   pageLifetimes: {
     show() {
-      // this.init();
+      this.init();
     }
   },
 
@@ -49,16 +49,16 @@ Component({
     },
 
     async setShopIncomeOverview() {
-      const { shopId } = store.userInfo;
+      const { scenicShopId } = store.userInfo;
       const shopIncomeOverview = await shopService.getShopIncomeOverview(
-        shopId
+        scenicShopId
       );
       this.setData({ shopIncomeOverview });
     },
 
     async setShopOrderTotal() {
-      const { shopId } = store.userInfo;
-      const shopOrderTotal = await shopService.getShopOrderTotal(shopId);
+      const { scenicShopId } = store.userInfo;
+      const shopOrderTotal = await shopService.getScenicShopOrderTotal(scenicShopId);
       this.setData({ shopOrderTotal });
     },
 

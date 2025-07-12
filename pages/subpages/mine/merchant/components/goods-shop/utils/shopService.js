@@ -7,13 +7,6 @@ class ShopService extends MerchantService {
       data: { shopId }
     });
   }
-
-  getShopOrderTotal(shopId) {
-    return this.get({
-      url: `${this.baseUrl}/shop/order/total`,
-      data: { shopId }
-    });
-  }
 }
 
 export default ShopService;

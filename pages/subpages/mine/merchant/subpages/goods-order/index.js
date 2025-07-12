@@ -45,7 +45,7 @@ Page({
       ["menuList[1].total"]: orderTotal[0],
       ["menuList[2].total"]: orderTotal[1],
       ["menuList[3].total"]: orderTotal[2],
-      ["menuList[5].total"]: orderTotal[3]
+      ["menuList[5].total"]: orderTotal[4]
     });
   },
 

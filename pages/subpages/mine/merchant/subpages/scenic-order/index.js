@@ -8,10 +8,11 @@ Page({
     statusBarHeight,
     shopInfo: null,
     menuList: [
-      { name: "全部", status: 0 },
-      { name: "待付款", status: 1 },
-      { name: "待出行", status: 2 },
-      { name: "售后", status: 4 }
+      { name: "全部", status: 0, total: 0 },
+      { name: "待确认", status: 1, total: 0 },
+      { name: "待出行", status: 2, total: 0 },
+      { name: "已评价", status: 3, total: 0 },
+      { name: "售后", status: 4, total: 0 }
     ],
     curMenuIndex: 0,
     orderList: [],
@@ -26,9 +27,7 @@ Page({
   },
 
   async onShow() {
-    if (!this.data.shopInfo) {
-      await this.setShopInfo();
-    }
+    this.setShopOrderTotal();
     this.setOrderList(true);
   },
 
@@ -41,6 +40,18 @@ Page({
     const { index: curMenuIndex } = e.currentTarget.dataset;
     this.setData({ curMenuIndex });
     this.setOrderList(true);
+  },
+
+  async setShopOrderTotal() {
+    const { scenicShopId } = store.userInfo;
+    const orderTotal = await scenicOrderService.getScenicShopOrderTotal(
+      scenicShopId
+    );
+    this.setData({
+      ["menuList[1].total"]: orderTotal[0],
+      ["menuList[2].total"]: orderTotal[1],
+      ["menuList[4].total"]: orderTotal[3],
+    });
   },
 
   async setOrderList(init = false) {
@@ -93,5 +104,5 @@ Page({
     wx.navigateTo({
       url: "./subpages/search/index"
     });
-  },
+  }
 });
