@@ -38,7 +38,7 @@ class ScenicService extends MallService {
 
   async getPaymentAmount(ticketId, categoryId, timeStamp, num) {
     return await this.get({
-      url: `${this.baseUrl}/scenic/order/calc_payment_amount`,
+      url: `${this.baseUrl}/scenic/order/payment_amount`,
       data: { ticketId, categoryId, timeStamp, num },
       loadingTitle: "加载中..."
     });

@@ -11,7 +11,7 @@ Component({
 
   lifetimes: {
     attached() {
-      const qrCode = `${API_BASE_URL}/api/${VERSION}/order/qr_code?code=${this.properties.code}`;
+      const qrCode = `${API_BASE_URL}/api/${VERSION}/qr_code?code=${this.properties.code}`;
       this.setData({ qrCode });
     }
   },
