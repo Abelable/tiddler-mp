@@ -8,7 +8,14 @@
       <view class="shop-name omit single">{{item.shopName}}</view>
       <image style="width: 20rpx; height: 20rpx;" src="/images/arrow_gray.png" />
     </view>
-    <view class="order-status">{{ORDER.statusDesc(item.status)}}</view>
+    <view class="row">
+      <view class="order-status">{{ORDER.statusDesc(item.status)}}</view>
+      <view class="countdown-wrap row" wx:if="{{item.status === 101}}">
+        <image class="alarm-icon" src="/images/alarm.png" />
+        <view>剩余</view>
+        <view class="countdown">{{TIME.countdown(countdown, 'hh:mm:ss')}}</view>
+      </view>
+    </view>
   </view>
   <view class="list-content">
     <ticket-item 
@@ -17,13 +24,7 @@
       bind:checkQRcode="checkQRcode"
     />
   </view>
-  <view class="countdown-wrap" wx:if="{{item.status === 101}}">
-    <image class="alarm-icon" src="/images/alarm.png" />
-    <view class="countdown">
-      <text style="color: #666;">剩余 </text>
-      <text>{{TIME.countdown(countdown, 'hh:mm:ss')}}</text>
-    </view>
-  </view>
+  
   <view class="list-footer">
     <view class="total-info row baseline">
       <view>{{ORDER.paymentDesc(item.status)}}：</view>

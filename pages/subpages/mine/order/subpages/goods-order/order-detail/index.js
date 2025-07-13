@@ -32,6 +32,26 @@ Page({
     const orderInfo = await orderService.getGoodsOrderDetail(this.orderId);
     this.setData({ orderInfo });
 
+    const titleEnums = {
+      101: "待付款",
+      102: "交易关闭",
+      103: "交易关闭",
+      104: "交易关闭",
+      201: "等待卖家发货",
+      204: "等待卖家发货",
+      202: "退款申请中",
+      203: "退款成功",
+      301: "待收货",
+      302: "待使用",
+      401: "待评价",
+      402: "待评价",
+      501: "交易完成",
+      502: "交易完成"
+    };
+    wx.setNavigationBarTitle({
+      title: titleEnums[orderInfo.status]
+    });
+
     const {
       id,
       status,
@@ -65,26 +85,6 @@ Page({
         this.setData({ packageList: [{ id, shipChannel, shipSn }] });
       }
     }
-
-    const titleEnums = {
-      101: "待付款",
-      102: "交易关闭",
-      103: "交易关闭",
-      104: "交易关闭",
-      201: "等待卖家发货",
-      204: "等待卖家发货",
-      202: "退款申请中",
-      203: "退款成功",
-      301: "待收货",
-      302: "待使用",
-      401: "待评价",
-      402: "待评价",
-      501: "交易完成",
-      502: "交易完成"
-    };
-    wx.setNavigationBarTitle({
-      title: titleEnums[orderInfo.status]
-    });
   },
 
   selectPackage(e) {

@@ -34,7 +34,7 @@ Component({
         }
       }
 
-      if (status === 201) {
+      if (status === 201 || status === 301) {
         if (dayjs().diff(dayjs(payTime), "minute") <= 30) {
           this.setData({ refundBtnVisible: true });
         }

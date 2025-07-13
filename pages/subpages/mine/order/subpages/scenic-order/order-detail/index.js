@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import OrderService from "../../../utils/orderService";
 
 const orderService = new OrderService();
@@ -5,6 +6,10 @@ const orderService = new OrderService();
 Page({
   data: {
     orderInfo: null,
+    countdown: 0,
+    refundBtnVisible: false,
+    verifyCode: "",
+    qRcodeModalVisible: false
   },
 
   onLoad({ id }) {
@@ -33,8 +38,38 @@ Page({
       502: "交易成功"
     };
     wx.setNavigationBarTitle({
-      title: titleEnums[orderInfo.status],
+      title: titleEnums[orderInfo.status]
     });
+
+    const { status, payTime, createdAt } = orderInfo;
+    if (status === 101) {
+      const countdown = Math.floor(
+        (dayjs(createdAt).valueOf() + 24 * 60 * 60 * 1000 - dayjs().valueOf()) /
+          1000
+      );
+      if (countdown > 0) {
+        this.setData({ countdown });
+        this.setCountdown();
+      }
+    }
+
+    if (status === 201 || status === 301) {
+      if (dayjs().diff(dayjs(payTime), "minute") <= 30) {
+        this.setData({ refundBtnVisible: true });
+      }
+    }
+  },
+
+  setCountdown() {
+    this.countdownInterval = setInterval(() => {
+      if (this.data.countdown === 0) {
+        clearInterval(this.countdownInterval);
+        return;
+      }
+      this.setData({
+        countdown: this.data.countdown - 1
+      });
+    }, 1000);
   },
 
   copyOrderSn() {
@@ -42,7 +77,7 @@ Page({
       data: this.data.orderInfo.orderSn,
       success: () => {
         wx.showToast({ title: "复制成功", icon: "none" });
-      },
+      }
     });
   },
 
@@ -52,16 +87,16 @@ Page({
       ...params,
       success: () => {
         this.setData({
-          ["orderInfo.status"]: 201,
+          ["orderInfo.status"]: 201
         });
-      },
+      }
     });
   },
 
   refundOrder() {
     orderService.refundScenicOrder(this.orderId, () => {
       this.setData({
-        ["orderInfo.status"]: 203,
+        ["orderInfo.status"]: 203
       });
     });
   },
@@ -69,7 +104,7 @@ Page({
   confirmOrder() {
     orderService.confirmScenicOrder(this.orderId, () => {
       this.setData({
-        ["orderInfo.status"]: 401,
+        ["orderInfo.status"]: 401
       });
     });
   },
@@ -83,9 +118,25 @@ Page({
   cancelOrder() {
     orderService.cancelScenicOrder(this.orderId, () => {
       this.setData({
-        ["orderInfo.status"]: 102,
+        ["orderInfo.status"]: 102
       });
     });
+  },
+
+  async showQRcodeModal(e) {
+    const { scenicId } = e.detail;
+    const verifyCode = await orderService.getScenicVerifyCode(id, scenicId);
+    this.setData({
+      verifyCode,
+      qRcodeModalVisible: true
+    });
+  },
+
+  hideQRcodeModal() {
+    this.setData({
+      qRcodeModalVisible: false
+    });
+    this.setOrderInfo();
   },
 
   navToEvaluation() {
@@ -94,13 +145,18 @@ Page({
     wx.navigateTo({ url });
   },
 
-  navToAfterSale() {},
-
-  contact() {},
-
   navToShop(e) {
     const { id } = e.currentTarget.dataset;
     const url = `/pages/subpages/mall/goods/subpages/shop/index?id=${id}`;
     wx.navigateTo({ url });
   },
+
+  contact() {},
+
+  navToAfterSale() {},
+
+  onUnload() {
+    clearInterval(this.countdownInterval);
+    this.storeBindings.destroyStoreBindings();
+  }
 });
