@@ -52,7 +52,7 @@
     </view>
   </view>
 </view>
-<view class="bottom-bar">
+<view class="bottom-bar" wx:if="{{userInfo.id === orderInfo.userId}}">
   <button class="btn" wx:if="{{orderInfo.status === 102 || orderInfo.status === 103 || orderInfo.status === 104}}" bindtap="deleteOrder" data-id="{{orderInfo.id}}" data-index="{{index}}" hover-class="none">
     删除订单
   </button>

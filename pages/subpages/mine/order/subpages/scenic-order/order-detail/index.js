@@ -1,3 +1,5 @@
+import { createStoreBindings } from "mobx-miniprogram-bindings";
+import { store } from "../../../../../../../store/index";
 import dayjs from "dayjs";
 import OrderService from "../../../utils/orderService";
 
@@ -13,6 +15,11 @@ Page({
   },
 
   onLoad({ id }) {
+    this.storeBindings = createStoreBindings(this, {
+      store,
+      fields: ["userInfo"]
+    });
+
     this.orderId = id;
     this.setOrderInfo();
   },
@@ -101,14 +108,6 @@ Page({
     });
   },
 
-  confirmOrder() {
-    orderService.confirmScenicOrder(this.orderId, () => {
-      this.setData({
-        ["orderInfo.status"]: 401
-      });
-    });
-  },
-
   deleteOrder() {
     orderService.deleteScenicOrder(this.orderId, () => {
       wx.navigateBack();
@@ -145,14 +144,17 @@ Page({
     wx.navigateTo({ url });
   },
 
+  // todo
   navToShop(e) {
-    const { id } = e.currentTarget.dataset;
-    const url = `/pages/subpages/mall/goods/subpages/shop/index?id=${id}`;
-    wx.navigateTo({ url });
+    // const { id } = e.currentTarget.dataset;
+    // const url = `/pages/subpages/mall/goods/subpages/shop/index?id=${id}`;
+    // wx.navigateTo({ url });
   },
 
+  // todo
   contact() {},
 
+  // todo
   navToAfterSale() {},
 
   onUnload() {
