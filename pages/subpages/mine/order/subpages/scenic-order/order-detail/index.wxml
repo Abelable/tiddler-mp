@@ -21,6 +21,10 @@
       bind:checkQrCode="showQRcodeModal"
     />
     <view class="list row between">
+      <view class="title">门票总价</view>
+      <price-unit price="{{orderInfo.totalPrice || 0}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />
+    </view>
+    <view class="list row between">
       <view class="title">{{ORDER.paymentDesc(orderInfo.status)}}</view>
       <price-unit price="{{orderInfo.paymentAmount || 0}}" />
     </view>
