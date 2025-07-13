@@ -6,13 +6,13 @@ Component({
   },
 
   data: {
-    qrcode: ""
+    qrCode: ""
   },
 
   lifetimes: {
     attached() {
-      const qrcode = `${API_BASE_URL}/api/${VERSION}/qr_code?code=${this.properties.code}`;
-      this.setData({ qrcode });
+      const qrCode = `${API_BASE_URL}/api/${VERSION}/qr_code?code=${this.properties.code}`;
+      this.setData({ qrCode });
     }
   },
 
