@@ -15,6 +15,14 @@ class MineService extends BaseService {
     });
   }
 
+  async verifyScenicCode(code, success) {
+    return await this.post({
+      url: `${this.baseUrl}/scenic/shop/order/verify`,
+      data: { code },
+      success
+    });
+  }
+
   async verifyGoodsCode(code, success) {
     return await this.post({
       url: `${this.baseUrl}/shop/order/verify`,

@@ -91,9 +91,15 @@ Component({
 
     async updateOrderTotal() {
       const scenicOrderTotals = await mineService.getScenicOrderTotal();
-      const scenicOrderTotal = scenicOrderTotals.reduce((sum, total) => sum + total, 0);
+      const scenicOrderTotal = scenicOrderTotals.reduce(
+        (sum, total) => sum + total,
+        0
+      );
       const goodsOrderTotals = await mineService.getGoodsOrderTotal();
-      const goodsOrderTotal = goodsOrderTotals.reduce((sum, total) => sum + total, 0);
+      const goodsOrderTotal = goodsOrderTotals.reduce(
+        (sum, total) => sum + total,
+        0
+      );
       this.setData({ orderTotal: scenicOrderTotal + goodsOrderTotal });
     },
 
@@ -102,6 +108,7 @@ Component({
         promoterInfo,
         authInfoId,
         scenicShopId,
+        scenicShopManagerList,
         hotelProviderId,
         cateringProviderId,
         shopId,
@@ -112,25 +119,27 @@ Component({
         { name: "订单中心", icon: "order" },
         { name: "收货地址", icon: "address" },
         promoterInfo ? { name: "代言奖励", icon: "promoter" } : undefined,
-        shopId ||
-        shopManagerList.findIndex(item => item.roleId !== 3) !== -1 ||
         scenicShopId ||
+        scenicShopManagerList.findIndex(item => item.roleId !== 3) !== -1 ||
         hotelProviderId ||
-        cateringProviderId
+        cateringProviderId ||
+        shopId ||
+        shopManagerList.findIndex(item => item.roleId !== 3) !== -1
           ? { name: "商家中心", icon: "merchant" }
           : undefined,
-        shopId ||
-        shopManagerList.length ||
         scenicShopId ||
+        scenicShopManagerList.length ||
         hotelProviderId ||
-        cateringProviderId
+        cateringProviderId ||
+        shopId ||
+        shopManagerList.length
           ? { name: "扫码核销", icon: "scan" }
           : undefined,
         promoterInfo ||
-        shopId ||
         scenicShopId ||
         hotelProviderId ||
-        cateringProviderId
+        cateringProviderId ||
+        shopId
           ? { name: "我的余额", icon: "balance" }
           : undefined,
         { name: "优惠券", icon: "coupon" },
@@ -406,17 +415,33 @@ Component({
 
     scan() {
       const {
-        shopId,
-        shopManagerList,
         scenicShopId,
+        scenicShopManagerList,
         hotelProviderId,
-        cateringProviderId
+        cateringProviderId,
+        shopId,
+        shopManagerList
       } = store.userInfo;
       wx.scanCode({
         success: res => {
           const code = res.result;
+          if (code.length === 12) {
+            if (scenicShopId || scenicShopManagerList.length) {
+              mineService.verifyScenicCode(code, () => {
+                wx.showToast({
+                  title: "核销成功",
+                  icon: "none"
+                });
+              });
+            } else {
+              wx.showToast({
+                title: "暂无核销权限",
+                icon: "none"
+              });
+            }
+          }
           if (code.length === 8) {
-            if (shopId.id || shopManagerList.length) {
+            if (shopId || shopManagerList.length) {
               mineService.verifyGoodsCode(code, () => {
                 wx.showToast({
                   title: "核销成功",
@@ -425,7 +450,7 @@ Component({
               });
             } else {
               wx.showToast({
-                title: "暂无商品核销权限",
+                title: "暂无核销权限",
                 icon: "none"
               });
             }
