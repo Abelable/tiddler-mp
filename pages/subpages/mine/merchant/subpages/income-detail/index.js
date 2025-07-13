@@ -9,6 +9,7 @@ Page({
   data: {
     statusBarHeight,
     navBarBgVisible: false,
+    merchantType: 0,
     incomeSum: null,
     dateList: [
       { text: "今日", value: 1 },
@@ -24,7 +25,7 @@ Page({
   },
 
   onLoad({ merchantType }) {
-    this.merchantType = +merchantType;
+    this.setData({ merchantType: +merchantType })
   },
 
   onShow() {
@@ -50,7 +51,10 @@ Page({
   },
 
   setIncomeSum() {
-    switch (this.merchantType) {
+    switch (this.data.merchantType) {
+      case 1:
+        this.setScenicShopIncomeSum();
+        break;
       case 4:
         this.setShopIncomeSum();
         break;
@@ -58,7 +62,10 @@ Page({
   },
 
   setTimeData() {
-    switch (this.merchantType) {
+    switch (this.data.merchantType) {
+      case 1:
+        this.setScenicShopTimeData();
+        break;
       case 4:
         this.setShopTimeData();
         break;
@@ -66,10 +73,55 @@ Page({
   },
 
   setOrderList(init = false) {
-    switch (this.merchantType) {
+    switch (this.data.merchantType) {
+      case 1:
+        this.setScenicShopOrderList(init);
+        break;
       case 4:
         this.setShopOrderList(init);
         break;
+    }
+  },
+
+  async setScenicShopIncomeSum() {
+    const { scenicShopId } = store.userInfo;
+    const incomeSum = await incomeService.getScenicShopIncomeSum(scenicShopId);
+    this.setData({ incomeSum });
+  },
+
+  async setScenicShopTimeData() {
+    const { scenicShopId } = store.userInfo;
+    const { dateList, curDateIdx } = this.data;
+    const timeData = await incomeService.getScenicShopTimeData(
+      scenicShopId,
+      dateList[curDateIdx].value
+    );
+    this.setData({ timeData });
+  },
+
+  async setScenicShopOrderList(init = false) {
+    if (init) {
+      this.page = 0;
+      this.setData({ orderList: [], finished: false });
+    }
+
+    const { scenicShopId: shopId } = store.userInfo;
+    const { dateList, curDateIdx } = this.data;
+    const page = ++this.page;
+
+    const list = await incomeService.getScenicShopIncomeOrderList({
+      shopId,
+      timeType: dateList[curDateIdx].value,
+      statusList: [1, 2, 3, 4],
+      page
+    });
+
+    this.setData({
+      orderList: init ? list : [...this.data.orderList, ...list]
+    });
+
+    if (!list.length) {
+      this.setData({ finished: true });
     }
   },
 
@@ -89,7 +141,7 @@ Page({
     this.setData({ timeData });
   },
 
-  async setOrderList(init = false) {
+  async setShopOrderList(init = false) {
     if (init) {
       this.page = 0;
       this.setData({ orderList: [], finished: false });
@@ -115,7 +167,7 @@ Page({
 
       const goods = { ...goodsInfo, incomeAmount };
       const existingOrder = orderMap.get(orderId);
-      
+
       if (existingOrder) {
         existingOrder.incomeAmount += incomeAmount;
         existingOrder.goodsList.push(goods);
@@ -161,7 +213,7 @@ Page({
     const { cashAmount } = this.data.incomeSum;
     wx.navigateTo({
       url: `/pages/subpages/mine/withdraw/index?scene=${
-        this.merchantType + 3
+        this.data.merchantType + 3
       }&amount=${cashAmount}`
     });
   },

@@ -94,7 +94,28 @@
     </view>
   </view>
 
-  <view class="sales-record-list" wx:if="{{orderList.length}}">
+  <view class="sales-record-list" wx:if="{{merchantType === 1 && orderList.length}}">
+    <view class="sales-record-item" wx:for="{{orderList}}" wx:key="index">
+      <view class="order-info">
+        <view class="order-sn-wrap">
+          <view class="order-sn" bindtap="checkOrderDetail" data-id="{{item.id}}" data-scene="{{item.scene}}">
+            <view>订单编号：{{item.orderSn}}</view>
+            <image class="order-sn-arrow" wx:if="{{item.scene === 1}}" src="./images/more-gray.png" />
+          </view>
+          <view class="order-status-wrap">
+            <view class="order-status">{{item.status === 1 ? '待结算' : '已结算'}}</view>
+            <view class="order-time">下单时间：{{TIME.transform(item.createdAt, 'YYYY.MM.DD')}}</view>
+          </view>
+        </view>
+        <view class="order-commission-wrap">
+          <view class="order-commission">+{{NUM.toFixed(item.incomeAmount, 2)}}</view>
+        </view>
+      </view>
+      <ticket-item ticketInfo="{{item.ticketInfo}}" />
+    </view>
+  </view>
+
+  <view class="sales-record-list" wx:if="{{merchantType === 4 && orderList.length}}">
     <view class="sales-record-item" wx:for="{{orderList}}" wx:key="index">
       <view class="order-info">
         <view class="order-sn-wrap">
@@ -123,6 +144,7 @@
       </view>
     </view>
   </view>
+
   <view class="no-more-tips" wx:if="{{finished && orderList.length}}">～没有更多啦～</view>
   <empty-illus wx:if="{{!orderList.length}}" desc="暂无订单记录" height="500rpx" />
 </view>

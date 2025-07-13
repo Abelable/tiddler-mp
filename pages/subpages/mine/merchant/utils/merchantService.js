@@ -1,6 +1,27 @@
 import BaseService from "../../../../../services/baseService";
 
 class MerchantService extends BaseService {
+  getScenicShopOrderTotal(shopId) {
+    return this.get({
+      url: `${this.baseUrl}/scenic/shop/order/total`,
+      data: { shopId }
+    });
+  }
+
+  getScenicShopIncomeSum(shopId) {
+    return this.get({
+      url: `${this.baseUrl}/scenic/shop/income/sum`,
+      data: { shopId }
+    });
+  }
+
+  getScenicShopTimeData(shopId, timeType) {
+    return this.get({
+      url: `${this.baseUrl}/scenic/shop/income/time_data`,
+      data: { shopId, timeType }
+    });
+  }
+
   getShopOrderTotal(shopId) {
     return this.get({
       url: `${this.baseUrl}/shop/order/total`,
@@ -19,13 +40,6 @@ class MerchantService extends BaseService {
     return this.get({
       url: `${this.baseUrl}/shop/income/time_data`,
       data: { shopId, timeType }
-    });
-  }
-
-  getScenicShopOrderTotal(shopId) {
-    return this.get({
-      url: `${this.baseUrl}/scenic/shop/order/total`,
-      data: { shopId }
     });
   }
 
