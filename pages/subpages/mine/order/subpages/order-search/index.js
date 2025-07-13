@@ -9,8 +9,8 @@ Page({
     keywords: "",
     isSearching: false,
     orderList: [],
-    goodsVerifyCode: "",
-    goodsQrCodeModalVisible: false
+    verifyCode: "",
+    qRcodeModalVisible: false
   },
 
   onLoad({ type = "1" }) {
@@ -146,18 +146,18 @@ Page({
     }
   },
 
-  showGoodsQrCodeModal(e) {
-    const { goodsVerifyCode } = e.detail;
+  showQRcodeModal(e) {
+    const { verifyCode } = e.detail;
     this.setData({
-      goodsVerifyCode,
-      goodsQrCodeModalVisible: true
+      verifyCode,
+      qRcodeModalVisible: true
     });
   },
 
-  hideGoodsQrCodeModal() {
+  hideQRcodeModal() {
     this.setData({
-      goodsQrCodeModalVisible: false
+      qRcodeModalVisible: false
     });
-    this.setGoodsOrderList(true);
+    this.setOrderList(true);
   },
 });

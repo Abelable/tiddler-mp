@@ -72,7 +72,7 @@ Component({
         startTime,
         auchorDataDesc,
         tagList,
-        qrcode
+        qRcode
       } = info || {};
 
       await this.drawImage(
@@ -140,7 +140,7 @@ Component({
           this.setText(10, "#fff", 145, 220, auchorDataDesc, "center");
         }
 
-        await this.roundRect(100, 270, 90, 90, 45, qrcode);
+        await this.roundRect(100, 270, 90, 90, 45, qRcode);
         this.setText(10, "#999", 145, 380, "长按识别二维码", "center");
       } else {
         await this.roundRect(27, 71, 237, 240, 5, cover);
@@ -279,7 +279,7 @@ Component({
           }
         }
 
-        await this.drawImage(qrcode, 208, 318, 56, 56);
+        await this.drawImage(qRcode, 208, 318, 56, 56);
         this.setText(7, "#999", 237, 382, "长按识别二维码", "center");
       }
 

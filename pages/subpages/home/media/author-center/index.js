@@ -278,7 +278,7 @@ Page({
         ? `${id}-${store.superiorInfo.id}`
         : `${id}`;
       const page = "pages/subpages/home/media/author-center/index";
-      const qrcode = await mediaService.getQRCode(scene, page);
+      const qRcode = await mediaService.getQrCode(scene, page);
 
       this.setData({
         posterModalVisible: true,
@@ -289,7 +289,7 @@ Page({
             followedAuthorNumber,
             100000
           )}关注｜${numOver(fansNumber, 100000)}粉丝`,
-          qrcode
+          qRcode
         }
       });
     });

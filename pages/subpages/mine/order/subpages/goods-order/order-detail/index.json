@@ -3,6 +3,6 @@
     "address-popup": "/components/address-popup/index",
     "price-unit": "/components/price-unit/index",
     "goods-list": "./components/goods-list/index",
-    "qr-code-modal": "../../../components/goods-qr-code-modal/index"
+    "qr-code-modal": "../../../components/qr-code-modal/index"
   }
 }

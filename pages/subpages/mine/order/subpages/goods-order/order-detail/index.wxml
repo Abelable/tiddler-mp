@@ -142,7 +142,7 @@
   <button class="btn active" wx:if="{{orderInfo.status === 301}}" bindtap="confirmOrder" hover-class="none">
     确认收货
   </button>
-  <button class="btn active" wx:if="{{orderInfo.status === 302}}" bindtap="showQrCodeModal" hover-class="none">
+  <button class="btn active" wx:if="{{orderInfo.status === 302}}" bindtap="showQRcodeModal" hover-class="none">
     查看券码
   </button>
   <button class="btn active" wx:if="{{orderInfo.status === 201}}" bindtap="showAddressPopup" hover-class="none">
@@ -185,7 +185,7 @@
 />
 
 <qr-code-modal 
-  wx:if="{{qrCodeModalVisible}}"
+  wx:if="{{qRcodeModalVisible}}"
   code="{{orderInfo.verifyCode}}" 
-  bind:hide="hideQrCodeModal"
+  bind:hide="hideQRcodeModal"
 />

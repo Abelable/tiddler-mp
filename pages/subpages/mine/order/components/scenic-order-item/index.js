@@ -34,7 +34,7 @@ Component({
         }
       }
 
-      if (status === 201 || status === 301) {
+      if (status === 201) {
         if (dayjs().diff(dayjs(payTime), "minute") <= 30) {
           this.setData({ refundBtnVisible: true });
         }
@@ -128,7 +128,14 @@ Component({
       const { id } = this.properties.item;
       const url = `/pages/subpages/mine/order/subpages/scenic-order/evaluation/index?id=${id}`;
       wx.navigateTo({ url });
-    }
+    },
+
+    async checkQRcode(e) {
+      const { scenicId } = e.detail
+      const { id } = this.properties.item;
+      const verifyCode = await orderService.getScenicVerifyCode(id, scenicId);
+      this.triggerEvent("checkQRcode", { verifyCode });
+    },
 
     // todo
     // navToShop(e) {

@@ -47,7 +47,7 @@
       item="{{item}}" 
       index="{{index}}" 
       bind:update="updateScenicOrderList"
-      bind:checkQrCode="showScenicQrCodeModal"
+      bind:checkQRcode="showQRcodeModal"
     />
   </view>
   <view class="order-list" wx:if="{{type === 2}}">
@@ -57,7 +57,7 @@
       item="{{item}}" 
       index="{{index}}" 
       bind:update="updateHotelOrderList"
-      bind:checkQrCode="showHotelQrCodeModal"
+      bind:checkQRcode="showQRcodeModal"
     />
   </view>
   <meal-ticket-order-list wx:if="{{type === 3}}" list="{{orderList}}" bind:update="updateScenicOrderList"/>
@@ -69,15 +69,15 @@
       item="{{item}}" 
       index="{{index}}" 
       bind:update="updateGoodsOrderList"
-      bind:checkQrCode="showGoodsQrCodeModal"
+      bind:checkQRcode="showQRcodeModal"
     />
   </view>
   <empty-illus wx:if="{{!orderList.length}}" desc="暂无{{['景点', '酒店', '餐券', '套餐', '商品'][type - 1]}}订单" />
   <view class="no-more-tips" wx:if="{{orderList.length}}">～没有更多啦～</view>
 </view>
 
-<goods-qr-code-modal 
-  wx:if="{{goodsQrCodeModalVisible}}"
-  code="{{goodsVerifyCode}}" 
-  bind:hide="hideGoodsQrCodeModal"
+<qr-code-modal 
+  wx:if="{{qRcodeModalVisible}}"
+  code="{{verifyCode}}" 
+  bind:hide="hideQRcodeModal"
 />

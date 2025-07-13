@@ -1,9 +1,10 @@
 Component({
   options: {
-    addGlobalClass: true,
+    addGlobalClass: true
   },
 
   properties: {
+    status: Number,
     ticketInfo: {
       type: Object,
       observer({ validityTime, selectedDateTimestamp: timeStamp }) {
@@ -20,11 +21,18 @@ Component({
         const validityTimeDesc = `${startYear}年${startMonth}月${startDay}日至${endYear}年${endMonth}月${endDay}日内有效`;
 
         this.setData({ validityTimeDesc });
-      },
-    },
+      }
+    }
   },
 
   data: {
-    validityTimeDesc: "",
+    validityTimeDesc: ""
   },
+
+  methods: {
+    checkQRcode(e) {
+      const { id: scenicId } = e.currentTarget.dataset;
+      this.triggerEvent("checkQRcode", { scenicId });
+    }
+  }
 });

@@ -106,10 +106,10 @@ Component({
       });
     },
 
-    async checkQrCode() {
+    async checkQRcode() {
       const { id } = this.properties.item;
       const verifyCode = await orderService.getGoodsVerifyCode(id);
-      this.triggerEvent("checkQrCode", { verifyCode });
+      this.triggerEvent("checkQRcode", { verifyCode });
     },
 
     confirmOrderCancel() {

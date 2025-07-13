@@ -47,6 +47,13 @@ class OrderService extends BaseService {
     });
   }
 
+    async getScenicVerifyCode(orderId, scenicId) {
+    return await this.get({
+      url: `${this.baseUrl}/scenic/order/verify_code`,
+      data: { orderId, scenicId }
+    });
+  }
+
   async confirmScenicOrder(id, success) {
     await this.post({
       url: `${this.baseUrl}/scenic/order/confirm`,

@@ -107,7 +107,7 @@ Page({
         ? `${id}-${store.superiorInfo.id}`
         : `${id}`;
     const page = "pages/subpages/home/media/live/live-play/index";
-    const qrcode = await liveService.getQRCode(scene, page);
+    const qRcode = await liveService.getQrCode(scene, page);
 
     this.setData({
       posterModalVisible: true,
@@ -118,7 +118,7 @@ Page({
         authorInfo,
         noticeTime,
         startTime,
-        qrcode
+        qRcode
       }
     });
   },

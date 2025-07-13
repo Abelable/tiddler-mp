@@ -158,7 +158,7 @@ Component({
   
       const scene = `id=${id}`;
       const page = "pages/tab-bar-pages/home/index";
-      const qrcode = await liveService.getQRCode(scene, page);
+      const qRcode = await liveService.getQrCode(scene, page);
   
       this.setData({
         posterModalVisible: true,
@@ -169,7 +169,7 @@ Component({
           authorInfo,
           noticeTime,
           startTime,
-          qrcode
+          qRcode
         }
       });
     },

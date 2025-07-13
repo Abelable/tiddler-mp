@@ -80,7 +80,7 @@ Page({
 
       const scene = `id=${id}`;
       const page = "pages/tab-bar-pages/home/index";
-      const qrcode = await goodsService.getQRCode(scene, page);
+      const qRcode = await goodsService.getQrCode(scene, page);
 
       this.setData({
         posterModalVisible: true,
@@ -88,7 +88,7 @@ Page({
           title,
           shopInfo: { type, logo },
           cover: cover || "https://static.tiddler.cn/mp/bg.png",
-          qrcode
+          qRcode
         }
       });
     });

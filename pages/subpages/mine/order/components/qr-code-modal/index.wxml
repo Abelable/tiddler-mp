@@ -2,7 +2,7 @@
   <view class="qr-code-poster" catchtap="catchtap">
     <view class="info-wrap">
       <view class="info-title">商品核销码</view>
-      <image class="qr-code" src="{{qrCode}}" />
+      <image class="qr-code" src="{{qRcode}}" />
       <view class="code">{{code}}</view>
       <view class="tips">为了保证您的权益，请勿提前提供给商家</view>
     </view>

@@ -8,6 +8,6 @@
     "meal-ticket-order-list": "../../components/meal-ticket-order-list/index",
     "set-meal-order-list": "../../components/set-meal-order-list/index",
     "goods-order-item": "../../components/goods-order-item/index",
-    "goods-qr-code-modal": "../../components/goods-qr-code-modal/index"
+    "qr-code-modal": "../../components/qr-code-modal/index"
   }
 }

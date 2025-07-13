@@ -479,7 +479,7 @@ Page({
         : `${this.restaurantId}`;
       const page =
         "pages/subpages/mall/catering/subpages/restaurant-detail/index";
-      const qrcode = await cateringService.getQRCode(scene, page);
+      const qRcode = await cateringService.getQrCode(scene, page);
 
       const {
         cover,
@@ -497,7 +497,7 @@ Page({
           price,
           salesVolume,
           tagList: facilityList.slice(0, 2),
-          qrcode
+          qRcode
         }
       });
     });

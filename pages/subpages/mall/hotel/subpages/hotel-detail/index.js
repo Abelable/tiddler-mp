@@ -398,7 +398,7 @@ Component({
           ? `${this.hotelId}-${store.superiorInfo.id}`
           : `${this.hotelId}`;
         const page = "pages/subpages/mall/hotel/subpages/hotel-detail/index";
-        const qrcode = await hotelService.getQRCode(scene, page);
+        const qRcode = await hotelService.getQrCode(scene, page);
 
         const {
           cover,
@@ -416,7 +416,7 @@ Component({
             price,
             salesVolume,
             tagList: featureTagList.slice(0, 2),
-            qrcode
+            qRcode
           }
         });
       });

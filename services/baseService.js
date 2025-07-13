@@ -309,9 +309,9 @@ class BaseService extends Base {
     });
   }
 
-  async getQRCode(scene, page) {
+  async getQrCode(scene, page) {
     return await this.get({
-      url: `${this.baseUrl}/wx/qrcode`,
+      url: `${this.baseUrl}/wx/qr_code`,
       data: { scene, page },
       loadingTitle: "加载中..."
     });
