@@ -31,22 +31,6 @@
     </view>
     <view class="btn-wrap">
       <button 
-        class="btn active" 
-        wx:if="{{item.status === 101}}" 
-        catchtap="payOrder"
-        hover-class="none"
-      >
-        继续付款
-      </button>
-      <button 
-        class="btn active"
-        wx:if="{{refundBtnVisible}}"
-        catchtap="refundOrder"
-        hover-class="none"
-      >
-        申请退款
-      </button>
-      <button 
         class="btn" 
         wx:if="{{item.status === 102 || item.status === 103 || item.status === 104}}" 
         catchtap="deleteOrder"
@@ -61,6 +45,22 @@
         hover-class="none"
       >
         取消订单
+      </button>
+      <button 
+        class="btn active" 
+        wx:if="{{item.status === 101}}" 
+        catchtap="payOrder"
+        hover-class="none"
+      >
+        继续付款
+      </button>
+      <button 
+        class="btn active"
+        wx:if="{{refundBtnVisible}}"
+        catchtap="refundOrder"
+        hover-class="none"
+      >
+        申请退款
       </button>
       <button 
         class="btn active" 
