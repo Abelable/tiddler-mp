@@ -84,7 +84,7 @@ Component({
     checkTool(e) {
       const { route } = e.currentTarget.dataset;
       const { hotelShopId } = store.userInfo;
-      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/hotel_shop/${route}&shop_id=${hotelShopId}`;
+      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/hotel/shop/${route}&shop_id=${hotelShopId}`;
       wx.navigateTo({ url });
     }
   }

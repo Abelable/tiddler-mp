@@ -1,7 +1,7 @@
 <wxs module="NUM" src="/utils/filters/num.wxs" />
 
-<view class="data-card scenic">
-  <image class="data-card-bg" src="https://static.tiddler.cn/mp/merchant/scenic/card_bg.png" />
+<view class="data-card hotel">
+  <image class="data-card-bg" src="https://static.tiddler.cn/mp/merchant/hotel/card_bg.png" />
   <view class="data-card-main">
     <view class="balance-data-item">
       <view class="balance-data-title">累计收益 (元)</view>

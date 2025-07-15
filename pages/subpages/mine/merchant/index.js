@@ -19,7 +19,7 @@ Page({
     const { merchantType, userInfo } = store;
     const {
       scenicShopId,
-      hotelProviderId,
+      hotelShopId,
       cateringProviderId,
       shopId
     } = userInfo;
@@ -28,7 +28,7 @@ Page({
     if (scenicShopId) {
       titleMenu.push({ name: "景区管理", type: "scenic", value: 1 });
     }
-    if (hotelProviderId) {
+    if (hotelShopId) {
       titleMenu.push({ name: "酒店管理", type: "hotel", value: 2 });
     }
     if (cateringProviderId) {
