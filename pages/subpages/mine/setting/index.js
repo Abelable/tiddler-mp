@@ -18,7 +18,7 @@ Page({
   },
 
   navToHotelProviderSettleIn() {
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/hotel/provider/settle_in`;
+    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/hotel/merchant/settle_in`;
     wx.navigateTo({ url });
   },
 

@@ -469,7 +469,7 @@ Page({
   },
 
   settleIn() {
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/scenic/provider/settle_in`;
+    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/scenic/merchant/settle_in`;
     wx.navigateTo({ url });
   },
 
