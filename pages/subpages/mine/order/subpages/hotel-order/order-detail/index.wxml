@@ -76,6 +76,6 @@
     wx:if="{{orderInfo.status === 401 || orderInfo.status === 402}}" 
     bindtap="navToEvaluation" data-id="{{orderInfo.id}}"
   >评价</button>
-  <button class="btn active" bindtap="contact">{{orderInfo.shopId ? '联系卖家' : '联系客服'}}</button>
+  <button class="btn active" bindtap="contact">{{orderInfo.shopId ? '联系商家' : '联系客服'}}</button>
 </view>
   

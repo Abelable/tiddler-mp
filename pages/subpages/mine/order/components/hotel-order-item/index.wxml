@@ -30,7 +30,7 @@
     <view class="btn-wrap">
       <button 
         class="btn" 
-        wx:if="{{item.status === 102 || item.status === 103 || item.status === 104 || item.status === 401 || item.status === 402}}" 
+        wx:if="{{item.status === 102 || item.status === 103 || item.status === 104}}" 
         catchtap="deleteOrder"
         hover-class="none"
       >
@@ -62,7 +62,13 @@
       </button>
       <button 
         class="btn active" 
-        wx:if="{{item.status === 401 || item.status === 402}}" 
+        wx:if="{{item.status === 301}}" 
+        catchtap="checkQRcode"
+        hover-class="none"
+      >查看券码</button>
+      <button 
+        class="btn active" 
+        wx:if="{{item.status === 401 || item.status === 402 || item.status === 403}}" 
         catchtap="navToEvaluation"
         hover-class="none"
       >

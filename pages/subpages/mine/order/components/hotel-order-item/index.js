@@ -20,7 +20,7 @@ Component({
 
   lifetimes: {
     attached() {
-      const { status, createdAt, payTime, roomInfo } = this.properties.item;
+      const { status, createdAt, payTime } = this.properties.item;
       if (status === 101) {
         const countdown = Math.floor(
           (dayjs(createdAt).valueOf() +
@@ -34,7 +34,7 @@ Component({
         }
       }
 
-      if (status === 201 || (status === 302 && cancellable)) {
+      if (status === 201 || status === 301) {
         if (dayjs().diff(dayjs(payTime), "minute") <= 30) {
           this.setData({ refundBtnVisible: true });
         }
@@ -62,7 +62,7 @@ Component({
 
     async payOrder() {
       const { item, index } = this.properties;
-      const params = await orderService.getHotelPayParams([item.id]);
+      const params = await orderService.getHotelPayParams(item.id);
       wx.requestPayment({
         ...params,
         success: () => {

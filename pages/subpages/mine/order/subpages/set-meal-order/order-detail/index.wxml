@@ -75,6 +75,6 @@
     wx:if="{{orderInfo.status === 301 || orderInfo.status === 302}}" 
     bindtap="afterSale" data-id="{{orderInfo.id}}"
   >申请售后</button>
-  <button class="btn active" bindtap="contact">{{orderInfo.shopId ? '联系卖家' : '联系客服'}}</button>
+  <button class="btn active" bindtap="contact">{{orderInfo.shopId ? '联系商家' : '联系客服'}}</button>
 </view>
   
