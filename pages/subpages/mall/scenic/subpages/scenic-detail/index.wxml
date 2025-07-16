@@ -1,5 +1,5 @@
-<import src="index.skeleton.wxml"/>
 <wxs module="TIME" src="/utils/filters/time.wxs" />
+<import src="index.skeleton.wxml"/>
 
 <page-meta page-style="{{ noticePopupVisible ? 'overflow: hidden;' : '' }}" />
 

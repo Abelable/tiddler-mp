@@ -1,3 +1,5 @@
+@import "./index.skeleton.wxss";
+
 .nav-bar-wrap {
   position: fixed;
   top: 0;

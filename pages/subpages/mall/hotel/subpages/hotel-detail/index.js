@@ -18,6 +18,7 @@ Component({
   data: {
     statusBarHeight,
     formatter,
+    pageLoaded: false,
     navBarVisible: false,
     menuList: [],
     curMenuIdx: 0,
@@ -86,6 +87,7 @@ Component({
       await this.setHotelInfo();
       await this.setRoomTypeList();
       this.setMenuList();
+      this.setData({ pageLoaded: true });
       this.setMediaList(true);
     },
 

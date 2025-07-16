@@ -1,0 +1,110 @@
+<template name="skeleton">
+  <view class="sk-container">
+    <view class="banner-wrap">
+      <swiper circular="true" current="0" style="height: 332px;" autoplay="false">
+        <swiper-item data-current="0" style="position: absolute; width: 100%; height: 100%; transform: translate(0%, 0px) translateZ(0px);">
+          <image lazy-load="true" mode="aspectFill" style="width:100%; height:100%;" class="sk-image"></image>
+        </swiper-item>
+      </swiper>
+    </view>
+    <view class="container">
+      <view class="content-wrap">
+        <view class="row between">
+          <view class="row">
+            <view class="hotel-name sk-transparent sk-text-14-2857-818 sk-text">千岛湖温馨岛蝶来湖景度假酒店</view>
+          </view>
+          <image class="share-icon sk-image"></image>
+        </view>
+        <view class="name-desc omit single sk-transparent sk-text-14-2857-229 sk-text">
+          高档酒店 ｜ Qiandao Lake Deefly Lake View Holiday Hotel
+        </view>
+        <view class="labels-wrap row">
+          <view class="labels">
+            <view class="label blue sk-transparent sk-text-14-2857-756 sk-text">2010年开业</view>
+            <view class="label blue sk-transparent sk-text-14-2857-398 sk-text">
+              2014年装修
+            </view>
+          </view>
+          <image class="more-icon sk-image"></image>
+        </view>
+        <view class="position-info-wrap row sk-image">
+          <view class="position-info">
+            <view class="position sk-transparent sk-text-14-2857-403 sk-text">位于「国家森林公园」淳安千岛湖镇温馨岛</view>
+            <view class="distance sk-transparent sk-text-14-2857-660 sk-text">距您149km</view>
+          </view>
+          <view class="navigation-btn">
+            <view class="navigation-icon-wrap sk-image">
+              <image class="navigation-icon sk-image"></image>
+            </view>
+            <view class="navigation-btn-desc row">
+              <view class="sk-transparent sk-text-14-2857-921 sk-text">位置/周边</view>
+              <image class="more-icon sk-image"></image>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view is="miniprogram_npm/@vant/weapp/index-bar/index" id="index-bar-wrap">
+        <view class="van-index-bar bar-index--van-index-bar">
+          <view>
+            <view is="miniprogram_npm/@vant/weapp/index-anchor/index" class="condition-picker-wrap-index-anchor">
+              <view class="van-index-anchor-wrapper anchor-index--van-index-anchor-wrapper" style="true">
+                <view class="van-index-anchor anchor-index--van-index-anchor" style="true">
+                  <view class="condition-picker-wrap row center">
+                    <view class="condition-picker row between">
+                      <view class="date-picker-wrap row">
+                        <view class="date-picker row">
+                          <view class="date sk-transparent sk-text-26-5625-162 sk-text">07月16日</view>
+                          <view class="week sk-transparent sk-text-34-3750-742 sk-text">今天</view>
+                          <view class="date-picker-type sk-transparent sk-text-0-0000-227 sk-text">入住日期</view>
+                        </view>
+                        <view class="night-num sk-transparent sk-text-34-3750-126 sk-text">1晚</view>
+                        <view class="date-picker row">
+                          <view class="date sk-transparent sk-text-26-5625-592 sk-text">07月17日</view>
+                          <view class="week sk-transparent sk-text-34-3750-414 sk-text">明天</view>
+                          <view class="date-picker-type sk-transparent sk-text-0-0000-676 sk-text">退房日期</view>
+                        </view>
+                      </view>
+                      <view class="date-picker-arrow row">
+                        <view class="sk-transparent sk-text-34-3750-47 sk-text">选择住/离日期</view>
+                        <image class="more-icon sk-image"></image>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view class="content-wrap">
+              <view class="content-title-wrap">
+                <view class="content-title sk-transparent sk-text-14-2857-682 sk-text sk-pseudo sk-pseudo-circle">酒店房间</view>
+              </view>
+            </view>
+            <view is="components/empty-illus/index">
+              <view class="illus-index--empty" style="height: 298px;">
+                <image class="illus-index--illus sk-image"></image>
+                <view class="sk-transparent sk-text-14-2857-891 sk-text" style="background-position-x: 50%;">暂无相关房间信息</view>
+                <view class="merchant-btn row center sk-transparent sk-image">商家入驻</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view is="pages/subpages/mall/hotel/components/notice-popup/index">
+      <view is="miniprogram_npm/@vant/weapp/popup/index">
+        <view is="miniprogram_npm/@vant/weapp/overlay/index">
+          <view is="miniprogram_npm/@vant/weapp/transition/index"></view>
+        </view>
+      </view>
+    </view>
+    <view is="miniprogram_npm/@vant/weapp/calendar/index">
+      <view is="miniprogram_npm/@vant/weapp/popup/index">
+        <view is="miniprogram_npm/@vant/weapp/overlay/index">
+          <view is="miniprogram_npm/@vant/weapp/transition/index"></view>
+        </view>
+      </view>
+      <view is="miniprogram_npm/@vant/weapp/toast/index" id="f191f928--van-toast">
+        <view is="miniprogram_npm/@vant/weapp/transition/index"></view>
+      </view>
+    </view>
+  </view>
+</template>
