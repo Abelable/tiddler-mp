@@ -29,6 +29,20 @@ class MerchantService extends BaseService {
     });
   }
 
+  getHotelShopIncomeSum(shopId) {
+    return this.get({
+      url: `${this.baseUrl}/hotel/shop/income/sum`,
+      data: { shopId }
+    });
+  }
+
+  getHotelShopTimeData(shopId, timeType) {
+    return this.get({
+      url: `${this.baseUrl}/hotel/shop/income/time_data`,
+      data: { shopId, timeType }
+    });
+  }
+
   getShopOrderTotal(shopId) {
     return this.get({
       url: `${this.baseUrl}/shop/order/total`,

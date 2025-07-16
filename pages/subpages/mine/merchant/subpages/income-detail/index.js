@@ -25,7 +25,7 @@ Page({
   },
 
   onLoad({ merchantType }) {
-    this.setData({ merchantType: +merchantType })
+    this.setData({ merchantType: +merchantType });
   },
 
   onShow() {
@@ -55,6 +55,9 @@ Page({
       case 1:
         this.setScenicShopIncomeSum();
         break;
+      case 2:
+        this.setHotelShopIncomeSum();
+        break;
       case 4:
         this.setShopIncomeSum();
         break;
@@ -66,6 +69,9 @@ Page({
       case 1:
         this.setScenicShopTimeData();
         break;
+      case 2:
+        this.setHotelShopTimeData();
+        break;
       case 4:
         this.setShopTimeData();
         break;
@@ -76,6 +82,9 @@ Page({
     switch (this.data.merchantType) {
       case 1:
         this.setScenicShopOrderList(init);
+        break;
+      case 2:
+        this.setHotelShopOrderList(init);
         break;
       case 4:
         this.setShopOrderList(init);
@@ -110,6 +119,48 @@ Page({
     const page = ++this.page;
 
     const list = await incomeService.getScenicShopIncomeOrderList({
+      shopId,
+      timeType: dateList[curDateIdx].value,
+      statusList: [1, 2, 3, 4],
+      page
+    });
+
+    this.setData({
+      orderList: init ? list : [...this.data.orderList, ...list]
+    });
+
+    if (!list.length) {
+      this.setData({ finished: true });
+    }
+  },
+
+  async setHotelShopIncomeSum() {
+    const { hotelShopId } = store.userInfo;
+    const incomeSum = await incomeService.getHotelShopIncomeSum(hotelShopId);
+    this.setData({ incomeSum });
+  },
+
+  async setHotelShopTimeData() {
+    const { hotelShopId } = store.userInfo;
+    const { dateList, curDateIdx } = this.data;
+    const timeData = await incomeService.getHotelShopTimeData(
+      hotelShopId,
+      dateList[curDateIdx].value
+    );
+    this.setData({ timeData });
+  },
+
+  async setHotelShopOrderList(init = false) {
+    if (init) {
+      this.page = 0;
+      this.setData({ orderList: [], finished: false });
+    }
+
+    const { hotelShopId: shopId } = store.userInfo;
+    const { dateList, curDateIdx } = this.data;
+    const page = ++this.page;
+
+    const list = await incomeService.getHotelShopIncomeOrderList({
       shopId,
       timeType: dateList[curDateIdx].value,
       statusList: [1, 2, 3, 4],
