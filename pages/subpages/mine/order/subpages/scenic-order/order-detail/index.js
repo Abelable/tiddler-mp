@@ -145,7 +145,7 @@ Page({
   },
 
   // todo
-  navToShop(e) {
+  navToShop() {
     // const { id } = e.currentTarget.dataset;
     // const url = `/pages/subpages/mall/goods/subpages/shop/index?id=${id}`;
     // wx.navigateTo({ url });

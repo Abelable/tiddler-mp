@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "price-unit": "/components/price-unit/index",
-    "room-item": "../../../../components/room-item/index"
+    "room-item": "../../../../components/room-item/index",
+    "qr-code-modal": "../../../components/qr-code-modal/index"
   }
 }

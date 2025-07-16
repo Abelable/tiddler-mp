@@ -47,7 +47,7 @@ class OrderService extends BaseService {
     });
   }
 
-    async getScenicVerifyCode(orderId, scenicId) {
+  async getScenicVerifyCode(orderId, scenicId) {
     return await this.get({
       url: `${this.baseUrl}/scenic/order/verify_code`,
       data: { orderId, scenicId }
@@ -144,6 +144,13 @@ class OrderService extends BaseService {
       url: `${this.baseUrl}/hotel/order/detail`,
       data: { id },
       loadingTitle: "加载中..."
+    });
+  }
+
+  async getHotelVerifyCode(orderId, hotelId) {
+    return await this.get({
+      url: `${this.baseUrl}/hotel/order/verify_code`,
+      data: { orderId, hotelId }
     });
   }
 

@@ -118,6 +118,12 @@ Component({
       });
     },
 
+    async checkQRcode() {
+      const { id, roomInfo } = this.properties.item;
+      const verifyCode = await orderService.getHotelVerifyCode(id, roomInfo.hotelId);
+      this.triggerEvent("checkQRcode", { verifyCode });
+    },
+
     navToDetail() {
       const { id } = this.properties.item;
       const url = `/pages/subpages/mine/order/subpages/hotel-order/order-detail/index?id=${id}`;
