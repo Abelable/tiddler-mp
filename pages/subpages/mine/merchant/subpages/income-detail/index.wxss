@@ -28,10 +28,21 @@
   position: relative;
   padding: 24rpx;
   min-height: 100vh;
-  background: linear-gradient( 180deg, #00B2FF 0%, #F6F6F6 50%);
   background-size: 100% 100vh;
   background-repeat: no-repeat;
   background-position: top;
+}
+.container.scenic {
+  background: linear-gradient( 180deg, #00B2FF 0%, #F6F6F6 50%);
+}
+.container.hotel {
+  background: linear-gradient( 180deg, #B578E5 0%, #F6F6F6 50%);
+}
+.container.catering {
+  background: linear-gradient( 180deg, #FFBB00 0%, #F6F6F6 50%);
+}
+.container.goods {
+  background: linear-gradient( 180deg, #FE908D 0%, #F6F6F6 50%);
 }
 
 .income-card {
@@ -74,8 +85,19 @@
   color: #fff;
   font-size: 32rpx;
   font-weight: 500;
-  background: #00A5FF;
   border-radius: 50rpx;
+}
+.withdraw-btn.scenic {
+  background: #00A5FF;
+}
+.withdraw-btn.hotel {
+  background: #5F5CDE;
+}
+.withdraw-btn.catering {
+  background: #FFB700;
+}
+.withdraw-btn.goods {
+  background: #FF4C80;
 }
 
 .daily-data-wrap {
@@ -100,10 +122,25 @@
   border-radius: 28rpx;
   border: 1px solid transparent;
 }
-.date.selected {
-  color: var(--blue-1);
-  background: var(--blue-3);
-  border: 1px solid var(--blue-1);
+.date.selected.scenic {
+  color: #00A5FF;
+  background: #C6EFFF;
+  border: 1px solid #00A5FF;
+}
+.date.selected.hotel {
+  color: #5F5CDE;
+  background: #ededff;
+  border: 1px solid #5F5CDE;
+}
+.date.selected.catering {
+  color: #FFB700;
+  background: #fbf8f3;
+  border: 1px solid #FFB700;
+}
+.date.selected.goods {
+  color: #FF4C80;
+  background: #fff4f7;
+  border: 1px solid #FF4C80;
 }
 
 .daily-data-list {

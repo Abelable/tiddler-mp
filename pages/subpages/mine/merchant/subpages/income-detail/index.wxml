@@ -15,7 +15,7 @@
 </view>
 
 <view 
-  class="container" 
+  class="container {{['scenic', 'hotel', 'catering', 'goods'][merchantType - 1]}}" 
   style="padding-top: {{statusBarHeight + 56}}px;"
 >
   <view class="income-card">
@@ -51,13 +51,18 @@
         </view>
       </view>
     </view>
-    <view class="withdraw-btn row center" bindtap="withdraw">立即提现</view>
+    <view 
+      class="withdraw-btn row center {{['scenic', 'hotel', 'catering', 'goods'][merchantType - 1]}}" 
+      bindtap="withdraw"
+    >
+      立即提现
+    </view>
   </view>
 
   <view class="daily-data-wrap">
     <view class="date-menu">
       <view
-        class="date {{curDateIdx === index ? 'selected' : ''}}"
+        class="date {{curDateIdx === index ? 'selected' : ''}} {{['scenic', 'hotel', 'catering', 'goods'][merchantType - 1]}}"
         wx:for="{{dateList}}"
         wx:key="index"
         bindtap="selectDate"
