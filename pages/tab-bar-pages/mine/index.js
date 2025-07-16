@@ -116,7 +116,8 @@ Component({
         authInfoId,
         scenicShopId,
         scenicShopManagerList,
-        hotelProviderId,
+        hotelShopId,
+        hotelShopManagerList,
         cateringProviderId,
         shopId,
         shopManagerList
@@ -128,7 +129,8 @@ Component({
         promoterInfo ? { name: "代言奖励", icon: "promoter" } : undefined,
         scenicShopId ||
         scenicShopManagerList.findIndex(item => item.roleId !== 3) !== -1 ||
-        hotelProviderId ||
+        hotelShopId ||
+        hotelShopManagerList.findIndex(item => item.roleId !== 3) !== -1 ||
         cateringProviderId ||
         shopId ||
         shopManagerList.findIndex(item => item.roleId !== 3) !== -1
@@ -136,7 +138,8 @@ Component({
           : undefined,
         scenicShopId ||
         scenicShopManagerList.length ||
-        hotelProviderId ||
+        hotelShopId ||
+        hotelShopManagerList.length ||
         cateringProviderId ||
         shopId ||
         shopManagerList.length
@@ -144,7 +147,7 @@ Component({
           : undefined,
         promoterInfo ||
         scenicShopId ||
-        hotelProviderId ||
+        hotelShopId ||
         cateringProviderId ||
         shopId
           ? { name: "我的余额", icon: "balance" }
@@ -424,7 +427,8 @@ Component({
       const {
         scenicShopId,
         scenicShopManagerList,
-        hotelProviderId,
+        hotelShopId,
+        hotelShopManagerList,
         cateringProviderId,
         shopId,
         shopManagerList
@@ -435,6 +439,21 @@ Component({
           if (code.length === 12) {
             if (scenicShopId || scenicShopManagerList.length) {
               mineService.verifyScenicCode(code, () => {
+                wx.showToast({
+                  title: "核销成功",
+                  icon: "none"
+                });
+              });
+            } else {
+              wx.showToast({
+                title: "暂无核销权限",
+                icon: "none"
+              });
+            }
+          }
+          if (code.length === 11) {
+            if (hotelShopId || hotelShopManagerList.length) {
+              mineService.verifyHotelCode(code, () => {
                 wx.showToast({
                   title: "核销成功",
                   icon: "none"

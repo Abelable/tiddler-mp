@@ -23,6 +23,14 @@ class MineService extends BaseService {
     });
   }
 
+  async verifyHotelCode(code, success) {
+    return await this.post({
+      url: `${this.baseUrl}/hotel/shop/order/verify`,
+      data: { code },
+      success
+    });
+  }
+
   async verifyGoodsCode(code, success) {
     return await this.post({
       url: `${this.baseUrl}/shop/order/verify`,
