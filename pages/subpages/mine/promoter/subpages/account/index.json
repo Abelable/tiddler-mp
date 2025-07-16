@@ -4,6 +4,7 @@
   "usingComponents": {
     "back-icon": "/components/back-icon/index",
     "empty-illus": "/components/empty-illus/index",
-    "ticket-item": "../../../components/ticket-item/index"
+    "ticket-item": "../../../components/ticket-item/index",
+    "room-item": "../../../components/room-item/index"
   }
 }
