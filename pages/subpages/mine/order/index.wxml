@@ -28,7 +28,6 @@
   </view>
 </view>
 
-
 <view class="container" style="margin-top: {{statusBarHeight + 138}}px;">
   <view class="content" wx:if="{{curMenuIdx === 0}}">
     <view class="order-list">

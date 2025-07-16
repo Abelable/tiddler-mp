@@ -95,12 +95,19 @@ Component({
         (sum, total) => sum + total,
         0
       );
+      const hotelOrderTotals = await mineService.getHotelOrderTotal();
+      const hotelOrderTotal = hotelOrderTotals.reduce(
+        (sum, total) => sum + total,
+        0
+      );
       const goodsOrderTotals = await mineService.getGoodsOrderTotal();
       const goodsOrderTotal = goodsOrderTotals.reduce(
         (sum, total) => sum + total,
         0
       );
-      this.setData({ orderTotal: scenicOrderTotal + goodsOrderTotal });
+      this.setData({
+        orderTotal: scenicOrderTotal + hotelOrderTotal + goodsOrderTotal
+      });
     },
 
     initToolList() {

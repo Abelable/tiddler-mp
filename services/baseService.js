@@ -446,6 +446,14 @@ class BaseService extends Base {
     return total;
   }
 
+  async getHotelOrderTotal() {
+    const total = await this.get({
+      url: `${this.baseUrl}/hotel/order/total`
+    });
+    store.setHotelOrderTotal(total);
+    return total;
+  }
+
   async getGoodsOrderTotal() {
     const total = await this.get({
       url: `${this.baseUrl}/order/total`
