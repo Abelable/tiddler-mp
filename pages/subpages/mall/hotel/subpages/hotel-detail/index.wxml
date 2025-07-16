@@ -308,6 +308,8 @@
       <fall-flow 
         wx:if="{{mediaList.length}}" 
         list="{{mediaList}}" 
+        loading="{{loading}}"
+        finished="{{finished}}"
         generic:item="media-item" 
       />
       <empty-illus wx:if="{{finished && !mediaList.length}}" desc="达人入住" height="520rpx" />
