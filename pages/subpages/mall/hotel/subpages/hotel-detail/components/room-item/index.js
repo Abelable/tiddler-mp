@@ -10,11 +10,13 @@ Component({
 
   storeBindings: {
     store,
-    fields: ["userInfo"]
+    fields: ["userInfo", "checkInDate"]
   },
 
   properties: {
-    ticket: Object
+    roomInfo: Object,
+    typeIndex: Number,
+    roomIndex: Number
   },
 
   data: {
@@ -35,7 +37,7 @@ Component({
         salesCommissionRate,
         promotionCommissionRate,
         promotionCommissionUpperLimit
-      } = this.properties.ticket;
+      } = this.properties.roomInfo;
       const commission =
         Math.round(
           price * (salesCommissionRate / 100) * promotionCommissionRate
@@ -51,15 +53,14 @@ Component({
       });
     },
 
-    booking() {
-      store.setScenicPreOrderInfo(this.properties.ticket);
-      wx.navigateTo({
-        url: "/pages/subpages/mall/scenic/subpages/order-check/index"
-      });
+    preorder() {
+      const { typeIndex, roomIndex } = this.properties;
+      this.triggerEvent("preorder", { typeIndex, roomIndex });
     },
 
     showNoticePopup() {
-      this.triggerEvent("showNoticePopup", this.properties.ticket);
+      const { typeIndex, roomIndex } = this.properties;
+      this.triggerEvent("showNoticePopup", { typeIndex, roomIndex });
     },
   }
 });

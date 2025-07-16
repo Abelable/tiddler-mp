@@ -2,7 +2,7 @@
   <view class="sk-container">
     <view class="banner-wrap">
       <swiper circular="true" style="height: 290px;" current="0" autoplay="false">
-        <swiper-item data-current="0" style="position: absolute; width: 100%; height: 100%; transform: translate(0%, 0px) translateZ(0px);">
+        <swiper-item data-current="0">
           <view class="video-wrap">
             <view autoplay="true" loop="true" class="video-player sk-image" muted="true" object-fit="cover" src="https://static.tiddler.cn/tiddler/20250521/1747818093640130j1i000001hutbwA5D1.mp4" unit-id="true"></view>
           </view>

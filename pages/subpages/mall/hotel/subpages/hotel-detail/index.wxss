@@ -445,11 +445,11 @@
 
 .room-list {
   margin: 0 20rpx;
-  padding: 0 20rpx;
+  /* padding: 0 20rpx; */
   background: #f5f6f7;
   border-radius: 0 0 32rpx 32rpx;
 }
-.room-item {
+/* .room-item {
   position: relative;
   padding: 20rpx 0;
   height: 200rpx;
@@ -518,7 +518,7 @@
   text-align: center;
   line-height: 1;
   background: #fff;
-}
+} */
 
 .evaluation-summary {
   margin-top: 24rpx;

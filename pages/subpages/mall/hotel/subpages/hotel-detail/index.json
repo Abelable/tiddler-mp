@@ -7,6 +7,7 @@
     "van-calendar": "@vant/weapp/calendar/index",
     "back-icon": "/components/back-icon-white/index",
     "price-unit": "/components/price-unit/index",
+    "room-item": "./components/room-item/index",
     "empty-illus": "/components/empty-illus/index",
     "fall-flow": "/components/fall-flow/index",
     "media-item": "/components/media-item/index",

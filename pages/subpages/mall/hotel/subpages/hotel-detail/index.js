@@ -397,7 +397,7 @@ Component({
     },
 
     showNoticePopup(e) {
-      const { typeIndex, roomIndex } = e.currentTarget.dataset;
+      const { typeIndex, roomIndex } = e.detail;
       const curRoomInfo = this.setCurRoomInfo(typeIndex, roomIndex);
       this.setData({
         curRoomInfo,
@@ -471,7 +471,7 @@ Component({
     },
 
     preorder(e) {
-      const { typeIndex, roomIndex } = e.currentTarget.dataset;
+      const { typeIndex, roomIndex } = e.detail;
       const curRoomInfo = this.setCurRoomInfo(typeIndex, roomIndex);
       store.setHotelPreOrderInfo(curRoomInfo);
       wx.navigateTo({

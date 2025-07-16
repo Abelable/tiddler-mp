@@ -1,0 +1,26 @@
+<wxs module="TIME" src="/utils/filters/time.wxs" />
+
+<view class="room-item" bindtap="showNoticePopup">
+  <view class="room-info-wrap row">
+    <view class="breakfast-status">{{roomInfo.breakfastNum ? roomInfo.breakfastNum + '份早餐' : '无早餐'}}</view>
+    <view class="room-info">{{roomInfo.guestNum}}人入住</view>
+    <image class="more-icon" src="./images/more.png" />
+  </view>
+  <view class="cancellable-status row {{ roomInfo.cancellable ? '' : 'uncancellable' }}">
+    <image class="cancellable-icon" src="./images/{{roomInfo.cancellable ? '' : 'un'}}cancellable.png" />
+    <view>{{roomInfo.cancellable ? TIME.transform(checkInDate, 'MM月DD日') + "16点前取消扣除10%手续费" : "不可取消"}}</view>
+  </view>
+  <view class="shop-name">来自{{roomInfo.shopInfo.name}}</view>
+  <view class="room-price-wrap row bottom" catchtap="preorder">
+    <price-unit price="{{roomInfo.price || 0}}" unit="/晚" />
+    <view class="commission-tag" wx:if="{{userInfo.promoterInfo && commission}}" catchtap="toggleCommissionVisible">
+      <text wx:if="{{commissionVisible}}">奖励¥{{commission}}起</text>
+      <text wx:if="{{!commissionVisible}}" style="padding-top: 8rpx; font-size: 28rpx;">******</text>
+      <image class="commission-visible-icon" src="/images/{{commissionVisible ? '' : 'in'}}visible.png" />
+    </view>
+    <view class="order-btn">
+      <view class="order-btn-title">订</view>
+      <view class="order-btn-desc">在线付</view>
+    </view>
+  </view>
+</view>

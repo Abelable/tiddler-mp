@@ -152,29 +152,40 @@
         <van-index-bar id="index-bar" index-list="{{ roomTypeIndexList }}" sticky-offset-top="{{ statusBarHeight + 148 }}">
           <view wx:for="{{roomTypeList}}" wx:key="index">
             <van-index-anchor index="{{ item.id }}" use-slot>
-              <view class="room-type-item row top">
+              <view class="room-type-item row top" catchtap="toggleFold" data-index="{{ index }}">
                 <image class="room-img" src="{{ item.imageList[0] }}" mode="aspectFill" lazy-load />
                 <view class="room-type-info">
                   <view class="room-type-name">{{ item.name }}</view>
                   <view class="room-type-desc">{{ item.bedDesc }}</view>
                   <view class="room-type-status">{{ item.roomList.length }}个可订价格</view>
                 </view>
-                <view class="price-wrap row" catchtap="toggleFold" data-index="{{ index }}">
+                <view class="price-wrap row">
                   <price-unit price="{{item.price || 0}}" unit="起" />
                   <image class="toggle-fold-icon" src="./images/{{item.fold ? 'down' : 'up'}}-btn-fill.png" />
                 </view>
               </view>
             </van-index-anchor>
             <view class="room-list" wx:if="{{!item.fold}}">
-              <view 
+              <room-item 
+                wx:for="{{item.roomList}}" 
+                wx:key="roomIndex" 
+                wx:for-index="roomIndex" 
+                wx:for-item="room"
+                roomInfo="{{room}}"
+                typeIndex="{{index}}"
+                roomIndex="{{roomIndex}}"
+                bind:preorder="preorder"
+                bind:showNoticePopup="showNoticePopup"
+              />
+              <!-- <view 
                 class="room-item" 
                 wx:for="{{item.roomList}}" 
-                wx:key="roomIdx" 
-                wx:for-index="roomIdx" 
+                wx:key="roomIndex" 
+                wx:for-index="roomIndex" 
                 wx:for-item="room"
                 bindtap="showNoticePopup"
                 data-type-index="{{index}}"
-                data-room-index="{{roomIdx}}"
+                data-room-index="{{roomIndex}}"
               >
                 <view class="room-info-wrap row">
                   <view class="breakfast-status">{{room.breakfastNum ? room.breakfastNum + '份早餐' : '无早餐'}}</view>
@@ -186,14 +197,14 @@
                   <view>{{room.cancellable ? TIME.transform(checkInDate, 'MM月DD日') + "16点前取消扣除10%手续费" : "不可取消"}}</view>
                 </view>
                 <view class="shop-name">来自{{room.shopInfo.name}}</view>
-                <view class="room-price-wrap row bottom" catchtap="preorder" data-type-index="{{index}}" data-room-index="{{roomIdx}}">
+                <view class="room-price-wrap row bottom" catchtap="preorder" data-type-index="{{index}}" data-room-index="{{roomIndex}}">
                   <price-unit price="{{room.price || 0}}" unit="/晚" />
                   <view class="order-btn">
                     <view class="order-btn-title">订</view>
                     <view class="order-btn-desc">在线付</view>
                   </view>
                 </view>
-              </view>
+              </view> -->
             </view>
           </view>
           <view class="last-line">

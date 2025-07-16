@@ -39,7 +39,7 @@ class HotelService extends MallService {
 
   async getPaymentAmount(roomId, checkInDate, checkOutDate, num) {
     return await this.get({
-      url: `${this.baseUrl}/hotel/order/calc_payment_amount`,
+      url: `${this.baseUrl}/hotel/order/payment_amount`,
       data: { roomId, checkInDate, checkOutDate, num },
       loadingTitle: "加载中...",
     });
