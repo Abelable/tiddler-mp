@@ -61,6 +61,11 @@ Component({
 
   methods: {
     async onLoad(options) {
+      wx.showShareMenu({
+        withShareTicket: true,
+        menus: ["shareAppMessage", "shareTimeline"]
+      });
+
       const { id, superiorId = "", scene = "" } = options || {};
       const decodedSceneList = scene
         ? decodeURIComponent(scene).split("-")
@@ -80,17 +85,8 @@ Component({
 
       await this.setHotelInfo();
       await this.setRoomTypeList();
-      await this.setEvaluationSummary();
-      await this.setQaSummary();
-      await this.setNearbyScenicList();
-      await this.setNearbyHotelList();
-      await this.setMediaList(true);
       this.setMenuList();
-
-      wx.showShareMenu({
-        withShareTicket: true,
-        menus: ["shareAppMessage", "shareTimeline"]
-      });
+      this.setMediaList(true);
     },
 
     async setHotelInfo() {
@@ -207,17 +203,6 @@ Component({
       );
     },
 
-    async setEvaluationSummary() {
-      const { list = [], total } =
-        (await hotelService.getHotelEvaluationList(this.hotelId, 1, 2)) || {};
-      this.setData({ evaluationSummary: { list, total } });
-    },
-
-    async setQaSummary() {
-      const qaSummary = await hotelService.getHotelQaSummary(this.hotelId);
-      this.setData({ qaSummary });
-    },
-
     setMenuList() {
       const { roomPackageList } = this.data;
       const menuList = roomPackageList.length
@@ -280,11 +265,15 @@ Component({
       });
     },
 
-    fullScreenPlay() {
-      const { video } = this.data.hotelInfo;
-      const url = `/pages/subpages/common/video-play/index?url=${video}`;
-      wx.navigateTo({ url });
-    },
+  previewMedia(e) {
+    const { current } = e.currentTarget.dataset;
+    const { hotelInfo, imageList } = this.data;
+    const sources = imageList.map(url => ({ url, type: "image" }));
+    wx.previewMedia({
+      sources: hotelInfo.video ? [{ url: hotelInfo.video, type: "video" }, ...sources] : sources,
+      current
+    });
+  },
 
     selectMenu(e) {
       const { index } = e.currentTarget.dataset;
@@ -346,29 +335,6 @@ Component({
 
     onReachBottom() {
       this.setMediaList();
-    },
-
-    async setNearbyScenicList() {
-      const { longitude, latitude } = this.data.hotelInfo;
-      const { list: nearbyScenicList = [], total: nearbyScenicTotal } =
-        await hotelService.getNearbyScenicList({
-          longitude,
-          latitude,
-          page: 1
-        });
-      this.setData({ nearbyScenicList, nearbyScenicTotal });
-    },
-
-    async setNearbyHotelList() {
-      const { id, longitude, latitude } = this.data.hotelInfo;
-      const { list: nearbyHotelList = [], total: nearbyHotelTotal } =
-        await hotelService.getNearbyHotelList({
-          id,
-          longitude,
-          latitude,
-          page: 1
-        });
-      this.setData({ nearbyHotelList, nearbyHotelTotal });
     },
 
     async setMediaList(init = false) {

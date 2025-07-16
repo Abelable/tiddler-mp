@@ -25,13 +25,33 @@
 </view>
 
 <view class="banner-wrap">
-  <swiper style="height: 420rpx;" current="{{ curDot - 1 }}" circular bindchange="bannerChange">
-    <swiper-item wx:if="{{hotelInfo.video}}">
+  <swiper style="height: 580rpx;" current="{{ curDot - 1 }}" circular bindchange="bannerChange">
+    <swiper-item 
+      wx:if="{{hotelInfo.video}}"
+      bindtap="previewMedia" 
+      data-current="{{0}}"
+    >
       <view class="video-wrap" bindtap="fullScreenPlay">
-        <video class="video-player" src="{{hotelInfo.video}}" muted="{{muted}}" autoplay loop controls="{{false}}" show-center-play-btn="{{false}}" show-fullscreen-btn="{{false}}" />
+        <video 
+          class="video-player" 
+          src="{{hotelInfo.video}}"
+          muted="{{muted}}" 
+          autoplay 
+          loop 
+          object-fit="cover"
+          controls="{{false}}" 
+          show-center-play-btn="{{false}}" 
+          show-fullscreen-btn="{{false}}" 
+        />
       </view>
     </swiper-item>
-    <swiper-item wx:for="{{imageList}}" wx:key="index" bindtap="checkMoreImage">
+    <swiper-item 
+      wx:for="{{imageList}}" 
+      wx:key="index" 
+      bindtap="checkMoreImage"
+      bindtap="previewMedia" 
+      data-current="{{hotelInfo.video ? index + 1 : index}}"
+    >
       <image style="width:100%; height:100%;" src="{{item}}" mode='aspectFill' lazy-load />
     </swiper-item>
   </swiper>
@@ -55,7 +75,7 @@
     <view class="row between">
       <view class="row">
         <view class="hotel-name">{{hotelInfo.name}}</view>
-        <view class="hotel-score">{{hotelInfo.score}}</view>
+        <view class="hotel-score" wx:if="{{hotelInfo.score}}">{{hotelInfo.score}}</view>
       </view>
       <image class="share-icon" bindtap="share" src="./images/share.png" />
     </view>
@@ -196,29 +216,28 @@
     </view>
   </van-index-bar>
 
-  <view class="content-wrap">
+  <view class="content-wrap" wx:if="{{hotelInfo.evaluationSummary.total}}">
     <view class="content-title-wrap">
       <view class="content-title">用户点评</view>
     </view>
-    <view class="evaluation-summary" wx:if="{{evaluationSummary.total}}" bindtap="checkEvaluation">
+    <view class="evaluation-summary" bindtap="checkEvaluation">
       <view class="evaluation-list">
-        <evaluation-item wx:for="{{evaluationSummary.list}}" wx:key="index" item="{{item}}" contentOmit />
+        <evaluation-item wx:for="{{hotelInfo.evaluationSummary.list}}" wx:key="index" item="{{item}}" contentOmit />
       </view>
       <view class="total-tips row center">
-        <text>共{{evaluationSummary.total}}条点评</text>
+        <text>共{{hotelInfo.evaluationSummary.total}}条点评</text>
         <image class="more-icon" src="./images/more.png" />
       </view>
     </view>
-    <empty-illus wx:if="{{!evaluationSummary.total}}" desc="暂无点评" height="520rpx" />
   </view>
 
   <view class="content-wrap">
     <view class="content-title-wrap">
       <view class="content-title">热门问答</view>
     </view>
-    <view class="qa-list-wrap" bindtap="checkQa" wx:if="{{qaSummary.total}}">
+    <view class="qa-list-wrap" bindtap="checkQa" wx:if="{{hotelInfo.qaSummary.total}}">
       <view class="qa-list">
-        <view class="qa-item" wx:for="{{qaSummary.list}}" wx:key="index">
+        <view class="qa-item" wx:for="{{hotelInfo.qaSummary.list}}" wx:key="index">
           <view class="qa-label">问</view>
           <view class="qa-question">{{ item.content }}</view>
           <view class="first-answer" wx:if="{{index === 0 && item.firstAnswer}}">
@@ -238,12 +257,12 @@
         </view>
       </view>
       <view class="total-tips row center">
-        <text>共{{qaSummary.total}}条问答</text>
+        <text>共{{hotelInfo.qaSummary.total}}条问答</text>
         <image class="more-icon" src="./images/more.png" />
       </view>
     </view>
     <empty-illus 
-      wx:if="{{!qaSummary.total}}" 
+      wx:if="{{!hotelInfo.qaSummary.total}}" 
       desc="暂无问答"
       height="520rpx"
     >
@@ -251,32 +270,30 @@
     </empty-illus>
   </view>
 
-  <view class="content-wrap">
+  <view class="content-wrap" wx:if="{{hotelInfo.nearbyScenicSummary.total}}">
     <view class="content-title-wrap row between">
       <view class="content-title">附近景点</view>
-      <view class="row" wx:if="{{nearbyScenicTotal > 10}}">
-        <view class="more-detail">共{{nearbyScenicTotal}}个推荐</view>
+      <view class="row" wx:if="{{hotelInfo.nearbyScenicSummary.total > 10}}">
+        <view class="more-detail">共{{hotelInfo.nearbyScenicSummary.total}}个推荐</view>
         <image class="more-icon" src="./images/more.png" />
       </view>
     </view>
-    <scroll-view class="hotel-hotel-list" scroll-x enable-flex wx:if="{{nearbyScenicList.length}}">
-      <scenic-item wx:for="{{nearbyScenicList}}" wx:key="index" info="{{item}}" />
+    <scroll-view class="hotel-hotel-list" scroll-x enable-flex>
+      <scenic-item wx:for="{{hotelInfo.nearbyScenicSummary.list}}" wx:key="index" info="{{item}}" />
     </scroll-view>
-    <empty-illus wx:if="{{!nearbyScenicList.length}}" desc="暂无附近景点" height="520rpx" />
   </view>
   
-  <view class="content-wrap">
+  <view class="content-wrap" wx:if="{{hotelInfo.nearbyHotelSummary.total}}">
     <view class="content-title-wrap row between">
       <view class="content-title">附近酒店</view>
-      <view class="row" wx:if="{{nearbyHotelTotal > 10}}">
-        <view class="more-detail">共{{nearbyHotelTotal}}个推荐</view>
+      <view class="row" wx:if="{{hotelInfo.nearbyHotelSummary.total > 10}}">
+        <view class="more-detail">共{{hotelInfo.nearbyHotelSummary.total}}个推荐</view>
         <image class="more-icon" src="./images/more.png" />
       </view>
     </view>
-    <scroll-view class="hotel-list" scroll-x enable-flex wx:if="{{nearbyHotelList.length}}">
-      <hotel-item wx:for="{{nearbyHotelList}}" wx:key="index" info="{{item}}" />
+    <scroll-view class="hotel-list" scroll-x enable-flex>
+      <hotel-item wx:for="{{hotelInfo.nearbyHotelSummary.list}}" wx:key="index" info="{{item}}" />
     </scroll-view>
-    <empty-illus wx:if="{{!nearbyHotelList.length}}" desc="暂无附近酒店" height="520rpx" />
   </view>
 
   <view class="content-wrap">

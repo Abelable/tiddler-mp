@@ -180,7 +180,7 @@
 .container {
   position: absolute;
   left: 0;
-  top: 396rpx;
+  top: 560rpx;
   padding-bottom: env(safe-area-inset-bottom);
   width: 100%;
   background: #fff;

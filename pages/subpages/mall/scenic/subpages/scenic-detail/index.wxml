@@ -228,25 +228,25 @@
     <view class="qa-btn row center" bindtap="checkQa">去提问</view>
   </empty-illus>
 
-  <view class="content-title-wrap row between" wx:if="{{scenicInfo.nearbyHotelSummary.list.length}}">
+  <view class="content-title-wrap row between" wx:if="{{scenicInfo.nearbyHotelSummary.total}}">
     <view class="content-title">附近酒店</view>
     <view class="row" wx:if="{{scenicInfo.nearbyHotelSummary.total > 10}}">
       <view class="more-detail">共{{scenicInfo.nearbyHotelSummary.total}}个推荐</view>
       <image class="more-icon" src="./images/more.png" />
     </view>
   </view>
-  <scroll-view class="hotel-list" scroll-x enable-flex wx:if="{{scenicInfo.nearbyHotelSummary.list.length}}">
+  <scroll-view class="hotel-list" scroll-x enable-flex wx:if="{{scenicInfo.nearbyHotelSummary.total}}">
     <hotel-item wx:for="{{scenicInfo.nearbyHotelSummary.list}}" wx:key="index" info="{{item}}" />
   </scroll-view>
 
-  <view class="content-title-wrap row between" wx:if="{{scenicInfo.nearbyScenicSummary.list.length}}">
+  <view class="content-title-wrap row between" wx:if="{{scenicInfo.nearbyScenicSummary.total}}">
     <view class="content-title">附近景点</view>
     <view class="row" wx:if="{{scenicInfo.nearbyScenicSummary.total > 10}}">
       <view class="more-detail">共{{scenicInfo.nearbyScenicSummary.total}}个推荐</view>
       <image class="more-icon" src="./images/more.png" />
     </view>
   </view>
-  <scroll-view class="scenic-list" scroll-x enable-flex wx:if="{{scenicInfo.nearbyScenicSummary.list.length}}">
+  <scroll-view class="scenic-list" scroll-x enable-flex wx:if="{{scenicInfo.nearbyScenicSummary.total}}">
     <scenic-item wx:for="{{scenicInfo.nearbyScenicSummary.list}}" wx:key="index" info="{{item}}" />
   </scroll-view>
 

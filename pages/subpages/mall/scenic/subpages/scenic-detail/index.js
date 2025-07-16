@@ -34,6 +34,11 @@ Page({
   },
 
   async onLoad(options) {
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ["shareAppMessage", "shareTimeline"]
+    });
+
     const { id, superiorId = "", scene = "" } = options || {};
     const decodedSceneList = scene ? decodeURIComponent(scene).split("-") : [];
     this.scenicId = +id || decodedSceneList[0];
@@ -54,12 +59,7 @@ Page({
     await this.setSourceTicketList();
     this.setMenuList();
     this.setData({ pageLoaded: true });
-    await this.setMediaList(true);
-
-    wx.showShareMenu({
-      withShareTicket: true,
-      menus: ["shareAppMessage", "shareTimeline"]
-    });
+    this.setMediaList(true);
   },
 
   async setScenicCategoryOptions() {

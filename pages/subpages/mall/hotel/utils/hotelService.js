@@ -19,8 +19,7 @@ class HotelService extends MallService {
   async getHotelInfo(id) {
     return await this.get({
       url: `${this.baseUrl}/hotel/detail`,
-      data: { id },
-      loadingTitle: "加载中...",
+      data: { id }
     });
   }
 
@@ -28,7 +27,6 @@ class HotelService extends MallService {
     return await this.get({
       url: `${this.baseUrl}/hotel/room/type_options`,
       data: { hotelId },
-      loadingTitle: "加载中...",
     });
   }
 
@@ -36,7 +34,6 @@ class HotelService extends MallService {
     return await this.get({
       url: `${this.baseUrl}/hotel/room/list`,
       data: { hotelId },
-      loadingTitle: "加载中...",
     });
   }
 
