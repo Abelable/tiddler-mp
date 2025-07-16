@@ -3,14 +3,14 @@ import MerchantService from "../../../utils/merchantService";
 class ShopService extends MerchantService {
   getShopIncomeOverview(shopId) {
     return this.get({
-      url: `${this.baseUrl}/scenic/shop/income/data_overview`,
+      url: `${this.baseUrl}/hotel/shop/income/data_overview`,
       data: { shopId }
     });
   }
 
   getShopOrderTotal(shopId) {
     return this.get({
-      url: `${this.baseUrl}/scenic/shop/order/total`,
+      url: `${this.baseUrl}/hotel/shop/order/total`,
       data: { shopId }
     });
   }

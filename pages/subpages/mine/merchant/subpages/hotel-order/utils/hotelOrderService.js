@@ -1,45 +1,38 @@
 import MerchantService from '../../../utils/merchantService'
 
 class HotelOrderService extends MerchantService {
-  async getShopInfo() {
-    return await this.get({
-      url: `${this.baseUrl}/hotel/shop/my_shop_info`
-    })
-  }
-
   async getOrderList({ shopId, status, page, limit = 10 }) {
     const { list = [] } =
       (await this.get({
-        url: `${this.baseUrl}/hotel/order/shop_list`,
+        url: `${this.baseUrl}/hotel/shop/order/list`,
         data: { status, page, limit, shopId },
         loadingTitle: "加载中...",
       })) || {};
     return list;
   }
 
-  async getOrderDetail(id) {
+  async getOrderDetail(shopId, orderId) {
     return await this.get({
-      url: `${this.baseUrl}/hotel/order/detail`,
-      data: { id },
+      url: `${this.baseUrl}/hotel/shop/order/detail`,
+      data: { shopId, orderId },
       loadingTitle: '加载中...'
     })
   }
 
-  async cancelOrder(id, success) {
-    await this.post({ 
-      url: `${this.baseUrl}/hotel/order/cancel`, 
-      data: { id },
+  async approveOrder(shopId, orderId, success) {
+    await this.post({
+      url: `${this.baseUrl}/hotel/shop/order/approve`,
+      data: { shopId, orderId },
       success
-    })
+    });
   }
 
-  async publishComment(order_id, comment_type, commentLists, success) {
-    return await this.post({ 
-      url: `${this.baseUrl}/hotel/order/comment`, 
-      data: { order_id, comment_type, json_data: JSON.stringify(commentLists) }, 
-      success, 
-      loadingTitle: '发布中...' 
-    })
+  async refundOrder(shopId, orderId, success) {
+    await this.post({
+      url: `${this.baseUrl}/hotel/shop/order/refund`,
+      data: { shopId, orderId },
+      success
+    });
   }
 }
 

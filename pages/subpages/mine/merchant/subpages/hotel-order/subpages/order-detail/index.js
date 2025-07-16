@@ -1,79 +1,72 @@
-import ShopService from '../../utils/shopService'
+import { store } from "../../../../../../../../store/index";
+import HotelOrderService from "../../utils/hotelOrderService";
 
-const shopService = new ShopService()
+const hotelOrderService = new HotelOrderService();
 
 Page({
   data: {
     orderInfo: null
   },
-  
+
   onLoad({ id }) {
-    this.orderId = id
-    this.setOrderInfo()
+    this.orderId = id;
+    this.setOrderInfo();
   },
 
   async setOrderInfo() {
-    const orderInfo = await shopService.getOrderDetail(this.orderId)
-    this.setData({ orderInfo })
+    const { hotelShopId } = store.userInfo;
+    const orderInfo = await hotelOrderService.getOrderDetail(
+      hotelShopId,
+      this.orderId
+    );
+    this.setData({ orderInfo });
 
     const titleEnums = {
-      101: '等待买家付款',
-      102: '交易关闭',
-      103: '交易关闭',
-      104: '交易关闭',
-      201: '等待卖家发货',
-      202: '退款申请中',
-      203: '退款成功',
-      301: '待收货',
-      401: '交易成功',
-      402: '交易成功',
-    }
+      201: "待确认",
+      202: "退款申请中",
+      203: "退款成功",
+      204: "交易关闭",
+      301: "待入住",
+      401: "交易成功",
+      402: "交易成功",
+      403: "交易成功",
+      501: "交易成功",
+      502: "交易成功"
+    };
     wx.setNavigationBarTitle({
-      title: titleEnums[orderInfo.status],
-    })
+      title: titleEnums[orderInfo.status]
+    });
   },
 
   copyOrderSn() {
     wx.setClipboardData({
-      data: this.data.orderInfo.orderSn, 
+      data: this.data.orderInfo.orderSn,
       success: () => {
-        wx.showToast({ title: '复制成功', icon: 'none' })
+        wx.showToast({ title: "复制成功", icon: "none" });
       }
-    })
+    });
   },
 
-  copyAddress() {
-    const { consignee, mobile, address } = this.data.orderInfo
-    wx.setClipboardData({
-      data: `${consignee}，${mobile}，${address}`, 
-      success: () => {
-        wx.showToast({ title: '复制成功', icon: 'none' })
+  refundOrder() {
+    wx.showModal({
+      title: "确定取消订单吗？",
+      success: result => {
+        if (result.confirm) {
+          const { hotelShopId } = store.userInfo;
+          hotelOrderService.refundOrder(hotelShopId, this.orderId, () => {
+            this.setOrderInfo();
+          });
+        }
       }
-    })
+    });
   },
 
-  deliverOrder() {
-    shopService.deliverOrder(id, () => {
-      this.setData({
-        ['orderInfo.status']: 301
-      })
-    })
+  approveOrder() {
+    const { hotelShopId } = store.userInfo;
+    hotelOrderService.approveOrder(hotelShopId, this.orderId, () => {
+      this.setOrderInfo();
+    });
   },
 
-  cancelOrder() {
-    shopService.cancelOrder(this.orderId, () => {
-      this.setData({
-        ['orderInfo.status']: 102
-      })
-    })
-  },
-
-  navToShipping(e) {
-    const id = e.currentTarget.dataset.id
-    const url = `/pages/subpages/mine/order/subpages/goods-order-list/subpages/shipping/index?id=${id}`
-    wx.navigateTo({ url })
-  },
-
-  contact() {
-  },
-})
+  contact() {}
+});

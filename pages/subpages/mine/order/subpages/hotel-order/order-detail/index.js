@@ -5,7 +5,11 @@ const orderService = new OrderService();
 
 Page({
   data: {
-    orderInfo: null
+    orderInfo: null,
+    countdown: 0,
+    refundBtnVisible: false,
+    verifyCode: "",
+    qRcodeModalVisible: false
   },
 
   onLoad({ id }) {
@@ -49,7 +53,7 @@ Page({
       }
     }
 
-    if (status === 201 || status === 301) {
+    if (status === 201) {
       if (dayjs().diff(dayjs(payTime), "minute") <= 30) {
         this.setData({ refundBtnVisible: true });
       }

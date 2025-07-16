@@ -51,8 +51,8 @@
 </view>
 
 <view class="bottom-bar">
-  <button class="btn" wx:if="{{orderInfo.status === 201}}" bindtap="contact">取消订单</button>
-  <button class="btn active" wx:if="{{orderInfo.status === 201}}" bindtap="contact">确认订单</button>
+  <button class="btn" wx:if="{{orderInfo.status === 201}}" bindtap="refundOrder" hover-class="none">取消订单</button>
+  <button class="btn active" wx:if="{{orderInfo.status === 201}}" bindtap="approveOrder" hover-class="none">确认订单</button>
   <button class="btn active" bindtap="contact">联系客户</button>
 </view>
   

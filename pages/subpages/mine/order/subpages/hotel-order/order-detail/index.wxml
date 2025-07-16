@@ -17,6 +17,10 @@
     </view>
     <room-item info="{{orderInfo.roomInfo}}" />
     <view class="list row between">
+      <view class="title">房间总价</view>
+      <price-unit price="{{orderInfo.totalPrice || 0}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />
+    </view>
+    <view class="list row between">
       <view class="title">{{ORDER.paymentDesc(orderInfo.status)}}</view>
       <price-unit price="{{orderInfo.paymentAmount || 0}}" />
     </view>
@@ -76,7 +80,7 @@
   </button>
   <button 
     class="btn active" 
-    wx:if="{{orderInfo.status === 201 || (orderInfo.status === 301 && orderInfo.roomInfo.cancellable)}}"
+    wx:if="{{refundBtnVisible}}"
     bindtap="refundOrder"
     hover-class="none"
   >

@@ -3,14 +3,17 @@
 
 <view class="container">
   <view class="card">
-    <goods-list list="{{orderInfo.goodsList}}" status="{{orderInfo.status}}" />
+    <room-item info="{{orderInfo.roomInfo || null}}" />
     <view class="list row between">
-      <view class="title">商品总价</view>
-      <price-unit price="{{orderInfo.goodsPrice || 0}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />
+      <view class="title">房间总价</view>
+      <price-unit price="{{orderInfo.totalPrice || 0}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />
     </view>
-    <view class="list row between">
-      <view class="title">运费</view>
-      <price-unit price="{{orderInfo.freightPrice || 0}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />
+    <view class="list row between" wx:if="{{orderInfo.deductionBalance}}">
+      <view class="title">余额抵扣</view>
+      <view class="row">
+        <text>-</text>
+        <price-unit price="{{orderInfo.deductionBalance || 0}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />
+      </view>
     </view>
     <view class="list row between">
       <view class="title">{{ORDER.paymentDesc(orderInfo.status)}}</view>
@@ -18,11 +21,9 @@
     </view>
     <view class="more-info-wrap">
       <view class="list row top">
-        <view class="title">收货信息：</view>
-        <view class="content">{{orderInfo.consignee}}，{{orderInfo.mobile}}，{{orderInfo.address}}</view>
-        <view class="copy-btn">
-          <text>｜</text>
-          <text style="color: #169dfe" bindtap="copyAddress">复制</text>
+        <view class="title">房客信息：</view>
+        <view class="content">
+          {{orderInfo.consignee}}｜{{orderInfo.mobile}}
         </view>
       </view>
       <view class="list row between">
@@ -33,42 +34,26 @@
           <text style="color: #169dfe" bindtap="copyOrderSn">复制</text>
         </view>
       </view>
-      <view class="list row between">
-        <view class="title">创建时间：</view>
-        <text>{{TIME.transform(orderInfo.createdAt, 'YYYY-MM-DD hh:mm:ss')}}</text>
-      </view>
+     
       <view class="list row between" wx:if="{{orderInfo.payTime}}">
         <view class="title">付款时间：</view>
         <text>{{TIME.transform(orderInfo.payTime, 'YYYY-MM-DD hh:mm:ss')}}</text>
       </view>
-      <view class="list row between" wx:if="{{orderInfo.shipTime}}">
-        <view class="title">发货时间：</view>
-        <text>{{TIME.transform(orderInfo.shipTime, 'YYYY-MM-DD hh:mm:ss')}}</text>
-      </view>
       <view class="list row between" wx:if="{{orderInfo.confirmTime}}">
         <view class="title">成交时间：</view>
         <text>{{TIME.transform(orderInfo.confirmTime, 'YYYY-MM-DD hh:mm:ss')}}</text>
+      </view>
+       <view class="list row between">
+        <view class="title">创建时间：</view>
+        <text>{{TIME.transform(orderInfo.createdAt, 'YYYY-MM-DD hh:mm:ss')}}</text>
       </view>
     </view>
   </view>
 </view>
 
 <view class="bottom-bar">
-  <button 
-    class="btn" 
-    wx:if="{{orderInfo.status === 301}}" 
-    bindtap="navToShipping" data-id="{{orderInfo.id}}"
-  >查看物流</button>
-  <button 
-    class="btn" 
-    wx:if="{{orderInfo.status === 101}}" 
-    bindtap="cancelOrder" data-id="{{orderInfo.id}}" data-index="{{index}}"
-  >取消订单</button>
-  <button 
-    class="btn active" 
-    wx:if="{{item.status === 201}}"
-    catchtap="deliverOrder" data-id="{{item.id}}" data-index="{{index}}"
-  >去发货</button>
+  <button class="btn" wx:if="{{orderInfo.status === 201}}" bindtap="refundOrder" hover-class="none">取消订单</button>
+  <button class="btn active" wx:if="{{orderInfo.status === 201}}" bindtap="approveOrder" hover-class="none">确认订单</button>
   <button class="btn active" bindtap="contact">联系客户</button>
 </view>
   

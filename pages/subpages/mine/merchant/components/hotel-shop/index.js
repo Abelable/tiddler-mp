@@ -26,13 +26,13 @@ Component({
 
   lifetimes: {
     attached() {
-      // this.init();
+      this.init();
     }
   },
 
   pageLifetimes: {
     show() {
-      // this.init();
+      this.init();
     }
   },
 

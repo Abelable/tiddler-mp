@@ -15,14 +15,13 @@ Page({
 
   async setOrderInfo() {
     const { scenicShopId } = store.userInfo;
-    const orderInfo = await scenicOrderService.getOrderDetail(scenicShopId, this.orderId);
+    const orderInfo = await scenicOrderService.getOrderDetail(
+      scenicShopId,
+      this.orderId
+    );
     this.setData({ orderInfo });
 
     const titleEnums = {
-      101: "待付款",
-      102: "交易关闭",
-      103: "交易关闭",
-      104: "交易关闭",
       201: "待确认",
       202: "退款申请中",
       203: "退款成功",
@@ -45,6 +44,27 @@ Page({
       success: () => {
         wx.showToast({ title: "复制成功", icon: "none" });
       }
+    });
+  },
+
+  refundOrder() {
+    wx.showModal({
+      title: "确定取消订单吗？",
+      success: result => {
+        if (result.confirm) {
+          const { scenicShopId } = store.userInfo;
+          scenicOrderService.refundOrder(scenicShopId, this.orderId, () => {
+            this.setOrderInfo();
+          });
+        }
+      }
+    });
+  },
+
+  approveOrder() {
+    const { scenicShopId } = store.userInfo;
+    scenicOrderService.approveOrder(scenicShopId, this.orderId, () => {
+      this.setOrderInfo();
     });
   },
 
