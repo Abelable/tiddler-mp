@@ -328,7 +328,7 @@
   </view>
 </view>
 
-<notice-popup show="{{noticePopupVisible}}" info="{{curRoomInfo}}" bind:hide="hideNoticePopup" />
+<notice-popup show="{{noticePopupVisible}}" info="{{curRoomInfo || null}}" bind:hide="hideNoticePopup" />
 
 <van-calendar 
   default-date="{{[checkInDate, checkOutDate]}}"

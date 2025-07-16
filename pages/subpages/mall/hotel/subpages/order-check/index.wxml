@@ -89,4 +89,4 @@
   num="{{num}}" 
   bind:hide="togglePriceDetailPopupVisible" 
 />
-<notice-popup show="{{noticePopupVisible}}" info="{{hotelPreOrderInfo}}" bind:hide="hideNoticePopup" onlyCheck />
+<notice-popup show="{{noticePopupVisible}}" info="{{hotelPreOrderInfo || null}}" bind:hide="hideNoticePopup" onlyCheck />

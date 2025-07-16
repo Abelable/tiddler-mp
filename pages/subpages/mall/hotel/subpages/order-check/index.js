@@ -95,13 +95,13 @@ Component({
       wx.requestPayment({
         ...payParams,
         success: () => {
-          wx.navigateTo({
-            url: "/pages/subpages/mine/order/subpages/hotel-order-list/index?status=2",
+           wx.navigateTo({
+            url: "/pages/subpages/mine/order/index?type=2&status=2",
           });
         },
         fail: () => {
           wx.navigateTo({
-            url: "/pages/subpages/mine/order/subpages/hotel-order-list/index?status=1",
+            url: "/pages/subpages/mine/order/index?type=2&status=1",
           });
         },
       });
