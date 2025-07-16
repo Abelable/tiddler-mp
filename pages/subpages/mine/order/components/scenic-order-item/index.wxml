@@ -17,6 +17,7 @@
       </view>
     </view>
   </view>
+  
   <view class="list-content">
     <ticket-item 
       status="{{item.status || 0}}" 

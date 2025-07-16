@@ -158,7 +158,7 @@ Page({
         orderTotal = await orderService.getScenicOrderTotal();
         break;
       case 1:
-        // todo orderTotal = await orderService.getHotelOrderTotal();
+        orderTotal = await orderService.getHotelOrderTotal();
         break;
       case 2:
         // todo orderTotal = await orderService.getMealTicketOrderTotal();

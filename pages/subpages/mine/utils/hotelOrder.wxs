@@ -1,15 +1,17 @@
-function statusDesc(status) {
+function statusDesc(status, isShop = false) {
   var desc = "";
   if (status === 101) {
     desc = "待付款";
   } else if (status === 102 || status === 103 || status === 104) {
     desc = "交易关闭";
   } else if (status === 201) {
-    desc = "待商家确认";
+    desc = isShop ? "待确认" : "待商家确认";
   } else if (status === 202) {
     desc = "退款申请中";
   } else if (status === 203) {
     desc = "退款成功";
+  } else if (status === 204) {
+    desc = "商家已驳回";
   } else if (status === 301) {
     desc = "待入住";
   } else if (
@@ -30,10 +32,15 @@ function paymentDesc(status) {
     desc = "需付款";
   } else if (
     status === 201 ||
+    status === 202 ||
+    status === 203 ||
+    status === 204 ||
     status === 301 ||
     status === 401 ||
     status === 402 ||
-    status === 501
+    status === 403 ||
+    status === 501 ||
+    status === 502
   ) {
     desc = "实付款";
   }

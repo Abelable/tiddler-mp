@@ -3,24 +3,25 @@
 
 <view class="order-item" catchtap="navToDetail">
   <view class="list-header row between">
-    <view class="shop-info row" wx:if="{{item.shopId}}" catchtap="navToShop">
-      <image class="shop-logo" wx:if="{{item.shopLogo}}" src="{{item.shopLogo}}" />
+    <view class="shop-info row" catchtap="navToShop">
+      <image class="shop-logo" src="{{item.shopLogo}}" />
       <view class="shop-name omit single">{{item.shopName}}</view>
       <image style="width: 20rpx; height: 20rpx;" src="/images/arrow_gray.png" />
     </view>
-    <view class="shop-name omit single" wx:if="{{!item.shopId}}">官方自营</view>
-    <view class="order-status">{{ORDER.statusDesc(item.status)}}</view>
-  </view>
-  <view class="list-content">
-    <room-item info="{{item.roomInfo}}" />
-  </view>
-  <view class="countdown-wrap" wx:if="{{item.status === 101}}">
-    <image class="alarm-icon" src="/images/alarm.png" />
-    <view class="countdown">
-      <text style="color: #666;">剩余 </text>
-      <text>{{TIME.countdown(countdown, 'hh:mm:ss')}}</text>
+    <view class="row">
+      <view class="order-status">{{ORDER.statusDesc(item.status)}}</view>
+      <view class="countdown-wrap row" wx:if="{{item.status === 101}}">
+        <image class="alarm-icon" src="/images/alarm.png" />
+        <view>剩余</view>
+        <view class="countdown">{{TIME.countdown(countdown, 'hh:mm:ss')}}</view>
+      </view>
     </view>
   </view>
+
+  <view class="list-content">
+    <room-item info="{{item.roomInfo || null}}" />
+  </view>
+  
   <view class="list-footer">
     <view class="total-info row baseline">
       <view>{{ORDER.paymentDesc(item.status)}}：</view>

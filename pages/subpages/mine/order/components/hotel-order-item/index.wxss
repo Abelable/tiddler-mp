@@ -19,30 +19,34 @@
   color: #333;
   font-weight: 500;
 }
+
 .order-status {
+  color: var(--blue-1);
+}
+
+.countdown-wrap {
+  margin-left: 18rpx;
+  padding-left: 16rpx;
+  padding-right: 8rpx;
+  height: 50rpx;
+  color: #666;
+  font-size: 22rpx;
+  background: #f5f6f8;
+  border-radius: 25rpx;
+}
+.alarm-icon {
+  margin-right: 6rpx;
+  width: 28rpx;
+  height: 28rpx;
+}
+.countdown {
+  margin-left: 6rpx;
+  width: 93rpx;
   color: var(--blue-1);
 }
 
 .list-content {
   margin: 24rpx 0;
-}
-
-.countdown-wrap {
-  display: flex;
-  align-items: center;
-  padding: 0 24rpx;
-  height: 60rpx;
-  background: #f5f6f8;
-  border-radius: 8rpx;
-}
-.alarm-icon {
-  width: 32rpx;
-  height: 32rpx;
-}
-.countdown {
-  margin-left: 12rpx;
-  color: var(--blue-1);
-  font-size: 22rpx;
 }
 
 .total-info {
