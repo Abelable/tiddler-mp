@@ -20,7 +20,7 @@ Page({
     const {
       scenicShopId,
       hotelShopId,
-      cateringProviderId,
+      cateringShopId,
       shopId
     } = userInfo;
 
@@ -31,7 +31,7 @@ Page({
     if (hotelShopId) {
       titleMenu.push({ name: "酒店管理", type: "hotel", value: 2 });
     }
-    if (cateringProviderId) {
+    if (cateringShopId) {
       titleMenu.push({ name: "餐饮管理", type: "catering", value: 3 });
     }
     if (shopId) {

@@ -118,7 +118,8 @@ Component({
         scenicShopManagerList,
         hotelShopId,
         hotelShopManagerList,
-        cateringProviderId,
+        cateringShopId,
+        cateringShopManagerList,
         shopId,
         shopManagerList
       } = store.userInfo;
@@ -131,7 +132,8 @@ Component({
         scenicShopManagerList.findIndex(item => item.roleId !== 3) !== -1 ||
         hotelShopId ||
         hotelShopManagerList.findIndex(item => item.roleId !== 3) !== -1 ||
-        cateringProviderId ||
+        cateringShopId ||
+        cateringShopManagerList.findIndex(item => item.roleId !== 3) !== -1 ||
         shopId ||
         shopManagerList.findIndex(item => item.roleId !== 3) !== -1
           ? { name: "商家中心", icon: "merchant" }
@@ -140,7 +142,8 @@ Component({
         scenicShopManagerList.length ||
         hotelShopId ||
         hotelShopManagerList.length ||
-        cateringProviderId ||
+        cateringShopId ||
+        cateringShopManagerList.length ||
         shopId ||
         shopManagerList.length
           ? { name: "扫码核销", icon: "scan" }
@@ -148,7 +151,7 @@ Component({
         promoterInfo ||
         scenicShopId ||
         hotelShopId ||
-        cateringProviderId ||
+        cateringShopId ||
         shopId
           ? { name: "我的余额", icon: "balance" }
           : undefined,
@@ -429,7 +432,8 @@ Component({
         scenicShopManagerList,
         hotelShopId,
         hotelShopManagerList,
-        cateringProviderId,
+        cateringShopId,
+        cateringShopManagerList,
         shopId,
         shopManagerList
       } = store.userInfo;
@@ -453,6 +457,21 @@ Component({
           }
           if (code.length === 11) {
             if (hotelShopId || hotelShopManagerList.length) {
+              mineService.verifyHotelCode(code, () => {
+                wx.showToast({
+                  title: "核销成功",
+                  icon: "none"
+                });
+              });
+            } else {
+              wx.showToast({
+                title: "暂无核销权限",
+                icon: "none"
+              });
+            }
+          }
+          if (code.length === 10 || code.length === 9) {
+            if (cateringShopId || cateringShopManagerList.length) {
               mineService.verifyHotelCode(code, () => {
                 wx.showToast({
                   title: "核销成功",

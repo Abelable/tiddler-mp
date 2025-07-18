@@ -24,7 +24,6 @@
 
 <view class="container {{titleMenu[curTitleIdx].type}}" style="padding-top: {{statusBarHeight + 56}}px">
   <image class="bg" wx:if="{{titleMenu.length}}" src="https://static.tiddler.cn/mp/merchant/{{titleMenu[curTitleIdx].type}}/bg.png" />
-
   <scenic-shop wx:if="{{titleMenu[curTitleIdx].value === 1}}" />
   <hotel-shop wx:if="{{titleMenu[curTitleIdx].value === 2}}" />
   <catering-shop wx:if="{{titleMenu[curTitleIdx].value === 3}}" />

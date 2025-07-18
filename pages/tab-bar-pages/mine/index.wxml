@@ -49,7 +49,7 @@
     </view>
     <view class="name" bindtap="navToUserInfoSetting">{{userInfo.nickname}}</view>
     <view class="introduce row" bindtap="navToUserInfoSetting">
-      <text>{{ userInfo.signature || '点击添加签名，让大家了解你～'}}</text>
+      <text>{{ userInfo.signature || '点击添加签名，让大家了解你～' }}</text>
       <image class="edit-icon" wx:if="{{!userInfo.signature}}" src="https://img.ubo.vip/tiddler/mine/edit.png" />
     </view>
 
@@ -75,7 +75,15 @@
 
     <view class="works-wrap {{menuFixed ? 'fixed' : '' }}">
       <view class="works-menu {{menuFixed ? 'fixed' : '' }}" style="top: {{menuFixed ? statusBarHeight + 44 : 0}}px;">
-        <view wx:for="{{['视频游记', '图文游记', '收藏', '点赞']}}" wx:key="index" class="works-menu-item {{curMenuIndex === index ? 'active' : ''}}" bindtap="switchMenu" data-index="{{index}}">{{item}}</view>
+        <view 
+          wx:for="{{['视频游记', '图文游记', '收藏', '点赞']}}" 
+          wx:key="index" 
+          class="works-menu-item {{curMenuIndex === index ? 'active' : ''}}" 
+          bindtap="switchMenu" 
+          data-index="{{index}}"
+        >
+          {{item}}
+        </view>
         <view class="active-underline" style="left: {{curMenuIndex * 25}}vw;"></view>
       </view>
       <swiper style="height: {{wrapHeightList[curMenuIndex]}}px;" current="{{curMenuIndex}}" bindchange="swiperChange">
