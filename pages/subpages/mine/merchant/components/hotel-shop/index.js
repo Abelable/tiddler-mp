@@ -12,11 +12,11 @@ const orderToolList = [
 ];
 
 const toolList = [
-  { icon: "room", name: "房间管理", route: "room/list" },
   { icon: "hotel", name: "酒店管理", route: "hotel/list" },
+  { icon: "room", name: "房间管理", route: "room/list" },
+  { icon: "manager", name: "人员管理", route: "manager/list" },
   { icon: "shop", name: "店铺管理", route: "info" },
-  { icon: "bond", name: "保证金", route: "deposit" },
-  { icon: "manager", name: "人员管理", route: "manager/list" }
+  { icon: "bond", name: "店铺保证金", route: "deposit" },
 ];
 
 Component({

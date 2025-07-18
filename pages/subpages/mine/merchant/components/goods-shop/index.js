@@ -16,9 +16,9 @@ const toolList = [
   { icon: "text", name: "运费模板", route: "freight_template/list" },
   { icon: "address", name: "退货地址", route: "refund_address/list" },
   { icon: "address", name: "提货地址", route: "pickup_address/list" },
+  { icon: "manager", name: "人员管理", route: "manager/list" },
   { icon: "shop", name: "店铺管理", route: "info" },
-  { icon: "bond", name: "保证金", route: "deposit" },
-  { icon: "manager", name: "人员管理", route: "manager/list" }
+  { icon: "bond", name: "店铺保证金", route: "deposit" }
 ];
 
 Component({

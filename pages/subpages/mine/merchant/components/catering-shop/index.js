@@ -12,11 +12,12 @@ const orderToolList = [
 ];
 
 const toolList = [
+  { icon: "restaurant", name: "餐厅管理", route: "restaurant/list" },
   { icon: "ticket", name: "餐券管理", route: "ticket/list" },
   { icon: "food", name: "套餐管理", route: "set_meal/list" },
-  { icon: "shop", name: "门店管理", route: "info" },
-  { icon: "bond", name: "保证金", route: "deposit" },
-  { icon: "manager", name: "人员管理", route: "manager/list" }
+  { icon: "manager", name: "人员管理", route: "manager/list" },
+  { icon: "shop", name: "店铺管理", route: "info" },
+  { icon: "bond", name: "店铺保证金", route: "deposit" }
 ];
 
 Component({
