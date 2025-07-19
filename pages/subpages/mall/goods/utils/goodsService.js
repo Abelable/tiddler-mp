@@ -42,7 +42,7 @@ class GoodsService extends MallService {
   async getShopGoodsList(shopId, page, limit = 10) {
     const { list = [] } =
       (await this.get({
-        url: `${this.baseUrl}/shop/goods/on_sale_list`,
+        url: `${this.baseUrl}/goods/shop_list`,
         data: { shopId, page, limit },
       })) || {};
     return list;
@@ -91,7 +91,7 @@ class GoodsService extends MallService {
 
   async getPickupAddressList(cartGoodsId) {
     return await this.get({
-      url: `${this.baseUrl}/goods/pickup_address_list`,
+      url: `${this.baseUrl}/order/pickup_address_list`,
       data: { cartGoodsId },
       loadingTitle: "加载中..."
     });
