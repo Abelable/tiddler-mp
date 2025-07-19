@@ -1,4 +1,4 @@
-.scenic-spot {
+.scenic {
   display: flex;
   align-items: center;
   padding: 24rpx;

@@ -1,5 +1,5 @@
 <navigator 
-  class="scenic-spot"
+  class="scenic"
   wx:key="index"
   url="/pages/subpages/mall/scenic/subpages/scenic-detail/index?id={{item.id}}"
   hover-class="none"

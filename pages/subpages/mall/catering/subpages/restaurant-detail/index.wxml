@@ -7,12 +7,12 @@
     <image class="nav-bg" wx:if="{{navBarVisible}}" src="{{restaurantInfo.cover}}" mode="aspectFill" />
     <view class="bg-cover" wx:if="{{navBarVisible}}" />
     <back-icon style="margin-left: 8px;" noBorder="{{navBarVisible}}" />
-    <image class="spot-image" wx:if="{{navBarVisible}}" src="{{restaurantInfo.cover}}" mode="aspectFill" />
-    <view class="spot-info" wx:if="{{navBarVisible}}">
-      <view class="spot-name">{{restaurantInfo.name}}</view>
+    <image class="restaurant-image" wx:if="{{navBarVisible}}" src="{{restaurantInfo.cover}}" mode="aspectFill" />
+    <view class="restaurant-info" wx:if="{{navBarVisible}}">
+      <view class="bar-restaurant-name">{{restaurantInfo.name}}</view>
       <view class="grade-wrap row">
         <van-rate value="{{restaurantInfo.score || 0}}" size="8" gutter="0" color="#fa2458" void-icon="star" void-color="#fedbe4" allow-half readonly />
-        <text class="spot-grade">{{restaurantInfo.score}}</text>
+        <text class="restaurant-grade">{{restaurantInfo.score}}</text>
       </view>
     </view>
   </view>

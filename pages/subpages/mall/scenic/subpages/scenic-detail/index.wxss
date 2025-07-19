@@ -29,24 +29,24 @@
   backdrop-filter: blur(4px);
   z-index: -1;
 }
-.spot-image {
+.scenic-image {
   margin-left: 8px;
   width: 30px;
   height: 30px;
   border-radius: 4px;
 }
-.spot-info {
+.scenic-info {
   margin-left: 8px;
   color: #fff;
   font-weight: bold;
 }
-.spot-name {
+.bar-scenic-name {
   font-size: 14px;
 }
 .grade-wrap {
   font-size: 8px;
 }
-.spot-grade {
+.scenic-grade {
   margin-left: 4rpx;
 }
 
