@@ -1,3 +1,5 @@
+@import "./index.skeleton.wxss";
+
 .nav-bar-wrap {
   position: fixed;
   top: 0;
@@ -191,6 +193,7 @@
   border-radius: 24rpx 24rpx 0 0;
 }
 .restaurant-name {
+  flex: 1;
   color: #333;
   font-size: 36rpx;
   font-weight: bold;
@@ -206,6 +209,7 @@
   background: #ebf2fd;
 }
 .share-icon {
+  margin-left: 24rpx;
   width: 42rpx;
   height: 42rpx;
 }

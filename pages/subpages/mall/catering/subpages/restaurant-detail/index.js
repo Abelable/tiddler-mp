@@ -14,6 +14,7 @@ Page({
   data: {
     statusBarHeight,
     navBarVisible: false,
+    pageLoaded: false,
     menuList: ["代金券", "套餐", "用户点评", "热门问答", "达人打卡"],
     curMenuIdx: -1,
     restaurantInfo: null,
@@ -57,9 +58,10 @@ Page({
     await this.setRestaurantInfo();
     await this.setEvaluationSummary();
     await this.setQaSummary();
-    await this.setMediaList(true);
     this.setNavBarVisibleLimit();
     this.setMenuChangeLimitList();
+    this.setMediaList(true);
+    this.setData({ pageLoaded: true });
 
     wx.showShareMenu({
       withShareTicket: true,
@@ -72,14 +74,14 @@ Page({
       this.restaurantId
     );
     const {
-      telList,
-      openTimeList,
-      facilityList,
+      telList = [],
+      openTimeList = [],
+      facilityList = [],
       video,
       cover,
-      environmentImageList,
-      foodImageList,
-      priceImageList,
+      environmentImageList = [],
+      foodImageList = [],
+      priceImageList = [],
       longitude: lo2,
       latitude: la2
     } = restaurantInfo;

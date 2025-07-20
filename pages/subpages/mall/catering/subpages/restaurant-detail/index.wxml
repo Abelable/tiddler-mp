@@ -1,6 +1,9 @@
+<import src="index.skeleton.wxml"/>
 <wxs module="TIME" src="/utils/filters/time.wxs" />
 
 <page-meta page-style="{{ telPopupVisible ? 'overflow: hidden;' : '' }}" />
+
+<template is="skeleton" wx:if="{{pageLoaded}}" />
 
 <view class="nav-bar-wrap">
   <view class="nav-bar row" style="padding-top: {{statusBarHeight}}px;">
@@ -40,7 +43,7 @@
 </view>
 
 <view class="banner-wrap">
-  <swiper style="height: 580rpx;" current="{{ curDot - 1 }}" circular bindchange="bannerChange">
+  <swiper style="height: 580rpx;" wx:if="{{!pageLoaded}}" current="{{ curDot - 1 }}" circular bindchange="bannerChange">
     <swiper-item 
       wx:if="{{restaurantInfo.video}}"
       bindtap="previewMedia" 
@@ -84,10 +87,10 @@
   </view>
 </view>
 
-<view class="container">
+<view class="container" wx:if="{{!pageLoaded}}">
   <view class="row between">
     <view class="row">
-      <view class="restaurant-name">{{restaurantInfo.name}}</view>
+      <view class="restaurant-name omit single">{{restaurantInfo.name}}</view>
       <view class="category-tag row">{{restaurantInfo.categoryName}}</view>
     </view>
     <image class="share-icon" bindtap="share" src="./images/share.png" />
