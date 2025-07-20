@@ -467,3 +467,24 @@
 .media-wrap {
   margin-top: 24rpx;
 }
+
+.merchant-btn {
+  margin: 24rpx 0;
+  width: 160rpx;
+  height: 58rpx;
+  color: var(--gold-1);
+  font-size: 26rpx;
+  font-weight: bold;
+  background: var(--blue-linear-2);
+  border-radius: 18rpx;
+}
+
+.qa-btn {
+  margin: 24rpx 0;
+  width: 140rpx;
+  height: 56rpx;
+  color: #fff;
+  font-size: 24rpx;
+  background: var(--blue-1);
+  border-radius: 28rpx;
+}

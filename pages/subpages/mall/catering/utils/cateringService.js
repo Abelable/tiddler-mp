@@ -22,7 +22,6 @@ class CateringService extends MallService {
     return await this.get({
       url: `${this.baseUrl}/catering/restaurant/detail`,
       data: { id },
-      loadingTitle: "加载中...",
     });
   }
 
@@ -30,7 +29,6 @@ class CateringService extends MallService {
     return await this.get({
       url: `${this.baseUrl}/catering/restaurant/room/type_options`,
       data: { cateringId },
-      loadingTitle: "加载中...",
     });
   }
 
@@ -38,7 +36,6 @@ class CateringService extends MallService {
     return await this.get({
       url: `${this.baseUrl}/catering/restaurant/room/list_of_catering`,
       data: { cateringId },
-      loadingTitle: "加载中...",
     });
   }
 
@@ -46,7 +43,6 @@ class CateringService extends MallService {
     return await this.get({
       url: `${this.baseUrl}/catering/meal_ticket/detail`,
       data: { id },
-      loadingTitle: "加载中...",
     });
   }
 
@@ -54,7 +50,6 @@ class CateringService extends MallService {
     return await this.get({
       url: `${this.baseUrl}/catering/set_meal/detail`,
       data: { id },
-      loadingTitle: "加载中...",
     });
   }
 
@@ -149,7 +144,6 @@ class CateringService extends MallService {
     return await this.get({
       url: `${this.baseUrl}/catering/evaluation/list`,
       data: { restaurantId, page, limit },
-      loadingTitle: "加载中...",
     });
   }
 }
