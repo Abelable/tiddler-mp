@@ -1,6 +1,16 @@
+import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
+import { store } from "../../../../../../../../store/index";
+
 Component({
   options: {
-    addGlobalClass: true,
+    addGlobalClass: true
+  },
+
+  behaviors: [storeBindingsBehavior],
+
+  storeBindings: {
+    store,
+    fields: ["userInfo"]
   },
 
   properties: {
@@ -15,7 +25,7 @@ Component({
         overlayUsageLimit,
         inapplicableProducts,
         boxAvailable,
-        needPreBook,
+        needPreBook
       }) {
         const discount = parseFloat(((price / originalPrice) * 10).toFixed(1));
 
@@ -45,16 +55,46 @@ Component({
         }
 
         this.setData({ discount, tips: tips.slice(0, 3).join("｜") });
-      },
-    },
+      }
+    }
   },
 
   data: {
     discount: 0,
     tips: "",
+    commission: 0,
+    commissionVisible: false
+  },
+
+  lifetimes: {
+    attached() {
+      this.setCommission();
+    }
   },
 
   methods: {
+    setCommission() {
+      const {
+        price,
+        salesCommissionRate,
+        promotionCommissionRate,
+        promotionCommissionUpperLimit
+      } = this.properties.ticket;
+      const commission =
+        Math.round(
+          price * (salesCommissionRate / 100) * promotionCommissionRate
+        ) / 100;
+      this.setData({
+        commission: Math.min(commission, promotionCommissionUpperLimit)
+      });
+    },
+
+    toggleCommissionVisible() {
+      this.setData({
+        commissionVisible: !this.data.commissionVisible
+      });
+    },
+
     checkDetail() {
       const { ticket, restaurantId, restaurantName } = this.properties;
       const url = `/pages/subpages/mall/catering/subpages/restaurant-detail/subpages/meal-ticket-detail/index?ticketId=${ticket.id}&restaurantId=${restaurantId}&restaurantName=${restaurantName}`;
@@ -65,6 +105,6 @@ Component({
       const { restaurantId, restaurantName, ticket } = this.properties;
       const url = `/pages/subpages/mall/catering/subpages/meal-ticket-order-check/index?ticketId=${ticket.id}&restaurantId=${restaurantId}&restaurantName=${restaurantName}`;
       wx.navigateTo({ url });
-    },
-  },
+    }
+  }
 });

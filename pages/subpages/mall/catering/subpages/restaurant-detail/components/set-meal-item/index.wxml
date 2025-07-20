@@ -10,6 +10,11 @@
       <price-unit price="{{info.price || 0}}" color="#F66B38" unitColor="#F66B38" />
       <view class="original-price">¥{{ info.originalPrice }}</view>
       <view class="discount">{{discount}}折</view>
+      <view class="commission-tag" wx:if="{{userInfo.promoterInfo && commission}}" catchtap="toggleCommissionVisible">
+        <text wx:if="{{commissionVisible}}">奖励¥{{commission}}</text>
+        <text wx:if="{{!commissionVisible}}" style="padding-top: 8rpx; font-size: 28rpx;">******</text>
+        <image class="commission-visible-icon" src="/images/{{commissionVisible ? '' : 'in'}}visible.png" />
+      </view>
     </view>
   </view>
   <view class="buy-btn-wrap">

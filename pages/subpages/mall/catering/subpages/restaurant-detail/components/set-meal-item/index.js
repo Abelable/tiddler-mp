@@ -1,6 +1,16 @@
+import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
+import { store } from "../../../../../../../../store/index";
+
 Component({
   options: {
     addGlobalClass: true,
+  },
+
+  behaviors: [storeBindingsBehavior],
+
+  storeBindings: {
+    store,
+    fields: ["userInfo"]
   },
 
   properties: {
@@ -44,9 +54,40 @@ Component({
   data: {
     discount: 0,
     tips: "",
+    commission: 0,
+    commissionVisible: false
+  },
+
+
+  lifetimes: {
+    attached() {
+      this.setCommission();
+    }
   },
 
   methods: {
+    setCommission() {
+      const {
+        price,
+        salesCommissionRate,
+        promotionCommissionRate,
+        promotionCommissionUpperLimit
+      } = this.properties.info;
+      const commission =
+        Math.round(
+          price * (salesCommissionRate / 100) * promotionCommissionRate
+        ) / 100;
+      this.setData({
+        commission: Math.min(commission, promotionCommissionUpperLimit)
+      });
+    },
+
+    toggleCommissionVisible() {
+      this.setData({
+        commissionVisible: !this.data.commissionVisible
+      });
+    },
+
     checkDetail() {
       const { info, restaurantId, restaurantName } = this.properties;
       const url = `/pages/subpages/mall/catering/subpages/restaurant-detail/subpages/set-meal-detail/index?setMealId=${info.id}&restaurantId=${restaurantId}&restaurantName=${restaurantName}`;

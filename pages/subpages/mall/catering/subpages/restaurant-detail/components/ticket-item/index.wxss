@@ -58,6 +58,24 @@
   border-radius: 6rpx;
 }
 
+.commission-tag {
+  display: flex;
+  align-items: center;
+  margin-left: 24rpx;
+  padding-left: 20rpx;
+  padding-right: 16rpx;
+  height: 40rpx;
+  color: #fff;
+  font-size: 18rpx;
+  background: #FD2D55;
+  border-radius: 20rpx;
+}
+.commission-visible-icon {
+  margin-left: 8rpx;
+  width: 24rpx;
+  height: 24rpx;
+}
+
 .buy-btn-wrap {
   display: flex;
   flex-direction: column;
