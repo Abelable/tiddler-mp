@@ -14,7 +14,6 @@
       "common/pay/index",
       "common/cropper/index",
       "common/search/index",
-      "common/video-play/index",
       "home/media/live/create-live/index",
       "home/media/live/live-notice/index",
       "home/media/live/live-push/vertical-screen/index",

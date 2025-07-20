@@ -40,17 +40,36 @@
 </view>
 
 <view class="banner-wrap">
-  <swiper style="height: 420rpx;" current="{{ curDot - 1 }}" circular bindchange="bannerChange">
-    <swiper-item wx:if="{{hotelInfo.video}}">
-      <view class="video-wrap" bindtap="fullScreenPlay">
-        <video class="video-player" src="{{hotelInfo.video}}" muted="{{muted}}" autoplay loop controls="{{false}}" show-center-play-btn="{{false}}" show-fullscreen-btn="{{false}}" />
+  <swiper style="height: 580rpx;" current="{{ curDot - 1 }}" circular bindchange="bannerChange">
+    <swiper-item 
+      wx:if="{{restaurantInfo.video}}"
+      bindtap="previewMedia" 
+      data-current="{{0}}"
+    >
+      <view class="video-wrap">
+        <video 
+          class="video-player" 
+          src="{{restaurantInfo.video}}" 
+          muted="{{muted}}" 
+          autoplay 
+          loop 
+          object-fit="cover" 
+          controls="{{false}}" 
+          show-center-play-btn="{{false}}" 
+          show-fullscreen-btn="{{false}}" 
+        />
       </view>
     </swiper-item>
-    <swiper-item wx:for="{{imageList}}" wx:key="index" bindtap="checkMoreImage">
+    <swiper-item 
+      wx:for="{{imageList}}" 
+      wx:key="index" 
+      bindtap="previewMedia" 
+      data-current="{{restaurantInfo.video ? index + 1 : index}}"
+    >
       <image style="width:100%; height:100%;" src="{{item}}" mode='aspectFill' lazy-load />
     </swiper-item>
   </swiper>
-  <view class="mute-icon-wrap row center" wx:if="{{hotelInfo.video && curDot === 1}}" catchtap="toggleMuted">
+  <view class="mute-icon-wrap row center" wx:if="{{restaurantInfo.video && curDot === 1}}" catchtap="toggleMuted">
     <image class="mute-icon" src="./images/{{muted ? 'muted' : 'unmuted'}}.png" />
   </view>
   <view class="banner-menu-list">

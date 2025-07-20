@@ -369,10 +369,16 @@ Page({
     });
   },
 
-  fullScreenPlay() {
-    const { video } = this.data.restaurantInfo;
-    const url = `/pages/subpages/common/video-play/index?url=${video}`;
-    wx.navigateTo({ url });
+  previewMedia(e) {
+    const { current } = e.currentTarget.dataset;
+    const { restaurantInfo, imageList } = this.data;
+    const sources = imageList.map(url => ({ url, type: "image" }));
+    wx.previewMedia({
+      sources: restaurantInfo.video
+        ? [{ url: restaurantInfo.video, type: "video" }, ...sources]
+        : sources,
+      current
+    });
   },
 
   checkMoreImage() {

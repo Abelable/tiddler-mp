@@ -35,7 +35,7 @@
       bindtap="previewMedia" 
       data-current="{{0}}"
     >
-      <view class="video-wrap" bindtap="fullScreenPlay">
+      <view class="video-wrap">
         <video 
           class="video-player" 
           src="{{hotelInfo.video}}"
@@ -52,7 +52,6 @@
     <swiper-item 
       wx:for="{{imageList}}" 
       wx:key="index" 
-      bindtap="checkMoreImage"
       bindtap="previewMedia" 
       data-current="{{hotelInfo.video ? index + 1 : index}}"
     >

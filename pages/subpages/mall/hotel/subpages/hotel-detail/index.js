@@ -261,22 +261,6 @@ Component({
       });
     },
 
-    toggleMuted() {
-      this.setData({
-        muted: !this.data.muted
-      });
-    },
-
-  previewMedia(e) {
-    const { current } = e.currentTarget.dataset;
-    const { hotelInfo, imageList } = this.data;
-    const sources = imageList.map(url => ({ url, type: "image" }));
-    wx.previewMedia({
-      sources: hotelInfo.video ? [{ url: hotelInfo.video, type: "video" }, ...sources] : sources,
-      current
-    });
-  },
-
     selectMenu(e) {
       const { index } = e.currentTarget.dataset;
       wx.pageScrollTo({
@@ -421,6 +405,24 @@ Component({
     hideNoticePopup() {
       this.setData({
         noticePopupVisible: false
+      });
+    },
+
+    toggleMuted() {
+      this.setData({
+        muted: !this.data.muted
+      });
+    },
+
+    previewMedia(e) {
+      const { current } = e.currentTarget.dataset;
+      const { hotelInfo, imageList } = this.data;
+      const sources = imageList.map(url => ({ url, type: "image" }));
+      wx.previewMedia({
+        sources: hotelInfo.video
+          ? [{ url: hotelInfo.video, type: "video" }, ...sources]
+          : sources,
+        current
       });
     },
 
