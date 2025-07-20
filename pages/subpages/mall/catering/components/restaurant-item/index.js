@@ -17,7 +17,7 @@ Component({
             longitude: lo2,
             latitude: la2,
             openTimeList,
-            facilityList,
+            facilityList = [],
             setMealList,
           } = info;
 

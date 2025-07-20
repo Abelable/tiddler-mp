@@ -60,7 +60,7 @@ class CateringService extends MallService {
 
   async getMealTicketPaymentAmount(ticketId, num) {
     return await this.get({
-      url: `${this.baseUrl}/catering/meal_ticket/order/calc_payment_amount`,
+      url: `${this.baseUrl}/catering/meal_ticket/order/payment_amount`,
       data: { ticketId, num },
       loadingTitle: "加载中...",
     });
@@ -76,7 +76,7 @@ class CateringService extends MallService {
 
   async getSetMealPaymentAmount(setMealId, num) {
     return await this.get({
-      url: `${this.baseUrl}/catering/set_meal/order/calc_payment_amount`,
+      url: `${this.baseUrl}/catering/set_meal/order/payment_amount`,
       data: { setMealId, num },
       loadingTitle: "加载中...",
     });
