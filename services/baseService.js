@@ -464,7 +464,7 @@ class BaseService extends Base {
 
   async getSetMealOrderTotal() {
     const total = await this.get({
-      url: `${this.baseUrl}/set_meal/order/total`
+      url: `${this.baseUrl}/catering/set_meal/order/total`
     });
     store.setSetMealOrderTotal(total);
     return total;

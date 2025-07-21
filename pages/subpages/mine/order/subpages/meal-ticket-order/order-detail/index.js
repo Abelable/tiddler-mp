@@ -30,7 +30,7 @@ Page({
       202: "退款申请中",
       203: "退款成功",
       204: "交易关闭",
-      301: "待入住",
+      301: "待使用",
       401: "交易成功",
       402: "交易成功",
       403: "交易成功",
@@ -164,9 +164,14 @@ Page({
   // todo 客服
   contact() {},
 
-  navToRestaurant(e) {
-    const { id } = e.currentTarget.dataset;
-    const url = `/pages/subpages/mall/catering/subpages/restaurant-detail/index?id=${id}`;
+  navToRestaurant() {
+    const { restaurantId } = this.data.orderInfo;
+    const url = `/pages/subpages/mall/catering/subpages/restaurant-detail/index?id=${restaurantId}`;
     wx.navigateTo({ url });
+  },
+
+  onUnload() {
+    clearInterval(this.countdownInterval);
+    this.storeBindings.destroyStoreBindings();
   }
 });

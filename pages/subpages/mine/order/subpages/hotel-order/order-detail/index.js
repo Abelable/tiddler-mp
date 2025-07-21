@@ -169,5 +169,9 @@ Page({
     // const { shopId } = this.data.orderInfo;
     // const url = `/pages/subpages/mall/goods/subpages/shop/index?id=${shopId}`
     // wx.navigateTo({ url })
+  },
+
+  onUnload() {
+    clearInterval(this.countdownInterval);
   }
 });

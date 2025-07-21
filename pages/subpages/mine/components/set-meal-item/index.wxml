@@ -1,7 +1,7 @@
 <view class="set-meal-item row" bindtap="checkDetail">
   <image class="set-meal-img" src="{{info.cover}}" mode="aspectFill" lazy-load />
   <view class="set-meal-content">
-    <view class="restaurant-name" wx:if="{{restaurantName}}">{{restaurantName}}</view>
+    <view class="restaurant-name">{{info.restaurantName}}</view>
     <view class="set-meal-name omit">{{info.name}}</view>
     <view class="tips">{{ tips }}</view>
     <view class="set-meal-price-wrap row between">

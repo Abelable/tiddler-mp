@@ -18,7 +18,7 @@
     </view>
   </view>
   <view class="order-content">
-    <set-meal-item info="{{item.setMealInfo}}" />
+    <set-meal-item info="{{item.setMealInfo || null}}" />
   </view>
   <view class="order-footer">
     <view class="total-info row baseline">

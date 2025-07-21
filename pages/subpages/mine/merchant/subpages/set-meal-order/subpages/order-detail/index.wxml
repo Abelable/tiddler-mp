@@ -4,7 +4,7 @@
 <view class="container">
   <view class="card">
     <view class="restaurant-name omit single">{{orderInfo.restaurantName}}</view>
-    <set-meal-item info="{{orderInfo.setMealInfo}}" bind:checkDetail="navToSetMealDetail" />
+    <set-meal-item info="{{orderInfo.setMealInfo || null}}" bind:checkDetail="navToSetMealDetail" />
     <view class="list row between">
       <view class="title">{{ORDER.paymentDesc(orderInfo.status)}}</view>
       <price-unit price="{{orderInfo.paymentAmount || 0}}" />

@@ -105,6 +105,11 @@ Component({
         (sum, total) => sum + total,
         0
       );
+      const setMealOrderTotals = await mineService.getSetMealOrderTotal();
+      const setMealOrderTotal = setMealOrderTotals.reduce(
+        (sum, total) => sum + total,
+        0
+      );
       const goodsOrderTotals = await mineService.getGoodsOrderTotal();
       const goodsOrderTotal = goodsOrderTotals.reduce(
         (sum, total) => sum + total,
@@ -115,6 +120,7 @@ Component({
           scenicOrderTotal +
           hotelOrderTotal +
           mealTicketOrderTotal +
+          setMealOrderTotal +
           goodsOrderTotal
       });
     },

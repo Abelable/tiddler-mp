@@ -3,10 +3,16 @@
 
 <view class="container">
   <view class="card">
-    <view class="card-header row">
-      <view class="restaurant-info row" catchtap="navToRestaurant" data-id="{{orderInfo.restaurantId}}">
-        <view class="restaurant-name omit single">{{orderInfo.restaurantName}}</view>
+    <view class="card-header row between">
+      <view class="shop-info row" catchtap="navToShop">
+        <image class="shop-logo" wx:if="{{orderInfo.shopLogo}}" src="{{orderInfo.shopLogo}}" />
+        <view class="shop-name omit single">{{orderInfo.shopName}}</view>
         <image style="width: 20rpx; height: 20rpx;" src="/images/arrow_gray.png" />
+      </view>
+      <view class="countdown-wrap row" wx:if="{{orderInfo.status === 101}}">
+        <image class="alarm-icon" src="/images/alarm.png" />
+        <view>剩余</view>
+        <view class="countdown">{{TIME.countdown(countdown, 'hh:mm:ss')}}</view>
       </view>
     </view>
     <set-meal-item info="{{orderInfo.setMealInfo || null}}" bind:checkDetail="navToSetMealDetail" />
@@ -23,17 +29,17 @@
           <text style="color: #333" bindtap="copyOrderSn">复制</text>
         </view>
       </view>
-      <view class="list row between">
-        <view class="title">创建时间：</view>
-        <text>{{TIME.transform(orderInfo.createdAt, 'YYYY-MM-DD hh:mm:ss')}}</text>
+      <view class="list row between" wx:if="{{orderInfo.confirmTime}}">
+        <view class="title">成交时间：</view>
+        <text>{{TIME.transform(orderInfo.confirmTime, 'YYYY-MM-DD hh:mm:ss')}}</text>
       </view>
       <view class="list row between" wx:if="{{orderInfo.payTime}}">
         <view class="title">付款时间：</view>
         <text>{{TIME.transform(orderInfo.payTime, 'YYYY-MM-DD hh:mm:ss')}}</text>
       </view>
-      <view class="list row between" wx:if="{{orderInfo.confirmTime}}">
-        <view class="title">成交时间：</view>
-        <text>{{TIME.transform(orderInfo.confirmTime, 'YYYY-MM-DD hh:mm:ss')}}</text>
+      <view class="list row between">
+        <view class="title">创建时间：</view>
+        <text>{{TIME.transform(orderInfo.createdAt, 'YYYY-MM-DD hh:mm:ss')}}</text>
       </view>
     </view>
   </view>
@@ -42,39 +48,58 @@
 <view class="bottom-bar">
   <button 
     class="btn" 
-    wx:if="{{orderInfo.status === 102 || orderInfo.status === 103 || orderInfo.status === 104 || orderInfo.status === 301 || orderInfo.status === 302}}" 
-    bindtap="deleteOrder" data-id="{{orderInfo.id}}" data-index="{{index}}"
-  >删除订单</button>
+    wx:if="{{orderInfo.status === 102 || orderInfo.status === 103 || orderInfo.status === 104}}" 
+    bindtap="deleteOrder"
+    hover-class="none"
+  >
+    删除订单
+  </button>
   <button 
     class="btn" 
     wx:if="{{orderInfo.status === 101}}" 
-    bindtap="cancelOrder" data-id="{{orderInfo.id}}" data-index="{{index}}"
-  >取消订单</button>
-  <button 
-    class="btn active"
-    wx:if="{{orderInfo.status === 201}}" 
-    bindtap="confirmOrder" data-id="{{orderInfo.id}}" data-index="{{index}}"
-  >确认出行</button>
+    bindtap="cancelOrder"
+    hover-class="none"
+  >
+    取消订单
+  </button>
   <button 
     class="btn active" 
     wx:if="{{orderInfo.status === 101}}" 
-    bindtap="payOrder" data-id="{{orderInfo.id}}" data-index="{{index}}"
-  >继续付款</button>
+    bindtap="payOrder"
+    hover-class="none"
+  >
+    继续付款
+  </button>
   <button 
     class="btn active" 
-    wx:if="{{orderInfo.status === 201}}"
-    bindtap="refundOrder" data-id="{{orderInfo.id}}" data-index="{{index}}"
-  >申请退款</button>
+    wx:if="{{refundBtnVisible}}"
+    bindtap="refundOrder"
+    hover-class="none"
+  >
+    申请退款
+  </button>
   <button 
     class="btn active" 
-    wx:if="{{orderInfo.status === 301 || orderInfo.status === 302}}" 
+    wx:if="{{orderInfo.status === 301}}" 
+    bindtap="showQRcodeModal" 
+    hover-class="none"
+  >
+    查看券码
+  </button>
+  <button 
+    class="btn active" 
+    wx:if="{{orderInfo.status === 401 || orderInfo.status === 402}}" 
     bindtap="navToEvaluation"
-  >评价</button>
+    hover-class="none"
+  >
+    评价
+  </button>
   <button 
     class="btn active" 
-    wx:if="{{orderInfo.status === 301 || orderInfo.status === 302}}" 
-    bindtap="afterSale" data-id="{{orderInfo.id}}"
-  >申请售后</button>
-  <button class="btn active" bindtap="contact">{{orderInfo.shopId ? '联系商家' : '联系客服'}}</button>
+    bindtap="contact"
+    hover-class="none"
+  >
+    联系商家
+  </button>
 </view>
   
