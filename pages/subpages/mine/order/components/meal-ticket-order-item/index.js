@@ -133,13 +133,13 @@ Component({
     },
 
     navToEvaluation() {
-      const { id, restaurantId } = this.properties.item;
-      const url = `/pages/subpages/mine/order/subpages/meal-ticket-order/evaluation/index?orderId=${id}&restaurantId=${restaurantId}`;
+      const { id, ticketInfo } = this.properties.item;
+      const url = `/pages/subpages/mine/order/subpages/meal-ticket-order/evaluation/index?orderId=${id}&restaurantId=${ticketInfo.restaurantId}`;
       wx.navigateTo({ url });
     },
 
     navToRestaurant() {
-      const { restaurantId } = this.properties.item;
+      const { restaurantId } = this.properties.item.ticketInfo;
       const url = `/pages/subpages/mall/catering/subpages/restaurant-detail/index?id=${restaurantId}`;
       wx.navigateTo({ url });
     }

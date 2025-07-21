@@ -118,10 +118,10 @@ Component({
     },
 
     async checkQRcode() {
-      const { id, restaurantId } = this.properties.item;
+      const { id, setMealInfo } = this.properties.item;
       const verifyCode = await orderService.getSetMealVerifyCode(
         id,
-        restaurantId
+        setMealInfo.restaurantId
       );
       this.triggerEvent("checkQRcode", { verifyCode });
     },
@@ -133,13 +133,13 @@ Component({
     },
 
     navToEvaluation() {
-      const { id, restaurantId } = this.properties.item;
-      const url = `/pages/subpages/mine/order/subpages/set-meal-order/evaluation/index?orderId=${id}&restaurantId=${restaurantId}`;
+      const { id, setMealInfo } = this.properties.item;
+      const url = `/pages/subpages/mine/order/subpages/set-meal-order/evaluation/index?orderId=${id}&restaurantId=${setMealInfo.restaurantId}`;
       wx.navigateTo({ url });
     },
 
     navToRestaurant() {
-      const { restaurantId } = this.properties.item;
+      const { restaurantId } = this.properties.item.setMealInfo;
       const url = `/pages/subpages/mall/catering/subpages/restaurant-detail/index?id=${restaurantId}`;
       wx.navigateTo({ url });
     }

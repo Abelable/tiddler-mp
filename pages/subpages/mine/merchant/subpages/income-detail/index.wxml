@@ -2,7 +2,7 @@
 <wxs module="TIME" src="/utils/filters/time.wxs" />
 
 <view 
-  class="nav-bar-wrap {{navBarBgVisible ? 'show-bg' : ''}}" 
+  class="nav-bar-wrap {{navBarBgVisible ? 'show-bg' : ''}} {{['scenic', 'hotel', 'catering', 'goods'][merchantType - 1]}}" 
   style="padding-top: {{statusBarHeight}}px;"
 >
   <view class="nav-bar row">
