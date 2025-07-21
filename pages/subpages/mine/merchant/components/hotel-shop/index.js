@@ -50,16 +50,16 @@ Component({
     },
 
     async setShopIncomeOverview() {
-      const { shopId } = store.userInfo;
+      const { hotelShopId } = store.userInfo;
       const shopIncomeOverview = await shopService.getShopIncomeOverview(
-        shopId
+        hotelShopId
       );
       this.setData({ shopIncomeOverview });
     },
 
     async setShopOrderTotal() {
-      const { shopId } = store.userInfo;
-      const shopOrderTotal = await shopService.getShopOrderTotal(shopId);
+      const { hotelShopId } = store.userInfo;
+      const shopOrderTotal = await shopService.getShopOrderTotal(hotelShopId);
       this.setData({ shopOrderTotal });
     },
 

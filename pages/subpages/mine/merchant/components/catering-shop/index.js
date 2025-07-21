@@ -27,19 +27,20 @@ Component({
 
   lifetimes: {
     attached() {
-      // this.init();
+      this.init();
     }
   },
 
   pageLifetimes: {
     show() {
-      // this.init();
+      this.init();
     }
   },
 
   data: {
     shopIncomeOverview: null,
-    shopOrderTotal: null,
+    shopMealTicketOrderTotal: null,
+    shopSetMealOrderTotal: null,
     orderToolList,
     toolList
   },
@@ -47,21 +48,31 @@ Component({
   methods: {
     init() {
       this.setShopIncomeOverview();
-      this.setShopOrderTotal();
+      this.setShopMealTicketOrderTotal();
+      this.setShopSetMealOrderTotal();
     },
 
     async setShopIncomeOverview() {
-      const { shopId } = store.userInfo;
+      const { cateringShopId } = store.userInfo;
       const shopIncomeOverview = await shopService.getShopIncomeOverview(
-        shopId
+        cateringShopId
       );
       this.setData({ shopIncomeOverview });
     },
 
-    async setShopOrderTotal() {
-      const { shopId } = store.userInfo;
-      const shopOrderTotal = await shopService.getShopOrderTotal(shopId);
-      this.setData({ shopOrderTotal });
+    async setShopMealTicketOrderTotal() {
+      const { cateringShopId } = store.userInfo;
+      const shopMealTicketOrderTotal =
+        await shopService.getShopMealTicketOrderTotal(cateringShopId);
+      this.setData({ shopMealTicketOrderTotal });
+    },
+
+    async setShopSetMealOrderTotal() {
+      const { cateringShopId } = store.userInfo;
+      const shopSetMealOrderTotal = await shopService.getShopSetMealOrderTotal(
+        cateringShopId
+      );
+      this.setData({ shopSetMealOrderTotal });
     },
 
     withdraw() {

@@ -46,7 +46,7 @@
     >
       <view class="order-icon-wrap">
         <image class="order-icon" src="https://static.tiddler.cn/mp/merchant/{{item.icon}}.png" />
-        <view class="total-spot" wx:if="{{shopOrderTotal[index] > 0}}" />
+        <view class="total-spot" wx:if="{{shopMealTicketOrderTotal[index] > 0}}" />
       </view>
       <view class="order-name">{{item.name}}</view>
     </view>
@@ -71,7 +71,7 @@
     >
       <view class="order-icon-wrap">
         <image class="order-icon" src="https://static.tiddler.cn/mp/merchant/{{item.icon}}.png" />
-        <view class="total-spot" wx:if="{{shopOrderTotal[index] > 0}}" />
+        <view class="total-spot" wx:if="{{shopSetMealOrderTotal[index] > 0}}" />
       </view>
       <view class="order-name">{{item.name}}</view>
     </view>
