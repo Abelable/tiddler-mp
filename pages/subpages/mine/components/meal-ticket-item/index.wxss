@@ -1,5 +1,4 @@
 .ticket {
-  margin: 24rpx 0;
   border-radius: 18rpx;
   border: 1px solid #eee;
 }
