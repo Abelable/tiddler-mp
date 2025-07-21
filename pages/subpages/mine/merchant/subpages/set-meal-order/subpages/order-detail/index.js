@@ -1,10 +1,11 @@
-import CateringService from "../../../utils/cateringService";
+import { store } from "../../../../../../../../store/index";
+import SetMealOrderService from "../../utils/setMealOrderService";
 
-const cateringService = new CateringService();
+const setMealOrderService = new SetMealOrderService();
 
 Page({
   data: {
-    orderInfo: null,
+    orderInfo: null
   },
 
   onLoad({ id }) {
@@ -13,23 +14,27 @@ Page({
   },
 
   async setOrderInfo() {
-    const orderInfo = await cateringService.getSetMealOrderDetail(this.orderId);
+    const { cateringShopId } = store.userInfo;
+    const orderInfo = await setMealOrderService.getOrderDetail(
+      cateringShopId,
+      this.orderId
+    );
     this.setData({ orderInfo });
 
     const titleEnums = {
-      101: "等待买家付款",
-      102: "交易关闭",
-      103: "交易关闭",
-      104: "交易关闭",
-      201: "等待卖家发货",
+      201: "待确认",
       202: "退款申请中",
       203: "退款成功",
-      301: "待收货",
+      204: "交易关闭",
+      301: "待使用",
       401: "交易成功",
       402: "交易成功",
+      403: "交易成功",
+      501: "交易成功",
+      502: "交易成功"
     };
     wx.setNavigationBarTitle({
-      title: titleEnums[orderInfo.status],
+      title: titleEnums[orderInfo.status]
     });
   },
 
@@ -38,41 +43,31 @@ Page({
       data: this.data.orderInfo.orderSn,
       success: () => {
         wx.showToast({ title: "复制成功", icon: "none" });
-      },
+      }
     });
   },
 
-  copyAddress() {
-    const { consignee, mobile, address } = this.data.orderInfo;
-    wx.setClipboardData({
-      data: `${consignee}，${mobile}，${address}`,
-      success: () => {
-        wx.showToast({ title: "复制成功", icon: "none" });
-      },
+  approveOrder() {
+    const { cateringShopId } = store.userInfo;
+    setMealOrderService.approveOrder(cateringShopId, this.orderId, () => {
+      this.setOrderInfo();
     });
   },
 
-  deliverOrder() {
-    cateringService.deliverOrder(id, () => {
-      this.setData({
-        ["orderInfo.status"]: 301,
-      });
+  refundOrder() {
+    wx.showModal({
+      title: "确定取消订单吗？",
+      success: result => {
+        if (result.confirm) {
+          const { cateringShopId } = store.userInfo;
+          setMealOrderService.refundOrder(cateringShopId, this.orderId, () => {
+            this.setOrderInfo();
+          });
+        }
+      }
     });
   },
 
-  cancelOrder() {
-    cateringService.cancelOrder(this.orderId, () => {
-      this.setData({
-        ["orderInfo.status"]: 102,
-      });
-    });
-  },
-
-  contact() {},
-
-  navToSetMealDetail(e) {
-    const { restaurantId, restaurantName } = this.data.orderInfo;
-    const url = `/pages/subpages/mall/catering/subpages/restaurant-detail/subpages/set-meal-detail/index?setMealId=${e.detail}&restaurantId=${restaurantId}&restaurantName=${restaurantName}`;
-    wx.navigateTo({ url });
-  },
+  // todo 联系客户
+  contact() {}
 });

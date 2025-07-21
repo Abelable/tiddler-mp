@@ -1,16 +1,18 @@
-import MerchantService from "../../utils/merchantService";
+import { store } from "../../../../../../store/index";
+import SetMealOrderService from "./utils/setMealOrderService";
 
-const merchantService = new MerchantService();
+const setMealOrderService = new SetMealOrderService();
 const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Page({
   data: {
     statusBarHeight,
     menuList: [
-      { name: "全部", status: 0 },
-      { name: "待付款", status: 1 },
-      { name: "待使用", status: 2 },
-      { name: "售后", status: 4 }
+      { name: "全部", status: 0, total: 0 },
+      { name: "待确认", status: 1, total: 0 },
+      { name: "待使用", status: 2, total: 0 },
+      { name: "已评价", status: 3, total: 0 },
+      { name: "售后", status: 4, total: 0 }
     ],
     curMenuIndex: 0,
     orderList: [],
@@ -25,6 +27,7 @@ Page({
   },
 
   onShow() {
+    this.setShopOrderTotal();
     this.setOrderList(true);
   },
 
@@ -34,11 +37,25 @@ Page({
     this.setOrderList(true);
   },
 
+  async setShopOrderTotal() {
+    const { cateringShopId } = store.userInfo;
+    const orderTotal = await setMealOrderService.getShopSetMealOrderTotal(
+      cateringShopId
+    );
+    this.setData({
+      ["menuList[1].total"]: orderTotal[0],
+      ["menuList[2].total"]: orderTotal[1],
+      ["menuList[4].total"]: orderTotal[3]
+    });
+  },
+
   async setOrderList(init = false) {
     const limit = 10;
+    const { cateringShopId } = store.userInfo;
     const { menuList, curMenuIndex, orderList } = this.data;
     if (init) this.page = 0;
-    const list = await merchantService.getSetMealOrderList({
+    const list = await setMealOrderService.getOrderList({
+      shopId: cateringShopId,
       status: menuList[curMenuIndex].status,
       page: ++this.page,
       limit
@@ -60,23 +77,9 @@ Page({
     this.setOrderList();
   },
 
-  updateOrderList(e) {
-    const statusEmuns = {
-      cancel: 102,
-      pay: 201,
-      refund: 203,
-      confirm: 401
-    };
-    const { type, index } = e.detail;
-    const { curMenuIndex, orderList } = this.data;
-    if (type === "delete" || curMenuIndex !== 0) {
-      orderList.splice(index, 1);
-      this.setData({ orderList });
-    } else {
-      this.setData({
-        [`orderList[${index}].status`]: statusEmuns[type]
-      });
-    }
+  updateOrderList() {
+    this.setShopOrderTotal();
+    this.setOrderList(true);
   },
 
   search() {

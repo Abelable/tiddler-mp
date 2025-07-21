@@ -1,5 +1,5 @@
 <wxs module="TIME" src="/utils/filters/time.wxs" />
-<wxs module="ORDER" src="../../../../utils/mealTicketOrder.wxs" />
+<wxs module="ORDER" src="../../../../utils/setMealOrder.wxs" />
 
 <view class="container">
   <view class="card">

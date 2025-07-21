@@ -8,12 +8,6 @@
   border-radius: 20rpx;
 }
 
-.restaurant-name {
-  color: #333;
-  font-size: 28rpx;
-  font-weight: 500;
-}
-
 .list {
   margin-top: 24rpx;
   color: #999;

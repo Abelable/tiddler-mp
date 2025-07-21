@@ -37,17 +37,17 @@ Page({
     this.setOrderList(true);
   },
 
-    async setShopOrderTotal() {
-      const { cateringShopId } = store.userInfo;
-      const orderTotal = await mealTicketOrderService.getShopMealTicketOrderTotal(
-        cateringShopId
-      );
-      this.setData({
-        ["menuList[1].total"]: orderTotal[0],
-        ["menuList[2].total"]: orderTotal[1],
-        ["menuList[4].total"]: orderTotal[3]
-      });
-    },
+  async setShopOrderTotal() {
+    const { cateringShopId } = store.userInfo;
+    const orderTotal = await mealTicketOrderService.getShopMealTicketOrderTotal(
+      cateringShopId
+    );
+    this.setData({
+      ["menuList[1].total"]: orderTotal[0],
+      ["menuList[2].total"]: orderTotal[1],
+      ["menuList[4].total"]: orderTotal[3]
+    });
+  },
 
   async setOrderList(init = false) {
     const limit = 10;
@@ -77,23 +77,9 @@ Page({
     this.setOrderList();
   },
 
-  updateOrderList(e) {
-    const statusEmuns = {
-      cancel: 102,
-      pay: 201,
-      refund: 203,
-      confirm: 401
-    };
-    const { type, index } = e.detail;
-    const { curMenuIndex, orderList } = this.data;
-    if (type === "delete" || curMenuIndex !== 0) {
-      orderList.splice(index, 1);
-      this.setData({ orderList });
-    } else {
-      this.setData({
-        [`orderList[${index}].status`]: statusEmuns[type]
-      });
-    }
+  updateOrderList() {
+    this.setShopOrderTotal();
+    this.setOrderList(true);
   },
 
   search() {
