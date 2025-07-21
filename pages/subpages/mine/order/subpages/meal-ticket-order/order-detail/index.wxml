@@ -15,7 +15,7 @@
         <view class="countdown">{{TIME.countdown(countdown, 'hh:mm:ss')}}</view>
       </view>
     </view>
-    <meal-ticket-item ticketInfo="{{orderInfo.ticketInfo}}" />
+    <meal-ticket-item ticketInfo="{{orderInfo.ticketInfo || null}}" />
     <view class="list row between">
       <view class="title">{{ORDER.paymentDesc(orderInfo.status)}}</view>
       <price-unit price="{{orderInfo.paymentAmount || 0}}" />

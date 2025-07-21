@@ -18,7 +18,7 @@
     </view>
   </view>
   <view class="list-content">
-    <meal-ticket-item ticketInfo="{{item.ticketInfo}}" />
+    <meal-ticket-item ticketInfo="{{item.ticketInfo || null}}" />
   </view>
   <view class="list-footer">
     <view class="total-info row baseline">
