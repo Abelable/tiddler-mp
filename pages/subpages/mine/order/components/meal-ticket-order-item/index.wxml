@@ -2,7 +2,7 @@
 <wxs module="ORDER" src="../../../utils/mealTicketOrder.wxs" />
 
 <view class="order-item" catchtap="navToDetail">
-  <view class="list-header row between">
+  <view class="order-header row between">
     <view class="shop-info row" catchtap="navToShop">
       <image class="shop-logo" src="{{item.shopLogo}}" />
       <view class="shop-name omit single">{{item.shopName}}</view>
@@ -17,10 +17,10 @@
       </view>
     </view>
   </view>
-  <view class="list-content">
+  <view class="order-content">
     <meal-ticket-item ticketInfo="{{item.ticketInfo || null}}" />
   </view>
-  <view class="list-footer">
+  <view class="order-footer">
     <view class="total-info row baseline">
       <view>{{ORDER.paymentDesc(item.status)}}：</view>
       <price-unit price="{{item.paymentAmount || 0}}" color="#333" fontSize="26rpx" integerFontSize="36rpx" />

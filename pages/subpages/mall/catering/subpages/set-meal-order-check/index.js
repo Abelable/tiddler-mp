@@ -98,15 +98,15 @@ Component({
       wx.requestPayment({
         ...payParams,
         success: () => {
-          wx.navigateTo({
-            url: "/pages/subpages/mine/order/subpages/set-meal-order-list/index?status=2"
+           wx.navigateTo({
+            url: "/pages/subpages/mine/order/index?type=4&status=2",
           });
         },
         fail: () => {
           wx.navigateTo({
-            url: "/pages/subpages/mine/order/subpages/set-meal-order-list/index?status=1"
+            url: "/pages/subpages/mine/order/index?type=4&status=1",
           });
-        }
+        },
       });
     },
 

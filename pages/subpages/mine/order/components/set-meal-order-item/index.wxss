@@ -5,7 +5,7 @@
   border-radius: 16rpx;
 }
 
-.list-header {
+.order-header {
   font-size: 28rpx;
 }
 
@@ -25,7 +25,28 @@
   color: var(--blue-1);
 }
 
-.list-content {
+.countdown-wrap {
+  margin-left: 18rpx;
+  padding-left: 16rpx;
+  padding-right: 8rpx;
+  height: 50rpx;
+  color: #666;
+  font-size: 22rpx;
+  background: #f5f6f8;
+  border-radius: 25rpx;
+}
+.alarm-icon {
+  margin-right: 6rpx;
+  width: 28rpx;
+  height: 28rpx;
+}
+.countdown {
+  margin-left: 6rpx;
+  width: 93rpx;
+  color: var(--blue-1);
+}
+
+.order-content {
   margin: 24rpx 0;
 }
 

@@ -5,7 +5,7 @@
   border-radius: 16rpx;
 }
 
-.list-header {
+.order-header {
   font-size: 28rpx;
 }
 
@@ -46,7 +46,7 @@
   color: var(--blue-1);
 }
 
-.list-content {
+.order-content {
   margin: 24rpx 0;
 }
 
