@@ -59,7 +59,7 @@ Component({
 
     async setShopOrderTotal() {
       const { hotelShopId } = store.userInfo;
-      const shopOrderTotal = await shopService.getShopOrderTotal(hotelShopId);
+      const shopOrderTotal = await shopService.getHotelShopOrderTotal(hotelShopId);
       this.setData({ shopOrderTotal });
     },
 

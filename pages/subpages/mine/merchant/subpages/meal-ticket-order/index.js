@@ -51,9 +51,11 @@ Page({
 
   async setOrderList(init = false) {
     const limit = 10;
+    const { cateringShopId } = store.userInfo;
     const { menuList, curMenuIndex, orderList } = this.data;
     if (init) this.page = 0;
-    const list = await mealTicketOrderService.getMealTicketOrderList({
+    const list = await mealTicketOrderService.getOrderList({
+      shopId: cateringShopId,
       status: menuList[curMenuIndex].status,
       page: ++this.page,
       limit

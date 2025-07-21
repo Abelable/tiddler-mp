@@ -7,20 +7,6 @@ class ShopService extends MerchantService {
       data: { shopId }
     });
   }
-
-  getShopMealTicketOrderTotal(shopId) {
-    return this.get({
-      url: `${this.baseUrl}/catering/shop/meal_ticket/order/total`,
-      data: { shopId }
-    });
-  }
-
-  getShopSetMealOrderTotal(shopId) {
-    return this.get({
-      url: `${this.baseUrl}/catering/shop/set_meal/order/total`,
-      data: { shopId }
-    });
-  }
 }
 
 export default ShopService;

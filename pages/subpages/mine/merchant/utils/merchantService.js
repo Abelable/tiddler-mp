@@ -1,13 +1,6 @@
 import BaseService from "../../../../../services/baseService";
 
 class MerchantService extends BaseService {
-  getScenicShopOrderTotal(shopId) {
-    return this.get({
-      url: `${this.baseUrl}/scenic/shop/order/total`,
-      data: { shopId }
-    });
-  }
-
   getScenicShopIncomeSum(shopId) {
     return this.get({
       url: `${this.baseUrl}/scenic/shop/income/sum`,
@@ -22,9 +15,9 @@ class MerchantService extends BaseService {
     });
   }
 
-  getHotelShopOrderTotal(shopId) {
+  getScenicShopOrderTotal(shopId) {
     return this.get({
-      url: `${this.baseUrl}/hotel/shop/order/total`,
+      url: `${this.baseUrl}/scenic/shop/order/total`,
       data: { shopId }
     });
   }
@@ -43,6 +36,27 @@ class MerchantService extends BaseService {
     });
   }
 
+  getHotelShopOrderTotal(shopId) {
+    return this.get({
+      url: `${this.baseUrl}/hotel/shop/order/total`,
+      data: { shopId }
+    });
+  }
+
+  getCateringShopIncomeSum(shopId) {
+    return this.get({
+      url: `${this.baseUrl}/catering/shop/income/sum`,
+      data: { shopId }
+    });
+  }
+
+  getCateringShopTimeData(shopId, timeType) {
+    return this.get({
+      url: `${this.baseUrl}/catering/shop/income/time_data`,
+      data: { shopId, timeType }
+    });
+  }
+
   getShopMealTicketOrderTotal(shopId) {
     return this.get({
       url: `${this.baseUrl}/catering/shop/meal_ticket/order/total`,
@@ -50,45 +64,9 @@ class MerchantService extends BaseService {
     });
   }
 
-  async getMealTicketOrderList({ status, page, limit = 10 }) {
-    const { list = [] } =
-      (await this.get({
-        url: `${this.baseUrl}/catering/meal_ticket/order/list`,
-        data: { status, page, limit },
-        loadingTitle: "加载中..."
-      })) || {};
-    return list;
-  }
-
-  async getMealTicketOrderDetail(id) {
-    return await this.get({
-      url: `${this.baseUrl}/catering/meal_ticket/order/detail`,
-      data: { id },
-      loadingTitle: "加载中..."
-    });
-  }
-
-  async getSetMealOrderList({ status, page, limit = 10 }) {
-    const { list = [] } =
-      (await this.get({
-        url: `${this.baseUrl}/catering/set_meal/order/list`,
-        data: { status, page, limit },
-        loadingTitle: "加载中..."
-      })) || {};
-    return list;
-  }
-
-  async getSetMealOrderDetail(id) {
-    return await this.get({
-      url: `${this.baseUrl}/catering/set_meal/order/detail`,
-      data: { id },
-      loadingTitle: "加载中..."
-    });
-  }
-
-  getShopOrderTotal(shopId) {
+  getShopSetMealOrderTotal(shopId) {
     return this.get({
-      url: `${this.baseUrl}/shop/order/total`,
+      url: `${this.baseUrl}/catering/shop/set_meal/order/total`,
       data: { shopId }
     });
   }
@@ -104,6 +82,13 @@ class MerchantService extends BaseService {
     return this.get({
       url: `${this.baseUrl}/shop/income/time_data`,
       data: { shopId, timeType }
+    });
+  }
+
+  getShopOrderTotal(shopId) {
+    return this.get({
+      url: `${this.baseUrl}/shop/order/total`,
+      data: { shopId }
     });
   }
 }
