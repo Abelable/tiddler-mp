@@ -26,7 +26,7 @@ Page({
     this.setData({ curMenuIndex });
   },
 
-  async onShow() {
+  onShow() {
     this.setShopOrderTotal();
     this.setOrderList(true);
   },

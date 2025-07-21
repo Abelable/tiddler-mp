@@ -1,6 +1,6 @@
-import CateringService from "../../../utils/cateringService";
+import MealTicketService from "../../utils/mealTicketOrderService";
 
-const cateringService = new CateringService();
+const mealTicketService = new MealTicketService();
 
 Component({
   options: {
@@ -16,12 +16,12 @@ Component({
     cancelOrder() {
       const { item, index } = this.properties;
       const { id } = item;
-      cateringService.cancelMealTicketOrder(id, () => {
+      mealTicketService.cancelMealTicketOrder(id, () => {
         this.triggerEvent("update", { type: "cancel", index });
       });
     },
 
-    navToDetail(e) {
+    navToDetail() {
       const { id } = this.properties.item;
       const url = `/pages/subpages/mine/merchant/subpages/catering-management/subpages/meal-ticket-order-detail/index?id=${id}`;
       wx.navigateTo({ url });

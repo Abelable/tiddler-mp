@@ -6,7 +6,7 @@
       <view>联系客户</view>
       <image style="width: 20rpx; height: 20rpx;" src="/images/arrow_gray.png" />
     </view>
-    <view class="order-status">{{ORDER.statusDesc(item.status)}}</view>
+    <view class="order-status">{{ORDER.statusDesc(item.status, true)}}</view>
   </view>
   <view class="list-content">
     <meal-ticket-item restaurantName="{{item.restaurantName}}" ticketInfo="{{item.ticketInfo}}" />

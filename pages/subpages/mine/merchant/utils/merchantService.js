@@ -43,6 +43,49 @@ class MerchantService extends BaseService {
     });
   }
 
+  getShopMealTicketOrderTotal(shopId) {
+    return this.get({
+      url: `${this.baseUrl}/catering/shop/meal_ticket/order/total`,
+      data: { shopId }
+    });
+  }
+
+  async getMealTicketOrderList({ status, page, limit = 10 }) {
+    const { list = [] } =
+      (await this.get({
+        url: `${this.baseUrl}/catering/meal_ticket/order/list`,
+        data: { status, page, limit },
+        loadingTitle: "加载中..."
+      })) || {};
+    return list;
+  }
+
+  async getMealTicketOrderDetail(id) {
+    return await this.get({
+      url: `${this.baseUrl}/catering/meal_ticket/order/detail`,
+      data: { id },
+      loadingTitle: "加载中..."
+    });
+  }
+
+  async getSetMealOrderList({ status, page, limit = 10 }) {
+    const { list = [] } =
+      (await this.get({
+        url: `${this.baseUrl}/catering/set_meal/order/list`,
+        data: { status, page, limit },
+        loadingTitle: "加载中..."
+      })) || {};
+    return list;
+  }
+
+  async getSetMealOrderDetail(id) {
+    return await this.get({
+      url: `${this.baseUrl}/catering/set_meal/order/detail`,
+      data: { id },
+      loadingTitle: "加载中..."
+    });
+  }
+
   getShopOrderTotal(shopId) {
     return this.get({
       url: `${this.baseUrl}/shop/order/total`,
@@ -61,42 +104,6 @@ class MerchantService extends BaseService {
     return this.get({
       url: `${this.baseUrl}/shop/income/time_data`,
       data: { shopId, timeType }
-    });
-  }
-
-  async getMealTicketOrderList({ status, page, limit = 10 }) {
-    const { list = [] } =
-      (await this.get({
-        url: `${this.baseUrl}/catering/meal_ticket/order/provider_list`,
-        data: { status, page, limit },
-        loadingTitle: "加载中..."
-      })) || {};
-    return list;
-  }
-
-  async getMealTicketOrderDetail(id) {
-    return await this.get({
-      url: `${this.baseUrl}/catering/meal_ticket/order/detail`,
-      data: { id },
-      loadingTitle: "加载中..."
-    });
-  }
-
-  async getSetMealOrderList({ status, page, limit = 10 }) {
-    const { list = [] } =
-      (await this.get({
-        url: `${this.baseUrl}/catering/set_meal/order/provider_list`,
-        data: { status, page, limit },
-        loadingTitle: "加载中..."
-      })) || {};
-    return list;
-  }
-
-  async getSetMealOrderDetail(id) {
-    return await this.get({
-      url: `${this.baseUrl}/catering/set_meal/order/detail`,
-      data: { id },
-      loadingTitle: "加载中..."
     });
   }
 }
