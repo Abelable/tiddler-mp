@@ -35,9 +35,10 @@ const menuList = [
     subMenuList: [
       { name: "全部", status: 0 },
       { name: "待付款", status: 1, total: 0 },
-      { name: "待使用", status: 2, total: 0 },
-      { name: "待评价", status: 3, total: 0 },
-      { name: "售后", status: 4, total: 0 }
+      { name: "待商家确认", status: 2, total: 0 },
+      { name: "待使用", status: 3, total: 0 },
+      { name: "待评价", status: 4, total: 0 },
+      { name: "售后", status: 5, total: 0 }
     ]
   },
   {
@@ -46,9 +47,10 @@ const menuList = [
     subMenuList: [
       { name: "全部", status: 0 },
       { name: "待付款", status: 1, total: 0 },
-      { name: "待使用", status: 2, total: 0 },
-      { name: "待评价", status: 3, total: 0 },
-      { name: "售后", status: 4, total: 0 }
+      { name: "待商家确认", status: 2, total: 0 },
+      { name: "待使用", status: 3, total: 0 },
+      { name: "待评价", status: 4, total: 0 },
+      { name: "售后", status: 5, total: 0 }
     ]
   },
   {
@@ -161,10 +163,10 @@ Page({
         orderTotal = await orderService.getHotelOrderTotal();
         break;
       case 2:
-        // todo orderTotal = await orderService.getMealTicketOrderTotal();
+        orderTotal = await orderService.getMealTicketOrderTotal();
         break;
       case 3:
-        // todo orderTotal = await orderService.getSetMealOrderTotal();
+        orderTotal = await orderService.getSetMealOrderTotal();
         break;
       case 4:
         orderTotal = await orderService.getGoodsOrderTotal();

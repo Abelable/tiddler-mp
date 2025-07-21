@@ -127,7 +127,7 @@ Component({
     },
 
     navToDetail() {
-      const id = e.currentTarget.dataset.id;
+      const { id } = this.properties.item;
       const url = `/pages/subpages/mine/order/subpages/meal-ticket-order/order-detail/index?id=${id}`;
       wx.navigateTo({ url });
     },

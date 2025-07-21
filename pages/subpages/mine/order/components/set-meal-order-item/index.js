@@ -60,9 +60,9 @@ Component({
       }, 1000);
     },
 
-    async payOrder(e) {
-      const { id, index } = e.currentTarget.dataset;
-      const params = await orderService.getSetMealPayParams(id);
+    async payOrder() {
+      const { item, index } = this.properties;
+      const params = await orderService.getSetMealPayParams(item.id);
       wx.requestPayment({
         ...params,
         success: () => {
@@ -127,7 +127,7 @@ Component({
     },
 
     navToDetail() {
-      const id = e.currentTarget.dataset.id;
+      const { id } = this.properties.item;
       const url = `/pages/subpages/mine/order/subpages/set-meal-order/order-detail/index?id=${id}`;
       wx.navigateTo({ url });
     },

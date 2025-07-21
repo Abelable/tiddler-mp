@@ -100,13 +100,22 @@ Component({
         (sum, total) => sum + total,
         0
       );
+      const mealTicketOrderTotals = await mineService.getMealTicketOrderTotal();
+      const mealTicketOrderTotal = mealTicketOrderTotals.reduce(
+        (sum, total) => sum + total,
+        0
+      );
       const goodsOrderTotals = await mineService.getGoodsOrderTotal();
       const goodsOrderTotal = goodsOrderTotals.reduce(
         (sum, total) => sum + total,
         0
       );
       this.setData({
-        orderTotal: scenicOrderTotal + hotelOrderTotal + goodsOrderTotal
+        orderTotal:
+          scenicOrderTotal +
+          hotelOrderTotal +
+          mealTicketOrderTotal +
+          goodsOrderTotal
       });
     },
 
@@ -148,11 +157,7 @@ Component({
         shopManagerList.length
           ? { name: "扫码核销", icon: "scan" }
           : undefined,
-        promoterInfo ||
-        scenicShopId ||
-        hotelShopId ||
-        cateringShopId ||
-        shopId
+        promoterInfo || scenicShopId || hotelShopId || cateringShopId || shopId
           ? { name: "我的余额", icon: "balance" }
           : undefined,
         { name: "优惠券", icon: "coupon" },
