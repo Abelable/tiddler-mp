@@ -31,6 +31,21 @@ class IncomeService extends MerchantService {
     return list;
   }
 
+  async getCateringShopIncomeOrderList({
+    shopId,
+    timeType,
+    statusList,
+    page,
+    limit = 10
+  }) {
+    const { list = [] } = await this.post({
+      url: `${this.baseUrl}/catering/shop/income/order_list`,
+      data: { shopId, timeType, statusList, page, limit },
+      loadingTitle: "加载中..."
+    });
+    return list;
+  }
+
   async getShopIncomeOrderList({
     shopId,
     timeType,

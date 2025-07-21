@@ -58,6 +58,9 @@ Page({
       case 2:
         this.setHotelShopIncomeSum();
         break;
+      case 3:
+        this.setCateringShopIncomeSum();
+        break;
       case 4:
         this.setShopIncomeSum();
         break;
@@ -72,6 +75,9 @@ Page({
       case 2:
         this.setHotelShopTimeData();
         break;
+      case 3:
+        this.setCateringShopTimeData();
+        break;
       case 4:
         this.setShopTimeData();
         break;
@@ -85,6 +91,9 @@ Page({
         break;
       case 2:
         this.setHotelShopOrderList(init);
+        break;
+      case 3:
+        this.setCateringShopOrderList(init);
         break;
       case 4:
         this.setShopOrderList(init);
@@ -161,6 +170,50 @@ Page({
     const page = ++this.page;
 
     const list = await incomeService.getHotelShopIncomeOrderList({
+      shopId,
+      timeType: dateList[curDateIdx].value,
+      statusList: [1, 2, 3, 4],
+      page
+    });
+
+    this.setData({
+      orderList: init ? list : [...this.data.orderList, ...list]
+    });
+
+    if (!list.length) {
+      this.setData({ finished: true });
+    }
+  },
+
+  async setCateringShopIncomeSum() {
+    const { cateringShopId } = store.userInfo;
+    const incomeSum = await incomeService.getCateringShopIncomeSum(
+      cateringShopId
+    );
+    this.setData({ incomeSum });
+  },
+
+  async setCateringShopTimeData() {
+    const { cateringShopId } = store.userInfo;
+    const { dateList, curDateIdx } = this.data;
+    const timeData = await incomeService.getCateringShopTimeData(
+      cateringShopId,
+      dateList[curDateIdx].value
+    );
+    this.setData({ timeData });
+  },
+
+    async setCateringShopOrderList(init = false) {
+    if (init) {
+      this.page = 0;
+      this.setData({ orderList: [], finished: false });
+    }
+
+    const { cateringShopId: shopId } = store.userInfo;
+    const { dateList, curDateIdx } = this.data;
+    const page = ++this.page;
+
+    const list = await incomeService.getCateringShopIncomeOrderList({
       shopId,
       timeType: dateList[curDateIdx].value,
       statusList: [1, 2, 3, 4],

@@ -141,6 +141,28 @@
     </view>
   </view>
 
+  <view class="sales-record-list" wx:if="{{merchantType === 3 && orderList.length}}">
+    <view class="sales-record-item" wx:for="{{orderList}}" wx:key="index">
+      <view class="order-info">
+        <view class="order-sn-wrap">
+          <view class="order-sn" bindtap="checkOrderDetail" data-id="{{item.id}}" data-scene="{{item.scene}}">
+            <view>订单编号：{{item.orderSn}}</view>
+            <image class="order-sn-arrow" wx:if="{{item.scene === 1}}" src="./images/more-gray.png" />
+          </view>
+          <view class="order-status-wrap">
+            <view class="order-status">{{item.status === 1 ? '待结算' : '已结算'}}</view>
+            <view class="order-time">下单时间：{{TIME.transform(item.createdAt, 'YYYY.MM.DD')}}</view>
+          </view>
+        </view>
+        <view class="order-commission-wrap">
+          <view class="order-commission">+{{NUM.toFixed(item.incomeAmount, 2)}}</view>
+        </view>
+      </view>
+      <meal-ticket-item wx:if="{{item.productType === 5}}" ticketInfo="{{item.product || null}}" />
+      <set-meal-item wx:if="{{item.productType === 6}}" info="{{item.product || null}}" />
+    </view>
+  </view>
+
   <view class="sales-record-list" wx:if="{{merchantType === 4 && orderList.length}}">
     <view class="sales-record-item" wx:for="{{orderList}}" wx:key="index">
       <view class="order-info">

@@ -120,6 +120,8 @@
       </view>
       <ticket-item wx:if="{{item.productType === 1}}" ticketInfo="{{item.productList[0]}}" />
       <room-item wx:if="{{item.productType === 2}}" info="{{item.productList[0]}}" />
+      <meal-ticket-item wx:if="{{item.productType === 5}}" ticketInfo="{{item.productList[0]}}" />
+      <set-meal-item wx:if="{{item.productType === 6}}" info="{{item.productList[0]}}" />
       <view class="goods-list" wx:if="{{item.productType === 4}}">
         <view class="goods-info-wrap" wx:for="{{item.productList}}" wx:key="id" wx:for-item="goods">
           <image class="goods-cover" src="{{goods.cover}}" />

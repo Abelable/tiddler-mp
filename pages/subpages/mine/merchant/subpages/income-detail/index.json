@@ -6,6 +6,8 @@
     "back-icon": "/components/back-icon-white/index",
     "empty-illus": "/components/empty-illus/index",
     "ticket-item": "../../../components/ticket-item/index",
-    "room-item": "../../../components/room-item/index"
+    "room-item": "../../../components/room-item/index",
+    "meal-ticket-item": "../../../components/meal-ticket-item/index",
+    "set-meal-item": "../../../components/set-meal-item/index"
   }
 }
