@@ -475,9 +475,24 @@ Component({
               });
             }
           }
-          if (code.length === 10 || code.length === 9) {
+          if (code.length === 10) {
             if (cateringShopId || cateringShopManagerList.length) {
-              mineService.verifyHotelCode(code, () => {
+              mineService.verifyMealTicketCode(code, () => {
+                wx.showToast({
+                  title: "核销成功",
+                  icon: "none"
+                });
+              });
+            } else {
+              wx.showToast({
+                title: "暂无核销权限",
+                icon: "none"
+              });
+            }
+          }
+          if (code.length === 9) {
+            if (cateringShopId || cateringShopManagerList.length) {
+              mineService.verifySetMealCode(code, () => {
                 wx.showToast({
                   title: "核销成功",
                   icon: "none"

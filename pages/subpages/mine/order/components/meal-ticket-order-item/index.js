@@ -118,10 +118,10 @@ Component({
     },
 
     async checkQRcode() {
-      const { id, restaurantId } = this.properties.item;
+      const { id, ticketInfo } = this.properties.item;
       const verifyCode = await orderService.getMealTicketVerifyCode(
         id,
-        restaurantId
+        ticketInfo.restaurantId
       );
       this.triggerEvent("checkQRcode", { verifyCode });
     },

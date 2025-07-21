@@ -137,10 +137,10 @@ Page({
   },
 
   async showQRcodeModal() {
-    const { id, restaurantId } = this.data.orderInfo;
+    const { id, ticketInfo } = this.data.orderInfo;
     const verifyCode = await orderService.getMealTicketVerifyCode(
       id,
-      restaurantId
+      ticketInfo.restaurantId
     );
     this.setData({
       verifyCode,

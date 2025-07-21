@@ -31,6 +31,22 @@ class MineService extends BaseService {
     });
   }
 
+  async verifyMealTicketCode(code, success) {
+    return await this.post({
+      url: `${this.baseUrl}/catering/shop/meal_ticket/order/verify`,
+      data: { code },
+      success
+    });
+  }
+
+  async verifySetMealCode(code, success) {
+    return await this.post({
+      url: `${this.baseUrl}/catering/shop/set_meal/order/verify`,
+      data: { code },
+      success
+    });
+  }
+
   async verifyGoodsCode(code, success) {
     return await this.post({
       url: `${this.baseUrl}/shop/order/verify`,
