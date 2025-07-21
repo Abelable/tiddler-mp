@@ -85,13 +85,6 @@ class CateringService extends MallService {
     });
   }
 
-  async getCateringQaSummary(restaurantId) {
-    return await this.get({
-      url: `${this.baseUrl}/catering/question/summary`,
-      data: { restaurantId },
-    });
-  }
-
   async getCateringQaList(restaurantId, page, limit = 10) {
     return await this.get({
       url: `${this.baseUrl}/catering/question/list`,

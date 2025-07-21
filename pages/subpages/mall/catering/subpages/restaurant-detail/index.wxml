@@ -100,8 +100,8 @@
     <van-rate value="{{restaurantInfo.score || 0}}" size="16" gutter="0" color="#fa2458" void-icon="star" void-color="#fedbe4" allow-half readonly />
     <view class="score {{ restaurantInfo.score ? 'active' : '' }}">{{restaurantInfo.score || '暂无评分'}}</view>
     <view class="price">¥{{restaurantInfo.price}}/人</view>
-    <view class="row">
-      <view class="more-detail">2031人评</view>
+    <view class="row"  wx:if="{{restaurantInfo.evaluationSummary.total}}">
+      <view class="more-detail">{{restaurantInfo.evaluationSummary.total}}人评</view>
       <image class="more-icon" src="./images/more.png" />
     </view>
   </view>
@@ -139,10 +139,13 @@
     </view>
   </view>
 
-  <view class="content-title-wrap">
+  <view 
+    class="content-title-wrap" 
+    wx:if="{{restaurantInfo.mealTicketList.length || (!restaurantInfo.mealTicketList.length && !restaurantInfo.setMealList.length)}}"
+  >
     <view class="content-title">代金券</view>
   </view>
-  <view class="meal-ticket-list">
+  <view class="meal-ticket-list" wx:if="{{restaurantInfo.mealTicketList.length}}" >
     <ticket-item 
       wx:for="{{restaurantInfo.mealTicketList}}" 
       wx:key="index" 
@@ -159,10 +162,10 @@
     <view class="merchant-btn row center" bindtap="settleIn">商家入驻</view>
   </empty-illus>
 
-  <view class="content-title-wrap">
+  <view class="content-title-wrap" wx:if="{{restaurantInfo.setMealList.length}}">
     <view class="content-title">套餐</view>
   </view>
-  <view class="set-meal-list">
+  <view class="set-meal-list" wx:if="{{restaurantInfo.setMealList.length}}">
     <set-meal-item 
       wx:for="{{restaurantInfo.setMealList}}" 
       wx:key="index" 
@@ -171,29 +174,26 @@
       restaurantName="{{restaurantInfo.name}}"
     />
   </view>
-  <empty-illus wx:if="{{!restaurantInfo.setMealList.length}}" desc="暂无套餐" height="520rpx" />
 
-  <view class="content-title-wrap">
+  <view class="content-title-wrap" wx:if="{{restaurantInfo.evaluationSummary.total}}">
     <view class="content-title">用户点评</view>
   </view>
-  <view class="evaluation-summary" wx:if="{{evaluationSummary.total}}" bindtap="checkEvaluation">
+  <view class="evaluation-summary" wx:if="{{restaurantInfo.evaluationSummary.total}}" bindtap="checkEvaluation">
     <view class="evaluation-list">
-      <evaluation-item wx:for="{{evaluationSummary.list}}" wx:key="index" item="{{item}}" contentOmit />
+      <evaluation-item wx:for="{{restaurantInfo.evaluationSummary.list}}" wx:key="index" item="{{item}}" contentOmit />
     </view>
     <view class="total-tips row center">
-      <text>共{{evaluationSummary.total}}条点评</text>
+      <text>共{{restaurantInfo.evaluationSummary.total}}条点评</text>
       <image class="more-icon" src="./images/more.png" />
     </view>
   </view>
-  <empty-illus wx:if="{{!evaluationSummary.total}}" desc="暂无点评" height="520rpx" />
-
 
   <view class="content-title-wrap">
     <view class="content-title">热门问答</view>
   </view>
-  <view class="qa-list-wrap" bindtap="checkQa" wx:if="{{qaSummary.total}}">
+  <view class="qa-list-wrap" bindtap="checkQa" wx:if="{{restaurantInfo.qaSummary.total}}">
     <view class="qa-list">
-      <view class="qa-item" wx:for="{{qaSummary.list}}" wx:key="index">
+      <view class="qa-item" wx:for="{{restaurantInfo.qaSummary.list}}" wx:key="index">
         <view class="qa-label">问</view>
         <view class="qa-question">{{ item.content }}</view>
         <view class="first-answer" wx:if="{{index === 0 && item.firstAnswer}}">
@@ -213,12 +213,12 @@
       </view>
     </view>
     <view class="total-tips row center">
-      <text>共{{qaSummary.total}}条问答</text>
+      <text>共{{restaurantInfo.qaSummary.total}}条问答</text>
       <image class="more-icon" src="./images/more.png" />
     </view>
   </view>
   <empty-illus 
-    wx:if="{{!qaSummary.total}}" 
+    wx:if="{{!restaurantInfo.qaSummary.total}}" 
     desc="暂无问答"
     height="520rpx"
   >

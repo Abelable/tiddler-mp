@@ -15,7 +15,7 @@ Page({
     statusBarHeight,
     navBarVisible: false,
     pageLoaded: false,
-    menuList: ["代金券", "套餐", "用户点评", "热门问答", "达人打卡"],
+    menuList: [],
     curMenuIdx: -1,
     restaurantInfo: null,
     openStatus: false,
@@ -28,8 +28,6 @@ Page({
     imageMenuList: [],
     imageCount: 0,
     distance: 0,
-    evaluationSummary: null,
-    qaSummary: null,
     mediaList: [],
     loading: false,
     finished: false,
@@ -40,6 +38,11 @@ Page({
   },
 
   async onLoad(options) {
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ["shareAppMessage", "shareTimeline"]
+    });
+
     const { id, superiorId = "", scene = "" } = options || {};
     const decodedSceneList = scene ? decodeURIComponent(scene).split("-") : [];
     this.restaurantId = +id || decodedSceneList[0];
@@ -56,17 +59,9 @@ Page({
     });
 
     await this.setRestaurantInfo();
-    await this.setEvaluationSummary();
-    await this.setQaSummary();
-    this.setNavBarVisibleLimit();
-    this.setMenuChangeLimitList();
-    this.setMediaList(true);
+    this.setMenuList();
     this.setData({ pageLoaded: true });
-
-    wx.showShareMenu({
-      withShareTicket: true,
-      menus: ["shareAppMessage", "shareTimeline"]
-    });
+    this.setMediaList(true);
   },
 
   async setRestaurantInfo() {
@@ -300,17 +295,22 @@ Page({
     return ticketList;
   },
 
-  async setEvaluationSummary() {
-    const { list = [], total = 0 } =
-      (await cateringService.getEvaluationList(this.restaurantId, 1, 2)) || {};
-    this.setData({ evaluationSummary: { list, total } });
-  },
-
-  async setQaSummary() {
-    const qaSummary = await cateringService.getCateringQaSummary(
-      this.restaurantId
-    );
-    this.setData({ qaSummary });
+  setMenuList() {
+    const { mealTicketList, setMealList, evaluationSummary } =
+      this.data.restaurantInfo;
+    const menuList = [
+      mealTicketList.length || (!mealTicketList.length && !setMealList.length)
+        ? "代金券"
+        : "",
+      setMealList.length ? "套餐" : "",
+      evaluationSummary.total ? "用户点评" : "",
+      "热门问答",
+      "达人打卡"
+    ].filter(item => !!item);
+    this.setData({ menuList }, () => {
+      this.setNavBarVisibleLimit();
+      this.setMenuChangeLimitList();
+    });
   },
 
   async setMediaList(init = false) {
