@@ -32,7 +32,6 @@ Component({
     indexList: [],
     roomTypeList: [],
     roomTypeIndexList: [],
-    roomPackageList: [],
     evaluationSummary: null,
     qaSummary: null,
     nearbyScenicList: [],
@@ -206,25 +205,18 @@ Component({
     },
 
     setMenuList() {
-      const { roomPackageList } = this.data;
-      const menuList = roomPackageList.length
-        ? [
-            "酒店房间",
-            "酒店套餐",
-            "用户点评",
-            "热门问答",
-            "附近景点",
-            "附近酒店",
-            "达人入住"
-          ]
-        : [
-            "酒店房间",
-            "用户点评",
-            "热门问答",
-            "附近景点",
-            "附近酒店",
-            "达人入住"
-          ];
+      const { evaluationSummary, nearbyScenicSummary, nearbyHotelSummary } =
+        this.data.hotelInfo;
+
+      const menuList = [
+        "酒店房间",
+        evaluationSummary.total ? "用户点评" : "",
+        "热门问答",
+        nearbyScenicSummary ? "附近景点" : "",
+        nearbyHotelSummary.total ? "附近酒店" : "",
+        "达人打卡"
+      ].filter(item => !!item);
+
       this.setData({ menuList }, () => {
         this.setNavBarVisibleLimit();
         this.setMenuChangeLimitList();

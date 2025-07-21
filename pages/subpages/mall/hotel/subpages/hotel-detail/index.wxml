@@ -190,12 +190,6 @@
       >
         <view class="merchant-btn row center" bindtap="settleIn">商家入驻</view>
       </empty-illus>
-
-      <view class="content-wrap" wx:if="{{combinedTicketTypeList.length}}">
-        <view class="content-title-wrap">
-          <view class="content-title">酒店套餐</view>
-        </view>
-      </view>
     </view>
     <view class="last-line">
       <van-index-anchor index="{{indexList.length}}"  use-slot />

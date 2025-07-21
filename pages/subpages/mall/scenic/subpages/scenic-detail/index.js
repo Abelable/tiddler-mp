@@ -231,11 +231,11 @@ Page({
   },
 
   setMenuList() {
-    const { scenicInfo, combinedTicketTypeList } = this.data;
+    const { scenicInfo, ticketList, combinedTicketTypeList } = this.data;
     const { evaluationSummary, nearbyHotelSummary, nearbyScenicSummary } =
       scenicInfo;
     const menuList = [
-      "景点门票",
+      ticketList.length || (!ticketList.length && !combinedTicketTypeList.length) ? "景点门票" : "",
       combinedTicketTypeList.length ? "多景点联票" : "",
       evaluationSummary.total ? "用户点评" : "",
       "热门问答",
