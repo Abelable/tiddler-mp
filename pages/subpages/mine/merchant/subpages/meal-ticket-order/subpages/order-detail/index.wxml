@@ -3,8 +3,18 @@
 
 <view class="container">
   <view class="card">
-    <view class="restaurant-name omit single">{{orderInfo.restaurantName}}</view>
-    <meal-ticket-item ticketInfo="{{orderInfo.ticketInfo}}" />
+    <meal-ticket-item ticketInfo="{{orderInfo.ticketInfo || null}}" />
+    <view class="list row between">
+      <view class="title">餐券总价</view>
+      <price-unit price="{{orderInfo.totalPrice || 0}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />
+    </view>
+    <view class="list row between" wx:if="{{orderInfo.deductionBalance}}">
+      <view class="title">余额抵扣</view>
+      <view class="row">
+        <text>-</text>
+        <price-unit price="{{orderInfo.deductionBalance || 0}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />
+      </view>
+    </view>
     <view class="list row between">
       <view class="title">{{ORDER.paymentDesc(orderInfo.status)}}</view>
       <price-unit price="{{orderInfo.paymentAmount || 0}}" />
@@ -13,10 +23,6 @@
       <view class="list row top">
         <view class="title">客户信息：</view>
         <view class="content">{{orderInfo.consignee}}，{{orderInfo.mobile}}</view>
-        <view class="copy-btn">
-          <text>｜</text>
-          <text style="color: #169dfe" bindtap="copyAddress">复制</text>
-        </view>
       </view>
       <view class="list row between">
         <view class="title">订单编号：</view>
@@ -26,38 +32,25 @@
           <text style="color: #169dfe" bindtap="copyOrderSn">复制</text>
         </view>
       </view>
-      <view class="list row between">
-        <view class="title">创建时间：</view>
-        <text>{{TIME.transform(orderInfo.createdAt, 'YYYY-MM-DD hh:mm:ss')}}</text>
+      <view class="list row between" wx:if="{{orderInfo.confirmTime}}">
+        <view class="title">成交时间：</view>
+        <text>{{TIME.transform(orderInfo.confirmTime, 'YYYY-MM-DD hh:mm:ss')}}</text>
       </view>
       <view class="list row between" wx:if="{{orderInfo.payTime}}">
         <view class="title">付款时间：</view>
         <text>{{TIME.transform(orderInfo.payTime, 'YYYY-MM-DD hh:mm:ss')}}</text>
       </view>
-      <view class="list row between" wx:if="{{orderInfo.confirmTime}}">
-        <view class="title">成交时间：</view>
-        <text>{{TIME.transform(orderInfo.confirmTime, 'YYYY-MM-DD hh:mm:ss')}}</text>
+       <view class="list row between">
+        <view class="title">创建时间：</view>
+        <text>{{TIME.transform(orderInfo.createdAt, 'YYYY-MM-DD hh:mm:ss')}}</text>
       </view>
     </view>
   </view>
 </view>
 
 <view class="bottom-bar">
-  <button 
-    class="btn" 
-    wx:if="{{orderInfo.status === 301}}" 
-    bindtap="navToShipping" data-id="{{orderInfo.id}}"
-  >查看物流</button>
-  <button 
-    class="btn" 
-    wx:if="{{orderInfo.status === 101}}" 
-    bindtap="cancelOrder" data-id="{{orderInfo.id}}" data-index="{{index}}"
-  >取消订单</button>
-  <button 
-    class="btn active" 
-    wx:if="{{item.status === 201}}"
-    catchtap="deliverOrder" data-id="{{item.id}}" data-index="{{index}}"
-  >去发货</button>
+  <button class="btn" wx:if="{{orderInfo.status === 201}}" bindtap="refundOrder" hover-class="none">取消订单</button>
+  <button class="btn active" wx:if="{{orderInfo.status === 201}}" bindtap="approveOrder" hover-class="none">确认订单</button>
   <button class="btn active" bindtap="contact">联系客户</button>
 </view>
   

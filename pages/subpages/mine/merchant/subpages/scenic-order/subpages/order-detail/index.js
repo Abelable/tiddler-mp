@@ -47,6 +47,13 @@ Page({
     });
   },
 
+  approveOrder() {
+    const { scenicShopId } = store.userInfo;
+    scenicOrderService.approveOrder(scenicShopId, this.orderId, () => {
+      this.setOrderInfo();
+    });
+  },
+
   refundOrder() {
     wx.showModal({
       title: "确定取消订单吗？",
@@ -58,13 +65,6 @@ Page({
           });
         }
       }
-    });
-  },
-
-  approveOrder() {
-    const { scenicShopId } = store.userInfo;
-    scenicOrderService.approveOrder(scenicShopId, this.orderId, () => {
-      this.setOrderInfo();
     });
   },
 

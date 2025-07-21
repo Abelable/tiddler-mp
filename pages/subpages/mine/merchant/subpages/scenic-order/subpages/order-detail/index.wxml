@@ -1,5 +1,5 @@
 <wxs module="TIME" src="/utils/filters/time.wxs" />
-<wxs module="ORDER" src="../../../../../utils/order.wxs" />
+<wxs module="ORDER" src="../../../../../utils/scenicOrder.wxs" />
 
 <view class="container">
   <view class="card">
@@ -34,13 +34,13 @@
           <text style="color: #169dfe" bindtap="copyOrderSn">复制</text>
         </view>
       </view>
-      <view class="list row between" wx:if="{{orderInfo.payTime}}">
-        <view class="title">付款时间：</view>
-        <text>{{TIME.transform(orderInfo.payTime, 'YYYY-MM-DD hh:mm:ss')}}</text>
-      </view>
       <view class="list row between" wx:if="{{orderInfo.confirmTime}}">
         <view class="title">成交时间：</view>
         <text>{{TIME.transform(orderInfo.confirmTime, 'YYYY-MM-DD hh:mm:ss')}}</text>
+      </view>
+      <view class="list row between" wx:if="{{orderInfo.payTime}}">
+        <view class="title">付款时间：</view>
+        <text>{{TIME.transform(orderInfo.payTime, 'YYYY-MM-DD hh:mm:ss')}}</text>
       </view>
       <view class="list row between">
         <view class="title">创建时间：</view>

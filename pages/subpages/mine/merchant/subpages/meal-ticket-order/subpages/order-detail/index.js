@@ -1,73 +1,77 @@
-import CateringService from '../../utils/cateringService'
+import { store } from "../../../../../../../../store/index";
+import MealTicketOrderService from "../../utils/mealTicketOrderService";
 
-const cateringService = new CateringService()
+const mealTicketOrderService = new MealTicketOrderService();
 
 Page({
   data: {
     orderInfo: null
   },
-  
+
   onLoad({ id }) {
-    this.orderId = id
-    this.setOrderInfo()
+    this.orderId = id;
+    this.setOrderInfo();
   },
 
   async setOrderInfo() {
-    const orderInfo = await cateringService.getMealTicketOrderDetail(this.orderId)
-    this.setData({ orderInfo })
+    const { cateringShopId } = store.userInfo;
+    const orderInfo = await mealTicketOrderService.getOrderDetail(
+      cateringShopId,
+      this.orderId
+    );
+    this.setData({ orderInfo });
 
     const titleEnums = {
-      101: '等待买家付款',
-      102: '交易关闭',
-      103: '交易关闭',
-      104: '交易关闭',
-      201: '等待卖家发货',
-      202: '退款申请中',
-      203: '退款成功',
-      301: '待收货',
-      401: '交易成功',
-      402: '交易成功',
-    }
+      201: "待确认",
+      202: "退款申请中",
+      203: "退款成功",
+      204: "交易关闭",
+      301: "待出行",
+      401: "交易成功",
+      402: "交易成功",
+      403: "交易成功",
+      501: "交易成功",
+      502: "交易成功"
+    };
     wx.setNavigationBarTitle({
-      title: titleEnums[orderInfo.status],
-    })
+      title: titleEnums[orderInfo.status]
+    });
   },
 
   copyOrderSn() {
     wx.setClipboardData({
-      data: this.data.orderInfo.orderSn, 
+      data: this.data.orderInfo.orderSn,
       success: () => {
-        wx.showToast({ title: '复制成功', icon: 'none' })
+        wx.showToast({ title: "复制成功", icon: "none" });
       }
-    })
+    });
   },
 
-  copyAddress() {
-    const { consignee, mobile, address } = this.data.orderInfo
-    wx.setClipboardData({
-      data: `${consignee}，${mobile}，${address}`, 
-      success: () => {
-        wx.showToast({ title: '复制成功', icon: 'none' })
+  approveOrder() {
+    const { cateringShopId } = store.userInfo;
+    mealTicketOrderService.approveOrder(cateringShopId, this.orderId, () => {
+      this.setOrderInfo();
+    });
+  },
+
+  refundOrder() {
+    wx.showModal({
+      title: "确定取消订单吗？",
+      success: result => {
+        if (result.confirm) {
+          const { cateringShopId } = store.userInfo;
+          mealTicketOrderService.refundOrder(
+            cateringShopId,
+            this.orderId,
+            () => {
+              this.setOrderInfo();
+            }
+          );
+        }
       }
-    })
+    });
   },
 
-  deliverOrder() {
-    cateringService.deliverOrder(id, () => {
-      this.setData({
-        ['orderInfo.status']: 301
-      })
-    })
-  },
-
-  cancelOrder() {
-    cateringService.cancelOrder(this.orderId, () => {
-      this.setData({
-        ['orderInfo.status']: 102
-      })
-    })
-  },
-
-  contact() {
-  },
-})
+  // todo 联系客户
+  contact() {}
+});
