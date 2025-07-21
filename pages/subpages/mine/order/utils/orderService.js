@@ -247,6 +247,13 @@ class OrderService extends BaseService {
     });
   }
 
+  async getMealTicketVerifyCode(orderId, restaurantId) {
+    return await this.get({
+      url: `${this.baseUrl}/catering/meal_ticket/order/verify_code`,
+      data: { orderId, restaurantId }
+    });
+  }
+
   async confirmMealTicketOrder(id, success) {
     await this.post({
       url: `${this.baseUrl}/catering/meal_ticket/order/confirm`,
@@ -322,6 +329,13 @@ class OrderService extends BaseService {
       url: `${this.baseUrl}/catering/set_meal/order/detail`,
       data: { id },
       loadingTitle: "加载中..."
+    });
+  }
+
+  async getSetMealVerifyCode(orderId, restaurantId) {
+    return await this.get({
+      url: `${this.baseUrl}/catering/set_meal/order/verify_code`,
+      data: { orderId, restaurantId }
     });
   }
 

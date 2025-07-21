@@ -111,7 +111,6 @@
   </button>
 </view>
 
-
 <qr-code-modal 
   wx:if="{{qRcodeModalVisible}}"
   code="{{verifyCode}}" 

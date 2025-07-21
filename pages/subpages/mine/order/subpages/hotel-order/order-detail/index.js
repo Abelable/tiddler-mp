@@ -94,30 +94,54 @@ Page({
   },
 
   refundOrder() {
-    orderService.refundHotelOrder(this.orderId, () => {
-      this.setData({
-        ["orderInfo.status"]: 202
-      });
+    wx.showModal({
+      title: "确定申请退款吗？",
+      success: result => {
+        if (result.confirm) {
+          orderService.refundHotelOrder(this.orderId, () => {
+            this.setData({
+              ["orderInfo.status"]: 203
+            });
+          });
+        }
+      }
     });
   },
 
   deleteOrder() {
-    orderService.deleteHotelOrder(this.orderId, () => {
-      wx.navigateBack();
+    wx.showModal({
+      title: "确定删除该订单吗？",
+      success: result => {
+        if (result.confirm) {
+          orderService.deleteHotelOrder(this.orderId, () => {
+            wx.navigateBack();
+          });
+        }
+      }
     });
   },
 
   cancelOrder() {
-    orderService.cancelHotelOrder(this.orderId, () => {
-      this.setData({
-        ["orderInfo.status"]: 102
-      });
+    wx.showModal({
+      title: "确定取消该订单吗？",
+      success: result => {
+        if (result.confirm) {
+          orderService.cancelHotelOrder(this.orderId, () => {
+            this.setData({
+              ["orderInfo.status"]: 102
+            });
+          });
+        }
+      }
     });
   },
 
   async showQRcodeModal() {
     const { id, roomInfo } = this.data.orderInfo;
-    const verifyCode = await orderService.getHotelVerifyCode(id, roomInfo.hotelId);
+    const verifyCode = await orderService.getHotelVerifyCode(
+      id,
+      roomInfo.hotelId
+    );
     this.setData({
       verifyCode,
       qRcodeModalVisible: true

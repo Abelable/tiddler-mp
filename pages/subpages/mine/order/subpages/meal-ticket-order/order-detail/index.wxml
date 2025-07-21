@@ -42,39 +42,64 @@
 <view class="bottom-bar">
   <button 
     class="btn" 
-    wx:if="{{orderInfo.status === 102 || orderInfo.status === 103 || orderInfo.status === 104 || orderInfo.status === 301 || orderInfo.status === 302}}" 
-    bindtap="deleteOrder" data-id="{{orderInfo.id}}" data-index="{{index}}"
-  >删除订单</button>
+    wx:if="{{orderInfo.status === 102 || orderInfo.status === 103 || orderInfo.status === 104}}" 
+    bindtap="deleteOrder"
+    hover-class="none"
+  >
+    删除订单
+  </button>
   <button 
     class="btn" 
     wx:if="{{orderInfo.status === 101}}" 
-    bindtap="cancelOrder" data-id="{{orderInfo.id}}" data-index="{{index}}"
-  >取消订单</button>
-  <button 
-    class="btn active"
-    wx:if="{{orderInfo.status === 201}}" 
-    bindtap="confirmOrder" data-id="{{orderInfo.id}}" data-index="{{index}}"
-  >确认出行</button>
+    bindtap="cancelOrder"
+    hover-class="none"
+  >
+    取消订单
+  </button>
   <button 
     class="btn active" 
     wx:if="{{orderInfo.status === 101}}" 
-    bindtap="payOrder" data-id="{{orderInfo.id}}" data-index="{{index}}"
-  >继续付款</button>
+    bindtap="payOrder"
+    hover-class="none"
+  >
+    继续付款
+  </button>
   <button 
     class="btn active" 
-    wx:if="{{orderInfo.status === 201}}"
-    bindtap="refundOrder" data-id="{{orderInfo.id}}" data-index="{{index}}"
-  >申请退款</button>
+    wx:if="{{refundBtnVisible}}"
+    bindtap="refundOrder"
+    hover-class="none"
+  >
+    申请退款
+  </button>
   <button 
     class="btn active" 
-    wx:if="{{orderInfo.status === 301 || orderInfo.status === 302}}" 
-    bindtap="navToEvaluation" data-id="{{orderInfo.id}}"
-  >评价</button>
+    wx:if="{{orderInfo.status === 301}}" 
+    bindtap="showQRcodeModal" 
+    hover-class="none"
+  >
+    查看券码
+  </button>
   <button 
     class="btn active" 
-    wx:if="{{orderInfo.status === 301 || orderInfo.status === 302}}" 
-    bindtap="afterSale" data-id="{{orderInfo.id}}"
-  >申请售后</button>
-  <button class="btn active" bindtap="contact">{{orderInfo.shopId ? '联系商家' : '联系客服'}}</button>
+    wx:if="{{orderInfo.status === 401 || orderInfo.status === 402}}" 
+    bindtap="navToEvaluation"
+    hover-class="none"
+  >
+    评价
+  </button>
+  <button 
+    class="btn active" 
+    bindtap="contact"
+    hover-class="none"
+  >
+    联系商家
+  </button>
 </view>
+
+<qr-code-modal 
+  wx:if="{{qRcodeModalVisible}}"
+  code="{{verifyCode}}" 
+  bind:hide="hideQRcodeModal"
+/>
   

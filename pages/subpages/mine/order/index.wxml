@@ -60,13 +60,31 @@
   </view>
 
   <view class="content" wx:if="{{curMenuIdx === 2}}">
-    <meal-ticket-order-list list="{{mealTicketOrderList}}" bind:update="init"/>
+    <view class="order-list">
+      <meal-ticket-order-item 
+        wx:for="{{mealTicketOrderList}}" 
+        wx:key="id" 
+        item="{{item}}" 
+        index="{{index}}" 
+        bind:update="init"
+        bind:checkQRcode="showQRcodeModal"
+      />
+    </view>
     <empty-illus wx:if="{{mealTicketFinished && !mealTicketOrderList.length}}" desc="暂无餐券订单" />
     <view class="no-more-tips" wx:if="{{mealTicketFinished && mealTicketOrderList.length}}">～没有更多啦～</view>
   </view>
 
   <view class="content" wx:if="{{curMenuIdx === 3}}">
-    <set-meal-order-list list="{{setMealOrderList}}" bind:update="init"/>
+    <view class="order-list">
+      <set-meal-order-item 
+        wx:for="{{setMealOrderList}}" 
+        wx:key="id" 
+        item="{{item}}" 
+        index="{{index}}" 
+        bind:update="init"
+        bind:checkQRcode="showQRcodeModal"
+      />
+    </view>
     <empty-illus wx:if="{{setMealFinished && !setMealOrderList.length}}" desc="暂无套餐订单" />
     <view class="no-more-tips" wx:if="{{setMealFinished && setMealOrderList.length}}">～没有更多啦～</view>
   </view>

@@ -8,6 +8,7 @@
 .list-header {
   font-size: 28rpx;
 }
+
 .shop-logo {
   margin-right: 16rpx;
   width: 40rpx;

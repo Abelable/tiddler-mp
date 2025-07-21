@@ -60,8 +60,26 @@
       bind:checkQRcode="showQRcodeModal"
     />
   </view>
-  <meal-ticket-order-list wx:if="{{type === 3}}" list="{{orderList}}" bind:update="updateScenicOrderList"/>
-  <set-meal-order-list wx:if="{{type === 4}}" list="{{orderList}}" bind:update="updateScenicOrderList"/>
+  <view class="order-list" wx:if="{{type === 3}}">
+    <meal-ticket-order-item 
+      wx:for="{{orderList}}" 
+      wx:key="index" 
+      item="{{item}}" 
+      index="{{index}}" 
+      bind:update="updateMealTicketOrderList"
+      bind:checkQRcode="showQRcodeModal"
+    />
+  </view>
+  <view class="order-list" wx:if="{{type === 4}}">
+    <set-meal-order-item 
+      wx:for="{{orderList}}" 
+      wx:key="index" 
+      item="{{item}}" 
+      index="{{index}}" 
+      bind:update="updateSetMealOrderList"
+      bind:checkQRcode="showQRcodeModal"
+    />
+  </view>
   <view class="order-list" wx:if="{{type === 5}}">
     <goods-order-item 
       wx:for="{{orderList}}" 

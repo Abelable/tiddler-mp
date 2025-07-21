@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "price-unit": "/components/price-unit/index",
-    "meal-ticket-item": "../../../../components/meal-ticket-item/index"
+    "meal-ticket-item": "../../../../components/meal-ticket-item/index",
+    "qr-code-modal": "../../../components/qr-code-modal/index"
   }
 }
