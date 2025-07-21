@@ -166,8 +166,8 @@ Page({
 
   // todo
   navToShop() {
-    // const { id } = e.currentTarget.dataset
-    // const url = `/pages/subpages/mall/goods/subpages/shop/index?id=${id}`
+    // const { shopId } = this.data.orderInfo;
+    // const url = `/pages/subpages/mall/goods/subpages/shop/index?id=${shopId}`
     // wx.navigateTo({ url })
   }
 });

@@ -3,10 +3,16 @@
 
 <view class="container">
   <view class="card">
-    <view class="card-header row">
-      <view class="restaurant-info row" catchtap="navToRestaurant" data-id="{{orderInfo.restaurantId}}">
-        <view class="restaurant-name omit single">{{orderInfo.restaurantName}}</view>
+    <view class="card-header row between">
+      <view class="shop-info row" catchtap="navToShop">
+        <image class="shop-logo" wx:if="{{orderInfo.shopLogo}}" src="{{orderInfo.shopLogo}}" />
+        <view class="shop-name omit single">{{orderInfo.shopName}}</view>
         <image style="width: 20rpx; height: 20rpx;" src="/images/arrow_gray.png" />
+      </view>
+      <view class="countdown-wrap row" wx:if="{{orderInfo.status === 101}}">
+        <image class="alarm-icon" src="/images/alarm.png" />
+        <view>剩余</view>
+        <view class="countdown">{{TIME.countdown(countdown, 'hh:mm:ss')}}</view>
       </view>
     </view>
     <meal-ticket-item ticketInfo="{{orderInfo.ticketInfo}}" />
