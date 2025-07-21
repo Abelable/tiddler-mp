@@ -1,3 +1,4 @@
+<wxs module="TIME" src="/utils/filters/time.wxs" />
 <wxs module="ORDER" src="../../../utils/mealTicketOrder.wxs" />
 
 <view class="order-item" catchtap="navToDetail">
