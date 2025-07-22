@@ -215,7 +215,7 @@
       <image class="shortcut-icon" src="./images/cs-icon.png"/>
       <view>客服</view>
     </view>
-    <view class="shortcut" bindtap="share">
+    <view class="shortcut" wx:if="{{userInfo}}" bindtap="share">
       <image class="shortcut-icon" src="./images/share-icon.png"/>
       <view>分享</view>
     </view>

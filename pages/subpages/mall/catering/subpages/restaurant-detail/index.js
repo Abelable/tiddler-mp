@@ -1,3 +1,4 @@
+import { createStoreBindings } from "mobx-miniprogram-bindings";
 import dayjs from "dayjs";
 import { store } from "../../../../../../store/index";
 import {
@@ -12,6 +13,7 @@ const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Page({
   data: {
+    toolVisible: false, // todo 用于前期提交审核隐藏部分功能，后期需要删除
     statusBarHeight,
     navBarVisible: false,
     pageLoaded: false,
@@ -38,9 +40,20 @@ Page({
   },
 
   async onLoad(options) {
+    // todo 用于前期提交审核隐藏部分功能，后期需要删除
+    const { envVersion } = wx.getAccountInfoSync().miniProgram || {};
+    if (envVersion === "release") {
+      this.setData({ toolVisible: true });
+    }
+
     wx.showShareMenu({
       withShareTicket: true,
       menus: ["shareAppMessage", "shareTimeline"]
+    });
+
+    this.storeBindings = createStoreBindings(this, {
+      store,
+      fields: ["userInfo"]
     });
 
     const { id, superiorId = "", scene = "" } = options || {};
@@ -562,6 +575,10 @@ Page({
 
   hideTelVisible() {
     this.setData({ telPopupVisible: false });
+  },
+
+  onUnload() {
+    this.storeBindings.destroyStoreBindings();
   },
 
   onShareAppMessage() {

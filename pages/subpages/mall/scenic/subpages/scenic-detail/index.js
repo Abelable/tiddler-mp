@@ -1,5 +1,6 @@
-import { WEBVIEW_BASE_URL } from "../../../../../../config";
+import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { store } from "../../../../../../store/index";
+import { WEBVIEW_BASE_URL } from "../../../../../../config";
 import { checkLogin } from "../../../../../../utils/index";
 import ScenicService from "../../utils/scenicService";
 
@@ -8,6 +9,7 @@ const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Page({
   data: {
+    toolVisible: false, // todo 用于前期提交审核隐藏部分功能，后期需要删除
     statusBarHeight,
     pageLoaded: false,
     navBarVisible: false,
@@ -34,9 +36,20 @@ Page({
   },
 
   async onLoad(options) {
+    // todo 用于前期提交审核隐藏部分功能，后期需要删除
+    const { envVersion } = wx.getAccountInfoSync().miniProgram || {};
+    if (envVersion === "release") {
+      this.setData({ toolVisible: true });
+    }
+
     wx.showShareMenu({
       withShareTicket: true,
       menus: ["shareAppMessage", "shareTimeline"]
+    });
+
+    this.storeBindings = createStoreBindings(this, {
+      store,
+      fields: ["userInfo"]
     });
 
     const { id, superiorId = "", scene = "" } = options || {};
@@ -235,7 +248,10 @@ Page({
     const { evaluationSummary, nearbyHotelSummary, nearbyScenicSummary } =
       scenicInfo;
     const menuList = [
-      ticketList.length || (!ticketList.length && !combinedTicketTypeList.length) ? "景点门票" : "",
+      ticketList.length ||
+      (!ticketList.length && !combinedTicketTypeList.length)
+        ? "景点门票"
+        : "",
       combinedTicketTypeList.length ? "多景点联票" : "",
       evaluationSummary.total ? "用户点评" : "",
       "热门问答",
@@ -487,6 +503,10 @@ Page({
       name,
       address
     });
+  },
+
+  onUnload() {
+    this.storeBindings.destroyStoreBindings();
   },
 
   onShareAppMessage() {

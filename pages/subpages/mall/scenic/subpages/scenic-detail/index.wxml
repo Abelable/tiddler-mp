@@ -36,7 +36,7 @@
         data-index="{{index}}"
       >{{item}}</view>
     </scroll-view>
-    <button class="share-btn" bindtap="share" hover-class="none">
+    <button class="share-btn" wx:if="{{userInfo}}" bindtap="share" hover-class="none">
       <image class="share-icon" src="./images/share.png" />
     </button>
   </view>
@@ -87,7 +87,7 @@
       <view class="scenic-name">{{scenicInfo.name}}</view>
       <view class="level-tag row" wx:if="{{scenicInfo.level}}">{{scenicInfo.level}}</view>
     </view>
-    <image class="share-icon" bindtap="share" src="./images/share.png" />
+    <image class="share-icon" wx:if="{{userInfo}}" bindtap="share" src="./images/share.png" />
   </view>
 
   <view class="score-wrap row">
@@ -154,7 +154,8 @@
     desc="暂无景点门票" 
     height="520rpx" 
   >
-    <view class="merchant-btn row center" bindtap="settleIn">商家入驻</view>
+    <!-- todo toolVisible - 用于前期提交审核隐藏部分功能，后期需要删除 -->
+    <view class="merchant-btn row center" wx:if="{{toolVisible}}" bindtap="settleIn">商家入驻</view>
   </empty-illus>
 
   <view class="content-title-wrap" wx:if="{{combinedTicketTypeList.length}}">

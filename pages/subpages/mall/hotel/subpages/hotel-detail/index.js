@@ -12,10 +12,11 @@ Component({
   behaviors: [storeBindingsBehavior],
   storeBindings: {
     store,
-    fields: ["checkInDate", "checkOutDate"]
+    fields: ["userInfo", "checkInDate", "checkOutDate"]
   },
 
   data: {
+    toolVisible: false, // todo 用于前期提交审核隐藏部分功能，后期需要删除
     statusBarHeight,
     formatter,
     pageLoaded: false,
@@ -61,6 +62,12 @@ Component({
 
   methods: {
     async onLoad(options) {
+      // todo 用于前期提交审核隐藏部分功能，后期需要删除
+      const { envVersion } = wx.getAccountInfoSync().miniProgram || {};
+      if (envVersion === "release") {
+        this.setData({ toolVisible: true });
+      }
+
       wx.showShareMenu({
         withShareTicket: true,
         menus: ["shareAppMessage", "shareTimeline"]
