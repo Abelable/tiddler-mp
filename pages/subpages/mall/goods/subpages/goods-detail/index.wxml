@@ -1,8 +1,12 @@
-<page-meta page-style="{{ specPopupVisible ? 'overflow: hidden;' : '' }}" />
+<import src="index.skeleton.wxml"/>
 
 <wxs module="STRING" src="/utils/filters/string.wxs" />
 <wxs module="TIME" src="/utils/filters/time.wxs" />
 <wxs module="NUM" src="/utils/filters/num.wxs" />
+
+<page-meta page-style="{{ specPopupVisible ? 'overflow: hidden;' : '' }}" />
+
+<template is="skeleton" wx:if="{{!pageLoaded}}" />
 
 <!-- 顶部导航 -->
 <view class="nav-bar {{showNavBar ? 'show' : ''}}" style="padding-top: {{statusBarHeight}}px">
@@ -15,7 +19,7 @@
 </view>
 
  <!-- 轮播 -->
-<view class="banner-wrap">
+<view class="banner-wrap" wx:if="{{pageLoaded}}">
   <swiper style="height: 800rpx;" current="{{curDot - 1}}" circular bindchange="bannerChange">
     <swiper-item 
       wx:if="{{goodsInfo.video}}"
@@ -79,7 +83,7 @@
   </view>
 </view>
 
-<view class="wrap {{goodsInfo.isGift ? 'gift' : ''}}">
+<view class="wrap {{goodsInfo.isGift ? 'gift' : ''}}" wx:if="{{pageLoaded}}">
   <!-- 商品基本信息 -->
   <view class="gift-bar" wx:if="{{goodsInfo.isGift}}">
     <view class="gift-bar-content row">

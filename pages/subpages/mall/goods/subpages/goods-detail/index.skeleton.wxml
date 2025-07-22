@@ -1,0 +1,144 @@
+<template name="skeleton">
+  <view class="sk-container">
+    <view class="banner-wrap">
+      <swiper autoplay="false" circular="true" vertical="true" class="customer-banner" current="0">
+        <swiper-item class="customer-info-wrap" style="position: absolute; width: 100%; height: 100%; transform: translate(0px, 600%) translateZ(0px);">
+          <view class="customer-info">
+            <image class="customer-avatar sk-image"></image>
+            <view class="customer-name sk-transparent sk-text-14-2857-334 sk-text">f**y</view>
+            <view class="customer-content sk-transparent sk-text-14-2857-989 sk-text">1周前购买了该商品</view>
+          </view>
+        </swiper-item>
+        <swiper-item class="customer-info-wrap" style="position: absolute; width: 100%; height: 100%; transform: translate(0px, 100%) translateZ(0px);">
+          <view class="customer-info">
+            <image class="customer-avatar sk-image"></image>
+            <view class="customer-name sk-transparent sk-text-14-2857-862 sk-text">f**y</view>
+            <view class="customer-content sk-transparent sk-text-14-2857-901 sk-text">1周前购买了该商品</view>
+          </view>
+        </swiper-item>
+        <swiper-item class="customer-info-wrap" style="position: absolute; width: 100%; height: 100%; transform: translate(0px, 200%) translateZ(0px);">
+          <view class="customer-info">
+            <image class="customer-avatar sk-image"></image>
+            <view class="customer-name sk-transparent sk-text-14-2857-925 sk-text">f**y</view>
+            <view class="customer-content sk-transparent sk-text-14-2857-736 sk-text">2周前购买了该商品</view>
+          </view>
+        </swiper-item>
+        <swiper-item class="customer-info-wrap" style="position: absolute; width: 100%; height: 100%; transform: translate(0px, 300%) translateZ(0px);">
+          <view class="customer-info">
+            <image class="customer-avatar sk-image"></image>
+            <view class="customer-name sk-transparent sk-text-14-2857-735 sk-text">f**y</view>
+            <view class="customer-content sk-transparent sk-text-14-2857-384 sk-text">2周前购买了该商品</view>
+          </view>
+        </swiper-item>
+        <swiper-item class="customer-info-wrap" style="position: absolute; width: 100%; height: 100%; transform: translate(0px, 400%) translateZ(0px);">
+          <view class="customer-info">
+            <image class="customer-avatar sk-image"></image>
+            <view class="customer-name sk-transparent sk-text-14-2857-107 sk-text">f**y</view>
+            <view class="customer-content sk-transparent sk-text-14-2857-505 sk-text">2周前购买了该商品</view>
+          </view>
+        </swiper-item>
+        <swiper-item class="customer-info-wrap" style="position: absolute; width: 100%; height: 100%; transform: translate(0px, 500%) translateZ(0px);">
+          <view class="customer-info">
+            <image class="customer-avatar sk-image"></image>
+            <view class="customer-name sk-transparent sk-text-14-2857-76 sk-text">f**y</view>
+            <view class="customer-content sk-transparent sk-text-14-2857-712 sk-text">2周前购买了该商品</view>
+          </view>
+        </swiper-item>
+      </swiper>
+      <view class="banner-dots sk-transparent sk-text-26-7857-535 sk-text">
+        1/4
+      </view>
+    </view>
+    <view class="wrap">
+      <view class="goods-info-wrap">
+        <view class="price-wrap row">
+          <view class="row baseline">
+            <view is="components/price-unit/index">
+            </view>
+          </view>
+          <view class="sale-volume sk-transparent sk-text-0-0000-323 sk-text" style="background-position-x: 100%;">已售11件</view>
+        </view>
+        <view class="goods-name">
+          <text class="sk-transparent sk-text-14-2857-333 sk-text">千岛湖金属浮雕冰箱贴/创意立体浮雕冰箱贴</text>
+        </view>
+      </view>
+      <view class="option-info-wrap">
+        <view class="option-item">
+          <view class="option-label sk-transparent sk-text-14-2857-171 sk-text">选择</view>
+          <view class="option-content sk-transparent sk-text-14-2857-811 sk-text">旅行日记</view>
+          <image class="option-arrow sk-image"></image>
+        </view>
+        <view class="option-item">
+          <view class="option-label sk-transparent sk-text-14-2857-813 sk-text">购物保障</view>
+          <view class="option-content row">
+            <image class="confidence-tag sk-image"></image>
+            <view>
+              <text class="sk-transparent sk-text-14-2857-54 sk-text">品质严保·极速退款</text>
+            </view>
+          </view>
+          <image class="option-arrow sk-image"></image>
+        </view>
+      </view>
+      <view is="pages/subpages/mall/goods/subpages/goods-detail/components/shop-showcase/index">
+        <view class="showcase-index--shop-showcase">
+          <view class="showcase-index--shop-info">
+            <view class="showcase-index--avatar-wrap">
+              <image class="showcase-index--shop-logo sk-image"></image>
+            </view>
+            <view class="showcase-index--name showcase-index--omit sk-transparent sk-text-14-2857-490 sk-text">小鱼小店</view>
+            <view class="showcase-index--check-btn sk-transparent sk-text-14-2857-753 sk-text">进入店铺</view>
+          </view>
+        </view>
+      </view>
+      <view class="goods-detail">
+        <view class="goods-detail-title sk-transparent sk-text-14-2857-36 sk-text">商品详情</view>
+        <image lazy-load="true" data-current="https://static.tiddler.cn/tiddler/20250619/1750316148236.jpg" data-urls="https://static.tiddler.cn/tiddler/20250619/1750316148236.jpg,https://static.tiddler.cn/tiddler/20250619/1750316155369.jpg,https://static.tiddler.cn/tiddler/20250619/1750316161272.jpg,https://static.tiddler.cn/tiddler/20250619/1750316195524.jpg,https://static.tiddler.cn/tiddler/20250619/1750316208758.jpg,https://static.tiddler.cn/tiddler/20250619/1750316212806.png"
+          mode="widthFix" style="width: 100%; height: 673.333px;" class="sk-image"></image>
+      </view>
+    </view>
+    <view class="bottom-bar row between">
+      <view class="shortcut-wrap row">
+        <view class="shortcut">
+          <image class="shortcut-icon sk-image"></image>
+          <view class="sk-transparent sk-text-0-0000-803 sk-text" style="background-position-x: 50%;">客服</view>
+        </view>
+        <view class="shortcut">
+          <image class="shortcut-icon sk-image"></image>
+          <view class="sk-transparent sk-text-0-0000-873 sk-text" style="background-position-x: 50%;">分享</view>
+        </view>
+        <navigator class="shortcut" hover-class="none">
+          <image class="shortcut-icon sk-image"></image>
+          <view class="sk-transparent sk-text-0-0000-596 sk-text" style="background-position-x: 50%;">购物车</view>
+        </navigator>
+      </view>
+      <view class="btns row">
+        <button class="buy-btn sk-button sk-pseudo sk-pseudo-circle" data-mode="2">
+          <view>
+            <view class="sk-transparent sk-text-0-0000-417 sk-text" style="background-position-x: 50%;">立即购买</view>
+          </view>
+        </button>
+      </view>
+    </view>
+    <view is="pages/subpages/mall/goods/components/spec-popup/index">
+      <view is="miniprogram_npm/@vant/weapp/popup/index">
+        <view is="miniprogram_npm/@vant/weapp/overlay/index">
+          <view is="miniprogram_npm/@vant/weapp/transition/index"></view>
+        </view>
+      </view>
+    </view>
+    <view is="components/address-popup/index">
+      <view is="miniprogram_npm/@vant/weapp/popup/index">
+        <view is="miniprogram_npm/@vant/weapp/overlay/index">
+          <view is="miniprogram_npm/@vant/weapp/transition/index"></view>
+        </view>
+      </view>
+    </view>
+    <view is="pages/subpages/mall/goods/subpages/goods-detail/components/service-popup/index">
+      <view is="miniprogram_npm/@vant/weapp/popup/index">
+        <view is="miniprogram_npm/@vant/weapp/overlay/index">
+          <view is="miniprogram_npm/@vant/weapp/transition/index"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

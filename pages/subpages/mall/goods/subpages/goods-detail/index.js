@@ -10,6 +10,7 @@ const navBarHeight = statusBarHeight + 44;
 Page({
   data: {
     statusBarHeight,
+    pageLoaded: false,
     showNavBar: false,
     evaluationActive: false,
     detailActive: false,
@@ -69,16 +70,12 @@ Page({
   },
 
   async init() {
-    wx.showLoading({ title: "加载中..." });
     await this.setGoodsInfo();
     await this.setEvaluationSummary();
-    wx.hideLoading();
-
+    this.setData({ pageLoaded: true })
     this.setCommission();
-
     this.getEvaluationTop();
     this.getDetailTop();
-
     this.setRecommendGoodsList(true);
   },
 
