@@ -1,11 +1,5 @@
 <template name="skeleton">
   <view class="sk-container">
-    <view class="nav-bar" style="padding-top: 54px">
-      <view class="search-bar">
-        <image class="search-icon sk-image"></image>
-        <text class="placeholder sk-transparent sk-text-14-2857-102 sk-text">搜索景点、酒店、美食...</text>
-      </view>
-    </view>
     <swiper autoplay="false" circular="true" class="banner" style="height: calc(98px + 172px);" current="0">
       <swiper-item class="banner-item" data-param="37" data-scene="2" style="position: absolute; width: 100%; height: 100%; transform: translate(0%, 0px) translateZ(0px);">
         <image class="banner-img sk-image" mode="widthFix" style="height: 279.787px;"></image>
