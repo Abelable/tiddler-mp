@@ -1,28 +1,37 @@
-<view class="login-wrap">
-  <image class="bg" mode="widthFix" src="https://static.tiddler.cn/mp/register_bg.jpeg" />
+<view class="register-wrap">
+  <image class="bg" mode="widthFix" src="https://static.tiddler.cn/mp/register/bg.png" />
   <view class="back-icon-wrap" style="top: {{statusBarHeight + 5}}px">
     <back-icon custom bind:navigateBack="navToHome" />
   </view>
 
   <view class="content-wrap" style="margin-top: {{statusBarHeight + 100}}px">
-    <view class="title">Hi,旅行者</view>
-    <view class="sub-title">欢迎来到千岛湖！</view>
-    <view class="tips">
-      <view>旅途的意义也许不在于目的地，​</view>
-      <view>而是沿途的风景​</view>
+    <image class="logo" src="https://static.tiddler.cn/mp/register/logo.png" />
+    <view class="title">Hi，旅行者</view>
+    <view class="sub-title">
+      <text>欢迎来到</text>
+      <text style="color: #09AFFF;">千岛湖</text>
+      <text>！</text>
     </view>
+    <view class="tips">
+      <view>旅途的意义也许不在于目的地，而是​</view>
+      <view>沿途的风景​</view>
+    </view>
+    
+  </view>
+
+  <view class="register-btn-wrap row center">
     <button class="register-btn" wx:if="{{!agree}}" bindtap="toast" hover-class="none">
       <view>开启旅途</view>
-      <image class="arrow" src="./images/arrow.png" />
+      <image class="arrow" src="https://static.tiddler.cn/mp/register/arrow.png" />
     </button>
     <button class="register-btn" wx:if="{{agree}}" bindgetphonenumber="getMobile" open-type="getPhoneNumber" hover-class="none">
       <view>开启旅途</view>
-      <image class="arrow" src="./images/arrow.png" />
+      <image class="arrow" src="https://static.tiddler.cn/mp/register/arrow.png" />
     </button>
-    <view class="agreement-tips">
-      <checkbox class="checkbox" checked="{{agree}}" bindtap="toggleAgree" color="#09AFFF" />
+    <view class="agreement-tips row" bindtap="toggleAgree">
+      <image class="checkbox" src="https://static.tiddler.cn/mp/register/select{{agree ? 'ed' : ''}}.png" />
       <text>开启旅途，阅读并同意</text>
-      <text style="color: #09AFFF;" bindtap="checkAgreement">《用户服务协议》</text>
+      <text style="color: #09AFFF;" catchtap="checkAgreement">《用户服务协议》</text>
     </view>
   </view>
 </view>
