@@ -43,7 +43,7 @@ Component({
 
         checkLogin(() => {
           videoService.createViewHistory(this.properties.item.id);
-        });
+        }, false);
       } else if (this.player) {
         this.player.pause();
       }

@@ -22,7 +22,9 @@ Component({
 
   pageLifetimes: {
     show() {
-      this.setAddressList();
+      checkLogin(() => {
+        this.setAddressList();
+      }, false)
     }
   },
 

@@ -1,6 +1,6 @@
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { store } from "../../../../store/index";
-import { customBack } from "../../../../utils/index";
+import { checkLogin, customBack } from "../../../../utils/index";
 import BaseService from "../../../../services/baseService";
 
 const baseService = new BaseService();
@@ -51,7 +51,9 @@ Page({
 
     this.setData({ curMenuIdx: Number(scene) });
     this.initCalendar();
-    this.setHistoryKeywords();
+    checkLogin(() => {
+      this.setHistoryKeywords();
+    }, false);
     this.setHotKeywords();
   },
 
