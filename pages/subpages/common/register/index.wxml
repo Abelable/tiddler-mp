@@ -1,7 +1,7 @@
 <view class="register-wrap">
   <image class="bg" mode="widthFix" src="https://static.tiddler.cn/mp/register/bg.png" />
   <view class="back-icon-wrap" style="top: {{statusBarHeight + 5}}px">
-    <back-icon custom bind:navigateBack="navToHome" />
+    <back-icon custom bind:navigateBack="navBack" />
   </view>
 
   <view class="content-wrap" style="margin-top: {{statusBarHeight + 100}}px">

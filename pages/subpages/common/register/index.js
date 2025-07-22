@@ -55,7 +55,14 @@ Page({
     wx.navigateTo({ url: `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/protocol/user` })
   },
 
-  navToHome() {
-    wx.switchTab({ url: '/pages/tab-bar-pages/home/index' })
+  navBack() {
+    const pagesLength = getCurrentPages().length;
+    const prePage = getCurrentPages()[pagesLength - 2];
+    const prePageRoute = prePage ? prePage.route : "";
+    if (prePageRoute === "pages/subpages/mall/goods/subpages/cart/index") {
+      wx.navigateBack({ delta: 2 });
+    } else {
+      wx.navigateBack();
+    }
   }
 })

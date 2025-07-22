@@ -3,13 +3,13 @@
     <view class="title">编辑个人信息</view>
     <image class="arrow" src="./images/arrow.png" />
   </view>
-  <view class="list row between" bindtap="navToAuth">
+  <view class="list row between" wx:if="{{toolVisible}}" bindtap="navToAuth">
     <view class="title">实名认证</view>
     <image class="arrow" src="./images/arrow.png" />
   </view>
 </view>
 
-<view class="list-wrap">
+<view class="list-wrap" wx:if="{{toolVisible}}">
   <view class="list row between" bindtap="navToScenicMerchantSettleIn">
     <view class="title">景区服务商入驻</view>
     <image class="arrow" src="./images/arrow.png" />
