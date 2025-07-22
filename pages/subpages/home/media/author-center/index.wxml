@@ -12,9 +12,9 @@
   <image class="bg" src="{{authorInfo.bg || 'https://static.tiddler.cn/mp/bg.png'}}" mode="aspectFill" />
   <view class="content">
     <view class="avatar-wrap">
-      <image class="avatar" src="{{authorInfo.avatar}}" />
+      <image class="avatar" src="{{authorInfo.avatar}}" bindtap="checkAvatar" />
       <view class="btns-wrap row end">
-        <button class="chat-btn" hover-class="none">
+        <button class="chat-btn" wx:if="{{isFollow}}" hover-class="none">
           <image class="btn-icon" src="./images/chat.png" />
           <text>私聊</text>
         </button>
@@ -51,6 +51,7 @@
           <view class="content-wrap">
             <fall-flow 
               class="fall-flow-0" 
+              wx:if="{{videoList.length}}"
               list="{{videoList}}" 
               loading="{{videoLoading}}"
               finished="{{videoFinished}}"
@@ -65,6 +66,7 @@
           <view class="content-wrap">
             <fall-flow 
               class="fall-flow-1" 
+              wx:if="{{noteList.length}}"
               list="{{noteList}}" 
               loading="{{noteLoading}}"
               finished="{{noteFinished}}"

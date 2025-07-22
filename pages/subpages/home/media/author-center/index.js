@@ -16,7 +16,7 @@ Page({
     navBarVisible: false,
     menuFixed: false,
     curMenuIndex: 0,
-    wrapHeightList: [400, 400],
+    wrapHeightList: [550, 550],
     authorInfo: null,
     isFollow: false,
     videoList: [],
@@ -297,6 +297,14 @@ Page({
 
   hidePosterModal() {
     this.setData({ posterModalVisible: false });
+  },
+
+  checkAvatar() {
+    const { avatar } = this.data.authorInfo;
+    wx.previewImage({
+      current: avatar,
+      urls: [avatar],
+    });
   },
 
   onShareAppMessage() {

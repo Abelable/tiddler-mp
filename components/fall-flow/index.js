@@ -53,6 +53,10 @@ Component({
                 [`rightList[${this.data.rightList.length}]`]: media
               });
             }
+          } else {
+            wx.nextTick(() => {
+              this.triggerEvent("finish");
+            });
           }
         } else {
           this.setData({
@@ -60,26 +64,6 @@ Component({
             [`rightList[${this.data.rightList.length}]`]: this.list.shift()
           });
         }
-      }
-    },
-
-    async completion() {
-      const { leftHeight, rightHeight } = await this.getListWrapperHeight();
-      if (rightHeight - leftHeight > 200) {
-        this.setData({
-          [`leftList[${this.data.leftList.length}]`]: this.endList.shift(),
-          [`leftList[${this.data.leftList.length}]`]: this.endList.shift()
-        });
-      } else if (leftHeight - rightHeight > 200) {
-        this.setData({
-          [`rightList[${this.data.rightList.length}]`]: this.endList.shift(),
-          [`rightList[${this.data.rightList.length}]`]: this.endList.shift()
-        });
-      } else {
-        this.setData({
-          [`leftList[${this.data.leftList.length}]`]: this.endList.shift(),
-          [`rightList[${this.data.rightList.length}]`]: this.endList.shift()
-        });
       }
     },
 
