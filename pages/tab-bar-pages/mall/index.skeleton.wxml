@@ -1,0 +1,177 @@
+<template name="skeleton">
+  <view class="sk-container">
+    <view class="nav-bar" style="padding-top: 54px">
+      <view class="search-bar">
+        <image class="search-icon sk-image"></image>
+        <text class="placeholder sk-transparent sk-text-14-2857-102 sk-text">搜索景点、酒店、美食...</text>
+      </view>
+    </view>
+    <swiper autoplay="false" circular="true" class="banner" style="height: calc(98px + 172px);" current="0">
+      <swiper-item class="banner-item" data-param="37" data-scene="2" style="position: absolute; width: 100%; height: 100%; transform: translate(0%, 0px) translateZ(0px);">
+        <image class="banner-img sk-image" mode="widthFix" style="height: 279.787px;"></image>
+      </swiper-item>
+    </swiper>
+    <view class="container" style="top: calc(98px + 143px); border-radius: 22px 22px 0 0;">
+      <view class="category-list">
+        <view class="category-item" data-index="0">
+          <image class="category-icon sk-image"></image>
+          <view class="category-desc sk-transparent sk-text-14-2857-700 sk-text" style="background-position-x: 50%;">景点乐园</view>
+        </view>
+        <view class="category-item" data-index="1">
+          <image class="category-icon sk-image"></image>
+          <view class="category-desc sk-transparent sk-text-14-2857-883 sk-text" style="background-position-x: 50%;">酒店民宿</view>
+        </view>
+        <view class="category-item" data-index="2">
+          <image class="category-icon sk-image"></image>
+          <view class="category-desc sk-transparent sk-text-14-2857-986 sk-text" style="background-position-x: 50%;">餐厅美食</view>
+        </view>
+        <view class="category-item" data-index="3">
+          <image class="category-icon sk-image"></image>
+          <view class="category-desc sk-transparent sk-text-14-2857-787 sk-text" style="background-position-x: 50%;">特色商品</view>
+        </view>
+      </view>
+      <view class="product-list">
+        <view is="components/fall-flow/index">
+          <view class="flow-index--fall-flow-wrap">
+            <view class="flow-index--fall-flow">
+              <view class="flow-index--left-list">
+                <view is="pages/tab-bar-pages/mall/components/product-item/index" class="flow-index--item" data-info="[object Object]">
+                  <view is="components/restaurant-item/index">
+                    <view class="restaurant-item item-index--restaurant-item show item-index--show">
+                      <view class="cover-wrap item-index--cover-wrap">
+                        <image class="final-cover item-index--final-cover show item-index--show sk-image" mode="aspectFill" style="height: 172px;"></image>
+                        <image class="cover item-index--cover sk-image" mode="aspectFill" style="height: 172px;"></image>
+                        <view class="type-label item-index--type-label row item-index--row sk-transparent sk-text-14-2857-656 sk-text">美食</view>
+                        <view class="address-info item-index--address-info sk-image">
+                          <image class="address-icon item-index--address-icon sk-image"></image>
+                          <text class="address-detail item-index--address-detail omit item-index--omit single item-index--single sk-transparent sk-text-14-2857-973 sk-text">淳安县排岭南路2号（肯德基旁）</text>
+                        </view>
+                      </view>
+                      <view class="restaurant-title item-index--restaurant-title omit item-index--omit sk-transparent sk-text-14-2857-243 sk-text">千岛湖鱼味馆</view>
+                      <view class="label-list item-index--label-list"></view>
+                      <view class="info-wrap item-index--info-wrap">
+                        <view class="price item-index--price">
+                          <text style="margin-right: 2px; color: #ff5040;" class="sk-transparent sk-opacity">¥</text>
+                          <text class="num item-index--num sk-transparent sk-text-0-0000-41 sk-text" style="color: #ff5040; font-size: 18px;">120</text>
+                          <text style="margin-left: 1px;" class="sk-transparent sk-opacity">起</text>
+                        </view>
+                        <view class="sales item-index--sales">
+                          <text class="sk-transparent sk-text-14-2857-95 sk-text">已售</text>
+                          <text style="font-weight: bold;" class="sk-transparent sk-opacity">6</text>
+                        </view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+                <view is="pages/tab-bar-pages/mall/components/product-item/index" class="flow-index--item" data-info="[object Object]">
+                  <view is="components/scenic-item/index">
+                    <view class="scenic-item scenic-item-index--scenic-item show scenic-item-index--show">
+                      <view class="cover-wrap scenic-item-index--cover-wrap">
+                        <image class="final-cover scenic-item-index--final-cover show scenic-item-index--show sk-image" mode="aspectFill" style="height: 172px;"></image>
+                        <image class="cover scenic-item-index--cover sk-image" mode="aspectFill" style="height: 172px;"></image>
+                        <view class="type-label scenic-item-index--type-label row scenic-item-index--row sk-transparent sk-text-14-2857-286 sk-text">景点</view>
+                        <view class="address-info scenic-item-index--address-info sk-image">
+                          <image class="address-icon scenic-item-index--address-icon sk-image"></image>
+                          <text class="address-detail scenic-item-index--address-detail omit scenic-item-index--omit single scenic-item-index--single sk-transparent sk-text-14-2857-819 sk-text">千岛湖镇淡竹王子山</text>
+                        </view>
+                      </view>
+                      <view class="scenic-title scenic-item-index--scenic-title omit scenic-item-index--omit sk-transparent sk-text-14-2857-241 sk-text">千岛湖森林氧吧</view>
+                      <view class="label-list scenic-item-index--label-list"></view>
+                      <view class="info-wrap scenic-item-index--info-wrap">
+                        <view class="price scenic-item-index--price">
+                          <text style="margin-right: 2px; color: #ff5040;" class="sk-transparent sk-opacity">¥</text>
+                          <text class="num scenic-item-index--num sk-transparent sk-text-0-0000-918 sk-text" style="color: #ff5040; font-size: 18px;">50</text>
+                          <text style="margin-left: 1px;" class="sk-transparent sk-opacity">起</text>
+                        </view>
+                        <view class="sales scenic-item-index--sales">
+                          <text class="sk-transparent sk-text-14-2857-183 sk-text">已售</text>
+                          <text style="font-weight: bold;" class="sk-transparent sk-opacity">7</text>
+                        </view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+                <view is="pages/tab-bar-pages/mall/components/product-item/index" class="flow-index--item" data-info="[object Object]">
+                  <view is="components/scenic-item/index">
+                    <view class="scenic-item scenic-item-index--scenic-item show scenic-item-index--show">
+                      <view class="cover-wrap scenic-item-index--cover-wrap">
+                        <image class="final-cover scenic-item-index--final-cover show scenic-item-index--show sk-image" mode="aspectFill" style="height: 172px;"></image>
+                        <image class="cover scenic-item-index--cover sk-image" mode="aspectFill" style="height: 172px;"></image>
+                        <view class="type-label scenic-item-index--type-label row scenic-item-index--row sk-transparent sk-text-14-2857-490 sk-text">景点</view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+              <view class="flow-index--right-list">
+                <view is="pages/tab-bar-pages/mall/components/product-item/index" class="flow-index--item" data-info="[object Object]">
+                  <view is="components/hotel-item/index">
+                    <view class="hotel-item hotel-item-index--hotel-item show hotel-item-index--show">
+                      <view class="cover-wrap hotel-item-index--cover-wrap">
+                        <image class="final-cover hotel-item-index--final-cover show hotel-item-index--show sk-image" mode="aspectFill" style="height: 172px;"></image>
+                        <image class="cover hotel-item-index--cover sk-image" mode="aspectFill" style="height: 172px;"></image>
+                        <view class="type-label hotel-item-index--type-label row hotel-item-index--row sk-transparent sk-text-14-2857-74 sk-text">酒店</view>
+                        <view class="address-info hotel-item-index--address-info sk-image">
+                          <image class="address-icon hotel-item-index--address-icon sk-image"></image>
+                          <text class="address-detail hotel-item-index--address-detail omit hotel-item-index--omit single hotel-item-index--single sk-transparent sk-text-14-2857-244 sk-text">淳安千岛湖镇梦姑路93号</text>
+                        </view>
+                      </view>
+                      <view class="hotel-title hotel-item-index--hotel-title omit hotel-item-index--omit sk-transparent sk-text-14-2857-881 sk-text">千岛湖诺富特酒店</view>
+                      <view class="label-list hotel-item-index--label-list"></view>
+                      <view class="info-wrap hotel-item-index--info-wrap">
+                        <view class="price hotel-item-index--price">
+                          <text style="margin-right: 2px; color: #ff5040;" class="sk-transparent sk-opacity">¥</text>
+                          <text class="num hotel-item-index--num sk-transparent sk-text-0-0000-597 sk-text" style="color: #ff5040; font-size: 18px;">515</text>
+                          <text style="margin-left: 1px;" class="sk-transparent sk-opacity">起</text>
+                        </view>
+                        <view class="sales hotel-item-index--sales">
+                          <text class="sk-transparent sk-text-14-2857-329 sk-text">已售</text>
+                          <text style="font-weight: bold;" class="sk-transparent sk-opacity">2</text>
+                        </view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+                <view is="pages/tab-bar-pages/mall/components/product-item/index" class="flow-index--item" data-info="[object Object]">
+                  <view is="components/scenic-item/index">
+                    <view class="scenic-item scenic-item-index--scenic-item show scenic-item-index--show">
+                      <view class="cover-wrap scenic-item-index--cover-wrap">
+                        <image class="final-cover scenic-item-index--final-cover show scenic-item-index--show sk-image" mode="aspectFill" style="height: 172px;"></image>
+                        <image class="cover scenic-item-index--cover sk-image" mode="aspectFill" style="height: 172px;"></image>
+                        <view class="type-label scenic-item-index--type-label row scenic-item-index--row sk-transparent sk-text-14-2857-648 sk-text">景点</view>
+                        <view class="address-info scenic-item-index--address-info sk-image">
+                          <image class="address-icon scenic-item-index--address-icon sk-image"></image>
+                          <text class="address-detail scenic-item-index--address-detail omit scenic-item-index--omit single scenic-item-index--single sk-transparent sk-text-14-2857-575 sk-text">千岛湖镇中心湖区旅游码头</text>
+                        </view>
+                      </view>
+                      <view class="scenic-title scenic-item-index--scenic-title omit scenic-item-index--omit sk-transparent sk-text-14-2857-395 sk-text">中心湖区</view>
+                      <view class="label-list scenic-item-index--label-list"></view>
+                      <view class="info-wrap scenic-item-index--info-wrap">
+                        <view class="price scenic-item-index--price">
+                          <text style="margin-right: 2px; color: #ff5040;" class="sk-transparent sk-opacity">¥</text>
+                          <text class="num scenic-item-index--num sk-transparent sk-text-0-0000-917 sk-text" style="color: #ff5040; font-size: 18px;">55</text>
+                          <text style="margin-left: 1px;" class="sk-transparent sk-opacity">起</text>
+                        </view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+                <view is="pages/tab-bar-pages/mall/components/product-item/index" class="flow-index--item" data-info="[object Object]">
+                  <view is="components/hotel-item/index">
+                    <view class="hotel-item hotel-item-index--hotel-item show hotel-item-index--show">
+                      <view class="cover-wrap hotel-item-index--cover-wrap">
+                        <image class="final-cover hotel-item-index--final-cover show hotel-item-index--show sk-image" mode="aspectFill" style="height: 172px;"></image>
+                        <image class="cover hotel-item-index--cover sk-image" mode="aspectFill" style="height: 172px;"></image>
+                        <view class="type-label hotel-item-index--type-label row hotel-item-index--row sk-transparent sk-text-14-2857-710 sk-text">酒店</view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

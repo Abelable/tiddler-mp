@@ -21,6 +21,7 @@ Component({
       { name: "餐厅美食", icon: "food" },
       { name: "特色商品", icon: "goods" }
     ],
+    pageLoaded: false,
     navBarActive: false,
     productList: [],
     loading: false,
@@ -34,7 +35,12 @@ Component({
   },
 
   methods: {
-    onLoad(options) {
+    async onLoad(options) {
+      wx.showShareMenu({
+        withShareTicket: true,
+        menus: ["shareAppMessage", "shareTimeline"]
+      });
+
       const { superiorId = "", scene = "" } = options || {};
       const decodedScene = scene ? decodeURIComponent(scene) : "";
       this.superiorId = superiorId || decodedScene.split("-")[0];
@@ -53,15 +59,11 @@ Component({
         mallService.getLocationInfo();
       }
       this.initCalendar();
-      this.setBannerList();
+      await this.setBannerList();
       if (!this.data.productList.length) {
-        this.setProductList(true);
+        await this.setProductList(true);
       }
-
-      wx.showShareMenu({
-        withShareTicket: true,
-        menus: ["shareAppMessage", "shareTimeline"]
-      });
+      this.setData({ pageLoaded: true })
     },
 
     initCalendar() {
