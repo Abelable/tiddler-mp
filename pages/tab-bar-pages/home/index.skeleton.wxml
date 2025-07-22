@@ -1,0 +1,85 @@
+<template name="skeleton">
+  <view class="sk-container">
+    <swiper class="container" current="0" autoplay="false">
+      <swiper-item style="position: absolute; width: 100%; height: 100%; transform: translate(0%, 0px) translateZ(0px);">
+        <scroll-view scroll-with-animation="true" scroll-y="true" refresher-enabled="true" class="content-wrap" scroll-top="0" style="padding-top: 150px;">
+          <view class="content">
+            <swiper autoplay="false" circular="true" class="banner small-dots" indicator-active-color="#00C8FF" indicator-color="#dcf0fa" current="0">
+              <swiper-item class="banner-item" data-param="35" data-scene="1" style="position: absolute; width: 100%; height: 100%; transform: translate(0%, 0px) translateZ(0px);">
+                <image lazy-load="true" class="banner-img sk-image" mode="aspectFill"></image>
+              </swiper-item>
+            </swiper>
+            <view class="category-list row between">
+              <view class="category-item">
+                <image class="category-icon sk-image"></image>
+                <view class="category-name sk-transparent sk-text-14-2857-96 sk-text" style="background-position-x: 50%;">网红打卡</view>
+              </view>
+              <view class="category-item">
+                <image class="category-icon sk-image"></image>
+                <view class="category-name sk-transparent sk-text-14-2857-191 sk-text" style="background-position-x: 50%;">游湖登岛</view>
+              </view>
+              <view class="category-item">
+                <image class="category-icon sk-image"></image>
+                <view class="category-name sk-transparent sk-text-14-2857-759 sk-text" style="background-position-x: 50%;">环湖骑行</view>
+              </view>
+              <view class="category-item">
+                <image class="category-icon sk-image"></image>
+                <view class="category-name sk-transparent sk-text-14-2857-98 sk-text" style="background-position-x: 50%;">夜游千岛</view>
+              </view>
+              <view class="category-item">
+                <image class="category-icon sk-image"></image>
+                <view class="category-name sk-transparent sk-text-14-2857-414 sk-text" style="background-position-x: 50%;">明星同游</view>
+              </view>
+            </view>
+            <view is="pages/subpages/common/home/components/top-media/index">
+              <view class="top-media-wrap media-index--top-media-wrap" style="background: #efefef;">
+              </view>
+            </view>
+            <view is="components/fall-flow/index" class="fall-flow">
+              <view class="flow-index--fall-flow-wrap">
+                <view class="flow-index--fall-flow">
+                  <view class="flow-index--left-list">
+                    <view is="components/media-item/index" class="flow-index--item" data-info="[object Object]">
+                      <view class="components-media-item-index--media-item">
+                        <view is="components/note-item/index">
+                          <view class="note-item note-item-index--note-item show note-item-index--show">
+                            <view class="cover-wrap note-item-index--cover-wrap">
+                              <image class="final-cover note-item-index--final-cover show note-item-index--show sk-image" mode="aspectFill" style="height: 260px;"></image>
+                              <image class="cover note-item-index--cover sk-image" mode="aspectFill" style="height: 260px;"></image>
+                              <view class="address-info note-item-index--address-info sk-image">
+                                <image class="address-icon note-item-index--address-icon sk-image"></image>
+                                <text class="address-detail note-item-index--address-detail omit note-item-index--omit single note-item-index--single sk-transparent sk-text-14-2857-616 sk-text">淳安县博物馆</text>
+                              </view>
+                            </view>
+                          </view>
+                        </view>
+                      </view>
+                    </view>
+                  </view>
+                  <view class="flow-index--right-list">
+                    <view is="components/media-item/index" class="flow-index--item" data-info="[object Object]">
+                      <view class="components-media-item-index--media-item">
+                        <view is="components/note-item/index">
+                          <view class="note-item note-item-index--note-item show note-item-index--show">
+                            <view class="cover-wrap note-item-index--cover-wrap">
+                              <image class="final-cover note-item-index--final-cover show note-item-index--show sk-image" mode="aspectFill" style="height: 260px;"></image>
+                              <image class="cover note-item-index--cover sk-image" mode="aspectFill" style="height: 260px;"></image>
+                              <view class="address-info note-item-index--address-info sk-image">
+                                <image class="address-icon note-item-index--address-icon sk-image"></image>
+                                <text class="address-detail note-item-index--address-detail omit note-item-index--omit single note-item-index--single sk-transparent sk-text-14-2857-595 sk-text">千岛湖天屿景区</text>
+                              </view>
+                            </view>
+                          </view>
+                        </view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </scroll-view>
+      </swiper-item>
+    </swiper>
+  </view>
+</template>

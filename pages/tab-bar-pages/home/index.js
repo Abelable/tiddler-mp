@@ -1,4 +1,5 @@
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
+import dayjs from "dayjs";
 import { store } from "../../../store/index";
 import { checkLogin, debounce } from "../../../utils/index";
 import HomeService from "./utils/homeService";
@@ -29,9 +30,11 @@ Component({
   data: {
     statusBarHeight,
     categoryList,
+    pageLoaded: false,
     navBarActive: [false, false],
     curMenuIndex: 1,
     bannerList: [],
+    topMediaList: [],
     followMediaList: [],
     followRefreshing: false,
     followLoading: false,
@@ -50,7 +53,7 @@ Component({
   },
 
   methods: {
-    onLoad(options) {
+    async onLoad(options) {
       const { superiorId = "", scene = "" } = options || {};
       const decodedScene = scene ? decodeURIComponent(scene) : "";
       this.superiorId = superiorId || decodedScene.split("-")[0];
@@ -71,10 +74,9 @@ Component({
       this.initCalendar();
 
       this.setAdInfo();
-      this.setBannerList();
-
-      // scroll-view特效，设置refreshing值，即可触发初始化
-      this.setData({ refreshing: true });
+      await this.setBannerList();
+      await this.setTopMediaList();
+      this.setList(SCENE_REFRESH);
 
       wx.showShareMenu({
         withShareTicket: true,
@@ -170,6 +172,37 @@ Component({
       this.setData({ bannerList });
     },
 
+    async setTopMediaList() {
+      const { list = [] } = await homeService.getTopMediaList(1, 6);
+      const monthDescList = [
+        "JAN",
+        "FEB",
+        "MAR",
+        "APR",
+        "MAY",
+        "JUN",
+        "JUL",
+        "AUG",
+        "SEP",
+        "OCT",
+        "NOV",
+        "DEC"
+      ];
+      const topMediaList = list.map((item, index) => {
+        const time = dayjs().subtract(index, "day");
+        const year = time.year();
+        const monthIdx = time.month();
+        const date = `${time.date()}`.padStart(2, "0");
+        return {
+          ...item,
+          year,
+          month: monthDescList[monthIdx],
+          date
+        };
+      });
+      this.setData({ topMediaList });
+    },
+
     setFollowMediaList(init = false) {
       checkLogin(async () => {
         if (init) {
@@ -194,7 +227,7 @@ Component({
         } else {
           this.setData({
             followMediaList: [...followMediaList, ...list],
-            followLoading: false,
+            followLoading: false
           });
         }
         if (!list.length) {
@@ -216,7 +249,8 @@ Component({
         this.setData({
           mediaList: list,
           loading: false,
-          refreshing: false
+          refreshing: false,
+          pageLoaded: true
         });
       } else {
         this.setData({

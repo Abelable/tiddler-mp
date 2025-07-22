@@ -1,3 +1,6 @@
+<import src="index.skeleton.wxml"/>
+<template is="skeleton" wx:if="{{!pageLoaded}}" />
+
 <view class="nav-bar {{navBarActive[curMenuIndex] ? 'active': ''}}" style="padding-top: {{statusBarHeight}}px">
   <view class="menu-tabs-wrap">
     <view style="flex: 1">
@@ -28,7 +31,7 @@
   </view>
 </view>
 
-<swiper class="container" current="{{curMenuIndex}}" bindchange="swiperChange">
+<swiper wx:if="{{pageLoaded}}" class="container" current="{{curMenuIndex}}" bindchange="swiperChange">
   <swiper-item>
     <scroll-view 
       class="content-wrap" 
@@ -97,7 +100,7 @@
             <view class="category-name">{{item.name}}</view>
           </view>
         </view>
-        <top-media />
+        <top-media mediaList="{{topMediaList}}" />
         <fall-flow 
           class="fall-flow" 
           list="{{mediaList}}" 

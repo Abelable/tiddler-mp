@@ -1,23 +1,15 @@
-import dayjs from "dayjs";
-import HomeService from "../../utils/homeService";
-
-const homeService = new HomeService();
-
 Component({
   options: {
     addGlobalClass: true
   },
 
-  data: {
-    curMediaIdx: 0,
-    mediaList: [],
-    autoplay: true
+  properties: {
+    mediaList: Array
   },
 
-  lifetimes: {
-    attached() {
-      this.setMediaList();
-    }
+  data: {
+    curMediaIdx: 0,
+    autoplay: true
   },
 
   pageLifetimes: {
@@ -30,37 +22,6 @@ Component({
   },
 
   methods: {
-    async setMediaList() {
-      const { list = [] } = await homeService.getTopMediaList(1, 6);
-      const monthDescList = [
-        "JAN",
-        "FEB",
-        "MAR",
-        "APR",
-        "MAY",
-        "JUN",
-        "JUL",
-        "AUG",
-        "SEP",
-        "OCT",
-        "NOV",
-        "DEC"
-      ];
-      const mediaList = list.map((item, index) => {
-        const time = dayjs().subtract(index, "day");
-        const year = time.year();
-        const monthIdx = time.month();
-        const date = `${time.date()}`.padStart(2, "0");
-        return {
-          ...item,
-          year,
-          month: monthDescList[monthIdx],
-          date
-        };
-      });
-      this.setData({ mediaList });
-    },
-
     swiperChange(e) {
       const curMediaIdx = e.detail.current;
       this.setData({ curMediaIdx });
