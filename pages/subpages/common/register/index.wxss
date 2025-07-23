@@ -48,7 +48,7 @@
 .register-btn-wrap {
   position: absolute;
   left: 0;
-  bottom: 300rpx;
+  bottom: 200rpx;
   flex-direction: column;
   width: 100%;
 }
@@ -56,8 +56,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 80rpx;
-  margin-left: 0;
   width: 656rpx;
   height: 106rpx;
   color: #fff;
@@ -66,13 +64,13 @@
   background: var(--blue-1);
   border-radius: 32rpx;
 }
-.arrow {
-  margin-left: 12rpx;
-  width: 22rpx;
-  height: 22rpx;
+.back-tips {
+  margin-top: 32rpx;
+  color: var(--blue-1);
+  font-size: 28rpx;
 }
 .agreement-tips {
-  margin-top: 42rpx;
+  margin-top: 80rpx;
   color: #999;
   font-size: 24rpx;
 }

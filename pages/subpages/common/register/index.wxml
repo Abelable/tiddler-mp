@@ -16,18 +16,16 @@
       <view>旅途的意义也许不在于目的地，而是​</view>
       <view>沿途的风景​</view>
     </view>
-    
   </view>
 
   <view class="register-btn-wrap row center">
     <button class="register-btn" wx:if="{{!agree}}" bindtap="toast" hover-class="none">
-      <view>开启旅途</view>
-      <image class="arrow" src="https://static.tiddler.cn/mp/register/arrow.png" />
+      开启旅途
     </button>
     <button class="register-btn" wx:if="{{agree}}" bindgetphonenumber="getMobile" open-type="getPhoneNumber" hover-class="none">
-      <view>开启旅途</view>
-      <image class="arrow" src="https://static.tiddler.cn/mp/register/arrow.png" />
+      开启旅途
     </button>
+    <view class="back-tips" bindtap="navBack">暂不开启</view>
     <view class="agreement-tips row" bindtap="toggleAgree">
       <image class="checkbox" src="https://static.tiddler.cn/mp/register/select{{agree ? 'ed' : ''}}.png" />
       <text>开启旅途，阅读并同意</text>
