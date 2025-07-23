@@ -1,6 +1,5 @@
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { store } from "../../../../store/index";
-import { debounce } from "../../../../utils/index";
 import { formatter } from "./utils/index";
 import CateringService from "./utils/cateringService";
 
@@ -30,9 +29,10 @@ Page({
       fields: ["checkInDate", "checkOutDate"]
     });
 
-    if (!store.locationInfo) {
-      await cateringService.getLocationInfo();
-    }
+    // todo 审核注释
+    // if (!store.locationInfo) {
+    //   await cateringService.getLocationInfo();
+    // }
     await this.setCategoryOptions();
     this.setRestaurantList(true);
   },

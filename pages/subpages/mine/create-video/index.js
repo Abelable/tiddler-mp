@@ -22,9 +22,10 @@ Page({
     });
 
     this.setVideoUrl(tempFilePath);
-    if (!store.locationInfo) {
-      await videoService.getLocationInfo();
-    }
+    // todo 审核注释
+    // if (!store.locationInfo) {
+    //   await videoService.getLocationInfo();
+    // }
     this.mapInit();
   },
 

@@ -68,9 +68,10 @@ Component({
         }
       });
 
-      if (!store.locationInfo) {
-        homeService.getLocationInfo();
-      }
+      // todo 审核注释
+      // if (!store.locationInfo) {
+      //   homeService.getLocationInfo();
+      // }
       this.initCalendar();
 
       this.setAdInfo();

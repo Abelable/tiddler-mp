@@ -31,9 +31,10 @@ Page({
     });
 
     this.initCalendar();
-    if (!store.locationInfo) {
-      await hotelService.getLocationInfo();
-    }
+    // todo 审核注释
+    // if (!store.locationInfo) {
+    //   await hotelService.getLocationInfo();
+    // }
     await this.setCategoryOptions();
     this.setHotelList(true);
   },

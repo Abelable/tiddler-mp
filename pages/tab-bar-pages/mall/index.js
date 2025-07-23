@@ -55,9 +55,10 @@ Component({
         }
       });
 
-      if (!store.locationInfo) {
-        mallService.getLocationInfo();
-      }
+      // todo 审核注释
+      // if (!store.locationInfo) {
+      //   mallService.getLocationInfo();
+      // }
       this.initCalendar();
       await this.setBannerList();
       if (!this.data.productList.length) {

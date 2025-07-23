@@ -1,5 +1,6 @@
 import dayjs from "dayjs";
 import { calcDistance } from "../../../../../../utils/index";
+import { store } from "../../../../../../store/index";
 import GoodsService from "../../utils/goodsService";
 
 const goodsService = new GoodsService();
@@ -27,7 +28,10 @@ Page({
     const goodsDeliveryMode = +deliveryMode;
     this.setData({ goodsDeliveryMode });
     if (goodsDeliveryMode !== 1) {
-      await this.setLocationInfo();
+      // todo 审核注释
+      // if (!store.locationInfo) {
+      //   await goodsService.getLocationInfo();
+      // }
       this.setPickupAddressList(this.cartGoodsIds[0]);
     }
 
@@ -138,19 +142,14 @@ Page({
     this.setData({ preOrderInfo });
   },
 
-  async setLocationInfo() {
-    const { longitude, latitude } = await goodsService.getLocationInfo();
-    this.lo1 = longitude;
-    this.la1 = latitude;
-  },
-
   async setPickupAddressList(cartGoodsId) {
+    const { longitude: lo1, latitude: la1 } = store.locationInfo;
     const list = await goodsService.getPickupAddressList(cartGoodsId);
     const pickupAddressList = list.map(item => {
       const { longitude, latitude } = item;
       const la2 = +latitude;
       const lo2 = +longitude;
-      const distance = calcDistance(this.la1, this.lo1, la2, lo2);
+      const distance = calcDistance(la1, lo1, la2, lo2);
       return { ...item, distance };
     });
     this.setData({ pickupAddressList });

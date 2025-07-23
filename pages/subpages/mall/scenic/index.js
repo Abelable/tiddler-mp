@@ -22,9 +22,10 @@ Page({
   },
 
   async onLoad() {
-    if (!store.locationInfo) {
-      await scenicService.getLocationInfo();
-    }
+    // todo 审核注释
+    // if (!store.locationInfo) {
+    //   await scenicService.getLocationInfo();
+    // }
     await this.setCategoryOptions();
     this.setScenicList(true);
   },
