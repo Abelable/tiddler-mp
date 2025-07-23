@@ -49,7 +49,7 @@
         1/4
       </view>
     </view>
-    <view class="wrap">
+    <view class="container">
       <view class="goods-info-wrap">
         <view class="price-wrap row">
           <view class="row baseline">

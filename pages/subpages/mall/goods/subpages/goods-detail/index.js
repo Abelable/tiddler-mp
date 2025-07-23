@@ -34,6 +34,11 @@ Page({
   },
 
   async onLoad(options) {
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ["shareAppMessage", "shareTimeline"]
+    });
+
     this.storeBindings = createStoreBindings(this, {
       store,
       fields: ["userInfo"]
@@ -55,11 +60,6 @@ Page({
     });
 
     this.init();
-
-    wx.showShareMenu({
-      withShareTicket: true,
-      menus: ["shareAppMessage", "shareTimeline"]
-    });
   },
 
   onShow() {
@@ -73,12 +73,12 @@ Page({
     await this.setEvaluationSummary();
     if (!this.data.pageLoaded) {
       this.setData({ pageLoaded: true }, () => {
-        this.getInfoWrapHeight();
+        this.getInfoWrapTop();
+        this.getEvaluationTop();
+        this.getDetailTop();
       });
     }
     this.setCommission();
-    this.getEvaluationTop();
-    this.getDetailTop();
     this.setRecommendGoodsList(true);
   },
 
@@ -150,11 +150,11 @@ Page({
     this.setData({ cartGoodsNumber });
   },
 
-  getInfoWrapHeight() {
+  getInfoWrapTop() {
     const query = wx.createSelectorQuery();
-    query.select(".wrap").boundingClientRect();
+    query.select(".container").boundingClientRect();
     query.exec(res => {
-      this.infoWrapHeight = res[0].height;
+      this.infoWrapTop = res[0].top;
     });
   },
 
@@ -187,7 +187,7 @@ Page({
     const { showNavBar, evaluationActive, detailActive } = this.data;
 
     // 控制导航栏显隐
-    if (e.scrollTop >= this.infoWrapHeight - navBarHeight) {
+    if (e.scrollTop >= this.infoWrapTop - navBarHeight) {
       if (!showNavBar) this.setData({ showNavBar: true });
     } else {
       if (showNavBar) this.setData({ showNavBar: false });

@@ -83,7 +83,7 @@
   </view>
 </view>
 
-<view class="wrap {{goodsInfo.isGift ? 'gift' : ''}}" wx:if="{{pageLoaded}}">
+<view class="container {{goodsInfo.isGift ? 'gift' : ''}}" wx:if="{{pageLoaded}}">
   <!-- 商品基本信息 -->
   <view class="gift-bar" wx:if="{{goodsInfo.isGift}}">
     <view class="gift-bar-content row">

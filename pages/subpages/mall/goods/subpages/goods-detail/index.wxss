@@ -137,13 +137,13 @@ page {
   background: rgba(255, 255, 255, 0.6);
 }
 
-.wrap {
+.container {
   position: absolute;
   left: 0;
   top: 740rpx;
   width: 100%;
 }
-.wrap.gift {
+.container.gift {
   background-image: url('https://static.tiddler.cn/mp/gift_bar.png');
   background-size: 100% 168rpx;
   background-repeat: no-repeat;
