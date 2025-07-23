@@ -10,7 +10,7 @@ Component({
     item: {
       type: Object,
       observer(info) {
-        if (info) {
+        if (info && store.locationInfo) {
           const { longitude: lo1, latitude: la1 } = store.locationInfo;
           const { longitude: lo2, latitude: la2 } = info;
           const distance = calcDistance(la1, lo1, la2, lo2);
