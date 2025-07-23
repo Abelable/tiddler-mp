@@ -108,8 +108,9 @@
             <empty-illus 
               wx:if="{{!userInfo || !videoList.length}}" 
               desc="{{userInfo ? '暂无作品，快去发布吧' : '您还未登录'}}" 
+              height="520rpx"
             >
-              <view class="login-btn row center" height="520rpx" wx:if="{{!userInfo}}" bindtap="register">点击登录</view>
+              <view class="login-btn row center"  wx:if="{{!userInfo}}" bindtap="register">点击登录</view>
             </empty-illus>
           </view>
         </swiper-item>
@@ -134,8 +135,9 @@
             <empty-illus 
               wx:if="{{!userInfo || !noteList.length}}" 
               desc="{{userInfo ? '暂无作品，快去发布吧' : '您还未登录'}}" 
+              height="520rpx" 
             >
-              <view class="login-btn row center" height="520rpx" wx:if="{{!userInfo}}" bindtap="register">点击登录</view>
+              <view class="login-btn row center" wx:if="{{!userInfo}}" bindtap="register">点击登录</view>
             </empty-illus>
           </view>
         </swiper-item>
@@ -153,8 +155,9 @@
             <empty-illus 
               wx:if="{{!userInfo || !collectMediaList.length}}" 
               desc="{{userInfo ? '您还未收藏任何作品' : '您还未登录'}}" 
+              height="520rpx" 
             >
-              <view class="login-btn row center" height="520rpx" wx:if="{{!userInfo}}" bindtap="register">点击登录</view>
+              <view class="login-btn row center" wx:if="{{!userInfo}}" bindtap="register">点击登录</view>
             </empty-illus>
           </view>
         </swiper-item>
@@ -172,8 +175,9 @@
             <empty-illus 
               wx:if="{{!userInfo || !likeMediaList.length}}" 
               desc="{{userInfo ? '您还未点赞任何作品' : '您还未登录'}}" 
+              height="520rpx" 
             >
-              <view class="login-btn row center" height="520rpx" wx:if="{{!userInfo}}" bindtap="register">点击登录</view>
+              <view class="login-btn row center" wx:if="{{!userInfo}}" bindtap="register">点击登录</view>
             </empty-illus>
           </view>
         </swiper-item>

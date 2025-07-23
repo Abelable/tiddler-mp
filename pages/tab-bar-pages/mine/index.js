@@ -49,8 +49,12 @@ Component({
     userInfo: function (userInfo) {
       if (userInfo) {
         const { avatar = "" } = store.userInfo || {};
-        if (!avatar || avatar.includes("default_avatar")) {
+        if (
+          (!avatar || avatar.includes("default_avatar")) &&
+          !this.authInfoPopupShown
+        ) {
           this.setData({ authInfoPopupVisible: true });
+          this.authInfoPopupShown = true;
         }
 
         this.initToolList();
@@ -589,6 +593,12 @@ Component({
       checkLogin(() => {
         const url = "/pages/subpages/mine/fan-follow-list/index?scene=2";
         wx.navigateTo({ url });
+      });
+    },
+
+    register() {
+      wx.navigateTo({
+        url: "/pages/subpages/common/register/index"
       });
     },
 
