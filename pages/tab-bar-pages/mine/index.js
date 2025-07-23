@@ -27,7 +27,7 @@ Component({
     navBarVisible: false,
     menuFixed: false,
     curMenuIndex: 0,
-    wrapHeightList: [400, 400, 400, 400],
+    wrapHeightList: [500, 500, 500, 500],
     videoListTotal: 0,
     videoList: [],
     videoLoading: false,
@@ -70,21 +70,25 @@ Component({
       store.setTabType("mine");
 
       checkLogin(() => {
-        this.scrollTopArr = [0, 0, 0, 0];
-        wx.pageScrollTo({
-          scrollTop: 0,
-          duration: 0
-        });
-
-        this.updateUserInfo();
-        this.updateOrderTotal();
-
-        this.setList(SCENE_REFRESH);
-      });
+        this.init();
+      }, false);
     }
   },
 
   methods: {
+    init() {
+      this.scrollTopArr = [0, 0, 0, 0];
+      wx.pageScrollTo({
+        scrollTop: 0,
+        duration: 0
+      });
+
+      this.updateUserInfo();
+      this.updateOrderTotal();
+
+      this.setList(SCENE_REFRESH);
+    },
+
     updateUserInfo() {
       mineService.getMyInfo();
     },
@@ -185,14 +189,15 @@ Component({
     handleMenuChange(index) {
       const { curMenuIndex } = this.data;
       if (curMenuIndex !== index) {
-        this.setData({ curMenuIndex: index }, () => {
+        this.setData({ curMenuIndex: index });
+        checkLogin(() => {
           this.setList(SCENE_SWITCH_TAB);
-        });
-        this.scrollTopArr[curMenuIndex] = this.scrollTop || 0;
-        wx.pageScrollTo({
-          scrollTop: this.scrollTopArr[index] || 0,
-          duration: 0
-        });
+          this.scrollTopArr[curMenuIndex] = this.scrollTop || 0;
+          wx.pageScrollTo({
+            scrollTop: this.scrollTopArr[index] || 0,
+            duration: 0
+          });
+        }, false);
       }
     },
 
@@ -548,33 +553,43 @@ Component({
       }
     },
 
-    async navToVideoCreate() {
-      const { tempFilePath } = (await mineService.chooseVideo()) || {};
-      if (tempFilePath) {
-        const url = `/pages/subpages/mine/create-video/index?tempFilePath=${tempFilePath}`;
-        wx.navigateTo({ url });
-      }
+    navToVideoCreate() {
+      checkLogin(async () => {
+        const { tempFilePath } = (await mineService.chooseVideo()) || {};
+        if (tempFilePath) {
+          const url = `/pages/subpages/mine/create-video/index?tempFilePath=${tempFilePath}`;
+          wx.navigateTo({ url });
+        }
+      });
     },
 
     navToNoteCreate() {
-      const url = "/pages/subpages/mine/create-note/index";
-      wx.navigateTo({ url });
+      checkLogin(() => {
+        const url = "/pages/subpages/mine/create-note/index";
+        wx.navigateTo({ url });
+      });
     },
 
     navToUserInfoSetting() {
-      const url =
-        "/pages/subpages/mine/setting/subpages/user-info-setting/index";
-      wx.navigateTo({ url });
+      checkLogin(() => {
+        const url =
+          "/pages/subpages/mine/setting/subpages/user-info-setting/index";
+        wx.navigateTo({ url });
+      });
     },
 
     checkFollowList() {
-      const url = "/pages/subpages/mine/fan-follow-list/index?scene=1";
-      wx.navigateTo({ url });
+      checkLogin(() => {
+        const url = "/pages/subpages/mine/fan-follow-list/index?scene=1";
+        wx.navigateTo({ url });
+      });
     },
 
     checkFanList() {
-      const url = "/pages/subpages/mine/fan-follow-list/index?scene=2";
-      wx.navigateTo({ url });
+      checkLogin(() => {
+        const url = "/pages/subpages/mine/fan-follow-list/index?scene=2";
+        wx.navigateTo({ url });
+      });
     },
 
     hideAuthInfoPopup() {

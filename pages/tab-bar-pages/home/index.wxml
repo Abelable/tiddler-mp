@@ -53,7 +53,6 @@
         <empty-illus 
           wx:if="{{!userInfo || (followFinished && !followMediaList.length)}}" 
           desc="{{userInfo ? '暂无关注列表' : '您还未登录'}}" 
-          bind:btnClick="register"
         >
           <view class="login-btn row center" wx:if="{{!userInfo}}" bindtap="register">点击登录</view>
         </empty-illus>
