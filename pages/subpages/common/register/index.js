@@ -1,8 +1,8 @@
-import { WEBVIEW_BASE_URL } from '../../../../config'
-import BaseService from '../../../../services/baseService'
+import { WEBVIEW_BASE_URL } from "../../../../config";
+import BaseService from "../../../../services/baseService";
 
-const baseService = new BaseService()
-const { statusBarHeight } = getApp().globalData.systemInfo
+const baseService = new BaseService();
+const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Page({
   data: {
@@ -15,9 +15,9 @@ Page({
   },
 
   async getMobile(e) {
-    const mobile = await baseService.getUserMobile(e.detail.code)
+    const mobile = await baseService.getUserMobile(e.detail.code);
     if (mobile) {
-      this.mobile = mobile
+      this.mobile = mobile;
       this.register();
     }
   },
@@ -52,17 +52,22 @@ Page({
   },
 
   checkAgreement() {
-    wx.navigateTo({ url: `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/protocol/user` })
+    wx.navigateTo({
+      url: `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/protocol/user`
+    });
   },
 
   navBack() {
     const pagesLength = getCurrentPages().length;
     const prePage = getCurrentPages()[pagesLength - 2];
     const prePageRoute = prePage ? prePage.route : "";
-    if (prePageRoute === "pages/subpages/mall/goods/subpages/cart/index") {
+    if (
+      prePageRoute === "pages/subpages/mall/goods/subpages/cart/index" ||
+      prePageRoute === "pages/tab-bar-pages/mine/index"
+    ) {
       wx.navigateBack({ delta: 2 });
     } else {
       wx.navigateBack();
     }
   }
-})
+});
