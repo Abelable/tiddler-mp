@@ -61,9 +61,11 @@ Page({
     const pagesLength = getCurrentPages().length;
     const prePage = getCurrentPages()[pagesLength - 2];
     const prePageRoute = prePage ? prePage.route : "";
-    if (
-      prePageRoute === "pages/subpages/mall/goods/subpages/cart/index" ||
-      prePageRoute === "pages/tab-bar-pages/mine/index"
+    console.log("prePageRoute", prePageRoute);
+    if (prePageRoute === "pages/tab-bar-pages/mine/index") {
+      wx.switchTab({ url: "/pages/tab-bar-pages/home/index" });
+    } else if (
+      prePageRoute === "pages/subpages/mall/goods/subpages/cart/index"
     ) {
       wx.navigateBack({ delta: 2 });
     } else {
