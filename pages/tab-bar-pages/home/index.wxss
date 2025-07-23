@@ -108,7 +108,7 @@
 
 .banner {
   margin-top: 8rpx;
-  margin-bottom: 32rpx;
+  margin-bottom: 20rpx;
   height: 200rpx;
 }
 .banner-item {
@@ -120,7 +120,7 @@
 }
 
 .category-list {
-  margin: 18rpx 24rpx 32rpx;
+  margin: 32rpx 24rpx;
 }
 .category-item {
   font-size: 0;

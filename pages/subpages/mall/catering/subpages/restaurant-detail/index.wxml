@@ -159,7 +159,7 @@
     desc="暂无代金券" 
     height="520rpx" 
   >
-     <!-- todo toolVisible - 用于前期提交审核隐藏部分功能，后期需要删除 -->
+    <!-- todo toolVisible - 用于前期提交审核隐藏部分功能，后期需要删除 -->
     <view class="merchant-btn row center" wx:if="{{toolVisible}}" bindtap="settleIn">商家入驻</view>
   </empty-illus>
 

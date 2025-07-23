@@ -146,7 +146,8 @@
     }
   },
   "requiredPrivateInfos": [
-    "chooseAddress"
+    "chooseAddress",
+    "getLocation"
   ],
   "sitemapLocation": "sitemap.json",
   "lazyCodeLoading": "requiredComponents"

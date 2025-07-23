@@ -28,6 +28,7 @@ Component({
   },
 
   data: {
+    toolVisible: false, // todo 用于前期提交审核隐藏部分功能，后期需要删除
     statusBarHeight,
     categoryList,
     pageLoaded: false,
@@ -54,6 +55,12 @@ Component({
 
   methods: {
     async onLoad(options) {
+      // todo 用于前期提交审核隐藏部分功能，后期需要删除
+      const { envVersion } = wx.getAccountInfoSync().miniProgram || {};
+      if (envVersion === "release") {
+        this.setData({ toolVisible: true });
+      }
+
       const { superiorId = "", scene = "" } = options || {};
       const decodedScene = scene ? decodeURIComponent(scene) : "";
       this.superiorId = superiorId || decodedScene.split("-")[0];
