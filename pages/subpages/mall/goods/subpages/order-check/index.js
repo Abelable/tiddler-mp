@@ -28,10 +28,9 @@ Page({
     const goodsDeliveryMode = +deliveryMode;
     this.setData({ goodsDeliveryMode });
     if (goodsDeliveryMode !== 1) {
-      // todo 审核注释
-      // if (!store.locationInfo) {
-      //   await goodsService.getLocationInfo();
-      // }
+      if (!store.locationInfo) {
+        await goodsService.getLocationInfo();
+      }
       this.setPickupAddressList(this.cartGoodsIds[0]);
     }
 

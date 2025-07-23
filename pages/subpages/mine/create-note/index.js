@@ -23,10 +23,9 @@ Page({
       fields: ["mediaProductList"]
     });
 
-    // todo 审核注释
-    // if (!store.locationInfo) {
-    //   await noteService.getLocationInfo();
-    // }
+    if (!store.locationInfo) {
+      await noteService.getLocationInfo();
+    }
     this.mapInit();
   },
 

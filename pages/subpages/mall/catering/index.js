@@ -29,10 +29,9 @@ Page({
       fields: ["checkInDate", "checkOutDate"]
     });
 
-    // todo 审核注释
-    // if (!store.locationInfo) {
-    //   await cateringService.getLocationInfo();
-    // }
+    if (!store.locationInfo) {
+      await cateringService.getLocationInfo();
+    }
     await this.setCategoryOptions();
     this.setRestaurantList(true);
   },

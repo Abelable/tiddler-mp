@@ -22,10 +22,9 @@ Page({
     });
 
     this.setVideoUrl(tempFilePath);
-    // todo 审核注释
-    // if (!store.locationInfo) {
-    //   await videoService.getLocationInfo();
-    // }
+    if (!store.locationInfo) {
+      await videoService.getLocationInfo();
+    }
     this.mapInit();
   },
 
@@ -143,17 +142,17 @@ Page({
         case 1:
           scenicIds.push(id);
           break;
-       case 2:
+        case 2:
           hotelIds.push(id);
           break;
-           case 3:
+        case 3:
           restaurantIds.push(id);
           break;
-           case 4:
+        case 4:
           goodsIds.push(id);
           break;
       }
-    })
+    });
 
     const videoInfo = {
       title,

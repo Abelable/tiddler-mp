@@ -55,16 +55,15 @@ Component({
         }
       });
 
-      // todo 审核注释
-      // if (!store.locationInfo) {
-      //   mallService.getLocationInfo();
-      // }
+      if (!store.locationInfo) {
+        mallService.getLocationInfo();
+      }
       this.initCalendar();
       await this.setBannerList();
       if (!this.data.productList.length) {
         await this.setProductList(true);
       }
-      this.setData({ pageLoaded: true })
+      this.setData({ pageLoaded: true });
     },
 
     initCalendar() {
