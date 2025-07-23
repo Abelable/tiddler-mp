@@ -54,7 +54,6 @@ Page({
       }
     });
 
-    this.getInfoWrapHeight();
     this.init();
 
     wx.showShareMenu({
@@ -72,7 +71,11 @@ Page({
   async init() {
     await this.setGoodsInfo();
     await this.setEvaluationSummary();
-    this.setData({ pageLoaded: true })
+    if (!this.data.pageLoaded) {
+      this.setData({ pageLoaded: true }, () => {
+        this.getInfoWrapHeight();
+      });
+    }
     this.setCommission();
     this.getEvaluationTop();
     this.getDetailTop();
@@ -245,7 +248,7 @@ Page({
     const curDot = e.currentTarget.dataset.index;
     this.setData({ curDot });
   },
-  
+
   previewMedia(e) {
     const { current } = e.currentTarget.dataset;
     const { video, imageList } = this.data.goodsInfo;
