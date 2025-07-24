@@ -119,18 +119,18 @@
   height: 100%;
 }
 
-.category-list {
+.classification-list {
   margin: 32rpx 24rpx;
 }
-.category-item {
+.classification-item {
   font-size: 0;
   text-align: center;
 }
-.category-icon {
+.classification-icon {
   width: 68rpx;
   height: 68rpx;
 }
-.category-name {
+.classification-name {
   margin-top: 4rpx;
   color: #333;
   font-size: 20rpx;
