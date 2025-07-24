@@ -28,7 +28,7 @@
   </view>
 </view>
 
-<view class="list-wrap">
+<view class="list-wrap" wx:if="{{toolVisible}}">
   <view class="list row between">
     <view class="title">常见问题与反馈</view>
     <image class="arrow" src="./images/arrow.png" />

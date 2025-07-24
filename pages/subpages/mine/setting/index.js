@@ -1,4 +1,5 @@
 import { WEBVIEW_BASE_URL } from "../../../../config";
+import { checkLogin } from "../../../../utils/index";
 
 Page({
   data: {
@@ -14,33 +15,43 @@ Page({
   },
 
   editUserInfo() {
-    wx.navigateTo({
-      url: "./subpages/user-info-setting/index"
-    });
+    checkLogin(() => {
+      wx.navigateTo({ url: "./subpages/user-info-setting/index" });
+    }, true);
   },
 
   navToAuth() {
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/auth`;
-    wx.navigateTo({ url });
+    checkLogin(() => {
+      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/auth`;
+      wx.navigateTo({ url });
+    }, true);
   },
 
   navToScenicMerchantSettleIn() {
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/scenic/merchant/settle_in`;
-    wx.navigateTo({ url });
+    checkLogin(() => {
+      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/scenic/merchant/settle_in`;
+      wx.navigateTo({ url });
+    }, true);
   },
 
   navToHotelProviderSettleIn() {
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/hotel/merchant/settle_in`;
-    wx.navigateTo({ url });
+    checkLogin(() => {
+      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/hotel/merchant/settle_in`;
+      wx.navigateTo({ url });
+    }, true);
   },
 
   navToCateringSettleIn() {
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/catering/merchant/settle_in`;
-    wx.navigateTo({ url });
+    checkLogin(() => {
+      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/catering/merchant/settle_in`;
+      wx.navigateTo({ url });
+    }, true);
   },
 
   navToMerchantSettleIn() {
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/goods/merchant/settle_in`;
-    wx.navigateTo({ url });
+    checkLogin(() => {
+      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/goods/merchant/settle_in`;
+      wx.navigateTo({ url });
+    }, true);
   }
 });

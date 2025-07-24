@@ -21,7 +21,13 @@ Component({
 
   data: {
     statusBarHeight,
-    toolList: [],
+    toolList: [
+      { name: "订单中心", icon: "order" },
+      { name: "收货地址", icon: "address" },
+      { name: "优惠券", icon: "coupon" },
+      { name: "浏览历史", icon: "history" },
+      { name: "更多设置", icon: "setting" }
+    ],
     showAllTools: false,
     orderTotal: 0,
     navBarVisible: false,
@@ -145,7 +151,7 @@ Component({
         cateringShopManagerList,
         shopId,
         shopManagerList
-      } = store.userInfo;
+      } = store.userInfo || {};
 
       const toolList = [
         { name: "订单中心", icon: "order" },
@@ -440,9 +446,17 @@ Component({
       } else if (type === "scan") {
         this.scan();
       } else {
-        wx.navigateTo({
-          url: `/pages/subpages/mine/${type}/index`
-        });
+        if (type === "setting") {
+          wx.navigateTo({
+            url: `/pages/subpages/mine/${type}/index`
+          });
+        } else {
+          checkLogin(() => {
+            wx.navigateTo({
+              url: `/pages/subpages/mine/${type}/index`
+            });
+          }, true);
+        }
       }
     },
 

@@ -5,7 +5,7 @@
   border-top: 1px solid #f5f6f7;
 }
 .list {
-  height: 88rpx;
+  height: 100rpx;
   border-bottom: 1px solid #f5f6f7;
 }
 .list:last-child {
