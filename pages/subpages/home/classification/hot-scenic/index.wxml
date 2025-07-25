@@ -1,5 +1,5 @@
 <view class="back-icon-wrap" style="top: {{statusBarHeight + 5}}px">
-  <back-icon custom bind:navigateBack="navBack" />
+  <back-icon />
 </view>
 
 <view class="container">
