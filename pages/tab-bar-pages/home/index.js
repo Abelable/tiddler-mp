@@ -341,7 +341,7 @@ Component({
       switch (index) {
         case 0:
           wx.navigateTo({
-            url: "/pages/subpages/home/classification/hot-spot/index"
+            url: "/pages/subpages/home/classification/hot-scenic/index"
           });
           break;
       }
