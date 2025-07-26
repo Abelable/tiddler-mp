@@ -4,41 +4,51 @@
 
 <view class="container">
   <view class="header">
-    <image class="bg" src="{{hotScenicList[curMenuIdx].scenicCover}}" mode="cover" />
+    <image class="bg" src="{{hotScenicList[curMenuIdx].scenicCover}}" mode="aspectFill" />
     <view class="title-wrap">
       <image class="title" src="https://static.tiddler.cn/mp/classification/hot_scenic/title.png" />
     </view>
-    <scroll-view class="menu-wrap" scroll-x>
-      <view 
-        class="menu-item {{curMenuIdx === index ? 'active' : ''}}" 
-        wx:for="{{hotScenicList}}" 
-        wx:key="index"
-        bindtap="selectMenu"
-        data-index="{{index}}"
-      >
-        <image class="menu-scenic-cover {{curMenuIdx === index ? 'active' : ''}}" src="{{item.scenicCover}}" mode="cover" />
-        <view class="menu-scenic-info {{curMenuIdx === index ? 'active' : ''}}">
-          <view class="menu-scenic-name {{curMenuIdx === index ? 'active' : ''}}">{{item.scenicName}}</view>
-          <view class="menu-scenic-data {{curMenuIdx === index ? 'active' : ''}}">{{item.interestedUserNumber}}人感兴趣</view>
+    <scroll-view class="menu-wrap" scroll-left="{{curMenuIdx * 88}}" scroll-with-animation scroll-x>
+      <view class="menu-list">
+        <view 
+          class="menu-item {{curMenuIdx === index ? 'active' : ''}}" 
+          wx:for="{{hotScenicList}}" 
+          wx:key="index"
+          bindtap="selectMenu"
+          data-index="{{index}}"
+        >
+          <image class="menu-scenic-cover {{curMenuIdx === index ? 'active' : ''}}" src="{{item.scenicCover}}" mode="aspectFill" />
+          <view class="menu-scenic-info {{curMenuIdx === index ? 'active' : ''}}">
+            <view class="menu-scenic-name {{curMenuIdx === index ? 'active' : ''}}">{{item.scenicName}}</view>
+            <view class="menu-scenic-data {{curMenuIdx === index ? 'active' : ''}}">{{item.interestedUserNumber}}人感兴趣</view>
+          </view>
         </view>
       </view>
     </scroll-view>
   </view>
 
-  <scroll-view class="scenic-list" scroll-y>
-    <view class="scenic-item" wx:for="{{hotScenicList}}" wx:key="index">
-      <image class="top-tag" src="https://static.tiddler.cn/mp/classification/hot_scenic/top_{{index + 1}}.png" />
-      <image class="scenic-cover" src="{{item.scenicCover}}" mode="cover" />
-      <view class="scenic-info-wrap row">
-        <view class="scenic-info">
-          <view class="scenic-name">网红打卡地｜{{item.scenicName}}</view>
-          <view class="scenic-feature row">
-            <image class="recommend-tag" src="https://static.tiddler.cn/mp/classification/hot_scenic/reason_tag.png" />
-            <view>{{item.recommendReason}}</view>
+  <scroll-view 
+    class="scenic-list-wrap"
+    scroll-top="{{curMenuIdx * 296}}" 
+    bindscroll="onScroll"
+    scroll-with-animation 
+    scroll-y
+  >
+    <view class="scenic-list">
+      <view class="scenic-item" wx:for="{{hotScenicList}}" wx:key="index">
+        <image class="top-tag" src="https://static.tiddler.cn/mp/classification/hot_scenic/top_{{index + 1}}.png" />
+        <image class="scenic-cover" src="{{item.scenicCover}}" mode="aspectFill" />
+        <view class="scenic-info-wrap row">
+          <view class="scenic-info">
+            <view class="scenic-name">网红打卡地｜{{item.scenicName}}</view>
+            <view class="scenic-feature row">
+              <image class="recommend-tag" src="https://static.tiddler.cn/mp/classification/hot_scenic/reason_tag.png" />
+              <view>{{item.recommendReason}}</view>
+            </view>
           </view>
-        </view>
-        <view class="check-btn row center" bindtap="checkScenic" data-id="{{item.scenicId}}">
-          <image class="arrow" src="https://static.tiddler.cn/mp/classification/hot_scenic/arrow.png" />
+          <view class="check-btn row center" bindtap="checkScenic" data-id="{{item.scenicId}}">
+            <image class="arrow" src="https://static.tiddler.cn/mp/classification/hot_scenic/arrow.png" />
+          </view>
         </view>
       </view>
     </view>
