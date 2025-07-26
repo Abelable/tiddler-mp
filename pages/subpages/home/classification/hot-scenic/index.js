@@ -28,7 +28,7 @@ Page({
   onScroll(e) {
     const scrollTop = e.detail.scrollTop;
     const itemHeight = 296;
-    const index = Math.floor(scrollTop / itemHeight);
+    const index = Math.max(Math.floor(scrollTop / itemHeight));
 
     if (this.data.curMenuIdx !== index) {
       this.setData({ curMenuIdx: index });

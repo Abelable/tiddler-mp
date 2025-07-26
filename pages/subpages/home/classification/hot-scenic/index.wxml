@@ -1,3 +1,5 @@
+<wxs module="NUM" src="/utils/filters/num.wxs" />
+
 <view class="back-icon-wrap" style="top: {{statusBarHeight + 5}}px">
   <back-icon />
 </view>
@@ -20,7 +22,7 @@
           <image class="menu-scenic-cover {{curMenuIdx === index ? 'active' : ''}}" src="{{item.scenicCover}}" mode="aspectFill" />
           <view class="menu-scenic-info {{curMenuIdx === index ? 'active' : ''}}">
             <view class="menu-scenic-name {{curMenuIdx === index ? 'active' : ''}}">{{item.scenicName}}</view>
-            <view class="menu-scenic-data {{curMenuIdx === index ? 'active' : ''}}">{{item.interestedUserNumber}}人感兴趣</view>
+            <view class="menu-scenic-data {{curMenuIdx === index ? 'active' : ''}}">{{NUM.over(item.interestedUserNumber, 10000)}}人感兴趣</view>
           </view>
         </view>
       </view>
