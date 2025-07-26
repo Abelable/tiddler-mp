@@ -4,14 +4,14 @@
 
 <view class="container">
   <view class="header">
-    <image class="bg" src="./images/bg.jpg" mode="cover" />
+    <image class="bg" src="{{hotScenicList[curMenuIdx].scenicCover}}" mode="cover" />
     <view class="title-wrap">
       <image class="title" src="https://static.tiddler.cn/mp/classification/hot_scenic/title.png" />
     </view>
     <scroll-view class="menu-wrap" scroll-x>
       <view 
         class="menu-item {{curMenuIdx === index ? 'active' : ''}}" 
-        wx:if="{{hotScenicList}}" 
+        wx:for="{{hotScenicList}}" 
         wx:key="index"
         bindtap="selectMenu"
         data-index="{{index}}"
@@ -27,7 +27,7 @@
 
   <scroll-view class="scenic-list" scroll-y>
     <view class="scenic-item" wx:for="{{hotScenicList}}" wx:key="index">
-      <image class="top-tag" src="https://static.tiddler.cn/mp/classification/hot_scenic/top_{{index}}.png" />
+      <image class="top-tag" src="https://static.tiddler.cn/mp/classification/hot_scenic/top_{{index + 1}}.png" />
       <image class="scenic-cover" src="{{item.scenicCover}}" mode="cover" />
       <view class="scenic-info-wrap row">
         <view class="scenic-info">
