@@ -81,7 +81,7 @@ class MediaService extends BaseService {
     const { list = [] } =
       (await this.get({
         url: `${this.baseUrl}/media/tourism_note/reply_comment_list`,
-        data: { mediaId, commentId, page, limit },
+        data: { mediaId, commentId, page, limit }
       })) || {};
     return list;
   }
@@ -132,6 +132,10 @@ class MediaService extends BaseService {
       data: { id },
       success
     });
+  }
+
+  async getHotScenicList() {
+    return await this.get({ url: `${this.baseUrl}/scenic/hot_list` }) || [];
   }
 }
 
