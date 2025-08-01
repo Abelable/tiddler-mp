@@ -345,7 +345,7 @@ Component({
         "night-trip",
         "star-trip"
       ];
-      const url = `/pages/subpages/home/classification/${pathList[index]}/index`;
+      const url = `/pages/subpages/home/trip-type/${pathList[index]}/index`;
       wx.navigateTo({ url });
     },
 

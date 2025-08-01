@@ -8,7 +8,7 @@
       "list": [
         {
           "name": "游湖登岛",
-          "pathName": "pages/subpages/home/classification/lake-trip/index",
+          "pathName": "pages/subpages/home/trip-type/lake-trip/index",
           "query": "",
           "launchMode": "default",
           "scene": null
