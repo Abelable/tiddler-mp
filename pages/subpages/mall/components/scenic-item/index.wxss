@@ -5,34 +5,34 @@
   border-radius: 12rpx;
   box-shadow: 0 0 12rpx 6rpx #f5f6f7;
 }
-.scenic-image {
+.scenic-item-cover {
   border-radius: 12rpx 12rpx 0 0;
   width: 100%;
   height: 140rpx;
 }
-.scenic-info {
+.scenic-item-info {
   padding: 10rpx;
 }
-.scenic-name {
+.scenic-item-name {
   color: #333;
   font-size: 24rpx;
   font-weight: bold;
 }
-.scenic-rate-wrap {
+.scenic-item-rate-wrap {
   margin-top: 6rpx;
 }
-.scenic-rate {
+.scenic-item-rate {
   margin-left: 4rpx;
   margin-top: -1rpx;
   color: #333;
   font-size: 20rpx;
 }
-.scenic-distance {
+.scenic-item-distance {
   margin-top: 12rpx;
   color: #666;
   font-size: 20rpx;
 }
-.scenic-distance-icon {
+.scenic-item-distance-icon {
   margin-right: 4rpx;
   width: 18rpx;
   height: 18rpx;

@@ -3,7 +3,7 @@
   <view class="hotel-info-wrap">
     <view class="hotel-name omit single">{{info.name}}</view>
     <view class="hotel-appraise row">
-      <view class="hotel-rate">
+      <view class="hotel-rate" wx:if="{{info.score}}">
         <text class="hotel-rate-number">{{info.score}}</text>
         <text>分</text>
       </view>
