@@ -8,7 +8,7 @@
   <view class="header">
     <image class="bg" src="{{hotScenicList[curMenuIdx].scenicCover}}" mode="aspectFill" />
     <view class="title-wrap">
-      <image class="title" src="https://static.tiddler.cn/mp/classification/hot_scenic/title.png" />
+      <image class="title" src="https://static.tiddler.cn/mp/trip_type/hot_scenic/title.png" />
     </view>
     <scroll-view class="menu-wrap" scroll-left="{{curMenuIdx * 88}}" scroll-with-animation scroll-x>
       <view class="menu-list">
@@ -38,18 +38,18 @@
   >
     <view class="scenic-list">
       <view class="scenic-item" wx:for="{{hotScenicList}}" wx:key="index">
-        <image class="top-tag" src="https://static.tiddler.cn/mp/classification/hot_scenic/top_{{index + 1}}.png" />
+        <image class="top-tag" src="https://static.tiddler.cn/mp/trip_type/hot_scenic/top_{{index + 1}}.png" />
         <image class="scenic-cover" src="{{item.scenicCover}}" mode="aspectFill" />
         <view class="scenic-info-wrap row">
           <view class="scenic-info">
             <view class="scenic-name">网红打卡地｜{{item.scenicName}}</view>
             <view class="scenic-feature row">
-              <image class="recommend-tag" src="https://static.tiddler.cn/mp/classification/hot_scenic/reason_tag.png" />
+              <image class="recommend-tag" src="https://static.tiddler.cn/mp/trip_type/hot_scenic/reason_tag.png" />
               <view>{{item.recommendReason}}</view>
             </view>
           </view>
           <view class="check-btn row center" bindtap="checkScenic" data-id="{{item.scenicId}}">
-            <image class="arrow" src="https://static.tiddler.cn/mp/classification/hot_scenic/arrow.png" />
+            <image class="arrow" src="https://static.tiddler.cn/mp/trip_type/hot_scenic/arrow.png" />
           </view>
         </view>
       </view>

@@ -67,7 +67,7 @@
   padding: 11rpx;
   width: 250rpx;
   height: 255rpx;
-  background-image: url('https://static.tiddler.cn/mp/classification/hot_scenic/menu_bg.png');
+  background-image: url('https://static.tiddler.cn/mp/trip_type/hot_scenic/menu_bg.png');
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }

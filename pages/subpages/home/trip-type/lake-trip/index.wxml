@@ -4,55 +4,87 @@
   <back-icon />
 </view>
 
-<view class="container">
-  <view class="header">
-    <image class="bg" src="{{hotScenicList[curMenuIdx].scenicCover}}" mode="aspectFill" />
-    <view class="title-wrap">
-      <image class="title" src="https://static.tiddler.cn/mp/classification/hot_scenic/title.png" />
-    </view>
-    <scroll-view class="menu-wrap" scroll-left="{{curMenuIdx * 88}}" scroll-with-animation scroll-x>
-      <view class="menu-list">
-        <view 
-          class="menu-item {{curMenuIdx === index ? 'active' : ''}}" 
-          wx:for="{{hotScenicList}}" 
-          wx:key="index"
-          bindtap="selectMenu"
-          data-index="{{index}}"
-        >
-          <image class="menu-scenic-cover {{curMenuIdx === index ? 'active' : ''}}" src="{{item.scenicCover}}" mode="aspectFill" />
-          <view class="menu-scenic-info {{curMenuIdx === index ? 'active' : ''}}">
-            <view class="menu-scenic-name {{curMenuIdx === index ? 'active' : ''}}">{{item.scenicName}}</view>
-            <view class="menu-scenic-data {{curMenuIdx === index ? 'active' : ''}}">{{NUM.over(item.interestedUserNumber, 10000)}}人感兴趣</view>
+<view class="header">
+  <image class="bg" src="https://static.tiddler.cn/mp/trip_type/lake_trip/bg.png" />
+  <image class="title" src="https://static.tiddler.cn/mp/trip_type/lake_trip/title.png" />
+</view>
+
+<view class="content">
+  <image class="sub-title" src="https://static.tiddler.cn/mp/trip_type/lake_trip/sub_title_1.png" />
+  <view class="island-list">
+    <view class="island-item" wx:for="{{hotScenicList}}" wx:key="index">
+      <image class="island-cover" src="{{item.scenicCover}}" mode="aspectFill" />
+      <view class="island-name-wrap">
+        <view class="island-name">千岛湖中心湖区 梅峰岛</view>
+        <view class="island-desc">群岛星罗棋布 生态环境好</view>
+      </view>
+      <view class="island-info-wrap row">
+        <view class="island-data-list row">
+          <view class="island-data-item">
+            <view class="island-data">
+              <text>700</text>
+              <text class="island-data-unit">km</text>
+            </view>
+            <view class="island-data-desc">行程里数</view>
+          </view>
+          <view class="split-line">/</view>
+          <view class="island-data-item">
+            <view class="island-data">
+              <text>1~2</text>
+              <text class="island-data-unit">h</text>
+            </view>
+            <view class="island-data-desc">行程时长</view>
+          </view>
+          <view class="split-line">/</view>
+           <view class="island-data-item">
+            <view class="island-data">
+              <text>6~9</text>
+              <text class="island-data-unit">月</text>
+            </view>
+            <view class="island-data-desc">最佳时间</view>
           </view>
         </view>
+        <image class="arrow" src="https://static.tiddler.cn/mp/trip_type/lake_trip/arrow.png" />
       </view>
-    </scroll-view>
+    </view>
   </view>
 
-  <scroll-view 
-    class="scenic-list-wrap"
-    scroll-top="{{scrollTop}}" 
-    bindscroll="onScroll"
-    scroll-with-animation 
-    scroll-y
-  >
-    <view class="scenic-list">
-      <view class="scenic-item" wx:for="{{hotScenicList}}" wx:key="index">
-        <image class="top-tag" src="https://static.tiddler.cn/mp/classification/hot_scenic/top_{{index + 1}}.png" />
-        <image class="scenic-cover" src="{{item.scenicCover}}" mode="aspectFill" />
-        <view class="scenic-info-wrap row">
-          <view class="scenic-info">
-            <view class="scenic-name">网红打卡地｜{{item.scenicName}}</view>
-            <view class="scenic-feature row">
-              <image class="recommend-tag" src="https://static.tiddler.cn/mp/classification/hot_scenic/reason_tag.png" />
-              <view>{{item.recommendReason}}</view>
+  <image class="sub-title" src="https://static.tiddler.cn/mp/trip_type/lake_trip/sub_title_2.png" />
+  <view class="island-list">
+    <view class="island-item" wx:for="{{hotScenicList}}" wx:key="index">
+      <image class="island-cover" src="{{item.scenicCover}}" mode="aspectFill" />
+      <view class="island-name-wrap">
+        <view class="island-name">千岛湖中心湖区 梅峰岛</view>
+        <view class="island-desc">群岛星罗棋布 生态环境好</view>
+      </view>
+      <view class="island-info-wrap row">
+        <view class="island-data-list row">
+          <view class="island-data-item">
+            <view class="island-data">
+              <text>700</text>
+              <text class="island-data-unit">km</text>
             </view>
+            <view class="island-data-desc">行程里数</view>
           </view>
-          <view class="check-btn row center" bindtap="checkScenic" data-id="{{item.scenicId}}">
-            <image class="arrow" src="https://static.tiddler.cn/mp/classification/hot_scenic/arrow.png" />
+          <view class="split-line">/</view>
+          <view class="island-data-item">
+            <view class="island-data">
+              <text>1~2</text>
+              <text class="island-data-unit">h</text>
+            </view>
+            <view class="island-data-desc">行程时长</view>
+          </view>
+          <view class="split-line">/</view>
+           <view class="island-data-item">
+            <view class="island-data">
+              <text>6~9</text>
+              <text class="island-data-unit">月</text>
+            </view>
+            <view class="island-data-desc">最佳时间</view>
           </view>
         </view>
+        <image class="arrow" src="https://static.tiddler.cn/mp/trip_type/lake_trip/arrow.png" />
       </view>
     </view>
-  </scroll-view>
+  </view>
 </view>

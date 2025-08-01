@@ -1,3 +1,7 @@
+page {
+  background: #59A9D4;
+}
+
 .back-icon-wrap {
   position: fixed;
   left: 8px;
@@ -7,173 +11,93 @@
   z-index: 100;
 }
 
-.container {
-  min-height: 100vh;
-  background: #282b33;
-}
-
 .header {
   position: relative;
-  height: 750rpx;
 }
 .bg {
   width: 100%;
-  height: 588rpx;
-}
-.title-wrap {
-  position: absolute;
-  top: 220rpx;
-  left: 0;
-  padding: 24rpx;
-  padding-left: 32rpx;
-  font-size: 0;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(8px);
-  border-radius: 0 24rpx 24rpx 0;
+  height: 500rpx;
 }
 .title {
-  width: 300rpx;
-  height: 128rpx;
+  position: absolute;
+  left: 24rpx;
+  bottom: 65rpx;
+  width: 572rpx;
+  height: 118rpx;
 }
 
-.menu-wrap {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
+.content {
+  padding: 0 32rpx 32rpx;
 }
-.menu-list {
-  padding-right: 1rpx;
-  white-space: nowrap;
+.sub-title {
+  margin-top: 24rpx;
+  width: 168rpx;
+  height: 41rpx;
 }
-.menu-item {
-  display: inline-block;
+
+.island-list {
+  margin-top: 32rpx;
+}
+.island-item {
   position: relative;
-  margin-left: 18rpx;
-  margin-bottom: 30rpx;
-  width: 188rpx;
-  height: 170rpx;
-  border-radius: 30rpx;
+  margin-bottom: 32rpx;
+  height: 440rpx;
+  font-size: 0;
+  border-radius: 48rpx;
   overflow: hidden;
 }
-.menu-item:first-child {
-  margin-left: 32rpx;
-}
-.menu-item:last-child {
-  margin-right: 32rpx;
-}
-.menu-item.active {
-  margin-bottom: 12rpx;
-  padding: 11rpx;
-  width: 250rpx;
-  height: 255rpx;
-  background-image: url('https://static.tiddler.cn/mp/classification/hot_scenic/menu_bg.png');
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-}
-.menu-item-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 250rpx;
-  height: 255rpx;
-}
-.menu-scenic-cover {
+.island-cover {
   width: 100%;
   height: 100%;
 }
-.menu-scenic-cover.active {
-  width: 228rpx;
-  height: 142rpx;
-  border-radius: 20rpx;
+.island-name-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 32rpx;
+  width: 100%;
+  color: #fff;
+  font-weight: 500;
+  text-shadow: 0 0 1px #999;
 }
-.menu-scenic-info {
+.island-name {
+  font-size: 38rpx;
+}
+.island-desc {
+  font-size: 24rpx;
+}
+.island-info-wrap {
   position: absolute;
   left: 0;
   bottom: 0;
-  padding: 8rpx 0;
+  padding: 0 32rpx;
   width: 100%;
+  height: 120rpx;
   color: #fff;
-  font-weight: 600;
-  text-align: center;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(8px);
 }
-.menu-scenic-name {
-  font-size: 22rpx;
-}
-.menu-scenic-data {
-  font-size: 16rpx;
-}
-.menu-scenic-info.active {
-  bottom: 20rpx;
-  color: #141925;
-  background: none;
-  backdrop-filter: none;
-}
-.menu-scenic-name.active {
-  font-size: 28rpx;
-}
-.menu-scenic-data.active {
-  font-size: 20rpx;
-}
-
-.scenic-list-wrap {
-  height: calc(100vh - 750rpx);
-  overflow-y: scroll;
-}
-.scenic-list {
-  padding-bottom: 380rpx;
-}
-.scenic-item {
-  position: relative;
-  margin: 4px 34rpx 16px;
-  font-size: 0;
-}
-.top-tag {
-  position: absolute;
-  top: -8rpx;
-  left: -8rpx;
-  width: 126rpx;
-  height: 49rpx;
-}
-.scenic-cover {
-  width: 100%;
-  height: 200px;
-  border-radius: 48rpx 48rpx 0 0;
-}
-.scenic-info-wrap {
-  padding: 0 24rpx;
-  height: 80px;
-  background: #fff;
-  border-radius: 0 0 48rpx 48rpx;
-}
-.scenic-info {
+.island-data-list {
   flex: 1;
 }
-.scenic-name {
-  color: #000;
-  font-size: 34rpx;
+.island-data {
+  font-size: 32rpx;
   font-weight: 600;
+  line-height: 1;
 }
-.recommend-tag {
-  margin-right: 12rpx;
-  width: 103.5rpx;
-  height: 32rpx;
+.island-data-unit {
+  margin-left: 4rpx;
+  font-size: 20rpx;
+  font-weight: 400;
 }
-.scenic-feature {
-  margin-top: 12rpx;
-  color: #333;
-  font-size: 28rpx;
-  font-weight: 500;
+.island-data-desc {
+  font-size: 20rpx;
 }
-.check-btn {
-  width: 80rpx;
-  height: 80rpx;
-  background: #09AFFF;
-  border-radius: 20rpx;
+.split-line {
+  margin: 0 32rpx;
+  font-size: 24rpx;
 }
 .arrow {
   width: 24rpx;
-  height: 15rpx;
+  height: 24rpx;
 }
