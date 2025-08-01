@@ -338,13 +338,15 @@ Component({
 
     checkClassification(e) {
       const { index } = e.currentTarget.dataset;
-      switch (index) {
-        case 0:
-          wx.navigateTo({
-            url: "/pages/subpages/home/classification/hot-scenic/index"
-          });
-          break;
-      }
+      const pathList = [
+        "hot-scenic",
+        "lake-trip",
+        "lake-cycle",
+        "night-trip",
+        "star-trip"
+      ];
+      const url = `/pages/subpages/home/classification/${pathList[index]}/index`;
+      wx.navigateTo({ url });
     },
 
     onShareAppMessage() {
