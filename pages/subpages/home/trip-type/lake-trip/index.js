@@ -6,33 +6,14 @@ const { statusBarHeight } = getApp().globalData.systemInfo;
 Page({
   data: {
     statusBarHeight,
-    curMenuIdx: 0,
-    hotScenicList: [],
-    scrollTop: 0
+    centerLakeList: [],
+    southeastLakeList: []
   },
 
-  onLoad() {
-    this.setHotScenicList();
-  },
-
-  selectMenu(e) {
-    const { index } = e.currentTarget.dataset;
-    this.setData({ curMenuIdx: index, scrollTop: 296 * index });
-  },
-
-  async setHotScenicList() {
-    const hotScenicList = await mediaService.getHotScenicList();
-    this.setData({ hotScenicList });
-  },
-
-  onScroll(e) {
-    const scrollTop = e.detail.scrollTop;
-    const itemHeight = 296;
-    const index = Math.max(0, Math.floor(scrollTop / itemHeight));
-
-    if (this.data.curMenuIdx !== index) {
-      this.setData({ curMenuIdx: index });
-    }
+  async onLoad() {
+    const centerLakeList = await mediaService.getLakeTripList(1);
+    const southeastLakeList = await mediaService.getLakeTripList(2);
+    this.setData({ centerLakeList, southeastLakeList });
   },
 
   checkScenic(e) {

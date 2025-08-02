@@ -12,17 +12,17 @@
 <view class="content">
   <image class="sub-title" src="https://static.tiddler.cn/mp/trip_type/lake_trip/sub_title_1.png" />
   <view class="island-list">
-    <view class="island-item" wx:for="{{hotScenicList}}" wx:key="index">
+    <view class="island-item" wx:for="{{centerLakeList}}" wx:key="index" bindtap="checkScenic" data-id="{{item.scenicId}}">
       <image class="island-cover" src="{{item.scenicCover}}" mode="aspectFill" />
       <view class="island-name-wrap">
-        <view class="island-name">千岛湖中心湖区 梅峰岛</view>
-        <view class="island-desc">群岛星罗棋布 生态环境好</view>
+        <view class="island-name">千岛湖中心湖区 {{item.scenicName}}</view>
+        <view class="island-desc">{{item.desc}}</view>
       </view>
       <view class="island-info-wrap row">
         <view class="island-data-list row">
           <view class="island-data-item">
             <view class="island-data">
-              <text>700</text>
+              <text>{{item.distance}}</text>
               <text class="island-data-unit">km</text>
             </view>
             <view class="island-data-desc">行程里数</view>
@@ -30,7 +30,7 @@
           <view class="split-line">/</view>
           <view class="island-data-item">
             <view class="island-data">
-              <text>1~2</text>
+              <text>{{item.duration}}</text>
               <text class="island-data-unit">h</text>
             </view>
             <view class="island-data-desc">行程时长</view>
@@ -38,7 +38,7 @@
           <view class="split-line">/</view>
            <view class="island-data-item">
             <view class="island-data">
-              <text>6~9</text>
+              <text>{{item.time}}</text>
               <text class="island-data-unit">月</text>
             </view>
             <view class="island-data-desc">最佳时间</view>
@@ -51,17 +51,17 @@
 
   <image class="sub-title" src="https://static.tiddler.cn/mp/trip_type/lake_trip/sub_title_2.png" />
   <view class="island-list">
-    <view class="island-item" wx:for="{{hotScenicList}}" wx:key="index">
+    <view class="island-item" wx:for="{{southeastLakeList}}" wx:key="index" bindtap="checkScenic" data-id="{{item.scenicId}}">
       <image class="island-cover" src="{{item.scenicCover}}" mode="aspectFill" />
       <view class="island-name-wrap">
-        <view class="island-name">千岛湖中心湖区 梅峰岛</view>
-        <view class="island-desc">群岛星罗棋布 生态环境好</view>
+        <view class="island-name">千岛湖东南湖区 {{item.scenicName}}</view>
+        <view class="island-desc">{{item.desc}}</view>
       </view>
       <view class="island-info-wrap row">
         <view class="island-data-list row">
           <view class="island-data-item">
             <view class="island-data">
-              <text>700</text>
+              <text>{{item.distance}}</text>
               <text class="island-data-unit">km</text>
             </view>
             <view class="island-data-desc">行程里数</view>
@@ -69,7 +69,7 @@
           <view class="split-line">/</view>
           <view class="island-data-item">
             <view class="island-data">
-              <text>1~2</text>
+              <text>{{item.duration}}</text>
               <text class="island-data-unit">h</text>
             </view>
             <view class="island-data-desc">行程时长</view>
@@ -77,7 +77,7 @@
           <view class="split-line">/</view>
            <view class="island-data-item">
             <view class="island-data">
-              <text>6~9</text>
+              <text>{{item.time}}</text>
               <text class="island-data-unit">月</text>
             </view>
             <view class="island-data-desc">最佳时间</view>

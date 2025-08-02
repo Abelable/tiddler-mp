@@ -135,7 +135,22 @@ class MediaService extends BaseService {
   }
 
   async getHotScenicList() {
-    return await this.get({ url: `${this.baseUrl}/scenic/hot_list` }) || [];
+    return (
+      (await this.get({
+        url: `${this.baseUrl}/trip_type/hot_scenic_list`,
+        loadingTitle: "加载中..."
+      })) || []
+    );
+  }
+
+  async getLakeTripList(lakeId) {
+    return (
+      (await this.get({
+        url: `${this.baseUrl}/trip_type/lake_trip_list`,
+        data: { lakeId },
+        loadingTitle: "加载中..."
+      })) || []
+    );
   }
 }
 
