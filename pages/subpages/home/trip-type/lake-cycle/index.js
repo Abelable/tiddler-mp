@@ -9,13 +9,16 @@ Page({
     curMenuIdx: 0,
     curScenicIdx: 0,
     centerLakeList: [],
-    southeastLakeList: []
+    mediaList: [],
+    loading: false,
+    finished: false,
   },
 
   async onLoad() {
     const centerLakeList = await mediaService.getLakeTripList(1);
-    const southeastLakeList = await mediaService.getLakeTripList(2);
-    this.setData({ centerLakeList, southeastLakeList });
+    this.setData({ centerLakeList });
+
+    this.setMediaList(true);
   },
 
   selectMenu(e) {
@@ -26,6 +29,31 @@ Page({
   swiperChange(e) {
     const curScenicIdx = e.detail.current;
     this.setData({ curScenicIdx });
+  },
+
+  onReachBottom() {
+    this.setMediaList();
+  },
+
+  async setMediaList(init = false) {
+    if (init) {
+      this.page = 0;
+      this.setData({ mediaList: [], finished: false });
+    }
+    this.setData({ loading: true });
+    const { list = [] } =
+      (await mediaService.getRelativeMediaList(
+        1,
+        1,
+        ++this.page
+      )) || {};
+    this.setData({
+      mediaList: init ? list : [...this.data.mediaList, ...list],
+      loading: false
+    });
+    if (!list.length) {
+      this.setData({ finished: true });
+    }
   },
 
   checkScenic(e) {

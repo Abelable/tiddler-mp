@@ -21,46 +21,46 @@
 </view>
 
 <image class="sub-title-2" src="https://static.tiddler.cn/mp/trip_type/lake_cycle/sub_title_2.png" />
-<swiper class="scenic-list" bindchange="swiperChange" previous-margin="50rpx" next-margin="50rpx">
+<swiper class="cycle-scenic-list" bindchange="swiperChange" previous-margin="50rpx" next-margin="50rpx">
   <swiper-item wx:for="{{centerLakeList}}" wx:key="index">
-    <view class="scenic-item {{curScenicIdx !== index ? 'unselect' : ''}}" bindtap="checkScenic" data-id="{{item.scenicId}}">
-      <image class="scenic-cover" src="{{item.scenicCover}}" mode="aspectFill" />
-      <view class="scenic-name-wrap">
-        <view class="scenic-name">千岛湖中心湖区 {{item.scenicName}}</view>
-        <view class="scenic-desc">{{item.desc}}</view>
+    <view class="cycle-scenic-item {{curScenicIdx !== index ? 'unselect' : ''}}" bindtap="checkScenic" data-id="{{item.scenicId}}">
+      <image class="cycle-scenic-cover" src="{{item.scenicCover}}" mode="aspectFill" />
+      <view class="cycle-scenic-name-wrap">
+        <view class="cycle-scenic-name">千岛湖中心湖区 {{item.scenicName}}</view>
+        <view class="cycle-scenic-desc">{{item.desc}}</view>
       </view>
-      <view class="scenic-info-wrap row">
-        <view class="scenic-data-list row">
-          <view class="scenic-data-item">
-            <view class="scenic-data">
+      <view class="cycle-scenic-info-wrap row">
+        <view class="cycle-scenic-data-list row">
+          <view class="cycle-scenic-data-item">
+            <view class="cycle-scenic-data">
               <text>{{index + 1}}</text>
-              <text class="scenic-data-unit">站</text>
+              <text class="cycle-scenic-data-unit">站</text>
             </view>
-            <view class="scenic-data-desc">站点</view>
+            <view class="cycle-scenic-data-desc">站点</view>
           </view>
           <view class="split-line">/</view>
-          <view class="scenic-data-item">
-            <view class="scenic-data">
+          <view class="cycle-scenic-data-item">
+            <view class="cycle-scenic-data">
               <text>{{item.distance}}</text>
-              <text class="scenic-data-unit">km</text>
+              <text class="cycle-scenic-data-unit">km</text>
             </view>
-            <view class="scenic-data-desc">行程里数</view>
+            <view class="cycle-scenic-data-desc">行程里数</view>
           </view>
           <view class="split-line">/</view>
-          <view class="scenic-data-item">
-            <view class="scenic-data">
+          <view class="cycle-scenic-data-item">
+            <view class="cycle-scenic-data">
               <text>{{item.duration}}</text>
-              <text class="scenic-data-unit">h</text>
+              <text class="cycle-scenic-data-unit">h</text>
             </view>
-            <view class="scenic-data-desc">行程时长</view>
+            <view class="cycle-scenic-data-desc">行程时长</view>
           </view>
           <view class="split-line">/</view>
-           <view class="scenic-data-item">
-            <view class="scenic-data">
+           <view class="cycle-scenic-data-item">
+            <view class="cycle-scenic-data">
               <text>{{item.time}}</text>
-              <text class="scenic-data-unit">月</text>
+              <text class="cycle-scenic-data-unit">月</text>
             </view>
-            <view class="scenic-data-desc">最佳时间</view>
+            <view class="cycle-scenic-data-desc">最佳时间</view>
           </view>
         </view>
         <image class="arrow" src="https://static.tiddler.cn/mp/trip_type/lake_trip/arrow.png" />
@@ -70,4 +70,11 @@
 </swiper>
 
 <image class="sub-title-3" src="https://static.tiddler.cn/mp/trip_type/lake_cycle/sub_title_3.png" />
-
+<view class="media-wrap">
+  <fall-flow 
+    list="{{mediaList}}" 
+    loading="{{loading}}"
+    finished="{{finished}}"
+    generic:item="media-item" 
+  />
+</view>

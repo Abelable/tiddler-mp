@@ -477,6 +477,13 @@ class BaseService extends Base {
     store.setGoodsOrderTotal(total);
     return total;
   }
+
+  async getRelativeMediaList(productType, productId, page, limit = 10) {
+    return await this.get({
+      url: `${this.baseUrl}/media/product_relative_list`,
+      data: { productType, productId, page, limit }
+    });
+  }
 }
 
 export default BaseService;

@@ -35,7 +35,7 @@
       <text class="address-detail omit single">{{item.address}}</text>
     </view>
   </view>
-  <view class="title omit">{{item.title}}</view>
+  <view class="video-title omit">{{item.title}}</view>
   <view class="info-wrap">
     <view class="author-info">
       <image class="author-avatar avatar-default" src="{{item.authorInfo.avatar}}" />

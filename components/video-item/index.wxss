@@ -85,7 +85,7 @@
   font-size: 20rpx;
   font-weight: 500;
 }
-.title {
+.video-title {
   margin-top: 12rpx;
   padding: 0 10rpx;
   color: #333;
