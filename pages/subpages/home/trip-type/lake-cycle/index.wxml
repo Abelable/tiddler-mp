@@ -1,0 +1,73 @@
+<view class="back-icon-wrap" style="top: {{statusBarHeight + 5}}px">
+  <back-icon />
+</view>
+
+<image class="title" style="margin-top: {{statusBarHeight + 50}}px;" src="https://static.tiddler.cn/mp/trip_type/lake_cycle/title.png" />
+<image class="sub-title-1" src="https://static.tiddler.cn/mp/trip_type/lake_cycle/sub_title_1.png" />
+<image class="route-tips" src="https://static.tiddler.cn/mp/trip_type/lake_cycle/route_tips.png" />
+
+<view class="menu-list row between">
+  <image 
+    class="menu-item-{{index + 1}} {{curMenuIdx === index ? 'active' : ''}}" 
+    wx:for="{{3}}" 
+    wx:key="index" 
+    bindtap="selectMenu"
+    data-index="{{index}}"
+    src="https://static.tiddler.cn/mp/trip_type/lake_cycle/route_title_{{index + 1}}{{curMenuIdx === index ? '_active' : ''}}.png" 
+  />
+</view>
+<view class="route-wrap">
+  <image class="route-{{curMenuIdx + 1}}" src="https://static.tiddler.cn/mp/trip_type/lake_cycle/route_{{curMenuIdx + 1}}.png" />
+</view>
+
+<image class="sub-title-2" src="https://static.tiddler.cn/mp/trip_type/lake_cycle/sub_title_2.png" />
+<swiper class="scenic-list" bindchange="swiperChange" previous-margin="50rpx" next-margin="50rpx">
+  <swiper-item wx:for="{{centerLakeList}}" wx:key="index">
+    <view class="scenic-item {{curScenicIdx !== index ? 'unselect' : ''}}" bindtap="checkScenic" data-id="{{item.scenicId}}">
+      <image class="scenic-cover" src="{{item.scenicCover}}" mode="aspectFill" />
+      <view class="scenic-name-wrap">
+        <view class="scenic-name">千岛湖中心湖区 {{item.scenicName}}</view>
+        <view class="scenic-desc">{{item.desc}}</view>
+      </view>
+      <view class="scenic-info-wrap row">
+        <view class="scenic-data-list row">
+          <view class="scenic-data-item">
+            <view class="scenic-data">
+              <text>{{index + 1}}</text>
+              <text class="scenic-data-unit">站</text>
+            </view>
+            <view class="scenic-data-desc">站点</view>
+          </view>
+          <view class="split-line">/</view>
+          <view class="scenic-data-item">
+            <view class="scenic-data">
+              <text>{{item.distance}}</text>
+              <text class="scenic-data-unit">km</text>
+            </view>
+            <view class="scenic-data-desc">行程里数</view>
+          </view>
+          <view class="split-line">/</view>
+          <view class="scenic-data-item">
+            <view class="scenic-data">
+              <text>{{item.duration}}</text>
+              <text class="scenic-data-unit">h</text>
+            </view>
+            <view class="scenic-data-desc">行程时长</view>
+          </view>
+          <view class="split-line">/</view>
+           <view class="scenic-data-item">
+            <view class="scenic-data">
+              <text>{{item.time}}</text>
+              <text class="scenic-data-unit">月</text>
+            </view>
+            <view class="scenic-data-desc">最佳时间</view>
+          </view>
+        </view>
+        <image class="arrow" src="https://static.tiddler.cn/mp/trip_type/lake_trip/arrow.png" />
+      </view>
+    </view>
+  </swiper-item>
+</swiper>
+
+<image class="sub-title-3" src="https://static.tiddler.cn/mp/trip_type/lake_cycle/sub_title_3.png" />
+

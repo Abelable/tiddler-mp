@@ -94,7 +94,7 @@
   transition: transform 0.2s ease;
   will-change: transform;
 }
-.upgradation-card.not-active {
+.upgradation-card.unselect {
   transform: scale(0.92);
 }
 .upgradation-bg {

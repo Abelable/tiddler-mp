@@ -1,5 +1,3 @@
-<wxs module="NUM" src="/utils/filters/num.wxs" />
-
 <view class="back-icon-wrap" style="top: {{statusBarHeight + 5}}px">
   <back-icon />
 </view>

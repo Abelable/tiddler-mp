@@ -16,7 +16,7 @@
   <swiper style="height: 380rpx;" bindchange="swiperChange" current="{{curLevel - 1}}" previous-margin="48rpx" next-margin="48rpx">
     <swiper-item wx:for="{{4}}" wx:key="index">
       <view class="upgradation-wrap">
-        <view class="upgradation-card {{curLevel !== index + 1 ? 'not-active' : ''}}">
+        <view class="upgradation-card {{curLevel !== index + 1 ? 'unselect' : ''}}">
           <image class="upgradation-bg" src="https://static.tiddler.cn/mp/promoter/level_{{index + 1}}/achievement_bg.png" />
           <view class="status-tag">
             {{userInfo.promoterInfo.level === index + 1 ? '当前等级' : userInfo.promoterInfo.level > index + 1 ? '已超越' : '待升级'}}
