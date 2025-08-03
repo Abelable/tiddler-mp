@@ -25,7 +25,7 @@
   padding: 16rpx 24rpx 0 24rpx;
   width: 100%;
   color: #fff;
-  background: linear-gradient(0, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.1) 100%);
+  background: linear-gradient(0, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 100%);
 }
 .time-date {
   font-size: 44rpx;
@@ -74,7 +74,7 @@
   bottom: 100rpx;
   padding: 24rpx;
   width: 100%;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.1) 100%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 100%);
 }
 .top-media-title {
   flex: 1;

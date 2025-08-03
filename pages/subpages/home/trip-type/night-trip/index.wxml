@@ -1,0 +1,8 @@
+<view class="back-icon-wrap" style="top: {{statusBarHeight + 5}}px">
+  <back-icon />
+</view>
+
+
+<view class="trip-list" style="margin-top: {{statusBarHeight + 320}}px;">
+  <trip-item />
+</view>

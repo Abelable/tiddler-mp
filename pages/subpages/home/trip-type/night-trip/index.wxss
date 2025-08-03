@@ -1,0 +1,19 @@
+page {
+  background-color: #282B33;
+  background-image: url("https://static.tiddler.cn/mp/trip_type/night_trip/bg.png");
+  background-size: 100% 1065rpx;
+  background-repeat: no-repeat;
+}
+
+.back-icon-wrap {
+  position: fixed;
+  left: 8px;
+  display: flex;
+  align-items: center;
+  height: 34px;
+  z-index: 100;
+}
+
+.trip-list {
+  padding: 0 24rpx;
+}

@@ -1,0 +1,86 @@
+.trip-item {
+  background: #016F88;
+  border-radius: 38rpx;
+  overflow: hidden;
+}
+
+.header {
+  position: relative;
+  height: 400rpx;
+  font-size: 0;
+}
+.bg {
+  width: 100%;
+  height: 100%;
+}
+.more-btn {
+  position: absolute;
+  top: 24rpx;
+  right: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150rpx;
+  height: 48rpx;
+  color: #fff;
+  font-size: 22rpx;
+  background: rgba(0,0,0,0.3);
+  border-radius: 24px;
+}
+.arrow {
+  margin-left: 2rpx;
+  width: 20rpx;
+  height: 20rpx;
+}
+.trip-name {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 68rpx 32rpx 24rpx;
+  width: 100%;
+  color: #fff;
+  font-size: 42rpx;
+  font-weight: 500;
+  background: linear-gradient(180deg, rgba(1, 111, 136, 0) 0%, rgba(1, 111, 136, 1) 100%);
+}
+
+.featrue-list {
+  padding: 0 32rpx;
+}
+.featrue-item {
+  display: flex;
+  margin-top: 18rpx;
+}
+.featrue-tag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64rpx;
+  height: 32rpx;
+  font-size: 22rpx;
+  line-height: 1;
+  border-radius: 10rpx;
+}
+.featrue-tag.yellow {
+  color: #141925;
+  background: #FED700;
+}
+.featrue-tag.orange {
+  color: #fff;
+  background: #FE8F00;
+}
+.featrue-tag.red {
+  color: #fff;
+  background: #FF3200;
+}
+.feartrue-content {
+  margin-left: 12rpx;
+  flex: 1;
+  color: #fff;
+  font-size: 24rpx;
+}
+
+.media-list {
+  display: flex;
+  padding: 48rpx 32rpx;
+}

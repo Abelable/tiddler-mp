@@ -1,7 +1,7 @@
 <wxs module="NUM" src="/utils/filters/num.wxs" />
 <wxs module="TIME" src="/utils/filters/time.wxs" />
 
-<view class="live-item {{visible ? 'show' : ''}}" bindtap="navToLiveDetail">
+<view class="live-item {{visible ? 'show' : ''}}" catchtap="navToLiveDetail">
   <image class="bg" src="{{item.cover}}?x-oss-process=image/resize,w_450" bindload="onCoverLoaded" mode="aspectFill" lazy-load />
   <live-player class="active-bg {{activeBgVisible ? 'show' : ''}}" wx:if="{{active}}" src="{{item.playUrl}}" bindstatechange="statechange" autoplay muted object-fit="fillCrop" />
 

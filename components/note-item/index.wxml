@@ -1,6 +1,6 @@
 <wxs module="NUM" src="/utils/filters/num.wxs" />
 
-<view class="note-item {{item.coverHeight ? 'show' : ''}}" bindtap="navToNoteDetail">
+<view class="note-item {{item.coverHeight ? 'show' : ''}}" catchtap="navToNoteDetail">
   <view class="cover-wrap">
     <image 
       class="final-cover {{visible ? 'show' : ''}}" 

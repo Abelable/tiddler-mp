@@ -1,6 +1,6 @@
 <wxs module="NUM" src="/utils/filters/num.wxs" />
 
-<view class="video-item {{item.coverHeight ? 'show' : ''}}" bindtap="navToVideoDetail">
+<view class="video-item {{item.coverHeight ? 'show' : ''}}" catchtap="navToVideoDetail">
   <view class="cover-wrap" >
     <image 
       class="final-cover {{visible ? 'show' : ''}}" 

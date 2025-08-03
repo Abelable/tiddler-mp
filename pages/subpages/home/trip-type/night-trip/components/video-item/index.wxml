@@ -1,0 +1,25 @@
+<wxs module="NUM" src="/utils/filters/num.wxs" />
+
+<view class="video-item" catchtap="navToVideoDetail">
+  <view class="cover-wrap" >
+    <image 
+      class="cover" 
+      src="{{item.cover}}?x-oss-process=image/resize,w_500" 
+      mode="aspectFill" 
+    />
+    <view class="video-symbol">
+      <image class="play-icon" src="/images/play.png" />
+    </view>
+  </view>
+  <view class="video-title omit single">{{item.title}}</view>
+  <view class="info-wrap">
+    <view class="author-info">
+      <image class="author-avatar avatar-default" src="{{item.authorInfo.avatar}}" />
+      <text class="author-name omit single">{{item.authorInfo.nickname}}</text>
+    </view>
+    <view class="praise-info">
+      <image class="praise-icon" src="https://static.tiddler.cn/mp/trip_type/night_trip/white_heart.png" />
+      <text>{{NUM.over(item.likeNumber, 100000)}}</text>
+    </view>
+  </view>
+</view>

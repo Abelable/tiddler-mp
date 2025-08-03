@@ -1,0 +1,4 @@
+<view class="media-item">
+  <video-item wx:if="{{item.type === 2}}" item="{{item}}" />
+  <note-item wx:if="{{item.type === 3}}" item="{{item}}" />
+</view>
