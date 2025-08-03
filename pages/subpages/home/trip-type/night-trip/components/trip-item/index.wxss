@@ -45,7 +45,7 @@
 }
 
 .featrue-list {
-  padding: 0 32rpx;
+  padding: 0 32rpx 48rpx;
 }
 .featrue-item {
   display: flex;
@@ -82,5 +82,5 @@
 
 .media-list {
   display: flex;
-  padding: 48rpx 32rpx;
+  padding: 0 32rpx 48rpx;
 }
