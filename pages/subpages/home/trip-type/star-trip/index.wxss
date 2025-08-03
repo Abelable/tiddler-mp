@@ -1,0 +1,98 @@
+.nav-bar-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #151629;
+  z-index: 100;
+}
+.nav-bar {
+  padding: 0 8px;
+  height: 44px;
+}
+.title {
+  margin-left: 24rpx;
+  color: #fff;
+  font-size: 36rpx;
+  font-weight: 500;
+}
+
+.header {
+  position: relative;
+  padding: 32rpx 0 56rpx;
+  background: #151629;
+  border-radius: 0 0 60rpx 60rpx;
+}
+.header::after {
+  position: absolute;
+  left: 0;
+  bottom: -12rpx;
+  width: 100%;
+  height: 80rpx;
+  content: "";
+  background: #009DFF;
+  border-radius: 0 0 60rpx 60rpx;
+  z-index: -1;
+}
+
+.trip-list {
+  height: 611rpx;
+}
+.trip-item {
+  position: relative;
+  width: 390rpx; 
+  height: 611rpx;
+  font-size: 0;
+  border-radius: 48rpx;
+  overflow: hidden;
+  transform: scale(1);
+  transition: transform 0.2s ease;
+  will-change: transform;
+}
+.trip-item.unselect {
+  transform: scale(0.84);
+}
+.trip-cover {
+  width: 100%;
+  height: 100%;
+}
+
+.current-dot-wrap {
+  position: absolute;
+  right: 48rpx;
+  bottom: 48rpx;
+}
+.progress {
+  position: relative;
+  width: 126rpx;
+  height: 10rpx;
+  background: #FFFFFF;
+  border-radius: 5rpx;
+  overflow: hidden;
+}
+.progress-inner {
+  position: relative;
+  height: 10rpx;
+  background: #009DFF;
+  border-radius: 5rpx;
+}
+.current-dot {
+  margin-left: 12rpx;
+  width: 20rpx;
+  color: #fff;
+  font-size: 20rpx;
+  font-weight: 500;
+}
+
+.sub-title {
+  margin-top: 48rpx;
+  margin-left: 32rpx;
+  color: #141925;
+  font-size: 38rpx;
+  font-weight: 500;
+}
+
+.media-wrap {
+  margin-top: 32rpx;
+  padding: 0 20rpx;
+}

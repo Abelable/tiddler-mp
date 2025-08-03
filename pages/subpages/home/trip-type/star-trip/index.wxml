@@ -1,0 +1,33 @@
+<view class="nav-bar-wrap" style="padding-top: {{statusBarHeight}}px;">
+  <view class="nav-bar row">
+    <back-icon />
+    <view class="title">明星同游</view>
+  </view>
+</view>
+
+<view class="header" style="margin-top: {{statusBarHeight + 44}}px;">
+  <swiper class="trip-list" bindchange="swiperChange" previous-margin="32rpx" next-margin="328rpx" circular>
+    <swiper-item wx:for="{{centerLakeList}}" wx:key="index">
+      <view class="trip-item {{curScenicIdx !== index ? 'unselect' : ''}}" bindtap="checkScenic" data-id="{{item.scenicId}}">
+        <image class="trip-cover" src="{{item.scenicCover}}" mode="aspectFill" />
+      </view>
+    </swiper-item>
+  </swiper>
+
+  <view class="current-dot-wrap row">
+    <view class="progress">
+      <view class="progress-inner" style="width: {{(curScenicIdx + 1) / (centerLakeList.length) * 100}}%;" />
+    </view>
+    <view class="current-dot">{{curScenicIdx + 1}}/{{centerLakeList.length}}</view>
+  </view>
+</view>
+
+<view class="sub-title">同游玩法</view>
+<view class="media-wrap">
+  <fall-flow 
+    list="{{mediaList}}" 
+    loading="{{loading}}"
+    finished="{{finished}}"
+    generic:item="media-item" 
+  />
+</view>
