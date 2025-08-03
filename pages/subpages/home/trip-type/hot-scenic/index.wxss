@@ -122,7 +122,7 @@
   overflow-y: scroll;
 }
 .scenic-list {
-  padding-bottom: 380rpx;
+  padding-bottom: 32rpx;
 }
 .scenic-item {
   position: relative;

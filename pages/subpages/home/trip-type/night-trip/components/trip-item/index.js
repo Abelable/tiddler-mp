@@ -13,7 +13,7 @@ Component({
 
   lifetimes: {
     attached() {
-      this.setMediaList()
+      this.setMediaList();
     }
   },
 
@@ -22,7 +22,6 @@ Component({
       const { list: mediaList = [] } =
         (await mediaService.getRelativeMediaList(1, 1, 1)) || {};
       this.setData({ mediaList });
-      console.log('mediaList', mediaList)
     },
 
     checkDetail() {

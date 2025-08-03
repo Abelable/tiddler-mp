@@ -12,6 +12,7 @@ Component({
   },
 
   methods: {
+    // todo 
     contact() {
       console.log("contact");
     },

@@ -34,6 +34,7 @@ Component({
       });
     },
 
+    // todo
     contact() {
       console.log("contact");
     },
