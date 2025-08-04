@@ -265,6 +265,4 @@
   bind:hide="hideServicePopup"
 />
 
-<!-- 分享 -->
-<modal-mask wx:if="{{posterModalVisible}}" bindtap="hidePosterModal" filter />
 <poster-modal wx:if="{{posterModalVisible}}" scene="7" info="{{posterInfo}}" bind:hide="hidePosterModal" />

@@ -12,7 +12,6 @@
     "spec-popup": "../../components/spec-popup/index",
     "address-popup": "/components/address-popup/index",
     "service-popup": "./components/service-popup/index",
-    "modal-mask": "/components/modal-mask/index",
     "poster-modal": "/components/poster-modal/index"
   }
 }

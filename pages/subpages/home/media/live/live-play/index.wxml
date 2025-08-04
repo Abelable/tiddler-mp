@@ -31,7 +31,7 @@
 <goods-popup wx:if="{{goodsPopupVisible}}" roomId="{{roomList[curRoomIdx].id}}" bind:hide="hideGoodsPopup" />
 
 <modal-mask 
-  wx:if="{{inputPopupVisible || subscribeModalVisible || posterModalVisible}}" 
+  wx:if="{{inputPopupVisible || subscribeModalVisible}}" 
   opacity="{{!inputPopupVisible ? 0.3 : 0}}" 
   filter="{{posterModalVisible}}"
   catchtap="hideModal"

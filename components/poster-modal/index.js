@@ -76,11 +76,11 @@ Component({
       } = info || {};
 
       await this.drawImage(
-        "https://img.ubo.vip/tiddler/poster/bg.png",
+        "https://static.tiddler.cn/mp/poster/bg.png",
         0,
         0,
-        291,
-        416
+        320,
+        530
       );
 
       await this.roundRect(15, 17, 32, 32, 16, avatar);
@@ -581,6 +581,10 @@ Component({
           wx.showToast({ title: "成功保存", icon: "none" });
         }
       });
+    },
+
+    hide() {
+      this.triggerEvent("hide");
     }
   }
 });

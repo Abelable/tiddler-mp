@@ -11,7 +11,6 @@
     "evaluation-item": "../../../components/evaluation-item/index",
     "ticket-item": "./components/ticket-item/index",
     "set-meal-item": "./components/set-meal-item/index",
-    "modal-mask": "/components/modal-mask/index",
     "poster-modal": "/components/poster-modal/index"
   }
 }

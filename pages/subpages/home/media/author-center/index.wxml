@@ -82,5 +82,4 @@
   </view>
 </view>
 
-<modal-mask wx:if="{{posterModalVisible}}" filter bindtap="hidePosterModal" />
 <poster-modal wx:if="{{posterModalVisible}}" info="{{posterInfo}}" scene="9" />

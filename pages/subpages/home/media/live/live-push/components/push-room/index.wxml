@@ -74,7 +74,7 @@
 <subscribe-remind-popup wx:if="{{subscribeRemindPopupVisible}}" groupId="{{roomInfo.groupId}}" bind:hide="hideModal" />
 
 <modal-mask 
-  wx:if="{{inputPopupVisible || posterModalVisible}}" 
+  wx:if="{{inputPopupVisible}}" 
   opacity="{{!inputPopupVisible ? 0.3 : 0}}" 
   filter="{{posterModalVisible}}"
   catchtap="hideModal"

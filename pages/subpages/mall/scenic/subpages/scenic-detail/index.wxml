@@ -271,6 +271,4 @@
 
 <notice-popup show="{{noticePopupVisible}}" info="{{curTicketInfo}}" bind:hide="hideNoticePopup" />
 
-<!-- 分享 -->
-<modal-mask wx:if="{{posterModalVisible}}" bindtap="hidePosterModal" filter />
 <poster-modal wx:if="{{posterModalVisible}}" scene="4" info="{{posterInfo}}" bind:hide="hidePosterModal" />

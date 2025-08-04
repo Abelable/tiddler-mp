@@ -15,7 +15,6 @@
     "hotel-item": "../../../components/hotel-item/index",
     "scenic-item": "../../../components/scenic-item/index",
     "notice-popup": "../../components/notice-popup/index",
-    "modal-mask": "/components/modal-mask/index",
     "poster-modal": "/components/poster-modal/index"
   }
 }
