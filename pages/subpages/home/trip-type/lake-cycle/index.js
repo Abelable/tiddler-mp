@@ -7,23 +7,25 @@ Page({
   data: {
     statusBarHeight,
     curMenuIdx: 0,
+    scenicLists: [[], [], []],
     curScenicIdx: 0,
-    centerLakeList: [],
     mediaList: [],
     loading: false,
-    finished: false,
+    finished: false
   },
 
   async onLoad() {
-    const centerLakeList = await mediaService.getLakeTripList(1);
-    this.setData({ centerLakeList });
-
+    this.setScenicList();
     this.setMediaList(true);
   },
 
   selectMenu(e) {
     const { index: curMenuIdx } = e.currentTarget.dataset;
     this.setData({ curMenuIdx });
+
+    if (!this.data.scenicLists[curMenuIdx].length) {
+      this.setScenicList();
+    }
   },
 
   swiperChange(e) {
@@ -35,6 +37,12 @@ Page({
     this.setMediaList();
   },
 
+  async setScenicList() {
+    const { curMenuIdx } = this.data;
+    const scenicList = await mediaService.getLakeCycleList(curMenuIdx + 1);
+    this.setData({ [`scenicLists[${curMenuIdx}]`]: scenicList });
+  },
+
   async setMediaList(init = false) {
     if (init) {
       this.page = 0;
@@ -42,11 +50,7 @@ Page({
     }
     this.setData({ loading: true });
     const { list = [] } =
-      (await mediaService.getRelativeMediaList(
-        1,
-        1,
-        ++this.page
-      )) || {};
+      (await mediaService.getLakeCycleMediaList(++this.page)) || {};
     this.setData({
       mediaList: init ? list : [...this.data.mediaList, ...list],
       loading: false

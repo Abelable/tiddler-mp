@@ -152,6 +152,23 @@ class MediaService extends BaseService {
       })) || []
     );
   }
+
+  async getLakeCycleList(routeId) {
+    return (
+      (await this.get({
+        url: `${this.baseUrl}/trip_type/lake_cycle_list`,
+        data: { routeId },
+        loadingTitle: "加载中..."
+      })) || []
+    );
+  }
+
+  async getLakeCycleMediaList(page, limit = 10) {
+    return await this.get({
+      url: `${this.baseUrl}/trip_type/lake_cycle_media_list`,
+      data: { page, limit }
+    });
+  }
 }
 
 export default MediaService;

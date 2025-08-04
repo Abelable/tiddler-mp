@@ -20,11 +20,11 @@
 
 <image class="sub-title-2" src="https://static.tiddler.cn/mp/trip_type/lake_cycle/sub_title_2.png" />
 <swiper class="cycle-scenic-list" bindchange="swiperChange" previous-margin="50rpx" next-margin="50rpx">
-  <swiper-item wx:for="{{centerLakeList}}" wx:key="index">
+  <swiper-item wx:for="{{scenicLists[curMenuIdx]}}" wx:key="index">
     <view class="cycle-scenic-item {{curScenicIdx !== index ? 'unselect' : ''}}" bindtap="checkScenic" data-id="{{item.scenicId}}">
       <image class="cycle-scenic-cover" src="{{item.scenicCover}}" mode="aspectFill" />
       <view class="cycle-scenic-name-wrap">
-        <view class="cycle-scenic-name">千岛湖中心湖区 {{item.scenicName}}</view>
+        <view class="cycle-scenic-name">{{item.scenicName}}</view>
         <view class="cycle-scenic-desc">{{item.desc}}</view>
       </view>
       <view class="cycle-scenic-info-wrap row">
