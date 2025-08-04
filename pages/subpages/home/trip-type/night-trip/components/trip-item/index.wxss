@@ -1,4 +1,5 @@
 .trip-item {
+  margin-bottom: 24rpx;
   background: #016F88;
   border-radius: 38rpx;
   overflow: hidden;
@@ -44,14 +45,14 @@
   background: linear-gradient(180deg, rgba(1, 111, 136, 0) 0%, rgba(1, 111, 136, 1) 100%);
 }
 
-.featrue-list {
+.feature-list {
   padding: 0 32rpx 48rpx;
 }
-.featrue-item {
+.feature-item {
   display: flex;
   margin-top: 18rpx;
 }
-.featrue-tag {
+.feature-tag {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -61,19 +62,19 @@
   line-height: 1;
   border-radius: 10rpx;
 }
-.featrue-tag.yellow {
+.feature-tag.yellow {
   color: #141925;
   background: #FED700;
 }
-.featrue-tag.orange {
+.feature-tag.orange {
   color: #fff;
   background: #FE8F00;
 }
-.featrue-tag.red {
+.feature-tag.red {
   color: #fff;
   background: #FF3200;
 }
-.featrue-content {
+.feature-content {
   margin-left: 12rpx;
   flex: 1;
   color: #fff;

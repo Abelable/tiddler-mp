@@ -8,22 +8,22 @@
     <view class="trip-name">{{item.scenicName}}</view>
   </view>
 
-  <view class="featrue-list">
-    <view class="featrue-item" wx:if="{{item.featrueTips}}">
-      <view class="featrue-tag yellow">特色</view>
-      <view class="featrue-content">{{item.featrueTips}}</view>
+  <view class="feature-list">
+    <view class="feature-item" wx:if="{{item.featureTips}}">
+      <view class="feature-tag yellow">特色</view>
+      <view class="feature-content">{{item.featureTips}}</view>
     </view>
-    <view class="featrue-item" wx:if="{{item.guideTips}}">
-      <view class="featrue-tag orange">攻略</view>
-      <view class="featrue-content">{{item.guideTips}}</view>
+    <view class="feature-item" wx:if="{{item.guideTips}}">
+      <view class="feature-tag orange">攻略</view>
+      <view class="feature-content">{{item.guideTips}}</view>
     </view>
-    <view class="featrue-item" wx:if="{{item.recommendTips}}">
-      <view class="featrue-tag red">推荐</view>
-      <view class="featrue-content">{{item.recommendTips}}</view>
+    <view class="feature-item" wx:if="{{item.recommendTips}}">
+      <view class="feature-tag red">推荐</view>
+      <view class="feature-content">{{item.recommendTips}}</view>
     </view>
   </view>
 
-  <scroll-view class="media-list-wrap" scroll-x>
+  <scroll-view class="media-list-wrap" wx:if="{{mediaList.length}}" scroll-x>
     <view class="media-list">
       <media-item wx:for="{{mediaList}}" wx:key="index" item="{{item}}" />
     </view>
