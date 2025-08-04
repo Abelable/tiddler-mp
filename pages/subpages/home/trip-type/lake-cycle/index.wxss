@@ -62,30 +62,15 @@ page {
   height: 86rpx;
 }
 
-.route-wrap {
-  height: 680rpx;
-}
-.route-1 {
+.route {
   display: block;
   margin: 0 auto;
-  width: 700rpx;
-  height: 650rpx;
-}
-.route-2 {
-  display: block;
-  margin: 0 auto;
-  width: 728rpx;
-  height: 556rpx;
-}
-.route-3 {
-  display: block;
-  margin: 0 auto;
-  width: 728rpx;
-  height: 556rpx;
+  width: 100%;
+  height: 626rpx;
 }
 
 .sub-title-2 {
-  margin: 0 auto;
+  margin: 32rpx auto 0;
   display: block;
   width: 496rpx;
   height: 92rpx;

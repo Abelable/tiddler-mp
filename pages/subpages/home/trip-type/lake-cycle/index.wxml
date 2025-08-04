@@ -16,9 +16,7 @@
     src="https://static.tiddler.cn/mp/trip_type/lake_cycle/route_title_{{index + 1}}{{curMenuIdx === index ? '_active' : ''}}.png" 
   />
 </view>
-<view class="route-wrap">
-  <image class="route-{{curMenuIdx + 1}}" src="https://static.tiddler.cn/mp/trip_type/lake_cycle/route_{{curMenuIdx + 1}}.png" />
-</view>
+<image class="route" src="https://static.tiddler.cn/mp/trip_type/lake_cycle/route_{{curMenuIdx + 1}}.png" />
 
 <image class="sub-title-2" src="https://static.tiddler.cn/mp/trip_type/lake_cycle/sub_title_2.png" />
 <swiper class="cycle-scenic-list" bindchange="swiperChange" previous-margin="50rpx" next-margin="50rpx">
