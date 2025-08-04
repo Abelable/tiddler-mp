@@ -81,9 +81,8 @@
   padding: 2rpx 10rpx;
   max-width: 170rpx;
   color: #999;
-  color: var(--blue-1);
-  font-size: 20rpx;
-  background: #ebf2fd;
+  font-size: 18rpx;
+  background: #f1f1f1;
   border-radius: 10rpx;
 }
 

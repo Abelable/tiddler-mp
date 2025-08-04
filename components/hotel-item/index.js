@@ -7,7 +7,9 @@ Component({
     item: {
       type: Object,
       observer({ featureTagList = [] }) {
-        this.setData({ featureTagList: featureTagList.slice(0, 2) });
+        if (featureTagList.length) {
+          this.setData({ featureTagList: featureTagList.slice(0, 2) });
+        }
       }
     },
     showTag: Boolean
@@ -21,14 +23,14 @@ Component({
   methods: {
     onCoverLoaded(e) {
       const { width, height } = e.detail;
-      const coverHeight = 350 / width * height;
+      const coverHeight = (350 / width) * height;
       this.setData({
         [`item.coverHeight`]:
           coverHeight > 480 ? 480 : coverHeight < 300 ? 300 : coverHeight
       });
     },
 
-     onVisible() {
+    onVisible() {
       this.setData({ visible: true });
     },
 

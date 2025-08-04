@@ -7,7 +7,9 @@ Component({
     item: {
       type: Object,
       observer({ facilityList = [] }) {
-        this.setData({ facilityList: facilityList.slice(0, 2) });
+        if (facilityList.length) {
+          this.setData({ facilityList: facilityList.slice(0, 2) });
+        }
       }
     },
     showTag: Boolean
@@ -21,7 +23,7 @@ Component({
   methods: {
     onCoverLoaded(e) {
       const { width, height } = e.detail;
-      const coverHeight = 350 / width * height;
+      const coverHeight = (350 / width) * height;
       this.setData({
         [`item.coverHeight`]:
           coverHeight > 480 ? 480 : coverHeight < 300 ? 300 : coverHeight

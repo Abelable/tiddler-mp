@@ -4,8 +4,8 @@ import { SCENE_GOODS, SCENE_LIVE } from "../../utils/emuns/posterScene";
 
 const descList = [
   "发现精彩直播",
-  "发现趣味视频游记",
-  "发现趣味图文游记",
+  "发现趣味游记",
+  "发现趣味游记",
   "推荐秀美景点",
   "推荐舒适酒店",
   "推荐美味餐厅",
@@ -83,9 +83,9 @@ Component({
         530
       );
 
-      await this.roundRect(15, 17, 32, 32, 16, avatar);
-      this.setText(13, "#fff", 55, 30, nickname);
-      this.setText(8, "#fff", 55, 45, descList[scene - 1]);
+      await this.roundRect(210, 19, 24, 24, 12, avatar);
+      this.setText(12, "#141925", 238, 30, nickname);
+      this.setText(8, "#666", 238, 42, descList[scene - 1]);
 
       if (["8", "9"].includes(scene)) {
         await this.roundRect(27, 116, 237, 130, 5, cover);
@@ -143,7 +143,11 @@ Component({
         await this.roundRect(100, 270, 90, 90, 45, qRcode);
         this.setText(10, "#999", 145, 380, "长按识别二维码", "center");
       } else {
-        await this.roundRect(27, 71, 237, 240, 5, cover);
+        if (scene === "4") {
+          await this.roundRect(26, 75, 268, 298, 8, cover);
+        } else {
+          await this.roundRect(26, 75, 268, 268, 8, cover);
+        }
 
         if (scene === "1") {
           this.roundRect(
@@ -222,13 +226,13 @@ Component({
         }
 
         this.setWrapText(
-          12,
+          15,
           "#333",
-          27,
-          334,
+          28,
+          404,
           title,
           16,
-          173,
+          180,
           true,
           ["1", "3", "4", "5", "6"].includes(scene) ? 1 : 2
         );
@@ -246,29 +250,35 @@ Component({
 
         if (["4", "5", "6"].includes(scene)) {
           this.roundRect(
-            39,
-            83,
+            248,
+            86,
             32,
-            16.8,
-            4,
+            18,
+            9,
             "",
             null,
-            ["rgb(184, 64, 211)", "rgb(98, 97, 238)", "rgb(251, 49, 105)"][
-              scene - 4
-            ]
+            "rgba(255, 255, 255, 0.6)"
           );
-          this.setText(10, "#fff", 45, 95, ["景点", "酒店", "美食"][scene - 4]);
+          this.setText(
+            9,
+            "#000",
+            255,
+            98.6,
+            ["景点", "酒店", "美食"][scene - 4]
+          );
 
-          this.setTagList(tagList, 27, 356);
+          this.setTagList(tagList, 27, 436);
         }
 
         if (["4", "5", "6", "7"].includes(scene)) {
           if (scene === "7") {
-            this.setGoodsPrice(price, `¥${marketPrice}`, 27, 382);
+            this.setGoodsPrice(price, `¥${marketPrice}`, 27, 468);
           } else {
-            this.setPrice(price, 27, 382);
+            this.setPrice(price, 28, 468);
           }
-          this.setText(10, "#999", 197, 382, `已售${salesVolume}`, "right");
+          if (salesVolume) {
+            this.setText(10, "#999", 200, 468, `已售${salesVolume}`, "right");
+          }
         }
 
         if (["1", "2", "3"].includes(scene)) {
@@ -279,8 +289,8 @@ Component({
           }
         }
 
-        await this.drawImage(qRcode, 208, 318, 56, 56);
-        this.setText(7, "#999", 237, 382, "长按识别二维码", "center");
+        await this.drawImage(qRcode, 224, 386, 68, 68);
+        this.setText(8, "#999", 258, 468, "长按识别二维码", "center");
       }
 
       wx.canvasToTempFilePath(
@@ -328,16 +338,16 @@ Component({
     },
 
     setPrice(price, x, y) {
-      this.setText(10, "#ff5040", x, y, "¥");
+      this.setText(12, "#ff5040", x, y, "¥");
 
-      ctx.font = "bold 15px sans-serif";
+      ctx.font = "bold 18px sans-serif";
       ctx.fillStyle = "#ff5040";
-      ctx.fillText(price, x + 7, y);
+      ctx.fillText(price, x + 8, y + 0.5);
 
       const priceWidth = ctx.measureText(price).width;
-      ctx.font = "9px sans-serif";
+      ctx.font = "10px sans-serif";
       ctx.fillStyle = "#999";
-      ctx.fillText("起", x + priceWidth + 9, y);
+      ctx.fillText("起", x + priceWidth + 10, y);
     },
 
     async setLikeNumber(likeNumber, x, y) {

@@ -7,7 +7,9 @@ Component({
     item: {
       type: Object,
       observer({ featureTagList = [] }) {
-        this.setData({ featureTagList: featureTagList.slice(0, 2) });
+        if (featureTagList.length) {
+          this.setData({ featureTagList: featureTagList.slice(0, 2) });
+        }
       }
     },
     showTag: Boolean

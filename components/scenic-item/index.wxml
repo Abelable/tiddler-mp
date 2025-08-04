@@ -32,9 +32,8 @@
     <view 
       class="label omit single" 
       wx:for="{{featureTagList}}" 
-      wx:key="_index" 
+      wx:key="index" 
       wx:for-item="_item" 
-      wx:for-index="_index"
     >
       {{ _item }}
     </view>
