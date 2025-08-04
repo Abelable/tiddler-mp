@@ -3,5 +3,5 @@
 </view>
 
 <view class="trip-list" style="margin-top: {{statusBarHeight + 320}}px;">
-  <trip-item />
+  <trip-item wx:for="{{scenicList}}" wx:key="index" item="{{item}}" />
 </view>

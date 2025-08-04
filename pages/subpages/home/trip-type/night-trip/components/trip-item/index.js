@@ -19,8 +19,9 @@ Component({
 
   methods: {
     async setMediaList() {
+      const { scenicId } = this.properties.item;
       const { list: mediaList = [] } =
-        (await mediaService.getRelativeMediaList(1, 1, 1)) || {};
+        (await mediaService.getRelativeMediaList(1, scenicId, 1)) || {};
       this.setData({ mediaList });
     },
 

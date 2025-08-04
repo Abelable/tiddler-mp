@@ -1,25 +1,25 @@
 <view class="trip-item" bindtap="checkDetail">
   <view class="header">
-    <image class="bg" src="./images/bg.png" mode="aspectFill" />
+    <image class="bg" src="{{item.scenicCover}}" mode="aspectFill" />
     <view class="more-btn">
       <view>了解更多</view>
       <image class="arrow" src="https://static.tiddler.cn/mp/trip_type/night_trip/arrow.png" />
     </view>
-    <view class="trip-name">月光岛</view>
+    <view class="trip-name">{{item.scenicName}}</view>
   </view>
 
   <view class="featrue-list">
-    <view class="featrue-item">
+    <view class="featrue-item" wx:if="{{item.featrueTips}}">
       <view class="featrue-tag yellow">特色</view>
-      <view class="feartrue-content">千岛湖“小重庆”</view>
+      <view class="featrue-content">{{item.featrueTips}}</view>
     </view>
-    <view class="featrue-item">
+    <view class="featrue-item" wx:if="{{item.guideTips}}">
       <view class="featrue-tag orange">攻略</view>
-      <view class="feartrue-content">骑龙巷共有122级台阶，拾级而上，走过脚下的青石板，穿梭在人群中，处处都有烟火气息</view>
+      <view class="featrue-content">{{item.guideTips}}</view>
     </view>
-    <view class="featrue-item">
+    <view class="featrue-item" wx:if="{{item.recommendTips}}">
       <view class="featrue-tag red">推荐</view>
-      <view class="feartrue-content">推荐鱼肉小笼包，相思粿</view>
+      <view class="featrue-content">{{item.recommendTips}}</view>
     </view>
   </view>
 

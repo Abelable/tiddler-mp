@@ -169,6 +169,15 @@ class MediaService extends BaseService {
       data: { page, limit }
     });
   }
+
+  async getNightTripList() {
+    return (
+      (await this.get({
+        url: `${this.baseUrl}/trip_type/night_trip_list`,
+        loadingTitle: "加载中..."
+      })) || []
+    );
+  }
 }
 
 export default MediaService;

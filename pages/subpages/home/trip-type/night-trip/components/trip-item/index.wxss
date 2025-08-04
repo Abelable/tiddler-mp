@@ -73,7 +73,7 @@
   color: #fff;
   background: #FF3200;
 }
-.feartrue-content {
+.featrue-content {
   margin-left: 12rpx;
   flex: 1;
   color: #fff;
