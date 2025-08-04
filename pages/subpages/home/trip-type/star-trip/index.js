@@ -6,49 +6,46 @@ const { statusBarHeight } = getApp().globalData.systemInfo;
 Page({
   data: {
     statusBarHeight,
-    curMenuIdx: 0,
-    curScenicIdx: 0,
-    centerLakeList: [],
+    curTripIdx: 0,
+    starTripList: [],
     mediaList: [],
     loading: false,
-    finished: false,
+    finished: false
   },
 
   async onLoad() {
-    const centerLakeList = await mediaService.getLakeTripList(1);
-    this.setData({ centerLakeList });
-
+    await this.setStarTripList();
     this.setMediaList(true);
   },
 
-  selectMenu(e) {
-    const { index: curMenuIdx } = e.currentTarget.dataset;
-    this.setData({ curMenuIdx });
-  },
-
   swiperChange(e) {
-    const curScenicIdx = e.detail.current;
-    this.setData({ curScenicIdx });
+    const curTripIdx = e.detail.current;
+    this.setData({ curTripIdx });
+    this.setMediaList(true)
   },
 
   onReachBottom() {
     this.setMediaList();
   },
 
+  async setStarTripList() {
+    const starTripList = await mediaService.getStarTripList();
+    this.setData({ starTripList });
+  },
+
   async setMediaList(init = false) {
+    const { curTripIdx, starTripList, mediaList} = this.data
+    const { productType, productId } = starTripList[curTripIdx];
+
     if (init) {
       this.page = 0;
       this.setData({ mediaList: [], finished: false });
     }
     this.setData({ loading: true });
     const { list = [] } =
-      (await mediaService.getRelativeMediaList(
-        1,
-        1,
-        ++this.page
-      )) || {};
+      (await mediaService.getRelativeMediaList(productType, productId, ++this.page)) || {};
     this.setData({
-      mediaList: init ? list : [...this.data.mediaList, ...list],
+      mediaList: init ? list : [...mediaList, ...list],
       loading: false
     });
     if (!list.length) {
@@ -56,9 +53,13 @@ Page({
     }
   },
 
-  checkScenic(e) {
-    const { id } = e.currentTarget.dataset;
-    const url = `/pages/subpages/mall/scenic/subpages/scenic-detail/index?id=${id}`;
+  checkTrip(e) {
+    const { index } = e.currentTarget.dataset;
+    const { productType, productId } = this.data.starTripList[index];
+    const url =
+      productType === 1
+        ? `/pages/subpages/mall/scenic/subpages/scenic-detail/index?id=${productId}`
+        : `/pages/subpages/mall/hotel/subpages/hotel-detail/index?id=${productId}`;
     wx.navigateTo({ url });
   }
 });

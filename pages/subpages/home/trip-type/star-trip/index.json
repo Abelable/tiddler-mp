@@ -3,6 +3,7 @@
   "navigationBarTextStyle": "white",
   "usingComponents": {
     "back-icon": "/components/back-icon-white/index",
+    "empty-illus": "/components/empty-illus/index",
     "fall-flow": "/components/fall-flow/index",
     "media-item": "/components/media-item/index"
   }

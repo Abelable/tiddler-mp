@@ -7,18 +7,26 @@
 
 <view class="header" style="margin-top: {{statusBarHeight + 44}}px;">
   <swiper class="trip-list" bindchange="swiperChange" previous-margin="32rpx" next-margin="328rpx" circular>
-    <swiper-item wx:for="{{centerLakeList}}" wx:key="index">
-      <view class="trip-item {{curScenicIdx !== index ? 'unselect' : ''}}" bindtap="checkScenic" data-id="{{item.scenicId}}">
-        <image class="trip-cover" src="{{item.scenicCover}}" mode="aspectFill" />
+    <swiper-item wx:for="{{starTripList}}" wx:key="index">
+      <view class="trip-item {{curTripIdx !== index ? 'unselect' : ''}}" bindtap="checkTrip" data-index="{{index}}">
+        <image class="trip-cover" src="{{item.cover}}" mode="aspectFill" />
+        <view class="trip-info">
+          <view class="trip-name">{{item.name}}</view>
+          <view class="trip-desc row">
+            <view>{{item.desc}}</view>
+            <image class="trip-arrow" src="/images/arrow_white.png" />
+          </view>
+        </view>
+        <image class="top-tag" wx:if="{{index <= 2}}" src="https://static.tiddler.cn/mp/trip_type/top_{{index + 1}}.png" mode="aspectFill" />
       </view>
     </swiper-item>
   </swiper>
 
   <view class="current-dot-wrap row">
     <view class="progress">
-      <view class="progress-inner" style="width: {{(curScenicIdx + 1) / (centerLakeList.length) * 100}}%;" />
+      <view class="progress-inner" style="width: {{(curTripIdx + 1) / (starTripList.length) * 100}}%;" />
     </view>
-    <view class="current-dot">{{curScenicIdx + 1}}/{{centerLakeList.length}}</view>
+    <view class="current-dot">{{curTripIdx + 1}}/{{starTripList.length}}</view>
   </view>
 </view>
 
@@ -30,4 +38,5 @@
     finished="{{finished}}"
     generic:item="media-item" 
   />
+  <empty-illus wx:if="{{finished && !mediaList.length}}" desc="暂无同游玩法" />
 </view>

@@ -178,6 +178,15 @@ class MediaService extends BaseService {
       })) || []
     );
   }
+
+  async getStarTripList() {
+    return (
+      (await this.get({
+        url: `${this.baseUrl}/trip_type/star_trip_list`,
+        loadingTitle: "加载中..."
+      })) || []
+    );
+  }
 }
 
 export default MediaService;
