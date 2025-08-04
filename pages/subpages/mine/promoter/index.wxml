@@ -48,7 +48,7 @@
               </view>
               <view class="progress-desc row" bindtap="checkAchievementDetail">
                 <view>{{index === 3 ? '保' : '升'}}级还需邀请{{[100, 1000, 5000, 5000][index] - userInfo.promoterInfo.subPromoterNumber}}位家乡代言人、{{[30000, 100000, 500000, 500000][index] - achievement}}荣誉值</view>
-                <image class="progress-arrow" src="./images/arrow_white.png" />
+                <image class="progress-arrow" src="/images/arrow_white.png" />
               </view>
             </view>
             <view class="progress-tips row" wx:if="{{userInfo.promoterInfo.level !== index + 1}}" bindtap="upgrade">
@@ -63,7 +63,7 @@
                   ][index - 1]
                 }}
               </view> 
-              <image class="progress-arrow" src="./images/arrow_white.png" />
+              <image class="progress-arrow" src="/images/arrow_white.png" />
             </view>
           </view>
         </view>
