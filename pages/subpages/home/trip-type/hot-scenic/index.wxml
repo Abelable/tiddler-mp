@@ -38,7 +38,7 @@
   >
     <view class="scenic-list">
       <view class="scenic-item" wx:for="{{hotScenicList}}" wx:key="index">
-        <image class="top-tag" src="https://static.tiddler.cn/mp/trip_type/hot_scenic/top_{{index + 1}}.png" />
+        <image class="top-tag" wx:if="{{index <= 2}}" src="https://static.tiddler.cn/mp/trip_type/hot_scenic/top_{{index + 1}}.png" />
         <image class="scenic-cover" src="{{item.scenicCover}}" mode="aspectFill" />
         <view class="scenic-info-wrap row">
           <view class="scenic-info">

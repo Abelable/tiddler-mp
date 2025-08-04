@@ -14,11 +14,11 @@
       <view class="feartrue-content">千岛湖“小重庆”</view>
     </view>
     <view class="featrue-item">
-      <view class="featrue-tag orange">推荐</view>
+      <view class="featrue-tag orange">攻略</view>
       <view class="feartrue-content">骑龙巷共有122级台阶，拾级而上，走过脚下的青石板，穿梭在人群中，处处都有烟火气息</view>
     </view>
     <view class="featrue-item">
-      <view class="featrue-tag red">攻略</view>
+      <view class="featrue-tag red">推荐</view>
       <view class="feartrue-content">推荐鱼肉小笼包，相思粿</view>
     </view>
   </view>

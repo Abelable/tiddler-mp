@@ -2,7 +2,6 @@
   <back-icon />
 </view>
 
-
 <view class="trip-list" style="margin-top: {{statusBarHeight + 320}}px;">
   <trip-item />
 </view>
