@@ -333,7 +333,7 @@ Page({
         ? `${this.goodsId}-${store.superiorInfo.id}`
         : `${this.goodsId}`;
       const page = "pages/subpages/mall/goods/subpages/goods-detail/index";
-      const qRcode = await goodsService.getQrCode(scene, page);
+      const qrCode = await goodsService.getQrCode(scene, page);
 
       const {
         cover,
@@ -345,7 +345,7 @@ Page({
 
       this.setData({
         posterModalVisible: true,
-        posterInfo: { cover, title, price, marketPrice, salesVolume, qRcode }
+        posterInfo: { cover, title, price, marketPrice, salesVolume, qrCode }
       });
     });
   },

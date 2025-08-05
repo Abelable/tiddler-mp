@@ -271,7 +271,7 @@ Page({
       const page = "pages/subpages/home/media/note/index";
 
       noteService.shareTourismNote(id, scene, page, res => {
-        const { qRcode, shareTimes } = res.data;
+        const { qrCode, shareTimes } = res.data;
         this.setData({
           posterModalVisible: true,
           posterInfo: {
@@ -280,7 +280,7 @@ Page({
             content,
             authorInfo,
             likeNumber: numOver(likeNumber, 100000),
-            qRcode
+            qrCode
           },
           [`noteInfo.shareTimes`]: shareTimes
         });

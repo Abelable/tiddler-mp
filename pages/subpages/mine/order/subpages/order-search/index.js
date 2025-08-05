@@ -10,7 +10,7 @@ Page({
     isSearching: false,
     orderList: [],
     verifyCode: "",
-    qRcodeModalVisible: false
+    qrCodeModalVisible: false
   },
 
   onLoad({ type = "1" }) {
@@ -150,13 +150,13 @@ Page({
     const { verifyCode } = e.detail;
     this.setData({
       verifyCode,
-      qRcodeModalVisible: true
+      qrCodeModalVisible: true
     });
   },
 
   hideQRcodeModal() {
     this.setData({
-      qRcodeModalVisible: false
+      qrCodeModalVisible: false
     });
     this.setOrderList(true);
   },

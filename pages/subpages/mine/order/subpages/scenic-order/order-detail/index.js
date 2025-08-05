@@ -11,7 +11,7 @@ Page({
     countdown: 0,
     refundBtnVisible: false,
     verifyCode: "",
-    qRcodeModalVisible: false
+    qrCodeModalVisible: false
   },
 
   onLoad({ id }) {
@@ -127,13 +127,13 @@ Page({
     const verifyCode = await orderService.getScenicVerifyCode(id, scenicId);
     this.setData({
       verifyCode,
-      qRcodeModalVisible: true
+      qrCodeModalVisible: true
     });
   },
 
   hideQRcodeModal() {
     this.setData({
-      qRcodeModalVisible: false
+      qrCodeModalVisible: false
     });
     this.setOrderInfo();
   },

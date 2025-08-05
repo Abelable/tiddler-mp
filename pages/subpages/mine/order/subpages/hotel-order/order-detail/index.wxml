@@ -112,7 +112,7 @@
 </view>
 
 <qr-code-modal 
-  wx:if="{{qRcodeModalVisible}}"
+  wx:if="{{qrCodeModalVisible}}"
   code="{{verifyCode}}" 
   bind:hide="hideQRcodeModal"
 />

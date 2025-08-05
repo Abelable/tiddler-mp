@@ -422,7 +422,7 @@ Page({
         ? `${this.scenicId}-${store.superiorInfo.id}`
         : `${this.scenicId}`;
       const page = "pages/subpages/mall/scenic/subpages/scenic-detail/index";
-      const qRcode = await scenicService.getQrCode(scene, page);
+      const qrCode = await scenicService.getQrCode(scene, page);
 
       const {
         imageList,
@@ -440,7 +440,7 @@ Page({
           price,
           salesVolume,
           tagList: featureTagList.slice(0, 2),
-          qRcode
+          qrCode
         }
       });
     });

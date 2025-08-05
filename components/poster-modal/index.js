@@ -74,7 +74,7 @@ Component({
         startTime,
         auchorDataDesc,
         tagList,
-        qRcode
+        qrCode
       } = info || {};
 
       await this.drawImage(
@@ -141,9 +141,6 @@ Component({
         } else {
           this.setText(10, "#fff", 145, 220, auchorDataDesc, "center");
         }
-
-        await this.roundRect(100, 270, 90, 90, 45, qRcode);
-        this.setText(10, "#999", 145, 380, "长按识别二维码", "center");
       } else {
         await this.roundRect(26, 75, 268, 302, 8, cover);
 
@@ -306,10 +303,10 @@ Component({
             await this.setLikeNumber(likeNumber, 197, 380);
           }
         }
-
-        await this.drawImage(qRcode, 224, 386, 68, 68);
-        this.setText(8, "#999", 258, 468, "长按识别二维码", "center");
       }
+
+      await this.drawImage(qrCode, 224, 386, 68, 68);
+      this.setText(8, "#999", 258, 468, "长按识别二维码", "center");
 
       wx.canvasToTempFilePath(
         {

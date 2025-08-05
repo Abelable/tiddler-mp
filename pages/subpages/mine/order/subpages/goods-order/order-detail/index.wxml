@@ -185,7 +185,7 @@
 />
 
 <qr-code-modal 
-  wx:if="{{qRcodeModalVisible}}"
+  wx:if="{{qrCodeModalVisible}}"
   code="{{orderInfo.verifyCode}}" 
   bind:hide="hideQRcodeModal"
 />

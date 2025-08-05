@@ -15,7 +15,7 @@ Page({
     editEvaluationBtnContent: "",
     editEvaluationBtnVisile: false,
     addressPopupVisible: false,
-    qRcodeModalVisible: false
+    qrCodeModalVisible: false
   },
 
   onLoad({ id }) {
@@ -237,13 +237,13 @@ Page({
 
   showQRcodeModal() {
     this.setData({
-      qRcodeModalVisible: true
+      qrCodeModalVisible: true
     });
   },
 
   hideQRcodeModal() {
     this.setData({
-      qRcodeModalVisible: false
+      qrCodeModalVisible: false
     });
     this.setOrderInfo();
   },

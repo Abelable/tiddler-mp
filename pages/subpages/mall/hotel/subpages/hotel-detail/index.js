@@ -350,7 +350,7 @@ Component({
           ? `${this.hotelId}-${store.superiorInfo.id}`
           : `${this.hotelId}`;
         const page = "pages/subpages/mall/hotel/subpages/hotel-detail/index";
-        const qRcode = await hotelService.getQrCode(scene, page);
+        const qrCode = await hotelService.getQrCode(scene, page);
 
         const {
           cover,
@@ -378,7 +378,7 @@ Component({
                   `${dayjs(lastDecorationYear).format("YYYY")}年装修`
                 ]
               : [`${dayjs(openingYear).format("YYYY")}年开业`],
-            qRcode
+            qrCode
           }
         });
       });
