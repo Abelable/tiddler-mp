@@ -22,7 +22,7 @@ class MediaService extends BaseService {
       (await this.get({
         url: `${this.baseUrl}/media/short_video/comment_list`,
         data: { mediaId, page, limit },
-        loadingTitle: "加载中..."
+        loadingTitle: "加载中"
       })) || {};
     return list;
   }
@@ -32,7 +32,7 @@ class MediaService extends BaseService {
       (await this.get({
         url: `${this.baseUrl}/media/short_video/reply_comment_list`,
         data: { mediaId, commentId, page, limit },
-        loadingTitle: "加载中..."
+        loadingTitle: "加载中"
       })) || {};
     return list;
   }
@@ -138,7 +138,7 @@ class MediaService extends BaseService {
     return (
       (await this.get({
         url: `${this.baseUrl}/trip_type/hot_scenic_list`,
-        loadingTitle: "加载中..."
+        loadingTitle: "加载中"
       })) || []
     );
   }
@@ -148,7 +148,7 @@ class MediaService extends BaseService {
       (await this.get({
         url: `${this.baseUrl}/trip_type/lake_trip_list`,
         data: { lakeId },
-        loadingTitle: "加载中..."
+        loadingTitle: "加载中"
       })) || []
     );
   }
@@ -158,7 +158,7 @@ class MediaService extends BaseService {
       (await this.get({
         url: `${this.baseUrl}/trip_type/lake_cycle_list`,
         data: { routeId },
-        loadingTitle: "加载中..."
+        loadingTitle: "加载中"
       })) || []
     );
   }
@@ -174,7 +174,7 @@ class MediaService extends BaseService {
     return (
       (await this.get({
         url: `${this.baseUrl}/trip_type/night_trip_list`,
-        loadingTitle: "加载中..."
+        loadingTitle: "加载中"
       })) || []
     );
   }
@@ -183,7 +183,7 @@ class MediaService extends BaseService {
     return (
       (await this.get({
         url: `${this.baseUrl}/trip_type/star_trip_list`,
-        loadingTitle: "加载中..."
+        loadingTitle: "加载中"
       })) || []
     );
   }

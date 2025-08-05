@@ -2,6 +2,7 @@ import { checkLogin, numOver } from "../../../../../utils/index";
 import { store } from "../../../../../store/index";
 import MediaService from "../../utils/mediaService";
 import {
+  SCENE_INIT,
   SCENE_SWITCH_TAB,
   SCENE_REFRESH,
   SCENE_LOADMORE
@@ -48,7 +49,7 @@ Page({
     await this.setAuthorInfo();
 
     this.scrollTopArr = [0, 0];
-    this.setList(SCENE_REFRESH);
+    this.setList(SCENE_INIT);
 
     this.setNavBarVisibleLimit();
     this.setMenuFixedLimit();
@@ -121,6 +122,11 @@ Page({
   setList(scene) {
     const { curMenuIndex, videoList, noteList } = this.data;
     switch (scene) {
+      case SCENE_INIT:
+        this.setVideoList(true);
+        this.setNoteList(true);
+        break;
+
       case SCENE_SWITCH_TAB:
         switch (curMenuIndex) {
           case 0:
@@ -193,7 +199,7 @@ Page({
       (await mediaService.getNoteList({
         authorId: this.authorId,
         page: ++this.notePage,
-        loadingTitle: "加载中..."
+        loadingTitle: "加载中"
       })) || {};
     this.setData({
       noteList: init ? list : [...noteList, ...list],
@@ -264,6 +270,7 @@ Page({
 
   share() {
     checkLogin(async () => {
+      const { authorInfo, videoList, noteList } = this.data;
       const {
         id,
         bg,
@@ -272,7 +279,7 @@ Page({
         beLikedTimes,
         followedAuthorNumber,
         fansNumber
-      } = this.data.authorInfo;
+      } = authorInfo;
 
       const scene = store.superiorInfo
         ? `${id}-${store.superiorInfo.id}`
@@ -289,6 +296,10 @@ Page({
             followedAuthorNumber,
             100000
           )}关注｜${numOver(fansNumber, 100000)}粉丝`,
+          imageList: [
+            ...videoList.map(item => item.cover),
+            ...noteList.map(item => item.imageList[0])
+          ].slice(0, 6),
           qrCode
         }
       });
@@ -303,7 +314,7 @@ Page({
     const { avatar } = this.data.authorInfo;
     wx.previewImage({
       current: avatar,
-      urls: [avatar],
+      urls: [avatar]
     });
   },
 

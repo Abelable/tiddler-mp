@@ -43,8 +43,7 @@ Page({
     }
     this.setData({ loading: true });
     const list =
-      (await goodsService.getShopGoodsList(this.shopId, ++this.page)) ||
-      [];
+      (await goodsService.getShopGoodsList(this.shopId, ++this.page)) || [];
     this.setData({
       goodsList: init ? list : [...this.data.goodsList, ...list],
       loading: false
@@ -76,7 +75,8 @@ Page({
 
   share() {
     checkLogin(async () => {
-      const { id, type, logo, cover, name: title } = this.data.shopInfo;
+      const { shopInfo, goodsList } = this.data;
+      const { id, type, logo, cover, name: title } = shopInfo;
 
       const scene = `id=${id}`;
       const page = "pages/tab-bar-pages/home/index";
@@ -88,6 +88,7 @@ Page({
           title,
           shopInfo: { type, logo },
           cover: cover || "https://static.tiddler.cn/mp/bg.png",
+          imageList: goodsList.map(item => item.cover).slice(0, 6),
           qrCode
         }
       });

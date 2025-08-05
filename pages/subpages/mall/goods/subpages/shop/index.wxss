@@ -28,7 +28,7 @@
 .shop-logo {
   width: 88rpx;
   height: 88rpx;
-  border-radius: 50%;
+  border-radius: 32rpx;
 }
 .info {
   margin: 0 24rpx;

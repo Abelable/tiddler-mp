@@ -13,7 +13,7 @@ class CateringService extends MallService {
       (await this.get({
         url: `${this.baseUrl}/catering/restaurant/list`,
         data: cleanObject({ keywords, categoryId, sort, order, page, limit }),
-        loadingTitle: "加载中...",
+        loadingTitle: "加载中",
       })) || {};
     return list;
   }
@@ -57,7 +57,7 @@ class CateringService extends MallService {
     return await this.get({
       url: `${this.baseUrl}/catering/meal_ticket/order/payment_amount`,
       data: { ticketId, num },
-      loadingTitle: "加载中...",
+      loadingTitle: "加载中",
     });
   }
 
@@ -65,7 +65,7 @@ class CateringService extends MallService {
     return await this.post({
       url: `${this.baseUrl}/catering/meal_ticket/order/submit`,
       data: { restaurantId, restaurantName, ticketId, num },
-      loadingTitle: "订单提交中...",
+      loadingTitle: "订单提交中",
     });
   }
 
@@ -73,7 +73,7 @@ class CateringService extends MallService {
     return await this.get({
       url: `${this.baseUrl}/catering/set_meal/order/payment_amount`,
       data: { setMealId, num },
-      loadingTitle: "加载中...",
+      loadingTitle: "加载中",
     });
   }
 
@@ -81,7 +81,7 @@ class CateringService extends MallService {
     return await this.post({
       url: `${this.baseUrl}/catering/set_meal/order/submit`,
       data: { restaurantId, restaurantName, setMealId, num },
-      loadingTitle: "订单提交中...",
+      loadingTitle: "订单提交中",
     });
   }
 
@@ -89,7 +89,7 @@ class CateringService extends MallService {
     return await this.get({
       url: `${this.baseUrl}/catering/question/list`,
       data: { restaurantId, page, limit },
-      loadingTitle: "加载中...",
+      loadingTitle: "加载中",
     });
   }
 
@@ -113,7 +113,7 @@ class CateringService extends MallService {
     return await this.get({
       url: `${this.baseUrl}/catering/answer/list`,
       data: { questionId, page, limit },
-      loadingTitle: "加载中...",
+      loadingTitle: "加载中",
     });
   }
 

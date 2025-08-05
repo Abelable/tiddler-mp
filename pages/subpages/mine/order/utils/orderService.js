@@ -6,7 +6,7 @@ class OrderService extends BaseService {
       (await this.get({
         url: `${this.baseUrl}/scenic/order/list`,
         data: { status, page, limit },
-        loadingTitle: "加载中..."
+        loadingTitle: "加载中"
       })) || {};
     return list;
   }
@@ -15,14 +15,14 @@ class OrderService extends BaseService {
     return await this.get({
       url: `${this.baseUrl}/scenic/order/search`,
       data: { keywords },
-      loadingTitle: "加载中..."
+      loadingTitle: "加载中"
     });
   }
 
   async getScenicHistoryKeywords() {
     return await this.get({
       url: `${this.baseUrl}/scenic/order/keyword/list`,
-      loadingTitle: "加载中..."
+      loadingTitle: "加载中"
     });
   }
 
@@ -43,7 +43,7 @@ class OrderService extends BaseService {
     return await this.get({
       url: `${this.baseUrl}/scenic/order/detail`,
       data: { id },
-      loadingTitle: "加载中..."
+      loadingTitle: "加载中"
     });
   }
 
@@ -106,7 +106,7 @@ class OrderService extends BaseService {
       (await this.get({
         url: `${this.baseUrl}/hotel/order/list`,
         data: { status, page, limit },
-        loadingTitle: "加载中..."
+        loadingTitle: "加载中"
       })) || {};
     return list;
   }
@@ -115,14 +115,14 @@ class OrderService extends BaseService {
     return await this.get({
       url: `${this.baseUrl}/hotel/order/search`,
       data: { keywords },
-      loadingTitle: "加载中..."
+      loadingTitle: "加载中"
     });
   }
 
   async getHotelHistoryKeywords() {
     return await this.get({
       url: `${this.baseUrl}/hotel/order/keyword/list`,
-      loadingTitle: "加载中..."
+      loadingTitle: "加载中"
     });
   }
 
@@ -143,7 +143,7 @@ class OrderService extends BaseService {
     return await this.get({
       url: `${this.baseUrl}/hotel/order/detail`,
       data: { id },
-      loadingTitle: "加载中..."
+      loadingTitle: "加载中"
     });
   }
 
@@ -206,7 +206,7 @@ class OrderService extends BaseService {
       (await this.get({
         url: `${this.baseUrl}/catering/meal_ticket/order/list`,
         data: { status, page, limit },
-        loadingTitle: "加载中..."
+        loadingTitle: "加载中"
       })) || {};
     return list;
   }
@@ -215,14 +215,14 @@ class OrderService extends BaseService {
     return await this.get({
       url: `${this.baseUrl}/catering/meal_ticket/order/search`,
       data: { keywords },
-      loadingTitle: "加载中..."
+      loadingTitle: "加载中"
     });
   }
 
   async getMealTicketHistoryKeywords() {
     return await this.get({
       url: `${this.baseUrl}/catering/meal_ticket/order/keyword/list`,
-      loadingTitle: "加载中..."
+      loadingTitle: "加载中"
     });
   }
 
@@ -243,7 +243,7 @@ class OrderService extends BaseService {
     return await this.get({
       url: `${this.baseUrl}/catering/meal_ticket/order/detail`,
       data: { id },
-      loadingTitle: "加载中..."
+      loadingTitle: "加载中"
     });
   }
 
@@ -291,7 +291,7 @@ class OrderService extends BaseService {
       (await this.get({
         url: `${this.baseUrl}/catering/set_meal/order/list`,
         data: { status, page, limit },
-        loadingTitle: "加载中..."
+        loadingTitle: "加载中"
       })) || {};
     return list;
   }
@@ -300,14 +300,14 @@ class OrderService extends BaseService {
     return await this.get({
       url: `${this.baseUrl}/catering/set_meal/order/search`,
       data: { keywords },
-      loadingTitle: "加载中..."
+      loadingTitle: "加载中"
     });
   }
 
   async getSetMealHistoryKeywords() {
     return await this.get({
       url: `${this.baseUrl}/catering/set_meal/order/keyword/list`,
-      loadingTitle: "加载中..."
+      loadingTitle: "加载中"
     });
   }
 
@@ -328,7 +328,7 @@ class OrderService extends BaseService {
     return await this.get({
       url: `${this.baseUrl}/catering/set_meal/order/detail`,
       data: { id },
-      loadingTitle: "加载中..."
+      loadingTitle: "加载中"
     });
   }
 
@@ -376,7 +376,7 @@ class OrderService extends BaseService {
       (await this.get({
         url: `${this.baseUrl}/order/list`,
         data: { status, page, limit },
-        loadingTitle: "加载中..."
+        loadingTitle: "加载中"
       })) || {};
     return list;
   }
@@ -385,14 +385,14 @@ class OrderService extends BaseService {
     return await this.get({
       url: `${this.baseUrl}/order/search`,
       data: { keywords },
-      loadingTitle: "加载中..."
+      loadingTitle: "加载中"
     });
   }
 
   async getGoodsHistoryKeywords() {
     return await this.get({
       url: `${this.baseUrl}/order/keyword/list`,
-      loadingTitle: "加载中..."
+      loadingTitle: "加载中"
     });
   }
 
@@ -413,7 +413,7 @@ class OrderService extends BaseService {
     return await this.get({
       url: `${this.baseUrl}/order/detail`,
       data: { id },
-      loadingTitle: "加载中..."
+      loadingTitle: "加载中"
     });
   }
 
@@ -467,7 +467,7 @@ class OrderService extends BaseService {
     return await this.get({
       url: `${this.baseUrl}/goods/evaluation/detail`,
       data: { orderId },
-      loadingTitle: "加载中..."
+      loadingTitle: "加载中"
     });
   }
 

@@ -6,7 +6,7 @@ class GoodsOrderService extends MerchantService {
       (await this.get({
         url: `${this.baseUrl}/shop/order/list`,
         data: { status, page, limit, shopId },
-        loadingTitle: "加载中...",
+        loadingTitle: "加载中",
       })) || {};
     return list;
   }
@@ -15,7 +15,7 @@ class GoodsOrderService extends MerchantService {
     return await this.get({
       url: `${this.baseUrl}/shop/order/detail`,
       data: { shopId, orderId },
-      loadingTitle: '加载中...'
+      loadingTitle: '加载中'
     })
   }
 }

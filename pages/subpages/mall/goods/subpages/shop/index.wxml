@@ -30,4 +30,4 @@
   </view>
 </view>
 
-<poster-modal wx:if="{{posterModalVisible}}" info="{{posterInfo}}" scene="8" />
+<poster-modal wx:if="{{posterModalVisible}}" info="{{posterInfo}}" scene="8" bind:hide="hidePosterModal" />

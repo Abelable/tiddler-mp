@@ -313,14 +313,14 @@ class BaseService extends Base {
     return await this.get({
       url: `${this.baseUrl}/wx/qr_code`,
       data: { scene, page },
-      loadingTitle: "加载中..."
+      loadingTitle: "加载中"
     });
   }
 
   async getHistoryKeywords() {
     return await this.get({
       url: `${this.baseUrl}/keyword/list`,
-      loadingTitle: "加载中..."
+      loadingTitle: "加载中"
     });
   }
 
@@ -340,7 +340,7 @@ class BaseService extends Base {
   async getHotKeywords() {
     return await this.get({
       url: `${this.baseUrl}/keyword/hot_list`,
-      loadingTitle: "加载中..."
+      loadingTitle: "加载中"
     });
   }
 

@@ -5,7 +5,7 @@ class CouponService extends BaseService {
     const { list = [] } = await this.get({
       url: `${this.baseUrl}/coupon/user_list`,
       data: { status, page, limit },
-      loadingTitle: "加载中..."
+      loadingTitle: "加载中"
     });
     return list;
   }

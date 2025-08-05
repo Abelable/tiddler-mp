@@ -12,7 +12,7 @@ class LiveService extends MediaService {
   async getNoticeRoomInfo() {
     return await this.get({
       url: `${this.baseUrl}/media/live/notice_room`,
-      loadingTitle: "加载中...",
+      loadingTitle: "加载中",
     });
   }
 
@@ -26,7 +26,7 @@ class LiveService extends MediaService {
   async getPushRoomInfo() {
     return await this.get({
       url: `${this.baseUrl}/media/live/push_room`,
-      loadingTitle: "加载中...",
+      loadingTitle: "加载中",
     });
   }
 
@@ -54,7 +54,7 @@ class LiveService extends MediaService {
     return await this.get({
       url: `${this.baseUrl}/media/live/push_room_goods_list`,
       data: { status },
-      loadingTitle: "加载中...",
+      loadingTitle: "加载中",
     });
   }
 
@@ -108,7 +108,7 @@ class LiveService extends MediaService {
     return await this.get({
       url: `${this.baseUrl}/media/live/goods_list`,
       data: { id, page, limit },
-      loadingTitle: "加载中...",
+      loadingTitle: "加载中",
     });
   }
 }

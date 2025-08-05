@@ -5,7 +5,7 @@ class AddressService extends BaseService {
     return await this.get({ 
       url: `${this.baseUrl}/address/detail`, 
       data: { id },
-      loadingTitle: '加载中...'
+      loadingTitle: '加载中'
     })
   }
 

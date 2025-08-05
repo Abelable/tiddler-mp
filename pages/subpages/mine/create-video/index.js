@@ -29,7 +29,7 @@ Page({
   },
 
   async setVideoUrl(tempFilePath) {
-    wx.showLoading({ title: "封面加载中..." });
+    wx.showLoading({ title: "封面加载中" });
     this.videoUrl = await videoService.uploadFile(tempFilePath);
     const cover = `${this.videoUrl}?x-oss-process=video/snapshot,t_0`;
     this.setData({ cover });

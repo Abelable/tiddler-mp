@@ -24,7 +24,7 @@ Component({
 
   lifetimes: {
     async attached() {
-      wx.showLoading({ title: "海报生成中..." });
+      wx.showLoading({ title: "海报生成中" });
       await this.init();
       await this.createPoster();
       wx.hideLoading();
@@ -74,6 +74,7 @@ Component({
         startTime,
         auchorDataDesc,
         tagList,
+        imageList,
         qrCode
       } = info || {};
 
@@ -90,57 +91,39 @@ Component({
       this.setText(8, "#666", 238, 42, descList[scene - 1]);
 
       if (["8", "9"].includes(scene)) {
-        await this.roundRect(27, 116, 237, 130, 5, cover);
-        const linearGradient = this.createLinearGradient(
-          27,
-          166,
-          27,
-          246,
-          "rgba(0, 0, 0, 0)",
-          "rgba(0, 0, 0, 0.5)"
-        );
-        this.roundRect(
-          27,
-          166,
-          237,
-          80,
-          [0, 0, 5, 5],
-          "",
-          null,
-          linearGradient
-        );
-        this.roundRect(100, 71, 90, 90, 45, "", null, "#fff");
-        await this.roundRect(
-          105,
-          76,
-          80,
-          80,
-          40,
-          scene === "8" ? shopInfo.logo : authorInfo.avatar
-        );
-        this.setText(
-          16,
-          "#fff",
-          145,
-          195,
-          scene === "8" ? title : authorInfo.nickname,
-          "center",
-          true
-        );
         if (scene === "8") {
-          this.roundRect(115, 210, 60, 20, 10, "", null, "#434D5E");
+          await this.roundRect(130, 80, 60, 60, 18, shopInfo.logo);
+          this.setText(16, "#333", 160, 160, title, "center", true);
+          this.roundRect(135, 168, 50, 18, 9, "", null, "#0d61d7");
           this.setText(
-            10,
-            "#FFE5BD",
-            145,
-            224,
+            8,
+            "#e0d6cb",
+            160,
+            180,
             shopInfo.type === 1 ? "个人店铺" : "企业店铺",
             "center",
             true
           );
-        } else {
-          this.setText(10, "#fff", 145, 220, auchorDataDesc, "center");
         }
+
+        if (scene === "9") {
+          await this.roundRect(130, 80, 60, 60, 30, authorInfo.avatar);
+          this.setText(
+            16,
+            "#333",
+            160,
+            160,
+            authorInfo.nickname,
+            "center",
+            true
+          );
+          this.setText(10, "#666", 160, 180, auchorDataDesc, "center");
+        }
+
+        await this.drawSixGrid(26, 150, 268, imageList);
+
+        await this.drawImage(qrCode, 126, 386, 68, 68);
+        this.setText(8, "#999", 160, 468, "长按识别二维码", "center");
       } else {
         await this.roundRect(26, 75, 268, 302, 8, cover);
 
@@ -304,10 +287,10 @@ Component({
             await this.setLikeNumber(likeNumber, 212, 466);
           }
         }
-      }
 
-      await this.drawImage(qrCode, 224, 386, 68, 68);
-      this.setText(8, "#999", 258, 468, "长按识别二维码", "center");
+        await this.drawImage(qrCode, 224, 386, 68, 68);
+        this.setText(8, "#999", 258, 468, "长按识别二维码", "center");
+      }
 
       wx.canvasToTempFilePath(
         {
@@ -534,6 +517,90 @@ Component({
       const _h = image.height * scale;
       const { _x, _y } = this.calcPos(_w, _h, w, h);
       ctx.drawImage(image, x + _x, y + _y, _w, _h);
+    },
+
+    /**
+     * 绘制正方形 6 宫格（2 行 3 列），每个宫格保持正方形
+     * @param {number} x 起始 x 坐标（整个区域的左上角）
+     * @param {number} y 起始 y 坐标（整个区域的左上角）
+     * @param {number} size 区域总宽高（正方形）
+     * @param {Array<string>} images 最多 6 张图片
+     */
+    async drawSixGrid(x, y, size, images = []) {
+      const cols = 3;
+      const rows = 2;
+      const spacing = 2;
+      const cornerRadius = 12;
+      const bgColor = "#f1f1f1";
+
+      // 计算每个正方形宫格的边长
+      const totalSpacingX = spacing * (cols - 1);
+      const totalSpacingY = spacing * (rows - 1);
+
+      const itemSize = Math.floor(
+        Math.min((size - totalSpacingX) / cols, (size - totalSpacingY) / rows)
+      );
+
+      const contentWidth = itemSize * cols + totalSpacingX;
+      const contentHeight = itemSize * rows + totalSpacingY;
+
+      // 居中起始点
+      const offsetX = x + (size - contentWidth) / 2;
+      const offsetY = y + (size - contentHeight) / 2;
+
+      for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++) {
+          const idx = row * cols + col;
+          const px = offsetX + col * (itemSize + spacing);
+          const py = offsetY + row * (itemSize + spacing);
+
+          // 圆角设置
+          const radius = [0, 0, 0, 0];
+          if (row === 0 && col === 0) radius[0] = cornerRadius; // 左上
+          if (row === 0 && col === cols - 1) radius[1] = cornerRadius; // 右上
+          if (row === rows - 1 && col === cols - 1) radius[2] = cornerRadius; // 右下
+          if (row === rows - 1 && col === 0) radius[3] = cornerRadius; // 左下
+
+          // 背景
+          await this.roundRect(
+            px,
+            py,
+            itemSize,
+            itemSize,
+            radius,
+            "",
+            null,
+            bgColor
+          );
+
+          // 图片
+          const imgUrl = images[idx];
+          if (imgUrl) {
+            ctx.save();
+            this.createRoundRectPath(ctx, px, py, itemSize, itemSize, radius);
+            ctx.clip();
+            await this.drawImage(imgUrl, px, py, itemSize, itemSize);
+            ctx.restore();
+          }
+        }
+      }
+    },
+
+    createRoundRectPath(ctx, x, y, w, h, r) {
+      // r: [top-left, top-right, bottom-right, bottom-left]
+      const [tl, tr, br, bl] = r;
+
+      ctx.beginPath();
+      ctx.moveTo(x + tl, y);
+      ctx.lineTo(x + w - tr, y);
+      ctx.quadraticCurveTo(x + w, y, x + w, y + tr);
+      ctx.lineTo(x + w, y + h - br);
+      ctx.quadraticCurveTo(x + w, y + h, x + w - br, y + h);
+      ctx.lineTo(x + bl, y + h);
+      ctx.quadraticCurveTo(x, y + h, x, y + h - bl);
+      ctx.lineTo(x, y + tl);
+      ctx.quadraticCurveTo(x, y, x + tl, y);
+      ctx.closePath();
     },
 
     /**

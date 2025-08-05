@@ -11,7 +11,7 @@ class HotelService extends MallService {
       (await this.get({
         url: `${this.baseUrl}/hotel/list`,
         data: cleanObject({ keywords, categoryId, sort, order, page, limit }),
-        loadingTitle: "加载中...",
+        loadingTitle: "加载中",
       })) || {};
     return list;
   }
@@ -41,7 +41,7 @@ class HotelService extends MallService {
     return await this.get({
       url: `${this.baseUrl}/hotel/order/payment_amount`,
       data: { roomId, checkInDate, checkOutDate, num },
-      loadingTitle: "加载中...",
+      loadingTitle: "加载中",
     });
   }
 
@@ -56,7 +56,7 @@ class HotelService extends MallService {
         consignee,
         mobile,
       },
-      loadingTitle: "订单提交中...",
+      loadingTitle: "订单提交中",
     });
   }
 
@@ -71,7 +71,7 @@ class HotelService extends MallService {
     return await this.get({
       url: `${this.baseUrl}/hotel/question/list`,
       data: { hotelId, page, limit },
-      loadingTitle: "加载中...",
+      loadingTitle: "加载中",
     });
   }
 
@@ -95,7 +95,7 @@ class HotelService extends MallService {
     return await this.get({
       url: `${this.baseUrl}/hotel/answer/list`,
       data: { questionId, page, limit },
-      loadingTitle: "加载中...",
+      loadingTitle: "加载中",
     });
   }
 
@@ -119,7 +119,7 @@ class HotelService extends MallService {
     return await this.get({
       url: `${this.baseUrl}/hotel/evaluation/list`,
       data: { hotelId, page, limit },
-      loadingTitle: "加载中...",
+      loadingTitle: "加载中",
     });
   }
 }
