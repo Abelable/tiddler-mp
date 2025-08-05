@@ -1,4 +1,5 @@
-import { checkLogin, getQueryString } from "../../../../../../utils/index";
+import { store } from "../../../../../../store/index";
+import { checkLogin } from "../../../../../../utils/index";
 import GoodsService from "../../utils/goodsService";
 
 const goodsService = new GoodsService();
@@ -16,16 +17,26 @@ Page({
     posterModalVisible: false
   },
 
-  onLoad({ id, scene, q }) {
+  onLoad(options) {
     wx.showShareMenu({
       withShareTicket: true,
       menus: ["shareAppMessage", "shareTimeline"]
     });
 
-    const decodedScene = scene ? decodeURIComponent(scene) : "";
-    const decodedQ = q ? decodeURIComponent(q) : "";
-    this.shopId =
-      id || decodedScene.split("-")[0] || getQueryString(decodedQ, "id");
+    const { id, superiorId = "", scene = "" } = options || {};
+    const decodedSceneList = scene ? decodeURIComponent(scene).split("-") : [];
+    this.shopId = +id || decodedSceneList[0];
+    this.superiorId = +superiorId || decodedSceneList[1];
+
+    getApp().onLaunched(async () => {
+      if (this.superiorId && !store.superiorInfo) {
+        wx.setStorageSync("superiorId", this.superiorId);
+        const superiorInfo = await goodsService.getUserInfo(this.superiorId);
+        if (superiorInfo.promoterInfo) {
+          store.setSuperiorInfo(superiorInfo);
+        }
+      }
+    });
 
     this.setShopInfo();
     this.setGoodsList(true);
@@ -78,8 +89,10 @@ Page({
       const { shopInfo, goodsList } = this.data;
       const { id, type, logo, cover, name: title } = shopInfo;
 
-      const scene = `id=${id}`;
-      const page = "pages/tab-bar-pages/home/index";
+      const scene = store.superiorInfo
+        ? `${id}-${store.superiorInfo.id}`
+        : `${id}`;
+      const page = "pages/subpages/mall/goods/subpages/shop/index";
       const qrCode = await goodsService.getQrCode(scene, page);
 
       this.setData({

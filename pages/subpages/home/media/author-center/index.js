@@ -31,6 +31,11 @@ Page({
   },
 
   async onLoad(options) {
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ["shareAppMessage", "shareTimeline"]
+    });
+
     const { id, superiorId = "", scene = "" } = options || {};
     const decodedSceneList = scene ? decodeURIComponent(scene).split("-") : [];
     this.authorId = +id || decodedSceneList[0];
@@ -53,11 +58,6 @@ Page({
 
     this.setNavBarVisibleLimit();
     this.setMenuFixedLimit();
-
-    wx.showShareMenu({
-      withShareTicket: true,
-      menus: ["shareAppMessage", "shareTimeline"]
-    });
   },
 
   onShow() {
