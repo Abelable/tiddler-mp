@@ -58,7 +58,10 @@ Component({
       if (!store.locationInfo) {
         mallService.getLocationInfo();
       }
-      this.initCalendar();
+      if (!store.checkInDate) {
+        this.initCalendar();
+      }
+      
       await this.setBannerList();
       if (!this.data.productList.length) {
         await this.setProductList(true);

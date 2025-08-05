@@ -30,10 +30,13 @@ Page({
       fields: ["checkInDate", "checkOutDate"]
     });
 
-    this.initCalendar();
+    if (!store.checkInDate) {
+      this.initCalendar();
+    }
     if (!store.locationInfo) {
       await hotelService.getLocationInfo();
     }
+
     await this.setCategoryOptions();
     this.setHotelList(true);
   },

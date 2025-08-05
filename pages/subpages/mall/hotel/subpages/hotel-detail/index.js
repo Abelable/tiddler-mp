@@ -91,6 +91,10 @@ Component({
         }
       });
 
+      if (!store.checkInDate) {
+        this.initCalendar();
+      }
+
       await this.setHotelInfo();
       await this.setRoomTypeList();
       this.setMenuList();
@@ -152,7 +156,8 @@ Component({
         this.imagesList.push(environmentImageList);
       }
 
-      const { longitude: lo1 = 0, latitude: la1 = 0 } = store.locationInfo || {};
+      const { longitude: lo1 = 0, latitude: la1 = 0 } =
+        store.locationInfo || {};
       const distance = lo1 ? calcDistance(la1, lo1, la2, lo2) : 0;
 
       this.setData({
@@ -470,6 +475,14 @@ Component({
       this.setData({
         calendarPopupVisible: false
       });
+    },
+
+    initCalendar() {
+      store.setCheckInDate(new Date().getTime());
+
+      const endDate = new Date();
+      endDate.setDate(endDate.getDate() + 1);
+      store.setCheckOutDate(endDate.getTime());
     },
 
     setCalendar(e) {

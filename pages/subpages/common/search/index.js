@@ -50,10 +50,15 @@ Page({
     });
 
     this.setData({ curMenuIdx: Number(scene) });
-    this.initCalendar();
+
+    if (store.checkInDate) {
+      this.initCalendar();
+    }
+
     checkLogin(() => {
       this.setHistoryKeywords();
     }, false);
+    
     this.setHotKeywords();
   },
 

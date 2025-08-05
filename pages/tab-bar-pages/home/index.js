@@ -71,7 +71,9 @@ Component({
       if (!store.locationInfo) {
         homeService.getLocationInfo();
       }
-      this.initCalendar();
+      if (!store.checkInDate) {
+        this.initCalendar();
+      }
 
       this.setAdInfo();
       await this.setBannerList();
