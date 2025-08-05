@@ -73,7 +73,7 @@ Page({
     checkLogin(async () => {
       const { isFollow } = await mediaService.getFollowStatus(this.authorId);
       this.setData({ isFollow });
-    });
+    }, false);
   },
 
   follow() {
