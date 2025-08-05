@@ -19,28 +19,31 @@
   min-height: calc(100vh - 280rpx);
   background: rgba(255, 255, 255, 0.68);
   backdrop-filter: blur(8px);
-  border-radius: 60rpx 60rpx 0 0;
+  border-radius: 48rpx 48rpx 0 0;
 }
+
 .shop-info-wrap {
+  position: relative;
   padding: 24rpx;
   padding-right: 32rpx;
 }
 .shop-logo {
-  width: 88rpx;
-  height: 88rpx;
+  width: 100rpx;
+  height: 100rpx;
   border-radius: 32rpx;
 }
 .info {
-  margin: 0 24rpx;
+  margin: 0 18rpx;
   flex: 1;
 }
 .shop-name {
   color: #333;
-  font-size: 28rpx;
+  font-size: 32rpx;
   font-weight: 550;
+  line-height: 1;
 }
 .authentication {
-  margin-top: 8rpx;
+  margin-top: 12rpx;
   padding: 0 16rpx;
   height: 36rpx;
   width: fit-content;
@@ -50,13 +53,11 @@
   border-radius: 18rpx;
   background: var(--blue-linear-2);
 }
-.share-btn {
-  text-align: center;
-  color: #666;
-  font-size: 20rpx;
-  line-height: 1;
-}
+
 .share-icon {
+  position: absolute;
+  top: 32rpx;
+  right: 32rpx;
   width: 50rpx;
   height: 50rpx;
 }
