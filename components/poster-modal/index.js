@@ -61,6 +61,8 @@ Component({
         status,
         cover,
         title,
+        grade,
+        englishName,
         content,
         price,
         marketPrice,
@@ -143,11 +145,7 @@ Component({
         await this.roundRect(100, 270, 90, 90, 45, qRcode);
         this.setText(10, "#999", 145, 380, "长按识别二维码", "center");
       } else {
-        if (scene === "4") {
-          await this.roundRect(26, 75, 268, 298, 8, cover);
-        } else {
-          await this.roundRect(26, 75, 268, 268, 8, cover);
-        }
+        await this.roundRect(26, 75, 268, 302, 8, cover);
 
         if (scene === "1") {
           this.roundRect(
@@ -229,13 +227,29 @@ Component({
           15,
           "#333",
           28,
-          404,
+          406,
           title,
           16,
-          180,
+          186,
           true,
           ["1", "3", "4", "5", "6"].includes(scene) ? 1 : 2
         );
+
+        if (scene === "5") {
+          this.setWrapText(
+            9,
+            "#333",
+            28,
+            420,
+            `${
+              ["经济酒店", "舒适酒店", "高档酒店", "豪华酒店"][grade - 1]
+            } ｜ ${englishName}`,
+            16,
+            186,
+            true,
+            ["1", "3", "4", "5", "6"].includes(scene) ? 1 : 2
+          );
+        }
 
         if (scene === "1") {
           const time = `直播时间：${dayjs(
@@ -248,7 +262,7 @@ Component({
           this.setWrapText(10, "#666", 27, 354, content, 16, 173, false, 1);
         }
 
-        if (["4", "5", "6"].includes(scene)) {
+        if (["4", "5", "6", "7"].includes(scene)) {
           this.roundRect(
             248,
             86,
@@ -264,20 +278,24 @@ Component({
             "#000",
             255,
             98.6,
-            ["景点", "酒店", "美食"][scene - 4]
+            ["景点", "酒店", "美食", "商品"][scene - 4]
           );
+        }
 
-          this.setTagList(tagList, 27, 436);
+        if (scene === "5") {
+          this.setTagList(tagList, 28, 440);
+        } else if (["4", "6"].includes(scene)) {
+          this.setTagList(tagList, 28, 426);
         }
 
         if (["4", "5", "6", "7"].includes(scene)) {
-          if (scene === "7") {
+          if (scene === "7" && marketPrice) {
             this.setGoodsPrice(price, `¥${marketPrice}`, 27, 468);
           } else {
             this.setPrice(price, 28, 468);
           }
           if (salesVolume) {
-            this.setText(10, "#999", 200, 468, `已售${salesVolume}`, "right");
+            this.setText(10, "#999", 212, 468, `已售${salesVolume}`, "right");
           }
         }
 
@@ -304,23 +322,23 @@ Component({
       );
     },
 
-    setTagList(tagList, x, y) {
+    setTagList(tagList, x, y, c = "#999", bgc = "#f1f1f1") {
       for (let i = 0; i < tagList.length; i++) {
         const tag = tagList[i];
         ctx.font = "8px sans-serif";
-        ctx.fillStyle = "#999";
+        ctx.fillStyle = c;
         const { width } = ctx.measureText(tag);
-        this.roundRect(x, y - 11, width + 8, 16, 5, "", null, "#f1f1f1");
+        this.roundRect(x, y - 11, width + 8, 16, 5, "", null, bgc);
         ctx.fillText(tag, x + 4, y);
         x = x + width + 12;
       }
     },
 
     setGoodsPrice(price, marketPrice, x, y) {
-      this.setText(10, "#ff5040", x, y, "¥");
+      this.setText(10, "#FD2D55", x, y, "¥");
 
       ctx.font = "bold 15px sans-serif";
-      ctx.fillStyle = "#ff5040";
+      ctx.fillStyle = "#FD2D55";
       ctx.fillText(price, x + 7, y);
 
       const priceWidth = ctx.measureText(price).width;
@@ -338,10 +356,10 @@ Component({
     },
 
     setPrice(price, x, y) {
-      this.setText(12, "#ff5040", x, y, "¥");
+      this.setText(12, "#FD2D55", x, y, "¥");
 
       ctx.font = "bold 18px sans-serif";
-      ctx.fillStyle = "#ff5040";
+      ctx.fillStyle = "#FD2D55";
       ctx.fillText(price, x + 8, y + 0.5);
 
       const priceWidth = ctx.measureText(price).width;

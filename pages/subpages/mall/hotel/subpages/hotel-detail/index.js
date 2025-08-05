@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
 import { store } from "../../../../../../store/index";
 import { calcDistance, checkLogin } from "../../../../../../utils/index";
@@ -354,9 +355,12 @@ Component({
         const {
           cover,
           name: title,
+          grade,
+          englishName,
           price,
           salesVolume,
-          featureTagList = []
+          openingYear,
+          lastDecorationYear
         } = this.data.hotelInfo;
 
         this.setData({
@@ -364,9 +368,16 @@ Component({
           posterInfo: {
             cover,
             title,
+            grade,
+            englishName,
             price,
             salesVolume,
-            tagList: featureTagList.slice(0, 2),
+            tagList: lastDecorationYear
+              ? [
+                  `${dayjs(openingYear).format("YYYY")}年开业`,
+                  `${dayjs(lastDecorationYear).format("YYYY")}年装修`
+                ]
+              : [`${dayjs(openingYear).format("YYYY")}年开业`],
             qRcode
           }
         });
