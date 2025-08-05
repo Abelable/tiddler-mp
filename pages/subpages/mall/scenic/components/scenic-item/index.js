@@ -11,9 +11,9 @@ Component({
       type: Object,
       observer(info) {
         if (info && store.locationInfo) {
-          const { longitude: lo1, latitude: la1 } = store.locationInfo;
+          const { longitude: lo1 = 0, latitude: la1 = 0 } = store.locationInfo || {};
           const { longitude: lo2, latitude: la2 } = info;
-          const distance = calcDistance(la1, lo1, la2, lo2);
+          const distance = lo1 ? calcDistance(la1, lo1, la2, lo2) : 0;
           this.setData({ distance });
         }
       },

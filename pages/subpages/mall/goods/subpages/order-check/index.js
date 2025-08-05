@@ -142,13 +142,13 @@ Page({
   },
 
   async setPickupAddressList(cartGoodsId) {
-    const { longitude: lo1, latitude: la1 } = store.locationInfo;
+    const { longitude: lo1 = 0, latitude: la1 = 0 } = store.locationInfo || {};
     const list = await goodsService.getPickupAddressList(cartGoodsId);
     const pickupAddressList = list.map(item => {
       const { longitude, latitude } = item;
       const la2 = +latitude;
       const lo2 = +longitude;
-      const distance = calcDistance(la1, lo1, la2, lo2);
+      const distance = lo1 ? calcDistance(la1, lo1, la2, lo2) : 0;
       return { ...item, distance };
     });
     this.setData({ pickupAddressList });

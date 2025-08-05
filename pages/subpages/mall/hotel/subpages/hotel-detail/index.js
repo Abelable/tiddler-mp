@@ -152,8 +152,8 @@ Component({
         this.imagesList.push(environmentImageList);
       }
 
-      const { longitude: lo1, latitude: la1 } = store.locationInfo;
-      const distance = calcDistance(la1, lo1, la2, lo2);
+      const { longitude: lo1 = 0, latitude: la1 = 0 } = store.locationInfo || {};
+      const distance = lo1 ? calcDistance(la1, lo1, la2, lo2) : 0;
 
       this.setData({
         hotelInfo,
