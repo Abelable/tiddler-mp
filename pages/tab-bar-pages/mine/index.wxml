@@ -7,7 +7,7 @@
   <!-- <image class="sign-in-icon" wx:if="{{!navBarVisible}}" src="https://static.tiddler.cn/mp/sign_in.png" /> -->
   <view class="promoter-icon" wx:if="{{!userInfo.promoterInfo && superiorInfo}}">
     <image class="promoter-avatar" src="{{superiorInfo.avatar}}" />
-    <image class="promoter-medal" src="https://static.tiddler.cn/mp/promoter/level_{{superiorInfo.promoterInfo.level}}/medal.gif" />
+    <image class="promoter-medal-small" src="https://static.tiddler.cn/mp/promoter/level_{{superiorInfo.promoterInfo.level}}/medal.gif" />
   </view>
   <view class="mine-avatar-wrap" wx:if="{{navBarVisible}}">
     <image class="mine-avatar" src="{{userInfo.avatar}}" />

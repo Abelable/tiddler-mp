@@ -45,7 +45,7 @@
   border-radius: 50%;
   border: 2px solid #fff;
 }
-.promoter-medal {
+.promoter-medal-small {
   position: absolute;
   right: -4px;
   bottom: -1px;
