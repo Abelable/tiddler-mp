@@ -176,8 +176,8 @@ Component({
 
         if (scene === "2") {
           this.roundRect(
-            126,
-            171,
+            140,
+            206,
             40,
             40,
             20,
@@ -187,8 +187,8 @@ Component({
           );
           await this.drawImage(
             "https://img.ubo.vip/tiddler/poster/play-icon.png",
-            139,
-            183,
+            153,
+            218,
             16,
             16
           );
@@ -196,28 +196,29 @@ Component({
 
         if (scene === "3") {
           const linearGradient = this.createLinearGradient(
-            27,
-            281,
-            27,
-            311,
+            26,
+            347,
+            26,
+            377,
             "rgba(0, 0, 0, 0)",
             "rgba(0, 0, 0, 0.5)"
           );
           this.roundRect(
-            27,
-            281,
-            237,
+            26,
+            347,
+            268,
             30,
-            [0, 0, 5, 5],
+            [0, 0, 8, 8],
             "",
             null,
             linearGradient
           );
 
-          this.roundRect(128, 300, 4, 4, 2, "", null, "#00cffc");
-          this.roundRect(138, 300, 4, 4, 2, "", null, "#fff");
-          this.roundRect(148, 300, 4, 4, 2, "", null, "#fff");
-          this.roundRect(158, 300, 4, 4, 2, "", null, "#fff");
+          this.roundRect(138, 365, 4, 4, 2, "", null, "#00cffc");
+          this.roundRect(148, 365, 4, 4, 2, "", null, "#fff");
+          this.roundRect(158, 365, 4, 4, 2, "", null, "#fff");
+          this.roundRect(168, 365, 4, 4, 2, "", null, "#fff");
+          this.roundRect(178, 365, 4, 4, 2, "", null, "#fff");
         }
 
         this.setWrapText(
@@ -256,7 +257,7 @@ Component({
         }
 
         if (scene === "3") {
-          this.setWrapText(10, "#666", 27, 354, content, 16, 173, false, 1);
+          this.setWrapText(10, "#666", 28, 428, content, 16, 186, false, 1);
         }
 
         if (["4", "5", "6", "7"].includes(scene)) {
@@ -297,10 +298,10 @@ Component({
         }
 
         if (["1", "2", "3"].includes(scene)) {
-          await this.roundRect(27, 366, 18, 18, 9, authorInfo.avatar);
-          this.setText(10, "#333", 50, 379, authorInfo.nickname);
+          await this.roundRect(28, 453, 18, 18, 9, authorInfo.avatar);
+          this.setText(10, "#333", 50, 466, authorInfo.nickname);
           if (["2", "3"].includes(scene)) {
-            await this.setLikeNumber(likeNumber, 197, 380);
+            await this.setLikeNumber(likeNumber, 212, 466);
           }
         }
       }
