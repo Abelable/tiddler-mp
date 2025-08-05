@@ -51,14 +51,14 @@ Page({
 
     this.setData({ curMenuIdx: Number(scene) });
 
-    if (store.checkInDate) {
+    if (!store.checkInDate) {
       this.initCalendar();
     }
 
     checkLogin(() => {
       this.setHistoryKeywords();
     }, false);
-    
+
     this.setHotKeywords();
   },
 
