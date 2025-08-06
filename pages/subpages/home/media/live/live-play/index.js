@@ -18,10 +18,10 @@ Page({
   },
 
   async onLoad(options) {
-    const { id, superiorId = "", scene = "" } = options || {};
+    const { id, scene = "" } = options || {};
     const decodedSceneList = scene ? decodeURIComponent(scene).split("-") : [];
     this.roomId = +id || decodedSceneList[0];
-    this.superiorId = +superiorId || decodedSceneList[1];
+    this.superiorId = decodedSceneList[1] || "";
 
     getApp().onLaunched(async () => {
       if (this.superiorId && !store.superiorInfo) {
@@ -144,23 +144,23 @@ Page({
   },
 
   onShareAppMessage() {
+    const { id: superiorId } = store.superiorInfo || {};
     const { roomList, curRoomIdx } = this.data;
     const roomInfo = roomList[curRoomIdx];
     const { id, title, cover: imageUrl } = roomInfo;
-    const path = store.superiorInfo
-      ? `/pages/subpages/home/media/live/live-play/index?id=${id}&superiorId=${store.superiorInfo.id}`
+    const path = superiorId
+      ? `/pages/subpages/home/media/live/live-play/index?id=${id}&superiorId=${superiorId}`
       : `/pages/subpages/home/media/live/live-play/index?id=${id}}`;
     return { path, title, imageUrl };
   },
 
   onShareTimeline() {
+    const { id: superiorId } = store.superiorInfo || {};
     const { roomList, curRoomIdx } = this.data;
     const roomInfo = roomList[curRoomIdx];
     const { id, title, cover: imageUrl } = roomInfo;
     title = `有播直播间：${title}`;
-    const query = store.superiorInfo
-      ? `id=${id}&superiorId=${store.superiorInfo.id}`
-      : `id=${id}`;
+    const query = superiorId ? `id=${id}&superiorId=${superiorId}` : `id=${id}`;
     return { query, title, imageUrl };
   }
 });

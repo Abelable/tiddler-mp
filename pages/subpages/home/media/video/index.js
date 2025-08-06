@@ -23,16 +23,10 @@ Page({
   },
 
   async onLoad(options) {
-    const {
-      id,
-      authorId,
-      mediaScene,
-      superiorId = "",
-      scene = ""
-    } = options || {};
+    const { id, authorId, mediaScene, scene = "" } = options || {};
     const decodedSceneList = scene ? decodeURIComponent(scene).split("-") : [];
     this.videoId = +id || decodedSceneList[0];
-    this.superiorId = +superiorId || decodedSceneList[1];
+    this.superiorId = decodedSceneList[1] || "";
     this.authorId = authorId ? +authorId : 0;
     this.mediaScene = mediaScene ? +mediaScene : 0;
 
@@ -234,20 +228,20 @@ Page({
   },
 
   onShareAppMessage() {
+    const { id: superiorId } = store.superiorInfo || {};
     const { videoList, curVideoIdx } = this.data;
     const { id, title, cover: imageUrl } = videoList[curVideoIdx];
-    const path = store.superiorInfo
-      ? `/pages/subpages/home/media/video/index?id=${id}&superiorId=${store.superiorInfo.id}`
+    const path = superiorId
+      ? `/pages/subpages/home/media/video/index?id=${id}&superiorId=${superiorId}`
       : `/pages/subpages/home/media/video/index?id=${id}`;
     return { path, title, imageUrl };
   },
 
   onShareTimeline() {
+    const { id: superiorId } = store.superiorInfo || {};
     const { videoList, curVideoIdx } = this.data;
     const { id, title, cover: imageUrl } = videoList[curVideoIdx];
-    const query = store.superiorInfo
-      ? `id=${id}&superiorId=${store.superiorInfo.id}`
-      : `id=${id}`;
+    const query = superiorId ? `id=${id}&superiorId=${superiorId}` : `id=${id}`;
     return { query, title, imageUrl };
   }
 });

@@ -44,10 +44,10 @@ Page({
       fields: ["userInfo"]
     });
 
-    const { id, superiorId = "", scene = "" } = options || {};
+    const { id, scene = "" } = options || {};
     const decodedSceneList = scene ? decodeURIComponent(scene).split("-") : [];
     this.goodsId = +id || decodedSceneList[0];
-    this.superiorId = +superiorId || decodedSceneList[1];
+    this.superiorId = decodedSceneList[1] || "";
 
     getApp().onLaunched(async () => {
       if (this.superiorId && !store.superiorInfo) {
@@ -378,20 +378,19 @@ Page({
     wx.stopPullDownRefresh();
   },
 
-  // 分享
   onShareAppMessage() {
+    const { id: superiorId } = store.superiorInfo || {};
     const { id, name: title, cover: imageUrl } = this.data.goodsInfo;
-    const path = store.superiorInfo
-      ? `/pages/subpages/mall/goods/subpages/goods-detail/index?id=${id}&superiorId=${store.superiorInfo.id}`
+    const path = superiorId
+      ? `/pages/subpages/mall/goods/subpages/goods-detail/index?id=${id}&superiorId=${superiorId}`
       : `/pages/subpages/mall/goods/subpages/goods-detail/index?id=${id}`;
     return { title, imageUrl, path };
   },
 
   onShareTimeline() {
+    const { id: superiorId } = store.superiorInfo || {};
     const { id, name: title, cover: imageUrl } = this.data.goodsInfo;
-    const query = store.superiorInfo
-      ? `id=${id}&superiorId=${store.superiorInfo.id}`
-      : `id=${id}`;
+    const query = superiorId ? `id=${id}&superiorId=${superiorId}` : `id=${id}`;
     return { query, title, imageUrl };
   }
 });

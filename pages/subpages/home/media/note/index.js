@@ -12,7 +12,6 @@ Page({
     noteInfo: null,
     commentList: [],
     finished: false,
-    curNoteIdx: 0,
     curPositonIdx: 0,
     commentId: 0,
     inputPopupVisible: false,
@@ -22,15 +21,20 @@ Page({
   },
 
   async onLoad(options) {
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ["shareAppMessage", "shareTimeline"]
+    });
+
     this.storeBindings = createStoreBindings(this, {
       store,
       fields: ["userInfo"]
     });
 
-    const { id, superiorId = "", scene = "" } = options || {};
+    const { id, scene = "" } = options || {};
     const decodedSceneList = scene ? decodeURIComponent(scene).split("-") : [];
     this.noteId = +id || decodedSceneList[0];
-    this.superiorId = +superiorId || decodedSceneList[1];
+    this.superiorId = decodedSceneList[1] || "";
 
     getApp().onLaunched(async () => {
       if (this.superiorId && !store.superiorInfo) {
@@ -44,11 +48,6 @@ Page({
 
     this.setNoteInfo();
     this.setCommentList(true);
-
-    wx.showShareMenu({
-      withShareTicket: true,
-      menus: ["shareAppMessage", "shareTimeline"]
-    });
   },
 
   onPullDownRefresh() {
@@ -289,20 +288,18 @@ Page({
   },
 
   onShareAppMessage() {
-    const { noteList, curNoteIdx } = this.data;
-    const { id, title, cover: imageUrl } = noteList[curNoteIdx];
-    const path = store.superiorInfo
-      ? `/pages/subpages/home/media/note/index?id=${id}&superiorId=${store.superiorInfo.id}`
+    const { id: superiorId } = store.superiorInfo || {};
+    const { id, title, cover: imageUrl } = this.data.noteInfo;
+    const path = superiorId
+      ? `/pages/subpages/home/media/note/index?id=${id}&superiorId=${superiorId}`
       : `/pages/subpages/home/media/note/index?id=${id}`;
     return { path, title, imageUrl };
   },
 
   onShareTimeline() {
-    const { noteList, curNoteIdx } = this.data;
-    const { id, title, cover: imageUrl } = noteList[curNoteIdx];
-    const query = store.superiorInfo
-      ? `id=${id}&superiorId=${store.superiorInfo.id}`
-      : `id=${id}`;
+    const { id: superiorId } = store.superiorInfo || {};
+    const { id, title, cover: imageUrl } = this.data.noteInfo;
+    const query = superiorId ? `id=${id}&superiorId=${superiorId}` : `id=${id}`;
     return { query, title, imageUrl };
   },
 

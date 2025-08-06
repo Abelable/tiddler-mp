@@ -1,7 +1,4 @@
 import { store } from "../../../../store/index";
-import BaseService from "../../../../services/baseService";
-
-const baseService = new BaseService();
 
 Page({
   data: {
@@ -9,18 +6,7 @@ Page({
   },
 
   async onLoad(options) {
-    let { url, superiorId = "", ...rest } = options;
-
-    getApp().onLaunched(async () => {
-      if (superiorId && !store.superiorInfo) {
-        wx.setStorageSync("superiorId", superiorId);
-        const superiorInfo = await baseService.getUserInfo(superiorId);
-        if (superiorInfo.promoterInfo) {
-          store.setSuperiorInfo(superiorInfo);
-        }
-      }
-    });
-
+    let { url, ...rest } = options;
     for (let key in rest) {
       if (rest.hasOwnProperty(key) && rest[key])
         url += `${url.indexOf("?") === -1 ? "?" : "&"}${key}=${rest[key]}`;
@@ -46,7 +32,7 @@ Page({
   },
 
   onShareAppMessage() {
-    const { id } = store.promoterInfo || {};
+    const { id } = store.superiorInfo || {};
     const originalPath = `/pages/subpages/common/webview/index?url=${this.webviewUrl.replace(
       "?",
       "&"

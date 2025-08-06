@@ -23,10 +23,10 @@ Page({
       menus: ["shareAppMessage", "shareTimeline"]
     });
 
-    const { id, superiorId = "", scene = "" } = options || {};
+    const { id, scene = "" } = options || {};
     const decodedSceneList = scene ? decodeURIComponent(scene).split("-") : [];
     this.shopId = +id || decodedSceneList[0];
-    this.superiorId = +superiorId || decodedSceneList[1];
+    this.superiorId = decodedSceneList[1] || "";
 
     getApp().onLaunched(async () => {
       if (this.superiorId && !store.superiorInfo) {
@@ -112,17 +112,20 @@ Page({
     this.setData({ posterModalVisible: false });
   },
 
-  // 分享
   onShareAppMessage() {
+    const { id: superiorId } = store.superiorInfo || {};
     const { id, name: title, cover: imageUrl } = this.data.shopInfo;
-    const path = `/pages/subpages/mall/goods/subpages/shop/index?id=${id}`;
+    const path = superiorId
+      ? `/pages/subpages/mall/goods/subpages/shop/index?id=${id}&superiorId=${superiorId}`
+      : `/pages/subpages/mall/goods/subpages/shop/index?id=${id}`;
     return { title, imageUrl, path };
   },
 
   onShareTimeline() {
+    const { id: superiorId } = store.superiorInfo || {};
     const { id, name, image: imageUrl } = this.data.shopInfo;
     const title = `小鱼游商家店铺：${name}`;
-    const query = `id=${id}`;
+    const query = superiorId ? `id=${id}&superiorId=${superiorId}` : `id=${id}`;
     return { query, title, imageUrl };
   }
 });

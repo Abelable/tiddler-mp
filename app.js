@@ -11,7 +11,7 @@ App({
     launched: false
   },
 
-  async onLaunch() {
+  async onLaunch(options) {
     this.setSystemInfo();
 
     if (!wx.getStorageSync("token")) {
@@ -40,6 +40,16 @@ App({
         if (superiorInfo.promoterInfo) {
           store.setSuperiorInfo(superiorInfo);
         }
+      }
+    }
+
+    // 链接分享绑定上下级
+    const { superiorId = '' } = options.query || {};
+    if (superiorId && !store.superiorInfo) {
+      wx.setStorageSync("superiorId", superiorId);
+      const superiorInfo = await noteService.getUserInfo(superiorId);
+      if (superiorInfo.promoterInfo) {
+        store.setSuperiorInfo(superiorInfo);
       }
     }
 

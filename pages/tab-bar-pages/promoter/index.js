@@ -1,7 +1,4 @@
 import { store } from "../../../store/index";
-import BaseService from "../../../services/baseService";
-
-const baseService = new BaseService();
 
 Component({
   data: {
@@ -24,21 +21,10 @@ Component({
   },
 
   methods: {
-    async onLoad(options) {
+    onLoad() {
       wx.showShareMenu({
         withShareTicket: true,
         menus: ["shareAppMessage", "shareTimeline"]
-      });
-
-      const { superiorId = "" } = options || {};
-      getApp().onLaunched(async () => {
-        if (superiorId && !store.superiorInfo) {
-          wx.setStorageSync("superiorId", superiorId);
-          const superiorInfo = await baseService.getUserInfo(superiorId);
-          if (superiorInfo.promoterInfo) {
-            store.setSuperiorInfo(superiorInfo);
-          }
-        }
       });
     },
 

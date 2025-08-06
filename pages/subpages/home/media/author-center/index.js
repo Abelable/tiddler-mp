@@ -36,10 +36,10 @@ Page({
       menus: ["shareAppMessage", "shareTimeline"]
     });
 
-    const { id, superiorId = "", scene = "" } = options || {};
+    const { id, scene = "" } = options || {};
     const decodedSceneList = scene ? decodeURIComponent(scene).split("-") : [];
     this.authorId = +id || decodedSceneList[0];
-    this.superiorId = +superiorId || decodedSceneList[1];
+    this.superiorId = decodedSceneList[1] || "";
 
     getApp().onLaunched(async () => {
       if (this.superiorId && !store.superiorInfo) {
@@ -319,18 +319,18 @@ Page({
   },
 
   onShareAppMessage() {
+    const { id: superiorId } = store.superiorInfo || {};
     const { id, nickname: title } = this.data.authorInfo;
-    const path = store.superiorInfo
-      ? `/pages/subpages/home/media/author-center/index?id=${id}&superiorId=${store.superiorInfo.id}`
+    const path = superiorId
+      ? `/pages/subpages/home/media/author-center/index?id=${id}&superiorId=${superiorId}`
       : `/pages/subpages/home/media/author-center/index?id=${id}`;
     return { path, title };
   },
 
   onShareTimeline() {
+    const { id: superiorId } = store.superiorInfo || {};
     const { id, nickname: title } = this.data.authorInfo;
-    const query = store.superiorInfo
-      ? `id=${id}&superiorId=${store.superiorInfo.id}`
-      : `id=${id}`;
+    const query = superiorId ? `id=${id}&superiorId=${superiorId}` : `id=${id}`;
     return { query, title };
   }
 });

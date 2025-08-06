@@ -52,10 +52,10 @@ Page({
       fields: ["userInfo"]
     });
 
-    const { id, superiorId = "", scene = "" } = options || {};
+    const { id, scene = "" } = options || {};
     const decodedSceneList = scene ? decodeURIComponent(scene).split("-") : [];
     this.scenicId = +id || decodedSceneList[0];
-    this.superiorId = +superiorId || decodedSceneList[1];
+    this.superiorId = decodedSceneList[1] || "";
 
     getApp().onLaunched(async () => {
       if (this.superiorId && !store.superiorInfo) {
@@ -510,18 +510,18 @@ Page({
   },
 
   onShareAppMessage() {
+    const { id: superiorId } = store.superiorInfo || {};
     const { id, name, imageList } = this.data.scenicInfo;
-    const path = store.superiorInfo
-      ? `/pages/subpages/mall/scenic/subpages/scenic-detail/index?id=${id}&superiorId=${store.superiorInfo.id}`
+    const path = superiorId
+      ? `/pages/subpages/mall/scenic/subpages/scenic-detail/index?id=${id}&superiorId=${superiorId}`
       : `/pages/subpages/mall/scenic/subpages/scenic-detail/index?id=${id}`;
     return { path, title: name, imageUrl: imageList[0] };
   },
 
   onShareTimeline() {
+    const { id: superiorId } = store.superiorInfo || {};
     const { id, name, imageList } = this.data.scenicInfo;
-    const query = store.superiorInfo
-      ? `id=${id}&superiorId=${store.superiorInfo.id}`
-      : `id=${id}`;
+    const query = superiorId ? `id=${id}&superiorId=${superiorId}` : `id=${id}`;
     return { query, title: name, imageUrl: imageList[0] };
   }
 });
