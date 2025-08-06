@@ -41,14 +41,11 @@ Component({
         menus: ["shareAppMessage", "shareTimeline"]
       });
 
-      const { superiorId = "", scene = "" } = options || {};
-      const decodedScene = scene ? decodeURIComponent(scene) : "";
-      this.superiorId = superiorId || decodedScene.split("-")[0];
-
+      const { superiorId = "" } = options || {};
       getApp().onLaunched(async () => {
-        if (this.superiorId && !store.superiorInfo) {
-          wx.setStorageSync("superiorId", this.superiorId);
-          const superiorInfo = await mallService.getUserInfo(this.superiorId);
+        if (superiorId && !store.superiorInfo) {
+          wx.setStorageSync("superiorId", superiorId);
+          const superiorInfo = await mallService.getUserInfo(superiorId);
           if (superiorInfo.promoterInfo) {
             store.setSuperiorInfo(superiorInfo);
           }

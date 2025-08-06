@@ -54,8 +54,12 @@ Component({
 
   methods: {
     async onLoad(options) {
-      const { superiorId = "" } = options || {};
+      wx.showShareMenu({
+        withShareTicket: true,
+        menus: ["shareAppMessage", "shareTimeline"]
+      });
 
+      const { superiorId = "" } = options || {};
       getApp().onLaunched(async () => {
         if (superiorId && !store.superiorInfo) {
           wx.setStorageSync("superiorId", superiorId);
@@ -77,11 +81,6 @@ Component({
       await this.setBannerList();
       await this.setTopMediaList();
       this.setList(SCENE_REFRESH);
-
-      wx.showShareMenu({
-        withShareTicket: true,
-        menus: ["shareAppMessage", "shareTimeline"]
-      });
     },
 
     initCalendar() {
