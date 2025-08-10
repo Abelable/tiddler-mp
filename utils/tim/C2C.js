@@ -25,14 +25,14 @@ export const getMsgList = (conversationID, count = 15) => {
 }
 
 // 删除会话
-const deleteConversation = (id) => {
+export const deleteConversation = (id) => {
   return store.tim.deleteConversation(id).catch(err => {
     console.warn('deleteConversation error:', err)
   })
 }
 
 // 消息已读
-const setMessageRead = (conversationID) => {
+export const setMessageRead = (conversationID) => {
   return store.tim.setMessageRead({ conversationID }).catch(err => {
     console.warn('setMessageRead error:', err)
   })
