@@ -26,7 +26,7 @@
       bindtap="previewMedia" 
       data-current="{{0}}"
     >
-      <view class="video-wrap" bindtap="fullScreenPlay">
+      <view class="video-wrap">
         <video
           class="video-player"
           src="{{goodsInfo.video}}"
