@@ -1,0 +1,83 @@
+<view class="container">
+  <i-comment class="comment" ontap="blurInput" msgList="{{msgList}}" showInfoList="{{goodsInfo || orderInfo}}" userInfo="{{userInfo}}" friendAvatarUrl="{{friendAvatarUrl}}"/>
+  <view class="chat-reply" style="padding-bottom: {{containerBottom ? containerBottom + 'px' : 'env(safe-area-inset-bottom)'}};">
+    <view class="chat-input-wrap">
+      <input 
+        class="chat-input"
+        type="text" 
+        confirm-type="send"
+        value="{{content}}"
+        bindinput="getContent" 
+        bindfocus="showKeyBoard" 
+        bindblur="hideKeyBoard"
+        placeholder="打个招呼..." 
+        bindconfirm="sendMsg" 
+        adjust-position="{{false}}"/>
+      <image class="face-icon" ontap="showEmojiWrap" src="https://img.ubo.vip/mp/news/chat/face-icon.png" />
+      <image class="add-icon" ontap="showMoreOperate" src="https://img.ubo.vip/mp/news/chat/add-icon.png" />
+      <view class="send-btn" ontap="sendMsg">发送</view>
+    </view>
+
+    <view class="emoji-wrap" wx:if="{{emojiWrapVisiabel}}">
+      <view wx:for="{{emojiName}}" class="emoji" wx:key="index" ontap="chooseEmoji" data-emoji="{{item}}">
+        <image src="{{emojiUrl + emojiMap[item]}}" style="width:25px;height:25px"/>
+      </view>
+    </view>
+    
+    <view class="more-operate" wx:if="{{moreOperateVisiabel}}">
+      <view class="operate-block" ontap="sendPhoto" data-name="camera">
+        <view class="icon-wrap">
+          <image style="width: 23px; height: 22px" src="https://img.ubo.vip/mp/news/chat/camera-icon.png" />
+        </view>
+        <view class="operate-tip">拍照</view>
+      </view>
+      <view class="operate-block" ontap="sendPhoto" data-name="album">
+        <view class="icon-wrap">
+          <image style="width: 23px; height: 23px" src="https://img.ubo.vip/mp/news/chat/album-icon.png" />
+        </view>
+        <view class="operate-tip">相册</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 商品 -->
+<view class="goods-list" wx:if="{{goodsInfo}}" style="top: 10px">
+  <image class="goods-img" src="{{goodsInfo.img[0].thumb_url}}" mode="aspectFit" />
+    <view class="goods-detail">
+      <view class="goods-name">{{goodsInfo.goods_name}}</view>
+      <view class="operation-wrap">
+        <view class="goods-price">
+          <text style="font-size: 10px;">¥</text>{{goodsInfo.promote_price && goodsInfo.promote_price != '0' ? goodsInfo.promote_price : goodsInfo.shop_price}}
+        </view>
+        <view class="goods-button">
+          <view class="add-cart" ontap="showSpecModal">加入购物车</view>
+           <view class="seek-btn" ontap="sendCustomMsg" data-type="1">咨询商品</view>
+        </view>
+        
+      </view>
+    </view>
+</view>
+
+<!-- 订单 -->
+<view class="order-list" wx:if="{{orderInfo}}" style="top: {{statusBarHeight + 55}}px">
+  <image class="goods-img" src="{{orderInfo.goodsList[0].goods_thumb}}" mode="aspectFit" />
+  <view class="order-detail">
+    <view class="order-num">
+      <view class="order-num-tip">订单号</view>
+      <view>{{orderInfo.orderList.order_sn}}</view>
+    </view>
+    <view class="consignee">收件人：{{orderInfo.orderList.consignee}}</view>
+    <view class="order-time">下单时间：{{orderInfo.orderList.formated_add_time}}</view>
+  </view>
+  <view class="order-operation">
+    <view class="order-status">{{compositeStatus}}</view>
+    <view class="seek-btn" ontap="sendCustomMsg" data-type="2">咨询订单</view>
+  </view>
+</view>
+
+<!-- 遮罩 -->
+<i-mask wx:if="{{showSpecModal}}" ontap="hideSpecModal"/>
+
+<!-- 商品规格选择弹窗 -->
+<i-spec-modal show="{{showSpecModal}}" actionType="1" goodsId="{{goodsId}}" goodsPic="{{goodsPic}}" basePrice="{{shopPrice}}" totalStock="{{stock}}" mainInfo="{{specData}}" limitTips="{{limitTips}}" limitBuyNum="{{limitBuyNum}}" limitStartBuyNum="{{limitStartBuyNum}}" bind:hideSpecModal="hideSpecModal" />

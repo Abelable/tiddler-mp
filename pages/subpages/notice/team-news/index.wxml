@@ -1,0 +1,17 @@
+<view class="menu-bar">
+  <view class="menu-item {{type == 4 ? 'selected' : ''}}" ontap="selectMenu" data-type="4">
+    <text>新邀主播</text>
+    <text style="color: #FE4019;" wx:if="{{unreadMsgCountOfInviteAuchor}}">({{unreadMsgCountOfInviteAuchor}})</text>
+  </view>
+  <view class="menu-item {{type == 5 ? 'selected' : ''}}" ontap="selectMenu" data-type="5">
+    <text>新邀用户</text>
+    <text style="color: #FE4019;" wx:if="{{unreadMsgCountOfInviteUser}}">({{unreadMsgCountOfInviteUser}})</text>
+  </view>
+</view>
+
+<view class="news-list-wrap">
+  <block wx:for="{{newsList}}" wx:key="index">
+    <view class="time">{{item.time}}</view>
+    <i-news-list item="{{item}}"/>
+  </block>
+</view>

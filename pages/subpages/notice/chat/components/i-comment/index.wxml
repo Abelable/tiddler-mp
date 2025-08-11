@@ -1,0 +1,40 @@
+<wxs module="TIME" src="../../../../../../utils/filters/time.wxs" />
+
+<scroll-view class="comment" scroll-top="{{scrollTop}}" scroll-y="true" bind:touchstart="onTouchStart" bind:touchend="onTouchEnd">
+  <view class="msg-lists {{showInfoList ? 'show-info-list' : ''}}">
+    <view class="msg-list" wx:for="{{msgList}}" wx:key="index">
+      <view class="datetime" wx:if="{{item.time}}">{{TIME.getDateDiff(item.time)}}</view>
+      <view class="message-detail {{item.flow === 'out' ? 'mine' : ''}}">
+        <image class="avatar" src="{{item.flow === 'out' ? userInfo.userAvatar : friendAvatarUrl}}" />          
+        <view class="content {{item.flow === 'out' ? 'mine' : ''}} {{item.content.type !== 'text' ? 'complex' : '' }}">
+          <block wx:if="{{item.content.type === 'text'}}" wx:for="{{item.content.value}}" wx:key="index" wx:for-item="_item">
+            <text wx:if="{{_item.type === 'text' && _item.value}}">{{_item.value}}</text>
+            <image wx:if="{{_item.type === 'emoji'}}" src="{{_item.value}}" style="width:20px;height:20px;vertical-align: top;"/>
+          </block>
+          <image wx:if="{{item.content.type === 'img'}}" style="max-width: 82px; max-height: 114px;" mode="aspectFit" src="{{item.content.value}}" />
+          <view wx:if="{{item.content.type === 'goods'}}" class="goods" ontap="toGoodsDetail" data-id="{{item.content.value.goods_id}}">
+            <image class="goods-img" src="{{item.content.value.img[0].thumb_url}}" mode="aspectFit" />
+            <view class="goods-detail">
+              <view class="goods-name">{{item.content.value.goods_name}}</view>
+              <view class="goods-price">
+                <text style="font-size: 10px;">¥</text>
+                <text>{{item.content.value.promote_price && item.content.value.promote_price != '0' ? item.content.value.promote_price : item.content.value.shop_price}}</text>
+              </view>
+            </view>
+          </view>
+          <view wx:if="{{item.content.type === 'order'}}" class="order" ontap="toOrderDetail" data-id="{{item.content.value.orderList.order_id}}">
+            <image class="goods-img" src="{{item.content.value.goodsList[0].goods_thumb}}" mode="aspectFit" />
+            <view class="order-detail">
+              <view class="order-num">
+                <view class="order-num-tip">订单号</view>
+                <view>{{item.content.value.orderList.order_sn}}</view>
+              </view>
+              <view class="consignee">收件人：{{item.content.value.orderList.consignee}}</view>
+              <view class="order-time">下单时间：{{item.content.value.orderList.formated_add_time}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

@@ -1,0 +1,36 @@
+<view class="menu-bar">
+  <view class="menu-item {{type == 1 ? 'selected' : ''}}" ontap="selectMenu" data-type="1">
+    <text>自购消息</text>
+    <text style="color: #FE4019;" wx:if="{{unreadMsgCountOfBuyGoods}}">({{unreadMsgCountOfBuyGoods}})</text>
+  </view>
+  <view class="menu-item {{type == 2 ? 'selected' : ''}}" wx:if="{{sellGoodsNewsBarVisible}}" ontap="selectMenu" data-type="2">
+    <text>带货消息</text>
+    <text style="color: #FE4019;" wx:if="{{unreadMsgCountOfSellGoods}}">({{unreadMsgCountOfSellGoods}})</text>
+  </view>
+  <view class="menu-item {{type == 3 ? 'selected' : ''}}" wx:if="{{businessNewsBarVisible}}" ontap="selectMenu" data-type="3">
+    <text>商家消息</text>
+    <text style="color: #FE4019;" wx:if="{{unreadMsgCountOfBusiness}}">({{unreadMsgCountOfBusiness}})</text>
+  </view>
+</view>
+
+<view class="news-list-wrap">
+  <block wx:for="{{newsList}}" wx:key="index">
+    <view class="time">{{item.time}}</view>
+    <view class="news-list" wx:if="{{item.branch != 2}}">
+      <view class="list-status {{item.is_new != 0 ? 'unread' : ''}}">{{item.push_title}}</view>
+      <navigator class="list-content-wrap" url="/pages/subpages/mine/order/order-detail/subpages/shipping/index?id={{item.push_extras_value}}" hover-class="none">
+        <image class="list-img" lazy-load src="{{item.image}}"/>
+        <view class="list-content">
+          <view class="list-title">{{item.push_content}}</view>
+          <view class="check-detail-btn">查看详情 >></view>
+        </view>
+      </navigator>
+    </view>
+    <view class="news-list" wx:else>
+      <view class="list-status {{item.is_new != 0 ? 'unread' : ''}}">{{item.push_title}}</view>
+      <view class="list-detail">
+        <view>{{item.push_content}}</view>
+      </view>
+    </view>
+  </block>
+</view>

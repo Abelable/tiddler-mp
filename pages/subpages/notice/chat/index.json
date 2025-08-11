@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "i-mask": "/components/i-mask/index",
+    "i-spec-modal": "/components/i-spec-modal/index",
+    "i-comment": "./components/i-comment/index"
+  }
+}
