@@ -159,7 +159,7 @@ Page({
     const { roomList, curRoomIdx } = this.data;
     const roomInfo = roomList[curRoomIdx];
     const { id, title, cover: imageUrl } = roomInfo;
-    title = `有播直播间：${title}`;
+    title = `小鱼游直播间：${title}`;
     const query = superiorId ? `id=${id}&superiorId=${superiorId}` : `id=${id}`;
     return { query, title, imageUrl };
   }
