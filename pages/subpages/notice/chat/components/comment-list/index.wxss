@@ -10,14 +10,14 @@
   align-items: center;
 }
 .datetime {
-  margin-top: 12px;
+  margin-top: 24rpx;
   padding: 0 14px;
   height: 24px;
   font-size: 12px;
-  color: #333;
+  color: #666;
   line-height: 24px;
   border-radius: 16px;
-  background: rgba(0,0,0,0.1);
+  background: #fff;
 }
 .message-detail {
   display: flex;
@@ -25,62 +25,35 @@
   align-items: flex-start;
   justify-content: flex-start;
   flex-flow: row;
+  margin-top: 24rpx;
   width: 100%;
 }
 .message-detail.mine {
   flex-flow: row-reverse;
 }
 .avatar {
-  flex: 0 0 48px;
-  height: 48px;
+  flex: 0 0 80rpx;
+  height: 80rpx;
   border-radius: 50%;
 }
 .content {
   position: relative;
-  margin: 24px 63px 20px 15px;  
+  margin: 0px 126rpx 40rpx 16rpx;  
   padding: 10px;
+  color: #262626;
   font-size: 14px;
   line-height: 22px;
   background-color: #fff;
-  border-radius: 0 4px 4px 4px;
+  border-radius: 16rpx;
 }
 .content.mine {
-  margin: 24px 15px 20px 63px;
-  background-color: #B2B7FF;
-  border-radius: 4px 0 4px 4px;
+  margin: 0 16rpx 40rpx 126rpx;
+  color: #fff;
+  background-color: #1F85FE;
 }
 .content.complex {
-  padding: 5px;
-  background-color: #fff;
-}
-.content::before {
-  position: absolute;
-  top: 0;
-  left: -8px;
-  content: "";
-  width: 0px;
-  height: 0px;
-  border-top: 8px solid #fff;
-  border-left: 8px solid #f6f6f6;
-}
-.content.mine::before {
-  border-top: 0 solid #fff;
-}
-.content::after {
-  border-top: 0 solid #B2B7FF;
-}
-.content.mine::after {
-  position: absolute;
-  top: 0;
-  right: -8px;
-  content: "";
-  width: 0px;
-  height: 0px;
-  border-top: 8px solid #B2B7FF;
-  border-right: 8px solid #f6f6f6;
-}
-.content.mine.complex::after {
-  border-top: 8px solid #fff;
+  padding: 24rpx;
+  background: #fff;
 }
 .goods, .order {
   display: flex;
@@ -127,14 +100,14 @@
   text-overflow: ellipsis;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  font-size: 13px;
-  line-height: 18px;
   color: #333;
+  font-size: 26rpx;
+  font-weight: 500;
 }
 .goods-price {
   font-size: 14px;
   font-weight: 500;
-  color: #E22222;
+  color: #FD2D55;
 }
 .consignee {
   padding-top: 5px;
