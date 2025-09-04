@@ -1,6 +1,5 @@
 Component({
   properties: {
-    showInfoList: Boolean,
     userInfo: Object,
     friendAvatarUrl: String,
     contactList: {

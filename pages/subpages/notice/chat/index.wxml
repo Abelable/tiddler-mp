@@ -1,8 +1,40 @@
 <view class="container">
-  <i-comment 
+  <!-- 商品 -->
+  <view class="goods-list" wx:if="{{goodsInfo}}" style="top: 10px">
+    <image class="goods-img" src="{{goodsInfo.imageList[0]}}" mode="aspectFit" />
+      <view class="goods-detail">
+        <view class="goods-name omit">{{goodsInfo.name}}</view>
+        <view class="operation-wrap">
+          <view class="goods-price">
+            <text style="font-size: 10px;">¥</text>{{goodsInfo.price}}
+          </view>
+          <view class="goods-button">
+            <view class="seek-btn" bindtap="sendCustomMsg" data-type="1">咨询商品</view>
+          </view>
+        </view>
+      </view>
+  </view>
+
+  <!-- 订单 -->
+  <view class="order-list" wx:if="{{orderInfo}}" style="top: {{statusBarHeight + 55}}px">
+    <image class="goods-img" src="{{orderInfo.goodsList[0].goods_thumb}}" mode="aspectFit" />
+    <view class="order-detail">
+      <view class="order-num">
+        <view class="order-num-tip">订单号</view>
+        <view>{{orderInfo.orderList.order_sn}}</view>
+      </view>
+      <view class="consignee">收件人：{{orderInfo.orderList.consignee}}</view>
+      <view class="order-time">下单时间：{{orderInfo.orderList.formated_add_time}}</view>
+    </view>
+    <view class="order-operation">
+      <view class="order-status">{{compositeStatus}}</view>
+      <view class="seek-btn" bindtap="sendCustomMsg" data-type="2">咨询订单</view>
+    </view>
+  </view>
+
+  <comment-list
     class="comment" 
     contactList="{{contactList || []}}" 
-    showInfoList="{{goodsInfo || orderInfo}}" 
     userInfo="{{userInfo || null}}" 
     friendAvatarUrl="{{friendAvatarUrl}}"
     bindtap="blurInput" 
@@ -42,43 +74,3 @@
     </view>
   </view>
 </view>
-
-<!-- 商品 -->
-<view class="goods-list" wx:if="{{goodsInfo}}" style="top: 10px">
-  <image class="goods-img" src="{{goodsInfo.imageList[0]}}" mode="aspectFit" />
-    <view class="goods-detail">
-      <view class="goods-name">{{goodsInfo.name}}</view>
-      <view class="operation-wrap">
-        <view class="goods-price">
-          <text style="font-size: 10px;">¥</text>{{goodsInfo.price}}
-        </view>
-        <view class="goods-button">
-           <view class="seek-btn" bindtap="sendCustomMsg" data-type="1">咨询商品</view>
-        </view>
-      </view>
-    </view>
-</view>
-
-<!-- 订单 -->
-<view class="order-list" wx:if="{{orderInfo}}" style="top: {{statusBarHeight + 55}}px">
-  <image class="goods-img" src="{{orderInfo.goodsList[0].goods_thumb}}" mode="aspectFit" />
-  <view class="order-detail">
-    <view class="order-num">
-      <view class="order-num-tip">订单号</view>
-      <view>{{orderInfo.orderList.order_sn}}</view>
-    </view>
-    <view class="consignee">收件人：{{orderInfo.orderList.consignee}}</view>
-    <view class="order-time">下单时间：{{orderInfo.orderList.formated_add_time}}</view>
-  </view>
-  <view class="order-operation">
-    <view class="order-status">{{compositeStatus}}</view>
-    <view class="seek-btn" bindtap="sendCustomMsg" data-type="2">咨询订单</view>
-  </view>
-</view>
-
-<spec-popup 
-  show="{{specPopupVisible}}" 
-  mode="{{1}}" 
-  goodsInfo="{{goodsInfo}}" 
-  bind:hide="hideSpecPopup"
-/>

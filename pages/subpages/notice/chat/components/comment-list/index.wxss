@@ -3,9 +3,6 @@
   height: 100%;
   overflow: scroll;
 }
-.msg-lists.show-info-list {
-  padding-top: 100px;
-}
 .msg-list {
   margin: 0 12px;
   display: flex;
