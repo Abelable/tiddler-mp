@@ -24,9 +24,6 @@ Page({
     moreOperateVisiabel: false,
     goodsInfo: null,
     orderInfo: null,
-    // 规格相关
-    specData: "", // 商品规格数据
-    specPopupVisible: false,
     // 限购相关
     limitTips: "",
     limitBuyNum: 0,
@@ -46,10 +43,13 @@ Page({
       goodsId,
       orderId
     } = options;
+
     goodsId && this.setGoodsInfo(goodsId);
     orderId && this.setOrderInfo(orderId);
+
     wx.setNavigationBarTitle({ title: friendName });
     this.setData({ friendId, friendName, friendAvatarUrl });
+
     const conversationID = `C2C${friendId}`;
     tim.setMessageRead(conversationID);
     tim.getMsgList(conversationID);
@@ -89,8 +89,8 @@ Page({
   },
 
   async setOrderInfo(orderId) {
-    let orderInfo = await chatService.getOrderDetail(orderId);
-    let { order_status, pay_status, shipping_status } = orderInfo;
+    const orderInfo = (await chatService.getOrderDetail(orderId)) || {};
+    const { order_status, pay_status, shipping_status } = orderInfo;
     this.setData({
       orderInfo,
       compositeStatus: judgeOrderStatus(
@@ -152,7 +152,7 @@ Page({
   sendMsg() {
     const { content, friendId } = this.data;
     if (content) {
-      getApp().globalData.im.sendMsg(content, friendId);
+      tim.sendMsg(content, friendId);
       this.setData({ content: "" });
       this.blurInput();
     } else wx.showToast({ title: "消息不能为空" });
@@ -175,7 +175,7 @@ Page({
       type: type,
       data: JSON.stringify(msgData)
     });
-    getApp().globalData.im.sendCustomMsg(msg, friendId);
+    tim.sendCustomMsg(msg, friendId);
   },
 
   sendPhoto(e) {
@@ -206,18 +206,10 @@ Page({
       sourceType: [name],
       count: 1,
       success: res => {
-        getApp().globalData.im.sendImage(res, this.data.friendId);
+        tim.sendImage(res, this.data.friendId);
       }
     });
     this.blurInput();
-  },
-
-  showSpecPopup() {
-    this.setData({ specPopupVisible: true });
-  },
-
-  hideSpecPopup() {
-    this.setData({ specPopupVisible: false });
   },
 
   toGoodsDetail(e) {

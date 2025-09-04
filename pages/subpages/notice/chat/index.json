@@ -1,6 +1,5 @@
 {
   "usingComponents": {
-    "spec-popup": "/components/spec-popup/index",
     "i-comment": "./components/i-comment/index"
   }
 }

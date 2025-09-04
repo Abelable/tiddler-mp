@@ -1,6 +1,14 @@
 <view class="container">
-  <i-comment class="comment" bindtap="blurInput" contactList="{{contactList || []}}" showInfoList="{{goodsInfo || orderInfo}}" userInfo="{{userInfo || null}}" friendAvatarUrl="{{friendAvatarUrl}}"/>
-  <view class="chat-reply" style="padding-bottom: {{containerBottom ? containerBottom + 'px' : 'env(safe-area-inset-bottom)'}};">
+  <i-comment 
+    class="comment" 
+    contactList="{{contactList || []}}" 
+    showInfoList="{{goodsInfo || orderInfo}}" 
+    userInfo="{{userInfo || null}}" 
+    friendAvatarUrl="{{friendAvatarUrl}}"
+    bindtap="blurInput" 
+  />
+
+  <view class="chat-reply" style="padding-bottom: {{containerBottom ? containerBottom + 12 + 'px' : 'env(safe-area-inset-bottom)'}};">
     <view class="chat-input-wrap">
       <input 
         class="chat-input"
@@ -10,12 +18,12 @@
         bindinput="getContent" 
         bindfocus="showKeyBoard" 
         bindblur="hideKeyBoard"
-        placeholder="打个招呼..." 
+        placeholder="请输入消息" 
         bindconfirm="sendMsg" 
-        adjust-position="{{false}}"/>
-      <image class="face-icon" bindtap="showEmojiWrap" src="https://img.ubo.vip/mp/news/chat/face-icon.png" />
-      <image class="add-icon" bindtap="showMoreOperate" src="https://img.ubo.vip/mp/news/chat/add-icon.png" />
-      <view class="send-btn" bindtap="sendMsg">发送</view>
+        adjust-position="{{false}}"
+      />
+      <image class="face-icon" bindtap="showEmojiWrap" src="https://static.tiddler.cn/mp/notice/face.png" />
+      <image class="add-icon" bindtap="showMoreOperate" src="https://static.tiddler.cn/mp/notice/plus.png" />
     </view>
 
     <view class="emoji-wrap" wx:if="{{emojiWrapVisiabel}}">
@@ -25,17 +33,11 @@
     </view>
     
     <view class="more-operate" wx:if="{{moreOperateVisiabel}}">
-      <view class="operate-block" bindtap="sendPhoto" data-name="camera">
-        <view class="icon-wrap">
-          <image style="width: 23px; height: 22px" src="https://img.ubo.vip/mp/news/chat/camera-icon.png" />
+      <view class="icon-wrap" bindtap="sendPhoto" data-name="camera">
+          <image style="width: 60rpx; height: 60rpx" src="https://static.tiddler.cn/mp/notice/camera.png" />
         </view>
-        <view class="operate-tip">拍照</view>
-      </view>
-      <view class="operate-block" bindtap="sendPhoto" data-name="album">
-        <view class="icon-wrap">
-          <image style="width: 23px; height: 23px" src="https://img.ubo.vip/mp/news/chat/album-icon.png" />
-        </view>
-        <view class="operate-tip">相册</view>
+      <view class="icon-wrap" bindtap="sendPhoto" data-name="album">
+        <image style="width: 60rpx; height: 60rpx" src="https://static.tiddler.cn/mp/notice/album.png" />
       </view>
     </view>
   </view>
@@ -51,7 +53,6 @@
           <text style="font-size: 10px;">¥</text>{{goodsInfo.price}}
         </view>
         <view class="goods-button">
-          <view class="add-cart" bindtap="showSpecPopup">加入购物车</view>
            <view class="seek-btn" bindtap="sendCustomMsg" data-type="1">咨询商品</view>
         </view>
       </view>
