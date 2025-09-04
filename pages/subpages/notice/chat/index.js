@@ -50,9 +50,9 @@ Page({
     wx.setNavigationBarTitle({ title: friendName });
     this.setData({ friendId, friendName, friendAvatarUrl });
 
-    this.conversationID = `C2C${friendId}`;
-    tim.setMessageRead(this.conversationID);
-    tim.getMsgList(this.conversationID);
+    const conversationID = `C2C${friendId}`;
+    tim.setMessageRead(conversationID);
+    tim.getMsgList(conversationID);
   },
 
   async setGoodsInfo(goodsId) {
@@ -124,9 +124,9 @@ Page({
   },
 
   sendMsg() {
-    const { content } = this.data;
+    const { content, friendId } = this.data;
     if (content) {
-      tim.sendMsg(content, this.conversationID);
+      tim.sendMsg(content, friendId);
       this.setData({ content: "" });
       this.blurInput();
     } else wx.showToast({ title: "消息不能为空" });
@@ -134,7 +134,7 @@ Page({
 
   sendCustomMsg(e) {
     const {type} = e.currentTarget.dataset;
-    const { goodsInfo, orderInfo } = this.data;
+    const { goodsInfo, orderInfo, friendId } = this.data;
     let msgData;
     switch (type) {
       case "1":
@@ -146,10 +146,10 @@ Page({
     }
     msgData.type = type;
     const msg = JSON.stringify({
-      type,
+      type: type,
       data: JSON.stringify(msgData)
     });
-    tim.sendCustomMsg(msg, this.conversationID);
+    tim.sendCustomMsg(msg, friendId);
   },
 
   sendPhoto(e) {
@@ -180,7 +180,7 @@ Page({
       sourceType: [name],
       count: 1,
       success: res => {
-        tim.sendImage(res, this.conversationID);
+        tim.sendImage(res, this.data.friendId);
       }
     });
     this.blurInput();
