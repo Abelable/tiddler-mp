@@ -1,7 +1,6 @@
 {
   "usingComponents": {
-    "i-mask": "/components/i-mask/index",
-    "i-spec-modal": "/components/i-spec-modal/index",
+    "spec-popup": "/components/spec-popup/index",
     "i-comment": "./components/i-comment/index"
   }
 }

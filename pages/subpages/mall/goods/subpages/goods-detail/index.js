@@ -269,7 +269,7 @@ Page({
   contact() {
     if (this.data.goodsInfo.shopInfo) {
       const { id, name, avatar } = this.data.goodsInfo.shopInfo.keeperInfo;
-      const url = `/pages/subpages/news/chat/index?userId=${id}&name=${name}&avatar=${avatar}&goodsId=${this.goodsId}`;
+      const url = `/pages/subpages/notice/chat/index?userId=${id}&name=${name}&avatar=${avatar}&goodsId=${this.goodsId}`;
       wx.navigateTo({ url });
     }
   },

@@ -484,6 +484,35 @@ class BaseService extends Base {
       data: { productType, productId, page, limit }
     });
   }
+
+  async getPurchasedGoodsList(goodsId, scene = 1) {
+    return await this.get({
+      url: `${this.baseUrl}/goods/purchased_list`,
+      data: { goodsId, scene }
+    });
+  }
+
+  async fastAddCart(goodsId, selectedSkuIndex, number) {
+    return await this.post({
+      url: `${this.baseUrl}/cart/fast_add`,
+      data: { goodsId, selectedSkuIndex, number }
+    });
+  }
+
+  async addCart(goodsId, selectedSkuIndex, number) {
+    return await this.post({
+      url: `${this.baseUrl}/cart/add`,
+      data: { goodsId, selectedSkuIndex, number }
+    });
+  }
+
+  async editCart(id, goodsId, selectedSkuIndex, number, success) {
+    return await this.post({
+      url: `${this.baseUrl}/cart/edit`,
+      data: { id, goodsId, selectedSkuIndex, number },
+      success
+    });
+  }
 }
 
 export default BaseService;

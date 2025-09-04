@@ -11,13 +11,6 @@ class GoodsService extends MallService {
     return list;
   }
 
-  async getPurchasedGoodsList(goodsId, scene = 1) {
-    return await this.get({
-      url: `${this.baseUrl}/goods/purchased_list`,
-      data: { goodsId, scene }
-    });
-  }
-
   async getGoodsInfo(id, addressId) {
     return await this.get({
       url: `${this.baseUrl}/goods/detail`,
@@ -56,28 +49,6 @@ class GoodsService extends MallService {
     return await this.get({
       url: `${this.baseUrl}/cart/list`,
       loadingTitle: "加载中",
-    });
-  }
-
-  async fastAddCart(goodsId, selectedSkuIndex, number) {
-    return await this.post({
-      url: `${this.baseUrl}/cart/fast_add`,
-      data: { goodsId, selectedSkuIndex, number },
-    });
-  }
-
-  async addCart(goodsId, selectedSkuIndex, number) {
-    return await this.post({
-      url: `${this.baseUrl}/cart/add`,
-      data: { goodsId, selectedSkuIndex, number },
-    });
-  }
-
-  async editCart(id, goodsId, selectedSkuIndex, number, success) {
-    return await this.post({
-      url: `${this.baseUrl}/cart/edit`,
-      data: { id, goodsId, selectedSkuIndex, number },
-      success,
     });
   }
 
