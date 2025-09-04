@@ -1,16 +1,14 @@
 <view class="container">
   <!-- 商品 -->
   <view class="goods-list" wx:if="{{goodsInfo}}" style="top: 10px">
-    <image class="goods-img" src="{{goodsInfo.imageList[0]}}" mode="aspectFit" />
+    <image class="goods-img" src="{{goodsInfo.cover}}" mode="aspectFit" />
       <view class="goods-detail">
         <view class="goods-name omit">{{goodsInfo.name}}</view>
         <view class="operation-wrap">
           <view class="goods-price">
             <text style="font-size: 10px;">¥</text>{{goodsInfo.price}}
           </view>
-          <view class="goods-button">
-            <view class="seek-btn" bindtap="sendCustomMsg" data-type="1">咨询商品</view>
-          </view>
+          <view class="seek-btn" bindtap="sendCustomMsg" data-type="1">咨询商品</view>
         </view>
       </view>
   </view>
@@ -34,7 +32,7 @@
 
   <comment-list
     class="comment" 
-    contactList="{{contactList || []}}" 
+    msgList="{{msgList || []}}" 
     userInfo="{{userInfo || null}}" 
     friendAvatarUrl="{{friendAvatarUrl}}"
     bindtap="blurInput" 

@@ -2,23 +2,23 @@
 
 <scroll-view class="comment" scroll-top="{{scrollTop}}" scroll-y="true" bind:touchstart="onTouchStart" bind:touchend="onTouchEnd">
   <view class="msg-lists">
-    <view class="msg-list" wx:for="{{contactList}}" wx:key="index">
-      <view class="datetime" wx:if="{{item.time}}">{{TIME.getDateDiff(item.time)}}</view>
+    <view class="msg-list" wx:for="{{msgList}}" wx:key="index">
+      <view class="datetime" wx:if="{{item.time}}">{{TIME.timeDiff(item.time * 1000)}}</view>
       <view class="message-detail {{item.flow === 'out' ? 'mine' : ''}}">
-        <image class="avatar" src="{{item.flow === 'out' ? userInfo.userAvatar : friendAvatarUrl}}" />          
+        <image class="avatar" src="{{item.flow === 'out' ? userInfo.avatar : friendAvatarUrl}}" />          
         <view class="content {{item.flow === 'out' ? 'mine' : ''}} {{item.content.type !== 'text' ? 'complex' : '' }}">
           <block wx:if="{{item.content.type === 'text'}}" wx:for="{{item.content.value}}" wx:key="index" wx:for-item="_item">
             <text wx:if="{{_item.type === 'text' && _item.value}}">{{_item.value}}</text>
             <image wx:if="{{_item.type === 'emoji'}}" src="{{_item.value}}" style="width:20px;height:20px;vertical-align: top;"/>
           </block>
           <image wx:if="{{item.content.type === 'img'}}" style="max-width: 82px; max-height: 114px;" mode="aspectFit" src="{{item.content.value}}" />
-          <view wx:if="{{item.content.type === 'goods'}}" class="goods" ontap="toGoodsDetail" data-id="{{item.content.value.goods_id}}">
-            <image class="goods-img" src="{{item.content.value.img[0].thumb_url}}" mode="aspectFit" />
+          <view wx:if="{{item.content.type === 'goods'}}" class="goods" bindtap="toGoodsDetail" data-id="{{item.content.value.id}}">
+            <image class="goods-img" src="{{item.content.value.cover}}" mode="aspectFit" />
             <view class="goods-detail">
-              <view class="goods-name">{{item.content.value.goods_name}}</view>
+              <view class="goods-name">{{item.content.value.name}}</view>
               <view class="goods-price">
                 <text style="font-size: 10px;">¥</text>
-                <text>{{item.content.value.promote_price && item.content.value.promote_price != '0' ? item.content.value.promote_price : item.content.value.shop_price}}</text>
+                <text>{{item.content.value.price}}</text>
               </view>
             </view>
           </view>

@@ -33,7 +33,7 @@ Page({
   onLoad(options) {
     this.storeBindings = createStoreBindings(this, {
       store,
-      fields: ["userInfo", "contactList"]
+      fields: ["userInfo", "msgList"]
     });
 
     const {
@@ -56,8 +56,10 @@ Page({
   },
 
   async setGoodsInfo(goodsId) {
-    const goodsInfo = await chatService.getGoodsInfo(goodsId);
-    this.setData({ goodsInfo });
+    const { id, imageList, name, price } = await chatService.getGoodsInfo(
+      goodsId
+    );
+    this.setData({ goodsInfo: { id, cover: imageList[0], name, price } });
   },
 
   async setOrderInfo(orderId) {

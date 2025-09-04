@@ -2,9 +2,10 @@ Component({
   properties: {
     userInfo: Object,
     friendAvatarUrl: String,
-    contactList: {
+    msgList: {
       type: Array,
       observer(val) {
+        console.log('msgList', val)
         if (val.length && !this.data.stopScroll) this.scrollToBottom();
       }
     }
