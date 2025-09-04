@@ -11,13 +11,6 @@ class GoodsService extends MallService {
     return list;
   }
 
-  async getGoodsInfo(id, addressId) {
-    return await this.get({
-      url: `${this.baseUrl}/goods/detail`,
-      data: cleanObject({ id, addressId }),
-    });
-  }
-
   async getGoodsEvaluationSummary(goodsId) {
     return await this.get({
       url: `${this.baseUrl}/goods/evaluation/summary`,

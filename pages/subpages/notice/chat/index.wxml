@@ -1,5 +1,5 @@
 <view class="container">
-  <i-comment class="comment" bindtap="blurInput" msgList="{{msgList}}" showInfoList="{{goodsInfo || orderInfo}}" userInfo="{{userInfo}}" friendAvatarUrl="{{friendAvatarUrl}}"/>
+  <i-comment class="comment" bindtap="blurInput" contactList="{{contactList || []}}" showInfoList="{{goodsInfo || orderInfo}}" userInfo="{{userInfo || null}}" friendAvatarUrl="{{friendAvatarUrl}}"/>
   <view class="chat-reply" style="padding-bottom: {{containerBottom ? containerBottom + 'px' : 'env(safe-area-inset-bottom)'}};">
     <view class="chat-input-wrap">
       <input 
@@ -43,18 +43,17 @@
 
 <!-- 商品 -->
 <view class="goods-list" wx:if="{{goodsInfo}}" style="top: 10px">
-  <image class="goods-img" src="{{goodsInfo.img[0].thumb_url}}" mode="aspectFit" />
+  <image class="goods-img" src="{{goodsInfo.imageList[0]}}" mode="aspectFit" />
     <view class="goods-detail">
-      <view class="goods-name">{{goodsInfo.goods_name}}</view>
+      <view class="goods-name">{{goodsInfo.name}}</view>
       <view class="operation-wrap">
         <view class="goods-price">
-          <text style="font-size: 10px;">¥</text>{{goodsInfo.promote_price && goodsInfo.promote_price != '0' ? goodsInfo.promote_price : goodsInfo.shop_price}}
+          <text style="font-size: 10px;">¥</text>{{goodsInfo.price}}
         </view>
         <view class="goods-button">
           <view class="add-cart" bindtap="showSpecPopup">加入购物车</view>
            <view class="seek-btn" bindtap="sendCustomMsg" data-type="1">咨询商品</view>
         </view>
-        
       </view>
     </view>
 </view>
@@ -78,24 +77,7 @@
 
 <spec-popup 
   show="{{specPopupVisible}}" 
-  mode="{{3}}" 
+  mode="{{1}}" 
   goodsInfo="{{goodsInfo}}" 
-  cartInfo="{{cartInfo}}" 
-  bind:editSpecSuccess="editSpecSuccess" 
   bind:hide="hideSpecPopup"
 />
-
-<!-- <modal-mask wx:if="{{specPopupVisible}}" bindtap="hideSpecModal"/>
-<spec-popup 
-  show="{{specPopupVisible}}" 
-  actionType="1" 
-  goodsId="{{goodsId}}" 
-  goodsPic="{{goodsPic}}" 
-  basePrice="{{shopPrice}}" 
-  totalStock="{{stock}}" 
-  mainInfo="{{specData}}" 
-  limitTips="{{limitTips}}" 
-  limitBuyNum="{{limitBuyNum}}" 
-  limitStartBuyNum="{{limitStartBuyNum}}" 
-  bind:hideSpecModal="hideSpecModal" 
-/> -->

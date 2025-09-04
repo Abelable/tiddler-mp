@@ -268,8 +268,11 @@ Page({
   // 客服
   contact() {
     if (this.data.goodsInfo.shopInfo) {
-      const { id, name, avatar } = this.data.goodsInfo.shopInfo.keeperInfo;
-      const url = `/pages/subpages/notice/chat/index?userId=${id}&name=${name}&avatar=${avatar}&goodsId=${this.goodsId}`;
+      const { userId, logo, name, managerList } = this.data.goodsInfo.shopInfo;
+      const cs = managerList.find(item => item.roleId === 4);
+      const url = `/pages/subpages/notice/chat/index?userId=${
+        cs ? cs.userId : userId
+      }&name=${name}&avatar=${logo}&goodsId=${this.goodsId}`;
       wx.navigateTo({ url });
     }
   },

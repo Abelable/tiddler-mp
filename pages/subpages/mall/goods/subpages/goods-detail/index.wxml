@@ -276,7 +276,7 @@
 />
 <service-popup 
   show="{{servicePopupVisible}}"
-  refundStatus="{{goodsInfo.refundStatus}}"
+  refundStatus="{{goodsInfo.refundStatus || 0}}"
   bind:hide="hideServicePopup"
 />
 

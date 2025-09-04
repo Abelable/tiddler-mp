@@ -3,7 +3,7 @@ Component({
     showInfoList: Boolean,
     userInfo: Object,
     friendAvatarUrl: String,
-    msgList: {
+    contactList: {
       type: Array,
       observer(val) {
         if (val.length && !this.data.stopScroll) this.scrollToBottom()

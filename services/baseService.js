@@ -513,6 +513,13 @@ class BaseService extends Base {
       success
     });
   }
+
+  async getGoodsInfo(id, addressId) {
+    return await this.get({
+      url: `${this.baseUrl}/goods/detail`,
+      data: cleanObject({ id, addressId })
+    });
+  }
 }
 
 export default BaseService;

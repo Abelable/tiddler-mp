@@ -2,7 +2,7 @@
 
 <scroll-view class="comment" scroll-top="{{scrollTop}}" scroll-y="true" bind:touchstart="onTouchStart" bind:touchend="onTouchEnd">
   <view class="msg-lists {{showInfoList ? 'show-info-list' : ''}}">
-    <view class="msg-list" wx:for="{{msgList}}" wx:key="index">
+    <view class="msg-list" wx:for="{{contactList}}" wx:key="index">
       <view class="datetime" wx:if="{{item.time}}">{{TIME.getDateDiff(item.time)}}</view>
       <view class="message-detail {{item.flow === 'out' ? 'mine' : ''}}">
         <image class="avatar" src="{{item.flow === 'out' ? userInfo.userAvatar : friendAvatarUrl}}" />          
