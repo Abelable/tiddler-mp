@@ -40,7 +40,7 @@ export const setMessageRead = (conversationID) => {
 
 // 发送普通文本消息
 export const sendMsg = (msg, selToId) => {
-  const message = this.tim.createTextMessage({
+  const message = store.tim.createTextMessage({
     to: selToId,
     conversationType: TIM.TYPES.CONV_C2C,
     payload: { text: msg }
@@ -52,7 +52,7 @@ export const sendMsg = (msg, selToId) => {
 
 // 发送自定义消息
 export const sendCustomMsg = (msg, selToId) => {
-  const message = this.tim.createCustomMessage({
+  const message = store.tim.createCustomMessage({
     to: selToId,
     conversationType: TIM.TYPES.CONV_C2C,
     payload: { data: msg }
@@ -64,7 +64,7 @@ export const sendCustomMsg = (msg, selToId) => {
 
 // 发送图片
 export const sendImage = (src, selToId) => {
-  const message = this.tim.createImageMessage({
+  const message = store.tim.createImageMessage({
     to: selToId,
     conversationType: TIM.TYPES.CONV_C2C,
     payload: { file: src }

@@ -58,34 +58,6 @@ Page({
   async setGoodsInfo(goodsId) {
     const goodsInfo = await chatService.getGoodsInfo(goodsId);
     this.setData({ goodsInfo });
-    // let goodsData = await chatService.getGoodsInfo(goodsId);
-    // let {
-    //   goods_id,
-    //   goods_name,
-    //   img,
-    //   promote_price,
-    //   shop_price,
-    //   default_attr_img,
-    //   attr_goods_info,
-    //   goods_number,
-    //   limited_buy_num,
-    //   start_buy_num
-    // } = goodsData;
-    // let goodsInfo = { goods_id, goods_name, img, promote_price, shop_price };
-    // this.setData({
-    //   goodsInfo,
-    //   shopPrice: Number(promote_price) ? promote_price : shop_price,
-    //   goodsPic: default_attr_img,
-    //   specData: attr_goods_info,
-    //   stock: goods_number,
-    //   limitBuyNum: Number(limited_buy_num),
-    //   limitStartBuyNum: start_buy_num,
-    //   limitTips: Number(limited_buy_num)
-    //     ? "每人限购" + Number(limited_buy_num) + "件"
-    //     : start_buy_num
-    //     ? start_buy_num + "件起购"
-    //     : ""
-    // });
   },
 
   async setOrderInfo(orderId) {
