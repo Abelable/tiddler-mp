@@ -75,7 +75,7 @@ App({
   },
 
   setSystemInfo() {
-    const systemInfo = wx.getWindowInfo();
+    const systemInfo = wx.getSystemInfoSync();
     this.globalData.systemInfo = systemInfo;
   },
 
