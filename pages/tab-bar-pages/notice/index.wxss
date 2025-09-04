@@ -59,7 +59,6 @@
 
 .message-bar {
   padding: 18px 0;
-  border-bottom: 1px solid #eee;
 }
 .message-type-item {
   flex-direction: column;
@@ -72,4 +71,61 @@
   margin-top: 6px;
   color: #333;
   font-size: 11px;
+}
+
+.private-chat-part {
+  background: #fff;
+}
+.news-list {
+  display: flex;
+  align-items: center;
+  padding: 24rpx;
+  width: 100%;
+  border-top: 1px solid #eee;
+}
+.news-list-icon {
+  margin-right: 18rpx;
+  width: 96rpx; 
+  height: 96rpx;
+  border-radius: 50%;
+  background-image: url('https://img.ubo.vip/mp/default-ubo-icon.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.news-list-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  height: 96rpx;
+}
+.title-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.news-title {
+  color: #333;
+  font-size: 32rpx;
+}
+.news-time {
+  color: #999;
+  font-size: 24rpx;
+}
+.news-content-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.content-desc {
+  color: #999;
+  font-size: 28rpx;
+}
+
+.swipe-cell-delete-btn {
+  width: 65px;
+  height: 100%;
+  color: #fff;
+  font-size: 28rpx;
+  background: #FD0807;
 }

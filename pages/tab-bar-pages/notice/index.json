@@ -1,6 +1,7 @@
 {
   "navigationStyle": "custom",
   "usingComponents": {
+    "van-swipe-cell": "@vant/weapp/swipe-cell/index",
     "empty-illus": "/components/empty-illus/index"
   }
 }

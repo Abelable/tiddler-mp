@@ -16,7 +16,7 @@
         </view>
         <van-icon name="edit"/>
       </view>
-      <button class="swipe-cell-delete-btn" slot="right">删除</button>
+      <button class="swipe-cell-delete-btn" slot="right" hover-class="none">删除</button>
     </van-swipe-cell>
   </view>
 </view>

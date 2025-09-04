@@ -1,3 +1,6 @@
+<wxs module="TIME" src="/utils/filters/time.wxs" />
+<wxs module="STRING" src="/utils/filters/string.wxs" />
+
 <view class="header" style="padding-top: {{ statusBarHeight }}px;">
   <view class="nav-bar row">
     <view class="row" style="flex: 1;">
@@ -31,6 +34,29 @@
   </view>
 </view>
 
-<view class="content" style="margin-top: {{statusBarHeight + 128}}px">
-  <empty-illus desc="暂无消息" />
+<view class="content" style="margin-top: {{statusBarHeight + 148}}px">
+  <view class="private-chat-part" wx:if="{{contactList.length}}">
+    <van-swipe-cell
+      wx:for="{{contactList}}" wx:key="index"
+      bind:close="deleteConversation" data-id="{{item.friendId}}" data-index="{{index}}"
+      async-close right-width="{{ 65 }}"
+    >
+      <view class="news-list" catchtap="chat" data-friend-id="{{item.friendId}}" data-name="{{item.friendName}}" data-img="{{item.friendAvatarUrl}}">
+        <image class="news-list-icon" src="{{item.friendAvatarUrl}}" />
+        <view class="news-list-content">
+          <view class="title-wrap">
+            <view class="news-title">{{item.friendName}}</view>
+            <view class="news-time">{{TIME.timeDiff(item.msgTime * 1000)}}</view>
+          </view>
+          <view class="news-content-wrap">
+            <view class="content-desc">{{STRING.slice(item.msg, 16)}}</view>
+            <view class="news-unread" wx:if="{{item.unreadMsgCount}}">{{item.unreadMsgCount}}条新消息</view>
+          </view>
+        </view>
+      </view>
+      <button class="swipe-cell-delete-btn" slot="right" hover-class="none">删除</button>
+    </van-swipe-cell>
+  </view>
+
+  <empty-illus desc="暂无消息" wx:if="{{!contactList.length}}" />
 </view>
