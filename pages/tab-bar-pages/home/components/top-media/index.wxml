@@ -16,7 +16,7 @@
           <view class="time-month">{{item.month}}</view>
           <view class="time-year">{{item.year}}</view>
         </view>
-        <image class="top-desc" src="./images/{{curMediaIdx === 0 ? 'today_' : ''}}best_note.png" />
+        <image class="top-desc" src="https://static.tiddler.cn/mp/home/{{curMediaIdx === 0 ? 'today_' : ''}}best_note.png" />
       </view>
       <view class="video-symbol" wx:if="{{item.type === 2}}">
         <image class="play-icon" src="/images/play.png" />

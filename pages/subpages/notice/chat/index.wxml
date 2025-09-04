@@ -1,4 +1,14 @@
 <view class="container">
+  <view class="header" style="padding-top: {{statusBarHeight}}px;">
+    <view class="back-icon-wrap">
+      <back-icon />
+    </view>
+    <view class="friend-info">
+      <image class="friend-avatar" src="{{friendAvatarUrl}}" />
+      <view class="friend-name">{{friendName}}</view>
+    </view>
+  </view>
+
   <!-- 商品 -->
   <view class="goods-list" wx:if="{{goodsInfo}}" style="top: 10px">
     <image class="goods-img" src="{{goodsInfo.cover}}" mode="aspectFit" />
