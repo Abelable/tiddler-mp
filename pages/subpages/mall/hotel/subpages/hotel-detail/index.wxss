@@ -493,7 +493,7 @@
   width: 30rpx;
   height: 30rpx;
   border-radius: 50%;
-  border: 2rpx solid #fff;
+  border: 1px solid #fff;
 }
 .answer-user-name {
   margin-left: 8rpx;

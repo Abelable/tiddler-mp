@@ -299,11 +299,11 @@
   line-height: 40rpx;
   border-radius: 22rpx;
   background: #f5f6f7;
-  border: 2rpx solid #f5f6f7;
+  border: 1px solid #f5f6f7;
 }
 .ticket-type-item.active {
   color: #333;
-  border: 2rpx solid #ddd;
+  border: 1px solid #ddd;
 }
 
 .collapse {
@@ -357,7 +357,7 @@
   width: 30rpx;
   height: 30rpx;
   border-radius: 50%;
-  border: 2rpx solid #fff;
+  border: 1px solid #fff;
 }
 .answer-user-name {
   margin-left: 8rpx;
