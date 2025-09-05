@@ -45,6 +45,18 @@ Component({
       this.stopScrollTimeout = setTimeout(() => {
         this.setData({ stopScroll: false });
       }, 2000);
-    }
+    },
+
+    checkGoods(e) {
+      const { id } = e.currentTarget.dataset;
+      const url = `/pages/subpages/mall/goods/subpages/goods-detail/index?id=${id}`
+      wx.navigateTo({ url });
+    },
+
+    checkOrder(e) {
+      const { id } = e.currentTarget.dataset;
+      const url = `/pages/subpages/mine/order/subpages/goods-order/order-detail/index?id=${id}`
+      wx.navigateTo({ url });
+    },
   }
 });

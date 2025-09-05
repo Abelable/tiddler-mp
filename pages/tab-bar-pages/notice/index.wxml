@@ -41,7 +41,7 @@
       bind:close="deleteConversation" data-id="{{item.friendId}}" data-index="{{index}}"
       async-close right-width="{{ 65 }}"
     >
-      <view class="news-list" catchtap="chat" data-friend-id="{{item.friendId}}" data-name="{{item.friendName}}" data-img="{{item.friendAvatarUrl}}">
+      <view class="news-list" catchtap="chat" data-info="{{item}}">
         <image class="news-list-icon" src="{{item.friendAvatarUrl}}" />
         <view class="news-list-content">
           <view class="title-wrap">

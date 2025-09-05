@@ -85,8 +85,8 @@
 }
 .news-list-icon {
   margin-right: 18rpx;
-  width: 96rpx; 
-  height: 96rpx;
+  width: 80rpx; 
+  height: 80rpx;
   border-radius: 50%;
   background-image: url('https://img.ubo.vip/mp/default-ubo-icon.png');
   background-repeat: no-repeat;
@@ -97,7 +97,7 @@
   flex-direction: column;
   justify-content: space-between;
   flex: 1;
-  height: 96rpx;
+  height: 90rpx;
 }
 .title-wrap {
   display: flex;
@@ -107,6 +107,7 @@
 .news-title {
   color: #333;
   font-size: 32rpx;
+  font-weight: bold;
 }
 .news-time {
   color: #999;
@@ -119,7 +120,16 @@
 }
 .content-desc {
   color: #999;
-  font-size: 28rpx;
+  font-size: 26rpx;
+}
+.news-unread {
+  padding: 0 10rpx;
+  height: 32rpx;
+  color: #fff;
+  font-size: 20rpx;
+  line-height: 32rpx;
+  background: #FD2D55;
+  border-radius: 16rpx;
 }
 
 .swipe-cell-delete-btn {

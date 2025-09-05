@@ -32,9 +32,16 @@ export const onConversationListUpdate = ({ data = [] }) => {
 
 // 获取历史消息列表
 export const getMsgList = (conversationID, count = 15) => {
-  return store.tim.getMessageList({ conversationID, count }).catch(err => {
-    console.warn("getMsgList error:", err);
-  });
+  return store.tim
+    .getMessageList({ conversationID, count })
+    .then(res => {
+      const { messageList = [] } = res.data || {};
+      const msgList = messageList.map(item => handleC2CMsg(item));
+      store.setMsgList(msgList);
+    })
+    .catch(err => {
+      console.warn("getMsgList error:", err);
+    });
 };
 
 // 删除会话
@@ -46,9 +53,14 @@ export const deleteConversation = id => {
 
 // 消息已读
 export const setMessageRead = conversationID => {
-  return store.tim.setMessageRead({ conversationID }).catch(err => {
-    console.warn("setMessageRead error:", err);
-  });
+  return store.tim
+    .setMessageRead({ conversationID })
+    .then(() => {
+      store.setUnreadMsgCount(Math.max(0, store.unreadMsgCount - 1));
+    })
+    .catch(err => {
+      console.warn("setMessageRead error:", err);
+    });
 };
 
 // 发送普通文本消息

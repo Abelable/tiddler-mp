@@ -12,7 +12,7 @@
             <image wx:if="{{_item.type === 'emoji'}}" src="{{_item.value}}" style="width:20px;height:20px;vertical-align: top;"/>
           </block>
           <image wx:if="{{item.content.type === 'img'}}" style="max-width: 82px; max-height: 114px;" mode="aspectFit" src="{{item.content.value}}" />
-          <view wx:if="{{item.content.type === 'goods'}}" class="goods" bindtap="toGoodsDetail" data-id="{{item.content.value.id}}">
+          <view wx:if="{{item.content.type === 'goods'}}" class="goods" bindtap="checkGoods" data-id="{{item.content.value.id}}">
             <image class="goods-img" src="{{item.content.value.cover}}" mode="aspectFit" />
             <view class="goods-detail">
               <view class="goods-name">{{item.content.value.name}}</view>
@@ -22,7 +22,7 @@
               </view>
             </view>
           </view>
-          <view wx:if="{{item.content.type === 'order'}}" class="order" ontap="toOrderDetail" data-id="{{item.content.value.orderList.order_id}}">
+          <view wx:if="{{item.content.type === 'order'}}" class="order" bindtap="checkOrder" data-id="{{item.content.value.orderList.order_id}}">
             <image class="goods-img" src="{{item.content.value.goodsList[0].goods_thumb}}" mode="aspectFit" />
             <view class="order-detail">
               <view class="order-num">

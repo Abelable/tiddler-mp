@@ -186,18 +186,6 @@ Page({
     this.blurInput();
   },
 
-  toGoodsDetail(e) {
-    wx.navigateTo({
-      url: `/pages/subpages/mall/goods/subpages/goods-detail/index?id=${e.currentTarget.dataset.id}`
-    });
-  },
-
-  toOrderDetail(e) {
-    wx.navigateTo({
-      url: `/pages/subpages/mine/order/subpages/goods-order/order-detail/index?id=${e.currentTarget.dataset.id}`
-    });
-  },
-
   onUnload() {
     this.storeBindings.destroyStoreBindings();
   }
