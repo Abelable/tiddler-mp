@@ -12,7 +12,7 @@
             <image wx:if="{{_item.type === 'emoji'}}" src="{{_item.value}}" style="width:20px;height:20px;vertical-align: top;"/>
           </block>
           <image wx:if="{{item.content.type === 'img'}}" style="max-width: 82px; max-height: 114px;" mode="aspectFill" src="{{item.content.value}}" />
-          <view wx:if="{{item.content.type === 'product'}}" class="product" bindtap="checkProduct" data-id="{{item.content.value.type}}" data-id="{{item.content.value.id}}">
+          <view wx:if="{{item.content.type === 'product'}}" class="product" bindtap="checkProduct" data-type="{{item.content.value.type}}" data-id="{{item.content.value.id}}">
             <view class="product-cover-wrap">
               <image class="product-cover" src="{{item.content.value.cover}}" mode="aspectFill" />
               <view class="product-type">{{['景点', '酒店', '美食', '商品'][item.content.value.type - 1]}}</view>
