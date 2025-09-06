@@ -37,8 +37,8 @@ Component({
 
     contact() {
       checkLogin(() => {
-        const { hotelId, shopInfo } = this.properties.info;
-        const { userId, ownerAvatar, ownerName, managerList } = shopInfo;
+        const { hotelId, shopInfo, managerList } = this.properties.info;
+        const { userId, ownerAvatar, ownerName } = shopInfo;
         const cs = managerList.find(item => item.roleId === 4);
         const url = `/pages/subpages/notice/chat/index?userId=${
           cs ? cs.userId : userId

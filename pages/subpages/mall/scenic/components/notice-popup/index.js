@@ -15,8 +15,8 @@ Component({
   methods: {
     contact() {
       checkLogin(() => {
-        const { scenicId, shopInfo } = this.properties.info;
-        const { userId, ownerAvatar, ownerName, managerList } = shopInfo;
+        const { scenicId, shopInfo, managerList } = this.properties.info;
+        const { userId, ownerAvatar, ownerName } = shopInfo;
         const cs = managerList.find(item => item.roleId === 4);
         const url = `/pages/subpages/notice/chat/index?userId=${
           cs ? cs.userId : userId

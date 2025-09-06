@@ -40,23 +40,27 @@ Component({
       clearTimeout(this.stopScrollTimeout);
       !this.data.stopScroll && this.setData({ stopScroll: true });
     },
-    
+
     onTouchEnd() {
       this.stopScrollTimeout = setTimeout(() => {
         this.setData({ stopScroll: false });
       }, 2000);
     },
 
-    checkGoods(e) {
-      const { id } = e.currentTarget.dataset;
-      const url = `/pages/subpages/mall/goods/subpages/goods-detail/index?id=${id}`
+    checkProduct(e) {
+      const { type, id } = e.currentTarget.dataset;
+      const url = `/pages/subpages/mall/${
+        ["scenic", "hotel", "catering", "goods"][type - 1]
+      }/subpages/${
+        ["scenic", "hotel", "restaurant", "goods"][type - 1]
+      }-detail/index?id=${id}`;
       wx.navigateTo({ url });
     },
 
     checkOrder(e) {
       const { id } = e.currentTarget.dataset;
-      const url = `/pages/subpages/mine/order/subpages/goods-order/order-detail/index?id=${id}`
+      const url = `/pages/subpages/mine/order/subpages/goods-order/order-detail/index?id=${id}`;
       wx.navigateTo({ url });
-    },
+    }
   }
 });

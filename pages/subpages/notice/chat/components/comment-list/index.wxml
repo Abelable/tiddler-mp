@@ -11,10 +11,10 @@
             <text wx:if="{{_item.type === 'text' && _item.value}}">{{_item.value}}</text>
             <image wx:if="{{_item.type === 'emoji'}}" src="{{_item.value}}" style="width:20px;height:20px;vertical-align: top;"/>
           </block>
-          <image wx:if="{{item.content.type === 'img'}}" style="max-width: 82px; max-height: 114px;" mode="aspectFit" src="{{item.content.value}}" />
+          <image wx:if="{{item.content.type === 'img'}}" style="max-width: 82px; max-height: 114px;" mode="aspectFill" src="{{item.content.value}}" />
           <view wx:if="{{item.content.type === 'product'}}" class="product" bindtap="checkProduct" data-id="{{item.content.value.type}}" data-id="{{item.content.value.id}}">
             <view class="product-cover-wrap">
-              <image class="product-cover" src="{{item.content.value.cover}}" mode="aspectFit" />
+              <image class="product-cover" src="{{item.content.value.cover}}" mode="aspectFill" />
               <view class="product-type">{{['景点', '酒店', '美食', '商品'][item.content.value.type - 1]}}</view>
             </view>
             <view class="product-detail">
@@ -26,7 +26,7 @@
             </view>
           </view>
           <view wx:if="{{item.content.type === 'order'}}" class="order" bindtap="checkOrder" data-id="{{item.content.value.orderList.order_id}}">
-            <image class="goods-img" src="{{item.content.value.goodsList[0].goods_thumb}}" mode="aspectFit" />
+            <image class="goods-img" src="{{item.content.value.goodsList[0].goods_thumb}}" mode="aspectFill" />
             <view class="order-detail">
               <view class="order-num">
                 <view class="order-num-tip">订单号</view>

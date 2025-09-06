@@ -168,19 +168,9 @@ Page({
   sendCustomMsg(e) {
     const { type } = e.currentTarget.dataset;
     const { productInfo, orderInfo, friendId } = this.data;
-    let msgData;
-    switch (type) {
-      case "1":
-        msgData = productInfo;
-        break;
-      case "2":
-        msgData = orderInfo;
-        break;
-    }
-    msgData.type = type;
     const msg = JSON.stringify({
-      type: type,
-      data: JSON.stringify(msgData)
+      type: type === 1 ? 'product' : 'order',
+      value: type === 1 ? productInfo : orderInfo
     });
     tim.sendCustomMsg(msg, friendId);
   },

@@ -138,17 +138,7 @@ export const handleC2CMsg = item => {
       break;
 
     case TIM.TYPES.MSG_CUSTOM:
-      value = JSON.parse(JSON.parse(payload.data).data);
-      let _type;
-      switch (value.type) {
-        case "1":
-          _type = "product";
-          break;
-        case "2":
-          _type = "order";
-          break;
-      }
-      content = { type: _type, value };
+      content = JSON.parse(payload.data);
       break;
 
     case TIM.TYPES.MSG_IMAGE:
