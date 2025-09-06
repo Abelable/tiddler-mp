@@ -45,19 +45,21 @@ Page({
       orderId
     } = options;
 
-    switch (+productType) {
-      case 1:
-        this.setScenicInfo(productId)
-        break;
-      case 2:
-        this.setHotelInfo(productId)
-        break;
-      case 3:
-        this.setRestaurantInfo(productId)
-        break;
-      case 4:
-        this.setGoodsInfo(productId)
-        break;
+    if (productId) {
+      switch (+productType) {
+        case 1:
+          this.setScenicInfo(productId)
+          break;
+        case 2:
+          this.setHotelInfo(productId)
+          break;
+        case 3:
+          this.setRestaurantInfo(productId)
+          break;
+        case 4:
+          this.setGoodsInfo(productId)
+          break;
+      }
     }
     
     orderId && this.setOrderInfo(orderId);
