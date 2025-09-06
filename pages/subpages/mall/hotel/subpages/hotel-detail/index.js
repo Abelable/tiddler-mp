@@ -406,10 +406,15 @@ Component({
 
     setCurRoomInfo(typeIndex, roomIndex) {
       const { hotelInfo, roomTypeList } = this.data;
-      const { name: hotelName, englishName: hotelEnglishName } = hotelInfo;
+      const {
+        id: hotelId,
+        name: hotelName,
+        englishName: hotelEnglishName
+      } = hotelInfo;
       const { id, price, roomList, ...roomTypeInfo } = roomTypeList[typeIndex];
       const { priceList, ...roomInfo } = roomList[roomIndex];
       return {
+        hotelId,
         hotelName,
         hotelEnglishName,
         ...roomTypeInfo,
