@@ -408,6 +408,7 @@ Component({
       const { hotelInfo, roomTypeList } = this.data;
       const {
         id: hotelId,
+        cover: hotelCover,
         name: hotelName,
         englishName: hotelEnglishName
       } = hotelInfo;
@@ -415,6 +416,7 @@ Component({
       const { priceList, ...roomInfo } = roomList[roomIndex];
       return {
         hotelId,
+        hotelCover,
         hotelName,
         hotelEnglishName,
         ...roomTypeInfo,

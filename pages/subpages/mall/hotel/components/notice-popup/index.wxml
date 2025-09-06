@@ -77,7 +77,7 @@
             <button 
               wx:if="{{info.shopInfo.type === 3}}"
               send-message-title="{{info.hotelName}}"
-              send-message-img="{{info.imageList[0]}}"
+              send-message-img="{{info.hotelCover}}"
               send-message-path="/pages/subpages/mall/hotel/subpages/hotel-detail/index?id={{info.hotelId}}"
               show-message-card="{{true}}"
               open-type="contact" 

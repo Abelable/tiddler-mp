@@ -61,10 +61,10 @@
   margin-right: 8rpx;
   padding: 0 8rpx;
   height: 32rpx;
-  color: #FFE5BD;
+  color: var(--gold-1);
   font-size: 22rpx;
   line-height: 1;
-  background: linear-gradient(270deg, #404A5C 0%, #0F131A 100%);
+  background: var(--blue-linear-2);
   border-radius: 6rpx;
 }
 .supplier-name {
@@ -86,8 +86,8 @@
 }
 .confirm-btn {
   height: 88rpx;
-  color: var(--gold-1);
+  color: #fff;
   font-size: 32rpx;
-  background: var(--blue-linear-2);
+  background: var(--blue-1);
   border-radius: 44rpx;
 }

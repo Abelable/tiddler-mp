@@ -265,7 +265,6 @@ Page({
     });
   },
 
-  // 客服
   contact() {
     if (this.data.goodsInfo.shopInfo) {
       const { userId, ownerAvatar, ownerName, managerList } =
