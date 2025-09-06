@@ -274,7 +274,7 @@ Page({
         cs ? cs.userId : userId
       }&name=${cs ? cs.nickname : ownerName}&avatar=${
         cs ? cs.avatar : ownerAvatar
-      }&goodsId=${this.goodsId}`;
+      }&productId=${this.goodsId}&productType=4`;
       wx.navigateTo({ url });
     }
   },

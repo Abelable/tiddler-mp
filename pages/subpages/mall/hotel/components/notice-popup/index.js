@@ -44,7 +44,7 @@ Component({
           cs ? cs.userId : userId
         }&name=${cs ? cs.nickname : ownerName}&avatar=${
           cs ? cs.avatar : ownerAvatar
-        }&hotelId=${hotelId}`;
+        }&productId=${hotelId}&productType=2`;
         wx.navigateTo({ url });
       });
     },

@@ -40,17 +40,26 @@ Page({
       userId: friendId,
       name: friendName,
       avatar: friendAvatarUrl,
-      scenicId,
-      hotelId,
-      restaurantId,
-      goodsId,
+      productType,
+      productId,
       orderId
     } = options;
 
-    scenicId && this.setScenicInfo(scenicId);
-    hotelId && this.setHotelInfo(hotelId);
-    restaurantId && this.setRestaurantInfo(restaurantId);
-    goodsId && this.setGoodsInfo(goodsId);
+    switch (+productType) {
+      case 1:
+        this.setScenicInfo(productId)
+        break;
+      case 2:
+        this.setHotelInfo(productId)
+        break;
+      case 3:
+        this.setRestaurantInfo(productId)
+        break;
+      case 4:
+        this.setGoodsInfo(productId)
+        break;
+    }
+    
     orderId && this.setOrderInfo(orderId);
 
     wx.setNavigationBarTitle({ title: friendName });

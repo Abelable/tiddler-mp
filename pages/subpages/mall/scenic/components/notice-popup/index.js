@@ -22,7 +22,7 @@ Component({
           cs ? cs.userId : userId
         }&name=${cs ? cs.nickname : ownerName}&avatar=${
           cs ? cs.avatar : ownerAvatar
-        }&scenicId=${scenicId}`;
+        }&productId=${scenicId}&productType=1`;
         wx.navigateTo({ url });
       });
     },
