@@ -22,7 +22,7 @@ Page({
     content: "", // 输入框的文本值
     emojiWrapVisiabel: false,
     moreOperateVisiabel: false,
-    goodsInfo: null,
+    productInfo: null,
     orderInfo: null,
     // 限购相关
     limitTips: "",
@@ -40,10 +40,16 @@ Page({
       userId: friendId,
       name: friendName,
       avatar: friendAvatarUrl,
+      scenicId,
+      hotelId,
+      restaurantId,
       goodsId,
       orderId
     } = options;
 
+    scenicId && this.setScenicInfo(scenicId);
+    hotelId && this.setHotelInfo(hotelId);
+    restaurantId && this.setRestaurantInfo(restaurantId);
     goodsId && this.setGoodsInfo(goodsId);
     orderId && this.setOrderInfo(orderId);
 
@@ -55,11 +61,38 @@ Page({
     tim.getMsgList(conversationID);
   },
 
+  async setScenicInfo(scenicId) {
+    const { id, imageList, name, price } = await chatService.getScenicInfo(
+      scenicId
+    );
+    this.setData({
+      productInfo: { type: 1, id, cover: imageList[0], name, price }
+    });
+  },
+
+  async setHotelInfo(hotelId) {
+    const { id, cover, name, price } = await chatService.getHotelInfo(hotelId);
+    this.setData({
+      productInfo: { type: 2, id, cover, name, price }
+    });
+  },
+
+  async setRestaurantInfo(restaurantId) {
+    const { id, imageList, name, price } = await chatService.getRestaurantInfo(
+      restaurantId
+    );
+    this.setData({
+      productInfo: { type: 3, id, cover: imageList[0], name, price }
+    });
+  },
+
   async setGoodsInfo(goodsId) {
     const { id, imageList, name, price } = await chatService.getGoodsInfo(
       goodsId
     );
-    this.setData({ goodsInfo: { id, cover: imageList[0], name, price } });
+    this.setData({
+      productInfo: { type: 4, id, cover: imageList[0], name, price }
+    });
   },
 
   async setOrderInfo(orderId) {
@@ -133,12 +166,12 @@ Page({
   },
 
   sendCustomMsg(e) {
-    const {type} = e.currentTarget.dataset;
-    const { goodsInfo, orderInfo, friendId } = this.data;
+    const { type } = e.currentTarget.dataset;
+    const { productInfo, orderInfo, friendId } = this.data;
     let msgData;
     switch (type) {
       case "1":
-        msgData = goodsInfo;
+        msgData = productInfo;
         break;
       case "2":
         msgData = orderInfo;

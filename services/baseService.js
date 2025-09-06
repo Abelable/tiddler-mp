@@ -514,6 +514,27 @@ class BaseService extends Base {
     });
   }
 
+  async getScenicInfo(id) {
+    return await this.get({
+      url: `${this.baseUrl}/scenic/detail`,
+      data: { id }
+    });
+  }
+
+  async getHotelInfo(id) {
+    return await this.get({
+      url: `${this.baseUrl}/hotel/detail`,
+      data: { id }
+    });
+  }
+
+  async getRestaurantInfo(id) {
+    return await this.get({
+      url: `${this.baseUrl}/catering/restaurant/detail`,
+      data: { id }
+    });
+  }
+
   async getGoodsInfo(id, addressId) {
     return await this.get({
       url: `${this.baseUrl}/goods/detail`,

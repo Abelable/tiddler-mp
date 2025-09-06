@@ -142,7 +142,7 @@ export const handleC2CMsg = item => {
       let _type;
       switch (value.type) {
         case "1":
-          _type = "goods";
+          _type = "product";
           break;
         case "2":
           _type = "order";
