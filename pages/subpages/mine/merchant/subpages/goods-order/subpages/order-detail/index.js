@@ -77,6 +77,10 @@ Page({
     plugin.openWaybillTracking({ waybillToken });
   },
 
-  // todo 联系客户：电话or私聊
-  contact() {}
+  contact() {
+    const { id, userInfo } = this.data.orderInfo;
+    const { id: userId, avatar, nickname } = userInfo;
+    const url = `/pages/subpages/notice/chat/index?userId=${userId}&name=${nickname}&avatar=${avatar}&orderId=${id}&productType=4`;
+    wx.navigateTo({ url });
+  }
 });

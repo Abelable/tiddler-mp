@@ -262,6 +262,7 @@ Page({
     wx.navigateTo({ url });
   },
 
+  // todo
   contact() {},
 
   onUnload() {
