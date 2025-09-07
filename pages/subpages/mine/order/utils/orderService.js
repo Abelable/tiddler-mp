@@ -409,14 +409,6 @@ class OrderService extends BaseService {
     });
   }
 
-  async getGoodsOrderDetail(id) {
-    return await this.get({
-      url: `${this.baseUrl}/order/detail`,
-      data: { id },
-      loadingTitle: "加载中"
-    });
-  }
-
   async getGoodsVerifyCode(orderId) {
     return await this.get({
       url: `${this.baseUrl}/order/verify_code`,

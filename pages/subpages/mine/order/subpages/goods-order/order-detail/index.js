@@ -262,8 +262,17 @@ Page({
     wx.navigateTo({ url });
   },
 
-  // todo
-  contact() {},
+  contact() {
+    const { id, shopInfo } = this.data.orderInfo;
+    const { userId, ownerAvatar, ownerName, managerList } = shopInfo;
+    const cs = managerList.find(item => item.roleId === 4);
+    const url = `/pages/subpages/notice/chat/index?userId=${
+      cs ? cs.userId : userId
+    }&name=${cs ? cs.nickname : ownerName}&avatar=${
+      cs ? cs.avatar : ownerAvatar
+    }&orderId=${id}&productType=1`;
+    wx.navigateTo({ url });
+  },
 
   onUnload() {
     clearInterval(this.countdownInterval);

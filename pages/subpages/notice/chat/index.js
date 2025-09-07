@@ -107,7 +107,7 @@ Page({
   },
 
   async setOrderInfo(orderId) {
-    const orderInfo = (await chatService.getOrderDetail(orderId)) || {};
+    const orderInfo = (await chatService.getGoodsOrderDetail(orderId)) || {};
     const { order_status, pay_status, shipping_status } = orderInfo;
     this.setData({
       orderInfo,

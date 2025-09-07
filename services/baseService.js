@@ -541,6 +541,14 @@ class BaseService extends Base {
       data: cleanObject({ id, addressId })
     });
   }
+
+  async getGoodsOrderDetail(id) {
+    return await this.get({
+      url: `${this.baseUrl}/order/detail`,
+      data: { id },
+      loadingTitle: "加载中"
+    });
+  }
 }
 
 export default BaseService;

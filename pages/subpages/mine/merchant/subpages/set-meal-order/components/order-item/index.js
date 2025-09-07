@@ -38,8 +38,12 @@ Component({
       });
     },
 
-    // todo 
-    contact() {},
+    contact() {
+      const { id, userInfo } = this.properties.item;
+      const { id: userId, avatar, nickname } = userInfo;
+      const url = `/pages/subpages/notice/chat/index?userId=${userId}&name=${nickname}&avatar=${avatar}&orderId=${id}&productType=6`;
+      wx.navigateTo({ url });
+    },
 
     navToDetail() {
       const { id } = this.properties.item;
