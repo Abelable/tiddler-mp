@@ -2,7 +2,6 @@ import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { store } from "../../../../store/index";
 import tim from "../../../../utils/tim/index";
 import { emojiName, emojiMap, emojiUrl } from "../../../../utils/tim/emojiMap";
-import { judgeOrderStatus } from "../../../../utils/judgeOrderStatus";
 import ChatService from "./utils/chatService";
 
 const chatService = new ChatService();
@@ -48,20 +47,20 @@ Page({
     if (productId) {
       switch (+productType) {
         case 1:
-          this.setScenicInfo(productId)
+          this.setScenicInfo(productId);
           break;
         case 2:
-          this.setHotelInfo(productId)
+          this.setHotelInfo(productId);
           break;
         case 3:
-          this.setRestaurantInfo(productId)
+          this.setRestaurantInfo(productId);
           break;
         case 4:
-          this.setGoodsInfo(productId)
+          this.setGoodsInfo(productId);
           break;
       }
     }
-    
+
     orderId && this.setOrderInfo(orderId);
 
     wx.setNavigationBarTitle({ title: friendName });
@@ -107,15 +106,19 @@ Page({
   },
 
   async setOrderInfo(orderId) {
-    const orderInfo = (await chatService.getGoodsOrderDetail(orderId)) || {};
-    const { order_status, pay_status, shipping_status } = orderInfo;
+    const { id, orderSn, goodsList, paymentAmount, createdAt } =
+      (await chatService.getGoodsOrderDetail(orderId)) || {};
     this.setData({
-      orderInfo,
-      compositeStatus: judgeOrderStatus(
-        order_status,
-        pay_status,
-        shipping_status
-      )
+      orderInfo: {
+        type: 4,
+        id,
+        orderSn,
+        cover: goodsList[0].cover,
+        productName: goodsList[0].name,
+        productNum: goodsList.length,
+        paymentAmount,
+        createdAt
+      }
     });
   },
 
@@ -180,7 +183,7 @@ Page({
     const { type } = e.currentTarget.dataset;
     const { productInfo, orderInfo, friendId } = this.data;
     const msg = JSON.stringify({
-      type: type === 1 ? 'product' : 'order',
+      type: type === 1 ? "product" : "order",
       value: type === 1 ? productInfo : orderInfo
     });
     tim.sendCustomMsg(msg, friendId);

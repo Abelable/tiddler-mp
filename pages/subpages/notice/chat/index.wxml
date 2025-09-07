@@ -1,3 +1,5 @@
+<wxs module="TIME" src="/utils/filters/time.wxs" />
+
 <view class="container">
   <view class="header" style="padding-top: {{statusBarHeight}}px;">
     <view class="back-icon-wrap">
@@ -28,18 +30,26 @@
 
   <!-- 订单 -->
   <view class="order-list" wx:if="{{orderInfo}}" style="top: {{statusBarHeight + 55}}px">
-    <image class="product-cover" src="{{orderInfo.goodsList[0].goods_thumb}}" mode="aspectFill" />
-    <view class="order-detail">
-      <view class="order-num">
-        <view class="order-num-tip">订单号</view>
-        <view>{{orderInfo.orderList.order_sn}}</view>
-      </view>
-      <view class="consignee">收件人：{{orderInfo.orderList.consignee}}</view>
-      <view class="order-time">下单时间：{{orderInfo.orderList.formated_add_time}}</view>
+    <view class="product-cover-wrap">
+      <image class="product-cover" src="{{orderInfo.cover}}" mode="aspectFill" />
+      <view class="product-type">{{['景点', '酒店', '美食', '商品'][orderInfo.type - 1]}}</view>
     </view>
-    <view class="order-operation">
-      <view class="order-status">{{compositeStatus}}</view>
-      <view class="seek-btn" bindtap="sendCustomMsg" data-type="{{1}}">咨询订单</view>
+    <view class="order-detail">
+      <view class="order-info row">
+        <view class="order-info-title">订单编号</view>
+        <view>{{orderInfo.orderSn}}</view>
+      </view>
+      <view class="order-info row">
+        <view class="order-info-title">创建时间</view>
+        <view>{{TIME.transform(orderInfo.createdAt, 'YYYY-MM-DD hh:mm:ss')}}</view>
+      </view>
+      <view class="order-operation row between">
+        <view class="order-price-info">
+          <text>共{{orderInfo.productNum}}件商品，</text>
+          <text>合计¥{{orderInfo.paymentAmount}}</text>
+        </view>
+        <view class="seek-btn" bindtap="sendCustomMsg" data-type="{{2}}">咨询订单</view>
+      </view>
     </view>
   </view>
 

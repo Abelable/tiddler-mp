@@ -58,8 +58,10 @@ Component({
     },
 
     checkOrder(e) {
-      const { id } = e.currentTarget.dataset;
-      const url = `/pages/subpages/mine/order/subpages/goods-order/order-detail/index?id=${id}`;
+      const { type, id } = e.currentTarget.dataset;
+      const url = `/pages/subpages/mine/order/subpages/${
+        ["scenic", "hotel", "", "goods", "meal-ticket", "set-meal"][type - 1]
+      }-order/order-detail/index?id=${id}`;
       wx.navigateTo({ url });
     }
   }

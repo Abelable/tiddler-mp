@@ -1,4 +1,4 @@
-<wxs module="TIME" src="../../../../../../utils/filters/time.wxs" />
+<wxs module="TIME" src="/utils/filters/time.wxs" />
 
 <scroll-view class="comment" scroll-top="{{scrollTop}}" scroll-y="true" bind:touchstart="onTouchStart" bind:touchend="onTouchEnd">
   <view class="msg-lists">
@@ -25,15 +25,27 @@
               </view>
             </view>
           </view>
-          <view wx:if="{{item.content.type === 'order'}}" class="order" bindtap="checkOrder" data-id="{{item.content.value.orderList.order_id}}">
-            <image class="goods-img" src="{{item.content.value.goodsList[0].goods_thumb}}" mode="aspectFill" />
-            <view class="order-detail">
-              <view class="order-num">
-                <view class="order-num-tip">订单号</view>
-                <view>{{item.content.value.orderList.order_sn}}</view>
+          <view wx:if="{{item.content.type === 'order'}}" class="order" bindtap="checkOrder" data-type="{{item.content.value.type}}" data-id="{{item.content.value.id}}">
+            <view class="order-product-info">
+              <view class="product-cover-wrap">
+                <image class="product-cover" src="{{item.content.value.cover}}" mode="aspectFill" />
+                <view class="product-type">{{['景点', '酒店', '美食', '商品'][item.content.value.type - 1]}}</view>
               </view>
-              <view class="consignee">收件人：{{item.content.value.orderList.consignee}}</view>
-              <view class="order-time">下单时间：{{item.content.value.orderList.formated_add_time}}</view>
+              <view class="product-detail">
+                <view class="product-name">{{item.content.value.productName}}</view>
+                <view class="order-price-info">
+                  <text>共{{item.content.value.productNum}}件商品，</text>
+                  <text>合计¥{{item.content.value.paymentAmount}}</text>
+                </view>
+              </view>
+            </view>
+            <view class="order-info">
+              <view class="order-info-title">订单编号</view>
+              <view>{{item.content.value.orderSn}}</view>
+            </view>
+            <view class="order-info">
+              <view class="order-info-title">创建时间</view>
+              <view>{{TIME.transform(item.content.value.createdAt, 'YYYY-MM-DD hh:mm:ss')}}</view>
             </view>
           </view>
         </view>
