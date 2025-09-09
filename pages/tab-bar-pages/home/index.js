@@ -317,7 +317,7 @@ Component({
             break;
           case 5:
             wx.navigateTo({
-              url: `/pages/common/webview/index?url=${param}`
+              url: `/pages/subpages/common/webview/index?url=${param}`
             });
             break;
         }
