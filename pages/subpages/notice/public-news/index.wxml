@@ -1,0 +1,16 @@
+<view class="news-list-wrap">
+  <block wx:for="{{newsList}}" wx:key="index">
+    <view class="time">{{item.time}}</view>
+    <view class="news-list">
+      <view class="list-main-wrap" ontap="navTo" data-info="{{item.push_extras_value}}">
+        <view class="list-status-wrap">
+          <view class="list-status {{item.is_new != 0 ? 'unread' : ''}}">{{item.push_title}}</view>
+          <image wx:if="{{item.push_extras_value}}" style="width: 20rpx; height: 20rpx;" src="https://img.ubo.vip/mp/mine/right-arrow.png" />
+        </view>
+        <view class="list-desc">{{item.push_content}}</view>
+      </view>
+      <image class="list-img" mode="widthFix" lazy-load wx:if="{{item.image}}" src="{{item.image}}"/>
+    </view>
+  </block>
+</view>
+

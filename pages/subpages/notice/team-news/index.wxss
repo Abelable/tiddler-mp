@@ -1,0 +1,41 @@
+.menu-bar {
+  position: fixed;
+  top: 0;
+  display: flex;
+  width: 100%;
+  background: #fff;
+}
+.menu-item {
+  flex: 1;
+  height: 78rpx;
+  color: #999;
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 78rpx;
+}
+.menu-item.selected {
+  position: relative;
+  color: #333;
+}
+.menu-item.selected::after {
+  position: absolute;
+  left: 50%;
+  bottom: 3rpx;
+  transform: translate(-50%);
+  width: 24rpx;
+  height: 8rpx;
+  content: '';
+  border-radius: 4rpx;
+  background: #DAB174;
+}
+
+.news-list-wrap {
+  margin-top: 78rpx;
+  padding: 0 24rpx;
+}
+.time {
+  padding-top: 29rpx;
+  color: #666;
+  font-size: 20rpx;
+  text-align: center;
+}

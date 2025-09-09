@@ -1,0 +1,9 @@
+{
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "black",
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "互动消息",
+  "usingComponents": {
+    "i-news-list": "/components/i-news-list/index"
+  }
+}

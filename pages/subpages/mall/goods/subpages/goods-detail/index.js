@@ -265,11 +265,16 @@ Page({
     });
   },
 
-  // 客服
   contact() {
     if (this.data.goodsInfo.shopInfo) {
-      const { id, name, avatar } = this.data.goodsInfo.shopInfo.keeperInfo;
-      const url = `/pages/subpages/news/chat/index?userId=${id}&name=${name}&avatar=${avatar}&goodsId=${this.goodsId}`;
+      const { userId, ownerAvatar, ownerName, managerList } =
+        this.data.goodsInfo.shopInfo;
+      const cs = managerList.find(item => item.roleId === 4);
+      const url = `/pages/subpages/notice/chat/index?userId=${
+        cs ? cs.userId : userId
+      }&name=${cs ? cs.nickname : ownerName}&avatar=${
+        cs ? cs.avatar : ownerAvatar
+      }&productId=${this.goodsId}&productType=4`;
       wx.navigateTo({ url });
     }
   },

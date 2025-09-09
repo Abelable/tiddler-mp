@@ -10,8 +10,9 @@ Page({
     useTimeDescList: [],
   },
 
-  onLoad({ restaurantId, restaurantName, setMealId }) {
+  onLoad({ restaurantId, restaurantCover, restaurantName, setMealId }) {
     this.restaurantId = restaurantId;
+    this.restaurantCover = restaurantCover;
     this.restaurantName = restaurantName;
     this.setMealId = setMealId;
 
@@ -68,7 +69,7 @@ Page({
   },
 
   buy() {
-    const url = `/pages/subpages/mall/catering/subpages/set-meal-order-check/index?setMealId=${this.setMealId}&restaurantId=${this.restaurantId}&restaurantName=${this.restaurantName}`;
+    const url = `/pages/subpages/mall/catering/subpages/set-meal-order-check/index?setMealId=${this.setMealId}&restaurantId=${this.restaurantId}&restaurantCover=${this.restaurantCover}&restaurantName=${this.restaurantName}`;
     wx.navigateTo({ url });
   },
 });

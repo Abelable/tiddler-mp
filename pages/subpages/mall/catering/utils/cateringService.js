@@ -18,13 +18,6 @@ class CateringService extends MallService {
     return list;
   }
 
-  async getRestaurantInfo(id) {
-    return await this.get({
-      url: `${this.baseUrl}/catering/restaurant/detail`,
-      data: { id },
-    });
-  }
-
   async getRoomTypeOptions(cateringId) {
     return await this.get({
       url: `${this.baseUrl}/catering/restaurant/room/type_options`,

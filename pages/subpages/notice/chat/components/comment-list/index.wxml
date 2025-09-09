@@ -1,0 +1,56 @@
+<wxs module="TIME" src="/utils/filters/time.wxs" />
+
+<scroll-view class="comment" scroll-top="{{scrollTop}}" scroll-y="true" bind:touchstart="onTouchStart" bind:touchend="onTouchEnd">
+  <view class="msg-lists">
+    <view class="msg-list" wx:for="{{msgList}}" wx:key="index">
+      <view class="datetime" wx:if="{{item.time}}">{{TIME.timeDiff(item.time * 1000)}}</view>
+      <view class="message-detail {{item.flow === 'out' ? 'mine' : ''}}">
+        <image class="avatar" src="{{item.flow === 'out' ? userInfo.avatar : friendAvatarUrl}}" />          
+        <view class="content {{item.flow === 'out' ? 'mine' : ''}} {{item.content.type !== 'text' ? 'complex' : '' }}">
+          <block wx:if="{{item.content.type === 'text'}}" wx:for="{{item.content.value}}" wx:key="index" wx:for-item="_item">
+            <text wx:if="{{_item.type === 'text' && _item.value}}">{{_item.value}}</text>
+            <image wx:if="{{_item.type === 'emoji'}}" src="{{_item.value}}" style="width:20px;height:20px;vertical-align: top;"/>
+          </block>
+          <image wx:if="{{item.content.type === 'img'}}" style="max-width: 82px; max-height: 114px;" mode="aspectFill" src="{{item.content.value}}" />
+          <view wx:if="{{item.content.type === 'product'}}" class="product" bindtap="checkProduct" data-type="{{item.content.value.type}}" data-id="{{item.content.value.id}}">
+            <view class="product-cover-wrap">
+              <image class="product-cover" src="{{item.content.value.cover}}" mode="aspectFill" />
+              <view class="product-type">{{['景点', '酒店', '美食', '商品'][item.content.value.type - 1]}}</view>
+            </view>
+            <view class="product-detail">
+              <view class="product-name">{{item.content.value.name}}</view>
+              <view class="product-price">
+                <text style="font-size: 10px;">¥</text>
+                <text>{{item.content.value.price}}</text>
+              </view>
+            </view>
+          </view>
+          <view wx:if="{{item.content.type === 'order'}}" class="order" bindtap="checkOrder" data-type="{{item.content.value.type}}" data-id="{{item.content.value.id}}">
+            <view class="order-product-info">
+              <view class="product-cover-wrap">
+                <image class="product-cover" src="{{item.content.value.cover}}" mode="aspectFill" />
+                <view class="product-type">
+                  {{['景点', '酒店', '', '商品', '美食', '美食'][item.content.value.type - 1]}}
+                </view>
+              </view>
+              <view class="product-detail">
+                <view class="product-name">{{item.content.value.productName}}</view>
+                <view class="order-price-info">
+                  共{{item.content.value.productNum}}{{['张门票', '间房', '', '件商品', '张餐券', '份套餐'][item.content.value.type - 1]}}，合计¥{{item.content.value.paymentAmount}}
+                </view>
+              </view>
+            </view>
+            <view class="order-info">
+              <view class="order-info-title">订单编号</view>
+              <view>{{item.content.value.orderSn}}</view>
+            </view>
+            <view class="order-info">
+              <view class="order-info-title">创建时间</view>
+              <view>{{TIME.transform(item.content.value.createdAt, 'YYYY-MM-DD hh:mm:ss')}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

@@ -18,7 +18,7 @@
   </view>
 </view>
 
-<view class="content" style="margin-top: {{statusBarHeight + 84}}px;">
+<view class="content" style="margin-top: {{statusBarHeight + 88}}px;">
   <view class="order-list">
     <order-item 
       wx:for="{{orderList}}" 

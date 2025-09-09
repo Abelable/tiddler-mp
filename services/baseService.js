@@ -484,6 +484,103 @@ class BaseService extends Base {
       data: { productType, productId, page, limit }
     });
   }
+
+  async getPurchasedGoodsList(goodsId, scene = 1) {
+    return await this.get({
+      url: `${this.baseUrl}/goods/purchased_list`,
+      data: { goodsId, scene }
+    });
+  }
+
+  async fastAddCart(goodsId, selectedSkuIndex, number) {
+    return await this.post({
+      url: `${this.baseUrl}/cart/fast_add`,
+      data: { goodsId, selectedSkuIndex, number }
+    });
+  }
+
+  async addCart(goodsId, selectedSkuIndex, number) {
+    return await this.post({
+      url: `${this.baseUrl}/cart/add`,
+      data: { goodsId, selectedSkuIndex, number }
+    });
+  }
+
+  async editCart(id, goodsId, selectedSkuIndex, number, success) {
+    return await this.post({
+      url: `${this.baseUrl}/cart/edit`,
+      data: { id, goodsId, selectedSkuIndex, number },
+      success
+    });
+  }
+
+  async getScenicInfo(id) {
+    return await this.get({
+      url: `${this.baseUrl}/scenic/detail`,
+      data: { id }
+    });
+  }
+
+  async getHotelInfo(id) {
+    return await this.get({
+      url: `${this.baseUrl}/hotel/detail`,
+      data: { id }
+    });
+  }
+
+  async getRestaurantInfo(id) {
+    return await this.get({
+      url: `${this.baseUrl}/catering/restaurant/detail`,
+      data: { id }
+    });
+  }
+
+  async getGoodsInfo(id, addressId) {
+    return await this.get({
+      url: `${this.baseUrl}/goods/detail`,
+      data: cleanObject({ id, addressId })
+    });
+  }
+
+  async getScenicOrderDetail(id) {
+    return await this.get({
+      url: `${this.baseUrl}/scenic/order/detail`,
+      data: { id },
+      loadingTitle: "加载中"
+    });
+  }
+
+  async getHotelOrderDetail(id) {
+    return await this.get({
+      url: `${this.baseUrl}/hotel/order/detail`,
+      data: { id },
+      loadingTitle: "加载中"
+    });
+  }
+
+  async getGoodsOrderDetail(id) {
+    return await this.get({
+      url: `${this.baseUrl}/order/detail`,
+      data: { id },
+      loadingTitle: "加载中"
+    });
+  }
+
+  async getMealTicketOrderDetail(id) {
+    return await this.get({
+      url: `${this.baseUrl}/catering/meal_ticket/order/detail`,
+      data: { id },
+      loadingTitle: "加载中"
+    });
+  }
+
+  async getSetMealOrderDetail(id) {
+    return await this.get({
+      url: `${this.baseUrl}/catering/set_meal/order/detail`,
+      data: { id },
+      loadingTitle: "加载中"
+    });
+  }
 }
 
 export default BaseService;

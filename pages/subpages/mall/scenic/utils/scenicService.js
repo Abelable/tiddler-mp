@@ -16,13 +16,6 @@ class ScenicService extends MallService {
     return list;
   }
 
-  async getScenicInfo(id) {
-    return await this.get({
-      url: `${this.baseUrl}/scenic/detail`,
-      data: { id }
-    });
-  }
-
   async getTicketCategoryOptions() {
     return await this.get({
       url: `${this.baseUrl}/scenic/ticket/category_options`

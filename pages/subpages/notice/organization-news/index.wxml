@@ -1,0 +1,7 @@
+<view class="news-list-wrap">
+  <block wx:for="{{newsList}}" wx:key="index">
+    <view class="time">{{item.time}}</view>
+    <i-news-list item="{{item}}"/>
+  </block>
+</view>
+

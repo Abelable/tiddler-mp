@@ -1,6 +1,5 @@
 function format(time) {
-  time = time.toString();
-  return time[1] ? time : "0" + time;
+  return time < 10 ? "0" + time : time;
 }
 
 function transform(timeStamp, statement) {
@@ -77,47 +76,101 @@ function countdown(timeStamp, statement) {
   }
 }
 
+// function timeDiff(timeStamp) {
+//   var minute = 1000 * 60;
+//   var hour = minute * 60;
+//   var day = hour * 24;
+//   var month = day * 30;
+
+//   var now = getDate().getTime();
+//   var diffValue = now - getDate(timeStamp).getTime();
+//   if (diffValue < 0) {
+//     return;
+//   }
+//   var monthC = diffValue / month;
+//   var weekC = diffValue / (7 * day);
+//   var dayC = diffValue / day;
+//   var hourC = diffValue / hour;
+//   var minC = diffValue / minute;
+
+//   var result;
+//   if (monthC >= 1) {
+//     if (monthC <= 12) {
+//       result = parseInt(monthC) + "个月前";
+//     } else {
+//       result = parseInt(monthC / 12) + "年前";
+//     }
+//   } else if (weekC >= 1) {
+//     result = parseInt(weekC) + "周前";
+//   } else if (dayC >= 1) {
+//     if (dayC < 2) {
+//       result = "昨天";
+//     } else {
+//       result = parseInt(dayC) + "天前";
+//     }
+//   } else if (hourC >= 1) {
+//     result = parseInt(hourC) + "小时前";
+//   } else if (minC >= 1) {
+//     result = parseInt(minC) + "分钟前";
+//   } else {
+//     result = "刚刚";
+//   }
+//   return result;
+// }
+
 function timeDiff(timeStamp) {
-  var minute = 1000 * 60;
-  var hour = minute * 60;
-  var day = hour * 24;
-  var month = day * 30;
+    var date = getDate(timeStamp);
+    var now = getDate();
 
-  var now = getDate().getTime();
-  var diffValue = now - getDate(timeStamp).getTime();
-  if (diffValue < 0) {
-    return;
-  }
-  var monthC = diffValue / month;
-  var weekC = diffValue / (7 * day);
-  var dayC = diffValue / day;
-  var hourC = diffValue / hour;
-  var minC = diffValue / minute;
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    var hour = date.getHours();
+    var minute = date.getMinutes();
 
-  var result;
-  if (monthC >= 1) {
-    if (monthC <= 12) {
-      result = parseInt(monthC) + "个月前";
-    } else {
-      result = parseInt(monthC / 12) + "年前";
+    var nowYear = now.getFullYear();
+    var nowMonth = now.getMonth() + 1;
+    var nowDay = now.getDate();
+
+    var timeStr = format(hour) + ":" + format(minute);
+    var dateStr = format(month) + "-" + format(day);
+    var fullDateStr =
+      year + "-" + format(month) + "-" + format(day);
+
+    // 今天
+    if (year === nowYear && month === nowMonth && day === nowDay) {
+      return timeStr;
     }
-  } else if (weekC >= 1) {
-    result = parseInt(weekC) + "周前";
-  } else if (dayC >= 1) {
-    if (dayC < 2) {
-      result = "昨天";
-    } else {
-      result = parseInt(dayC) + "天前";
+
+    // 昨天
+    var yesterday = getDate(now.getTime() - 24 * 60 * 60 * 1000);
+    if (
+      year === yesterday.getFullYear() &&
+      month === yesterday.getMonth() + 1 &&
+      day === yesterday.getDate()
+    ) {
+      return "昨天 " + timeStr;
     }
-  } else if (hourC >= 1) {
-    result = parseInt(hourC) + "小时前";
-  } else if (minC >= 1) {
-    result = parseInt(minC) + "分钟前";
-  } else {
-    result = "刚刚";
+
+    // 前天
+    var beforeYesterday = getDate(now.getTime() - 2 * 24 * 60 * 60 * 1000);
+    if (
+      year === beforeYesterday.getFullYear() &&
+      month === beforeYesterday.getMonth() + 1 &&
+      day === beforeYesterday.getDate()
+    ) {
+      return "前天 " + timeStr;
+    }
+
+    // 今年
+    if (year === nowYear) {
+      return dateStr + " " + timeStr;
+    }
+
+    // 跨年
+    return fullDateStr + " " + timeStr;
   }
-  return result;
-}
+
 
 function calculateDuration(startTimeStamp, statement, endTimeStamp = 0) {
   if (startTimeStamp) {

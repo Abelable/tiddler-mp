@@ -1,0 +1,18 @@
+<view class="menu-bar">
+  <view class="menu-item {{type == 6 ? 'selected' : ''}}" ontap="selectMenu" data-type="6">
+    <text>开播通知</text>
+    <text style="color: #FE4019;" wx:if="{{unreadMsgCountOfLive}}">({{unreadMsgCountOfLive}})</text>
+  </view>
+  <view class="menu-item {{type == 7 ? 'selected' : ''}}" ontap="selectMenu" data-type="7">
+    <text>新增关注</text>
+    <text style="color: #FE4019;"wx:if="{{unreadMsgCountOfFans}}">({{unreadMsgCountOfFans}})</text>
+  </view>
+</view>
+
+<view class="news-list-wrap">
+  <block wx:for="{{newsList}}" wx:key="index">
+    <view class="time">{{item.time}}</view>
+    <i-news-list item="{{item}}"/>
+  </block>
+</view>
+

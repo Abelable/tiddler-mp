@@ -1,0 +1,9 @@
+.news-list-wrap {
+  padding: 0 24rpx;
+}
+.time {
+  padding-top: 29rpx;
+  color: #666;
+  font-size: 20rpx;
+  text-align: center;
+}

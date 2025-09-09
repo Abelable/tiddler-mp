@@ -106,10 +106,25 @@
             </view>
             <view class="supplier-name">{{ info.shopInfo.name }}</view>
           </view>
-          <view class="contact-btn row" bindtap="contact">
+          <view class="contact-btn row" wx:if="{{info.shopInfo.type !== 3}}" bindtap="contact">
             <image class="contact-icon" src="./images/contact-icon.png" />
             <text>联系商家</text>
           </view>
+          <button 
+            wx:if="{{info.shopInfo.type === 3}}"
+            send-message-title="{{info.scenicName}}"
+            send-message-img="{{info.scenicCover}}"
+            send-message-path="/pages/subpages/mall/scenic/subpages/scenic-detail/index?id={{info.scenicId}}"
+            show-message-card="{{true}}"
+            open-type="contact" 
+            session-from="sessionFrom" 
+            hover-class="none"
+          >
+            <view class="contact-btn row">
+              <image class="contact-icon" src="./images/contact-icon.png" />
+              <text>联系商家</text>
+            </view>
+          </button>
         </view>
       </view>
     </scroll-view>

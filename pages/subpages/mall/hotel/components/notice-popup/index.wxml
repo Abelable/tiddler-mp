@@ -66,14 +66,29 @@
           <view class="supplier-info row between">
             <view class="row">
               <view class="supplier-type row" wx:if="{{info.shopInfo.type !== 2}}">
-                {{info.shopInfo.type === 1 ? '官方' : '自营'}}
+                {{info.shopInfo.type === 1 ? '酒店官方' : '平台自营'}}
               </view>
               <view class="supplier-name">{{ info.shopInfo.name }}</view>
             </view>
-            <view class="contact-btn row" bindtap="contact">
+            <view class="contact-btn row" wx:if="{{info.shopInfo.type !== 3}}" bindtap="contact">
               <image class="contact-icon" src="./images/contact-icon.png" />
               <text>联系商家</text>
             </view>
+            <button 
+              wx:if="{{info.shopInfo.type === 3}}"
+              send-message-title="{{info.hotelName}}"
+              send-message-img="{{info.hotelCover}}"
+              send-message-path="/pages/subpages/mall/hotel/subpages/hotel-detail/index?id={{info.hotelId}}"
+              show-message-card="{{true}}"
+              open-type="contact" 
+              session-from="sessionFrom" 
+              hover-class="none"
+            >
+              <view class="contact-btn row">
+                <image class="contact-icon" src="./images/contact-icon.png" />
+                <text>联系商家</text>
+              </view>
+            </button>
           </view>
         </view>  
       </view>

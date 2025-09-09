@@ -1,9 +1,9 @@
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
-import { store } from "../../../../../../store/index";
-import { checkLogin } from "../../../../../../utils/index";
-import GoodsService from "../../utils/goodsService";
+import { store } from "../../store/index";
+import { checkLogin } from "../../utils/index";
+import BaseService from "../../services/baseService";
 
-const goodsService = new GoodsService();
+const baseService = new BaseService();
 
 Component({
   behaviors: [storeBindingsBehavior],
@@ -217,7 +217,7 @@ Component({
       if (btnActive && maxCount > 0) {
         checkLogin(async () => {
           const { goodsInfo, selectedSkuIndex, count } = this.data;
-          const cartGoodsNumber = await goodsService.addCart(
+          const cartGoodsNumber = await baseService.addCart(
             goodsInfo.id,
             selectedSkuIndex,
             count
@@ -235,7 +235,7 @@ Component({
         checkLogin(async () => {
           const { goodsInfo, selectedSkuIndex, count } = this.data;
           const { id, deliveryMode } = goodsInfo;
-          const cartGoodsId = await goodsService.fastAddCart(
+          const cartGoodsId = await baseService.fastAddCart(
             id,
             selectedSkuIndex,
             count
@@ -251,7 +251,7 @@ Component({
       const { btnActive, maxCount } = this.data;
       if (btnActive && maxCount > 0) {
         const { cartInfo, selectedSkuIndex, count } = this.data;
-        goodsService.editCart(
+        baseService.editCart(
           cartInfo.id,
           cartInfo.goodsId,
           selectedSkuIndex,
@@ -273,7 +273,7 @@ Component({
 
     async setPurchasedList() {
       const { goodsInfo, cartInfo } = this.properties;
-      this.purchasedList = await goodsService.getPurchasedGoodsList(
+      this.purchasedList = await baseService.getPurchasedGoodsList(
         goodsInfo.id,
         cartInfo ? 2 : 1
       );

@@ -60,12 +60,12 @@
 
   <view class="card">
     <view class="card-header row between">
-      <view class="shop-info row" wx:if="{{orderInfo.shopId}}" catchtap="navToShop" data-id="{{orderInfo.shopId}}">
-        <image class="shop-logo" wx:if="{{orderInfo.shopLogo}}" src="{{orderInfo.shopLogo}}" />
-        <view class="shop-name omit single">{{orderInfo.shopName}}</view>
+      <view class="shop-info row" wx:if="{{orderInfo.shopInfo}}" catchtap="navToShop" data-id="{{orderInfo.shopInfo.id}}">
+        <image class="shop-logo" src="{{orderInfo.shopInfo.logo}}" />
+        <view class="shop-name omit single">{{orderInfo.shopInfo.name}}</view>
         <image style="width: 20rpx; height: 20rpx;" src="/images/arrow_gray.png" />
       </view>
-      <view class="shop-name omit single" wx:if="{{!orderInfo.shopId}}">官方自营</view>
+      <view class="shop-name omit single" wx:if="{{!orderInfo.shopInfo}}">官方自营</view>
       <view class="countdown-wrap row" wx:if="{{orderInfo.status === 101}}">
         <image class="alarm-icon" src="/images/alarm.png" />
         <view>剩余</view>
@@ -160,9 +160,8 @@
     catchtap="navToEvaluation"
     hover-class="none"
   >查看评价</button>
-
-  <!-- todo 客服 -->
-  <!-- <button 
+  <button 
+    wx:if="{{!orderInfo.shopInfo}}"
     class="btn active"
     send-message-title="订单编号：{{orderInfo.orderSn}}"
     send-message-img="{{orderInfo.goodsList[0].cover}}"
@@ -173,8 +172,8 @@
     hover-class="none"
   >
     联系客服
-  </button> -->
-  
+  </button>
+  <button class="btn active" wx:if="{{orderInfo.shopInfo}}" bindtap="contact" hover-class="none">联系客服</button>
   <button class="btn active" wx:if="{{orderInfo.status === 101}}" bindtap="payOrder" hover-class="none">继续付款</button>
 </view>
 
