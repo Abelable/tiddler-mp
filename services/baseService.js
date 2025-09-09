@@ -542,9 +542,41 @@ class BaseService extends Base {
     });
   }
 
+  async getScenicOrderDetail(id) {
+    return await this.get({
+      url: `${this.baseUrl}/scenic/order/detail`,
+      data: { id },
+      loadingTitle: "加载中"
+    });
+  }
+
+  async getHotelOrderDetail(id) {
+    return await this.get({
+      url: `${this.baseUrl}/hotel/order/detail`,
+      data: { id },
+      loadingTitle: "加载中"
+    });
+  }
+
   async getGoodsOrderDetail(id) {
     return await this.get({
       url: `${this.baseUrl}/order/detail`,
+      data: { id },
+      loadingTitle: "加载中"
+    });
+  }
+
+  async getMealTicketOrderDetail(id) {
+    return await this.get({
+      url: `${this.baseUrl}/catering/meal_ticket/order/detail`,
+      data: { id },
+      loadingTitle: "加载中"
+    });
+  }
+
+  async getSetMealOrderDetail(id) {
+    return await this.get({
+      url: `${this.baseUrl}/catering/set_meal/order/detail`,
       data: { id },
       loadingTitle: "加载中"
     });

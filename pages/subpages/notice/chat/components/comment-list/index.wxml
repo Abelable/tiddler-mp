@@ -29,13 +29,14 @@
             <view class="order-product-info">
               <view class="product-cover-wrap">
                 <image class="product-cover" src="{{item.content.value.cover}}" mode="aspectFill" />
-                <view class="product-type">{{['景点', '酒店', '美食', '商品'][item.content.value.type - 1]}}</view>
+                <view class="product-type">
+                  {{['景点', '酒店', '', '商品', '美食', '美食'][item.content.value.type - 1]}}
+                </view>
               </view>
               <view class="product-detail">
                 <view class="product-name">{{item.content.value.productName}}</view>
                 <view class="order-price-info">
-                  <text>共{{item.content.value.productNum}}件商品，</text>
-                  <text>合计¥{{item.content.value.paymentAmount}}</text>
+                  共{{item.content.value.productNum}}{{['张门票', '间房', '', '件商品', '张餐券', '份套餐'][item.content.value.type - 1]}}，合计¥{{item.content.value.paymentAmount}}
                 </view>
               </view>
             </view>

@@ -15,6 +15,7 @@ Component({
 
   properties: {
     restaurantId: Number,
+    restaurantCover: String,
     restaurantName: String,
     info: {
       type: Object,
@@ -89,14 +90,14 @@ Component({
     },
 
     checkDetail() {
-      const { info, restaurantId, restaurantName } = this.properties;
-      const url = `/pages/subpages/mall/catering/subpages/restaurant-detail/subpages/set-meal-detail/index?setMealId=${info.id}&restaurantId=${restaurantId}&restaurantName=${restaurantName}`;
+      const { info, restaurantId, restaurantCover, restaurantName } = this.properties;
+      const url = `/pages/subpages/mall/catering/subpages/restaurant-detail/subpages/set-meal-detail/index?setMealId=${info.id}&restaurantId=${restaurantId}&restaurantCover=${restaurantCover}&restaurantName=${restaurantName}`;
       wx.navigateTo({ url });
     },
 
     buy() {
-      const { restaurantId, restaurantName, info } = this.properties;
-      const url = `/pages/subpages/mall/catering/subpages/set-meal-order-check/index?setMealId=${info.id}&restaurantId=${restaurantId}&restaurantName=${restaurantName}`;
+      const { restaurantId, restaurantCover, restaurantName, info } = this.properties;
+      const url = `/pages/subpages/mall/catering/subpages/set-meal-order-check/index?setMealId=${info.id}&restaurantId=${restaurantId}&restaurantCover=${restaurantCover}&restaurantName=${restaurantName}`;
       wx.navigateTo({ url });
     },
   },

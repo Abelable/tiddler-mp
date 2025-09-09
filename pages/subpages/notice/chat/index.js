@@ -61,7 +61,25 @@ Page({
       }
     }
 
-    orderId && this.setOrderInfo(orderId);
+    if (orderId) {
+      switch (+orderId) {
+        case 1:
+          this.setScenicOrderInfo(orderId);
+          break;
+        case 2:
+          this.setHotelOrderInfo(orderId);
+          break;
+        case 4:
+          this.setGoodsOrderInfo(orderId);
+          break;
+        case 5:
+          this.setMealTicketOrderInfo(orderId);
+          break;
+        case 6:
+          this.setSetMealOrderInfo(orderId);
+          break;
+      }
+    }
 
     wx.setNavigationBarTitle({ title: friendName });
     this.setData({ friendId, friendName, friendAvatarUrl });
@@ -105,12 +123,82 @@ Page({
     });
   },
 
-  async setOrderInfo(orderId) {
+  async setScenicOrderInfo(orderId) {
+    const { id, orderSn, ticketInfo, paymentAmount, createdAt } =
+      (await chatService.getScenicOrderDetail(orderId)) || {};
+    const { name: productName, number: productNum, scenicList } = ticketInfo;
+    this.setData({
+      orderInfo: {
+        type: 1,
+        id,
+        orderSn,
+        cover: scenicList[0].cover,
+        productName,
+        productNum,
+        paymentAmount,
+        createdAt
+      }
+    });
+  },
+
+  async setHotelOrderInfo(orderId) {
+    const { id, orderSn, roomInfo, paymentAmount, createdAt } =
+      (await chatService.getScenicOrderDetail(orderId)) || {};
+    const { hotelName, typeName, number: productNum, imageList } = roomInfo;
+    this.setData({
+      orderInfo: {
+        type: 2,
+        id,
+        orderSn,
+        cover: imageList[0],
+        productName: `${hotelName}｜${typeName}`,
+        productNum,
+        paymentAmount,
+        createdAt
+      }
+    });
+  },
+
+  async setGoodsOrderInfo(orderId) {
     const { id, orderSn, goodsList, paymentAmount, createdAt } =
       (await chatService.getGoodsOrderDetail(orderId)) || {};
     this.setData({
       orderInfo: {
         type: 4,
+        id,
+        orderSn,
+        cover: goodsList[0].cover,
+        productName: goodsList[0].name,
+        productNum: goodsList.length,
+        paymentAmount,
+        createdAt
+      }
+    });
+  },
+
+  async setMealTicketOrderInfo(orderId) {
+    const { id, orderSn, goodsList, paymentAmount, createdAt } =
+      (await chatService.getMealTicketOrderDetail(orderId)) || {};
+    this.setData({
+      orderInfo: {
+        type: 5,
+        id,
+        orderSn,
+        cover: goodsList[0].cover,
+        productName: goodsList[0].name,
+        productNum: goodsList.length,
+        paymentAmount,
+        createdAt
+      }
+    });
+  },
+
+  async setSetMealOrderInfo(orderId) {
+    const { id, orderSn, goodsList, paymentAmount, createdAt } =
+      (await chatService.getSetMealOrderDetail(orderId)) || {};
+    this.setData({
+      orderInfo: {
+        type: 6,
         id,
         orderSn,
         cover: goodsList[0].cover,

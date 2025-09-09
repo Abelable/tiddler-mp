@@ -15,6 +15,7 @@ Component({
 
   properties: {
     restaurantId: Number,
+    restaurantCover: String,
     restaurantName: String,
     ticket: {
       type: Object,
@@ -96,14 +97,14 @@ Component({
     },
 
     checkDetail() {
-      const { ticket, restaurantId, restaurantName } = this.properties;
-      const url = `/pages/subpages/mall/catering/subpages/restaurant-detail/subpages/meal-ticket-detail/index?ticketId=${ticket.id}&restaurantId=${restaurantId}&restaurantName=${restaurantName}`;
+      const { ticket, restaurantId, restaurantCover, restaurantName } = this.properties;
+      const url = `/pages/subpages/mall/catering/subpages/restaurant-detail/subpages/meal-ticket-detail/index?ticketId=${ticket.id}&restaurantId=${restaurantId}&restaurantCover=${restaurantCover}&restaurantName=${restaurantName}`;
       wx.navigateTo({ url });
     },
 
     buy() {
-      const { restaurantId, restaurantName, ticket } = this.properties;
-      const url = `/pages/subpages/mall/catering/subpages/meal-ticket-order-check/index?ticketId=${ticket.id}&restaurantId=${restaurantId}&restaurantName=${restaurantName}`;
+      const { restaurantId, restaurantCover, restaurantName, ticket } = this.properties;
+      const url = `/pages/subpages/mall/catering/subpages/meal-ticket-order-check/index?ticketId=${ticket.id}&restaurantId=${restaurantId}&restaurantCover=${restaurantCover}&restaurantName=${restaurantName}`;
       wx.navigateTo({ url });
     }
   }

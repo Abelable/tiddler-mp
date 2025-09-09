@@ -39,14 +39,6 @@ class OrderService extends BaseService {
     });
   }
 
-  async getScenicOrderDetail(id) {
-    return await this.get({
-      url: `${this.baseUrl}/scenic/order/detail`,
-      data: { id },
-      loadingTitle: "加载中"
-    });
-  }
-
   async getScenicVerifyCode(orderId, scenicId) {
     return await this.get({
       url: `${this.baseUrl}/scenic/order/verify_code`,
@@ -136,14 +128,6 @@ class OrderService extends BaseService {
   async clearHotelHistoryKeywords() {
     return await this.post({
       url: `${this.baseUrl}/hotel/order/keyword/clear`
-    });
-  }
-
-  async getHotelOrderDetail(id) {
-    return await this.get({
-      url: `${this.baseUrl}/hotel/order/detail`,
-      data: { id },
-      loadingTitle: "加载中"
     });
   }
 
@@ -239,14 +223,6 @@ class OrderService extends BaseService {
     });
   }
 
-  async getMealTicketOrderDetail(id) {
-    return await this.get({
-      url: `${this.baseUrl}/catering/meal_ticket/order/detail`,
-      data: { id },
-      loadingTitle: "加载中"
-    });
-  }
-
   async getMealTicketVerifyCode(orderId, restaurantId) {
     return await this.get({
       url: `${this.baseUrl}/catering/meal_ticket/order/verify_code`,
@@ -321,14 +297,6 @@ class OrderService extends BaseService {
   async clearSetMealHistoryKeywords() {
     return await this.post({
       url: `${this.baseUrl}/catering/set_meal/order/keyword/clear`
-    });
-  }
-
-  async getSetMealOrderDetail(id) {
-    return await this.get({
-      url: `${this.baseUrl}/catering/set_meal/order/detail`,
-      data: { id },
-      loadingTitle: "加载中"
     });
   }
 
