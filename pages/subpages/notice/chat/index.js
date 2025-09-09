@@ -177,16 +177,22 @@ Page({
   },
 
   async setMealTicketOrderInfo(orderId) {
-    const { id, orderSn, goodsList, paymentAmount, createdAt } =
+    const { id, orderSn, ticketInfo, paymentAmount, createdAt } =
       (await chatService.getMealTicketOrderDetail(orderId)) || {};
+    const {
+      restaurantCover: cover,
+      restaurantName,
+      originalPrice,
+      number: productNum
+    } = ticketInfo;
     this.setData({
       orderInfo: {
         type: 5,
         id,
         orderSn,
-        cover: goodsList[0].cover,
-        productName: goodsList[0].name,
-        productNum: goodsList.length,
+        cover,
+        productName: `${restaurantName}｜${originalPrice}元代金券`,
+        productNum,
         paymentAmount,
         createdAt
       }
@@ -194,16 +200,17 @@ Page({
   },
 
   async setSetMealOrderInfo(orderId) {
-    const { id, orderSn, goodsList, paymentAmount, createdAt } =
-      (await chatService.getSetMealOrderDetail(orderId)) || {};
+    const { id, orderSn, setMealInfo, paymentAmount, createdAt } =
+      (await chatService.getMealTicketOrderDetail(orderId)) || {};
+    const { cover, restaurantName, name, number: productNum } = setMealInfo;
     this.setData({
       orderInfo: {
         type: 6,
         id,
         orderSn,
-        cover: goodsList[0].cover,
-        productName: goodsList[0].name,
-        productNum: goodsList.length,
+        cover,
+        productName: `${restaurantName}｜${name}`,
+        productNum,
         paymentAmount,
         createdAt
       }
