@@ -268,6 +268,12 @@ Page({
     this.scrollTop = e.scrollTop;
   },
 
+  chat() {
+    const { id, avatar, nickname } = this.data.authorInfo;
+    const url = `/pages/subpages/notice/chat/index?userId=${id}&name=${nickname}&avatar=${avatar}`;
+    wx.navigateTo({ url });
+  },
+
   share() {
     checkLogin(async () => {
       const { authorInfo, videoList, noteList } = this.data;
