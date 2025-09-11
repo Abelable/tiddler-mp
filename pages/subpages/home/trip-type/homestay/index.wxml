@@ -4,45 +4,38 @@
 
 <view class="container">
   <view class="recommend-list">
-    <view class="recommend-item">
+    <view class="recommend-item" wx:for="{{lakeHomestayList}}" wx:key="index" bindtap="checkHomestay" data-id="{{item.id}}">
+      <image class="homestay-cover" wx:if="{{index % 2 === 1}}" mode="widthFix" src="{{item.cover}}" />
       <view class="homestay-info-wrap">
         <view class="homestay-info">
-          <view class="homestay-name">绿墅度假美宿</view>
+          <view class="homestay-name">{{item.name}}</view>
           <view class="homestay-position">
             <image class="position-icon" src="https://static.tiddler.cn/mp/homestay/position.png" />
-            <view>干岛湖中心湖区</view>
+            <view>{{item.address}}</view>
           </view>
           <view class="homestay-price-info">
-            <view class="homestay-rate">4.5分</view>
+            <view class="homestay-rate">评分4.5</view>
             <view class="homestay-price-bar">
               <text>抢购价：</text>
-              <text class="homestay-price">285</text>
+              <text class="homestay-price">{{item.price}}</text>
               <text>起</text>
             </view>
           </view>
         </view>
       </view>
-      <image class="homestay-cover" mode="widthFix" src="https://static.tiddler.cn/mp/homestay/cover_1.png" />
+      <image class="homestay-cover" wx:if="{{index % 2 === 0}}" mode="widthFix" src="{{item.cover}}" />
     </view>
-    <view class="recommend-item">
-      <image class="homestay-cover" mode="widthFix" src="https://static.tiddler.cn/mp/homestay/cover_2.png" />
-       <view class="homestay-info-wrap">
-         <view class="homestay-info">
-           <view class="homestay-name">绿墅度假美宿</view>
-           <view class="homestay-position">
-             <image class="position-icon" src="https://static.tiddler.cn/mp/homestay/position.png" />
-             <view>干岛湖中心湖区</view>
-           </view>
-           <view class="homestay-price-info">
-             <view class="homestay-rate">4.5分</view>
-             <view class="homestay-price-bar">
-               <text>抢购价：</text>
-               <text class="homestay-price">285</text>
-               <text>起</text>
-             </view>
-           </view>
-         </view>
-       </view>
-    </view>
+  </view>
+
+  <image class="more-title" wx:if="{{lakeHomestayList.length}}" src="https://static.tiddler.cn/mp/homestay/title.png" />
+  <view class="list-wrap">
+    <fall-flow 
+      wx:if="{{homestayList.length}}" 
+      list="{{homestayList}}" 
+      loading="{{loading}}"
+      finished="{{finished}}"
+      generic:item="hotel-item" 
+    />
+    <empty-illus wx:if="{{finished && !homestayList.length}}" desc="暂无更多民宿" />
   </view>
 </view>

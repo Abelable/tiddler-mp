@@ -8,7 +8,8 @@
 }
 
 .container {
-  padding-top: 800rpx;
+  padding-top: 680rpx;
+  min-height: 100vh;
   background-color: #263454;
   background-image: url('https://static.tiddler.cn/mp/homestay/bg.png');
   background-size: 100%;
@@ -17,9 +18,10 @@
 .recommend-item {
   display: flex;
   align-items: center;
+  margin-top: 24rpx;
 }
 .homestay-cover {
-  width: 350rpx;
+  width: 340rpx;
 }
 .homestay-info-wrap {
   display: flex;
@@ -35,14 +37,14 @@
 .homestay-position {
   display: flex;
   align-items: center;
-  margin-top: 8rpx;
+  margin-top: 12rpx;
   color: #fff;
-  font-size: 26rpx;
+  font-size: 22rpx;
 }
 .position-icon {
   margin-right: 4rpx;
-  width: 28rpx;
-  height: 28rpx;
+  width: 24rpx;
+  height: 24rpx;
 }
 .homestay-price-info {
   display: flex;
@@ -70,4 +72,22 @@
 .homestay-price {
   font-size: 32rpx;
   font-weight: bold;
+}
+
+.more-title {
+  display: block;
+  margin: 64rpx auto 0;
+  width: 380rpx;
+  height: 48rpx;
+}
+
+.list-wrap {
+  padding: 60rpx 20rpx 20rpx;
+}
+
+.no-more-tips {
+  padding: 24rpx 0 36rpx;
+  color: #999;
+  font-size: 24rpx;
+  text-align: center;
 }

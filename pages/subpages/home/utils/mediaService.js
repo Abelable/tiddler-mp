@@ -187,6 +187,22 @@ class MediaService extends BaseService {
       })) || []
     );
   }
+
+  async getLakeHomestayList() {
+    return (
+      (await this.get({
+        url: `${this.baseUrl}/trip_type/lake_homestay_list`,
+        loadingTitle: "加载中"
+      })) || []
+    );
+  }
+
+  async getHomestayList(ids, page, limit = 10) {
+    return await this.post({
+      url: `${this.baseUrl}/hotel/homestay_list`,
+      data: { ids, page, limit }
+    });
+  }
 }
 
 export default MediaService;
