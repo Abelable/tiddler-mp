@@ -60,7 +60,7 @@
   align-items: baseline;
   justify-content: center;
   margin-left: 24rpx;
-  padding-top: 6rpx;
+  padding-top: 8rpx;
   width: 224rpx;
   height: 60rpx;
   color: #000;
