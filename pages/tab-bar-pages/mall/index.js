@@ -160,6 +160,9 @@ Component({
               url: `/pages/subpages/common/webview/index?url=${param}`
             });
             break;
+          case 6:
+            wx.navigateTo({ url: param });
+            break;
         }
       }
     },

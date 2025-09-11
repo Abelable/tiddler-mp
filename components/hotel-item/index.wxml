@@ -21,7 +21,7 @@
       bindload="onCoverLoaded" 
       mode="widthFix" 
     />
-    <view class="type-label row" wx:if="{{showTag}}">酒店</view>
+    <view class="type-label row" wx:if="{{showTag}}">{{item.categoryId === 5 ? '民宿' : '酒店'}}</view>
     <view class="address-info">
       <image class="address-icon" src="/images/address.png" />
       <text class="address-detail omit single">{{ item.address }}</text>
