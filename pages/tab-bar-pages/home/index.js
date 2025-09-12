@@ -53,7 +53,7 @@ Component({
   },
 
   methods: {
-    async onLoad() {
+    onLoad() {
       wx.showShareMenu({
         withShareTicket: true,
         menus: ["shareAppMessage", "shareTimeline"]
@@ -67,8 +67,8 @@ Component({
       }
 
       this.setAdInfo();
-      await this.setBannerList();
-      await this.setTopMediaList();
+      this.setBannerList();
+      this.setTopMediaList();
       this.setList(SCENE_REFRESH);
     },
 
@@ -188,7 +188,7 @@ Component({
           date
         };
       });
-      this.setData({ topMediaList });
+      this.setData({ topMediaList, pageLoaded: true });
     },
 
     setFollowMediaList(init = false) {
@@ -237,8 +237,7 @@ Component({
         this.setData({
           mediaList: list,
           loading: false,
-          refreshing: false,
-          pageLoaded: true
+          refreshing: false
         });
       } else {
         this.setData({
