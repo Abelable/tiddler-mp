@@ -1,10 +1,34 @@
 .container {
   padding: 24rpx 24rpx calc(150rpx + env(safe-area-inset-bottom));
 }
+.container::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 600rpx;
+  content: "";
+  background: linear-gradient( 180deg, #00B2FF 20%, rgba(0,178,255,0) 100%);
+  z-index: -1;
+}
+
+.header {
+  padding-left: 8px;
+  padding-right: 40px;
+  height: 44px;
+}
+.title {
+  flex: 1;
+  color: #fff;
+  font-size: 32rpx;
+  text-align: center;
+  font-weight: bold;
+}
 
 .ticket {
+  margin-top: 24rpx;
   background: #fff;
-  border-radius: 18rpx;
+  border-radius: 32rpx;
 }
 .ticket-name {
   padding: 24rpx;
@@ -16,22 +40,6 @@
   position: relative;
   border: 1rpx dashed #eee;
   overflow: inherit;
-}
-.split-line::before, .split-line::after {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 32rpx;
-  height: 32rpx;
-  content: "";
-  border-radius: 50%;
-  background: #f5f6f7;
-}
-.split-line::before {
-  left: -20rpx;
-}
-.split-line::after {
-  right: -20rpx;
 }
 
 .ticket-more {
@@ -55,11 +63,11 @@
   flex: 1;
   height: 88rpx;
   border: 1px solid #E1E3E5;
-  border-radius: 8rpx;
+  border-radius: 16rpx;
 }
 .date-picker-item.active {
   border: 1px solid var(--blue-1);
-  background: #EFF0FF;
+  background: #C6EFFF;
 }
 .date-picker-item.unvalid {
   opacity: 0.5;
@@ -79,7 +87,7 @@
   width: 100rpx;
   height: 88rpx;
   border: 1px solid #eee;
-  border-radius: 8rpx;
+  border-radius: 16rpx;
 }
 .btn-desc {
   margin-left: 16rpx;
@@ -121,7 +129,7 @@
   border-right: none;
 }
 .tips.stress {
-  color: #529AFE;
+  color: var(--blue-1);
 }
 .right-arrow {
   margin-left: 2rpx;
@@ -133,7 +141,7 @@
   margin-top: 24rpx;
   padding: 24rpx 24rpx 0;
   background-color: #fff;
-  border-radius: 16rpx;
+  border-radius: 32rpx;
 }
 .card-title {
   color: #333;

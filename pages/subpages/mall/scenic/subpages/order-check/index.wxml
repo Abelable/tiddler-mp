@@ -1,6 +1,13 @@
-<view class="container">
+<view class="container" style="padding-top: {{statusBarHeight}}px;">
+  <view class="header row">
+    <back-icon />
+    <view class="title">确认订单</view>
+  </view>
+
   <view class="ticket">
-    <view class="ticket-name">{{scenicPreOrderInfo.name}} {{scenicPreOrderInfo.categoryName}}</view>
+    <view class="ticket-name">
+      {{scenicPreOrderInfo.name}} {{scenicPreOrderInfo.categoryName}}
+    </view>
     <view class="split-line" />
     <view class="ticket-more">
       <view class="date-picker">

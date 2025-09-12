@@ -3,6 +3,7 @@ import { store } from "../../../../../../store/index";
 import ScenicService from "../../utils/scenicService";
 
 const scenicService = new ScenicService();
+const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Component({
   behaviors: [storeBindingsBehavior],
@@ -13,6 +14,7 @@ Component({
   },
 
   data: {
+    statusBarHeight,
     minDate: 0,
     maxDate: 0,
     formatter(day) {
