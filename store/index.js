@@ -16,6 +16,7 @@ export const store = observable({
   scenicPreOrderInfo: null,
   hotelPreOrderInfo: null,
   mediaProductList: [],
+  orderTotal: [],
   scenicOrderTotal: [],
   hotelOrderTotal: [],
   setMealOrderTotal: [],
@@ -51,6 +52,9 @@ export const store = observable({
   }),
   setMediaProductList: action(function (list) {
     this.mediaProductList = list;
+  }),
+  setOrderTotal: action(function (list) {
+    this.orderTotal = list;
   }),
   setScenicOrderTotal: action(function (list) {
     this.scenicOrderTotal = list;

@@ -93,42 +93,19 @@ Component({
         duration: 0
       });
 
-      this.updateUserInfo();
       this.updateOrderTotal();
-
       this.setList(SCENE_REFRESH);
     },
 
-    updateUserInfo() {
-      mineService.getMyInfo();
-    },
-
     async updateOrderTotal() {
-      const scenicOrderTotals = await mineService.getScenicOrderTotal();
-      const scenicOrderTotal = scenicOrderTotals.reduce(
-        (sum, total) => sum + total,
-        0
-      );
-      const hotelOrderTotals = await mineService.getHotelOrderTotal();
-      const hotelOrderTotal = hotelOrderTotals.reduce(
-        (sum, total) => sum + total,
-        0
-      );
-      const mealTicketOrderTotals = await mineService.getMealTicketOrderTotal();
-      const mealTicketOrderTotal = mealTicketOrderTotals.reduce(
-        (sum, total) => sum + total,
-        0
-      );
-      const setMealOrderTotals = await mineService.getSetMealOrderTotal();
-      const setMealOrderTotal = setMealOrderTotals.reduce(
-        (sum, total) => sum + total,
-        0
-      );
-      const goodsOrderTotals = await mineService.getGoodsOrderTotal();
-      const goodsOrderTotal = goodsOrderTotals.reduce(
-        (sum, total) => sum + total,
-        0
-      );
+      const [
+        scenicOrderTotal,
+        hotelOrderTotal,
+        mealTicketOrderTotal,
+        setMealOrderTotal,
+        goodsOrderTotal
+      ] = await mineService.getOrderTotal();
+
       this.setData({
         orderTotal:
           scenicOrderTotal +

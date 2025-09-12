@@ -438,6 +438,14 @@ class BaseService extends Base {
     return list;
   }
 
+  async getOrderTotal() {
+    const total = await this.get({
+      url: `${this.baseUrl}/user/order_total`
+    });
+    store.setOrderTotal(total);
+    return total;
+  }
+
   async getScenicOrderTotal() {
     const total = await this.get({
       url: `${this.baseUrl}/scenic/order/total`

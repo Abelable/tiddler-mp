@@ -19,6 +19,7 @@ const menuList = [
   },
   {
     name: "酒店",
+    total: 0,
     curSubMenuIdx: 0,
     subMenuList: [
       { name: "全部", status: 0 },
@@ -31,6 +32,7 @@ const menuList = [
   },
   {
     name: "餐券",
+    total: 0,
     curSubMenuIdx: 0,
     subMenuList: [
       { name: "全部", status: 0 },
@@ -43,6 +45,7 @@ const menuList = [
   },
   {
     name: "套餐",
+    total: 0,
     curSubMenuIdx: 0,
     subMenuList: [
       { name: "全部", status: 0 },
@@ -55,6 +58,7 @@ const menuList = [
   },
   {
     name: "商品",
+    total: 0,
     curSubMenuIdx: 0,
     subMenuList: [
       { name: "全部", status: 0 },
@@ -88,7 +92,7 @@ Page({
 
   onLoad({ type = "1", status = "0" }) {
     this.initMenu(type, status);
-    this.setOrderList(true);
+    this.init();
   },
 
   onShow() {
@@ -102,7 +106,7 @@ Page({
   selectMenu(e) {
     const { index: curMenuIdx } = e.currentTarget.dataset;
     this.setData({ curMenuIdx });
-    this.setOrderList(true);
+    this.init();
   },
 
   selectSubMenu(e) {
@@ -131,18 +135,12 @@ Page({
   initMenu(type, status) {
     this.menuList = menuList;
 
-    const {
-      scenicOrderTotal,
-      hotelOrderTotal,
-      mealTicketOrderTotal,
-      setMealOrderTotal,
-      goodsOrderTotal
-    } = store;
-    this.setMenuTotal(scenicOrderTotal, 0);
-    this.setMenuTotal(hotelOrderTotal, 1);
-    this.setMenuTotal(mealTicketOrderTotal, 2);
-    this.setMenuTotal(setMealOrderTotal, 3);
-    this.setMenuTotal(goodsOrderTotal, 4);
+    const { orderTotal } = store;
+    this.menuList[0].total = orderTotal[0];
+    this.menuList[1].total = orderTotal[1];
+    this.menuList[2].total = orderTotal[2];
+    this.menuList[3].total = orderTotal[3];
+    this.menuList[4].total = orderTotal[4];
 
     const curMenuIdx = type - 1;
     const curSubMenuIdx = this.menuList.findIndex(
