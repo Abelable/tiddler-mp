@@ -303,7 +303,7 @@
   bind:close="hideCalendarPopup" 
   bind:confirm="setCalendar" 
   type="range" 
-  color="#77a9fd" 
+  color="#09AFFF" 
 />
 
 <poster-modal wx:if="{{posterModalVisible}}" scene="5" info="{{posterInfo}}" bind:hide="hidePosterModal" />

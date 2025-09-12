@@ -12,8 +12,6 @@
 </view>
 
 <view class="container" style="padding-top: {{statusBarHeight + 56}}px;">
-  <view class="bg" />
-
   <view class="room">
     <view class="room-name-wrap row between">
       <view class="room-name">{{hotelPreOrderInfo.name}}</view>

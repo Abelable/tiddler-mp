@@ -19,8 +19,7 @@
     </view>
     <view class="position-wrap">
       <image class="position-icon" src="./images/position.png" />
-      <text>{{item.address}}</text>
-      <text wx:if="{{distance}}">，距您{{distance}}km</text>
+      <view class="position-content">{{item.address}}，距您{{distance}}km</view>
     </view>
     <view class="price-info">
       <view class="price" wx:if="{{item.price}}">

@@ -57,18 +57,23 @@
   color: #666;
   font-size: 18rpx;
 }
+
 .position-wrap {
   display: flex;
-  align-items: center;
   margin-top: 10rpx;
   color: #666;
-  font-size: 20rpx;
+  font-size: 22rpx;
 }
 .position-icon {
+  margin-top: 6rpx;
   margin-right: 6rpx;
-  width: 18rpx;
-  height: 18rpx;
+  width: 20rpx;
+  height: 20rpx;
 }
+.position-content {
+  flex: 1;
+}
+
 .price-info {
   display: flex;
   align-items: flex-end;
