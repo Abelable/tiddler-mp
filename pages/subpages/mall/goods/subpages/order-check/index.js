@@ -4,9 +4,11 @@ import { store } from "../../../../../../store/index";
 import GoodsService from "../../utils/goodsService";
 
 const goodsService = new GoodsService();
+const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Page({
   data: {
+    statusBarHeight,
     goodsDeliveryMode: 1,
     curMenuIdx: 0,
     preOrderInfo: null,
