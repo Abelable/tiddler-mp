@@ -90,7 +90,10 @@ Page({
     qrCodeModalVisible: false
   },
 
-  onLoad({ type = "1", status = "0" }) {
+  async onLoad({ type = "1", status = "0" }) {
+    if (!store.orderTotal.length) {
+      await orderService.getOrderTotal()
+    }
     this.initMenu(type, status);
     this.init();
   },
