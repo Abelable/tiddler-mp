@@ -23,6 +23,7 @@
         <view class="menu-item-inner">{{item}}</view>
       </view>
     </view>
+
     <view class="address-wrap row" style="border-top-right-radius: 16rpx" wx:if="{{(goodsDeliveryMode === 3 && curMenuIdx === 0) || goodsDeliveryMode === 1}}" bindtap="showAddressPopup">
       <image class="address-icon" src="./images/address.png" />
       <view class="consignee">
@@ -35,27 +36,28 @@
       </view>
       <image class="select-icon" src="./images/arrow.png" />
     </view>
-    <view class="address-wrap" style="border-top-left-radius: 16rpx" wx:if="{{(goodsDeliveryMode === 3 && curMenuIdx === 1) || goodsDeliveryMode === 2}}">
+
+    <view class="address-wrap map" style="border-top-left-radius: 16rpx" wx:if="{{(goodsDeliveryMode === 3 && curMenuIdx === 1) || goodsDeliveryMode === 2}}">
       <view class="pickup-address-wrap">
-        <view class="pickup-address">
-          <view class="pickup-address-name">
-            {{pickupAddressList[curPickupAddressIdx].name || pickupAddressList[curPickupAddressIdx].addressDetail}}
+        <view class="pickup-address" bindtap="showPickupAddressPopup">
+          <view class="pickup-address-name-wrap row">
+            <view class="pickup-address-name omit single">
+              {{pickupAddressList[curPickupAddressIdx].name || pickupAddressList[curPickupAddressIdx].addressDetail}}
+            </view>
+            <image class="change-arrow" src="./images/arrow_black.png" />
           </view>
           <view class="pickup-address-detail" wx:if="{{pickupAddressList[curPickupAddressIdx].name}}">
             {{pickupAddressList[curPickupAddressIdx].addressDetail}}
           </view>
-          <view class="distance-info">
-            <image class="distance-icon" src="./images/distance.png" />
-            <view class="distance">距您{{pickupAddressList[curPickupAddressIdx].distance}}km</view>
-            <view class="check-map-btn" bindtap="navigation">
-              <view>查看地图</view>
-              <image class="address-arrow" src="./images/arrow.png" />
-            </view>
-          </view>
         </view>
-        <view class="change-btn" bindtap="showPickupAddressPopup">
-          <view>切换</view>
-          <image class="change-btn-arrow" src="./images/arrow.png" />
+        <view class="distance-info-wrap" bindtap="navigation">
+          <view class="distance-info row">
+            <view>距您{{pickupAddressList[curPickupAddressIdx].distance}}km</view>
+            <image class="distance-arrow" src="./images/arrow_black.png" />
+          </view>
+          <view class="pickup-address-logo-wrap">
+            <image class="pickup-address-logo" src="{{pickupAddressList[curPickupAddressIdx].logo}}" />
+          </view>
         </view>
       </view>
       <view class="pickup-info-wrap">

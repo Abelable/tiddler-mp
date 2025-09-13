@@ -28,7 +28,7 @@
 
 .card {
   margin: 24rpx;
-  padding: 24rpx;
+  padding: 32rpx;
   background-color: #fff;
   border-radius: 32rpx;
 }
@@ -103,32 +103,95 @@
 }
 
 .address-wrap {
-  padding: 24rpx;
+  position: relative;
+  padding: 32rpx;
   background: #fff;
 }
-.pickup-address-wrap {
-  display: flex;
-  align-items: flex-start;
+.address-wrap.map {
+  background-image: url('https://static.tiddler.cn/mp/order/map_bg.png');
+  background-size: 330rpx 253rpx;
+  background-position: right -20rpx;
+  background-repeat: no-repeat;
 }
-.pickup-address {
-  flex: 1;
+.pickup-address-wrap {
+  max-width: 420rpx;
 }
 .pickup-address-name {
+  max-width: 380rpx;
   color: #333;
   font-size: 36rpx;
   font-weight: bold;
 }
+.change-arrow {
+  margin-left: 8rpx;
+  width: 32rpx;
+  height: 32rpx;
+}
 .pickup-address-detail {
-  margin-top: 8rpx;
+  margin-top: 12rpx;
   color: #999;
   font-size: 24rpx;
 }
-.distance-info {
+
+.distance-info-wrap {
+  position: absolute;
+  top: 8rpx;
+  right: 32rpx;
+  width: fit-content;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  margin-top: 16rpx;
 }
-.distance-icon {
+.distance-info {
+  position: relative;
+  height: 50rpx;
+  padding-left: 20rpx;
+  padding-right: 12rpx;
+  color: #333;
+  font-size: 20rpx;
+  font-weight: 500;
+  background: #fff;
+  border-radius: 25rpx;
+  box-shadow: 0 2px 20px #eee;
+}
+.distance-info::after {
+  position: absolute;
+  left: 50%;
+  bottom: -8rpx;
+  transform: translate(-50%);
+  width: 0;
+  height: 0;
+  content: "";
+  border-left: 8rpx solid transparent;
+  border-right: 8rpx solid transparent;
+  border-top: 8rpx solid #fff;
+}
+.distance-arrow {
+  margin-left: 4rpx;
+  width: 20rpx;
+  height: 20rpx;
+}
+.pickup-address-logo-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 12rpx;
+  padding-top: 8rpx;
+  height: 100rpx;
+  width: 80rpx;
+  height: 92rpx;
+  background-image: url('https://static.tiddler.cn/mp/order/pickup_logo_bg.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  box-shadow: 0 2px 20px #eee;
+}
+.pickup-address-logo {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 8rpx;
+}
+
+/* .distance-icon {
   width: 28rpx;
   height: 28rpx;
 }
@@ -152,24 +215,12 @@
   margin-left: 6rpx;
   width: 20rpx;
   height: 20rpx;
-}
-.change-btn {
-  display: flex;
-  align-items: center;
-  color: var(--blue-1);
-  font-size: 26rpx;
-}
-.change-btn-arrow {
-  margin-left: 4rpx;
-  width: 20rpx;
-  height: 20rpx;
-}
+} */
 
 .pickup-info-wrap {
   display: flex;
   margin-top: 24rpx;
   padding-top: 24rpx;
-  border-top: 1px solid #eee;
 }
 .pickup-info {
   flex: 1;
@@ -181,13 +232,14 @@
 }
 .pickup-info-title {
   color: #666;
-  font-size: 28rpx;
+  font-size: 26rpx;
 }
 .pickup-info-detail {
   display: flex;
   align-items: center;
+  margin-top: 8rpx;
   color: #333;
-  font-size: 32rpx;
+  font-size: 30rpx;
   font-weight: bold;
   white-space: nowrap;
 }
@@ -196,8 +248,8 @@
 }
 .pickup-info-arrow {
   margin-left: 12rpx;
-  width: 20rpx;
-  height: 20rpx;
+  width: 24rpx;
+  height: 24rpx;
 }
 
 .address-icon {

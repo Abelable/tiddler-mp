@@ -11,7 +11,7 @@
           </view>
           <view class="distance row" bindtap="navigation" data-index="{{index}}">
             <view>{{item.distance}}千米</view>
-            <image class="arrow" src="/images/arrow.png" />
+            <image class="arrow" src="../../images/arrow.png" />
           </view>
         </view>
       </radio-group>
