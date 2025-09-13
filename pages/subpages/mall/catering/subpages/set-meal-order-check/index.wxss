@@ -1,18 +1,40 @@
 .container {
-  padding: 24rpx;
-  padding-bottom: calc(60px + env(safe-area-inset-bottom));
+  padding: 24rpx 0 calc(150rpx + env(safe-area-inset-bottom));
 }
-  
+.container::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 600rpx;
+  content: "";
+  background: linear-gradient( 180deg, #00B2FF 20%, rgba(0,178,255,0) 100%);
+  z-index: -1;
+}
+
+.header {
+  padding-left: 8px;
+  padding-right: 40px;
+  height: 44px;
+}
+.title {
+  flex: 1;
+  color: #fff;
+  font-size: 32rpx;
+  text-align: center;
+  font-weight: bold;
+}
+
 .card {
-  margin-bottom: 24rpx;
-  padding: 24rpx;
+  margin: 24rpx;
+  padding: 32rpx;
   background: #fff;
-  border-radius: 24rpx;
+  border-radius: 32rpx;
 }
 
 .restaurant-name {
   color: #333;
-  font-size: 26rpx;
+  font-size: 28rpx;
 }
 
 .set-meal-name-wrap {
@@ -33,7 +55,7 @@
 .cover {
   margin-top: 20rpx;
   width: 100%;
-  border-radius: 20rpx;
+  border-radius: 32rpx;
 }
 
 .set-meal-tips-wrap {
@@ -46,10 +68,12 @@
   font-size: 24rpx;
 }
 .tips-title {
+  color: #333;
   font-weight: 500;
 }
 .tips-content {
   margin-left: 12rpx;
+  color: #999;
 }
 .more-icon {
   width: 24rpx;
@@ -68,12 +92,13 @@
 }
 .discount {
   margin-top: 6rpx;
-  margin-left: 14rpx;
-  padding: 0 6rpx;
-  color: #F66B38;
-  font-size: 20rpx;
-  border: 1px solid #fed9cc;
-  border-radius: 6rpx;
+  margin-left: 16rpx;
+  padding: 0 8rpx;
+  color: #ff5040;
+  font-size: 18rpx;
+  font-weight: 500;
+  border: 1px solid #f97164;
+  border-radius: 8rpx;
 }
 
 .bottom-bar {
@@ -98,5 +123,5 @@
   color: #fff;
   font-size: 32rpx;
   border-radius: 40rpx;
-  background: #F66B38;
+  background: var(--blue-1);
 }

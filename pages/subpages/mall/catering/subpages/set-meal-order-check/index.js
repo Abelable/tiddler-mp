@@ -1,9 +1,11 @@
 import CateringService from "../../utils/cateringService";
 
 const cateringService = new CateringService();
+const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Component({
   data: {
+    statusBarHeight,
     restaurantName: "",
     setMealInfo: null,
     paymentAmount: 0,

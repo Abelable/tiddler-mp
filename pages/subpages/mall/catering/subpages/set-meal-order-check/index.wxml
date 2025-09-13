@@ -1,4 +1,9 @@
-<view class="container">
+<view class="container" style="padding-top: {{statusBarHeight}}px;">
+  <view class="header row">
+    <back-icon />
+    <view class="title">确认订单</view>
+  </view>
+
   <view class="card">
     <view class="restaurant-name">{{restaurantName}}</view>
 
@@ -13,7 +18,7 @@
 
     <view class="price-wrap row between">
       <view class="row">
-        <price-unit price="{{setMealInfo.price || 0}}" fontSize="28rpx" integerFontSize="42rpx" color="#F66B38" unitColor="#F66B38" />
+        <price-unit price="{{setMealInfo.price || 0}}" fontSize="28rpx" integerFontSize="42rpx" />
         <view class="original-price">¥{{ setMealInfo.originalPrice }}</view>
         <view class="discount">{{ discount }}折</view>
       </view>
@@ -41,7 +46,7 @@
 <view class="bottom-bar row between">
   <view class="row">
     <view class="price-label">合计</view>
-    <price-unit price="{{paymentAmount || 0}}" fontSize="28rpx" integerFontSize="42rpx" color="#F66B38" unitColor="#F66B38" />
+    <price-unit price="{{paymentAmount || 0}}" fontSize="28rpx" integerFontSize="42rpx" />
   </view>
   <button class="submit-btn {{consignee && mobile ? 'active' : ''}}" bindtap="submit">提交订单</button>
 </view>
