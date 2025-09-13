@@ -2,16 +2,18 @@
   margin-bottom: 24rpx;
   padding: 24rpx;
   background: #fff;
-  border-radius: 24rpx;
+  border-radius: 32rpx;
 }
+
 .restaurant-main {
+  display: flex;
   font-size: 0;
 }
 
 .restaurant-cover {
   width: 204rpx;
   height: 204rpx;
-  border-radius: 12rpx;
+  border-radius: 24rpx;
 }
 
 .restaurant-content {
@@ -90,25 +92,27 @@
   color: #5dce86;
   background: #d1f7e5;
 }
-.open-time-list {
-  margin-left: 12rpx;
-}
 .open-time {
+  margin-left: 12rpx;
+  flex: 1;
   color: #333;
   font-size: 22rpx;
 }
 
 .position-wrap {
   display: flex;
-  align-items: center;
-  margin-top: 12rpx;
-  color: #666;
-  font-size: 20rpx;
+  margin-top: 10rpx;
 }
 .position-icon {
+  margin-top: 6rpx;
   margin-right: 6rpx;
   width: 20rpx;
   height: 20rpx;
+}
+.position-content {
+  flex: 1;
+  color: #666;
+  font-size: 20rpx;
 }
 
 .meal-ticket-list {
@@ -167,14 +171,4 @@
   margin-left: 10rpx;
   color: #333;
   font-size: 22rpx;
-}
-.ticket-discount {
-  margin-left: 10rpx;
-  padding: 0 6rpx;
-  height: 24rpx;
-  color: #F66B38;
-  font-size: 20rpx;
-  line-height: 1;
-  border-radius: 4rpx;
-  background: #f6eeec;
 }

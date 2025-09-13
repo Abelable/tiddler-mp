@@ -125,9 +125,10 @@ Page({
     wx.stopPullDownRefresh();
   },
 
-  setList(init = false) {
+  async setList(init = false) {
     switch (this.data.curMenuIdx) {
       case 0:
+        wx.showLoading({ title: "正在加载" });
         if (init) {
           this.setVideoList(true);
           this.setNoteList(true);
@@ -138,7 +139,8 @@ Page({
           this.setGoodsList(true);
           this.setUserList(true);
         }
-        this.setMediaList(init);
+        await this.setMediaList(init);
+        wx.hideLoading();
         break;
       case 1:
         this.setVideoList(init);
@@ -178,7 +180,7 @@ Page({
     const { list = [] } =
       (await baseService.searchMediaList({
         keywords,
-        page: ++this.mediaPage,
+        page: ++this.mediaPage
       })) || {};
     this.setData({
       mediaList: init ? list : [...mediaList, ...list],
@@ -200,7 +202,7 @@ Page({
     const { list = [] } =
       (await baseService.searchVideoList({
         keywords,
-        page: ++this.videoPage,
+        page: ++this.videoPage
       })) || {};
     this.setData({
       videoList: init ? list : [...videoList, ...list],
@@ -222,7 +224,7 @@ Page({
     const { list = [] } =
       (await baseService.searchNoteList({
         keywords,
-        page: ++this.notePage,
+        page: ++this.notePage
       })) || {};
     this.setData({
       noteList: init ? list : [...noteList, ...list],
@@ -244,8 +246,7 @@ Page({
     const { list = [] } =
       (await baseService.searchLiveRoomList({
         keywords,
-        page: ++this.livePage,
-        loadingTitle: "正在加载"
+        page: ++this.livePage
       })) || {};
     this.setData({
       liveList: init ? list : [...liveList, ...list],
@@ -267,8 +268,7 @@ Page({
     const { list = [] } =
       (await baseService.searchScenicList({
         keywords,
-        page: ++this.scenicPage,
-        loadingTitle: "正在加载"
+        page: ++this.scenicPage
       })) || {};
     this.setData({
       scenicList: init ? list : [...scenicList, ...list],
@@ -290,8 +290,7 @@ Page({
     const { list = [] } =
       (await baseService.searchHotelList({
         keywords,
-        page: ++this.hotelPage,
-        loadingTitle: "正在加载"
+        page: ++this.hotelPage
       })) || {};
     this.setData({
       hotelList: init ? list : [...hotelList, ...list],
@@ -313,8 +312,7 @@ Page({
     const { list = [] } =
       (await baseService.searchRestaurantList({
         keywords,
-        page: ++this.restaurantPage,
-        loadingTitle: "正在加载"
+        page: ++this.restaurantPage
       })) || {};
     this.setData({
       restaurantList: init ? list : [...restaurantList, ...list],
@@ -336,8 +334,7 @@ Page({
     const list =
       (await baseService.searchGoodsList({
         keywords,
-        page: ++this.goodsPage,
-        loadingTitle: "正在加载"
+        page: ++this.goodsPage
       })) || [];
     this.setData({
       goodsList: init ? list : [...goodsList, ...list],
@@ -359,8 +356,7 @@ Page({
     const list =
       (await baseService.searchUserList({
         keywords,
-        page: ++this.userPage,
-        loadingTitle: "正在加载"
+        page: ++this.userPage
       })) || [];
     this.setData({
       userList: init ? list : [...userList, ...list],

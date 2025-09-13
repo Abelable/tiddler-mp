@@ -5,12 +5,12 @@
   padding: 20rpx;
   font-size: 0;
   background: #fff;
-  border-radius: 24rpx;
+  border-radius: 32rpx;
 }
 .hotel-cover {
   width: 220rpx;
   height: 280rpx;
-  border-radius: 12rpx;
+  border-radius: 24rpx;
 }
 
 .hotel-content {
@@ -66,15 +66,18 @@
 
 .position-wrap {
   display: flex;
-  align-items: center;
   margin-top: 10rpx;
-  color: #666;
-  font-size: 22rpx;
 }
 .position-icon {
+  margin-top: 6rpx;
   margin-right: 6rpx;
   width: 20rpx;
   height: 20rpx;
+}
+.position-content {
+  flex: 1;
+  color: #666;
+  font-size: 20rpx;
 }
 
 .labels {
