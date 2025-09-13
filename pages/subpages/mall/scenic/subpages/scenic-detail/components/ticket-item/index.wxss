@@ -34,7 +34,7 @@
   border-right: none;
 }
 .tips.stress {
-  color: #529AFE;
+  color: var(--blue-1);
 }
 
 .price-wrap {

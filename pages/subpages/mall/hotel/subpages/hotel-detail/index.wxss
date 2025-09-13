@@ -394,7 +394,7 @@
 }
 .content-title-tips {
   margin-left: 12rpx;
-  color: #529AFE;
+  color: var(--blue-1);
   font-size: 24rpx;
 }
 
