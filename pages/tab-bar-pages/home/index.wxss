@@ -73,7 +73,7 @@
   height: 40px;
   border-radius: 20px;
   background: #fff;
-  box-shadow: 0 10px 20px #f0f0f0;
+  box-shadow: 0 2px 20px #f0f0f0;
 }
 .search-bar.active {
   background: #f5f6f7;
