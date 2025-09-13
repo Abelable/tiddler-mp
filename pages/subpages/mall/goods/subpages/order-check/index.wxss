@@ -240,7 +240,7 @@
   height: 36rpx;
 }
 .consignee {
-  margin-left: 20rpx;
+  margin: 0 18rpx;
   flex: 1;
   font-size: 28rpx;
 }
