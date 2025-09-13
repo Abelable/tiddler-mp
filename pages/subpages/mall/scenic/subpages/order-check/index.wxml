@@ -8,7 +8,7 @@
     <view class="ticket-name">
       {{scenicPreOrderInfo.name}} {{scenicPreOrderInfo.categoryName}}
     </view>
-    <view class="split-line" />
+    <image class="split-line" mode="widthFix" src="https://static.tiddler.cn/mp/order/card_split_line.png" />
     <view class="ticket-more">
       <view class="date-picker">
         <view class="date-picker-title">选择日期</view>
@@ -25,6 +25,7 @@
               <view class="unvalid-tips" wx:if="{{index === 0 && !scenicPreOrderInfo.todayBookable}}">不可定</view>
               <price-unit wx:else price="{{item.price || 0}}" color="#333" fontSize="22rpx" integerFontSize="28rpx" />
             </block>
+            <image class="date-selected-icon" wx:if="{{curDateIdx === index}}" src="https://static.tiddler.cn/mp/order/selected.png" />
           </view>
           <view class="more-date-btn row" bindtap="showCalendarPopup">
             <view class="btn-desc">

@@ -5,6 +5,7 @@ page {
   --blue-1: #09AFFF;
   --blue-2: #00C8FF;
   --blue-3: #C6EFFF;
+  --blue-4: #00B2FF;
   --blue-linear-1: linear-gradient(135deg, #76DCFF 0%, #05A8FF 100%);
   --blue-linear-2: linear-gradient(180deg, #0d61d7 0%, #063e82 100%);
   --blue-linear-3: linear-gradient(128deg, #53678d 0%, #161F4E 100%);

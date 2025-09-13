@@ -1,5 +1,5 @@
 .container {
-  padding: 24rpx 24rpx calc(150rpx + env(safe-area-inset-bottom));
+  padding: 24rpx 0 calc(150rpx + env(safe-area-inset-bottom));
 }
 .container::before {
   position: absolute;
@@ -26,24 +26,28 @@
 }
 
 .ticket {
-  margin-top: 24rpx;
-  background: #fff;
+  margin: 24rpx;
+  font-size: 0;
   border-radius: 32rpx;
+  overflow: hidden;
 }
 .ticket-name {
-  padding: 24rpx;
+  padding: 32rpx;
+  padding-bottom: 16rpx;
   color: #333;
   font-size: 32rpx;
   font-weight: bold;
+  background: #fff;
 }
+
 .split-line {
-  position: relative;
-  border: 1rpx dashed #eee;
-  overflow: inherit;
+  width: 100%;
 }
 
 .ticket-more {
-  padding: 24rpx;
+  padding: 32rpx;
+  padding-top: 16rpx;
+  background: #fff;
 }
 
 .date-picker-title, .count-control-title {
@@ -52,7 +56,7 @@
   font-weight: bold;
 }
 .date-picker-list {
-  margin-top: 12rpx;
+  margin-top: 24rpx;
 }
 .date-picker-item {
   display: flex;
@@ -61,31 +65,36 @@
   justify-content: center;
   margin-right: 12rpx;
   flex: 1;
-  height: 88rpx;
-  border: 1px solid #E1E3E5;
+  height: 100rpx;
+  color: #666;
+  font-size: 24rpx;
+  border: 1px solid #eee;
   border-radius: 16rpx;
 }
 .date-picker-item.active {
-  border: 1px solid var(--blue-1);
-  background: #C6EFFF;
+  position: relative;
+  color: var(--blue-2);
+  border: 1px solid var(--blue-2);
+  background: rgba(198, 239, 255, 0.4);
 }
 .date-picker-item.unvalid {
   opacity: 0.5;
-}
-.date {
-  color: #666;
-  font-size: 24rpx;
-}
-.date-picker-item.active .date {
-  color: var(--blue-1);
 }
 .unvalid-tips {
   font-size: 26rpx;
   font-weight: bold;
 }
+.date-selected-icon {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 30rpx;
+  height: 30rpx;
+}
+
 .more-date-btn {
   width: 100rpx;
-  height: 88rpx;
+  height: 100rpx;
   border: 1px solid #eee;
   border-radius: 16rpx;
 }
@@ -100,11 +109,11 @@
 }
 
 .count-control {
-  margin-top: 24rpx;
+  margin-top: 32rpx;
 }
 
 .ticket-tips {
-  margin-top: 18rpx;
+  margin-top: 24rpx;
 }
 .tips-wrap {
   margin-bottom: 8rpx;
@@ -129,7 +138,7 @@
   border-right: none;
 }
 .tips.stress {
-  color: var(--blue-1);
+  color: var(--blue-2);
 }
 .right-arrow {
   margin-left: 2rpx;
@@ -138,8 +147,8 @@
 }
 
 .card {
-  margin-top: 24rpx;
-  padding: 24rpx 24rpx 0;
+  margin: 24rpx;
+  padding: 32rpx 32rpx 0;
   background-color: #fff;
   border-radius: 32rpx;
 }
