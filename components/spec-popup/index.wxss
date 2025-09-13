@@ -69,7 +69,7 @@
 .spec-tips.selected {
   color: var(--blue-1);
   border: 1px solid var(--blue-1);
-  background: rgb(235, 246, 248, 0.4);
+  background: #ebf6f8;
 }
 
 .count-control-wrap {
