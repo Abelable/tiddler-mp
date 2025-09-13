@@ -4,7 +4,7 @@
   url="/pages/subpages/mall/catering/subpages/restaurant-detail/index?id={{item.id}}"
   hover-class="none"
 >
-  <view class="main row">
+  <view class="main">
     <image class="cover" src="{{item.cover}}" mode="aspectFill" lazy-load />
     <view class="content">
       <view class="row">
@@ -27,12 +27,12 @@
       </view>
       <view class="position-wrap">
         <image class="position-icon" src="./images/position.png" />
-        <text>{{item.address}}，距您{{distance}}km</text>
+        <view class="position-content">{{item.address}}，距您{{distance}}km</view>
       </view>
     </view>
   </view>
-  <view class="meal-ticket-list">
-    <view class="meal-ticket row" wx:if="{{item.mealTicketList.length}}">
+  <view class="meal-ticket-list" wx:if="{{item.mealTicketList.length}}">
+    <view class="meal-ticket row">
       <view class="ticket-lebal-wrap row end">
         <view class="ticket-lebal row">新客特惠</view>
       </view>

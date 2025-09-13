@@ -55,11 +55,12 @@
 .discount {
   margin-top: 6rpx;
   margin-left: 8rpx;
-  padding: 0 6rpx;
+  padding: 0 8rpx;
   color: #ff5040;
-  font-size: 20rpx;
-  border: 1px solid #f77d72;
-  border-radius: 6rpx;
+  font-size: 18rpx;
+  font-weight: 500;
+  border: 1px solid #f97164;
+  border-radius: 8rpx;
 }
 
 .split-line {

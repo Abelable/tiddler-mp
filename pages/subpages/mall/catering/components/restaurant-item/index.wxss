@@ -4,6 +4,7 @@
   border-bottom: 1px solid #f5f6f8;
 }
 .main {
+  display: flex;
   font-size: 0;
 }
 
@@ -99,15 +100,18 @@
 
 .position-wrap {
   display: flex;
-  align-items: center;
   margin-top: 12rpx;
   color: #666;
   font-size: 20rpx;
 }
 .position-icon {
+  margin-top: 6rpx;
   margin-right: 6rpx;
   width: 20rpx;
   height: 20rpx;
+}
+.position-content {
+  flex: 1;
 }
 
 .meal-ticket-list {

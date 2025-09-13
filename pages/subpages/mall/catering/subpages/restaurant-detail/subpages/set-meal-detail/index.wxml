@@ -63,10 +63,10 @@
 </view>
 
 <!-- 底部工具栏 -->
-<view class="bottom-bar row between">
-  <view class="shortcut" bindtap="showShareModal">
+<view class="bottom-bar row end">
+  <!-- <view class="shortcut" bindtap="showShareModal">
     <image class="shortcut-icon" src="./images/share-icon.png"/>
     <view>分享</view>
-  </view>
+  </view> -->
   <button class="buy-btn" bindtap="buy">立即抢购</button>
 </view>
