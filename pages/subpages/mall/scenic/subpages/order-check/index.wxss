@@ -173,7 +173,7 @@
   border-bottom: none;
 }
 .tourist-info-label {
-  margin-right: 24rpx;
+  margin-right: 32rpx;
   color: #333;
 }
 .tourist-info-input {

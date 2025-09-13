@@ -8,7 +8,7 @@
   z-index: 100;
 }
 .nav-bar.active {
-  background: #4184f7;
+  background: #00B2FF;
 }
 .nav-bar-unit {
   padding: 0 8px;
@@ -19,6 +19,7 @@
   text-align: center;
   color: #fff;
   font-size: 16px;
+  font-weight: 500;
 }
 .english-name {
   font-size: 10px;
@@ -35,12 +36,12 @@
   width: 100%;
   height: 600rpx;
   content: "";
-  background: linear-gradient( 180deg, #00B2FF 20%, rgba(0,178,255,0) 100%);
+  background: linear-gradient(180deg, #00B2FF 20%, rgba(0,178,255,0) 100%);
   z-index: -1;
 }
 
 .room {
-  padding: 24rpx;
+  padding: 32rpx;
   background: #fff;
   border-radius: 32rpx;
 }
@@ -98,7 +99,7 @@
   margin-top: 32rpx;
 }
 .room-label {
-  padding: 0 24rpx;
+  padding: 0 18rpx;
   color: #333;
   font-size: 24rpx;
   line-height: 1;
@@ -113,21 +114,21 @@
 
 .cancellable-status {
   margin-top: 24rpx;
-  color: var(--blue-1);
+  color: var(--blue-2);
   font-size: 24rpx;
 }
 .cancellable-status.uncancellable {
-  color: #333;
+  color: #999;
 }
 .cancellable-icon {
-  margin-right: 8rpx;
+  margin-right: 6rpx;
   width: 26rpx;
   height: 26rpx;
 }
 
 .card {
   margin-top: 24rpx;
-  padding: 24rpx 24rpx 0;
+  padding: 32rpx 32rpx 0;
   background-color: #fff;
   border-radius: 32rpx;
 }
@@ -139,19 +140,20 @@
 .title-tips {
   margin-left: 12rpx;
   color: #999;
-  font-size: 22rpx;
+  font-size: 24rpx;
+  font-weight: 300;
 }
 
 .tourist-info-item {
-  padding: 24rpx 0;
-  font-size: 26rpx;
-  border-bottom: 1px solid #eee;
+  padding: 32rpx 0;
+  font-size: 28rpx;
+  border-bottom: 1px solid #f5f6f8;
 }
 .tourist-info-item:last-child {
   border-bottom: none;
 }
 .tourist-info-label {
-  margin-right: 24rpx;
+  margin-right: 32rpx;
   color: #333;
 }
 .tourist-info-input {
@@ -159,6 +161,21 @@
 }
 .num-setpper {
   flex: 1;
+}
+
+.rule-tips {
+  margin-top: 32rpx;
+}
+.rule-title {
+  margin-top: 24rpx;
+  color: #141925;
+  font-size: 28rpx;
+}
+.rule-content {
+  margin-top: 16rpx;
+  color: #999;
+  font-size: 26rpx;
+  font-weight: 300;
 }
 
 .bottom-bar {
@@ -169,7 +186,7 @@
   padding: 18rpx 24rpx calc(18rpx + env(safe-area-inset-bottom));
   width: 100%;
   background: #fff;
-  border-top: 1px solid #f5f6f7;
+  border-top: 1px solid #f5f6f8;
 }
 .total-price-wrap {
   margin-right: 32rpx;

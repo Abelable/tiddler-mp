@@ -39,7 +39,7 @@
       <view class="room-label">{{hotelPreOrderInfo.areaSize}}m²</view>
     </view>
     <view class="cancellable-status row {{ hotelPreOrderInfo.cancellable ? '' : 'uncancellable' }}">
-      <image class="cancellable-icon" src="./images/{{hotelPreOrderInfo.cancellable ? '' : 'un'}}cancellable.png" />
+      <image class="cancellable-icon" src="https://static.tiddler.cn/mp/order/{{hotelPreOrderInfo.cancellable ? '' : 'un'}}cancellable.png" />
       <view>{{hotelPreOrderInfo.cancellable ? TIME.transform(checkInDate, 'MM月DD日') + "16点前取消扣除10%手续费" : "不可取消"}}</view>
     </view>
   </view>
@@ -51,19 +51,31 @@
     </view>
     <view class="tourist-info-list">
       <view class="tourist-info-item row">
-        <view class="tourist-info-label">房间数</view>
+        <view class="tourist-info-label">房间数量</view>
         <view class="num-setpper row end">
           <van-stepper value="{{ num }}" bind:change="numChange" max="{{hotelPreOrderInfo.roomNum || 1}}" integer />
         </view>
       </view>
       <view class="tourist-info-item row">
-        <view class="tourist-info-label">入住人</view>
-        <input class="tourist-info-input" bindinput="setConsignee" placeholder="请输入姓名" />
+        <view class="tourist-info-label">住客信息</view>
+        <input class="tourist-info-input" bindinput="setConsignee" placeholder="请输入住客姓名" />
       </view>
       <view class="tourist-info-item row">
-        <view class="tourist-info-label">手机号</view>
+        <view class="tourist-info-label">联系电话</view>
         <input class="tourist-info-input" bindinput="setMobile" type="number" placeholder="请输入手机号" />
       </view>
+    </view>
+  </view>
+
+  <view class="rule-tips">
+    <view class="rule-title">退款规则</view>
+    <view class="rule-content">根据商家政策，{{hotelPreOrderInfo.cancellable ? TIME.transform(checkInDate, 'MM月DD日') + "16点前取消扣除10%手续费，逾期不可取消/变更" : "不可取消"}}，如未入住，商家将扣除全部房费</view>
+    <view class="rule-title">预订说明</view>
+    <view class="rule-content">
+      <text>订单需等商家或供应商确认后才生效，订单确认结果以小鱼游短信或邮件通知为准;请在订单生效后再至商家前台办理入住。预订服务由小鱼游平台提供，住宿服务由住宿服务提供者提供。请您在提交订单前仔细阅读</text>
+      <text style="color: #00B2FF">《小鱼游酒店预订条款》</text>
+      <text>和</text>
+      <text style="color: #00B2FF">《个人信息授权声明》</text>
     </view>
   </view>
 </view>
