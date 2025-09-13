@@ -1,7 +1,4 @@
-<view 
-  class="set-meal-item row" 
-  bindtap="checkDetail"
->
+<view class="set-meal-item row" bindtap="buy">
   <image class="cover" src="{{ info.cover }}" mode="aspectFill" lazy-load />
   <view class="set-meal-info">
     <view class="set-meal-name">{{ info.name }}</view>
@@ -18,7 +15,7 @@
     </view>
   </view>
   <view class="buy-btn-wrap">
-    <button class="buy-btn" catchtap="buy">抢购</button>
+    <button class="buy-btn">抢购</button>
     <view class="sales">已售 {{info.salesVolume}}</view>
   </view>
 </view>

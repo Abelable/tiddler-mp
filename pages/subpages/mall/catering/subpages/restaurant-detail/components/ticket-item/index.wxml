@@ -1,7 +1,4 @@
-<view 
-  class="ticket-item row between" 
-  bindtap="checkDetail"
->
+<view class="ticket-item row between" bindtap="buy">
   <view class="ticket-info">
     <view class="ticket-name">{{ ticket.originalPrice + '元代金券' }}</view>
     <view class="tips">{{ tips }}</view>
@@ -16,7 +13,7 @@
     </view>
   </view>
   <view class="buy-btn-wrap">
-    <button class="buy-btn" catchtap="buy">抢购</button>
+    <button class="buy-btn">抢购</button>
      <view class="sales">已售 {{ticket.salesVolume}}</view>
   </view>
   <view class="left-circle"></view>

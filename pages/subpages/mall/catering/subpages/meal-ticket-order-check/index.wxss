@@ -31,7 +31,6 @@
   border-radius: 32rpx;
   overflow: hidden;
 }
-
 .ticket-header {
   padding: 32rpx;
   padding-bottom: 16rpx;
@@ -78,7 +77,6 @@
   padding-top: 16rpx;
   background: #fff;
 }
-
 .ticket-tips-wrap {
   margin-top: 32rpx;
 }
