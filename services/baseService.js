@@ -344,52 +344,64 @@ class BaseService extends Base {
     });
   }
 
-  async searchMediaList(keywords, page, limit = 10) {
+  async searchMediaList({ keywords, page, limit = 10, loadingTitle = "" }) {
     return await this.get({
       url: `${this.baseUrl}/media/search`,
-      data: { keywords, page, limit }
+      data: { keywords, page, limit },
+      loadingTitle
     });
   }
 
-  async searchVideoList(keywords, page, limit = 10) {
+  async searchVideoList({ keywords, page, limit = 10, loadingTitle = "" }) {
     return await this.get({
       url: `${this.baseUrl}/media/short_video/search`,
-      data: { keywords, page, limit }
+      data: { keywords, page, limit },
+      loadingTitle
     });
   }
 
-  async searchNoteList(keywords, page, limit = 10) {
+  async searchNoteList({ keywords, page, limit = 10, loadingTitle = "" }) {
     return await this.get({
       url: `${this.baseUrl}/media/tourism_note/search`,
-      data: { keywords, page, limit }
+      data: { keywords, page, limit },
+      loadingTitle
     });
   }
 
-  async searchLiveRoomList(keywords, page, limit = 10) {
+  async searchLiveRoomList({ keywords, page, limit = 10, loadingTitle = "" }) {
     return await this.get({
       url: `${this.baseUrl}/media/live/search`,
-      data: { keywords, page, limit }
+      data: { keywords, page, limit },
+      loadingTitle
     });
   }
 
-  async searchScenicList(keywords, page, limit = 10) {
+  async searchScenicList({ keywords, page, limit = 10, loadingTitle = "" }) {
     return await this.get({
       url: `${this.baseUrl}/scenic/search`,
-      data: { keywords, page, limit }
+      data: { keywords, page, limit },
+      loadingTitle
     });
   }
 
-  async searchHotelList(keywords, page, limit = 10) {
+  async searchHotelList({ keywords, page, limit = 10, loadingTitle = "" }) {
     return await this.get({
       url: `${this.baseUrl}/hotel/search`,
-      data: { keywords, page, limit }
+      data: { keywords, page, limit },
+      loadingTitle
     });
   }
 
-  async searchRestaurantList(keywords, page, limit = 10) {
+  async searchRestaurantList({
+    keywords,
+    page,
+    limit = 10,
+    loadingTitle = ""
+  }) {
     return await this.get({
       url: `${this.baseUrl}/catering/restaurant/search`,
-      data: { keywords, page, limit }
+      data: { keywords, page, limit },
+      loadingTitle
     });
   }
 
@@ -410,12 +422,14 @@ class BaseService extends Base {
     sort,
     order,
     page,
-    limit = 10
+    limit = 10,
+    loadingTitle = ""
   }) {
     const { list = [] } =
       (await this.get({
         url: `${this.baseUrl}/goods/search`,
-        data: cleanObject({ keywords, categoryId, sort, order, page, limit })
+        data: cleanObject({ keywords, categoryId, sort, order, page, limit }),
+        loadingTitle
       })) || {};
     return list;
   }
@@ -429,11 +443,12 @@ class BaseService extends Base {
     return list;
   }
 
-  async searchUserList({ keywords, page, limit = 10 }) {
+  async searchUserList({ keywords, page, limit = 10, loadingTitle = "" }) {
     const { list = [] } =
       (await this.get({
         url: `${this.baseUrl}/user/search`,
-        data: { keywords, page, limit }
+        data: { keywords, page, limit },
+        loadingTitle
       })) || {};
     return list;
   }

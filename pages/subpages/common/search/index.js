@@ -176,7 +176,10 @@ Page({
 
     this.setData({ mediaLoading: true });
     const { list = [] } =
-      (await baseService.searchMediaList(keywords, ++this.mediaPage)) || {};
+      (await baseService.searchMediaList({
+        keywords,
+        page: ++this.mediaPage,
+      })) || {};
     this.setData({
       mediaList: init ? list : [...mediaList, ...list],
       mediaLoading: false
@@ -195,7 +198,10 @@ Page({
 
     this.setData({ videoLoading: true });
     const { list = [] } =
-      (await baseService.searchVideoList(keywords, ++this.videoPage)) || {};
+      (await baseService.searchVideoList({
+        keywords,
+        page: ++this.videoPage,
+      })) || {};
     this.setData({
       videoList: init ? list : [...videoList, ...list],
       videoLoading: false
@@ -214,7 +220,10 @@ Page({
 
     this.setData({ noteLoading: true });
     const { list = [] } =
-      (await baseService.searchNoteList(keywords, ++this.notePage)) || {};
+      (await baseService.searchNoteList({
+        keywords,
+        page: ++this.notePage,
+      })) || {};
     this.setData({
       noteList: init ? list : [...noteList, ...list],
       noteLoading: false
@@ -233,7 +242,11 @@ Page({
 
     this.setData({ liveLoading: true });
     const { list = [] } =
-      (await baseService.searchLiveRoomList(keywords, ++this.livePage)) || {};
+      (await baseService.searchLiveRoomList({
+        keywords,
+        page: ++this.livePage,
+        loadingTitle: "加载中"
+      })) || {};
     this.setData({
       liveList: init ? list : [...liveList, ...list],
       liveLoading: false
@@ -252,7 +265,11 @@ Page({
 
     this.setData({ scenicLoading: true });
     const { list = [] } =
-      (await baseService.searchScenicList(keywords, ++this.scenicPage)) || {};
+      (await baseService.searchScenicList({
+        keywords,
+        page: ++this.scenicPage,
+        loadingTitle: "加载中"
+      })) || {};
     this.setData({
       scenicList: init ? list : [...scenicList, ...list],
       scenicLoading: false
@@ -271,7 +288,11 @@ Page({
 
     this.setData({ hotelLoading: true });
     const { list = [] } =
-      (await baseService.searchHotelList(keywords, ++this.hotelPage)) || {};
+      (await baseService.searchHotelList({
+        keywords,
+        page: ++this.hotelPage,
+        loadingTitle: "加载中"
+      })) || {};
     this.setData({
       hotelList: init ? list : [...hotelList, ...list],
       hotelLoading: false
@@ -290,10 +311,11 @@ Page({
 
     this.setData({ restaurantLoading: true });
     const { list = [] } =
-      (await baseService.searchRestaurantList(
+      (await baseService.searchRestaurantList({
         keywords,
-        ++this.restaurantPage
-      )) || {};
+        page: ++this.restaurantPage,
+        loadingTitle: "加载中"
+      })) || {};
     this.setData({
       restaurantList: init ? list : [...restaurantList, ...list],
       restaurantLoading: false
@@ -314,7 +336,8 @@ Page({
     const list =
       (await baseService.searchGoodsList({
         keywords,
-        page: ++this.goodsPage
+        page: ++this.goodsPage,
+        loadingTitle: "加载中"
       })) || [];
     this.setData({
       goodsList: init ? list : [...goodsList, ...list],
@@ -336,7 +359,8 @@ Page({
     const list =
       (await baseService.searchUserList({
         keywords,
-        page: ++this.userPage
+        page: ++this.userPage,
+        loadingTitle: "加载中"
       })) || [];
     this.setData({
       userList: init ? list : [...userList, ...list],
