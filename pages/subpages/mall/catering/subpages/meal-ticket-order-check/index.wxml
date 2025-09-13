@@ -23,14 +23,14 @@
       </view>
 
       <view class="ticket-tips-wrap">
+        <view class="ticket-tips row" bindtap="showNoticePopup">
+          <view class="tips-title">须知</view>
+          <view class="tips-content blue">{{ usageTips }}</view>
+          <image class="more-icon" src="/images/arrow.png" />
+        </view>
         <view class="ticket-tips row" wx:if="{{limitTips}}">
           <view class="tips-title">限制</view>
           <view class="tips-content">{{limitTips}}</view>
-        </view>
-        <view class="ticket-tips row" bindtap="showNoticePopup">
-          <view class="tips-title">须知</view>
-          <view class="tips-content">{{ usageTips }}</view>
-          <image class="more-icon" src="./images/arrow-right.png" />
         </view>
         <view class="ticket-tips row">
           <view class="tips-title">保障</view>

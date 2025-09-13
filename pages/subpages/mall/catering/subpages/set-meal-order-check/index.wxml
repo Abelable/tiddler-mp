@@ -11,7 +11,7 @@
       <view class="set-meal-name omit single">{{setMealInfo.name}}</view>
       <view class="check-detail row">
         <view class="detail-tips" bindtap="showDetailPopup">详情</view>
-        <image class="more-icon" src="./images/more-blue.png" />
+        <image class="more-icon" src="/images/arrow.png" />
       </view>
     </view>
     <image class="cover" src="{{setMealInfo.cover}}" mode="widthFix" />
@@ -26,14 +26,14 @@
     </view>
 
     <view class="set-meal-tips-wrap">
+      <view class="set-meal-tips row" bindtap="showNoticePopup">
+        <view class="tips-title">须知</view>
+        <view class="tips-content blue">{{ usageTips }}</view>
+        <image class="more-icon" src="/images/arrow.png" />
+      </view>
       <view class="set-meal-tips row" wx:if="{{limitTips}}">
         <view class="tips-title">限制</view>
         <view class="tips-content">{{limitTips}}</view>
-      </view>
-      <view class="set-meal-tips row" bindtap="showNoticePopup">
-        <view class="tips-title">须知</view>
-        <view class="tips-content">{{ usageTips }}</view>
-        <image class="more-icon" src="./images/arrow-right.png" />
       </view>
       <view class="set-meal-tips row">
         <view class="tips-title">保障</view>

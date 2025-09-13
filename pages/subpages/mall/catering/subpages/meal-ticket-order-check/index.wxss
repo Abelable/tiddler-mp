@@ -92,6 +92,9 @@
   margin-left: 12rpx;
   color: #999;
 }
+.tips-content.blue {
+  color: var(--blue-1);
+}
 .more-icon {
   width: 24rpx;
   height: 24rpx;

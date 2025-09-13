@@ -61,7 +61,7 @@
 .set-meal-tips-wrap {
   margin-top: 20rpx;
   padding-top: 12rpx;
-  border-top: 1px solid #eee;
+  border-top: 1px solid #f5f7f8;
 }
 .set-meal-tips {
   margin-top: 12rpx;
@@ -74,6 +74,9 @@
 .tips-content {
   margin-left: 12rpx;
   color: #999;
+}
+.tips-content.blue {
+  color: var(--blue-1);
 }
 .more-icon {
   width: 24rpx;
@@ -109,7 +112,7 @@
   padding: 18rpx 24rpx calc(18rpx + env(safe-area-inset-bottom));
   width: 100%;
   background: #fff;
-  border-top: 1px solid #f5f6f7;
+  border-top: 1px solid #f5f6f8;
 }
 .price-label {
   margin-top: 8rpx;
