@@ -41,7 +41,7 @@ class GoodsService extends MallService {
   async getCartList() {
     return await this.get({
       url: `${this.baseUrl}/cart/list`,
-      loadingTitle: "加载中",
+      loadingTitle: "正在加载",
     });
   }
 
@@ -57,7 +57,7 @@ class GoodsService extends MallService {
     return await this.get({
       url: `${this.baseUrl}/order/pickup_address_list`,
       data: { cartGoodsId },
-      loadingTitle: "加载中"
+      loadingTitle: "正在加载"
     });
   }
 
@@ -106,7 +106,7 @@ class GoodsService extends MallService {
     return await this.get({
       url: `${this.baseUrl}/goods/evaluation/list`,
       data: { goodsId, page, limit },
-      loadingTitle: "加载中",
+      loadingTitle: "正在加载",
     });
   }
 }

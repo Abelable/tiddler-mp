@@ -313,14 +313,14 @@ class BaseService extends Base {
     return await this.get({
       url: `${this.baseUrl}/wx/qr_code`,
       data: { scene, page },
-      loadingTitle: "加载中"
+      loadingTitle: "正在加载"
     });
   }
 
   async getHistoryKeywords() {
     return await this.get({
       url: `${this.baseUrl}/keyword/list`,
-      loadingTitle: "加载中"
+      loadingTitle: "正在加载"
     });
   }
 
@@ -340,7 +340,7 @@ class BaseService extends Base {
   async getHotKeywords() {
     return await this.get({
       url: `${this.baseUrl}/keyword/hot_list`,
-      loadingTitle: "加载中"
+      loadingTitle: "正在加载"
     });
   }
 
@@ -569,7 +569,7 @@ class BaseService extends Base {
     return await this.get({
       url: `${this.baseUrl}/scenic/order/detail`,
       data: { id },
-      loadingTitle: "加载中"
+      loadingTitle: "正在加载"
     });
   }
 
@@ -577,7 +577,7 @@ class BaseService extends Base {
     return await this.get({
       url: `${this.baseUrl}/hotel/order/detail`,
       data: { id },
-      loadingTitle: "加载中"
+      loadingTitle: "正在加载"
     });
   }
 
@@ -585,7 +585,7 @@ class BaseService extends Base {
     return await this.get({
       url: `${this.baseUrl}/order/detail`,
       data: { id },
-      loadingTitle: "加载中"
+      loadingTitle: "正在加载"
     });
   }
 
@@ -593,7 +593,7 @@ class BaseService extends Base {
     return await this.get({
       url: `${this.baseUrl}/catering/meal_ticket/order/detail`,
       data: { id },
-      loadingTitle: "加载中"
+      loadingTitle: "正在加载"
     });
   }
 
@@ -601,7 +601,7 @@ class BaseService extends Base {
     return await this.get({
       url: `${this.baseUrl}/catering/set_meal/order/detail`,
       data: { id },
-      loadingTitle: "加载中"
+      loadingTitle: "正在加载"
     });
   }
 }

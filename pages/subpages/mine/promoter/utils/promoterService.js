@@ -44,7 +44,7 @@ class PromoterService extends BaseService {
       (await this.get({
         url: `${this.baseUrl}/promoter/customer_list`,
         data: cleanObject({ keywords, page, limit }),
-        loadingTitle: "加载中"
+        loadingTitle: "正在加载"
       })) || {};
     return list;
   }

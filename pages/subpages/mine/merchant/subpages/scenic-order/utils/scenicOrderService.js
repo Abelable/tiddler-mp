@@ -6,7 +6,7 @@ class ScenicOrderService extends MerchantService {
       (await this.get({
         url: `${this.baseUrl}/scenic/shop/order/list`,
         data: { status, page, limit, shopId },
-        loadingTitle: "加载中"
+        loadingTitle: "正在加载"
       })) || {};
     return list;
   }
@@ -15,7 +15,7 @@ class ScenicOrderService extends MerchantService {
     return await this.get({
       url: `${this.baseUrl}/scenic/shop/order/detail`,
       data: { shopId, orderId },
-      loadingTitle: "加载中"
+      loadingTitle: "正在加载"
     });
   }
 

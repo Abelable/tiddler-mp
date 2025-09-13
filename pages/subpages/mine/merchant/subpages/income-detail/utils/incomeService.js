@@ -11,7 +11,7 @@ class IncomeService extends MerchantService {
     const { list = [] } = await this.post({
       url: `${this.baseUrl}/scenic/shop/income/order_list`,
       data: { shopId, timeType, statusList, page, limit },
-      loadingTitle: "加载中"
+      loadingTitle: "正在加载"
     });
     return list;
   }
@@ -26,7 +26,7 @@ class IncomeService extends MerchantService {
     const { list = [] } = await this.post({
       url: `${this.baseUrl}/hotel/shop/income/order_list`,
       data: { shopId, timeType, statusList, page, limit },
-      loadingTitle: "加载中"
+      loadingTitle: "正在加载"
     });
     return list;
   }
@@ -41,7 +41,7 @@ class IncomeService extends MerchantService {
     const { list = [] } = await this.post({
       url: `${this.baseUrl}/catering/shop/income/order_list`,
       data: { shopId, timeType, statusList, page, limit },
-      loadingTitle: "加载中"
+      loadingTitle: "正在加载"
     });
     return list;
   }
@@ -56,7 +56,7 @@ class IncomeService extends MerchantService {
     const { list = [] } = await this.post({
       url: `${this.baseUrl}/shop/income/order_list`,
       data: { shopId, timeType, statusList, page, limit },
-      loadingTitle: "加载中"
+      loadingTitle: "正在加载"
     });
     return list;
   }

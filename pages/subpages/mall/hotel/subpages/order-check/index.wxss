@@ -1,18 +1,17 @@
-.nav-bar {
+.header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 44px;
-  box-sizing: inherit;
   z-index: 100;
 }
-.nav-bar.active {
-  background: #00B2FF;
+.header.active {
+  background: var(--blue-4);
 }
-.nav-bar-unit {
-  padding: 0 8px;
-  width: 48px;
+.nav-bar {
+  padding-left: 8px;
+  padding-right: 40px;
+  height: 44px;
 }
 .hotel-name {
   flex: 1;
@@ -23,6 +22,7 @@
 }
 .english-name {
   font-size: 10px;
+  font-weight: 300;
 }
 
 .container {
@@ -114,7 +114,7 @@
 
 .cancellable-status {
   margin-top: 24rpx;
-  color: var(--blue-2);
+  color: var(--blue-4);
   font-size: 24rpx;
 }
 .cancellable-status.uncancellable {
@@ -164,7 +164,7 @@
 }
 
 .rule-tips {
-  margin-top: 32rpx;
+  margin-top: 48rpx;
 }
 .rule-title {
   margin-top: 24rpx;

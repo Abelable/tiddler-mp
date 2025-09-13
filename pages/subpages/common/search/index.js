@@ -245,7 +245,7 @@ Page({
       (await baseService.searchLiveRoomList({
         keywords,
         page: ++this.livePage,
-        loadingTitle: "加载中"
+        loadingTitle: "正在加载"
       })) || {};
     this.setData({
       liveList: init ? list : [...liveList, ...list],
@@ -268,7 +268,7 @@ Page({
       (await baseService.searchScenicList({
         keywords,
         page: ++this.scenicPage,
-        loadingTitle: "加载中"
+        loadingTitle: "正在加载"
       })) || {};
     this.setData({
       scenicList: init ? list : [...scenicList, ...list],
@@ -291,7 +291,7 @@ Page({
       (await baseService.searchHotelList({
         keywords,
         page: ++this.hotelPage,
-        loadingTitle: "加载中"
+        loadingTitle: "正在加载"
       })) || {};
     this.setData({
       hotelList: init ? list : [...hotelList, ...list],
@@ -314,7 +314,7 @@ Page({
       (await baseService.searchRestaurantList({
         keywords,
         page: ++this.restaurantPage,
-        loadingTitle: "加载中"
+        loadingTitle: "正在加载"
       })) || {};
     this.setData({
       restaurantList: init ? list : [...restaurantList, ...list],
@@ -337,7 +337,7 @@ Page({
       (await baseService.searchGoodsList({
         keywords,
         page: ++this.goodsPage,
-        loadingTitle: "加载中"
+        loadingTitle: "正在加载"
       })) || [];
     this.setData({
       goodsList: init ? list : [...goodsList, ...list],
@@ -360,7 +360,7 @@ Page({
       (await baseService.searchUserList({
         keywords,
         page: ++this.userPage,
-        loadingTitle: "加载中"
+        loadingTitle: "正在加载"
       })) || [];
     this.setData({
       userList: init ? list : [...userList, ...list],

@@ -9,7 +9,7 @@
   </view>
   <view class="loading row center" wx:if="{{list.length && loading}}">
     <image class="loading-icon" src="https://static.tiddler.cn/mp/loading.gif" />
-    <text>加载中</text>
+    <text>正在加载</text>
   </view>
   <view class="no-more-tips" wx:if="{{!loading && finished && list.length}}">～没有更多啦～</view>
 </view>

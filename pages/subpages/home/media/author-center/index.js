@@ -199,7 +199,7 @@ Page({
       (await mediaService.getNoteList({
         authorId: this.authorId,
         page: ++this.notePage,
-        loadingTitle: "加载中"
+        loadingTitle: "正在加载"
       })) || {};
     this.setData({
       noteList: init ? list : [...noteList, ...list],

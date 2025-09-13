@@ -11,7 +11,7 @@ class ScenicService extends MallService {
       (await this.get({
         url: `${this.baseUrl}/scenic/list`,
         data: cleanObject({ keywords, categoryId, sort, order, page, limit }),
-        loadingTitle: "加载中"
+        loadingTitle: "正在加载"
       })) || {};
     return list;
   }
@@ -33,7 +33,7 @@ class ScenicService extends MallService {
     return await this.get({
       url: `${this.baseUrl}/scenic/order/payment_amount`,
       data: { ticketId, categoryId, timeStamp, num },
-      loadingTitle: "加载中"
+      loadingTitle: "正在加载"
     });
   }
 
@@ -72,7 +72,7 @@ class ScenicService extends MallService {
     return await this.get({
       url: `${this.baseUrl}/scenic/question/list`,
       data: { scenicId, page, limit },
-      loadingTitle: "加载中"
+      loadingTitle: "正在加载"
     });
   }
 
@@ -96,7 +96,7 @@ class ScenicService extends MallService {
     return await this.get({
       url: `${this.baseUrl}/scenic/answer/list`,
       data: { questionId, page, limit },
-      loadingTitle: "加载中"
+      loadingTitle: "正在加载"
     });
   }
 
@@ -120,7 +120,7 @@ class ScenicService extends MallService {
     return await this.get({
       url: `${this.baseUrl}/scenic/evaluation/list`,
       data: { scenicId, page, limit },
-      loadingTitle: "加载中"
+      loadingTitle: "正在加载"
     });
   }
 }

@@ -62,7 +62,7 @@ Page({
         (await fanService.getFollowList({
           authorId: this.authorId,
           page: ++this.followPage,
-          loadingTitle: "加载中",
+          loadingTitle: "正在加载",
         })) || {};
       this.setData({
         followList: init ? list : [...followList, ...list],
@@ -85,7 +85,7 @@ Page({
         (await fanService.getFanList({
           authorId: this.authorId,
           page: ++this.fanPage,
-          loadingTitle: "加载中",
+          loadingTitle: "正在加载",
         })) || {};
       this.setData({
         fanList: init ? list : [...fanList, ...list],

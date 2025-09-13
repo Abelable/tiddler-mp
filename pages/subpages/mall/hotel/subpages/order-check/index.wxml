@@ -1,14 +1,13 @@
 <wxs module="TIME" src="/utils/filters/time.wxs" />
 
-<view class="nav-bar row {{ navBarActive ? 'active' : '' }}" style="padding-top: {{statusBarHeight}}px;">
-  <view class="nav-bar-unit">
+<view class="header {{ navBarActive ? 'active' : '' }}" style="padding-top: {{statusBarHeight}}px;">
+  <view class="nav-bar row">
     <back-icon />
+    <view class="hotel-name">
+      <view>{{hotelPreOrderInfo.hotelName}}</view>
+      <view class="english-name">{{hotelPreOrderInfo.hotelEnglishName}}</view>
+    </view>
   </view>
-  <view class="hotel-name">
-    <view>{{hotelPreOrderInfo.hotelName}}</view>
-    <view class="english-name">{{hotelPreOrderInfo.hotelEnglishName}}</view>
-  </view>
-  <view class="nav-bar-unit" />
 </view>
 
 <view class="container" style="padding-top: {{statusBarHeight + 56}}px;">

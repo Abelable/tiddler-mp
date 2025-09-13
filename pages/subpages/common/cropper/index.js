@@ -18,7 +18,7 @@ Page({
       sizeType: ["original", "compressed"],
       sourceType: ["album", "camera"],
       success: (res) => {
-        wx.showLoading({ title: "加载中" });
+        wx.showLoading({ title: "正在加载" });
         this.cropper.imgReset();
         this.setData({
           src: res.tempFilePaths[0],

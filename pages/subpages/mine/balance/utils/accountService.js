@@ -11,7 +11,7 @@ class AccountService extends BaseService {
     const { list = [] } = await this.get({
       url: `${this.baseUrl}/account/change_log_list`,
       data: { accountId, page, limit },
-      loadingTitle: "加载中"
+      loadingTitle: "正在加载"
     });
     return list;
   }

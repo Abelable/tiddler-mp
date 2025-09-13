@@ -13,7 +13,7 @@ class CateringService extends MallService {
       (await this.get({
         url: `${this.baseUrl}/catering/restaurant/list`,
         data: cleanObject({ keywords, categoryId, sort, order, page, limit }),
-        loadingTitle: "加载中",
+        loadingTitle: "正在加载",
       })) || {};
     return list;
   }
@@ -50,7 +50,7 @@ class CateringService extends MallService {
     return await this.get({
       url: `${this.baseUrl}/catering/meal_ticket/order/payment_amount`,
       data: { ticketId, num },
-      loadingTitle: "加载中",
+      loadingTitle: "正在加载",
     });
   }
 
@@ -66,7 +66,7 @@ class CateringService extends MallService {
     return await this.get({
       url: `${this.baseUrl}/catering/set_meal/order/payment_amount`,
       data: { setMealId, num },
-      loadingTitle: "加载中",
+      loadingTitle: "正在加载",
     });
   }
 
@@ -82,7 +82,7 @@ class CateringService extends MallService {
     return await this.get({
       url: `${this.baseUrl}/catering/question/list`,
       data: { restaurantId, page, limit },
-      loadingTitle: "加载中",
+      loadingTitle: "正在加载",
     });
   }
 
@@ -106,7 +106,7 @@ class CateringService extends MallService {
     return await this.get({
       url: `${this.baseUrl}/catering/answer/list`,
       data: { questionId, page, limit },
-      loadingTitle: "加载中",
+      loadingTitle: "正在加载",
     });
   }
 

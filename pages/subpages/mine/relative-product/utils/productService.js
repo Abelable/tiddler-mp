@@ -6,7 +6,7 @@ class ProductService extends BaseService {
     return await this.post({
       url: `${this.baseUrl}/scenic/media_relative_list`,
       data: cleanObject({ keywords, scenicIds, page, limit }),
-      loadingTitle: "加载中"
+      loadingTitle: "正在加载"
     });
   }
 
@@ -14,7 +14,7 @@ class ProductService extends BaseService {
     return await this.post({
       url: `${this.baseUrl}/hotel/media_relative_list`,
       data: cleanObject({ keywords, hotelIds, page, limit }),
-      loadingTitle: "加载中"
+      loadingTitle: "正在加载"
     });
   }
 
@@ -22,7 +22,7 @@ class ProductService extends BaseService {
     return await this.post({
       url: `${this.baseUrl}/catering/restaurant/media_relative_list`,
       data: cleanObject({ keywords, restaurantIds, page, limit }),
-      loadingTitle: "加载中"
+      loadingTitle: "正在加载"
     });
   }
 
@@ -30,7 +30,7 @@ class ProductService extends BaseService {
     return await this.post({
       url: `${this.baseUrl}/goods/media_relative_list`,
       data: cleanObject({ keywords, goodsIds, page, limit }),
-      loadingTitle: "加载中"
+      loadingTitle: "正在加载"
     });
   }
 }
