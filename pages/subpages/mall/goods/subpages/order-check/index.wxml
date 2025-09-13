@@ -46,8 +46,11 @@
             </view>
             <image class="change-arrow" src="./images/arrow_black.png" />
           </view>
-          <view class="pickup-address-detail" wx:if="{{pickupAddressList[curPickupAddressIdx].name}}">
-            {{pickupAddressList[curPickupAddressIdx].addressDetail}}
+          <view class="pickup-address-detail-wrap row" wx:if="{{pickupAddressList[curPickupAddressIdx].name}}">
+            <image class="pickup-address-icon" src="./images/address_gray.png" />
+            <view class="pickup-address-detail omit single">
+              {{pickupAddressList[curPickupAddressIdx].addressDetail}}
+            </view>
           </view>
         </view>
         <view class="distance-info-wrap" bindtap="navigation">
