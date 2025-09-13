@@ -266,7 +266,6 @@
   height: 24rpx;
 }
 
-/* 订单列表 */
 .order-header {
   padding-bottom: 20rpx;
   font-size: 28rpx;
@@ -285,8 +284,7 @@
   margin-bottom: 0;
 }
 .goods-img {
-  margin-left: 8rpx;
-  margin-right: 18rpx;
+  margin-right: 24rpx;
   width: 184rpx;
   height: 184rpx;
   border-radius: 32rpx;
