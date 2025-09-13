@@ -1,9 +1,11 @@
 import CateringService from "../../utils/cateringService";
 
 const cateringService = new CateringService();
+const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Component({
   data: {
+    statusBarHeight,
     restaurantName: "",
     ticketInfo: null,
     paymentAmount: 0,
@@ -108,21 +110,19 @@ Component({
     },
 
     async pay(orderId) {
-      const payParams = await cateringService.getMealTicketPayParams(
-        orderId
-      );
+      const payParams = await cateringService.getMealTicketPayParams(orderId);
       wx.requestPayment({
         ...payParams,
         success: () => {
-           wx.navigateTo({
-            url: "/pages/subpages/mine/order/index?type=3&status=2",
+          wx.navigateTo({
+            url: "/pages/subpages/mine/order/index?type=3&status=2"
           });
         },
         fail: () => {
           wx.navigateTo({
-            url: "/pages/subpages/mine/order/index?type=3&status=1",
+            url: "/pages/subpages/mine/order/index?type=3&status=1"
           });
-        },
+        }
       });
     },
 

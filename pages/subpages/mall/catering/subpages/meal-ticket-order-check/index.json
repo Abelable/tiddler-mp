@@ -1,6 +1,8 @@
 {
-  "navigationBarTitleText": "提交订单",
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "white",
   "usingComponents": {
+    "back-icon": "/components/back-icon-white/index",
     "van-stepper": "@vant/weapp/stepper/index",
     "price-unit": "/components/price-unit/index",
     "notice-popup": "./components/notice-popup/index"

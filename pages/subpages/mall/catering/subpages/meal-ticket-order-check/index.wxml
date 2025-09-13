@@ -1,8 +1,27 @@
-<view class="container">
-  <view class="card">
-    <view class="ticket">
-      <view class="ticket-title">{{restaurantName}}代金券</view>
-      <view class="ticket-name">{{ticketInfo.price}}代{{ticketInfo.originalPrice}}元代金券</view>
+<view class="container" style="padding-top: {{statusBarHeight}}px;">
+  <view class="header row">
+    <back-icon />
+    <view class="title">确认订单</view>
+  </view>
+
+  <view class="ticket">
+    <view class="ticket-header">
+      <view class="restaurant-name">{{restaurantName}}</view>
+      <view class="ticket-name-wrap row between">
+        <view class="ticket-name">{{ticketInfo.originalPrice}}元代金券</view>
+        <view class="ticket-price row">
+          <price-unit price="{{ticketInfo.price || 0}}" fontSize="28rpx" integerFontSize="42rpx" />
+          <view class="discount">{{ discount }}折</view>
+        </view>
+      </view>
+    </view>
+    <image class="split-line" mode="widthFix" src="https://static.tiddler.cn/mp/order/card_split_line.png" />
+    <view class="ticket-content">
+      <view class="count-control row between">
+        <view class="count-control-title">购买数量</view>
+        <van-stepper value="{{ num }}" bind:change="numChange" max="{{ticketInfo.limitNumber || 10000}}" integer />
+      </view>
+
       <view class="ticket-tips-wrap">
         <view class="ticket-tips row" wx:if="{{limitTips}}">
           <view class="tips-title">限制</view>
@@ -18,19 +37,6 @@
           <view class="tips-content">随时退·过期自动退</view>
         </view>
       </view>
-      <view class="split-line row">
-        <view class="line"></view>
-        <view class="left-circle"></view>
-        <view class="right-circle"></view>
-      </view>
-    </view>
-
-    <view class="price-wrap row between">
-      <view class="row">
-        <price-unit price="{{ticketInfo.price || 0}}" fontSize="28rpx" integerFontSize="42rpx" color="#F66B38" unitColor="#F66B38" />
-        <view class="discount">{{ discount }}折</view>
-      </view>
-      <van-stepper value="{{ num }}" bind:change="numChange" max="{{ticketInfo.buyLimit || 10000}}" integer />
     </view>
   </view>
 </view>
@@ -38,7 +44,7 @@
 <view class="bottom-bar row between">
   <view class="row">
     <view class="price-label">合计</view>
-    <price-unit price="{{paymentAmount || 0}}" fontSize="28rpx" integerFontSize="42rpx" color="#F66B38" unitColor="#F66B38" />
+    <price-unit price="{{paymentAmount || 0}}" fontSize="28rpx" integerFontSize="42rpx" />
   </view>
   <button class="submit-btn {{consignee && mobile ? 'active' : ''}}" bindtap="submit">提交订单</button>
 </view>
