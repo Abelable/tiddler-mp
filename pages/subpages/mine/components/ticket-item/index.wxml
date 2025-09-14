@@ -1,52 +1,39 @@
 <view class="ticket">
-  <view class="main-info">
+  <view class="ticket-name-wrap row between">
     <view class="ticket-name">
       {{ticketInfo.name}} {{ticketInfo.categoryName}}
     </view>
-    <view class="scenic-list">
-      <view class="scenic-item row" wx:for="{{ticketInfo.scenicList}}" wx:key="index">
-        <image class="scenic-cover" src="{{item.cover}}" mode="aspectFill" />
-        <view class="scenic-name omit single">{{item.name}}</view>
-        <view 
-          class="qr-code-btn" 
-          wx:if="{{status === 301}}" 
-          catchtap="checkQRcode"
-          data-id="{{item.id}}"
-        >
-          入园凭证
-        </view>
-      </view>
-    </view>
-    <view class="row between">
-      <price-unit price="{{ticketInfo.price || 0}}" />
-      <view class="count-wrap">
-        <text>x</text>
-        <text class="count">{{ticketInfo.number}}</text>
-      </view>
-    </view>
+    <price-unit price="{{ticketInfo.price || 0}}" color="#333" />
   </view>
-  <view class="split-line">
-    <view class="line"></view>
-    <view class="left-circle"></view>
-    <view class="right-circle"></view>
+
+  <view class="validity-time-wrap row between">
+    <view class="validity-time">
+      <text>有效期</text>
+      <text class="validity-time-desc">{{validityTimeDesc}}</text>
+    </view>
+    <view class="number-info">共{{ticketInfo.number}}张</view>
   </view>
-  <view class="ticket-tips">
-    <view class="tips-wrap row">
-      <image class="tips-icon" src="./images/limit.png" />
-      <view class="tips">{{validityTimeDesc}}</view>
-    </view>
-    <view class="tips-wrap row">
-      <image class="tips-icon" src="./images/time.png" />
-      <view class="tips">
-        {{ticketInfo.effectiveTime ? ('出票' + ticketInfo.effectiveTime + '小时后可用') : '出票后立即可用'}}
-      </view>
-    </view>
-    <view class="tips-wrap row">
-      <image class="tips-icon" src="./images/tips.png" />
-      <view class="tips stress">
-        {{['随时可退', '有条件退', '不可退'][ticketInfo.refundStatus - 1]}}
-      </view>
-      <view class="tips" wx:if="{{!ticketInfo.needExchange}}">无需换票</view>
+
+  <view class="ticket-tips-wrap row">
+    <view class="ticket-tips">{{['随时可退', '有条件退', '不可退'][ticketInfo.refundStatus - 1]}}</view>
+    <view class="ticket-tips" wx:if="{{!ticketInfo.needExchange}}">无需换票</view>
+    <view class="ticket-tips">{{ticketInfo.effectiveTime ? ('出票' + ticketInfo.effectiveTime + '小时后可用') : '出票后立即可用'}}</view>
+  </view>
+
+  <view class="scenic-title">相关景点</view>
+  <view class="scenic-list">
+    <view 
+      class="scenic-item row" 
+      wx:for="{{ticketInfo.scenicList}}" 
+      wx:key="index"
+      catchtap="checkScenic"
+      data-id="{{item.id}}"
+    >
+      <image class="scenic-cover" src="{{item.cover}}" mode="aspectFill" />
+      <view class="scenic-name omit single">{{item.name}}</view>
+      <button class="qr-code-btn" wx:if="{{status === 301}}" catchtap="checkQRcode" data-id="{{item.id}}" hover-class="none">
+        入园凭证
+      </button>
     </view>
   </view>
 </view>

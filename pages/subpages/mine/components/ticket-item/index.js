@@ -18,7 +18,7 @@ Component({
         const endMonth = `${endDate.getMonth() + 1}`.padStart(2, "0");
         const endDay = `${endDate.getDate()}`.padStart(2, "0");
 
-        const validityTimeDesc = `${startYear}年${startMonth}月${startDay}日至${endYear}年${endMonth}月${endDay}日内有效`;
+        const validityTimeDesc = `${startYear}/${startMonth}/${startDay} 至 ${endYear}/${endMonth}/${endDay}`;
 
         this.setData({ validityTimeDesc });
       }
@@ -33,6 +33,12 @@ Component({
     checkQRcode(e) {
       const { id: scenicId } = e.currentTarget.dataset;
       this.triggerEvent("checkQRcode", { scenicId });
+    },
+
+    checkScenic(e) {
+      const { id } = e.currentTarget.dataset;
+      const url = `/pages/subpages/mall/scenic/subpages/scenic-detail/index?id=${id}`;
+      wx.navigateTo({ url });
     }
   }
 });
