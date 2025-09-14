@@ -1,0 +1,13 @@
+{
+  "navigationStyle": "custom",
+  "enablePullDownRefresh": true,
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "nav-bar": "/components/nav-bar/index",
+    "back-icon": "/components/back-icon-white/index",
+    "fall-flow": "/components/fall-flow/index",
+    "empty-illus": "/components/empty-illus/index",
+    "goods-item": "/components/goods-item/index",
+    "poster-modal": "/components/poster-modal/index"
+  }
+}

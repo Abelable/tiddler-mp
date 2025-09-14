@@ -2,6 +2,13 @@ import { cleanObject } from "../../../../../utils/index";
 import MallService from "../../utils/mallService";
 
 class ScenicService extends MallService {
+  async getShopInfo(id) {
+    return await this.get({
+      url: `${this.baseUrl}/scenic/shop/info`,
+      data: { id },
+    });
+  }
+
   async getScenicCategoryOptions() {
     return await this.get({ url: `${this.baseUrl}/scenic/category_options` });
   }

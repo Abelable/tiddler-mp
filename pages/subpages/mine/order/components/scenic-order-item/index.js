@@ -104,7 +104,7 @@ Component({
       });
     },
 
-    deleteOrder(e) {
+    deleteOrder() {
       wx.showModal({
         title: "确定删除该订单吗？",
         success: result => {
@@ -131,17 +131,16 @@ Component({
     },
 
     async checkQRcode(e) {
-      const { scenicId } = e.detail
+      const { scenicId } = e.detail;
       const { id } = this.properties.item;
       const verifyCode = await orderService.getScenicVerifyCode(id, scenicId);
       this.triggerEvent("checkQRcode", { verifyCode });
     },
 
-    // todo
-    // navToShop(e) {
-    //   const { id } = e.currentTarget.dataset
-    //   const url = `/pages/subpages/mall/goods/subpages/shop/index?id=${id}`
-    //   wx.navigateTo({ url })
-    // },
+    navToShop() {
+      const { shopId } = this.properties.item;
+      const url = `/pages/subpages/mall/scenic/subpages/shop/index?id=${shopId}`;
+      wx.navigateTo({ url });
+    }
   }
 });

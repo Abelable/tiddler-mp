@@ -19,7 +19,11 @@ let ctx = null;
 Component({
   properties: {
     scene: String,
-    info: Object
+    info: Object,
+    shopTypeList: {
+      type: Array,
+      value: ['个人店铺', '企业店铺']
+    }
   },
 
   lifetimes: {
@@ -56,7 +60,7 @@ Component({
 
     async createPoster() {
       const { avatar, nickname } = store.userInfo;
-      const { scene, info } = this.properties;
+      const { scene, info, shopTypeList } = this.properties;
       const {
         status,
         cover,
@@ -100,7 +104,7 @@ Component({
             "#e0d6cb",
             160,
             180,
-            shopInfo.type === 1 ? "个人店铺" : "企业店铺",
+            shopTypeList[shopInfo.type - 1],
             "center",
             true
           );

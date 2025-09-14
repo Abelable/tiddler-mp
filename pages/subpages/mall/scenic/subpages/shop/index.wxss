@@ -1,0 +1,67 @@
+.cover-wrap {
+  position: relative;
+  height: 480rpx;
+  font-size: 0;
+  overflow: hidden;
+}
+.cover {
+  width: 100%;
+  z-index: -1;
+}
+.back-icon-wrap {
+  position: absolute;
+  left: 8px;
+  height: 44px;
+}
+
+.container {
+  margin-top: -80rpx;
+  min-height: calc(100vh - 280rpx);
+  background: rgba(255, 255, 255, 0.68);
+  backdrop-filter: blur(8px);
+  border-radius: 48rpx 48rpx 0 0;
+}
+
+.shop-info-wrap {
+  position: relative;
+  padding: 24rpx;
+  padding-right: 32rpx;
+}
+.shop-logo {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 32rpx;
+}
+.info {
+  margin: 0 18rpx;
+  flex: 1;
+}
+.shop-name {
+  color: #333;
+  font-size: 32rpx;
+  font-weight: 550;
+  line-height: 1;
+}
+.authentication {
+  margin-top: 12rpx;
+  padding: 0 16rpx;
+  height: 36rpx;
+  width: fit-content;
+  color: var(--gold-1);
+  font-size: 18rpx;
+  font-weight: bold;
+  border-radius: 18rpx;
+  background: var(--blue-linear-2);
+}
+
+.share-icon {
+  position: absolute;
+  top: 32rpx;
+  right: 32rpx;
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.goods-list-wrap {
+  padding: 20rpx;
+}

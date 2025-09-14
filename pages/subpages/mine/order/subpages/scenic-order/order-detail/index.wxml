@@ -4,7 +4,7 @@
 <view class="container" wx:if="{{orderInfo}}">
   <view class="card">
     <view class="card-header row between">
-      <view class="shop-info row" catchtap="navToShop" data-id="{{orderInfo.shopId}}">
+      <view class="shop-info row" catchtap="contact">
         <image class="shop-logo" wx:if="{{orderInfo.shopLogo}}" src="{{orderInfo.shopLogo}}" />
         <view class="shop-name omit single">{{orderInfo.shopName}}</view>
         <image style="width: 20rpx; height: 20rpx;" src="/images/arrow_gray.png" />
@@ -96,13 +96,6 @@
     hover-class="none"
   >
     评价
-  </button>
-  <button 
-    class="btn active" 
-    bindtap="contact" 
-    hover-class="none"
-  >
-    联系商家
   </button>
 </view>
 
