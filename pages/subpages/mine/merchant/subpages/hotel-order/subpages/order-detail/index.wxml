@@ -3,7 +3,7 @@
 
 <view class="container" wx:if="{{orderInfo}}">
   <view class="card">
-    <room-item info="{{orderInfo.roomInfo || null}}" />
+    <room-item info="{{orderInfo.roomInfo || null}}" showHotelName />
     <view class="list row between">
       <view class="title">房间总价</view>
       <price-unit price="{{orderInfo.totalPrice || 0}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />

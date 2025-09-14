@@ -15,6 +15,9 @@
   font-size: 30rpx;
   font-weight: 500;
 }
+.room-name.show-hotel-name {
+  font-size: 28rpx;
+}
 
 .room-detail-wrap {
   flex: 1;

@@ -4,7 +4,10 @@
   <view class="room-item-main row">
     <image class="room-img" src="{{info.imageList[0]}}" mode="aspectFill" lazy-load />
     <view class="room-content">
-      <view class="room-name">{{info.typeName}}</view>
+      <view class="room-name {{showHotelName ? 'show-hotel-name' : ''}}">
+        <text wx:if="{{showHotelName}}">{{info.hotelName}} | </text>
+        <text>{{info.typeName}}</text>
+      </view>
       <view class="room-detail-wrap">
         <view class="room-info-list row">
           <view class="room-info" wx:if="{{info.breakfastNum}}">{{info.breakfastNum}}份早餐</view>

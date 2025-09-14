@@ -4,6 +4,10 @@ Component({
   },
 
   properties: {
-    info: Object
+    info: Object,
+    showHotelName: {
+      type: Boolean,
+      value: false
+    }
   },
 })

@@ -10,7 +10,7 @@
     <view class="order-status">{{ORDER.statusDesc(item.status, true)}}</view>
   </view>
   <view class="order-content">
-    <room-item info="{{item.roomInfo || null}}" />
+    <room-item info="{{item.roomInfo || null}}" showHotelName />
   </view>
   <view class="order-footer">
     <view class="total-info row baseline">
