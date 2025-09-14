@@ -157,8 +157,8 @@ Page({
   },
 
   navToShop() {
-    const { shopId } = this.data.orderInfo;
-    const url = `/pages/subpages/mall/scenic/subpages/shop/index?id=${shopId}`;
+    const { id } = this.data.orderInfo.shopInfo;
+    const url = `/pages/subpages/mall/scenic/subpages/shop/index?id=${id}`;
     wx.navigateTo({ url });
   },
 

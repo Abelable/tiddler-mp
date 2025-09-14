@@ -6,8 +6,8 @@
     <view class="card-header row between">
       <!-- todo 先不进行店铺跳转 catchtap="navToShop" -->
       <view class="shop-info row">
-        <image class="shop-logo" src="{{orderInfo.shopLogo}}" mode="aspectFill" lazy-load />
-        <view class="shop-name omit single">{{orderInfo.shopName}}</view>
+        <image class="shop-logo" src="{{orderInfo.shopInfo.logo}}" mode="aspectFill" lazy-load />
+        <view class="shop-name omit single">{{orderInfo.shopInfo.name}}</view>
         <!-- <image style="width: 20rpx; height: 20rpx;" src="/images/arrow_gray.png" /> -->
       </view>
       <view class="countdown-wrap row" wx:if="{{orderInfo.status === 101}}">
