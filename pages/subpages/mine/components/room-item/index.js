@@ -5,9 +5,6 @@ Component({
 
   properties: {
     info: Object,
-    showHotelName: {
-      type: Boolean,
-      value: false
-    }
+    showHotelName: Boolean
   },
 })

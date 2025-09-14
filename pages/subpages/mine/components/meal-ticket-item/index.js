@@ -24,16 +24,15 @@ Component({
         }
         if (overlayUsageLimit) {
           limitTipList.push(`单次可用${buyLimit}张`);
+        } else {
+          limitTipList.push("不限张数");
         }
 
         const usageTipsList = [];
         if (useTimeList.length) {
           usageTipsList.push("部分时段可用");
-        }
-        if (overlayUsageLimit) {
-          usageTipsList.push(`单次可用${overlayUsageLimit}张`);
         } else {
-          usageTipsList.push("不限张数");
+          usageTipsList.push("周一至周日");
         }
         if (inapplicableProducts.length) {
           usageTipsList.push("部分商品可用");
@@ -49,10 +48,11 @@ Component({
 
         this.setData({
           limitTips: limitTipList.join("，"),
-          usageTips: usageTipsList.slice(0, 3).join("｜"),
+          usageTips: usageTipsList.slice(0, 3).join(" · "),
         });
       },
     },
+    showRestaurantName: Boolean
   },
 
   data: {

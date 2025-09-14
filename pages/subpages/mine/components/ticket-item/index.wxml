@@ -29,7 +29,7 @@
       catchtap="checkScenic"
       data-id="{{item.id}}"
     >
-      <image class="scenic-cover" src="{{item.cover}}" mode="aspectFill" />
+      <image class="scenic-cover" src="{{item.cover}}" mode="aspectFill" lazy-load />
       <view class="scenic-name omit single">{{item.name}}</view>
       <button class="qr-code-btn" wx:if="{{status === 301}}" catchtap="checkQRcode" data-id="{{item.id}}" hover-class="none">
         入园凭证

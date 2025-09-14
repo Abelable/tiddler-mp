@@ -1,32 +1,26 @@
 <view class="ticket">
-  <view class="main-info">
-    <view class="restaurant-name">{{ ticketInfo.restaurantName }}</view>
-    <view class="ticket-name">{{ticketInfo.originalPrice}}元代金券</view>
-    <view class="row between">
-      <price-unit price="{{ticketInfo.price || 0}}" />
-      <view class="count-wrap">
-        <text>x</text>
-        <text class="count">{{ticketInfo.number}}</text>
+  <view class="ticket-info-wrap row">
+    <image class="restaurant-cover" src="{{ticketInfo.restaurantCover}}" mode="aspectFill" lazy-load />
+    <view class="ticket-info">
+      <view class="ticket-name-wrap">
+        <view class="ticket-name {{showRestaurantName ? 'show-restaurant-name' : ''}}">
+          <text wx:if="{{showRestaurantName}}">{{ticketInfo.restaurantName}} | </text>
+          <text>{{ticketInfo.originalPrice}}元代金券</text>
+        </view>
+        <view class="ticket-tips">{{ usageTips }}</view>
+        <view class="ticket-tips">随时退 · 过期自动退 · 到店</view>
+      </view>
+      <view class="price-wrap row between">
+        <price-unit price="{{ticketInfo.price || 0}}" color="#333" />
+        <view class="count-wrap">
+          <text>x</text>
+          <text class="count">{{ticketInfo.number}}</text>
+        </view>
       </view>
     </view>
   </view>
-  <view class="split-line">
-    <view class="line"></view>
-    <view class="left-circle"></view>
-    <view class="right-circle"></view>
-  </view>
-  <view class="ticket-tips-wrap">
-    <view class="ticket-tips row" wx:if="{{limitTips}}">
-      <view class="tips-title">限制</view>
-      <view class="tips-content">{{limitTips}}</view>
-    </view>
-    <view class="ticket-tips row" bindtap="showNoticePopup">
-      <view class="tips-title">须知</view>
-      <view class="tips-content">{{ usageTips }}</view>
-    </view>
-    <view class="ticket-tips row">
-      <view class="tips-title">保障</view>
-      <view class="tips-content">随时退·过期自动退</view>
-    </view>
+  <view class="limit-notice row" wx:if="{{limitTips}}">
+    <image class="notice-icon" src="https://static.tiddler.cn/mp/order/notice_icon.png" />
+    <view class="omit single">{{limitTips}}</view>
   </view>
 </view>

@@ -3,7 +3,7 @@
 <view class="order-item" catchtap="navToDetail">
   <view class="order-header row between">
     <view class="user-info row" catchtap="contact">
-      <image class="user-avatar" src="{{item.userInfo.avatar}}" />
+      <image class="user-avatar" src="{{item.userInfo.avatar}}" mode="aspectFill" lazy-load />
       <view class="user-name omit single">{{item.userInfo.nickname}}</view>
       <image style="width: 20rpx; height: 20rpx;" src="/images/arrow_gray.png" />
     </view>

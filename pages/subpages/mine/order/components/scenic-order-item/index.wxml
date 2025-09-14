@@ -4,7 +4,7 @@
 <view class="order-item" catchtap="navToDetail">
   <view class="list-header row between">
     <view class="shop-info row" catchtap="navToShop">
-      <image class="shop-logo" src="{{item.shopLogo}}" />
+      <image class="shop-logo" src="{{item.shopLogo}}" mode="aspectFill" lazy-load />
       <view class="shop-name omit single">{{item.shopName}}</view>
       <image style="width: 20rpx; height: 20rpx;" src="/images/arrow_gray.png" />
     </view>

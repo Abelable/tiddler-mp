@@ -4,7 +4,7 @@
 <view class="order-item" catchtap="navToDetail">
   <view class="list-header row between">
     <view class="hotel-info row" catchtap="navToHotel">
-      <image class="hotel-cover" src="{{item.hotelCover}}" />
+      <image class="hotel-cover" src="{{item.hotelCover}}" mode="aspectFill" lazy-load />
       <view class="hotel-name omit single">{{item.hotelName}}</view>
       <image style="width: 20rpx; height: 20rpx;" src="/images/arrow_gray.png" />
     </view>
