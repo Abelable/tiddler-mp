@@ -43,6 +43,10 @@ Component({
     refreshing: false,
     loading: false,
     finished: false,
+    nearbyMediaList: [],
+    nearbyRefreshing: false,
+    nearbyLoading: false,
+    nearbyFinished: false,
     scrollTop: 0
   },
 
@@ -115,16 +119,21 @@ Component({
     },
 
     setList(scene) {
-      const { curMenuIndex, followMediaList, mediaList } = this.data;
+      const { curMenuIndex, followMediaList, mediaList, nearbyMediaList } =
+        this.data;
       switch (scene) {
         case SCENE_SWITCH_TAB:
           if (curMenuIndex === 0) {
             if (!followMediaList.length) {
               this.setData({ followRefreshing: true });
             }
-          } else {
+          } else if (curMenuIndex === 1) {
             if (!mediaList.length) {
               this.setData({ refreshing: true });
+            }
+          } else {
+            if (!nearbyMediaList.length) {
+              this.setData({ nearbyRefreshing: true });
             }
           }
           this.setActiveMediaItem();
@@ -133,16 +142,20 @@ Component({
         case SCENE_REFRESH:
           if (curMenuIndex === 0) {
             this.setFollowMediaList(true);
-          } else {
+          } else if (curMenuIndex === 1) {
             this.setMediaList(true);
+          } else {
+            this.setNearbyMediaList(true);
           }
           break;
 
         case SCENE_LOADMORE:
           if (curMenuIndex === 0) {
             this.setFollowMediaList();
-          } else {
+          } else if (curMenuIndex === 1) {
             this.setMediaList();
+          } else {
+            this.setNearbyMediaList();
           }
           break;
       }
@@ -232,7 +245,8 @@ Component({
       const { mediaList } = this.data;
 
       this.setData({ loading: true });
-      const { list = [] } = (await homeService.getRandomMediaList(++this.page)) || {};
+      const { list = [] } =
+        (await homeService.getRandomMediaList(++this.page)) || {};
       if (init) {
         this.setData({
           mediaList: list,
@@ -249,6 +263,44 @@ Component({
       if (!list.length) {
         this.setData({ finished: true });
       }
+    },
+
+    setNearbyMediaList(init = false) {
+      checkLogin(async () => {
+        if (init) {
+          this.nearbyPage = 0;
+          this.setData({
+            nearbyMediaList: [],
+            nearbyRefreshing: true,
+            nearbyFinished: false
+          });
+        }
+        const { longitude = 0, latitude = 0 } = store.locationInfo || {};
+        const { nearbyMediaList } = this.data;
+
+        this.setData({ nearbyLoading: true });
+        const { list = [] } =
+          (await homeService.getMediaList({
+            longitude,
+            latitude,
+            page: ++this.nearbyPage
+          })) || {};
+        if (init) {
+          this.setData({
+            nearbyMediaList: list,
+            nearbyLoading: false,
+            nearbyRefreshing: false
+          });
+        } else {
+          this.setData({
+            nearbyMediaList: [...nearbyMediaList, ...list],
+            nearbyLoading: false
+          });
+        }
+        if (!list.length) {
+          this.setData({ nearbyFinished: true });
+        }
+      }, false);
     },
 
     onPageScroll(e) {
@@ -287,6 +339,15 @@ Component({
     register() {
       wx.navigateTo({
         url: "/pages/subpages/common/register/index"
+      });
+    },
+
+    openLocationSetting() {
+      wx.openSetting({
+        success: async () => {
+          await homeService.getLocationInfo();
+          this.setList(SCENE_REFRESH);
+        }
       });
     },
 
