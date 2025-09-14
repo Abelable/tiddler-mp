@@ -3,7 +3,7 @@
 
 <view class="container" wx:if="{{orderInfo}}">
   <view class="card">
-    <meal-ticket-item ticketInfo="{{orderInfo.ticketInfo || null}}" />
+    <meal-ticket-item ticketInfo="{{orderInfo.ticketInfo || null}}" showRestaurantName />
     <view class="list row between">
       <view class="title">餐券总价</view>
       <price-unit price="{{orderInfo.totalPrice || 0}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />

@@ -7,7 +7,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-left: 24rpx;
+  margin-left: 18rpx;
   flex: 1;
   height: 188rpx;
 }

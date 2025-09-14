@@ -4,9 +4,9 @@
 <view class="container" wx:if="{{orderInfo}}">
   <view class="card">
     <view class="card-header row between">
-      <view class="shop-info row" catchtap="navToShop">
-        <image class="shop-logo" wx:if="{{orderInfo.shopLogo}}" src="{{orderInfo.shopLogo}}" />
-        <view class="shop-name omit single">{{orderInfo.shopName}}</view>
+      <view class="restaurant-info row" catchtap="navToRestaurant">
+        <image class="header-restaurant-cover" src="{{orderInfo.restaurantCover}}" mode="aspectFill" lazy-load />
+        <view class="restaurant-name omit single">{{orderInfo.restaurantName}}</view>
         <image style="width: 20rpx; height: 20rpx;" src="/images/arrow_gray.png" />
       </view>
       <view class="countdown-wrap row" wx:if="{{orderInfo.status === 101}}">
@@ -17,10 +17,25 @@
     </view>
     <meal-ticket-item ticketInfo="{{orderInfo.ticketInfo || null}}" />
     <view class="list row between">
+      <view class="title">餐券总价</view>
+      <price-unit price="{{orderInfo.totalPrice || 0}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />
+    </view>
+    <view class="list row between" wx:if="{{orderInfo.deductionBalance}}">
+      <view class="title">余额抵扣</view>
+      <view class="row">
+        <text>-</text>
+        <price-unit price="{{orderInfo.deductionBalance || 0}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />
+      </view>
+    </view>
+    <view class="list row between">
       <view class="title">{{ORDER.paymentDesc(orderInfo.status)}}</view>
       <price-unit price="{{orderInfo.paymentAmount || 0}}" />
     </view>
     <view class="more-info-wrap">
+      <view class="list row top">
+        <view class="title">客户信息：</view>
+        <view class="content">{{orderInfo.consignee}}，{{orderInfo.mobile}}</view>
+      </view>
       <view class="list row between">
         <view class="title">订单编号：</view>
         <view>

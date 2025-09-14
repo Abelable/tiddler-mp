@@ -9,7 +9,7 @@
   font-size: 28rpx;
 }
 
-.restaurant-cover {
+.header-restaurant-cover {
   margin-right: 12rpx;
   width: 40rpx;
   height: 40rpx;

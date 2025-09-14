@@ -5,7 +5,6 @@
   margin-bottom: 0;
 }
 .goods-img {
-  margin-left: 8rpx;
   margin-right: 18rpx;
   width: 184rpx;
   height: 184rpx;
