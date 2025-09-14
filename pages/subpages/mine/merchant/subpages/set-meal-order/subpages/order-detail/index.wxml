@@ -3,7 +3,7 @@
 
 <view class="container" wx:if="{{orderInfo}}">
   <view class="card">
-    <set-meal-item info="{{orderInfo.setMealInfo || null}}" bind:checkDetail="navToSetMealDetail" />
+    <set-meal-item info="{{orderInfo.setMealInfo || null}}" showRestauranName />
     <view class="list row between">
       <view class="title">套餐总价</view>
       <price-unit price="{{orderInfo.totalPrice || 0}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />
@@ -23,10 +23,6 @@
       <view class="list row top">
         <view class="title">客户信息：</view>
         <view class="content">{{orderInfo.consignee}}，{{orderInfo.mobile}}</view>
-        <view class="copy-btn">
-          <text>｜</text>
-          <text style="color: #169dfe" bindtap="copyAddress">复制</text>
-        </view>
       </view>
       <view class="list row between">
         <view class="title">订单编号：</view>

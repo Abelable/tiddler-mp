@@ -10,7 +10,7 @@
     <view class="order-status">{{ORDER.statusDesc(item.status, true)}}</view>
   </view>
   <view class="order-content">
-    <set-meal-item info="{{item.setMealInfo || null}}" />
+    <set-meal-item info="{{item.setMealInfo || null}}" showRestauranName />
   </view>
   <view class="order-footer">
     <view class="total-info row baseline">

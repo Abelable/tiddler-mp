@@ -3,9 +3,9 @@
 
 <view class="order-item" catchtap="navToDetail">
   <view class="order-header row between">
-    <view class="shop-info row" catchtap="navToShop">
-      <image class="shop-logo" src="{{item.shopLogo}}" mode="aspectFill" lazy-load />
-      <view class="shop-name omit single">{{item.shopName}}</view>
+    <view class="restaurant-info row" catchtap="navToRestaurant">
+      <image class="header-restaurant-cover" src="{{item.restaurantCover}}" mode="aspectFill" lazy-load />
+      <view class="restaurant-name omit single">{{item.restaurantName}}</view>
       <image style="width: 20rpx; height: 20rpx;" src="/images/arrow_gray.png" />
     </view>
     <view class="row">

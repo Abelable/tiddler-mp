@@ -13,13 +13,14 @@
   font-size: 28rpx;
 }
 
-.shop-logo {
+.header-restaurant-cover {
   margin-right: 12rpx;
   width: 40rpx;
   height: 40rpx;
   border-radius: 50%;
 }
-.shop-name {
+.restaurant-name {
+  max-width: 240rpx;
   flex: 1;
   color: #333;
   font-weight: 500;

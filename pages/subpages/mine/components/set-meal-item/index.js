@@ -37,6 +37,7 @@ Component({
         this.setData({ discount, tips: tips.slice(0, 3).join("｜") });
       },
     },
+    showRestauranName: Boolean
   },
 
   data: {

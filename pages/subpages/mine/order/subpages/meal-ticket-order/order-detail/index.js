@@ -176,6 +176,5 @@ Page({
 
   onUnload() {
     clearInterval(this.countdownInterval);
-    this.storeBindings.destroyStoreBindings();
   }
 });
