@@ -121,13 +121,13 @@ Component({
         promoterInfo,
         authInfoId,
         scenicShopId,
-        scenicShopManagerList,
+        scenicShopManagerList = [],
         hotelShopId,
-        hotelShopManagerList,
+        hotelShopManagerList = [],
         cateringShopId,
-        cateringShopManagerList,
+        cateringShopManagerList = [],
         shopId,
-        shopManagerList
+        shopManagerList = []
       } = store.userInfo || {};
 
       const toolList = [
