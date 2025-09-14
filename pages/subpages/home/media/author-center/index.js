@@ -234,7 +234,7 @@ Page({
       if (res[0][curMenuIndex]) {
         const { height } = res[0][curMenuIndex];
         this.setData({
-          [`wrapHeightList[${curMenuIndex}]`]: height < 400 ? 400 : height
+          [`wrapHeightList[${curMenuIndex}]`]: height < 550 ? 550 : height
         });
       }
     });
