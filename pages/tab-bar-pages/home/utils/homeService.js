@@ -15,6 +15,13 @@ class HomeService extends BaseService {
     });
   }
 
+  async getRandomMediaList(page, limit = 10) {
+    return await this.get({
+      url: `${this.baseUrl}/media/random_list`,
+      data: { page, limit }
+    });
+  }
+
   async getFollowMediaList(page, limit = 10) {
     return await this.get({
       url: `${this.baseUrl}/media/follow_list`,

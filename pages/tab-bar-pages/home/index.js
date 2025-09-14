@@ -232,7 +232,7 @@ Component({
       const { mediaList } = this.data;
 
       this.setData({ loading: true });
-      const { list = [] } = (await homeService.getMediaList(++this.page)) || {};
+      const { list = [] } = (await homeService.getRandomMediaList(++this.page)) || {};
       if (init) {
         this.setData({
           mediaList: list,
