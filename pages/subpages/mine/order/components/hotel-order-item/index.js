@@ -134,13 +134,12 @@ Component({
       const { id, roomInfo } = this.properties.item;
       const url = `/pages/subpages/mine/order/subpages/hotel-order/evaluation/index?orderId=${id}&hotelId=${roomInfo.hotelId}`;
       wx.navigateTo({ url });
-    }
+    },
 
-    // todo
-    // navToShop(e) {
-    //   const { id } = e.currentTarget.dataset;
-    //   const url = `/pages/subpages/mall/goods/subpages/shop/index?id=${id}`;
-    //   wx.navigateTo({ url });
-    // },
+    navToHotel() {
+      const { hotelId } = this.properties.item;
+      const url = `/pages/subpages/mall/hotel/subpages/hotel-detail/index?id=${hotelId}`;
+      wx.navigateTo({ url });
+    },
   }
 });

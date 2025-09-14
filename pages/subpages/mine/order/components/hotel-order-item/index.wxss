@@ -16,6 +16,7 @@
   border-radius: 50%;
 }
 .hotel-name {
+  max-width: 240rpx;
   flex: 1;
   color: #333;
   font-weight: 500;
