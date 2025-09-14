@@ -6,7 +6,7 @@
       <text class="placeholder">搜索订单</text>
     </view>
   </view>
-  <view class="menu-wrap">
+  <view class="menu-wrap row center around">
     <view 
       class="menu-item {{curMenuIdx === index ? 'selected' : ''}} row center" 
       wx:for="{{menuList}}" wx:key="index" 
@@ -16,7 +16,7 @@
       <view class="total-spot" wx:if="{{item.total > 0}}" />
     </view>
   </view>
-  <view class="sub-menu-wrap">
+  <view class="sub-menu-wrap row center between">
     <view 
       class="sub-menu-item {{menuList[curMenuIdx].curSubMenuIdx === index ? 'selected' : ''}} row center" 
       wx:for="{{menuList[curMenuIdx].subMenuList}}" wx:key="index" 
@@ -28,7 +28,7 @@
   </view>
 </view>
 
-<view class="container" style="margin-top: {{statusBarHeight + 138}}px;">
+<view class="container" style="margin-top: {{statusBarHeight + 144}}px;">
   <view class="content" wx:if="{{curMenuIdx === 0}}">
     <view class="order-list">
       <scenic-order-item 

@@ -13,7 +13,7 @@
           catchtap="checkQRcode"
           data-id="{{item.id}}"
         >
-          查看券码
+          入园凭证
         </view>
       </view>
     </view>
