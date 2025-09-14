@@ -168,11 +168,10 @@ Page({
     wx.navigateTo({ url });
   },
 
-  // todo
-  navToShop() {
-    // const { shopId } = this.data.orderInfo;
-    // const url = `/pages/subpages/mall/goods/subpages/shop/index?id=${shopId}`
-    // wx.navigateTo({ url })
+  navToHotel() {
+    const { hotelId } = this.properties.orderInfo;
+    const url = `/pages/subpages/mall/hotel/subpages/hotel-detail/index?id=${hotelId}`;
+    wx.navigateTo({ url });
   },
 
   onUnload() {

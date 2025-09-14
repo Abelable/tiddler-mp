@@ -4,9 +4,9 @@
 <view class="container" wx:if="{{orderInfo}}">
   <view class="card">
     <view class="card-header row between">
-      <view class="shop-info row" catchtap="navToShop">
-        <image class="shop-logo" wx:if="{{orderInfo.shopLogo}}" src="{{orderInfo.shopLogo}}" />
-        <view class="shop-name omit single">{{orderInfo.shopName}}</view>
+      <view class="hotel-info row" catchtap="navToHotel">
+        <image class="hotel-cover" src="{{orderInfo.hotelCover}}" />
+        <view class="hotel-name omit single">{{orderInfo.hotelName}}</view>
         <image style="width: 20rpx; height: 20rpx;" src="/images/arrow_gray.png" />
       </view>
       <view class="countdown-wrap row" wx:if="{{orderInfo.status === 101}}">

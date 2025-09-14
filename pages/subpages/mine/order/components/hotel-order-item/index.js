@@ -120,7 +120,10 @@ Component({
 
     async checkQRcode() {
       const { id, roomInfo } = this.properties.item;
-      const verifyCode = await orderService.getHotelVerifyCode(id, roomInfo.hotelId);
+      const verifyCode = await orderService.getHotelVerifyCode(
+        id,
+        roomInfo.hotelId
+      );
       this.triggerEvent("checkQRcode", { verifyCode });
     },
 
@@ -140,6 +143,6 @@ Component({
       const { hotelId } = this.properties.item;
       const url = `/pages/subpages/mall/hotel/subpages/hotel-detail/index?id=${hotelId}`;
       wx.navigateTo({ url });
-    },
+    }
   }
 });
