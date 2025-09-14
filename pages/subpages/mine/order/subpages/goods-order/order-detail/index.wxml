@@ -1,7 +1,7 @@
 <wxs module="TIME" src="/utils/filters/time.wxs" />
 <wxs module="ORDER" src="../../../../utils/order.wxs" />
 
-<view class="container">
+<view class="container" wx:if="{{orderInfo}}">
   <view class="card" wx:if="{{orderInfo.deliveryMode === 1}}">
     <view class="ship-info-wrap" wx:if="{{packageList.length}}">
       <view class="package-info row" wx:if="{{packageList.length > 1}}">

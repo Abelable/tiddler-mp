@@ -1,7 +1,7 @@
 <wxs module="TIME" src="/utils/filters/time.wxs" />
 <wxs module="ORDER" src="../../../../../utils/setMealOrder.wxs" />
 
-<view class="container">
+<view class="container" wx:if="{{orderInfo}}">
   <view class="card">
     <set-meal-item info="{{orderInfo.setMealInfo || null}}" bind:checkDetail="navToSetMealDetail" />
     <view class="list row between">

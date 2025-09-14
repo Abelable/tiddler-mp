@@ -1,7 +1,7 @@
 <wxs module="TIME" src="/utils/filters/time.wxs" />
 <wxs module="ORDER" src="../../../../../utils/mealTicketOrder.wxs" />
 
-<view class="container">
+<view class="container" wx:if="{{orderInfo}}">
   <view class="card">
     <meal-ticket-item ticketInfo="{{orderInfo.ticketInfo || null}}" />
     <view class="list row between">

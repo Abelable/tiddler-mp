@@ -1,7 +1,7 @@
 <wxs module="TIME" src="/utils/filters/time.wxs" />
 <wxs module="ORDER" src="../../../../utils/hotelOrder.wxs" />
 
-<view class="container">
+<view class="container" wx:if="{{orderInfo}}">
   <view class="card">
     <view class="card-header row between">
       <view class="shop-info row" catchtap="navToShop">
