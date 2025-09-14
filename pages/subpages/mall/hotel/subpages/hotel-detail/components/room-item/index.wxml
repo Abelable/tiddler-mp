@@ -7,7 +7,7 @@
     <image class="more-icon" src="./images/more.png" />
   </view>
   <view class="cancellable-status row {{ roomInfo.cancellable ? '' : 'uncancellable' }}">
-    <image class="cancellable-icon" src="./images/{{roomInfo.cancellable ? '' : 'un'}}cancellable.png" />
+    <image class="cancellable-icon" src="https://static.tiddler.cn/mp/order/{{roomInfo.cancellable ? '' : 'un'}}cancellable.png" />
     <view>{{roomInfo.cancellable ? TIME.transform(checkInDate, 'MM月DD日') + "16点前取消扣除10%手续费" : "不可取消"}}</view>
   </view>
   <view class="shop-name">来自{{roomInfo.shopInfo.name}}</view>

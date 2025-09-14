@@ -12,7 +12,7 @@
 }
 .room-name {
   color: #333;
-  font-size: 28rpx;
+  font-size: 30rpx;
   font-weight: 500;
 }
 
@@ -20,7 +20,7 @@
   flex: 1;
 }
 .room-info-list {
-  margin-top: 12rpx;
+  margin-top: 16rpx;
 }
 .room-info {
   padding: 0 16rpx;
@@ -37,8 +37,8 @@
 }
 
 .cancellable-status {
-  margin-top: 12rpx;
-  color: #1dc3c1;
+  margin-top: 16rpx;
+  color: var(--blue-4);
   font-size: 24rpx;
 }
 .cancellable-status.uncancellable {

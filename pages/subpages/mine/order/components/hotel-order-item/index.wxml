@@ -3,9 +3,9 @@
 
 <view class="order-item" catchtap="navToDetail">
   <view class="list-header row between">
-    <view class="shop-info row" catchtap="navToShop">
-      <image class="shop-logo" src="{{item.shopLogo}}" />
-      <view class="shop-name omit single">{{item.shopName}}</view>
+    <view class="hotel-info row" catchtap="navToHotel">
+      <image class="hotel-cover" src="{{item.hotelCover}}" />
+      <view class="hotel-name omit single">{{item.hotelName}}</view>
       <image style="width: 20rpx; height: 20rpx;" src="/images/arrow_gray.png" />
     </view>
     <view class="row">
@@ -25,7 +25,7 @@
   <view class="list-footer">
     <view class="total-info row baseline">
       <view>{{ORDER.paymentDesc(item.status)}}：</view>
-      <price-unit price="{{item.paymentAmount || 0}}" fontSize="26rpx" integerFontSize="36rpx" />
+      <price-unit price="{{item.paymentAmount || 0}}" color="#333" fontSize="26rpx" integerFontSize="36rpx" />
     </view>
     <view class="btn-wrap">
       <button 

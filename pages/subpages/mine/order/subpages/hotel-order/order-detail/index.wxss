@@ -14,7 +14,7 @@
 }
 
 .shop-logo {
-  margin-right: 16rpx;
+  margin-right: 12rpx;
   width: 40rpx;
   height: 40rpx;
   border-radius: 50%;

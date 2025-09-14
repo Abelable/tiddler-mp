@@ -4,7 +4,7 @@
   <view class="room-item-main row">
     <image class="room-img" src="{{info.imageList[0]}}" mode="aspectFill" lazy-load />
     <view class="room-content">
-      <view class="room-name">{{info.hotelName}} | {{info.typeName}}</view>
+      <view class="room-name">{{info.typeName}}</view>
       <view class="room-detail-wrap">
         <view class="room-info-list row">
           <view class="room-info" wx:if="{{info.breakfastNum}}">{{info.breakfastNum}}份早餐</view>
@@ -12,7 +12,7 @@
           <view class="room-info">{{info.guestNum}}人入住</view>
         </view>
         <view class="cancellable-status row {{ info.cancellable ? '' : 'uncancellable' }}">
-          <image class="cancellable-icon" src="./images/{{info.cancellable ? '' : 'un'}}cancellable.png" />
+          <image class="cancellable-icon" src="https://static.tiddler.cn/mp/order/{{info.cancellable ? '' : 'un'}}cancellable.png" />
           <view>{{info.cancellable ? TIME.transform(info.checkInDate * 1000, 'MM月DD日') + "16点前取消扣除10%手续费" : "不可取消"}}</view>
         </view>
       </view>
