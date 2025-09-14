@@ -2,7 +2,7 @@
   margin-bottom: 24rpx;
   padding: 24rpx;
   background: #fff;
-  border-radius: 16rpx;
+  border-radius: 32rpx;
 }
 
 .list-header {
@@ -58,18 +58,17 @@
 .btn {
   margin-right: 16rpx;
   width: 160rpx;
-  height: 56rpx;
-  line-height: 54rpx;
-  text-align: center;
+  height: 60rpx;
+  color: #333;
   font-size: 26rpx;
-  color: var(--blue-1);
-  border-radius: 28rpx;
-  border: 1rpx solid var(--blue-1);
+  border-radius: 30rpx;
+  border: 0.5px solid #e1e1e1;
 }
 .btn.active {
-  color: #fff;
-  background: var(--blue-1);
+  color: var(--blue-1);
+  border: 0.5px solid var(--blue-1);
 }
 .btn:last-child {
   margin-right: 0;
 }
+

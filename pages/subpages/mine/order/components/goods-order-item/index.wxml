@@ -28,6 +28,25 @@
     </view>
     <view class="btn-wrap">
       <button 
+        class="btn" 
+        wx:if="{{item.status === 101}}" 
+        catchtap="confirmOrderCancel"
+        hover-class="none"
+      >取消订单</button>
+      <button 
+        class="btn" 
+        wx:if="{{item.status === 102 || item.status === 103 || item.status === 104}}" 
+        catchtap="deleteOrder"
+        hover-class="none"
+      >删除订单</button>
+      <button 
+        class="btn" 
+        wx:if="{{item.status === 501}}"
+        catchtap="navToEvaluation"
+        hover-class="none"
+      >查看评价</button>
+      <button class="btn" catchtap="navToDetail">查看详情</button>
+      <button 
         class="btn active" 
         wx:if="{{item.status === 301}}" 
         catchtap="confirmOrder"
@@ -57,25 +76,6 @@
         catchtap="navToEvaluation"
         hover-class="none"
       >评价</button>
-      <button 
-        class="btn" 
-        wx:if="{{item.status === 101}}" 
-        catchtap="confirmOrderCancel"
-        hover-class="none"
-      >取消订单</button>
-      <button 
-        class="btn" 
-        wx:if="{{item.status === 102 || item.status === 103 || item.status === 104}}" 
-        catchtap="deleteOrder"
-        hover-class="none"
-      >删除订单</button>
-      <button 
-        class="btn" 
-        wx:if="{{item.status === 501}}"
-        catchtap="navToEvaluation"
-        hover-class="none"
-      >查看评价</button>
-      <button class="btn" catchtap="navToDetail">查看详情</button>
     </view>
   </view>
 </view>

@@ -18,8 +18,8 @@
     </view>
     <view class="btn-wrap">
       <button class="btn" wx:if="{{item.status === 201}}" catchtap="refundOrder" hover-class="none">取消订单</button>
-      <button class="btn active" wx:if="{{item.status === 201}}" catchtap="approveOrder" hover-class="none">确认订单</button>
       <button class="btn" catchtap="navToDetail" hover-class="none">查看详情</button>
+      <button class="btn active" wx:if="{{item.status === 201}}" catchtap="approveOrder" hover-class="none">确认订单</button>
     </view>
   </view>
 </view>

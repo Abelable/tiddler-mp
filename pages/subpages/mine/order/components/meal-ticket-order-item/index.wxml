@@ -43,6 +43,13 @@
         取消订单
       </button>
       <button 
+        class="btn" 
+        catchtap="navToDetail"
+        hover-class="none"
+      >
+        查看详情
+      </button>
+      <button 
         class="btn active" 
         wx:if="{{item.status === 101}}" 
         catchtap="payOrder"
@@ -71,13 +78,6 @@
         hover-class="none"
       >
         评价
-      </button>
-      <button 
-        class="btn" 
-        catchtap="navToDetail"
-        hover-class="none"
-      >
-        查看详情
       </button>
     </view>
   </view>
