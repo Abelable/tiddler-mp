@@ -68,23 +68,25 @@
   position: absolute;
   left: 0;
   bottom: 0;
+  display: flex;
   padding: 16rpx;
   width: 100%;
-  display: flex;
-  align-items: center;
+  color: #fff;
+  font-size: 20rpx;
+  font-weight: 500;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
 }
 .address-icon {
   margin-right: 2rpx;
   width: 30rpx;
   height: 30rpx;
+  flex-shrink: 0;
 }
-.address-detail {
+.address-distance {
   flex: 1;
-  color: #fff;
-  font-size: 20rpx;
-  font-weight: 500;
+  white-space: nowrap;
 }
+
 .video-title {
   margin-top: 12rpx;
   padding: 0 10rpx;

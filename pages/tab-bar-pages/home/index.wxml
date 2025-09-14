@@ -135,6 +135,7 @@
           loading="{{nearbyLoading}}"
           finished="{{nearbyFinished}}"
           generic:item="media-item" 
+          showDistance
         />
         <view class="loading row center" wx:if="{{nearbyMediaList.length && nearbyLoading}}">
           <image class="loading-icon" src="https://static.tiddler.cn/mp/loading.gif" />

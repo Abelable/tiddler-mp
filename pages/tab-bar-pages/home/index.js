@@ -280,11 +280,11 @@ Component({
 
         this.setData({ nearbyLoading: true });
         const { list = [] } =
-          (await homeService.getMediaList({
+          (await homeService.getNearbyMediaList(
             longitude,
             latitude,
-            page: ++this.nearbyPage
-          })) || {};
+            ++this.nearbyPage
+          )) || {};
         if (init) {
           this.setData({
             nearbyMediaList: list,

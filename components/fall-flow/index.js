@@ -28,7 +28,8 @@ Component({
     showShopInfo: {
       type: Boolean,
       value: true
-    }
+    },
+    showDistance: Boolean
   },
 
   data: {

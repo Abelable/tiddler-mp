@@ -4,6 +4,7 @@ Component({
     mediaScene: {
       type: Number,
       value: 1
-    }
+    },
+    showDistance: Boolean
   }
-})
+});

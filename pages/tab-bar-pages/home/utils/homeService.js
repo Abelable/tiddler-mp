@@ -1,4 +1,3 @@
-import { cleanObject } from "../../../../utils/index";
 import BaseService from "../../../../services/baseService";
 
 class HomeService extends BaseService {
@@ -9,10 +8,10 @@ class HomeService extends BaseService {
     });
   }
 
-  async getMediaList({ page, longitude, latitude, limit = 10 }) {
+  async getMediaList(page, limit = 10) {
     return await this.get({
       url: `${this.baseUrl}/media/list`,
-      data: cleanObject({ page, limit, longitude, latitude })
+      data: { page, limit }
     });
   }
 
@@ -27,6 +26,13 @@ class HomeService extends BaseService {
     return await this.get({
       url: `${this.baseUrl}/media/follow_list`,
       data: { page, limit }
+    });
+  }
+
+  async getNearbyMediaList(longitude, latitude, page, limit = 10) {
+    return await this.get({
+      url: `${this.baseUrl}/media/nearby_list`,
+      data: { longitude, latitude, page, limit }
     });
   }
 }

@@ -1,3 +1,6 @@
+import { store } from "../../store/index";
+import { calcDistance } from "../../utils/index";
+
 Component({
   options: {
     addGlobalClass: true
@@ -8,11 +11,26 @@ Component({
     mediaScene: {
       type: Number,
       value: 1
-    }
+    },
+    showDistance: Boolean
   },
 
   data: {
-    visible: false
+    visible: false,
+    distance: 0
+  },
+
+  lifetimes: {
+    attached() {
+      const { showDistance, item } = this.properties;
+      if (showDistance) {
+        const { longitude: lo1 = 0, latitude: la1 = 0 } =
+          store.locationInfo || {};
+        const { longitude: lo2, latitude: la2 } = item;
+        const distance = lo1 ? calcDistance(la1, lo1, la2, lo2) : 0;
+        this.setData({ distance });
+      }
+    }
   },
 
   methods: {
