@@ -4,10 +4,11 @@
 <view class="container" wx:if="{{orderInfo}}">
   <view class="card">
     <view class="card-header row between">
-      <view class="shop-info row" catchtap="contact">
-        <image class="shop-logo" wx:if="{{orderInfo.shopLogo}}" src="{{orderInfo.shopLogo}}" />
+      <!-- todo 先不进行店铺跳转 catchtap="navToShop" -->
+      <view class="shop-info row">
+        <image class="shop-logo" src="{{orderInfo.shopLogo}}" mode="aspectFill" lazy-load />
         <view class="shop-name omit single">{{orderInfo.shopName}}</view>
-        <image style="width: 20rpx; height: 20rpx;" src="/images/arrow_gray.png" />
+        <!-- <image style="width: 20rpx; height: 20rpx;" src="/images/arrow_gray.png" /> -->
       </view>
       <view class="countdown-wrap row" wx:if="{{orderInfo.status === 101}}">
         <image class="alarm-icon" src="/images/alarm.png" />
@@ -96,6 +97,13 @@
     hover-class="none"
   >
     评价
+  </button>
+  <button 
+    class="btn active" 
+    bindtap="contact" 
+    hover-class="none"
+  >
+    联系商家
   </button>
 </view>
 

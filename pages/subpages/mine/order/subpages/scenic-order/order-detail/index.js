@@ -156,6 +156,12 @@ Page({
     wx.navigateTo({ url });
   },
 
+  navToShop() {
+    const { shopId } = this.data.orderInfo;
+    const url = `/pages/subpages/mall/scenic/subpages/shop/index?id=${shopId}`;
+    wx.navigateTo({ url });
+  },
+
   // todo
   navToAfterSale() {},
 

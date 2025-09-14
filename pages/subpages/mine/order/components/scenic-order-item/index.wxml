@@ -3,10 +3,11 @@
 
 <view class="order-item" catchtap="navToDetail">
   <view class="list-header row between">
-    <view class="shop-info row" catchtap="navToShop">
+    <!-- todo 先不进行店铺跳转 catchtap="navToShop" -->
+    <view class="shop-info row">
       <image class="shop-logo" src="{{item.shopLogo}}" mode="aspectFill" lazy-load />
       <view class="shop-name omit single">{{item.shopName}}</view>
-      <image style="width: 20rpx; height: 20rpx;" src="/images/arrow_gray.png" />
+      <!-- <image style="width: 20rpx; height: 20rpx;" src="/images/arrow_gray.png" /> -->
     </view>
     <view class="row">
       <view class="order-status">{{ORDER.statusDesc(item.status)}}</view>
