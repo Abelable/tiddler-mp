@@ -2,8 +2,9 @@
 
 <view class="order-item" catchtap="navToDetail">
   <view class="order-header row between">
-    <view class="contact-btn row" catchtap="contact">
-      <view>联系客户</view>
+    <view class="user-info row" catchtap="contact">
+      <image class="user-avatar" src="{{item.userInfo.avatar}}" />
+      <view class="user-name omit single">{{item.userInfo.nickname}}</view>
       <image style="width: 20rpx; height: 20rpx;" src="/images/arrow_gray.png" />
     </view>
     <view class="order-status">{{ORDER.statusDesc(item.status, true)}}</view>
