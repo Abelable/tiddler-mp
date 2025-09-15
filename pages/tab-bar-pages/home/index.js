@@ -47,7 +47,7 @@ Component({
     nearbyRefreshing: false,
     nearbyLoading: false,
     nearbyFinished: false,
-    scrollTop: 0
+    scrollTopList: [0, 0, 0]
   },
 
   pageLifetimes: {
@@ -91,7 +91,9 @@ Component({
           this.setList(SCENE_SWITCH_TAB);
         });
       } else {
-        this.setData({ scrollTop: 0 });
+        this.setData({
+          [`scrollTopList[${index}]`]: 0
+        });
       }
     },
 

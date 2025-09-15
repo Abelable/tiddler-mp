@@ -39,9 +39,11 @@
       refresher-triggered="{{followRefreshing}}"
       bindrefresherrefresh="onRefresh"
       bindscrolltolower="onLoadMore"
+      scroll-top="{{scrollTopList[0]}}"
       bindscroll="onPageScroll"
       refresher-enabled
       scroll-y
+      scroll-with-animation
     >
       <view class="content">
         <follow-media-item wx:for="{{followMediaList}}" wx:key="index" item="{{item}}" />
@@ -66,7 +68,7 @@
       refresher-triggered="{{refreshing}}"
       bindrefresherrefresh="onRefresh"
       bindscrolltolower="onLoadMore"
-      scroll-top="{{scrollTop}}"
+      scroll-top="{{scrollTopList[1]}}"
       bindscroll="onPageScroll"
       refresher-enabled
       scroll-y
@@ -124,9 +126,11 @@
       refresher-triggered="{{nearbyRefreshing}}"
       bindrefresherrefresh="onRefresh"
       bindscrolltolower="onLoadMore"
+      scroll-top="{{scrollTopList[2]}}"
       bindscroll="onPageScroll"
       refresher-enabled
       scroll-y
+      scroll-with-animation
     >
       <view class="content" style="margin-top: 4px;">
         <fall-flow 
