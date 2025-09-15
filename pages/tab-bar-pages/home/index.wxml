@@ -120,7 +120,7 @@
   <swiper-item>
     <scroll-view 
       class="content-wrap" 
-      style="padding-top: {{statusBarHeight + 100}}px;"
+      style="padding-top: {{statusBarHeight + 96}}px;"
       refresher-triggered="{{nearbyRefreshing}}"
       bindrefresherrefresh="onRefresh"
       bindscrolltolower="onLoadMore"
@@ -128,7 +128,7 @@
       refresher-enabled
       scroll-y
     >
-      <view class="content">
+      <view class="content" style="margin-top: 4px;">
         <fall-flow 
           class="fall-flow" 
           list="{{nearbyMediaList}}" 
