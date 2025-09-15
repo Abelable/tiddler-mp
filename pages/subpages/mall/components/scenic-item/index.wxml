@@ -11,7 +11,7 @@
     </view>
     <view class="scenic-item-distance row">
       <image class="scenic-item-distance-icon" src="./images/position.png" />
-      <text>相距{{distance}}km</text>
+      <text>相距{{distance}}</text>
     </view>
   </view>
 </view>

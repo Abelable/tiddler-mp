@@ -24,7 +24,7 @@ Component({
 
   data: {
     featureTagList: [],
-    distance: 0,
+    distance: "",
   },
 
   methods: {

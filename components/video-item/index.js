@@ -18,7 +18,7 @@ Component({
 
   data: {
     visible: false,
-    distance: 0
+    distance: ""
   },
 
   lifetimes: {

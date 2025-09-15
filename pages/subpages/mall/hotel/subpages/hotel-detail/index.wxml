@@ -100,7 +100,7 @@
     <view class="position-info-wrap row" bindtap="navigation">
       <view class="position-info">
         <view class="position">位于「国家森林公园」{{hotelInfo.address}}</view>
-        <view class="distance">距您{{distance}}km</view>
+        <view class="distance">距您{{distance}}</view>
       </view>
       <view class="navigation-btn">
         <view class="navigation-icon-wrap">

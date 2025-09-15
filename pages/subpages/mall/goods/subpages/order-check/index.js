@@ -13,7 +13,7 @@ Page({
     curMenuIdx: 0,
     preOrderInfo: null,
     addressPopupVisible: false,
-    distance: 0,
+    distance: "",
     pickupAddressList: [],
     curPickupAddressIdx: 0,
     pickupAddressPopupVisible: false,

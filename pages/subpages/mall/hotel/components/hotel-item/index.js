@@ -21,7 +21,7 @@ Component({
   },
 
   data: {
-    distance: 0,
+    distance: "",
   },
 
   methods: {

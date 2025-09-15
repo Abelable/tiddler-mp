@@ -29,7 +29,7 @@ Page({
     imageList: [],
     imageMenuList: [],
     imageCount: 0,
-    distance: 0,
+    distance: "",
     mediaList: [],
     loading: false,
     finished: false,

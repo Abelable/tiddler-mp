@@ -28,7 +28,7 @@ Component({
     imageList: [],
     imageMenuList: [],
     imageCount: 0,
-    distance: 0,
+    distance: "",
     curDot: 1,
     muted: true,
     indexList: [],

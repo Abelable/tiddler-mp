@@ -71,7 +71,7 @@ Component({
   },
 
   data: {
-    distance: 0,
+    distance: "",
     openStatus: false,
     openTimeDescList: [],
     facilityList: [],

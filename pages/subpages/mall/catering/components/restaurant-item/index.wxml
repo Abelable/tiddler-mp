@@ -27,7 +27,7 @@
       </view>
       <view class="position-wrap">
         <image class="position-icon" src="./images/position.png" />
-        <view class="position-content">{{item.address}}，距您{{distance}}km</view>
+        <view class="position-content">{{item.address}}，距您{{distance}}</view>
       </view>
     </view>
   </view>
