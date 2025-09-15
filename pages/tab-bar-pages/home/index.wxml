@@ -120,7 +120,7 @@
   <swiper-item>
     <scroll-view 
       class="content-wrap" 
-      style="padding-top: {{statusBarHeight + 96}}px;"
+      style="padding-top: {{statusBarHeight + 100}}px;"
       refresher-triggered="{{nearbyRefreshing}}"
       bindrefresherrefresh="onRefresh"
       bindscrolltolower="onLoadMore"
@@ -137,10 +137,6 @@
           generic:item="media-item" 
           showDistance
         />
-        <view class="loading row center" wx:if="{{nearbyMediaList.length && nearbyLoading}}">
-          <image class="loading-icon" src="https://static.tiddler.cn/mp/loading.gif" />
-          <text>正在加载</text>
-        </view>
         <view class="no-more-tips" wx:if="{{nearbyFinished && nearbyMediaList.length}}">～没有更多啦～</view>
         <empty-illus 
           wx:if="{{nearbyFinished && !nearbyMediaList.length}}" 
