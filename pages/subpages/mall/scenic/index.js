@@ -1,5 +1,4 @@
 import { store } from "../../../../store/index";
-import { customBack } from "../../../../utils/index";
 import ScenicService from "./utils/scenicService";
 
 const scenicService = new ScenicService();
@@ -13,7 +12,7 @@ Page({
       { icon: "", text: "综合排序", value: 0 },
       { icon: "", text: "好评排序", value: 1 },
       { icon: "", text: "价格降序", value: 2 },
-      { icon: "", text: "价格升序", value: 3 },
+      { icon: "", text: "价格升序", value: 3 }
     ],
     curCategoryId: 0,
     categoryOptions: [],
@@ -33,7 +32,7 @@ Page({
     const options = await scenicService.getScenicCategoryOptions();
     const categoryOptions = [
       { icon: "", text: "全部分类", value: 0 },
-      ...options.map((item) => ({ icon: "", text: item.name, value: item.id })),
+      ...options.map(item => ({ icon: "", text: item.name, value: item.id }))
     ];
     this.setData({ categoryOptions });
   },
@@ -104,11 +103,7 @@ Page({
 
   search() {
     wx.navigateTo({
-      url: '/pages/subpages/common/search/index?scene=4'
+      url: "/pages/subpages/common/search/index?scene=4"
     });
-  },
-
-  navBack() {
-    customBack();
   }
 });

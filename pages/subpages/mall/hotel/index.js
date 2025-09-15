@@ -149,10 +149,6 @@ Page({
     });
   },
 
-  navBack() {
-    wx.navigateBack();
-  },
-
   onUnload() {
     this.storeBindings.destroyStoreBindings();
   }

@@ -11,18 +11,14 @@
   display: flex;
   align-items: center;
   height: 44px;
-}
-.back-icon {
-  margin-left: 8px;
-  width: 20px;
-  height: 20px;
+  padding-left: 8px;
 }
 .search-bar {
   display: flex;
   align-items: center;
   margin-left: 8px;
   padding-left: 12px;
-  width: 200px;
+  width: 360rpx;
   height: 36px;
   border-radius: 18px;
   background: #f5f6f7;

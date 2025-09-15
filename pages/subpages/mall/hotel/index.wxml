@@ -2,7 +2,7 @@
 
 <view class="nav-bar" style="padding-top: {{statusBarHeight}}px;">
   <view class="search-bar-wrap" bindtap="search">
-    <image class="back-icon" src="https://img.ubo.vip/tiddler/nav-icon/back.png" bindtap="navBack" />
+    <back-icon />
     <view class="search-bar">
       <view class="calendar-bar" catchtap="showCalendarPopup">
         <view class="calendar-item">
@@ -14,7 +14,7 @@
           <text>{{TIME.transform(checkOutDate, 'MM-DD')}}</text>
         </view>
       </view>
-      <image class="search-icon" src="https://img.ubo.vip/tiddler/nav-icon/search.png" />
+      <image class="search-icon" src="/images/search.png" />
       <text class="placeholder">搜索酒店民宿</text>
     </view>
   </view>
