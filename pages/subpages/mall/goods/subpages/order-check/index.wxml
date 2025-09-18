@@ -44,7 +44,7 @@
             <view class="pickup-address-name omit single">
               {{pickupAddressList[curPickupAddressIdx].name || pickupAddressList[curPickupAddressIdx].addressDetail}}
             </view>
-            <image class="change-arrow" src="./images/arrow_black.png" />
+            <image class="change-arrow" src="/images/arrow_black.png" />
           </view>
           <view class="pickup-address-detail-wrap row" wx:if="{{pickupAddressList[curPickupAddressIdx].name}}">
             <image class="pickup-address-icon" src="./images/address_gray.png" />
@@ -56,7 +56,7 @@
         <view class="distance-info-wrap" bindtap="navigation">
           <view class="distance-info row">
             <view>距您{{pickupAddressList[curPickupAddressIdx].distance}}km</view>
-            <image class="distance-arrow" src="./images/arrow_black.png" />
+            <image class="distance-arrow" src="/images/arrow_black.png" />
           </view>
           <view class="pickup-address-logo-wrap">
             <image class="pickup-address-logo" src="{{pickupAddressList[curPickupAddressIdx].logo}}" />

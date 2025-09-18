@@ -1,7 +1,6 @@
 Component({
   properties: {
     userInfo: Object,
-    friendAvatarUrl: String,
     msgList: {
       type: Array,
       observer(val) {
@@ -11,6 +10,12 @@ Component({
   },
 
   data: {
+    questionList: [
+      "千岛湖景点乐园推荐",
+      "千岛湖酒店民宿推荐",
+      "千岛湖餐厅美食推荐",
+      "千岛湖特产商品推荐",
+    ],
     scrollTop: 0,
     stopScroll: false
   },

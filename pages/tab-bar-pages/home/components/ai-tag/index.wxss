@@ -20,9 +20,16 @@
   opacity: 0.8;
 }
 
-.robot-avatar-wrap, .robot-avatar {
+.robot-avatar-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 68rpx;
   height: 68rpx;
+}
+.robot-avatar {
+  width: 44rpx;
+  height: 44rpx;
 }
 .robot-avatar-wrap {
   transform-origin: center bottom;

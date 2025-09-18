@@ -1,11 +1,13 @@
 <wxs module="TIME" src="/utils/filters/time.wxs" />
 
 <view class="container">
-  <view class="header" style="margin-top: {{statusBarHeight}}px;">
-    <back-icon />
-    <view class="robot-name">
-      <image class="ai-icon" src="https://static.tiddler.cn/mp/ai/ai.png" />
-      <view>小鱼</view>
+  <view class="header" style="padding-top: {{statusBarHeight}}px;">
+    <view class="nav-bar">
+      <back-icon />
+      <view class="robot-name">
+        <image class="ai-icon" src="https://static.tiddler.cn/mp/ai/ai.png" />
+        <view>小鱼</view>
+      </view>
     </view>
   </view>
 

@@ -1,6 +1,10 @@
 .container {
+  position: fixed;
+  top: 0;
+  left: 0;
   display: flex;
   flex-direction: column;
+  width: 100vw;
   height: 100vh;
   background-color: #fff;
   background-image: url('https://static.tiddler.cn/mp/ai/bg.png');
@@ -9,6 +13,9 @@
 }
 
 .header {
+  padding-bottom: 24rpx;
+}
+.nav-bar {
   display: flex;
   align-items: center;
   padding-left: 8px;
