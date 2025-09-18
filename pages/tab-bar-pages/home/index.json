@@ -5,6 +5,7 @@
     "media-item": "/components/media-item",
     "empty-illus": "/components/empty-illus/index",
     "top-media": "./components/top-media/index",
-    "follow-media-item": "./components/follow-media-item/index"
+    "follow-media-item": "./components/follow-media-item/index",
+    "ai-tag": "./components/ai-tag/index"
   }
 }
