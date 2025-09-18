@@ -13,7 +13,7 @@
 }
 
 .header {
-  padding-bottom: 24rpx;
+  padding-bottom: 12rpx;
 }
 .nav-bar {
   display: flex;
@@ -136,7 +136,7 @@
   padding-left: 32rpx;
   padding-right: 8rpx;
   height: 88rpx;
-  background: rgba(255, 255, 255, 0.68);
+  background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(8px);
   border-radius: 44rpx;
 }

@@ -1,12 +1,12 @@
 Component({
   properties: {
-    userInfo: Object,
-    msgList: {
-      type: Array,
-      observer(val) {
-        if (val.length && !this.data.stopScroll) this.scrollToBottom();
-      }
-    }
+    userInfo: Object
+    // msgList: {
+    //   type: Array,
+    //   observer(val) {
+    //     if (val.length && !this.data.stopScroll) this.scrollToBottom();
+    //   }
+    // }
   },
 
   data: {
@@ -14,7 +14,41 @@ Component({
       "千岛湖景点乐园推荐",
       "千岛湖酒店民宿推荐",
       "千岛湖餐厅美食推荐",
-      "千岛湖特色商品推荐",
+      "千岛湖特色商品推荐"
+    ],
+    msgList: [
+      {
+        flow: "out",
+        value: "千岛湖景点乐园推荐"
+      },
+      {
+        flow: "in",
+        value: "千岛湖景点乐园推荐"
+      },
+      {
+        flow: "out",
+        value: "千岛湖景点乐园推荐"
+      },
+      {
+        flow: "in",
+        value: "千岛湖景点乐园推荐"
+      },
+      {
+        flow: "out",
+        value: "千岛湖景点乐园推荐"
+      },
+      {
+        flow: "in",
+        value: "千岛湖景点乐园推荐"
+      },
+      {
+        flow: "out",
+        value: "千岛湖景点乐园推荐"
+      },
+      {
+        flow: "in",
+        value: "千岛湖景点乐园推荐"
+      },
     ],
     scrollTop: 0,
     stopScroll: false

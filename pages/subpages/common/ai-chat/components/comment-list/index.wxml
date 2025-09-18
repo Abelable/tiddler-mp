@@ -2,21 +2,19 @@
   <view class="msg-list">
     <view class="msg-item">
       <view class="msg-detail">
-        <view class="content">
-          <view class="opening-remarks">
-            <view class="robot-info-wrap">
-              <view class="robot-info">
-                <view class="robot-name">Hi，我是智能助手小鱼</view>
-                <view class="robot-intro">关于千岛湖旅游的相关事宜，都可以找我咨询哦，快来聊聊吧！</view>
-              </view>
-              <image class="robot-avatar" src="https://static.tiddler.cn/mp/ai/robot.png" />
+        <view class="content opening-remarks">
+          <view class="robot-info-wrap">
+            <view class="robot-info">
+              <view class="robot-name">Hi，我是智能助手小鱼</view>
+              <view class="robot-intro">关于千岛湖旅游的相关事宜，都可以找我咨询哦，快来聊聊吧！</view>
             </view>
-            <view class="question-tips">您可以这样问</view>
-            <view class="question-list">
-              <view class="question-item" wx:for="{{questionList}}" wx:key="index">
-                <view class="question-content">{{item}}</view>
-                <image class="question-arrow" src="/images/arrow_black.png" />
-              </view>
+            <image class="robot-avatar" src="https://static.tiddler.cn/mp/ai/robot.png" />
+          </view>
+          <view class="question-tips">您可以这样问</view>
+          <view class="question-list">
+            <view class="question-item" wx:for="{{questionList}}" wx:key="index">
+              <view class="question-content">{{item}}</view>
+              <image class="question-arrow" src="/images/arrow_black.png" />
             </view>
           </view>
         </view>
