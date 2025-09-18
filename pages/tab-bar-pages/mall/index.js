@@ -19,7 +19,7 @@ Component({
       { name: "景点乐园", icon: "scenic" },
       { name: "酒店民宿", icon: "hotel" },
       { name: "餐厅美食", icon: "food" },
-      { name: "特产商品", icon: "goods" }
+      { name: "特色商品", icon: "goods" }
     ],
     pageLoaded: false,
     navBarActive: false,

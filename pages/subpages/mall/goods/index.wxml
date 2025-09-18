@@ -3,7 +3,7 @@
     <back-icon />
     <view class="search-bar" bindtap="search">
       <image class="search-icon" src="/images/search.png" />
-      <text class="placeholder">搜索特产商品</text>
+      <text class="placeholder">搜索特色商品</text>
     </view>
     <navigator class="cart-icon-wrap" url="./subpages/cart/index" hover-class="none">
       <image class="cart-icon" src="./images/cart.png"/>

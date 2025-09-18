@@ -21,7 +21,7 @@
         </view>
         <view class="category-item" data-index="3">
           <image class="category-icon sk-image"></image>
-          <view class="category-desc sk-transparent sk-text-14-2857-787 sk-text" style="background-position-x: 50%;">特产商品</view>
+          <view class="category-desc sk-transparent sk-text-14-2857-787 sk-text" style="background-position-x: 50%;">特色商品</view>
         </view>
       </view>
       <view class="product-list">
