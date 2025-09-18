@@ -1,0 +1,156 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #fff;
+  background-image: url('https://static.tiddler.cn/mp/ai/bg.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+  height: 44px;
+}
+.robot-name {
+  display: flex;
+  align-items: center;
+  margin-left: 24rpx;
+  color: #333;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+.ai-icon {
+  margin-right: 8rpx;
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.product-list, .order-list {
+  display: flex;
+  margin: 24rpx;
+  padding: 24rpx;
+  background: #fff;
+  border-radius: 32rpx;
+}
+.product-cover-wrap {
+  position: relative;
+  height: 160rpx;
+  width: 160rpx;
+  font-size: 0;
+}
+.product-cover {
+  height: 160rpx;
+  width: 160rpx;
+  border-radius: 16rpx;
+}
+.product-type {
+  position: absolute;
+  top: 12rpx;
+  right: 12rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 12rpx;
+  height: 36rpx;
+  color: #000;
+  font-size: 18rpx;
+  border-radius: 18rpx;
+  background: rgba(255, 255, 255, 0.8);
+}
+.product-detail {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 16rpx;
+}
+.product-detail .product-price {
+  color: #FD2D55;
+  font-weight: 500;
+}
+.product-name {
+  color: #333;
+  font-size: 32rpx;
+  font-weight: 500;
+}
+.operation-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12rpx;
+}
+.seek-btn {
+  width: 136rpx;
+  height: 48rpx;
+  color: #fff;
+  font-size: 24rpx;
+  text-align: center;
+  line-height: 48rpx;
+  background: var(--blue-1);
+  border-radius: 24rpx;
+}
+
+.order-detail {
+  margin-left: 24rpx;
+  flex: 1;
+}
+.order-info {
+  margin-bottom: 8rpx;
+  color: #999;
+  font-size: 26rpx;
+}
+.order-info-title {
+  margin-right: 24rpx;
+  color: #333;
+  font-weight: 500;
+}
+.order-operation {
+  margin-top: 32rpx;
+}
+.order-price-info {
+  color: #999;
+  font-size: 24rpx;
+}
+
+.comment {
+  position: relative;
+  flex: 1;
+}
+
+.chat-reply {
+  padding: 24rpx 0;
+}
+.chat-input-wrap {
+  display: flex;
+  align-items: center;
+  margin: 0 24rpx;
+  padding-left: 32rpx;
+  padding-right: 8rpx;
+  height: 88rpx;
+  background: rgba(255, 255, 255, 0.68);
+  backdrop-filter: blur(8px);
+  border-radius: 44rpx;
+}
+.chat-input {
+  flex: 1;
+  height: 88rpx;
+  font-size: 28rpx;
+}
+.send-btn {
+  width: 120rpx;
+  height: 72rpx;
+  color: #fff;
+  font-size: 26rpx;
+  font-weight: 500;
+  background: var(--blue-1);
+  border-radius: 36rpx;
+}
+.tips {
+  margin-top: 12rpx;
+  color: #999;
+  font-size: 22rpx;
+  font-weight: 300;
+  text-align: center;
+}

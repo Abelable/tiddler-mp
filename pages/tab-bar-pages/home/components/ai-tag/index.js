@@ -4,6 +4,10 @@ Component({
   },
 
   methods: {
-    chat() {}
+    chat() {
+      wx.navigateTo({
+        url: "/pages/subpages/common/ai-chat/index"
+      });
+    }
   }
 });

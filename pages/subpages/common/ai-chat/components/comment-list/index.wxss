@@ -1,0 +1,131 @@
+.comment {
+  position: absolute;
+  height: 100%;
+  overflow: scroll;
+}
+.msg-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 24rpx;
+}
+.datetime {
+  margin-top: 24rpx;
+  padding: 0 24rpx;
+  height: 48rpx;
+  color: #666;
+  font-size: 22rpx;
+  line-height: 48rpx;
+  background: #fff;
+  border-radius: 24rpx;
+}
+.message-detail {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-flow: row;
+  margin-top: 24rpx;
+  width: 100%;
+}
+.message-detail.mine {
+  flex-flow: row-reverse;
+}
+.avatar {
+  flex: 0 0 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+.content {
+  position: relative;
+  margin: 0 100rpx 40rpx 16rpx;  
+  padding: 24rpx;
+  color: #262626;
+  font-size: 28rpx;
+  line-height: 44rpx;
+  background-color: #fff;
+  border-radius: 16rpx;
+}
+.content.mine {
+  margin: 0 16rpx 40rpx 100rpx;
+  color: #fff;
+  background-color: #1F85FE;
+}
+.content.complex {
+  padding: 18rpx;
+  line-height: normal;
+  background: #fff;
+}
+.product {
+  display: flex;
+  align-items: center;
+}
+.product-cover-wrap {
+  position: relative;
+  margin-right: 18rpx;
+  width: 128rpx;
+  height: 128rpx;
+  font-size: 0;
+}
+.product-cover {
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 12rpx;
+}
+.product-type {
+  position: absolute;
+  top: 12rpx;
+  right: 12rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 8rpx;
+  height: 32rpx;
+  color: #000;
+  font-size: 16rpx;
+  border-radius: 16rpx;
+  background: rgba(255, 255, 255, 0.8);
+}
+.product-detail, .order-detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  height: 128rpx;
+}
+.order-product-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 18rpx;
+}
+.order-info {
+  display: flex;
+  align-items: center;
+  margin-top: 8rpx;
+  color: #999;
+  font-size: 24rpx;
+}
+.order-info-title {
+  margin-right: 24rpx;
+  color: #333;
+  font-weight: 500;
+}
+.order-price-info {
+  color: #999;
+  font-size: 24rpx;
+}
+.product-name {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  color: #333;
+  font-size: 26rpx;
+  font-weight: bold;
+}
+.product-price {
+  color: #FD2D55;
+  font-size: 30rpx;
+  font-weight: 500;
+  text-align: right;
+}

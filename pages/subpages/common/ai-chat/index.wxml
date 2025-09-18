@@ -1,0 +1,80 @@
+<wxs module="TIME" src="/utils/filters/time.wxs" />
+
+<view class="container">
+  <view class="header" style="margin-top: {{statusBarHeight}}px;">
+    <back-icon />
+    <view class="robot-name">
+      <image class="ai-icon" src="https://static.tiddler.cn/mp/ai/ai.png" />
+      <view>小鱼</view>
+    </view>
+  </view>
+
+  <!-- 商品 -->
+  <view class="product-list" wx:if="{{productInfo}}" style="top: 10px">
+    <view class="product-cover-wrap">
+      <image class="product-cover" src="{{productInfo.cover}}" mode="aspectFill" />
+      <view class="product-type">{{['景点', '酒店', '美食', '商品'][productInfo.type - 1]}}</view>
+    </view>
+    <view class="product-detail">
+      <view class="product-name omit">{{productInfo.name}}</view>
+      <view class="operation-wrap">
+        <view class="product-price">
+          <text style="font-size: 10px;">¥</text>{{productInfo.price}}
+        </view>
+        <view class="seek-btn" bindtap="sendCustomMsg" data-type="{{1}}">咨询商品</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 订单 -->
+  <view class="order-list" wx:if="{{orderInfo}}" style="top: {{statusBarHeight + 55}}px">
+    <view class="product-cover-wrap">
+      <image class="product-cover" src="{{orderInfo.cover}}" mode="aspectFill" />
+      <view class="product-type">
+        {{['景点', '酒店', '', '商品', '美食', '美食'][orderInfo.type - 1]}}
+      </view>
+    </view>
+    <view class="order-detail">
+      <view class="order-info row">
+        <view class="order-info-title">订单编号</view>
+        <view>{{orderInfo.orderSn}}</view>
+      </view>
+      <view class="order-info row">
+        <view class="order-info-title">创建时间</view>
+        <view>{{TIME.transform(orderInfo.createdAt, 'YYYY-MM-DD hh:mm:ss')}}</view>
+      </view>
+      <view class="order-operation row between">
+        <view class="order-price-info">
+          共{{orderInfo.productNum}}{{['张门票', '间房', '', '件商品', '张餐券', '份套餐'][orderInfo.type - 1]}}，合计¥{{orderInfo.paymentAmount}}
+        </view>
+        <view class="seek-btn" bindtap="sendCustomMsg" data-type="{{2}}">咨询订单</view>
+      </view>
+    </view>
+  </view>
+
+  <comment-list
+    class="comment" 
+    msgList="{{msgList || []}}" 
+    userInfo="{{userInfo || null}}" 
+    friendAvatarUrl="{{friendAvatarUrl}}"
+    bindtap="blurInput" 
+  />
+
+  <view class="chat-reply" style="padding-bottom: {{containerBottom ? containerBottom + 12 + 'px' : 'env(safe-area-inset-bottom)'}};">
+    <view class="chat-input-wrap">
+      <input 
+        class="chat-input"
+        type="text" 
+        confirm-type="send"
+        value="{{content}}"
+        bindinput="getContent" 
+        bindblur="hideKeyBoard"
+        placeholder="问一问AI小鱼～" 
+        bindconfirm="sendMsg" 
+        adjust-position="{{false}}"
+      />
+      <view class="send-btn row center">发送</view>
+    </view>
+    <view class="tips">对话内容均由AI生成，仅供参考</view>
+  </view>
+</view>
