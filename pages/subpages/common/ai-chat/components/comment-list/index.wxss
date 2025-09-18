@@ -34,6 +34,7 @@
   backdrop-filter: blur(8px);
 }
 .content.mine {
+  max-width: 80%;
   color: #fff;
   background: var(--blue-1);
   border-radius: 32rpx 4rpx 32rpx 32rpx;
