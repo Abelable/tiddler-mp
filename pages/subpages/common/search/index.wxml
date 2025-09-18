@@ -209,7 +209,7 @@
     finished="{{restaurantFinished}}"
     generic:item="restaurant-item-grid" 
   />
-  <empty-illus wx:if="{{restaurantFinished && !restaurantList.length}}" desc="没有找到相关餐厅美食" />
+  <empty-illus wx:if="{{restaurantFinished && !restaurantList.length}}" desc="没有找到相关餐饮美食" />
 </view>
 
 <view class="list-wrap" wx:if="{{searching && curMenuIdx === 7}}">

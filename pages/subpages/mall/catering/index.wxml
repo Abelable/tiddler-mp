@@ -5,7 +5,7 @@
     <back-icon />
     <view class="search-bar" bindtap="search">
       <image class="search-icon" src="/images/search.png" />
-      <text class="placeholder">搜索餐厅美食</text>
+      <text class="placeholder">搜索餐饮美食</text>
     </view>
   </view>
 

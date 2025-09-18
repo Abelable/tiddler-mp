@@ -17,7 +17,7 @@
         </view>
         <view class="category-item" data-index="2">
           <image class="category-icon sk-image"></image>
-          <view class="category-desc sk-transparent sk-text-14-2857-986 sk-text" style="background-position-x: 50%;">餐厅美食</view>
+          <view class="category-desc sk-transparent sk-text-14-2857-986 sk-text" style="background-position-x: 50%;">餐饮美食</view>
         </view>
         <view class="category-item" data-index="3">
           <image class="category-icon sk-image"></image>
