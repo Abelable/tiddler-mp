@@ -47,7 +47,8 @@ Component({
     nearbyRefreshing: false,
     nearbyLoading: false,
     nearbyFinished: false,
-    scrollTopList: [0, 0, 0]
+    scrollTopList: [0, 0, 0],
+    scrolling: false
   },
 
   pageLifetimes: {
@@ -307,7 +308,18 @@ Component({
 
     onPageScroll(e) {
       const { scrollTop } = e.detail;
-      const { navBarActive, curMenuIndex } = this.data;
+      const { scrolling, navBarActive, curMenuIndex } = this.data;
+
+      if (!scrolling) {
+        this.setData({ scrolling: true });
+      }
+
+      if (this.scrollTimer) {
+        clearTimeout(this.scrollTimer);
+      }
+      this.scrollTimer = setTimeout(() => {
+        this.setData({ scrolling: false });
+      }, 2000);
 
       if (scrollTop >= 10) {
         if (!navBarActive[curMenuIndex]) {

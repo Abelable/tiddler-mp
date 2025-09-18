@@ -9,10 +9,17 @@
   height: 68rpx;
   border-radius: 24rpx;
   background-image: url('https://static.tiddler.cn/mp/ai/tag_bg.png');
-  background-size: 100% 100%;
+  background-size: 168rpx 68rpx;
   background-repeat: no-repeat;
-  z-index: 100;
+  z-index: 80;
+  transition: all 0.4s ease;
 }
+.ai-tag.small {
+  width: 68rpx;
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
 .robot-avatar {
   display: block;
   width: 68rpx;
@@ -22,17 +29,14 @@
              swing2 4s ease-in-out infinite,
              swing3 5s ease-in-out infinite;
 }
-
 @keyframes swing1 {
   0%, 100% { transform: rotate(0deg); }
   50% { transform: rotate(4deg); }
 }
-
 @keyframes swing2 {
   0%, 100% { transform: rotate(0deg); }
   50% { transform: rotate(-3deg); }
 }
-
 @keyframes swing3 {
   0%, 100% { transform: rotate(0deg); }
   25% { transform: rotate(2deg); }
@@ -42,13 +46,19 @@
 
 .tag-title-swiper {
   position: relative;
-  flex: 1;
-  height: 68rpx;
   display: flex;
   align-items: center;
+  flex: 1;
+  height: 68rpx;
   overflow: hidden;
+  transition: all 0.4s ease;
 }
-
+.tag-title-swiper.hide {
+  flex: 0;
+  height: 0;
+  opacity: 0;
+  transform: scale(0.6);
+}
 .tag-title {
   position: absolute;
   width: 100%;
@@ -59,15 +69,16 @@
   transform: translateY(100%) scale(1.2);
   animation: slideUp 9s infinite;
 }
-
 .tag-title:nth-child(1) { animation-delay: 0s; }
 .tag-title:nth-child(2) { animation-delay: 3s; }
 .tag-title:nth-child(3) { animation-delay: 6s; }
-
 @keyframes slideUp {
   0%   { opacity: 0; transform: translateY(100%) scale(1.2); }
   10%  { opacity: 1; transform: translateY(0) scale(1); }
   30%  { opacity: 1; transform: translateY(0) scale(1); }
   40%  { opacity: 0; transform: translateY(-100%) scale(0.8);}
   100% { opacity: 0; transform: translateY(-100%) scale(0.8);}
+}
+.tag-title-swiper.hide .tag-title {
+  font-size: 0;
 }

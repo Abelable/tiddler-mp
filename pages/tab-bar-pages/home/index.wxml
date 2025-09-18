@@ -153,4 +153,4 @@
   </swiper-item>
 </swiper>
 
-<ai-tag />
+<ai-tag scrolling="{{scrolling}}" />
