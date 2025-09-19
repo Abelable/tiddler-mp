@@ -22,7 +22,7 @@
 }
 .content {
   position: relative;
-  padding: 32rpx;
+  padding: 24rpx;
   color: #262626;
   font-size: 28rpx;
   line-height: 44rpx;
@@ -30,6 +30,7 @@
   border-radius: 4rpx 32rpx 32rpx 32rpx;
 }
 .content.opening-remarks {
+  padding: 32rpx;
   background: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(8px);
 }
