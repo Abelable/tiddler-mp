@@ -5,6 +5,7 @@
     "dayjs": "^1.11.5",
     "mobx-miniprogram": "^4.13.2",
     "mobx-miniprogram-bindings": "^2.1.5",
+    "text-encoding-shim": "^1.0.5",
     "tim-upload-plugin": "^1.4.3"
   }
 }

@@ -14,8 +14,6 @@
   <comment-list
     class="comment" 
     msgList="{{msgList || []}}" 
-    userInfo="{{userInfo || null}}" 
-    friendAvatarUrl="{{friendAvatarUrl}}"
     bindtap="blurInput" 
   />
 
@@ -32,7 +30,7 @@
         bindconfirm="sendMsg" 
         adjust-position="{{false}}"
       />
-      <view class="send-btn row center">发送</view>
+      <view class="send-btn row center" bindtap="sendMsg">发送</view>
     </view>
     <view class="tips">对话内容均由AI生成，仅供参考</view>
   </view>

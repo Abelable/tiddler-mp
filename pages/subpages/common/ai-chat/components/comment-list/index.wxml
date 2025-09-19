@@ -21,9 +21,9 @@
       </view>
     </view>
     <view class="msg-item" wx:for="{{msgList}}" wx:key="index">
-      <view class="msg-detail {{item.flow === 'out' ? 'mine' : ''}}">
-        <view class="content {{item.flow === 'out' ? 'mine' : ''}}">
-          <text>{{item.value}}</text>
+      <view class="msg-detail {{item.self ? 'mine' : ''}}">
+        <view class="content {{item.self ? 'mine' : ''}}">
+          <text>{{item.content}}</text>
         </view>
       </view>
     </view>

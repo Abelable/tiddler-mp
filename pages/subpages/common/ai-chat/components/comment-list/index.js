@@ -1,12 +1,12 @@
 Component({
   properties: {
-    userInfo: Object
-    // msgList: {
-    //   type: Array,
-    //   observer(val) {
-    //     if (val.length && !this.data.stopScroll) this.scrollToBottom();
-    //   }
-    // }
+    userInfo: Object,
+    msgList: {
+      type: Array,
+      observer(val) {
+        if (val.length && !this.data.stopScroll) this.scrollToBottom();
+      }
+    }
   },
 
   data: {
@@ -15,40 +15,6 @@ Component({
       "千岛湖酒店民宿推荐",
       "千岛湖餐饮美食推荐",
       "千岛湖特色商品推荐"
-    ],
-    msgList: [
-      {
-        flow: "out",
-        value: "千岛湖景点乐园推荐千岛湖景点乐园推荐千岛湖景点乐园推荐千岛湖景点乐园推荐"
-      },
-      {
-        flow: "in",
-        value: "千岛湖景点乐园推荐千岛湖景点乐园推荐千岛湖景点乐园推荐千岛湖景点乐园推荐千岛湖景点乐园推荐千岛湖景点乐园推荐"
-      },
-      {
-        flow: "out",
-        value: "千岛湖景点乐园推荐"
-      },
-      {
-        flow: "in",
-        value: "千岛湖景点乐园推荐"
-      },
-      {
-        flow: "out",
-        value: "千岛湖景点乐园推荐"
-      },
-      {
-        flow: "in",
-        value: "千岛湖景点乐园推荐"
-      },
-      {
-        flow: "out",
-        value: "千岛湖景点乐园推荐"
-      },
-      {
-        flow: "in",
-        value: "千岛湖景点乐园推荐"
-      },
     ],
     scrollTop: 0,
     stopScroll: false
@@ -63,7 +29,7 @@ Component({
         });
       });
       const promise_content = new Promise(resolve => {
-        query.select(".msg-lists").boundingClientRect(res => {
+        query.select(".msg-list").boundingClientRect(res => {
           res && resolve(res.height);
         });
       });
@@ -85,23 +51,5 @@ Component({
         this.setData({ stopScroll: false });
       }, 2000);
     },
-
-    checkProduct(e) {
-      const { type, id } = e.currentTarget.dataset;
-      const url = `/pages/subpages/mall/${
-        ["scenic", "hotel", "catering", "goods"][type - 1]
-      }/subpages/${
-        ["scenic", "hotel", "restaurant", "goods"][type - 1]
-      }-detail/index?id=${id}`;
-      wx.navigateTo({ url });
-    },
-
-    checkOrder(e) {
-      const { type, id } = e.currentTarget.dataset;
-      const url = `/pages/subpages/mine/order/subpages/${
-        ["scenic", "hotel", "", "goods", "meal-ticket", "set-meal"][type - 1]
-      }-order/order-detail/index?id=${id}`;
-      wx.navigateTo({ url });
-    }
   }
 });
