@@ -1,5 +1,5 @@
 <navigator 
-  class="scenic"
+  class="scenic {{showBorder ? 'show-border' : ''}}"
   wx:key="index"
   url="/pages/subpages/mall/scenic/subpages/scenic-detail/index?id={{item.id}}"
   hover-class="none"
@@ -19,7 +19,10 @@
     </view>
     <view class="position-wrap">
       <image class="position-icon" src="/images/position.png" />
-      <view class="position-content">{{item.address}}，距您{{distance}}</view>
+      <view class="position-content row">
+        <view class="position-address omit">{{item.address}}</view>
+        <view>，距您{{distance}}</view>
+      </view>
     </view>
     <view class="price-info">
       <view class="price" wx:if="{{item.price}}">

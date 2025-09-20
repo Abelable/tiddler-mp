@@ -39,6 +39,9 @@
   padding: 24rpx 0;
   border-bottom: 1px solid #f5f6f8;
 }
+.goods-item.show-border {
+  border-bottom: 1px solid #f5f6f8;
+}
 
 .goods-cover {
   width: 180rpx;

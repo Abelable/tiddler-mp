@@ -1,4 +1,8 @@
 Component({
+  options: {
+    addGlobalClass: true
+  },
+
   properties: {
     userInfo: Object,
     msgList: {
@@ -56,6 +60,13 @@ Component({
       this.stopScrollTimeout = setTimeout(() => {
         this.setData({ stopScroll: false });
       }, 2000);
+    },
+
+    checkMore(e) {
+      const { type } = e.currentTarget.dataset;
+      const page = ["scenic", "hotel", "catering", "goods"][type - 1];
+      const url = `/pages/subpages/mall/${page}/index`;
+      wx.navigateTo({ url });
     }
   }
 });

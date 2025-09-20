@@ -64,6 +64,10 @@ Component({
         }
       },
     },
+    showBorder: {
+      type: Boolean,
+      value: true
+    }
   },
 
   data: {

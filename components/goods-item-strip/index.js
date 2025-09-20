@@ -1,6 +1,10 @@
 Component({
   properties: {
-    item: Object
+    item: Object,
+    showBorder: {
+      type: Boolean,
+      value: true
+    }
   },
 
   methods: {

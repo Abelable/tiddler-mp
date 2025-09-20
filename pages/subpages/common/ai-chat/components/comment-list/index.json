@@ -1,3 +1,9 @@
 {
-  "component": true
+  "component": true,
+  "usingComponents": {
+    "scenic-item-strip": "/components/scenic-item-strip/index",
+    "hotel-item-strip": "/components/hotel-item-strip/index",
+    "restaurant-item-strip": "/components/restaurant-item-strip/index",
+    "goods-item-strip": "/components/goods-item-strip/index"
+  }
 }
