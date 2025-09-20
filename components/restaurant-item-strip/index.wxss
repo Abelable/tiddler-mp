@@ -45,8 +45,8 @@
 }
 
 .cover {
-  width: 204rpx;
-  height: 204rpx;
+  width: 200rpx;
+  height: 200rpx;
   border-radius: 24rpx;
 }
 
@@ -157,7 +157,7 @@
   margin-top: 12rpx;
 }
 .ticket-lebal-wrap {
-  width: 204rpx;
+  width: 200rpx;
 }
 .ticket-lebal {
   position: relative;

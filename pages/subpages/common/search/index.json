@@ -16,7 +16,7 @@
     "restaurant-item-grid": "/components/restaurant-item/index",
     "restaurant-item": "/components/restaurant-item-strip/index",
     "goods-item-grid": "/components/goods-item/index",
-    "goods-item": "./components/goods-item/index",
+    "goods-item": "/components/goods-item-strip/index",
     "user-item": "./components/user-item/index"
   }
 }
