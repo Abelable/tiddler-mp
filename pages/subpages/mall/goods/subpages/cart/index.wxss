@@ -275,3 +275,26 @@
   color: #fff;
   background: #FD0B0A;
 }
+
+.split-line {
+  position: relative;
+  margin: 24rpx auto;
+  width: fit-content;
+  color: #333;
+  font-size: 28rpx;
+}
+.split-line::before, .split-line::after {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  content: '';
+  width: 20rpx;
+  height: 1rpx;
+  background: #333;
+}
+.split-line::before {
+  left: -44rpx;
+}
+.split-line::after {
+  right: -44rpx;
+}

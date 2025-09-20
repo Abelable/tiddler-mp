@@ -1,5 +1,0 @@
-Component({ 
-  properties: {
-    desc: String
-  }
-})

@@ -198,7 +198,7 @@
 
   <!-- 商品推荐 -->
   <view class="recommend-goods-wrap" wx:if="{{recommendGoodsList.length}}">
-    <split-line desc="推荐" />
+    <view class="split-line">推荐</view>
     <fall-flow 
       list="{{recommendGoodsList}}" 
       loading="{{loading}}"

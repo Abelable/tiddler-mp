@@ -65,7 +65,7 @@
   </view>
 
   <view class="recommend-goods-wrap" wx:if="{{recommendGoodsList.length}}">
-    <split-line desc="猜您喜欢" />
+    <view class="split-line">猜您喜欢</view>
     <fall-flow 
       list="{{recommendGoodsList}}" 
       generic:item="goods-item" 
