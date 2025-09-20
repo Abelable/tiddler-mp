@@ -73,7 +73,7 @@
   font-size: 18rpx;
 }
 
-.position-wrap {
+/* .position-wrap {
   display: flex;
   margin-top: 10rpx;
   color: #666;
@@ -89,7 +89,25 @@
   flex: 1;
 }
 .position-address {
+  max-width: 68%;
+} */
+
+.position-info {
+  display: flex;
+  align-items: center;
+  margin-top: 10rpx;
+  color: #666;
+  font-size: 22rpx;
+}
+.position-icon {
+  margin-right: 6rpx;
+  width: 20rpx;
+  height: 20rpx;
+  flex-shrink: 0;
+}
+.position-distance {
   flex: 1;
+  white-space: nowrap;
 }
 
 .price-info {

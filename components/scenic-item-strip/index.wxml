@@ -17,12 +17,10 @@
       <van-rate value="{{item.score || 0}}" size="12" gutter="0" color="#fa2458" void-icon="star" void-color="#fedbe4" allow-half readonly />
       <text class="score">{{item.score || '暂无评'}}分</text>
     </view>
-    <view class="position-wrap">
+    <view class="position-info">
       <image class="position-icon" src="/images/position.png" />
-      <view class="position-content row">
-        <view class="position-address omit">{{item.address}}</view>
-        <view>，距您{{distance}}</view>
-      </view>
+      <view class="position-detail omit">{{item.address}}</view>
+      <view class="position-distance">，距您{{distance}}</view>
     </view>
     <view class="price-info">
       <view class="price" wx:if="{{item.price}}">

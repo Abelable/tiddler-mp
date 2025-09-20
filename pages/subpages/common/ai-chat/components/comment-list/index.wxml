@@ -40,10 +40,10 @@
             <hotel-item-strip wx:for="{{item.productList}}" wx:key="index" wx:for-item="product" item="{{product}}" showBorder="{{index !== (item.productList.length - 1)}}" />
           </view>
           <view class="product-list" wx:if="{{item.productList.length && item.productType === 3}}">
-            <restaurant-item-strip wx:for="{{item.productList}}" wx:for-item="product" item="{{product}}" showBorder="{{index !== (item.productList.length - 1)}}" />
+            <restaurant-item-strip wx:for="{{item.productList}}" wx:key="index" wx:for-item="product" item="{{product}}" showBorder="{{index !== (item.productList.length - 1)}}" />
           </view>
           <view class="product-list" wx:if="{{item.productList.length && item.productType === 4}}">
-            <goods-item-strip wx:for="{{item.productList}}" wx:for-item="product" item="{{product}}" showBorder="{{index !== (item.productList.length - 1)}}" />
+            <goods-item-strip wx:for="{{item.productList}}" wx:key="index" wx:for-item="product" item="{{product}}" showBorder="{{index !== (item.productList.length - 1)}}" />
           </view>
           <view class="more-btn row center" wx:if="{{item.productList.length > 1}}" bindtap="checkMore" data-type="{{item.productType}}">
               <view>查看更多</view>
