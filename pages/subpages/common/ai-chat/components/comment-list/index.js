@@ -24,6 +24,7 @@ Component({
     sendTip(e) {
       const { tip } = e.currentTarget.dataset;
       this.triggerEvent("sendTip", { tip });
+      this.scrollToBottom();
     },
 
     scrollToBottom() {

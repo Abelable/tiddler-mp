@@ -23,7 +23,15 @@
     <view class="msg-item" wx:for="{{msgList}}" wx:key="index">
       <view class="msg-detail {{item.self ? 'mine' : ''}}">
         <view class="content {{item.self ? 'mine' : ''}}">
-          <text>{{item.content}}</text>
+          <view class="loading-tips" wx:if="{{!item.self && item.loading}}">
+            <view>努力思考中</view>
+            <view class="loading">
+              <view class="dot"></view>
+              <view class="dot"></view>
+              <view class="dot"></view>
+            </view>
+          </view>
+          <text wx:if="{{item.content}}">{{item.content}}</text>
         </view>
       </view>
     </view>
