@@ -2,7 +2,7 @@
   <view class="msg-list">
     <view class="msg-item">
       <view class="msg-detail">
-        <view class="content opening-remarks">
+        <view class="content-wrap opening-remarks">
           <view class="robot-info-wrap">
             <view class="robot-info">
               <view class="robot-name">Hi，我是智能助手小鱼</view>
@@ -22,7 +22,7 @@
     </view>
     <view class="msg-item" wx:for="{{msgList}}" wx:key="index">
       <view class="msg-detail {{item.self ? 'mine' : ''}}">
-        <view class="content-wrap {{item.self ? 'mine' : ''}}">
+        <view class="content-wrap {{item.self ? 'mine' : ''}} {{item.productList.length ? 'hide-bottom-padding' : ''}}">
           <view class="loading-tips" wx:if="{{!item.self && item.loading}}">
             <view>努力思考中</view>
             <view class="loading">
@@ -32,23 +32,50 @@
             </view>
           </view>
           <text class="content" wx:if="{{item.content}}">{{item.content}}</text>
-          <view class="recommend-title" wx:if="{{item.productList.length > 1}}">为您推荐</view>
-          <view class="product-list" wx:if="{{item.productList.length && item.productType === 1}}">
-            <scenic-item-strip wx:for="{{item.productList}}" wx:key="index" wx:for-item="product" item="{{product}}"/>
-          </view>
-          <view class="product-list"  wx:if="{{item.productList.length && item.productType === 2}}">
-            <hotel-item-strip wx:for="{{item.productList}}" wx:key="index" wx:for-item="product" item="{{product}}" showBorder="{{index !== (item.productList.length - 1)}}" />
-          </view>
-          <view class="product-list" wx:if="{{item.productList.length && item.productType === 3}}">
-            <restaurant-item-strip wx:for="{{item.productList}}" wx:key="index" wx:for-item="product" item="{{product}}" showBorder="{{index !== (item.productList.length - 1)}}" />
-          </view>
-          <view class="product-list" wx:if="{{item.productList.length && item.productType === 4}}">
-            <goods-item-strip wx:for="{{item.productList}}" wx:key="index" wx:for-item="product" item="{{product}}" showBorder="{{index !== (item.productList.length - 1)}}" />
-          </view>
-          <view class="more-btn row center" wx:if="{{item.productList.length > 1}}" bindtap="checkMore" data-type="{{item.productType}}">
+          <view class="recommend-title row between" wx:if="{{item.productList.length > 1}}">
+            <view>为您推荐</view>
+            <view class="more-btn row" bindtap="checkMore" data-type="{{item.productType}}">
               <view>查看更多</view>
               <image class="more-icon" src="/images/arrow_black.png" />
             </view>
+          </view>
+          <view class="product-list" wx:if="{{item.productList.length && item.productType === 1}}">
+            <scenic-item-strip 
+              wx:for="{{item.productList}}" 
+              wx:key="index" 
+              wx:for-item="product" 
+              item="{{product}}"
+              showBorder="{{index !== (item.productList.length - 1)}}" 
+            />
+          </view>
+          <view class="product-list" wx:if="{{item.productList.length && item.productType === 2}}">
+            <hotel-item-strip 
+              wx:for="{{item.productList}}" 
+              wx:key="index" 
+              wx:for-item="product" 
+              item="{{product}}" 
+              showBorder="{{index !== (item.productList.length - 1)}}" 
+            />
+          </view>
+          <view class="product-list" wx:if="{{item.productList.length && item.productType === 3}}">
+            <restaurant-item-strip 
+              wx:for="{{item.productList}}" 
+              wx:key="index" 
+              wx:for-item="product" 
+              item="{{product}}" 
+              showBorder="{{index !== (item.productList.length - 1)}}" 
+            />
+          </view>
+          <view class="product-list" wx:if="{{item.productList.length && item.productType === 4}}">
+            <goods-item-strip 
+              wx:for="{{item.productList}}" 
+              wx:key="index" 
+              wx:for-item="product" 
+              item="{{product}}" 
+              showBorder="{{index !== (item.productList.length - 1)}}" 
+            />
+          </view>
+          
         </view>
       </view>
     </view>

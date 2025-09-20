@@ -40,6 +40,9 @@
   background: var(--blue-1);
   border-radius: 32rpx 4rpx 32rpx 32rpx;
 }
+.content-wrap.hide-bottom-padding {
+  padding-bottom: 0;
+}
 
 .content {
   line-height: 44rpx;
@@ -131,7 +134,6 @@
   font-weight: 600;
 }
 .more-btn {
-  padding-top: 24rpx;
   color: #333;
   font-size: 24rpx;
   font-weight: normal;

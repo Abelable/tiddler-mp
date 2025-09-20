@@ -90,7 +90,7 @@ Page({
       enableChunked: true,
       header: { Authorization: token ? `Bearer ${token}` : "" },
       method: "post",
-      data: { query: content }
+      data: { query: content, conversationId: this.conversationId }
     });
 
     this.requestTask.onChunkReceived(res => {
@@ -105,10 +105,15 @@ Page({
       console.log("onChunkReceived", str);
 
       if (str.includes("done: ")) {
-        const { type, list } = JSON.parse(str.replace("done: ", ""));
+        const { conversationId, productType, productList } = JSON.parse(
+          str.replace("done: ", "")
+        );
+        if (!this.conversationId) {
+          this.conversationId = conversationId;
+        }
         this.setData({
-          [`msgList[${msgList.length - 1}].productType`]: type,
-          [`msgList[${msgList.length - 1}].productList`]: list
+          [`msgList[${msgList.length - 1}].productType`]: productType,
+          [`msgList[${msgList.length - 1}].productList`]: productList
         });
         this.replying = false;
       } else {
