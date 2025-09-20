@@ -26,7 +26,7 @@
         <view class="facility" wx:for="{{facilityList}}" wx:for-item="facility" wx:for-index="facilityIdx" wx:key="facilityIdx">{{facility}}</view>
       </view>
       <view class="position-wrap">
-        <image class="position-icon" src="./images/position.png" />
+        <image class="position-icon" src="/images/position.png" />
         <view class="position-content">{{item.address}}，距您{{distance}}</view>
       </view>
     </view>
@@ -39,7 +39,7 @@
       <view class="ticket-content row">
         <view class="ticket-icon row center">券</view>
         <view class="ticket-price">¥{{item.mealTicketList[0].price}}</view>
-        <view class="ticket-desc">{{item.mealTicketList[0].originalPrice}}元代金券</view>
+        <view class="ticket-desc  omit single">{{item.mealTicketList[0].originalPrice}}元代金券</view>
       </view>
     </view>
     <view class="meal-ticket row" wx:if="{{item.setMealList.length}}">
@@ -50,7 +50,7 @@
         <view class="ticket-icon row center">惠</view>
         <view class="ticket-price">¥{{item.setMealList[0].price}}</view>
         <view class="ticket-discount row">{{setMealDiscount}}折</view>
-        <view class="ticket-desc">{{item.setMealList[0].name}}</view>
+        <view class="ticket-desc omit single">{{item.setMealList[0].name}}</view>
       </view>
     </view>
   </view>

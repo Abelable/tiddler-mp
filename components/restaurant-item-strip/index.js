@@ -1,12 +1,8 @@
 import dayjs from "dayjs";
-import { store } from "../../../../../../store/index";
-import { weekDayList, calcDistance } from "../../../../../../utils/index";
+import { store } from "../../store/index";
+import { weekDayList, calcDistance } from "../../utils/index";
 
 Component({
-  options: {
-    addGlobalClass: true,
-  },
-
   properties: {
     item: {
       type: Object,

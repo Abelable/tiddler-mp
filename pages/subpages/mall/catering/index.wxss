@@ -34,7 +34,7 @@
 }
 
 .restaurant-list {
-  padding: 0 28rpx;
+  padding: 0 24rpx;
   background: #fff;
 }
 

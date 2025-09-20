@@ -18,7 +18,7 @@
       <text class="score">{{item.score || '暂无评'}}分</text>
     </view>
     <view class="position-wrap">
-      <image class="position-icon" src="./images/position.png" />
+      <image class="position-icon" src="/images/position.png" />
       <view class="position-content">{{item.address}}，距您{{distance}}</view>
     </view>
     <view class="price-info">

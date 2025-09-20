@@ -2,10 +2,6 @@ import { store } from "../../store/index";
 import { calcDistance } from "../../utils/index";
 
 Component({
-  // options: {
-  //   addGlobalClass: true,
-  // },
-
   properties: {
     item: {
       type: Object,
