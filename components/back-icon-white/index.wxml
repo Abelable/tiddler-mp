@@ -1,3 +1,3 @@
 <view class="back-icon {{noBorder ? 'no-border' : ''}}" catchtap="navigateBack">
-  <image style="width: 20px; height: 20px;" src="/images/back-white.png" />
+  <image class="icon {{icon}}" src="/images/{{icon}}_white.png" />
 </view>

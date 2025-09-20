@@ -2,7 +2,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-right: 2px;
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -12,4 +11,14 @@
 .back-icon.no-border {
   border: none;
   background: transparent;
+}
+
+.icon.back {
+  margin-right: 2px;
+  width: 20px; 
+  height: 20px;
+}
+.icon.home {
+  width: 18px; 
+  height: 18px;
 }

@@ -1,12 +1,25 @@
-import { customBack } from '../../utils/index'
+import { customBack } from "../../utils/index";
 
-Component({ 
+Component({
   properties: {
     custom: Boolean
   },
-  methods: { 
+
+  data: {
+    icon: "back"
+  },
+
+  lifetimes: {
+    attached() {
+      if (getCurrentPages().length === 1) {
+        this.setData({ icon: "home" })
+      }
+    }
+  },
+
+  methods: {
     navigateBack() {
-      this.properties.custom ? this.triggerEvent('navigateBack') : customBack()
+      this.properties.custom ? this.triggerEvent("navigateBack") : customBack();
     }
   }
-})
+});
