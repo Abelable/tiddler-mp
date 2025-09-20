@@ -10,11 +10,11 @@
             </view>
             <image class="robot-avatar" src="https://static.tiddler.cn/mp/ai/robot.png" />
           </view>
-          <view class="question-tips">您可以这样问</view>
-          <view class="question-list">
-            <view class="question-item" wx:for="{{questionList}}" wx:key="index">
-              <view class="question-content">{{item}}</view>
-              <image class="question-arrow" src="/images/arrow_black.png" />
+          <view class="tips-desc">您可以这样问</view>
+          <view class="tip-list">
+            <view class="tip-item" wx:for="{{tipList}}" wx:key="index" catchtap="sendTip" data-tip="{{item}}">
+              <view class="tip-content">{{item}}</view>
+              <image class="tip-arrow" src="/images/arrow_black.png" />
             </view>
           </view>
         </view>

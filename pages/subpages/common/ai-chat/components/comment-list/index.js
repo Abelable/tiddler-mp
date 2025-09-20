@@ -10,7 +10,7 @@ Component({
   },
 
   data: {
-    questionList: [
+    tipList: [
       "千岛湖景点乐园推荐",
       "千岛湖酒店民宿推荐",
       "千岛湖餐饮美食推荐",
@@ -21,6 +21,11 @@ Component({
   },
 
   methods: {
+    sendTip(e) {
+      const { tip } = e.currentTarget.dataset;
+      this.triggerEvent("sendTip", { tip });
+    },
+
     scrollToBottom() {
       const query = wx.createSelectorQuery().in(this);
       const promise_wrap = new Promise(resolve => {
@@ -50,6 +55,6 @@ Component({
       this.stopScrollTimeout = setTimeout(() => {
         this.setData({ stopScroll: false });
       }, 2000);
-    },
+    }
   }
 });

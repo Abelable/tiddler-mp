@@ -65,12 +65,12 @@
   height: 160rpx;
 }
 
-.question-tips {
+.tips-desc {
   margin-top: 24rpx;
   color: #666;
   font-size: 28rpx;
 }
-.question-item {
+.tip-item {
   display: flex;
   align-items: center;
   padding: 0 24rpx;
@@ -79,13 +79,13 @@
   background: #f5f6f8;
   border-radius: 24rpx;
 }
-.question-content {
+.tip-content {
   flex: 1;
   color: #262626;
   font-size: 28rpx;
   font-weight: 500;
 }
-.question-arrow {
+.tip-arrow {
   width: 28rpx;
   height: 28rpx;
 }
