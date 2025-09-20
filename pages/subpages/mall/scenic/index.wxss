@@ -33,6 +33,11 @@
   font-size: 14px;
 }
 
+.container {
+  padding: 0 24rpx;
+  background: #fff;
+}
+
 .no-more-tips {
   padding: 24rpx 0 36rpx;
   color: #999;

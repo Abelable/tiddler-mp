@@ -83,60 +83,69 @@
 
 <view class="list-wrap" wx:if="{{searching && curMenuIdx === 0}}">
   <view class="result-overview-wrap" wx:if="{{scenicList.length}}">
-    <view class="result-title row between">
-      <view>景点</view>
-      <view class="more-btn row" wx:if="{{scenicList.length > 3}}" bindtap="selectMenu" data-index="4">
-        <view>更多</view>
-        <image class="more-icon" src="/images/arrow.png" />
+    <view class="title row between">
+      <view>相关景点</view>
+      <view class="more-btn row" wx:if="{{scenicList.length > 2}}" bindtap="selectMenu" data-index="4">
+        <view>查看更多</view>
+        <image class="more-icon" src="/images/arrow_gray.png" />
       </view>
     </view>
-    <scenic-item wx:for="{{ARRAY.slice(scenicList, 0, 3)}}" wx:key="index" item="{{item}}" />
+    <view class="product-list">
+      <scenic-item wx:for="{{ARRAY.slice(scenicList, 0, 2)}}" wx:key="index" item="{{item}}" />
+    </view>
   </view>
 
   <view class="result-overview-wrap" wx:if="{{hotelList.length}}">
-    <view class="result-title row between">
-      <view>酒店</view>
-      <view class="more-btn row" wx:if="{{hotelList.length > 3}}" bindtap="selectMenu" data-index="5">
-        <view>更多</view>
-        <image class="more-icon" src="/images/arrow.png" />
+    <view class="title row between">
+      <view>相关酒店</view>
+      <view class="more-btn row" wx:if="{{hotelList.length > 2}}" bindtap="selectMenu" data-index="5">
+        <view>查看更多</view>
+        <image class="more-icon" src="/images/arrow_gray.png" />
       </view>
     </view>
-    <hotel-item wx:for="{{ARRAY.slice(hotelList, 0, 3)}}" wx:key="index" item="{{item}}" />
+    <view class="product-list">
+      <hotel-item wx:for="{{ARRAY.slice(hotelList, 0, 2)}}" wx:key="index" item="{{item}}" />
+    </view>
   </view>
 
   <view class="result-overview-wrap" wx:if="{{restaurantList.length}}">
-    <view class="result-title row between">
-      <view>餐厅</view>
-      <view class="more-btn row" wx:if="{{restaurantList.length > 3}}" bindtap="selectMenu" data-index="6">
-        <view>更多</view>
-        <image class="more-icon" src="/images/arrow.png" />
+    <view class="title row between">
+      <view>相关餐厅</view>
+      <view class="more-btn row" wx:if="{{restaurantList.length > 2}}" bindtap="selectMenu" data-index="6">
+        <view>查看更多</view>
+        <image class="more-icon" src="/images/arrow_gray.png" />
       </view>
     </view>
-    <restaurant-item wx:for="{{ARRAY.slice(restaurantList, 0, 3)}}" wx:key="index" item="{{item}}" />
+    <view class="product-list">
+      <restaurant-item wx:for="{{ARRAY.slice(restaurantList, 0, 2)}}" wx:key="index" item="{{item}}" />
+    </view>
   </view>
 
   <view class="result-overview-wrap" wx:if="{{goodsList.length}}">
-    <view class="result-title row between">
-      <view>商品</view>
-      <view class="more-btn row" wx:if="{{goodsList.length > 3}}" bindtap="selectMenu" data-index="7">
-        <view>更多</view>
-        <image class="more-icon" src="/images/arrow.png" />
+    <view class="title row between">
+      <view>相关商品</view>
+      <view class="more-btn row" wx:if="{{goodsList.length > 2}}" bindtap="selectMenu" data-index="7">
+        <view>查看更多</view>
+        <image class="more-icon" src="/images/arrow_gray.png" />
       </view>
     </view>
-    <goods-item wx:for="{{ARRAY.slice(goodsList, 0, 3)}}" wx:key="index" item="{{item}}" />
+    <view class="product-list">
+      <goods-item wx:for="{{ARRAY.slice(goodsList, 0, 2)}}" wx:key="index" item="{{item}}" />
+    </view>
   </view>
 
   <view class="result-overview-wrap" wx:if="{{userList.length}}">
-    <view class="result-title row between">
-      <view>用户</view>
-      <view class="more-btn row" wx:if="{{userList.length > 3}}" bindtap="selectMenu" data-index="8">
-        <view>更多</view>
-        <image class="more-icon" src="/images/arrow.png" />
+    <view class="title row between">
+      <view>相关用户</view>
+      <view class="more-btn row" wx:if="{{userList.length > 2}}" bindtap="selectMenu" data-index="8">
+        <view>查看更多</view>
+        <image class="more-icon" src="/images/arrow_gray.png" />
       </view>
     </view>
-    <user-item wx:for="{{ARRAY.slice(userList, 0, 3)}}" wx:key="index" item="{{item}}" />
+    <user-item wx:for="{{ARRAY.slice(userList, 0, 2)}}" wx:key="index" item="{{item}}" />
   </view>
 
+  <view class="title" wx:if="{{mediaList.length}}">相关游记</view>
   <fall-flow 
     wx:if="{{mediaList.length}}" 
     list="{{mediaList}}" 

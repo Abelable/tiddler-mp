@@ -1,8 +1,8 @@
 <view class="hotel-item" bindtap="checkDetail">
-  <image class="hotel-cover" src="{{ item.cover }}" mode="aspectFill" lazy-load />
-  <view class="hotel-content">
-    <view class="hotel-title omit">{{ item.name }}</view>
-    <view class="hotel-desc omit single">{{['经济酒店', '舒适酒店', '高档酒店', '豪华酒店'][item.grade - 1]}} ｜ {{item.englishName}} </view>
+  <image class="cover" src="{{ item.cover }}" mode="aspectFill" lazy-load />
+  <view class="content">
+    <view class="title omit">{{ item.name }}</view>
+    <view class="desc omit">{{['经济酒店', '舒适酒店', '高档酒店', '豪华酒店'][item.grade - 1]}} ｜ {{item.englishName}} </view>
     <view class="data-wrap">
       <view class="score">4.2</view>
       <view class="other-data">

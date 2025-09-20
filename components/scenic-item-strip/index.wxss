@@ -1,26 +1,38 @@
-.scenic-item {
+
+.row {
   display: flex;
   align-items: center;
-  margin-bottom: 24rpx;
-  padding: 24rpx;
-  font-size: 0;
-  background: #fff;
-  border-radius: 32rpx;
 }
-.scenic-cover {
+
+.omit {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.scenic {
+  display: flex;
+  align-items: center;
+  padding: 24rpx 0;
+  font-size: 0;
+  border-bottom: 1px solid #f5f6f8;
+}
+.cover {
   width: 220rpx;
   height: 220rpx;
   border-radius: 24rpx;
 }
 
-.scenic-content {
+.content {
   display: flex;
   flex-direction: column;
   margin-left: 20rpx;
   flex: 1;
   height: 220rpx;
 }
-.scenic-title {
+.title {
   color: #333;
   font-size: 26rpx;
   font-weight: bold;
@@ -42,10 +54,10 @@
 }
 .label {
   margin-right: 10rpx;
-  color: #999;
-  font-size: 18rpx;
-  background: #f6f6f6;
   padding: 2rpx 10rpx;
+  color: var(--blue-1);
+  font-size: 18rpx;
+  background: #ebf2fd;
   border-radius: 10rpx;
 }
 .score-wrap {
@@ -62,6 +74,8 @@
 .position-wrap {
   display: flex;
   margin-top: 10rpx;
+  color: #666;
+  font-size: 22rpx;
 }
 .position-icon {
   margin-top: 6rpx;
@@ -71,8 +85,6 @@
 }
 .position-content {
   flex: 1;
-  color: #666;
-  font-size: 20rpx;
 }
 
 .price-info {
@@ -90,3 +102,7 @@
   font-size: 20rpx;
   line-height: 1;
 }
+.num {
+  font-weight: bold;
+}
+
