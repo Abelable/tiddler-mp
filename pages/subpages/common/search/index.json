@@ -9,14 +9,14 @@
     "video-item": "/components/video-item/index",
     "note-item": "/components/note-item/index",
     "live-item": "/components/live-item/index",
-    "scenic-item-grid": "/components/scenic-item/index",
-    "scenic-item": "/components/scenic-item-strip/index",
-    "hotel-item-grid": "/components/hotel-item/index",
-    "hotel-item": "/components/hotel-item-strip/index",
-    "restaurant-item-grid": "/components/restaurant-item/index",
-    "restaurant-item": "/components/restaurant-item-strip/index",
-    "goods-item-grid": "/components/goods-item/index",
-    "goods-item": "/components/goods-item-strip/index",
+    "scenic-item": "/components/scenic-item/index",
+    "scenic-item-strip": "/components/scenic-item-strip/index",
+    "hotel-item": "/components/hotel-item/index",
+    "hotel-item-strip": "/components/hotel-item-strip/index",
+    "restaurant-item": "/components/restaurant-item/index",
+    "restaurant-item-strip": "/components/restaurant-item-strip/index",
+    "goods-item": "/components/goods-item/index",
+    "goods-item-strip": "/components/goods-item-strip/index",
     "user-item": "./components/user-item/index"
   }
 }

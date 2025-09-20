@@ -91,7 +91,7 @@
       </view>
     </view>
     <view class="product-list">
-      <scenic-item wx:for="{{ARRAY.slice(scenicList, 0, 2)}}" wx:key="index" item="{{item}}" />
+      <scenic-item-strip wx:for="{{ARRAY.slice(scenicList, 0, 2)}}" wx:key="index" item="{{item}}" />
     </view>
   </view>
 
@@ -104,7 +104,7 @@
       </view>
     </view>
     <view class="product-list">
-      <hotel-item wx:for="{{ARRAY.slice(hotelList, 0, 2)}}" wx:key="index" item="{{item}}" />
+      <hotel-item-strip wx:for="{{ARRAY.slice(hotelList, 0, 2)}}" wx:key="index" item="{{item}}" />
     </view>
   </view>
 
@@ -117,7 +117,7 @@
       </view>
     </view>
     <view class="product-list">
-      <restaurant-item wx:for="{{ARRAY.slice(restaurantList, 0, 2)}}" wx:key="index" item="{{item}}" />
+      <restaurant-item-strip wx:for="{{ARRAY.slice(restaurantList, 0, 2)}}" wx:key="index" item="{{item}}" />
     </view>
   </view>
 
@@ -130,7 +130,7 @@
       </view>
     </view>
     <view class="product-list">
-      <goods-item wx:for="{{ARRAY.slice(goodsList, 0, 2)}}" wx:key="index" item="{{item}}" />
+      <goods-item-strip wx:for="{{ARRAY.slice(goodsList, 0, 2)}}" wx:key="index" item="{{item}}" />
     </view>
   </view>
 
@@ -194,7 +194,7 @@
     list="{{scenicList}}" 
     loading="{{scenicLoading}}"
     finished="{{scenicFinished}}"
-    generic:item="scenic-item-grid" 
+    generic:item="scenic-item" 
   />
   <empty-illus wx:if="{{scenicFinished && !scenicList.length}}" desc="没有找到相关景点" />
 </view>
@@ -205,7 +205,7 @@
     list="{{hotelList}}" 
     loading="{{hotelLoading}}"
     finished="{{hotelFinished}}"
-    generic:item="hotel-item-grid" 
+    generic:item="hotel-item" 
   />
   <empty-illus wx:if="{{hotelFinished && !hotelList.length}}" desc="没有找到相关酒店" />
 </view>
@@ -216,7 +216,7 @@
     list="{{restaurantList}}" 
     loading="{{restaurantLoading}}"
     finished="{{restaurantFinished}}"
-    generic:item="restaurant-item-grid" 
+    generic:item="restaurant-item" 
   />
   <empty-illus wx:if="{{restaurantFinished && !restaurantList.length}}" desc="没有找到相关餐饮美食" />
 </view>
@@ -227,7 +227,7 @@
     list="{{goodsList}}" 
     loading="{{goodsLoading}}"
     finished="{{goodsFinished}}"
-    generic:item="goods-item-grid" 
+    generic:item="goods-item" 
   />
   <empty-illus wx:if="{{goodsFinished && !goodsList.length}}" desc="没有找到相关商品" />
 </view>
