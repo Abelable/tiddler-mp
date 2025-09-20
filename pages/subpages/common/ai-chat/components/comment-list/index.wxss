@@ -56,7 +56,7 @@
   margin-right: 48rpx;
   flex: 1;
 }
-.robot-name {
+.robot-hello {
   color: #262626;
   font-size: 34rpx;
   font-weight: bold;
@@ -100,7 +100,7 @@
   display: flex;
   align-items: center;
   color: #262626;
-  font-size: 30rpx;
+  font-size: 28rpx;
   font-weight: bold;
 }
 
@@ -112,8 +112,8 @@
   margin-left: 12rpx;
 }
 .dot {
-  width: 6rpx;
-  height: 6rpx;
+  width: 4rpx;
+  height: 4rpx;
   border-radius: 50%;
   background: #333;
   opacity: 0.3;
