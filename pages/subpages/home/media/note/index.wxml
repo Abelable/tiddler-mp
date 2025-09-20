@@ -11,7 +11,7 @@
         <view class="time">{{TIME.timeDiff(noteInfo.createdAt)}}</view>
       </view>
       <view class="follow-btn" wx:if="{{!noteInfo.isFollow}}" catchtap="follow">关注</view>
-      <image class="more-icon" wx:if="{{userInfo.id === noteInfo.authorInfo.id}}" catchtap="showFeaturePopup" src="/images/media-item/more.png" />
+      <image class="more-icon" wx:if="{{userInfo.id === noteInfo.authorInfo.id}}" catchtap="showFeaturePopup" src="https://static.tiddler.cn/mp/media_item/more.png" />
     </view>
   </view>
 </view>
@@ -67,15 +67,15 @@
   <view class="comment-input row" bindtap="showInputModal">说点什么...</view>
   <view class="other-btns">
     <view class="btn-item" bindtap="share">
-      <image class="btn-icon" src="/images/media-item/share.png" />
+      <image class="btn-icon" src="https://static.tiddler.cn/mp/media_item/share.png" />
       <view class="btn-data">{{NUM.over(noteInfo.shareTimes, 100000)}}</view>
     </view>
     <view class="btn-item" bindtap="like">
-      <image class="btn-icon" src="/images/media-item/heart{{noteInfo.isLike ? '-active' : ''}}.png" />
+      <image class="btn-icon" src="https://static.tiddler.cn/mp/media_item/heart{{noteInfo.isLike ? '-active' : ''}}.png" />
       <view class="btn-data">{{NUM.over(noteInfo.likeNumber, 100000)}}</view>
     </view>
     <view class="btn-item" bindtap="collect">
-      <image class="btn-icon" src="/images/media-item/collection{{noteInfo.isCollected ? '-active' : ''}}.png" />
+      <image class="btn-icon" src="https://static.tiddler.cn/mp/media_item/collection{{noteInfo.isCollected ? '-active' : ''}}.png" />
       <view class="btn-data">{{NUM.over(noteInfo.collectionTimes, 100000)}}</view>
     </view>
   </view>
