@@ -18,7 +18,7 @@
     bindtap="blurInput" 
   />
 
-  <view class="chat-reply" style="padding-bottom: {{containerBottom ? containerBottom + 12 + 'px' : 'env(safe-area-inset-bottom)'}};">
+  <view class="chat-reply" style="padding-bottom: {{containerBottom ? containerBottom - 16 + 'px' : 'env(safe-area-inset-bottom)'}};">
     <view class="chat-input-wrap">
       <input 
         class="chat-input"
@@ -26,6 +26,7 @@
         confirm-type="send"
         value="{{content}}"
         bindinput="getContent" 
+        bindfocus="showKeyBoard" 
         bindblur="hideKeyBoard"
         placeholder="问一问AI小鱼～" 
         bindconfirm="sendMsg" 
