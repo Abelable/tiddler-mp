@@ -102,7 +102,6 @@ Page({
       const str = new TextEncoding.TextDecoder("utf-8").decode(
         new Uint8Array(res.data)
       );
-      console.log("onChunkReceived", str);
 
       if (str.includes("done: ")) {
         const { conversationId, productType, productList } = JSON.parse(
