@@ -9,7 +9,7 @@
   </view>
 </view>
 
-<view class="list-wrap">
+<view class="list-wrap" wx:if="{{toolVisible}}">
   <view 
     class="list row between" 
     wx:for="{{['景区', '酒店', '餐饮', '电商']}}" 
