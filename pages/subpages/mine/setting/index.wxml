@@ -9,42 +9,45 @@
   </view>
 </view>
 
-<view class="list-wrap" wx:if="{{toolVisible}}">
-  <view class="list row between" bindtap="navToScenicMerchantSettleIn">
-    <view class="title">景区服务商入驻</view>
-    <image class="arrow" src="./images/arrow.png" />
-  </view>
-  <view class="list row between" bindtap="navToHotelProviderSettleIn">
-    <view class="title">酒店服务商入驻</view>
-    <image class="arrow" src="./images/arrow.png" />
-  </view>
-  <view class="list row between" bindtap="navToCateringSettleIn">
-    <view class="title">餐饮商家入驻</view>
-    <image class="arrow" src="./images/arrow.png" />
-  </view>
-  <view class="list row between" bindtap="navToMerchantSettleIn">
-    <view class="title">电商商家入驻</view>
+<view class="list-wrap">
+  <view 
+    class="list row between" 
+    wx:for="{{['景区', '酒店', '餐饮', '电商']}}" 
+    wx:key="index" 
+    bindtap="settleIn" 
+    data-index="{{index}}"
+  >
+    <view class="title">{{item}}商家入驻</view>
     <image class="arrow" src="./images/arrow.png" />
   </view>
 </view>
 
-<view class="list-wrap" wx:if="{{toolVisible}}">
+<view class="list-wrap">
   <view class="list row between">
     <view class="title">常见问题与反馈</view>
     <image class="arrow" src="./images/arrow.png" />
   </view>
-  <view class="list row between">
+  <button 
+    class="list row between"
+    open-type="share" 
+    hover-class="none"
+  >
     <view class="title">推荐给好友</view>
     <image class="arrow" src="./images/arrow.png" />
-  </view>
-  <view class="list row between">
-    <view class="title">在线客服</view>
+  </button>
+  <button 
+    class="list row between"
+    open-type="contact" 
+    session-from="sessionFrom" 
+    hover-class="none"
+  >
+     <view class="title">在线客服</view>
     <image class="arrow" src="./images/arrow.png" />
-  </view>
+  </button>
   <view class="list row between">
     <view class="title">关于小鱼游</view>
     <view class="row">
-      <view class="content">v1.0.0</view>
+      <view class="content">v{{version}}</view>
       <image class="arrow" src="./images/arrow.png" />
     </view>
   </view>

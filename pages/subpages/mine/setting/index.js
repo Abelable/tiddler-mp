@@ -1,16 +1,19 @@
 import { WEBVIEW_BASE_URL } from "../../../../config";
+import { store } from "../../../../store/index";
 import { checkLogin } from "../../../../utils/index";
 
 Page({
   data: {
+    version: "1.0.0",
     toolVisible: false // todo 用于前期提交审核隐藏部分功能，后期需要删除
   },
 
   onLoad() {
     // todo 用于前期提交审核隐藏部分功能，后期需要删除
-    const { envVersion } = wx.getAccountInfoSync().miniProgram || {};
+    const { version = "1.0.0", envVersion } =
+      wx.getAccountInfoSync().miniProgram || {};
     if (envVersion === "release") {
-      this.setData({ toolVisible: true });
+      this.setData({ version, toolVisible: true });
     }
   },
 
@@ -27,31 +30,20 @@ Page({
     }, true);
   },
 
-  navToScenicMerchantSettleIn() {
+  settleIn(e) {
     checkLogin(() => {
-      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/scenic/merchant/settle_in`;
+      const { index } = e.currentTarget.dataset;
+      const type = ["scenic", "hotel", "catering", "goods"][index];
+      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/${type}/merchant/settle_in`;
       wx.navigateTo({ url });
     }, true);
   },
 
-  navToHotelProviderSettleIn() {
-    checkLogin(() => {
-      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/hotel/merchant/settle_in`;
-      wx.navigateTo({ url });
-    }, true);
-  },
-
-  navToCateringSettleIn() {
-    checkLogin(() => {
-      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/catering/merchant/settle_in`;
-      wx.navigateTo({ url });
-    }, true);
-  },
-
-  navToMerchantSettleIn() {
-    checkLogin(() => {
-      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/goods/merchant/settle_in`;
-      wx.navigateTo({ url });
-    }, true);
+  onShareAppMessage() {
+    const { id } = store.superiorInfo || {};
+    const path = id
+      ? `/pages/tab-bar-pages/home/index?superiorId=${id}`
+      : "/pages/tab-bar-pages/home/index";
+    return { path };
   }
 });

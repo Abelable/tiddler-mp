@@ -62,7 +62,7 @@
         </view>
 
         <view class="notice-item">
-          <view class="notice-title">服务商家</view>
+          <view class="notice-title">商家家</view>
           <view class="supplier-info row between">
             <view class="row">
               <view class="supplier-type row" wx:if="{{info.shopInfo.type !== 2}}">
