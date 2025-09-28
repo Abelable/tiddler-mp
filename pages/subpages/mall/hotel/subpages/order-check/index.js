@@ -1,5 +1,6 @@
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
 import { store } from "../../../../../../store/index";
+import { WEBVIEW_BASE_URL } from "../../../../../../config";
 import HotelService from "../../utils/hotelService";
 
 const hotelService = new HotelService();
@@ -123,6 +124,18 @@ Component({
       this.setData({
         noticePopupVisible: false,
       });
+    },
+
+    checkOrderProtocol() {
+       wx.navigateTo({
+      url: `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/protocol/hotel_order`
+    });
+    },
+
+    checkAuthProtocol() {
+       wx.navigateTo({
+      url: `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/protocol/user_auth`
+    });
     },
 
     onPageScroll({ scrollTop }) {
