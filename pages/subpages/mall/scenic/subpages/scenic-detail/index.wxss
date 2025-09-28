@@ -229,6 +229,8 @@
   border: 1px solid #999;
 }
 .opening-hours {
+  margin-right: 24rpx;
+  flex: 1;
   color: #333;
   font-size: 24rpx;
   font-weight: bold;

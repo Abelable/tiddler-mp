@@ -97,16 +97,13 @@
   </view>
 
   <view class="info-list-wrap">
-    <view class="info-list row between" bindtap="checkMoreInfo">
-      <view class="row">
-        <image class="clock-icon" src="./images/time.png" />
-        <view class="opening-status row {{!isOpen ? 'closed' : ''}}">{{!isOpen ? '已闭园' : '开园中'}}</view>
-        <view class="opening-hours">{{curOpenTime.openTime}}-{{curOpenTime.closeTime}}开放{{curOpenTime.tips ? ('（' + curOpenTime.tips + '）') : ''}}</view>
-      </view>
-      <view class="row">
-        <view class="more-detail">详情</view>
-        <image class="more-icon" src="./images/more.png" />
-      </view>
+    <view class="info-list row " bindtap="checkMoreInfo">
+     <image class="clock-icon" src="./images/time.png" />
+      <view class="opening-status row {{!isOpen ? 'closed' : ''}}">{{!isOpen ? '已闭园' : '开园中'}}</view>
+      <view class="opening-hours omit single" wx:if="{{curOpenTime}}">{{curOpenTime.openTime}}-{{curOpenTime.closeTime}}开放{{curOpenTime.tips ? ('（' + curOpenTime.tips + '）') : ''}}</view>
+      <view class="opening-hours" wx:if="{{!curOpenTime}}">全天开发</view>
+      <view class="more-detail">详情</view>
+      <image class="more-icon" src="./images/more.png" />
     </view>
     <view class="info-list row between" bindtap="navigation">
       <view class="row">
