@@ -44,6 +44,10 @@ Page({
     const path = id
       ? `/pages/tab-bar-pages/home/index?superiorId=${id}`
       : "/pages/tab-bar-pages/home/index";
-    return { path };
+    return {
+      title: "千岛湖旅游服务平台",
+      path,
+      imageUrl: "https://static.tiddler.cn/mp/share_cover.png"
+    };
   }
 });
