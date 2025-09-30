@@ -1,6 +1,6 @@
-import { customBack } from '../../utils/index'
+import { customBack } from "../../utils/index";
 
-Component({ 
+Component({
   properties: {
     custom: Boolean,
     noBorder: Boolean
@@ -13,14 +13,14 @@ Component({
   lifetimes: {
     attached() {
       if (getCurrentPages().length === 1) {
-        this.setData({ icon: "home" })
+        this.setData({ icon: "home" });
       }
     }
   },
 
-  methods: { 
+  methods: {
     navigateBack() {
-      this.properties.custom ? this.triggerEvent('navigateBack') : customBack()
+      this.properties.custom ? this.triggerEvent("navigateBack") : customBack();
     }
   }
-})
+});

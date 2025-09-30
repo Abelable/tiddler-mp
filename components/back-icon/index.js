@@ -12,7 +12,7 @@ Component({
   lifetimes: {
     attached() {
       if (getCurrentPages().length === 1) {
-        this.setData({ icon: "home" })
+        this.setData({ icon: "home" });
       }
     }
   },
