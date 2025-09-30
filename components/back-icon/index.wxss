@@ -9,12 +9,10 @@
   background: rgba(255, 255, 255, 0.6);
 }
 
-.icon.back {
-  margin-right: 2px;
+.icon {
   width: 20px; 
   height: 20px;
 }
-.icon.home {
-  width: 18px; 
-  height: 18px;
+.icon.back {
+  margin-right: 2px;
 }
