@@ -58,7 +58,7 @@ Component({
   },
 
   methods: {
-    onLoad() {
+    async onLoad() {
       wx.showShareMenu({
         withShareTicket: true,
         menus: ["shareAppMessage", "shareTimeline"]
@@ -72,7 +72,7 @@ Component({
       }
 
       this.setAdInfo();
-      this.setBannerList();
+      await this.setBannerList();
       this.setTopMediaList();
       this.setList(SCENE_REFRESH);
     },
