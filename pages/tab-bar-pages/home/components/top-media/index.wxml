@@ -19,7 +19,7 @@
         <image class="top-desc" src="https://static.tiddler.cn/mp/home/{{curMediaIdx === 0 ? 'today_' : ''}}best_note.png" />
       </view>
       <view class="video-symbol" wx:if="{{item.type === 2}}">
-        <image class="play-icon" src="/images/play.png" />
+        <image class="play-icon" src="https://static.tiddler.cn/mp/play.png" />
       </view>
       <view class="top-media-info">
         <view class="top-media-title omit single">{{item.title}}</view>

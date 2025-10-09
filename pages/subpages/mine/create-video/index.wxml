@@ -56,7 +56,7 @@
           </view>
         </view>
         <view class="swipe-cell-delete-btn row center" slot="right">
-          <image class="delete-icon" src="/images/delete.png" />
+          <image class="delete-icon" src="https://static.tiddler.cn/mp/delete.png" />
         </view>
       </van-swipe-cell>
     </view>

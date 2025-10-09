@@ -8,7 +8,7 @@
       mode="aspectFill" 
     />
     <view class="video-symbol">
-      <image class="play-icon" src="/images/play.png" />
+      <image class="play-icon" src="https://static.tiddler.cn/mp/play.png" />
     </view>
   </view>
   <view class="video-title omit single">{{item.title}}</view>
