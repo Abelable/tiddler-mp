@@ -75,26 +75,29 @@
       scroll-with-animation
     >
       <view class="content">
-        <swiper 
-          class="banner small-dots" 
-          wx:if="{{bannerList.length}}"
-          autoplay 
-          circular 
-          indicator-dots="{{bannerList.length > 1}}"
-          indicator-color="#dcf0fa" 
-          indicator-active-color="#00C8FF"
-        >
-          <swiper-item 
-            class="banner-item"
-            wx:for="{{bannerList}}"
-            wx:key="index"
-            bindtap="linkTo"
-            data-scene="{{item.scene}}"
-            data-param="{{item.param}}"
+        <view class="banner-wrap">
+          <swiper 
+            class="banner" 
+            wx:if="{{bannerList.length}}"
+            bindchange="bannerChange"
+            autoplay 
+            circular 
           >
-            <image class="banner-img" src="{{item.cover}}" mode="aspectFill" lazy-load />
-          </swiper-item>
-        </swiper>
+            <swiper-item 
+              class="banner-item"
+              wx:for="{{bannerList}}"
+              wx:key="index"
+              bindtap="linkTo"
+              data-scene="{{item.scene}}"
+              data-param="{{item.param}}"
+            >
+              <image class="banner-img" src="{{item.cover}}" mode="aspectFill" lazy-load />
+            </swiper-item>
+          </swiper>
+          <view class="banner-dots" wx:if="{{bannerList.length > 1}}">
+            <view class="banner-dot {{curDot === index ? 'active' : ''}}" wx:for="{{bannerList.length}}" wx:key="index" />
+          </view>
+        </view>
         <view class="classification-list row between">
           <view 
             class="classification-item" 

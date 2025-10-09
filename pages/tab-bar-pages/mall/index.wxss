@@ -79,6 +79,9 @@ page {
   backdrop-filter: blur(8px);
 }
 
+.banner-wrap {
+  position: relative;
+}
 .banner-item {
   position: relative;
 }
@@ -87,6 +90,25 @@ page {
   left: 0;
   bottom: 0;
   width: 100vw;
+}
+.banner-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 64rpx;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+}
+.banner-dot {
+  margin: 0 4rpx;
+  width: 8rpx;
+  height: 8rpx;
+  background: #d6f4fd;
+  border-radius: 4rpx;
+}
+.banner-dot.active {
+  width: 24rpx;
+  background: #5bd6f8;
 }
 
 .category-list {

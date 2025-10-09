@@ -23,6 +23,8 @@ Component({
     ],
     pageLoaded: false,
     navBarActive: false,
+    bannerList: [],
+    curDot: 0,
     productList: [],
     loading: false,
     finished: false
@@ -47,7 +49,7 @@ Component({
       if (!store.checkInDate) {
         this.initCalendar();
       }
-      
+
       await this.setBannerList();
       this.setData({ pageLoaded: true });
       if (!this.data.productList.length) {
@@ -111,6 +113,12 @@ Component({
       this.setBannerList();
       this.setProductList(true);
       wx.stopPullDownRefresh();
+    },
+
+    bannerChange(e) {
+      this.setData({
+        curDot: e.detail.current
+      });
     },
 
     search() {

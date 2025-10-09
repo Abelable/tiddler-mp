@@ -36,6 +36,7 @@ Component({
     navBarActive: [false, false],
     curMenuIndex: 1,
     bannerList: [],
+    curDot: 0,
     topMediaList: [],
     followMediaList: [],
     followRefreshing: false,
@@ -345,6 +346,12 @@ Component({
     setActiveMediaItem: debounce(function () {
       this.selectComponent(".fall-flow").setActiveMediaItem();
     }, 1000),
+
+    bannerChange(e) {
+      this.setData({
+        curDot: e.detail.current
+      });
+    },
 
     search() {
       wx.navigateTo({

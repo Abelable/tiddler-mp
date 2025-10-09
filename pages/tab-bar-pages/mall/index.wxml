@@ -13,24 +13,30 @@
   </view>
 </view>
 
-<swiper 
-  class="banner" 
-  wx:if="{{pageLoaded && bannerList.length}}" 
-  style="height: calc({{statusBarHeight + 44}}px + 300rpx);" 
-  autoplay 
-  circular
->
-  <swiper-item 
-    class="banner-item" 
-    wx:for="{{bannerList}}"
-    wx:key="index"
-    bindtap="linkTo"
-    data-scene="{{item.scene}}"
-    data-param="{{item.param}}"
+<view class="banner-wrap">
+  <swiper 
+    class="banner" 
+    wx:if="{{pageLoaded && bannerList.length}}" 
+    style="height: calc({{statusBarHeight + 44}}px + 300rpx);" 
+    bindchange="bannerChange"
+    autoplay 
+    circular
   >
-    <image class="banner-img" mode="widthFix" src="{{ item.cover }}" />
-  </swiper-item>
-</swiper>
+    <swiper-item 
+      class="banner-item" 
+      wx:for="{{bannerList}}"
+      wx:key="index"
+      bindtap="linkTo"
+      data-scene="{{item.scene}}"
+      data-param="{{item.param}}"
+    >
+      <image class="banner-img" mode="widthFix" src="{{ item.cover }}" />
+    </swiper-item>
+  </swiper>
+  <view class="banner-dots" wx:if="{{bannerList.length > 1}}">
+    <view class="banner-dot {{curDot === index ? 'active' : ''}}" wx:for="{{bannerList.length}}" wx:key="index" />
+  </view>
+</view>
 
 <view 
   class="container" 
