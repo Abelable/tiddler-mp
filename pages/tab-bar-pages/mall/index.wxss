@@ -98,7 +98,7 @@ page {
   transform: translateX(-50%);
   height: 6rpx;
   border-radius: 6rpx;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.6);
 }
 .banner-dot {
   position: absolute;
