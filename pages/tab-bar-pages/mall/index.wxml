@@ -15,7 +15,7 @@
 
 <swiper 
   class="banner" 
-  wx:if="{{pageLoaded & bannerList.length}}" 
+  wx:if="{{pageLoaded && bannerList.length}}" 
   style="height: calc({{statusBarHeight + 44}}px + 300rpx);" 
   autoplay 
   circular

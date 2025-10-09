@@ -154,3 +154,5 @@
 </swiper>
 
 <ai-tag scrolling="{{scrolling}}" />
+
+<ad-modal wx:if="{{adModalVisible}}" info="{{adInfo}}" bind:hide="hideAdModal" />

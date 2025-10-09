@@ -4,6 +4,7 @@
     "fall-flow": "/components/fall-flow/index",
     "media-item": "/components/media-item",
     "empty-illus": "/components/empty-illus/index",
+    "ad-modal": "./components/ad-modal/index",
     "top-media": "./components/top-media/index",
     "follow-media-item": "./components/follow-media-item/index",
     "ai-tag": "./components/ai-tag/index"

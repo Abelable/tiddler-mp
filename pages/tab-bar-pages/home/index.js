@@ -30,6 +30,8 @@ Component({
   data: {
     statusBarHeight,
     classificationList,
+    adInfo: null,
+    adModalVisible: false,
     pageLoaded: false,
     navBarActive: [false, false],
     curMenuIndex: 1,
@@ -362,6 +364,12 @@ Component({
           await homeService.getLocationInfo();
           this.setList(SCENE_REFRESH);
         }
+      });
+    },
+
+    hideAdModal() {
+      this.setData({
+        adModalVisible: false
       });
     },
 
