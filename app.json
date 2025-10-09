@@ -59,6 +59,7 @@
       "mall/goods/subpages/shop/index",
       "mall/goods/subpages/cart/index",
       "mall/goods/subpages/order-check/index",
+      "mall/invite-merchant/index",
       "gift/index",
       "notice/chat/index",
       "mine/setting/index",

@@ -1,0 +1,13 @@
+<view class="header {{headerVisible ? 'show' : ''}}" style="padding-top: {{statusBarHeight}}px">
+  <view class="nav-bar row">
+    <back-icon />
+    <view class="nav-bar-title {{headerVisible ? 'show' : ''}}">邀请商家</view>
+  </view>
+</view>
+
+<image class="bg" mode="widthFix" src="https://static.tiddler.cn/mp/invite_merchant/bg.png" />
+
+<view class="merchant-list">
+  <empty-illus wx:if="{{!merchantList.length}}" desc="暂无商家" />
+  <view class="no-more-tips" wx:if="{{merchantList.length}}">～没有更多了～</view>
+</view>
