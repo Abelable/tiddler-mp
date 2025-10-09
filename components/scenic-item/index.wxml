@@ -23,7 +23,7 @@
     />
     <view class="type-label row" wx:if="{{showTag}}">景点</view>
     <view class="address-info">
-      <image class="address-icon" src="/images/address.png" />
+      <image class="address-icon" src="https://static.tiddler.cn/mp/address.png" />
       <text class="address-detail omit single">{{ item.address }}</text>
     </view>
   </view>

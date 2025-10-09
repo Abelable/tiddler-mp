@@ -11,7 +11,7 @@
         <!-- <image style="width: 20rpx; height: 20rpx;" src="/images/arrow_gray.png" /> -->
       </view>
       <view class="countdown-wrap row" wx:if="{{orderInfo.status === 101}}">
-        <image class="alarm-icon" src="/images/alarm.png" />
+        <image class="alarm-icon" src="https://static.tiddler.cn/mp/order/alarm.png" />
         <view>剩余</view>
         <view class="countdown">{{TIME.countdown(countdown, 'hh:mm:ss')}}</view>
       </view>
