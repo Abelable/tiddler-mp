@@ -8,7 +8,7 @@
     <image class="promoter-medal" src="https://static.tiddler.cn/mp/promoter/level_{{superiorInfo.promoterInfo.level}}/medal.gif" />
   </view>
   <view class="search-bar {{navBarActive ? 'active': ''}}" bindtap="search">
-    <image class="search-icon" src="/images/search.png" />
+    <image class="search-icon" src="https://static.tiddler.cn/mp/search.png" />
     <text class="placeholder">搜索景点、酒店、美食...</text>
   </view>
 </view>

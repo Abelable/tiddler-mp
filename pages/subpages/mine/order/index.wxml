@@ -2,7 +2,7 @@
   <view class="nav-bar row">
     <back-icon custom bind:navigateBack="navigateBack" />
     <view class="search-bar" bindtap="search">
-      <image class="search-icon" src="/images/search.png" />
+      <image class="search-icon" src="https://static.tiddler.cn/mp/search.png" />
       <text class="placeholder">搜索订单</text>
     </view>
   </view>
