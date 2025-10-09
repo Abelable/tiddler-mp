@@ -26,7 +26,7 @@
   <view class="search-bar {{navBarActive[curMenuIndex] ? 'active': ''}}" bindtap="search">
     <view class="placeholder">搜索达人打卡景点、酒店...</view>
     <view class="search-btn">
-      <image style="width: 20px; height: 20px;" src="/images/search_white.png" />
+      <image style="width: 20px; height: 20px;" src="https://static.tiddler.cn/mp/home/search_white.png" />
     </view>
   </view>
 </view>

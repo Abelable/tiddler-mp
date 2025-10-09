@@ -21,8 +21,9 @@
 .ad-poster-img {
   width: 580rpx;
 }
+
 .close-icon {
-  margin-top: 20rpx;
+  margin-top: 32rpx;
   width: 60rpx;
   height: 60rpx;
 }
