@@ -94,8 +94,8 @@
               <image class="banner-img" src="{{item.cover}}" mode="aspectFill" lazy-load />
             </swiper-item>
           </swiper>
-          <view class="banner-dots" wx:if="{{bannerList.length > 1}}">
-            <view class="banner-dot {{curDot === index ? 'active' : ''}}" wx:for="{{bannerList.length}}" wx:key="index" />
+          <view class="banner-dots" style="width: {{12 * bannerList.length}}px;" wx:if="{{bannerList.length > 1}}">
+            <view class="banner-dot" style="left: {{12 * curDot}}px" />
           </view>
         </view>
         <view class="classification-list row between">

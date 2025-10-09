@@ -94,21 +94,20 @@ page {
 .banner-dots {
   position: absolute;
   left: 50%;
-  bottom: 64rpx;
+  bottom: 66rpx;
   transform: translateX(-50%);
-  display: flex;
-  align-items: center;
+  height: 6rpx;
+  border-radius: 6rpx;
+  background: rgba(255, 255, 255, 0.5);
 }
 .banner-dot {
-  margin: 0 4rpx;
-  width: 8rpx;
-  height: 8rpx;
-  background: #d6f4fd;
-  border-radius: 4rpx;
-}
-.banner-dot.active {
-  width: 24rpx;
-  background: #5bd6f8;
+  position: absolute;
+  top: 0;
+  width: 12px;
+  height: 6rpx;
+  border-radius: 6rpx;
+  background: #fff;
+  transition: left .4s ease;
 }
 
 .category-list {
