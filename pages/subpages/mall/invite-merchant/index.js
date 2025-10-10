@@ -37,6 +37,7 @@ Page({
     const path = id ? `${originalPath}?superiorId=${id}` : originalPath;
     return {
       path,
+      title: "邀商家入驻，拿百元奖励",
       imageUrl: "https://static.tiddler.cn/mp/invite_merchant/share_cover.png"
     };
   }
