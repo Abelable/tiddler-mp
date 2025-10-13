@@ -23,14 +23,6 @@
 </view>
 
 <view class="list-wrap">
-  <view class="list row between" bindtap="inviteMerchant">
-    <view class="title">邀请商家入驻</view>
-    <image class="arrow" src="./images/arrow.png" />
-  </view>
-  <view class="list row between">
-    <view class="title">常见问题与反馈</view>
-    <image class="arrow" src="./images/arrow.png" />
-  </view>
   <button 
     class="list row between"
     open-type="share" 
@@ -39,6 +31,14 @@
     <view class="title">推荐给好友</view>
     <image class="arrow" src="./images/arrow.png" />
   </button>
+  <view class="list row between" bindtap="inviteMerchant">
+    <view class="title">邀请商家入驻</view>
+    <image class="arrow" src="./images/arrow.png" />
+  </view>
+  <view class="list row between">
+    <view class="title">常见问题与反馈</view>
+    <image class="arrow" src="./images/arrow.png" />
+  </view>
   <button 
     class="list row between"
     open-type="contact" 
