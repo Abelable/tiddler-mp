@@ -39,6 +39,12 @@ Page({
     }, true);
   },
 
+  inviteMerchant() {
+    wx.navigateTo({
+      url: "/pages/subpages/mine/invite-merchant/index"
+    });
+  },
+
   onShareAppMessage() {
     const { id } = store.superiorInfo || {};
     const path = id

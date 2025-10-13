@@ -1,4 +1,4 @@
-import MallService from "../../utils/mallService";
+import MallService from "../../../mall/utils/mallService";
 
 class InviteService extends MallService {
 }

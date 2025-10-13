@@ -59,11 +59,6 @@
       "mall/goods/subpages/shop/index",
       "mall/goods/subpages/cart/index",
       "mall/goods/subpages/order-check/index",
-      "mall/invite-merchant/index",
-      "mall/invite-merchant/subpages/mine-task/index",
-      "mall/invite-merchant/subpages/task-detail/index",
-      "mall/invite-merchant/subpages/reward-decord/index",
-      "mall/invite-merchant/subpages/guide/index",
       "gift/index",
       "notice/chat/index",
       "mine/setting/index",
@@ -112,7 +107,12 @@
       "mine/withdraw/subpages/bind-bank/index",
       "mine/balance/index",
       "mine/coupon/index",
-      "mine/history/index"
+      "mine/history/index",
+      "mine/invite-merchant/index",
+      "mine/invite-merchant/subpages/mine-task/index",
+      "mine/invite-merchant/subpages/task-detail/index",
+      "mine/invite-merchant/subpages/reward-decord/index",
+      "mine/invite-merchant/subpages/guide/index"
     ]
   }],
   "tabBar": {
