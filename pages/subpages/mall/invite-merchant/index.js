@@ -8,14 +8,33 @@ Page({
   data: {
     statusBarHeight,
     headerVisible: false,
+    curMenuIdx: 0,
+    menuFixed: false,
     merchantList: []
   },
 
   onLoad() {
+    setTimeout(() => {
+      this.getMenuTop();
+    }, 1000);
+  },
+
+  selectMenu(e) {
+    const { index: curMenuIdx } = e.currentTarget.dataset;
+    this.setData({ curMenuIdx });
+  },
+
+  getMenuTop() {
+    const query = wx.createSelectorQuery();
+    query.select(".menu-list").boundingClientRect();
+    query.exec(res => {
+      if (res[0] !== null) {
+        this.menuTop = res[0].top - statusBarHeight - 44;
+      }
+    });
   },
 
   onPullDownRefresh() {
-    this.setGoodsList();
     wx.stopPullDownRefresh();
   },
 
@@ -28,6 +47,13 @@ Page({
       if (this.data.headerVisible) {
         this.setData({ headerVisible: false });
       }
+    }
+
+    if (!this.data.menuFixed && e.scrollTop >= this.menuTop) {
+      this.setData({ menuFixed: true });
+    }
+    if (this.data.menuFixed && e.scrollTop < this.menuTop) {
+      this.setData({ menuFixed: false });
     }
   },
 

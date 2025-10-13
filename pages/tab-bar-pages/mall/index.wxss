@@ -96,16 +96,16 @@ page {
   left: 50%;
   bottom: 66rpx;
   transform: translateX(-50%);
-  height: 6rpx;
-  border-radius: 6rpx;
+  height: 4rpx;
+  border-radius: 4rpx;
   background: rgba(255, 255, 255, 0.5);
 }
 .banner-dot {
   position: absolute;
   top: 0;
   width: 12px;
-  height: 6rpx;
-  border-radius: 6rpx;
+  height: 4rpx;
+  border-radius: 4rpx;
   background: #fff;
   transition: left .4s ease;
 }

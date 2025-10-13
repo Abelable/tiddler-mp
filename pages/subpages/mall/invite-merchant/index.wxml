@@ -1,13 +1,69 @@
 <view class="header {{headerVisible ? 'show' : ''}}" style="padding-top: {{statusBarHeight}}px">
   <view class="nav-bar row">
     <back-icon />
-    <view class="nav-bar-title {{headerVisible ? 'show' : ''}}">邀请商家</view>
+    <view class="qa-btn">
+      <image class="qa-icon" src="https://static.tiddler.cn/mp/invite_merchant/qa.png" />
+    </view>
+    <button class="share-btn" open-type='share' hover-class="none">
+      <image class="share-icon" src="https://static.tiddler.cn/mp/invite_merchant/share.png" />
+    </button>
+    <view class="mine-btn">我的</view>
   </view>
 </view>
 
 <image class="bg" mode="widthFix" src="https://static.tiddler.cn/mp/invite_merchant/bg.png" />
 
-<view class="merchant-list">
+<view class="container">
+  <view class="menu-list {{menuFixed ? 'fixed' : ''}}" style="top: {{statusBarHeight + 44}}px;">
+    <view 
+      class="menu-item {{curMenuIdx === index ? 'active' : ''}}" 
+      wx:for="{{['景点商家', '酒店商家', '餐饮商家', '电商商家']}}"
+      wx:key="index"
+      bindtap="selectMenu"
+      data-index="{{index}}"
+    >
+      <image class="active-line" wx:if="{{curMenuIdx === index}}" src="https://static.tiddler.cn/mp/invite_merchant/line.png" />
+      <view class="menu-content">{{item}}</view>
+    </view>
+  </view>
+  <view class="merchant-list {{menuFixed ? 'fixed' : ''}}">
+    <view class="merchant-item">
+      <view class="merchant-name">千岛湖中心湖区</view>
+      <view class="merchant-position">
+        <image class="position-icon" src="https://static.tiddler.cn/mp/invite_merchant/address.png" />
+        <view>千岛湖镇梦姑路88号</view>
+        <view class="distance">，距您2km</view>
+      </view>
+      <view class="reward-info-wrap row between">
+        <view class="reward row">
+          <image class="coin-icon" src="https://static.tiddler.cn/mp/invite_merchant/coin.png" />
+          <view>800元</view>
+        </view>
+        <view class="row">
+          <view class="navigate-btn">导航</view>
+          <view class="task-btn active">领取任务</view>
+        </view>
+      </view>
+    </view>
+     <view class="merchant-item">
+      <view class="merchant-name">千岛湖中心湖区</view>
+      <view class="merchant-position">
+        <image class="position-icon" src="https://static.tiddler.cn/mp/invite_merchant/address.png" />
+        <view>千岛湖镇梦姑路88号</view>
+        <view class="distance">，距您2km</view>
+      </view>
+      <view class="reward-info-wrap row between">
+        <view class="reward row">
+          <image class="coin-icon" src="https://static.tiddler.cn/mp/invite_merchant/coin.png" />
+          <view>800元</view>
+        </view>
+        <view class="row">
+          <view class="navigate-btn">导航</view>
+          <view class="task-btn active">领取任务</view>
+        </view>
+      </view>
+    </view>
+  </view>
   <empty-illus wx:if="{{!merchantList.length}}" desc="暂无商家" />
   <view class="no-more-tips" wx:if="{{merchantList.length}}">～没有更多了～</view>
 </view>
