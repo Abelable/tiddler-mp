@@ -57,6 +57,18 @@ Page({
     }
   },
 
+  checkGuide() {
+    wx.navigateTo({
+      url: "./subpages/guide/index"
+    });
+  },
+
+    checkMineTask() {
+    wx.navigateTo({
+      url: "./subpages/mine-task/index"
+    });
+  },
+
   onShareAppMessage() {
     const { id } = store.promoterInfo || {};
     const originalPath = "/pages/subpages/mall/invite-merchant/index";
