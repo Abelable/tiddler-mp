@@ -154,7 +154,7 @@
 .classification-name {
   margin-top: 4rpx;
   color: #333;
-  font-size: 20rpx;
+  font-size: 22rpx;
 }
 
 .login-btn, .postioning-btn {

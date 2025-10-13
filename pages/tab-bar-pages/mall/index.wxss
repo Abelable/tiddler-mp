@@ -120,13 +120,13 @@ page {
   text-align: center;
 }
 .category-icon {
-  width: 60rpx;
-  height: 60rpx;
+  width: 64rpx;
+  height: 64rpx;
 }
 .category-desc {
   margin-top: 4rpx;
   color: #999;
-  font-size: 20rpx;
+  font-size: 22rpx;
 }
 
 .product-list {
