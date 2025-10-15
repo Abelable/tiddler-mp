@@ -1,31 +1,30 @@
+<wxs module="NUM" src="/utils/filters/num.wxs" />
+
 <view class="container">
   <view class="data-board">
     <view class="data-title-wrap row between">
       <view class="data-title">任务数据</view>
       <view class="record-btn row" bindtap="checkRecord">
-        <view>查看明细</view>
+        <view>奖励明细</view>
         <image class="arrow" src="/images/arrow_gray.png" />
       </view>
     </view>
-    <view class="data-info-wrap row between">
-      <view class="data-info row">
-        <view class="data-item">
-          <view class="data-name">通过任务数</view>
-          <view class="data-num">0</view>
-        </view>
-        <view class="data-item">
-          <view class="data-name">获得奖励（元）</view>
-          <view class="data-num">0</view>
-        </view>
+    <view class="data-info row">
+      <view class="data-item">
+        <view class="data-name">完成任务数</view>
+        <view class="data-num">{{taskData ? taskData.finishedTaskCount : 0}}</view>
       </view>
-      <view class="withdraw-btn">提现</view>
+      <view class="data-item">
+        <view class="data-name">累计奖励（元）</view>
+        <view class="data-num">{{taskData ? NUM.toFixed(taskData.taskRewardTotal, 2) : '0.00'}}</view>
+      </view>
     </view>
   </view>
 
   <view class="menu row">
     <view 
       class="menu-item {{curMenuIdx === index ? 'active' : ''}}" 
-      wx:for="{{['全部', '进行中', '已完成', '已终止']}}" 
+      wx:for="{{['全部', '进行中', '已完成', '已取消']}}" 
       wx:key="index"
       bindtap="selectMenu"
       data-index="{{index}}"
@@ -34,42 +33,9 @@
     </view>
   </view>
 
-  <view class="task-list">
-    <view class="task-item">
-      <view class="row top between">
-       <view class="task-name">千岛湖中心湖区</view>
-       <view class="task-status">进行中</view>
-      </view>
-      <view class="task-position">
-        <image class="position-icon" src="https://static.tiddler.cn/mp/invite_merchant/address.png" />
-        <view>千岛湖镇梦姑路88号</view>
-        <view class="distance">，距您2km</view>
-      </view>
-      <view class="reward-info-wrap row between">
-        <view class="reward row">
-          <image class="coin-icon" src="https://static.tiddler.cn/mp/invite_merchant/coin.png" />
-          <view>800元</view>
-        </view>
-        <view class="detail-btn">查看详情</view>
-      </view>
-    </view>
-    <view class="task-item">
-      <view class="row top between">
-       <view class="task-name">千岛湖中心湖区</view>
-       <view class="task-status">进行中</view>
-      </view>
-      <view class="task-position">
-        <image class="position-icon" src="https://static.tiddler.cn/mp/invite_merchant/address.png" />
-        <view>千岛湖镇梦姑路88号</view>
-        <view class="distance">，距您2km</view>
-      </view>
-      <view class="reward-info-wrap row between">
-        <view class="reward row">
-          <image class="coin-icon" src="https://static.tiddler.cn/mp/invite_merchant/coin.png" />
-          <view>800元</view>
-        </view>
-        <view class="detail-btn">查看详情</view>
-      </view>
-    </view>
+  <view class="task-list" wx:if="{{taskList.length}}">
+    <task-item wx:for="{{taskList}}" wx:key="index" item="{{item}}" isUserTask />
   </view>
+  <empty-illus wx:if="{{!taskList.length}}" desc="暂无任务" />
+  <view class="no-more-tips" wx:if="{{finished && taskList.length}}">～没有更多了～</view>
 </view>

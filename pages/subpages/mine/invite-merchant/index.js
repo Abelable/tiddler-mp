@@ -1,7 +1,7 @@
 import { store } from "../../../../store/index";
-import InviteService from "./utils/inviteService";
+import TaskService from "./utils/taskService";
 
-const inviteService = new InviteService();
+const taskService = new TaskService();
 const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Page({
@@ -10,18 +10,19 @@ Page({
     headerVisible: false,
     curMenuIdx: 0,
     menuFixed: false,
-    merchantList: []
+    taskList: [],
+    finished: false
   },
 
-  onLoad() {
-    setTimeout(() => {
-      this.getMenuTop();
-    }, 1000);
+  async onLoad() {
+    await this.setTaskList(true);
+    this.getMenuTop();
   },
 
   selectMenu(e) {
     const { index: curMenuIdx } = e.currentTarget.dataset;
     this.setData({ curMenuIdx });
+    this.setTaskList(true);
   },
 
   getMenuTop() {
@@ -35,7 +36,27 @@ Page({
   },
 
   onPullDownRefresh() {
+    this.setTaskList(true);
     wx.stopPullDownRefresh();
+  },
+
+  onReachBottom() {
+    this.setTaskList();
+  },
+
+  async setTaskList(init = false) {
+    if (init) {
+      this.page = 0;
+      this.setData({ finished: false });
+    }
+    const { curMenuIdx, taskList } = this.data;
+    const { list = [] } =
+      (await taskService.getTaskList(curMenuIdx + 1, ++this.page)) || {};
+    this.setData({ taskList: init ? list : [...taskList, ...list] });
+
+    if (!list.length) {
+      this.setData({ finished: true });
+    }
   },
 
   onPageScroll(e) {
@@ -63,18 +84,28 @@ Page({
     });
   },
 
-    checkMineTask() {
+  checkMineTask() {
     wx.navigateTo({
       url: "./subpages/mine-task/index"
     });
   },
 
   onShareAppMessage() {
-    const { id } = store.promoterInfo || {};
+    const { id: superiorId } = store.superiorInfo || {};
     const originalPath = "/pages/subpages/mall/invite-merchant/index";
-    const path = id ? `${originalPath}?superiorId=${id}` : originalPath;
+    const path = id ? `${originalPath}?superiorId=${superiorId}` : originalPath;
     return {
       path,
+      title: "邀商家入驻，拿百元奖励",
+      imageUrl: "https://static.tiddler.cn/mp/invite_merchant/share_cover.png"
+    };
+  },
+
+  onShareTimeline() {
+    const { id } = store.superiorInfo || {};
+    const query = id ? `superiorId=${id}` : "";
+    return {
+      query,
       title: "邀商家入驻，拿百元奖励",
       imageUrl: "https://static.tiddler.cn/mp/invite_merchant/share_cover.png"
     };

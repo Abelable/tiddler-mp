@@ -1,3 +1,8 @@
 {
-  "navigationBarTitleText": "我的"
+  "navigationBarTitleText": "我的任务",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "empty-illus": "/components/empty-illus/index",
+    "task-item": "../../compoments/task-item/index"
+  }
 }

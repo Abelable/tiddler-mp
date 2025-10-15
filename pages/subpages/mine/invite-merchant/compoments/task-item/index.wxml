@@ -1,0 +1,26 @@
+<view class="task-item">
+  <view class="row top between">
+    <view class="merchant-name">{{item.productName}}</view>
+    <view class="task-status {{status}}" wx:if="{{isUserTask}}">
+      {{statusDesc}}
+    </view>
+  </view>
+  <view class="merchant-position">
+    <image class="position-icon" src="https://static.tiddler.cn/mp/invite_merchant/address.png" />
+    <view>{{item.address}}</view>
+    <view class="distance">，距您{{distance}}</view>
+  </view>
+  <view class="reward-info-wrap row between">
+    <view class="reward row">
+      <image class="coin-icon" src="https://static.tiddler.cn/mp/invite_merchant/coin.png" />
+      <view>{{isUserTask ? item.taskReward : item.rewardTotal}}元</view>
+    </view>
+    <view class="row" wx:if="{{!isUserTask}}">
+      <view class="navigate-btn" bindtap="navigation">导航</view>
+      <view class="task-btn {{item.status === 1 ? 'active' : ''}}" bindtap="receive">
+        {{item.status === 1 ? '领取任务' : '已领取'}}
+      </view>
+    </view>
+    <view class="detail-btn" wx:if="{{isUserTask}}" bindtap="checkDetail">查看详情</view>
+  </view>
+</view>

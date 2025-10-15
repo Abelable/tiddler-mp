@@ -7,7 +7,7 @@
     <button class="share-btn" open-type='share' hover-class="none">
       <image class="share-icon" src="https://static.tiddler.cn/mp/invite_merchant/share.png" />
     </button>
-    <view class="mine-btn" bindtap="checkMineTask">我的</view>
+    <view class="mine-btn" bindtap="checkMineTask">我的任务</view>
   </view>
 </view>
 
@@ -26,44 +26,9 @@
       <view class="menu-content">{{item}}</view>
     </view>
   </view>
-  <view class="merchant-list {{menuFixed ? 'fixed' : ''}}">
-    <view class="merchant-item">
-      <view class="merchant-name">千岛湖中心湖区</view>
-      <view class="merchant-position">
-        <image class="position-icon" src="https://static.tiddler.cn/mp/invite_merchant/address.png" />
-        <view>千岛湖镇梦姑路88号</view>
-        <view class="distance">，距您2km</view>
-      </view>
-      <view class="reward-info-wrap row between">
-        <view class="reward row">
-          <image class="coin-icon" src="https://static.tiddler.cn/mp/invite_merchant/coin.png" />
-          <view>800元</view>
-        </view>
-        <view class="row">
-          <view class="navigate-btn">导航</view>
-          <view class="task-btn active">领取任务</view>
-        </view>
-      </view>
-    </view>
-     <view class="merchant-item">
-      <view class="merchant-name">千岛湖中心湖区</view>
-      <view class="merchant-position">
-        <image class="position-icon" src="https://static.tiddler.cn/mp/invite_merchant/address.png" />
-        <view>千岛湖镇梦姑路88号</view>
-        <view class="distance">，距您2km</view>
-      </view>
-      <view class="reward-info-wrap row between">
-        <view class="reward row">
-          <image class="coin-icon" src="https://static.tiddler.cn/mp/invite_merchant/coin.png" />
-          <view>800元</view>
-        </view>
-        <view class="row">
-          <view class="navigate-btn">导航</view>
-          <view class="task-btn active">领取任务</view>
-        </view>
-      </view>
-    </view>
+  <view class="task-list {{menuFixed ? 'fixed' : ''}}" wx:if="{{taskList.length}}">
+    <task-item wx:for="{{taskList}}" wx:key="index" item="{{item}}" />
   </view>
-  <empty-illus wx:if="{{!merchantList.length}}" desc="暂无商家" />
-  <view class="no-more-tips" wx:if="{{merchantList.length}}">～没有更多了～</view>
+  <empty-illus wx:if="{{!taskList.length}}" desc="暂无商家" />
+  <view class="no-more-tips" wx:if="{{finished && taskList.length}}">～没有更多了～</view>
 </view>
