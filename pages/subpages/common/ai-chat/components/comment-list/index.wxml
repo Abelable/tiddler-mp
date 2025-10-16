@@ -8,7 +8,7 @@
               <view class="robot-hello">Hi，我是智能助手小鱼</view>
               <view class="robot-intro">关于千岛湖旅游的相关事宜，都可以找我咨询哦，快来聊聊吧！</view>
             </view>
-            <image class="robot-avatar" src="https://static.tiddler.cn/mp/ai/robot.png" />
+            <image class="robot-avatar" src="https://static.tiddler.cn/mp/ai/robot.webp" />
           </view>
           <view class="tips-desc">您可以这样问</view>
           <view class="tip-list">

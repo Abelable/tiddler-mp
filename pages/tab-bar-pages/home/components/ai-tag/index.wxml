@@ -1,6 +1,6 @@
 <view class="ai-tag  {{scrolling ? 'small' : ''}}" catchtap="chat">
   <view class="robot-avatar-wrap">
-    <image class="robot-avatar" src="https://static.tiddler.cn/mp/ai/robot.png" />
+    <image class="robot-avatar" src="https://static.tiddler.cn/mp/ai/robot.webp" />
   </view>
   <view class="tag-title-swiper {{scrolling ? 'hide' : ''}}">
     <view class="tag-title">AI·小鱼</view>

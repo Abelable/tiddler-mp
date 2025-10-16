@@ -4,7 +4,7 @@
   <view class="cover-wrap">
     <image 
       class="cover" 
-      src="{{item.imageList[0]}}?x-oss-process=image/resize,w_500" 
+      src="{{item.imageList[0]}}?x-oss-process=image/resize,w_500,webp" 
       mode="aspectFill" 
     />
   </view>

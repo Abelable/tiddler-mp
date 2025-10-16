@@ -5,7 +5,7 @@
     <view class="nav-bar">
       <back-icon />
       <view class="robot-name">
-        <image class="ai-icon" src="https://static.tiddler.cn/mp/ai/ai.png" />
+        <image class="ai-icon" src="https://static.tiddler.cn/mp/ai/ai.webp" />
         <view>小鱼</view>
       </view>
     </view>

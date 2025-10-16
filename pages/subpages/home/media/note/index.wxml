@@ -24,7 +24,7 @@
     indicator-active-color="#00C8FF"
   >
     <swiper-item wx:for="{{noteInfo.imageList}}" wx:key="index" wx:for-item="image">
-      <image class="note-img" src="{{image}}" bindtap="previewImage" data-current="{{image}}" mode="aspectFill" lazy-load />
+      <image class="note-img" src="{{image}}?x-oss-process=image/format,webp" bindtap="previewImage" data-current="{{image}}" mode="aspectFill" lazy-load />
     </swiper-item>
   </swiper>
 
