@@ -64,7 +64,7 @@
   width: 40rpx;
   height: 4rpx;
   content: "";
-  background: #ff0057;
+  background: #f90944;
 }
 
 .no-more-tips {

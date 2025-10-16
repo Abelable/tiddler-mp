@@ -36,9 +36,10 @@
   font-size: 24rpx;
 }
 .position-icon {
-  margin-top: 2rpx;
-  width: 30rpx;
-  height: 30rpx;
+  margin-top: 6rpx;
+  margin-right: 6rpx;
+  width: 22rpx;
+  height: 22rpx;
 }
 .reward-info-wrap {
   margin-top: 68rpx;

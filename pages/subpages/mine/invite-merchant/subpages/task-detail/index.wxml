@@ -1,0 +1,85 @@
+<view class="container">
+  <view class="countdown-wrap row">
+    <view class="countdown-info">
+      <view class="countdown">1天｜23:24:56</view>
+      <view class="countdown-tips">已为您锁定该任务，请尽快联系商家完成入驻</view>
+    </view>
+    <view class="cancel-btn">取消任务</view>
+  </view>
+
+  <view class="task-info">
+    <view class="merchant-name">阿尔法夜市</view>
+    <view class="position-info row">
+      <image class="position-icon" src="https://static.tiddler.cn/mp/invite_merchant/address.png" />
+      <view class="address-info row">
+        <view class="address-detail row omit single">千岛湖镇青溪大道301号千岛湖阿尔法城</view>
+        <view>，据您2km</view>
+      </view>
+      <view class="navigate-btn">导航</view>
+    </view>
+    <view class="tel-info row">
+      <image class="tel-icon" src="https://static.tiddler.cn/mp/invite_merchant/tel.png" />
+      <view class="tel">15869035014</view>
+      <view class="consult-btn">咨询</view>
+    </view>
+  </view>
+  
+  <view class="step-info-wrap">
+    <view class="title">任务进度</view>
+    <view class="step-info">
+      <view class="step-title-wrap row">
+        <image class="step-icon" src="https://static.tiddler.cn/mp/invite_merchant/step_{{curStep >= 1 ? 'success' : 'waiting'}}.png" />
+        <view class="step-title">邀请商家扫码入驻</view>
+      </view>
+      <view class="step-content {{curStep >= 1 ? 'active' : ''}}">
+        <view class="qr-code-wrap row">
+          <image class="qr-code" src="{{qrCode}}" show-menu-by-longpress />
+          <view class="qr-code-title">长按分享或保存</view>
+          <view class="qr-code-tips">二维码2025-10-15 20:44:32内有效</view>
+        </view>
+      </view>
+    </view>
+    <view class="step-info">
+      <view class="step-title-wrap row">
+        <image class="step-icon" src="https://static.tiddler.cn/mp/invite_merchant/step_waiting.png" />
+        <view class="step-title">商家入驻成功</view>
+        <view class="reward-info row">
+          <view>先得</view>
+          <image class="coin-icon" src="https://static.tiddler.cn/mp/invite_merchant/coin.png" />
+          <view class="reward">50元</view>
+        </view>
+      </view>
+      <view class="step-content"></view>
+    </view>
+    <view class="step-info">
+      <view class="step-title-wrap row">
+        <image class="step-icon" src="https://static.tiddler.cn/mp/invite_merchant/step_waiting.png" />
+        <view class="step-title">商品发布成功</view>
+        <view class="reward-info row">
+          <view>再得</view>
+          <image class="coin-icon" src="https://static.tiddler.cn/mp/invite_merchant/coin.png" />
+          <view class="reward">100元</view>
+        </view>
+      </view>
+      <view class="step-content">
+        <view class="content-tips">商品保持7天可被用户购买</view>
+      </view>
+    </view>
+    <view class="step-info">
+      <view class="step-title-wrap row">
+        <image class="step-icon" src="https://static.tiddler.cn/mp/invite_merchant/step_waiting.png" />
+        <view class="step-title">奖励发放</view>
+        <view class="reward-info row">
+          <view>最后得</view>
+          <image class="coin-icon" src="https://static.tiddler.cn/mp/invite_merchant/coin.png" />
+          <view class="reward">150元</view>
+        </view>
+      </view>
+      <view class="step-content">
+        <view class="content-tips">30天内至少成交1笔订单</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="receive-btn">领取奖励</view>
