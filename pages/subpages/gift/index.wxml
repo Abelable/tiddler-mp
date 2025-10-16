@@ -9,12 +9,12 @@
 </view>
 
 <view class="container">
-  <image class="bg" src="https://static.tiddler.cn/mp/gift/bg.png" mode="widthFix" />
+  <image class="bg" src="https://static.tiddler.cn/mp/gift/bg.webp" mode="widthFix" />
 
-  <image class="illus" src="https://static.tiddler.cn/mp/gift/illus.png" />
+  <image class="illus" src="https://static.tiddler.cn/mp/gift/illus.webp" />
 
   <view class="goods-list-wrap {{navBarVisible ? 'fixed' : ''}}">
-    <image class="process" src="https://static.tiddler.cn/mp/gift/process.png" />
+    <image class="process" src="https://static.tiddler.cn/mp/gift/process.webp" />
 
     <view class="menu-wrap {{navBarVisible ? 'fixed' : ''}}" style="top: {{statusBarHeight + 44}}px;">
       <view class="menu row" wx:if="{{menuList.length}}">
