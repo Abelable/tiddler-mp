@@ -92,15 +92,14 @@
 }
 
 .merchant-type-selection {
-  margin: 220rpx 18rpx 0;
+  margin: 240rpx 24rpx 0;
   padding: 24rpx;
-  height: 600rpx;
   background: #fff;
   border-radius: 32rpx;
 }
 .selection-title {
   color: #333;
-  font-size: 30rpx;
+  font-size: 32rpx;
   font-weight: bold;
 }
 .title-decoration {
@@ -108,3 +107,49 @@
   width: 40rpx;
   height: 16rpx;
 }
+
+.type-selections {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12rpx;
+  margin-top: 24rpx;
+  background: radial-gradient(circle at center, #f9f9fa 0%, #fefefe 40%, #fff 100%);
+}
+.type-selection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24rpx;
+  height: 200rpx;
+  background: #fff;
+  border-radius: 24rpx;
+}
+.type-selection.active {
+  box-shadow: 0 4px 20px #f0f0f0;
+  transition: box-shadow .2s ease;
+}
+.merchant-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80rpx;
+  height: 80rpx;
+  background: rgb(228, 247, 255, 1);
+  border-radius: 24rpx;
+}
+.merchant-icon {
+  width: 60rpx;
+  height: 60rpx;
+}
+.merchant-type-name {
+  margin-top: 12rpx;
+  color: #999;
+  font-size: 28rpx;
+}
+.type-selection.active > .merchant-type-name {
+  color: #333;
+  font-weight: bold;
+  transition: .2s ease;
+}
+
