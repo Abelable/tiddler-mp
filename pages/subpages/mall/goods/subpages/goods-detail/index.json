@@ -8,8 +8,8 @@
     "shop-showcase": "./components/shop-showcase/index",
     "fall-flow": "/components/fall-flow/index",
     "goods-item": "/components/goods-item/index",
-    "spec-popup": "/components/spec-popup/index",
-    "address-popup": "/components/address-popup/index",
+    "spec-popup": "/pages/subpages/components/spec-popup/index",
+    "address-popup": "/pages/subpages/components/address-popup/index",
     "service-popup": "./components/service-popup/index",
     "poster-modal": "/components/poster-modal/index"
   }

@@ -4,7 +4,7 @@
   "usingComponents": {
     "back-icon": "/components/back-icon-white/index",
     "price-unit": "/components/price-unit/index",
-    "address-popup": "/components/address-popup/index",
+    "address-popup": "/pages/subpages/components/address-popup/index",
     "pickup-address-popup": "./components/pickup-address-popup/index",
     "pickup-time-popup": "./components/pickup-time-popup/index",
     "mobile-modal": "./components/mobile-modal/index"
