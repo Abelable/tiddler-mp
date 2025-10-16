@@ -1,11 +1,11 @@
 <wxs module="ARRAY" src="/utils/filters/array.wxs" />
 
 <view class="container">
-  <image class="bg" src="https://static.tiddler.cn/mp/promoter/bg.png" />
-  <image class="title" src="https://static.tiddler.cn/mp/promoter/title.png" />
+  <image class="bg" src="https://static.tiddler.cn/mp/promoter/bg.webp" />
+  <image class="title" src="https://static.tiddler.cn/mp/promoter/title.webp" />
 
   <view class="content-wrap">
-    <image class="illus" src="https://static.tiddler.cn/mp/promoter/illus.png" />
+    <image class="illus" src="https://static.tiddler.cn/mp/promoter/illus.webp" />
     <view class="content-title">初心</view>
     <view class="content-desc">Our direction</view>
     <view class="content">

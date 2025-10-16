@@ -16,19 +16,19 @@
   </view>
   <view class="message-bar row around">
     <view class="message-type-item row">
-      <image class="message-type-icon" src="./images/interaction.png" />
+      <image class="message-type-icon" src="https://static.tiddler.cn/mp/notice/interaction.webp" />
       <view class="message-type-desc">互动消息</view>
     </view>
     <view class="message-type-item row">
-      <image class="message-type-icon" src="./images/friend.png" />
+      <image class="message-type-icon" src="https://static.tiddler.cn/mp/notice/friend.webp" />
       <view class="message-type-desc">好友动态</view>
     </view>
     <view class="message-type-item row">
-      <image class="message-type-icon" src="./images/order.png" />
+      <image class="message-type-icon" src="https://static.tiddler.cn/mp/notice/order.webp" />
       <view class="message-type-desc">订单消息</view>
     </view>
     <view class="message-type-item row">
-      <image class="message-type-icon" src="./images/system.png" />
+      <image class="message-type-icon" src="https://static.tiddler.cn/mp/notice/system.webp" />
       <view class="message-type-desc">系统通知</view>
     </view>
   </view>

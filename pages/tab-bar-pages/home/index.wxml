@@ -91,7 +91,7 @@
               data-scene="{{item.scene}}"
               data-param="{{item.param}}"
             >
-              <image class="banner-img" src="{{item.cover}}" mode="aspectFill" lazy-load />
+              <image class="banner-img" src="{{item.cover}}?x-oss-process=image/format,webp" mode="aspectFill" lazy-load />
             </swiper-item>
           </swiper>
           <view class="banner-dots" style="width: {{12 * bannerList.length}}px;" wx:if="{{bannerList.length > 1}}">
@@ -106,7 +106,7 @@
             bindtap="checkClassification"
             data-index="{{index}}"
           >
-            <image class="classification-icon" src="https://static.tiddler.cn/mp/home/{{item.icon}}.png" />
+            <image class="classification-icon" src="https://static.tiddler.cn/mp/home/{{item.icon}}.webp" />
             <view class="classification-name">{{item.name}}</view>
           </view>
         </view>

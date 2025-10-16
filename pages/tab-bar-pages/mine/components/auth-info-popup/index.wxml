@@ -1,7 +1,7 @@
 <van-popup show="{{show}}" bind:close="hide" safe-area-inset-bottom="{{false}}" round position="bottom">
   <view class="user-info-popup">
     <view class="row">
-      <image class="logo" src="https://static.tiddler.cn/mp/logo.png" />
+      <image class="logo" src="https://static.tiddler.cn/mp/logo.webp" />
       <view class="app-name">千岛湖小鱼游</view>
       <view class="apply-tips">申请</view>
     </view>

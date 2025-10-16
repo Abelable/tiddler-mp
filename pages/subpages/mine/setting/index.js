@@ -51,9 +51,9 @@ Page({
       ? `/pages/tab-bar-pages/home/index?superiorId=${id}`
       : "/pages/tab-bar-pages/home/index";
     return {
-      title: "千岛湖旅游服务平台",
+      title: "游千岛湖·上小鱼游",
       path,
-      imageUrl: "https://static.tiddler.cn/mp/share_cover.png"
+      imageUrl: "https://static.tiddler.cn/mp/share_cover.webp"
     };
   }
 });

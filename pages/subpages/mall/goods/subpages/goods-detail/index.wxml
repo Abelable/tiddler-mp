@@ -88,7 +88,7 @@
   <view class="gift-bar" wx:if="{{goodsInfo.isGift}}">
     <view class="gift-bar-content row">
       <view class="gift-bar-slogan-wrap row center">
-        <image class="gift-bar-slogan" src="https://static.tiddler.cn/mp/gift_bar_slogan.png" />
+        <image class="gift-bar-slogan" src="https://static.tiddler.cn/mp/gift_bar_slogan.webp" />
       </view>
       <view class="gift-duration row">
         {{userInfo.promoterInfo ? '助力家乡千岛湖' : '代言家乡' + goodsInfo.giftDuration + '天'}}
@@ -114,7 +114,7 @@
       <view class="sale-volume" wx:if="{{goodsInfo.salesVolume}}">已售{{goodsInfo.salesVolume}}件</view>
     </view>
     <view class="goods-name">
-      <image class="self-support-tag" wx:if="{{!goodsInfo.shopInfo}}" src="https://static.tiddler.cn/mp/self_support.png" />
+      <image class="self-support-tag" wx:if="{{!goodsInfo.shopInfo}}" src="https://static.tiddler.cn/mp/self_support.webp" />
       <text>{{goodsInfo.name}}</text>
     </view>
     <view class="goods-intro" wx:if="{{goodsInfo.introduction}}">{{goodsInfo.introduction}}</view>

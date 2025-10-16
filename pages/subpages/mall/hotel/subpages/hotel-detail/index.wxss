@@ -272,7 +272,7 @@
   border-radius: 32rpx;
   background-image: 
     linear-gradient(to right, #F7F8FA 0%, #F7F8FA 60%, rgba(247, 248, 250, 0) 100%),
-    url('https://static.tiddler.cn/mp/map_illus.png');
+    url('https://static.tiddler.cn/mp/map_illus.webp');
   background-repeat: no-repeat, no-repeat;
   background-size: 100% 100%, 321rpx 156rpx;
   background-position: left top, right top;

@@ -1,11 +1,11 @@
 <view class="register-wrap">
-  <image class="bg" mode="widthFix" src="https://static.tiddler.cn/mp/register/bg.png" />
+  <image class="bg" mode="widthFix" src="https://static.tiddler.cn/mp/register/bg.webp" />
   <view class="back-icon-wrap" style="top: {{statusBarHeight + 5}}px">
     <back-icon custom bind:navigateBack="navBack" />
   </view>
 
   <view class="content-wrap" style="margin-top: {{statusBarHeight + 100}}px">
-    <image class="logo" src="https://static.tiddler.cn/mp/register/logo.png" />
+    <image class="logo" src="https://static.tiddler.cn/mp/register/logo.webp" />
     <view class="title">Hi，旅行者</view>
     <view class="sub-title">
       <text>欢迎来到</text>

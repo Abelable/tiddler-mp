@@ -144,7 +144,7 @@ page {
   width: 100%;
 }
 .container.gift {
-  background-image: url('https://static.tiddler.cn/mp/gift_bar.png');
+  background-image: url('https://static.tiddler.cn/mp/gift_bar.webp');
   background-size: 100% 168rpx;
   background-repeat: no-repeat;
 }

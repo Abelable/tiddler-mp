@@ -34,7 +34,7 @@
   </view>
   <view class="content">
     <view class="goods-name omit">
-      <image class="self-support-tag" wx:if="{{showShopInfo && !item.shopInfo}}" src="https://static.tiddler.cn/mp/self_support.png" />
+      <image class="self-support-tag" wx:if="{{showShopInfo && !item.shopInfo}}" src="https://static.tiddler.cn/mp/self_support.webp" />
       <text>{{item.name}}</text>
     </view>
     <view class="info-wrap row between">

@@ -30,7 +30,7 @@
       data-scene="{{item.scene}}"
       data-param="{{item.param}}"
     >
-      <image class="banner-img" mode="widthFix" src="{{ item.cover }}" />
+      <image class="banner-img" mode="widthFix" src="{{item.cover}}?x-oss-process=image/format,webp" />
     </swiper-item>
   </swiper>
   <view class="banner-dots" style="width: {{12 * bannerList.length}}px;" wx:if="{{bannerList.length > 1}}">
@@ -45,7 +45,7 @@
 >
   <view class="category-list">
     <view class="category-item" wx:for="{{categoryList}}" wx:key="index" bindtap="navTo" data-index="{{index}}">
-      <image class="category-icon" src="https://static.tiddler.cn/mp/mall/{{item.icon}}.png" />
+      <image class="category-icon" src="https://static.tiddler.cn/mp/mall/{{item.icon}}.webp" />
       <view class="category-desc">{{item.name}}</view>
     </view>
   </view>

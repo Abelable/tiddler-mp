@@ -2,7 +2,7 @@
   <image class="goods-cover" mode="widthFix" src="{{item.cover}}" bindload="onCoverLoaded" lazy-load />
   <view class="goods-content">
     <view class="goods-title omit">
-      <image class="self-support-tag" wx:if="{{!item.shopInfo}}" src="https://static.tiddler.cn/mp/self_support.png" />
+      <image class="self-support-tag" wx:if="{{!item.shopInfo}}" src="https://static.tiddler.cn/mp/self_support.webp" />
       {{item.name}}
     </view>
     <view class="info-wrap row between">
