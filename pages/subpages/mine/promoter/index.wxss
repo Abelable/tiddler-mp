@@ -310,7 +310,7 @@
   margin-top: 48rpx;
   padding: 26rpx 24rpx calc(env(safe-area-inset-bottom) + 24rpx);
   border-radius: 60rpx 60rpx 0 0;
-  background: #f5f6f8;
+  background: #f5f6fa;
 }
 
 .account-info {
@@ -368,7 +368,7 @@
 .account-daily-data {
   padding: 32rpx;
   padding-bottom: 48rpx;
-  border-top: 1px solid #f5f6f8;
+  border-top: 1px solid #f5f6fa;
 }
 .date-menu {
   display: flex;

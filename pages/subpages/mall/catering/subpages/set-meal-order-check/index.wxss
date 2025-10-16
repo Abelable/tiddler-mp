@@ -112,7 +112,7 @@
   padding: 18rpx 24rpx calc(18rpx + env(safe-area-inset-bottom));
   width: 100%;
   background: #fff;
-  border-top: 1px solid #f5f6f8;
+  border-top: 1px solid #f5f6fa;
 }
 .price-label {
   margin-top: 8rpx;

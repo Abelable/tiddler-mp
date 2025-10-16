@@ -19,7 +19,7 @@
   font-size: 0;
 }
 .scenic.show-border {
-  border-bottom: 1px solid #f5f6f8;
+  border-bottom: 1px solid #f5f6fa;
 }
 .cover {
   width: 220rpx;

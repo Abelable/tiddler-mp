@@ -97,7 +97,7 @@
   position: relative;
   margin-top: 360rpx;
   border-radius: 30rpx 30rpx 0 0;
-  background: #f5f6f8;
+  background: #f5f6fa;
 }
 
 .user-info-wrap {
@@ -114,8 +114,8 @@
   height: 180rpx;
   font-size: 0;
   border-radius: 50%;
-  border: 10rpx solid #f5f6f8;
-  background: #f5f6f8;
+  border: 10rpx solid #f5f6fa;
+  background: #f5f6fa;
 }
 .avatar {
   width: 100%;

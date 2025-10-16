@@ -1,6 +1,6 @@
 .address-popup {
   padding: 24rpx;
-  background: #f5f6f8;
+  background: #f5f6fa;
 }
 
 .title {

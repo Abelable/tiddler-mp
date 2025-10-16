@@ -61,7 +61,7 @@
   padding: 0 8rpx;
   padding-bottom: 2px;
   height: 50px;
-  border-top: 0.5px solid #f5f6f8;
+  border-top: 0.5px solid #f5f6fa;
 }
 .sub-menu-item {
   position: relative;

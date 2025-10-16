@@ -37,10 +37,10 @@
 
 .restaurant {
   padding: 24rpx 0;
-  border-bottom: 1px solid #f5f6f8;
+  border-bottom: 1px solid #f5f6fa;
 }
 .restaurant.show-border {
-  border-bottom: 1px solid #f5f6f8;
+  border-bottom: 1px solid #f5f6fa;
 }
 .main {
   display: flex;

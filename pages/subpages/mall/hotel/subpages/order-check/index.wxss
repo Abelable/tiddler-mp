@@ -147,7 +147,7 @@
 .tourist-info-item {
   padding: 32rpx 0;
   font-size: 28rpx;
-  border-bottom: 1px solid #f5f6f8;
+  border-bottom: 1px solid #f5f6fa;
 }
 .tourist-info-item:last-child {
   border-bottom: none;
@@ -186,7 +186,7 @@
   padding: 18rpx 24rpx calc(18rpx + env(safe-area-inset-bottom));
   width: 100%;
   background: #fff;
-  border-top: 1px solid #f5f6f8;
+  border-top: 1px solid #f5f6fa;
 }
 .total-price-wrap {
   margin-right: 32rpx;

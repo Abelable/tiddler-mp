@@ -1,0 +1,25 @@
+<view class="header {{headerVisible ? 'show' : ''}}" style="padding-top: {{statusBarHeight}}px">
+  <view class="nav-bar row">
+    <back-icon />
+    <view class="title">商家入驻</view>
+  </view>
+</view>
+
+<view class="container">
+  <view class="theme-title-wrap row" style="margin-top: {{statusBarHeight + 110}}px;">
+    <image class="theme-title" src="https://static.tiddler.cn/mp/merchant/settle/title.webp" />
+    <view class="rolling-slogan">
+      <view class="slogan">汇聚家乡文旅力，小鱼游共筑梦想，共创共富新时代！</view>
+      <view class="slogan">家乡好物走四方，文旅融合兴万家，小鱼游赢未来！</view>
+      <view class="slogan">携手小鱼游同行，让故事传遍远方，让乡情温暖远客！</view>
+    </view>
+  </view>
+
+  <view class="merchant-type-selection">
+    <view class="selection-title row center">
+      <image class="title-decoration" src="https://static.tiddler.cn/mp/merchant/settle/title_decoration_left.webp" />
+      <view>选择商家类型</view>
+      <image class="title-decoration" src="https://static.tiddler.cn/mp/merchant/settle/title_decoration_right.webp" />
+    </view>
+  </view>
+</view>

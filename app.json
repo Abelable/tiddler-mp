@@ -112,7 +112,8 @@
       "mine/invite-merchant/subpages/mine-task/index",
       "mine/invite-merchant/subpages/task-detail/index",
       "mine/invite-merchant/subpages/reward-decord/index",
-      "mine/invite-merchant/subpages/guide/index"
+      "mine/invite-merchant/subpages/guide/index",
+      "mine/invite-merchant/subpages/settle-home/index"
     ]
   }],
   "tabBar": {
@@ -139,7 +140,7 @@
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTextStyle": "black",
-    "backgroundColor": "#f5f6f8"
+    "backgroundColor": "#f5f6fa"
   },
   "permission": {
     "scope.userLocation": {
