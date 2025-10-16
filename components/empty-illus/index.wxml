@@ -1,5 +1,5 @@
 <view class="empty" style="height: {{height}};">
-  <image class="illus" src="https://static.tiddler.cn/mp/default_illus/empty.png" />
+  <image class="illus" src="https://static.tiddler.cn/mp/default_illus/empty.webp" />
   <view>{{desc}}</view>
   <slot></slot>
 </view>

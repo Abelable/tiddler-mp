@@ -62,7 +62,7 @@
         data-type="{{item.icon}}"
       >
         <view class="tool-icon-wrap">
-          <image class="tool-icon" src="https://static.tiddler.cn/mp/mine/{{item.icon}}.png" />
+          <image class="tool-icon" src="https://static.tiddler.cn/mp/mine/{{item.icon}}.png?x-oss-process=image/format,webp" />
           <view class="total-spot" wx:if="{{index === 0 && orderTotal > 0}}" />
         </view>
         <view class="tool-desc">{{item.name}}</view>
