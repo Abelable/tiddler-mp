@@ -91,9 +91,9 @@ Page({
   },
 
   onShareAppMessage() {
-    const { id: superiorId } = store.superiorInfo || {};
+    const { id } = store.superiorInfo || {};
     const originalPath = "/pages/subpages/mall/invite-merchant/index";
-    const path = id ? `${originalPath}?superiorId=${superiorId}` : originalPath;
+    const path = id ? `${originalPath}?superiorId=${id}` : originalPath;
     return {
       path,
       title: "邀商家入驻，拿百元奖励",

@@ -11,7 +11,7 @@
   </view>
 </view>
 
-<image class="bg" mode="widthFix" src="https://static.tiddler.cn/mp/invite_merchant/bg.png" />
+<image class="bg" mode="widthFix" src="https://static.tiddler.cn/mp/invite_merchant/bg.webp" />
 
 <view class="container">
   <view class="menu-list {{menuFixed ? 'fixed' : ''}}" style="top: {{statusBarHeight + 44}}px;">

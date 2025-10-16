@@ -53,7 +53,7 @@ Page({
     return {
       title: "游千岛湖·上小鱼游",
       path,
-      imageUrl: "https://static.tiddler.cn/mp/share_cover.webp"
+      imageUrl: "https://static.tiddler.cn/mp/share_cover.png"
     };
   }
 });
