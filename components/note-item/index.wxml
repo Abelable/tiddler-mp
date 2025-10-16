@@ -5,7 +5,7 @@
     <image 
       class="final-cover {{visible ? 'show' : ''}}" 
       style="height: {{item.coverHeight}}rpx;"
-      src="{{item.imageList[0]}}?x-oss-process=image/resize,w_500,webp" 
+      src="{{item.imageList[0]}}?x-oss-process=image/resize,w_500/format,webp" 
       bindload="onVisible" 
       mode="aspectFill" 
     />
@@ -13,13 +13,13 @@
       class="cover" 
       style="height: {{item.coverHeight}}rpx;" 
       wx:if="{{item.coverHeight}}" 
-      src="{{item.imageList[0]}}?x-oss-process=image/resize,w_10,webp" 
+      src="{{item.imageList[0]}}?x-oss-process=image/resize,w_10/format,webp" 
       mode="aspectFill" 
     />
     <image 
       class="cover" 
       wx:if="{{!item.coverHeight}}" 
-      src="{{item.imageList[0]}}?x-oss-process=image/resize,w_10,webp" 
+      src="{{item.imageList[0]}}?x-oss-process=image/resize,w_10/format,webp" 
       bindload="onCoverLoaded" 
       mode="widthFix" 
     />

@@ -4,7 +4,7 @@
   <view class="cover-wrap" >
     <image 
       class="cover" 
-      src="{{item.cover}}?x-oss-process=image/resize,w_500,webp" 
+      src="{{item.cover}}?x-oss-process=image/resize,w_500/format,webp" 
       mode="aspectFill" 
     />
     <view class="video-symbol">
