@@ -27,7 +27,7 @@
     </view>
   </view>
 
-  <image class="more-title" wx:if="{{lakeHomestayList.length}}" src="https://static.tiddler.cn/mp/homestay/title.png" />
+  <image class="more-title" wx:if="{{lakeHomestayList.length}}" src="https://static.tiddler.cn/mp/homestay/title.webp" />
   <view class="list-wrap">
     <fall-flow 
       wx:if="{{homestayList.length}}" 

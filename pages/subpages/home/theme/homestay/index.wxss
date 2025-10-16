@@ -11,7 +11,7 @@
   padding-top: 680rpx;
   min-height: 100vh;
   background-color: #263454;
-  background-image: url('https://static.tiddler.cn/mp/homestay/bg.png');
+  background-image: url('https://static.tiddler.cn/mp/homestay/bg.webp');
   background-size: 100%;
   background-repeat: no-repeat;
 }
