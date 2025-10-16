@@ -1,6 +1,6 @@
 page {
   background-color: #282B33;
-  background-image: url("https://static.tiddler.cn/mp/trip_type/night_trip/bg.png");
+  background-image: url("https://static.tiddler.cn/mp/trip_type/night_trip/bg.webp");
   background-size: 100% 1065rpx;
   background-repeat: no-repeat;
 }

@@ -4,9 +4,9 @@
   <back-icon />
 </view>
 
-<view class="container">
+<view class="container" wx:if="{{hotScenicList.length}}">
   <view class="header">
-    <image class="bg" src="{{hotScenicList[curMenuIdx].scenicCover}}" mode="aspectFill" />
+    <image class="bg" src="{{hotScenicList[curMenuIdx].scenicCover}}?x-oss-process=image/format,webp" mode="aspectFill" />
     <view class="title-wrap">
       <image class="title" src="https://static.tiddler.cn/mp/trip_type/hot_scenic/title.png" />
     </view>
@@ -19,7 +19,7 @@
           bindtap="selectMenu"
           data-index="{{index}}"
         >
-          <image class="menu-scenic-cover {{curMenuIdx === index ? 'active' : ''}}" src="{{item.scenicCover}}" mode="aspectFill" />
+          <image class="menu-scenic-cover {{curMenuIdx === index ? 'active' : ''}}" src="{{item.scenicCover}}?x-oss-process=image/format,webp" mode="aspectFill" />
           <view class="menu-scenic-info {{curMenuIdx === index ? 'active' : ''}}">
             <view class="menu-scenic-name {{curMenuIdx === index ? 'active' : ''}}">{{item.scenicName}}</view>
             <view class="menu-scenic-data {{curMenuIdx === index ? 'active' : ''}}">{{NUM.over(item.interestedUserNumber, 10000)}}人感兴趣</view>
@@ -39,7 +39,7 @@
     <view class="scenic-list">
       <view class="scenic-item" wx:for="{{hotScenicList}}" wx:key="index">
         <image class="top-tag" wx:if="{{index <= 2}}" src="https://static.tiddler.cn/mp/trip_type/hot_scenic/top_{{index + 1}}.png" />
-        <image class="scenic-cover" src="{{item.scenicCover}}" mode="aspectFill" />
+        <image class="scenic-cover" src="{{item.scenicCover}}?x-oss-process=image/format,webp" mode="aspectFill" />
         <view class="scenic-info-wrap row">
           <view class="scenic-info">
             <view class="scenic-name">网红打卡地｜{{item.scenicName}}</view>

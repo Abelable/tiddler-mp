@@ -12,9 +12,8 @@
 }
 .title {
   margin-left: 24rpx;
-  color: #fff;
-  font-size: 36rpx;
-  font-weight: 500;
+  width: 165rpx;
+  height: 40rpx;
 }
 
 .header {
@@ -119,9 +118,8 @@
 .sub-title {
   margin-top: 48rpx;
   margin-left: 32rpx;
-  color: #141925;
-  font-size: 38rpx;
-  font-weight: 500;
+  width: 148rpx;
+  height: 37rpx;
 }
 
 .media-wrap {

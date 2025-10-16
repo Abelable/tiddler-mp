@@ -1,7 +1,7 @@
 <view class="nav-bar-wrap" style="padding-top: {{statusBarHeight}}px;">
   <view class="nav-bar row">
     <back-icon />
-    <view class="title">明星同游</view>
+    <image class="title" src="https://static.tiddler.cn/mp/trip_type/star_trip/title.webp" />
   </view>
 </view>
 
@@ -9,7 +9,7 @@
   <swiper class="trip-list" bindchange="swiperChange" previous-margin="32rpx" next-margin="328rpx" circular>
     <swiper-item wx:for="{{starTripList}}" wx:key="index">
       <view class="trip-item {{curTripIdx !== index ? 'unselect' : ''}}" bindtap="checkTrip" data-index="{{index}}">
-        <image class="trip-cover" src="{{item.cover}}" mode="aspectFill" />
+        <image class="trip-cover" src="{{item.cover}}?x-oss-process=image/format,webp" mode="aspectFill" lazy-load />
         <view class="trip-info">
           <view class="trip-name">{{item.name}}</view>
           <view class="trip-desc row">
@@ -30,7 +30,8 @@
   </view>
 </view>
 
-<view class="sub-title">同游玩法</view>
+<image class="sub-title" src="https://static.tiddler.cn/mp/trip_type/star_trip/subtitle.webp" />
+
 <view class="media-wrap">
   <fall-flow 
     list="{{mediaList}}" 

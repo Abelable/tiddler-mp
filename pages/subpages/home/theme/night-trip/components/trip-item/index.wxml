@@ -1,6 +1,6 @@
 <view class="trip-item" bindtap="checkDetail">
   <view class="header">
-    <image class="bg" src="{{item.scenicCover}}" mode="aspectFill" />
+    <image class="bg" src="{{item.scenicCover}}?x-oss-process=image/format,webp" mode="aspectFill" />
     <view class="more-btn">
       <view>了解更多</view>
       <image class="arrow" src="https://static.tiddler.cn/mp/trip_type/night_trip/arrow.png" />
