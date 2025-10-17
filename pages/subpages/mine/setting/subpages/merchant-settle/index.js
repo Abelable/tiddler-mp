@@ -92,8 +92,7 @@ Component({
     settle() {
       checkLogin(() => {
         const { merchantTypeList, merchantType, shopType, agree } = this.data;
-        const { status, icon: merchantTypeDesc } =
-          merchantTypeList[merchantType - 1];
+        const { status, icon } = merchantTypeList[merchantType - 1];
 
         if (!status && !agree) {
           wx.showToast({
@@ -103,10 +102,10 @@ Component({
           return;
         }
 
-        const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/${merchantTypeDesc}/merchant/settle_${
+        const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/${icon}/merchant/settle_${
           !status ? "in" : "status"
         }&type=${shopType}`;
-        
+
         wx.navigateTo({ url });
       });
     },
