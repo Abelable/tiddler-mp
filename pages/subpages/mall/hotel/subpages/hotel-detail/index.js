@@ -2,7 +2,6 @@ import dayjs from "dayjs";
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
 import { store } from "../../../../../../store/index";
 import { calcDistance, checkLogin } from "../../../../../../utils/index";
-import { WEBVIEW_BASE_URL } from "../../../../../../config";
 import { formatter } from "../../utils/index";
 import HotelService from "../../utils/hotelService";
 
@@ -517,7 +516,7 @@ Component({
     },
 
     settleIn() {
-      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/hotel/merchant/settle_in`;
+      const url = `/pages/subpages/mine/setting/subpages/merchant-settle/index?type=2`;
       wx.navigateTo({ url });
     },
 

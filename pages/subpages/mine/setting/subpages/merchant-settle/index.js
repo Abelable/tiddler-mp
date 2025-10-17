@@ -18,7 +18,12 @@ Page({
     agree: false
   },
 
-  onLoad() {},
+  onLoad(options) {
+    const { type } = options || {};
+    if (type) {
+      this.setData({ merchantType: +type });
+    }
+  },
 
   selectMerchantType(e) {
     const { index } = e.currentTarget.dataset;

@@ -565,6 +565,11 @@ Page({
     wx.navigateTo({ url });
   },
 
+  settleIn() {
+    const url = `/pages/subpages/mine/setting/subpages/merchant-settle/index?type=3`;
+    wx.navigateTo({ url });
+  },
+
   callTel(e) {
     wx.makePhoneCall({ phoneNumber: e.detail.name });
   },
@@ -585,8 +590,8 @@ Page({
     const { id: superiorId } = store.superiorInfo || {};
     const { id, name, cover } = this.data.restaurantInfo;
     const path = superiorId
-      ? `/pages/subpages/mall/hotel/subpages/hotel-detail/index?id=${id}&superiorId=${superiorId}`
-      : `/pages/subpages/mall/hotel/subpages/hotel-detail/index?id=${id}`;
+      ? `/pages/subpages/mall/catering/subpages/restaurant-detail/index?id=${id}&superiorId=${superiorId}`
+      : `/pages/subpages/mall/catering/subpages/restaurant-detail/index?id=${id}`;
     return { path, title: name, imageUrl: cover };
   },
 

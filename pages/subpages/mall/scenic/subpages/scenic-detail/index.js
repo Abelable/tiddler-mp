@@ -1,6 +1,5 @@
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { store } from "../../../../../../store/index";
-import { WEBVIEW_BASE_URL } from "../../../../../../config";
 import { checkLogin } from "../../../../../../utils/index";
 import ScenicService from "../../utils/scenicService";
 
@@ -485,7 +484,7 @@ Page({
   },
 
   settleIn() {
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/scenic/merchant/settle_in`;
+    const url = `/pages/subpages/mine/setting/subpages/merchant-settle/index?type=1`;
     wx.navigateTo({ url });
   },
 
