@@ -5,8 +5,8 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.3);
-  border: 0.5px solid rgba(255,255,255,0.3);
+  background: rgba(0, 0, 0, 0.2);
+  border: 0.5px solid rgba(255, 255, 255, 0.2);
 }
 .back-icon.no-border {
   border: none;
@@ -14,7 +14,7 @@
 }
 
 .icon {
-  width: 20px; 
+  width: 20px;
   height: 20px;
 }
 .icon.back {
