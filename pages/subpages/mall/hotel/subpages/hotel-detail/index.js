@@ -74,12 +74,12 @@ Component({
         menus: ["shareAppMessage", "shareTimeline"]
       });
 
-      const { id, scene = "" } = options || {};
+      const { id, superiorId = "", scene = "" } = options || {};
       const decodedSceneList = scene
         ? decodeURIComponent(scene).split("-")
         : [];
       this.hotelId = +id || decodedSceneList[0];
-      this.superiorId = decodedSceneList[1] || "";
+      this.superiorId = superiorId || decodedSceneList[1] || "";
 
       getApp().onLaunched(async () => {
         if (this.superiorId && !store.superiorInfo) {
@@ -530,9 +530,10 @@ Component({
     onShareAppMessage() {
       const { id: superiorId } = store.superiorInfo || {};
       const { id, name, cover } = this.data.hotelInfo;
+      const originalPath = `/pages/subpages/mall/hotel/subpages/hotel-detail/index?id=${id}`;
       const path = superiorId
-        ? `/pages/subpages/mall/hotel/subpages/hotel-detail/index?id=${id}&superiorId=${superiorId}`
-        : `/pages/subpages/mall/hotel/subpages/hotel-detail/index?id=${id}`;
+        ? `${originalPath}&superiorId=${superiorId}`
+        : originalPath;
       return { path, title: name, imageUrl: cover };
     },
 

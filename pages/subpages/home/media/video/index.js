@@ -23,10 +23,16 @@ Page({
   },
 
   async onLoad(options) {
-    const { id, authorId, mediaScene, scene = "" } = options || {};
+    const {
+      id,
+      authorId,
+      mediaScene,
+      superiorId = "",
+      scene = ""
+    } = options || {};
     const decodedSceneList = scene ? decodeURIComponent(scene).split("-") : [];
     this.videoId = +id || decodedSceneList[0];
-    this.superiorId = decodedSceneList[1] || "";
+    this.superiorId = superiorId || decodedSceneList[1] || "";
     this.authorId = authorId ? +authorId : 0;
     this.mediaScene = mediaScene ? +mediaScene : 0;
 
@@ -231,9 +237,10 @@ Page({
     const { id: superiorId } = store.superiorInfo || {};
     const { videoList, curVideoIdx } = this.data;
     const { id, title, cover: imageUrl } = videoList[curVideoIdx];
+    const originalPath = `/pages/subpages/home/media/video/index?id=${id}`;
     const path = superiorId
-      ? `/pages/subpages/home/media/video/index?id=${id}&superiorId=${superiorId}`
-      : `/pages/subpages/home/media/video/index?id=${id}`;
+      ? `${originalPath}&superiorId=${superiorId}`
+      : originalPath;
     return { path, title, imageUrl };
   },
 

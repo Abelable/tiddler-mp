@@ -18,10 +18,10 @@ Page({
   },
 
   async onLoad(options) {
-    const { id, scene = "" } = options || {};
+    const { id, superiorId = "", scene = "" } = options || {};
     const decodedSceneList = scene ? decodeURIComponent(scene).split("-") : [];
     this.roomId = +id || decodedSceneList[0];
-    this.superiorId = decodedSceneList[1] || "";
+    this.superiorId = superiorId || decodedSceneList[1] || "";
 
     getApp().onLaunched(async () => {
       if (this.superiorId && !store.superiorInfo) {
@@ -148,9 +148,10 @@ Page({
     const { roomList, curRoomIdx } = this.data;
     const roomInfo = roomList[curRoomIdx];
     const { id, title, cover: imageUrl } = roomInfo;
+    const originalPath = `/pages/subpages/home/media/live/live-play/index?id=${id}}`;
     const path = superiorId
-      ? `/pages/subpages/home/media/live/live-play/index?id=${id}&superiorId=${superiorId}`
-      : `/pages/subpages/home/media/live/live-play/index?id=${id}}`;
+      ? `${originalPath}&superiorId=${superiorId}`
+      : originalPath;
     return { path, title, imageUrl };
   },
 

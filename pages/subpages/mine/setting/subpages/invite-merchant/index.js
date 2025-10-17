@@ -14,7 +14,19 @@ Page({
     finished: false
   },
 
-  async onLoad() {
+  async onLoad(options) {
+    const { superiorId = "" } = options || {};
+
+    getApp().onLaunched(async () => {
+      if (superiorId && !store.superiorInfo) {
+        wx.setStorageSync("superiorId", superiorId);
+        const superiorInfo = await taskService.getUserInfo(superiorId);
+        if (superiorInfo.promoterInfo) {
+          store.setSuperiorInfo(superiorInfo);
+        }
+      }
+    });
+
     await this.setTaskList(true);
     this.getMenuTop();
   },
@@ -92,7 +104,8 @@ Page({
 
   onShareAppMessage() {
     const { id } = store.superiorInfo || {};
-    const originalPath = "/pages/subpages/mine/setting/subpages/invite-merchant/index";
+    const originalPath =
+      "/pages/subpages/mine/setting/subpages/invite-merchant/index";
     const path = id ? `${originalPath}?superiorId=${id}` : originalPath;
     return {
       path,

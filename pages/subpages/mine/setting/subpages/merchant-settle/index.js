@@ -1,6 +1,8 @@
 import { WEBVIEW_BASE_URL } from "../../../../../../config";
 import { store } from "../../../../../../store/index";
+import SettingService from '../../utils/settingService'
 
+const settingService = new SettingService()
 const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Page({
@@ -19,10 +21,27 @@ Page({
   },
 
   onLoad(options) {
-    const { type } = options || {};
+    const { type, superiorId = "" } = options || {};
+
+    getApp().onLaunched(async () => {
+      if (superiorId && !store.superiorInfo) {
+        wx.setStorageSync("superiorId", superiorId);
+        const superiorInfo = await settingService.getUserInfo(superiorId);
+        if (superiorInfo.promoterInfo) {
+          store.setSuperiorInfo(superiorInfo);
+        }
+      }
+    });
+
     if (type) {
       this.setData({ merchantType: +type });
     }
+
+    // todo
+    // 1.绑定分享者逻辑：识别二维码获取分享者id
+    // 2.确认商家认证状态:
+    //   a.对于审核通过或驳回的情况，给出弹窗提示，由商家自行选择是否前去确认;
+    //   b.对于已经是某个类型的商家，点击入驻时，给出提示，请勿重复操作
   },
 
   selectMerchantType(e) {

@@ -31,10 +31,10 @@ Page({
       fields: ["userInfo"]
     });
 
-    const { id, scene = "" } = options || {};
+    const { id, superiorId = "", scene = "" } = options || {};
     const decodedSceneList = scene ? decodeURIComponent(scene).split("-") : [];
     this.noteId = +id || decodedSceneList[0];
-    this.superiorId = decodedSceneList[1] || "";
+    this.superiorId = superiorId || decodedSceneList[1] || "";
 
     getApp().onLaunched(async () => {
       if (this.superiorId && !store.superiorInfo) {
@@ -290,9 +290,10 @@ Page({
   onShareAppMessage() {
     const { id: superiorId } = store.superiorInfo || {};
     const { id, title, cover: imageUrl } = this.data.noteInfo;
+    const originalPath = `/pages/subpages/home/media/note/index?id=${id}`;
     const path = superiorId
-      ? `/pages/subpages/home/media/note/index?id=${id}&superiorId=${superiorId}`
-      : `/pages/subpages/home/media/note/index?id=${id}`;
+      ? `${originalPath}&superiorId=${superiorId}`
+      : originalPath;
     return { path, title, imageUrl };
   },
 

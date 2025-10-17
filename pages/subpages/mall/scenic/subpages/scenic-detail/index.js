@@ -51,10 +51,10 @@ Page({
       fields: ["userInfo"]
     });
 
-    const { id, scene = "" } = options || {};
+    const { id, superiorId = "", scene = "" } = options || {};
     const decodedSceneList = scene ? decodeURIComponent(scene).split("-") : [];
     this.scenicId = +id || decodedSceneList[0];
-    this.superiorId = decodedSceneList[1] || "";
+    this.superiorId = superiorId || decodedSceneList[1] || "";
 
     getApp().onLaunched(async () => {
       if (this.superiorId && !store.superiorInfo) {
@@ -511,9 +511,10 @@ Page({
   onShareAppMessage() {
     const { id: superiorId } = store.superiorInfo || {};
     const { id, name, imageList } = this.data.scenicInfo;
+    const originalPath = `/pages/subpages/mall/scenic/subpages/scenic-detail/index?id=${id}`
     const path = superiorId
-      ? `/pages/subpages/mall/scenic/subpages/scenic-detail/index?id=${id}&superiorId=${superiorId}`
-      : `/pages/subpages/mall/scenic/subpages/scenic-detail/index?id=${id}`;
+      ? `${originalPath}&superiorId=${superiorId}`
+      : originalPath;
     return { path, title: name, imageUrl: imageList[0] };
   },
 

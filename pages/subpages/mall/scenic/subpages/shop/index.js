@@ -23,10 +23,10 @@ Page({
       menus: ["shareAppMessage", "shareTimeline"]
     });
 
-    const { id, scene = "" } = options || {};
+    const { id, superiorId = "", scene = "" } = options || {};
     const decodedSceneList = scene ? decodeURIComponent(scene).split("-") : [];
     this.shopId = +id || decodedSceneList[0];
-    this.superiorId = decodedSceneList[1] || "";
+    this.superiorId = superiorId || decodedSceneList[1] || "";
 
     getApp().onLaunched(async () => {
       if (this.superiorId && !store.superiorInfo) {
@@ -46,8 +46,7 @@ Page({
     this.setData({ shopInfo });
   },
 
-  onReachBottom() {
-  },
+  onReachBottom() {},
 
   onPullDownRefresh() {
     wx.stopPullDownRefresh();
@@ -95,9 +94,10 @@ Page({
   onShareAppMessage() {
     const { id: superiorId } = store.superiorInfo || {};
     const { id, name: title, cover: imageUrl } = this.data.shopInfo;
+    const originalPath = `/pages/subpages/mall/scenic/subpages/shop/index?id=${id}`;
     const path = superiorId
-      ? `/pages/subpages/mall/scenic/subpages/shop/index?id=${id}&superiorId=${superiorId}`
-      : `/pages/subpages/mall/scenic/subpages/shop/index?id=${id}`;
+      ? `${originalPath}&superiorId=${superiorId}`
+      : originalPath;
     return { title, imageUrl, path };
   },
 
