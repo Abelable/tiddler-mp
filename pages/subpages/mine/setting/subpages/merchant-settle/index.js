@@ -1,4 +1,5 @@
 import { WEBVIEW_BASE_URL } from "../../../../../../config";
+import { store } from "../../../../../../store/index";
 
 const { statusBarHeight } = getApp().globalData.systemInfo;
 
@@ -54,5 +55,13 @@ Page({
         this.setData({ headerVisible: false });
       }
     }
+  },
+
+  onShareAppMessage() {
+    const { id } = store.superiorInfo || {};
+    const originalPath =
+      "/pages/subpages/mine/setting/subpages/merchant-settle/index";
+    const path = id ? `${originalPath}?superiorId=${id}` : originalPath;
+    return { title: "商家入驻", path };
   }
 });
