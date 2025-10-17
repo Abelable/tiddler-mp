@@ -67,6 +67,6 @@ Page({
     const originalPath =
       "/pages/subpages/mine/setting/subpages/merchant-settle/index";
     const path = id ? `${originalPath}?superiorId=${id}` : originalPath;
-    return { title: "商家入驻", path };
+    return { title: "诚邀您入驻小鱼游", path };
   }
 });
