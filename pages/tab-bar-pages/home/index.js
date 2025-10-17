@@ -30,9 +30,9 @@ Component({
   data: {
     statusBarHeight,
     classificationList,
+    pageLoaded: false,
     adInfo: null,
     adModalVisible: false,
-    pageLoaded: false,
     navBarActive: [false, false],
     curMenuIndex: 1,
     bannerList: [],
@@ -75,9 +75,10 @@ Component({
       }
 
       this.setAdInfo();
-      await this.setBannerList();
-      this.setTopMediaList();
       this.setList(SCENE_REFRESH);
+      await this.setBannerList();
+      await this.setTopMediaList();
+      this.setData({ pageLoaded: true });
     },
 
     initCalendar() {
@@ -207,7 +208,7 @@ Component({
           date
         };
       });
-      this.setData({ topMediaList, pageLoaded: true });
+      this.setData({ topMediaList });
     },
 
     setFollowMediaList(init = false) {

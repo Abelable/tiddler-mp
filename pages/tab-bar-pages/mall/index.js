@@ -51,10 +51,10 @@ Component({
       }
 
       await this.setBannerList();
-      this.setData({ pageLoaded: true });
       if (!this.data.productList.length) {
-        this.setProductList(true);
+        await this.setProductList(true);
       }
+      this.setData({ pageLoaded: true });
     },
 
     initCalendar() {

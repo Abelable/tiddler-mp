@@ -1,5 +1,5 @@
 <import src="index.skeleton.wxml"/>
-<template is="skeleton" wx:if="{{!pageLoaded}}" />
+<template is="skeleton" wx:if="{{!pageLoaded}}" data="{{statusBarHeight}}" />
 
 <view class="nav-bar {{navBarActive[curMenuIndex] ? 'active': ''}}" style="padding-top: {{statusBarHeight}}px">
   <view class="menu-tabs-wrap">
