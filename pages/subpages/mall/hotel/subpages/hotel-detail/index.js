@@ -67,7 +67,6 @@ Component({
       if (envVersion === "release") {
         this.setData({ toolVisible: true });
       }
-      this.setData({ toolVisible: true });
 
       wx.showShareMenu({
         withShareTicket: true,

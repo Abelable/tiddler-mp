@@ -10,12 +10,11 @@ Page({
 
   onLoad() {
     // todo 用于前期提交审核隐藏部分功能，后期需要删除
-    // const { version = "1.0.0", envVersion } =
-    //   wx.getAccountInfoSync().miniProgram || {};
-    // if (envVersion === "release") {
-    //   this.setData({ version, toolVisible: true });
-    // }
-    this.setData({ toolVisible: true });
+    const { version = "1.0.0", envVersion } =
+      wx.getAccountInfoSync().miniProgram || {};
+    if (envVersion === "release") {
+      this.setData({ version, toolVisible: true });
+    }
   },
 
   editUserInfo() {
