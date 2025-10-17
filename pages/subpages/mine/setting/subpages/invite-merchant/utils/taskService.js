@@ -1,4 +1,4 @@
-import MallService from "../../../mall/utils/mallService";
+import MallService from "../../../../../mall/utils/mallService";
 
 class TaskService extends MallService {
   async getTaskList(productType, page, limit = 10) {

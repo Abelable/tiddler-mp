@@ -1,4 +1,4 @@
-import { store } from "../../../../store/index";
+import { store } from "../../../../../../store/index";
 import TaskService from "./utils/taskService";
 
 const taskService = new TaskService();
@@ -92,7 +92,7 @@ Page({
 
   onShareAppMessage() {
     const { id } = store.superiorInfo || {};
-    const originalPath = "/pages/subpages/mall/invite-merchant/index";
+    const originalPath = "/pages/subpages/mine/setting/subpages/invite-merchant/index";
     const path = id ? `${originalPath}?superiorId=${id}` : originalPath;
     return {
       path,

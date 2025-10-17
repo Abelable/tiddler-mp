@@ -10,7 +10,8 @@ Page({
       { name: "餐饮商家", icon: "catering" },
       { name: "电商商家", icon: "goods" }
     ],
-    curMerchantType: 1
+    curMerchantType: 1,
+    curShopType: 1
   },
 
   onLoad() {},
@@ -18,6 +19,11 @@ Page({
   selectMerchantType(e) {
     const { index } = e.currentTarget.dataset;
     this.setData({ curMerchantType: index + 1 });
+  },
+
+  selectShopType(e) {
+    const { index } = e.currentTarget.dataset;
+    this.setData({ curShopType: index + 1 });
   },
 
   onPageScroll(e) {

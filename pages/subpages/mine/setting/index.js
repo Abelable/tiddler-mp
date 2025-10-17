@@ -10,11 +10,12 @@ Page({
 
   onLoad() {
     // todo 用于前期提交审核隐藏部分功能，后期需要删除
-    const { version = "1.0.0", envVersion } =
-      wx.getAccountInfoSync().miniProgram || {};
-    if (envVersion === "release") {
-      this.setData({ version, toolVisible: true });
-    }
+    // const { version = "1.0.0", envVersion } =
+    //   wx.getAccountInfoSync().miniProgram || {};
+    // if (envVersion === "release") {
+    //   this.setData({ version, toolVisible: true });
+    // }
+    this.setData({ toolVisible: true });
   },
 
   editUserInfo() {
@@ -32,17 +33,18 @@ Page({
 
   settleIn(e) {
     checkLogin(() => {
-      const { index } = e.currentTarget.dataset;
-      const type = ["scenic", "hotel", "catering", "goods"][index];
-      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/${type}/merchant/settle_in`;
-      wx.navigateTo({ url });
+      wx.navigateTo({
+        url: "/pages/subpages/mine/setting/subpages/merchant-settle/index"
+      });
     }, true);
   },
 
   inviteMerchant() {
-    wx.navigateTo({
-      url: "/pages/subpages/mine/invite-merchant/index"
-    });
+    checkLogin(() => {
+      wx.navigateTo({
+        url: "/pages/subpages/mine/setting/subpages/invite-merchant/index"
+      });
+    }, true);
   },
 
   onShareAppMessage() {

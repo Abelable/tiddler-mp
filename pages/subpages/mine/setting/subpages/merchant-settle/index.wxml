@@ -5,8 +5,8 @@
   </view>
 </view>
 
-<view class="container">
-  <view class="theme-title-wrap row" style="margin-top: {{statusBarHeight + 110}}px;">
+<view class="container" style="padding-top: {{statusBarHeight + 110}}px;">
+  <view class="theme-title-wrap row">
     <image class="theme-title" src="https://static.tiddler.cn/mp/merchant/settle/title.webp" />
     <view class="rolling-slogan">
       <view class="slogan">汇聚家乡文旅力，小鱼游共筑梦想，共创共富新时代！</view>
@@ -21,9 +21,10 @@
       <view>选择商家类型</view>
       <image class="title-decoration" src="https://static.tiddler.cn/mp/merchant/settle/title_decoration_right.webp" />
     </view>
-    <view class="type-selections">
+
+    <view class="type-options">
       <view 
-        class="type-selection {{curMerchantType === index + 1 ? 'active' : ''}}" 
+        class="type-option {{curMerchantType === index + 1 ? 'active' : ''}}" 
         wx:for="{{merchantTypeList}}" 
         wx:key="index"
         bindtap="selectMerchantType"
@@ -33,6 +34,36 @@
           <image class="merchant-icon" src="https://static.tiddler.cn/mp/merchant/settle/{{item.icon}}_merchant.webp" />
         </view>
         <view class="merchant-type-name">{{item.name}}</view>
+      </view>
+    </view>
+
+    <view class="shop-type-selection">
+      <view class="tips">请选择您的商家类型</view>
+      <view class="shop-type-options">
+        <view
+          class="shop-type-option {{shopType === index + 1 ? 'active' : ''}}"
+          wx:for="{{['shop', 'enterprise']}}"
+          wx:key="index"
+          bindtap="selectShopType"
+        >
+          <view class="shop-type-name-wrap">
+            <view class="shop-type-name">
+              {{ item === "enterprise" ? "企业店铺" : "个体店铺" }}
+            </view>
+            <view class="shop-type-desc">
+              {{
+                item === "enterprise"
+                  ? "适用于公司主体、连锁品牌、加盟门店、集团旗下子公司等"
+                  : "适用于个体工商户、小微商家、流动摊点等经营者，入驻流程更便捷"
+              }}
+            </view>
+          </view>
+          <image
+            class="shop-type-icon"
+            src="require(`@/assets/images/merchant/${item}.png`)"
+            alt=""
+          />
+        </view>
       </view>
     </view>
   </view>

@@ -7,34 +7,13 @@
     <view class="title">实名认证</view>
     <image class="arrow" src="./images/arrow.png" />
   </view>
-</view>
-
-<view class="list-wrap" wx:if="{{toolVisible}}">
-  <view 
-    class="list row between" 
-    wx:for="{{['景区', '酒店', '餐饮', '电商']}}" 
-    wx:key="index" 
-    bindtap="settleIn" 
-    data-index="{{index}}"
-  >
-    <view class="title">{{item}}商家入驻</view>
+  <view class="list row between" wx:if="{{toolVisible}}" bindtap="settleIn">
+    <view class="title">商家入驻</view>
     <image class="arrow" src="./images/arrow.png" />
   </view>
 </view>
 
 <view class="list-wrap">
-  <button 
-    class="list row between"
-    open-type="share" 
-    hover-class="none"
-  >
-    <view class="title">推荐给好友</view>
-    <image class="arrow" src="./images/arrow.png" />
-  </button>
-  <view class="list row between" bindtap="inviteMerchant">
-    <view class="title">邀请商家入驻</view>
-    <image class="arrow" src="./images/arrow.png" />
-  </view>
   <view class="list row between">
     <view class="title">常见问题与反馈</view>
     <image class="arrow" src="./images/arrow.png" />
@@ -48,6 +27,18 @@
      <view class="title">在线客服</view>
     <image class="arrow" src="./images/arrow.png" />
   </button>
+  <button 
+    class="list row between"
+    open-type="share" 
+    hover-class="none"
+  >
+    <view class="title">推荐给好友</view>
+    <image class="arrow" src="./images/arrow.png" />
+  </button>
+  <view class="list row between" bindtap="inviteMerchant">
+    <view class="title">邀请商家入驻</view>
+    <image class="arrow" src="./images/arrow.png" />
+  </view>
   <view class="list row between">
     <view class="title">关于小鱼游</view>
     <view class="row">

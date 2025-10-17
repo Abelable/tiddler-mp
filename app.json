@@ -108,12 +108,12 @@
       "mine/balance/index",
       "mine/coupon/index",
       "mine/history/index",
-      "mine/invite-merchant/index",
-      "mine/invite-merchant/subpages/mine-task/index",
-      "mine/invite-merchant/subpages/task-detail/index",
-      "mine/invite-merchant/subpages/reward-decord/index",
-      "mine/invite-merchant/subpages/guide/index",
-      "mine/invite-merchant/subpages/settle-home/index"
+      "mine/setting/subpages/invite-merchant/index",
+      "mine/setting/subpages/invite-merchant/subpages/mine-task/index",
+      "mine/setting/subpages/invite-merchant/subpages/task-detail/index",
+      "mine/setting/subpages/invite-merchant/subpages/reward-decord/index",
+      "mine/setting/subpages/invite-merchant/subpages/guide/index",
+      "mine/setting/subpages/merchant-settle/index"
     ]
   }],
   "tabBar": {

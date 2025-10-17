@@ -1,5 +1,5 @@
-import { store } from "../../../../../../store/index";
-import { calcDistance } from "../../../../../../utils/index";
+import { store } from "../../../../../../../../store/index";
+import { calcDistance } from "../../../../../../../../utils/index";
 import TaskService from "../../utils/taskService";
 
 const taskService = new TaskService();
@@ -93,7 +93,7 @@ Component({
 
     checkDetail() {
       const { id } = this.properties.item;
-      const url = `/pages/subpages/mine/invite-merchant/subpages/task-detail/index?id=${id}`;
+      const url = `/pages/subpages/mine/setting/subpages/invite-merchant/subpages/task-detail/index?id=${id}`;
       wx.navigateTo({ url });
     }
   }
