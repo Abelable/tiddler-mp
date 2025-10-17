@@ -15,8 +15,8 @@
     </view>
   </view>
 
-  <view class="merchant-type-selection">
-    <view class="selection-title row center">
+  <view class="card">
+    <view class="card-title row center">
       <image class="title-decoration" src="https://static.tiddler.cn/mp/merchant/settle/title_decoration_left.webp" />
       <view>选择商家类型</view>
       <image class="title-decoration" src="https://static.tiddler.cn/mp/merchant/settle/title_decoration_right.webp" />
@@ -24,7 +24,7 @@
 
     <view class="type-options">
       <view 
-        class="type-option {{curMerchantType === index + 1 ? 'active' : ''}}" 
+        class="type-option {{merchantType === index + 1 ? 'active' : ''}}" 
         wx:for="{{merchantTypeList}}" 
         wx:key="index"
         bindtap="selectMerchantType"
@@ -33,16 +33,16 @@
         <view class="merchant-icon-wrap">
           <image class="merchant-icon" src="https://static.tiddler.cn/mp/merchant/settle/{{item.icon}}_merchant.webp" />
         </view>
-        <view class="merchant-type-name">{{item.name}}</view>
+        <view class="merchant-type-name {{merchantType === index + 1 ? 'active' : ''}}">{{item.name}}</view>
       </view>
     </view>
 
-    <view class="shop-type-selection">
-      <view class="tips">请选择您的商家类型</view>
+    <view class="shop-type-selection" wx:if="{{merchantType === 3 || merchantType === 4}}">
+      <view class="shop-type-selection-tips">请选择您的店铺类型</view>
       <view class="shop-type-options">
         <view
           class="shop-type-option {{shopType === index + 1 ? 'active' : ''}}"
-          wx:for="{{['shop', 'enterprise']}}"
+          wx:for="{{[merchantType === 3 ? 'restaurant' : 'shop', 'enterprise']}}"
           wx:key="index"
           bindtap="selectShopType"
         >
@@ -59,11 +59,82 @@
             </view>
           </view>
           <image
-            class="shop-type-icon"
-            src="require(`@/assets/images/merchant/${item}.png`)"
+            class="shop-type-illus"
+            src="https://static.tiddler.cn/mp/merchant/settle/{{item}}_illus.webp"
             alt=""
           />
         </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="card-title row center">
+      <image class="title-decoration" src="https://static.tiddler.cn/mp/merchant/settle/title_decoration_left.webp" />
+      <view>商家入驻流程</view>
+      <image class="title-decoration" src="https://static.tiddler.cn/mp/merchant/settle/title_decoration_right.webp" />
+    </view>
+
+    <view class="course">
+      <view class="course-step">
+        <view class="course-step-index">1</view>
+        <view>材料准备</view>
+      </view>
+      <view class="course-content">
+        <view class="course-desc">证照需拍摄原件或复印件盖章，且在有效期内</view>
+        <view class="material-list">
+          <view class="material-item">
+            <view class="material-info">
+              <view class="material-name">营业执照</view>
+              <view class="material-desc">企业执照或个体户执照</view>
+            </view>
+            <image
+              class="material-illus"
+              src="https://static.tiddler.cn/mp/merchant/settle/business_license.webp"
+              alt=""
+            />
+          </view>
+          <view class="material-item">
+            <view class="material-info">
+              <view class="material-name">行业资质</view>
+              <view class="material-desc">部分行业需要，按行业补充</view>
+            </view>
+            <image
+              class="material-illus"
+              src="https://static.tiddler.cn/mp/merchant/settle/industry_qualification.webp"
+              alt=""
+            />
+          </view>
+          <view class="material-item">
+            <view class="material-info">
+              <view class="material-name">法人或经营者证件</view>
+              <view class="material-desc">身份证或护照等</view>
+            </view>
+            <image
+              class="material-illus"
+              src="https://static.tiddler.cn/mp/merchant/settle/id_card.webp"
+              alt=""
+            />
+          </view>
+          <view class="material-item">
+            <view class="material-info">
+              <view class="material-name">银行账户信息</view>
+              <view class="material-desc">企业对公银行开户信息</view>
+            </view>
+            <image
+              class="material-illus"
+              src="https://static.tiddler.cn/mp/merchant/settle/bank_card.webp"
+              alt=""
+            />
+          </view>
+        </view>
+      </view>
+      <view class="course-step">
+        <view class="course-step-index">2</view>
+        <view>酒店认领</view>
+      </view>
+      <view class="course-content">
+        <view class="course-desc">提交资质信息，认领酒店</view>
       </view>
     </view>
   </view>
