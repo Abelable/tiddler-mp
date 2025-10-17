@@ -1,5 +1,5 @@
 <import src="index.skeleton.wxml"/>
-<template is="skeleton" wx:if="{{pageLoaded}}" />
+<template is="skeleton" wx:if="{{!pageLoaded}}" />
 
 <view class="nav-bar {{navBarActive ? 'active': ''}}" style="padding-top: {{statusBarHeight}}px">
   <!-- <image class="sign-in-icon" src="https://static.tiddler.cn/mp/sign_in.png" /> -->
@@ -16,7 +16,7 @@
 <view class="banner-wrap">
   <swiper 
     class="banner" 
-    wx:if="{{!pageLoaded && bannerList.length}}" 
+    wx:if="{{pageLoaded && bannerList.length}}" 
     style="height: calc({{statusBarHeight + 44}}px + 300rpx);" 
     bindchange="bannerChange"
     autoplay 
@@ -40,7 +40,7 @@
 
 <view 
   class="container" 
-  wx:if="{{!pageLoaded}}"
+  wx:if="{{pageLoaded}}"
   style="top: {{bannerList.length ? 'calc(' + (statusBarHeight + 44) + 'px + 250rpx)' : (statusBarHeight + 44) + 'px'}}; border-radius: {{bannerList.length ? '40rpx 40rpx 0 0' : '0'}};"
 >
   <view class="category-list">
