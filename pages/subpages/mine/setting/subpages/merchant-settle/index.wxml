@@ -36,34 +36,38 @@
         <view class="merchant-type-name {{merchantType === index + 1 ? 'active' : ''}}">{{item.name}}</view>
       </view>
     </view>
+  </view>
 
-    <view class="shop-type-selection" wx:if="{{merchantType === 3 || merchantType === 4}}">
-      <view class="shop-type-selection-tips">请选择您的店铺类型</view>
-      <view class="shop-type-options">
-        <view
-          class="shop-type-option {{shopType === index + 1 ? 'active' : ''}}"
-          wx:for="{{[merchantType === 3 ? 'restaurant' : 'shop', 'enterprise']}}"
-          wx:key="index"
-          bindtap="selectShopType"
-        >
-          <view class="shop-type-name-wrap">
-            <view class="shop-type-name">
-              {{ item === "enterprise" ? "企业店铺" : "个体店铺" }}
-            </view>
-            <view class="shop-type-desc">
-              {{
-                item === "enterprise"
-                  ? "适用于公司主体、连锁品牌、加盟门店、集团旗下子公司等"
-                  : "适用于个体工商户、小微商家、流动摊点等经营者，入驻流程更便捷"
-              }}
-            </view>
+  <view class="card" wx:if="{{(merchantType === 3 || merchantType === 4) && merchantTypeList[merchantType - 1].status === 0}}">
+    <view class="card-title row center">
+      <image class="title-decoration" src="https://static.tiddler.cn/mp/merchant/settle/title_decoration_left.webp" />
+      <view>选择店铺类型</view>
+      <image class="title-decoration" src="https://static.tiddler.cn/mp/merchant/settle/title_decoration_right.webp" />
+    </view>
+    <view class="shop-type-options">
+      <view
+        class="shop-type-option {{shopType === index + 1 ? 'active' : ''}}"
+        wx:for="{{[merchantType === 3 ? 'restaurant' : 'shop', 'enterprise']}}"
+        wx:key="index"
+        bindtap="selectShopType"
+      >
+        <view class="shop-type-name-wrap">
+          <view class="shop-type-name">
+            {{ item === "enterprise" ? "企业店铺" : "个体店铺" }}
           </view>
-          <image
-            class="shop-type-illus"
-            src="https://static.tiddler.cn/mp/merchant/settle/{{item}}_illus.webp"
-            alt=""
-          />
+          <view class="shop-type-desc">
+            {{
+              item === "enterprise"
+                ? "适用于公司主体、连锁品牌、加盟门店、集团旗下子公司等"
+                : "适用于个体工商户、小微商家、流动摊点等经营者，入驻流程更便捷"
+            }}
+          </view>
         </view>
+        <image
+          class="shop-type-illus"
+          src="https://static.tiddler.cn/mp/merchant/settle/{{item}}_illus.webp"
+          alt=""
+        />
       </view>
     </view>
   </view>
@@ -141,8 +145,13 @@
 </view>
 
 <view class="settle-btn-wrap">
-  <view class="settle-btn row center {{agree ? 'active' : ''}}" bindtap="settle">立即入驻</view>
-  <view class="agreement-tips row" bindtap="toggleAgree">
+  <view 
+    class="settle-btn row center {{(merchantTypeList[merchantType - 1].status === 1 || agree) ? 'active' : ''}}" 
+    bindtap="settle"
+  >
+    {{merchantTypeList[merchantType - 1].status === 0 ? '立即入驻' : '查看申请状态'}}
+  </view>
+  <view class="agreement-tips row" wx:if="{{merchantTypeList[merchantType - 1].status === 0}}" bindtap="toggleAgree">
     <image class="checkbox" src="https://static.tiddler.cn/mp/register/select{{agree ? 'ed' : ''}}.png" />
     <text>阅读并同意</text>
     <text style="color: #09AFFF;" catchtap="checkAgreement">《小鱼游{{merchantTypeList[merchantType - 1].name}}服务协议》</text>

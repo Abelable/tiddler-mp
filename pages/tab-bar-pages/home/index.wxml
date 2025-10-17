@@ -6,7 +6,7 @@
     <view style="flex: 1">
       <!-- <image class="sign-in-icon" src="https://static.tiddler.cn/mp/sign_in.png" /> -->
       <view class="promoter-icon" wx:if="{{!userInfo.promoterInfo && superiorInfo}}">
-        <image class="promoter-avatar" src="{{superiorInfo.avatar}}" />
+        <image class="promoter-avatar" src="{{superiorInfo.avatar ? (superiorInfo.avatar + '?x-oss-process=image/format,webp') : 'https://static.tiddler.cn/mp/default_avatar.png'}}" />
         <image class="promoter-medal" src="https://static.tiddler.cn/mp/promoter/level_{{superiorInfo.promoterInfo.level}}/medal.gif" />
       </view>
     </view>

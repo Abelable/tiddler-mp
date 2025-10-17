@@ -25,7 +25,7 @@
 
 .container {
   position: relative;
-  padding: 0 18rpx calc(218rpx + env(safe-area-inset-bottom));
+  padding: 0 18rpx 240rpx;
   background: linear-gradient(180deg, rgba(245, 246, 250, 0) 800rpx, rgba(245, 246, 250, 100%) 1000rpx, rgba(245, 246, 250, 100%) 100%);
 }
 .container::before {
@@ -152,14 +152,6 @@
   transition: .2s ease;
 }
 
-.shop-type-selection {
-  margin-top: 48rpx;
-}
-.shop-type-selection-tips {
-  color: #666;
-  font-size: 26rpx;
-  text-align: center;
-}
 .shop-type-option {
   display: flex;
   align-items: center;
@@ -193,12 +185,10 @@
   height: 180rpx;
 }
 
-.course {
-  margin-top: 32rpx;
-}
 .course-step {
   display: flex;
   align-items: center;
+  margin-top: 24rpx;
   color: #141925;
   font-size: 32rpx;
   font-weight: bold;
@@ -216,20 +206,17 @@
   border-radius: 50%;
 }
 .course-content {
-  margin: 8rpx 0 48rpx;
   padding-left: 56rpx;
 }
 .course-desc {
+  margin-top: 8rpx;
   color: #999;
   font-size: 26rpx;
-}
-.material-list {
-  margin-top: 48rpx;
 }
 .material-item {
   display: flex;
   align-items: center;
-  margin-bottom: 24rpx;
+  margin-top: 24rpx;
   padding: 24rpx;
   background: #f5f6fa;
   border-radius: 24rpx;
@@ -257,7 +244,7 @@
   position: fixed;
   left: 0;
   bottom: 0;
-  padding: 0 32rpx calc(24rpx + env(safe-area-inset-bottom));
+  padding: 0 32rpx 48rpx;
   width: 100%;
   background: linear-gradient(180deg, rgba(255, 255, 250, 0) 0, rgba(255, 255, 250, 1) 40%, rgba(255, 255, 255, 1) 100%);
 }
