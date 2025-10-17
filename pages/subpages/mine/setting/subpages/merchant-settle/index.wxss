@@ -25,7 +25,7 @@
 
 .container {
   position: relative;
-  padding: 0 24rpx;
+  padding: 0 18rpx calc(218rpx + env(safe-area-inset-bottom));
   background: linear-gradient(180deg, rgba(245, 246, 250, 0) 800rpx, rgba(245, 246, 250, 100%) 1000rpx, rgba(245, 246, 250, 100%) 100%);
 }
 .container::before {
@@ -62,7 +62,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  margin: 18rpx 0 240rpx;
+  margin: 18rpx 0 180rpx;
   width: 620rpx;
   height: 80rpx;
   background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 0.8) 30%, rgba(255, 255, 255, 0.9) 50%, rgba(255, 255, 255, 0.8) 70%, rgba(255, 255, 255, 0) 100%);
@@ -94,7 +94,7 @@
   margin-top: 24rpx;
   padding: 24rpx;
   background: #fff;
-  border-radius: 32rpx;
+  border-radius: 48rpx;
 }
 .card-title {
   color: #333;
@@ -251,4 +251,35 @@
   width: 150rpx;
   height: 100rpx;
   border-radius: 8rpx;
+}
+
+.settle-btn-wrap {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  padding: 0 32rpx calc(24rpx + env(safe-area-inset-bottom));
+  width: 100%;
+  background: linear-gradient(180deg, rgba(255, 255, 250, 0) 0, rgba(255, 255, 250, 1) 40%, rgba(255, 255, 255, 1) 100%);
+}
+.settle-btn {
+  height: 100rpx;
+  color: #fff;
+  font-size: 36rpx;
+  font-weight: bold;
+  border-radius: 32rpx;
+  background: #e6e6e6;
+}
+.settle-btn.active {
+  background: linear-gradient(90deg, #009bff 0, #0073ff 100%);
+}
+.agreement-tips {
+  justify-content: center;
+  margin-top: 24rpx;
+  color: #999;
+  font-size: 24rpx;
+}
+.checkbox {
+  margin-right: 12rpx;
+  width: 30rpx;
+  height: 30rpx;
 }

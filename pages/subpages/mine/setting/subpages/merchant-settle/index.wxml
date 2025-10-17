@@ -131,11 +131,20 @@
       </view>
       <view class="course-step">
         <view class="course-step-index">2</view>
-        <view>酒店认领</view>
+        <view>{{['景区', '酒店', '餐饮门店', '店铺'][merchantType - 1]}}认领</view>
       </view>
       <view class="course-content">
-        <view class="course-desc">提交资质信息，认领酒店</view>
+        <view class="course-desc">提交资质信息，认领{{['景区', '酒店', '餐饮门店', '店铺'][merchantType - 1]}}</view>
       </view>
     </view>
+  </view>
+</view>
+
+<view class="settle-btn-wrap">
+  <view class="settle-btn row center {{agree ? 'active' : ''}}">立即入驻</view>
+  <view class="agreement-tips row" bindtap="toggleAgree">
+    <image class="checkbox" src="https://static.tiddler.cn/mp/register/select{{agree ? 'ed' : ''}}.png" />
+    <text>阅读并同意</text>
+    <text style="color: #09AFFF;" catchtap="checkAgreement">《小鱼游{{['景区', '酒店', '餐饮', '电商'][merchantType - 1]}}商家服务协议》</text>
   </view>
 </view>

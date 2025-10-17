@@ -1,3 +1,5 @@
+import { WEBVIEW_BASE_URL } from "../../../../../../config";
+
 const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Page({
@@ -11,7 +13,8 @@ Page({
       { name: "电商商家", icon: "goods" }
     ],
     merchantType: 1,
-    shopType: 1
+    shopType: 1,
+    agree: false
   },
 
   onLoad() {},
@@ -24,6 +27,21 @@ Page({
   selectShopType(e) {
     const { index } = e.currentTarget.dataset;
     this.setData({ shopType: index + 1 });
+  },
+
+  toggleAgree() {
+    this.setData({
+      agree: !this.data.agree
+    });
+  },
+
+  checkAgreement() {
+    const { merchantType } = this.data;
+    wx.navigateTo({
+      url: `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/protocol/${
+        ["scenic_", "hotel_", "catering_", ""][merchantType - 1]
+      }merchant`
+    });
   },
 
   onPageScroll(e) {
