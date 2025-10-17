@@ -91,13 +91,23 @@ Component({
 
     settle() {
       checkLogin(() => {
-        const { agree } = this.data;
-        if (!agree) {
+        const { merchantTypeList, merchantType, shopType, agree } = this.data;
+        const { status, icon: merchantTypeDesc } =
+          merchantTypeList[merchantType - 1];
+
+        if (!status && !agree) {
           wx.showToast({
             title: "请先阅读并同意商家服务协议",
             icon: "none"
           });
+          return;
         }
+
+        const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/${merchantTypeDesc}/merchant/settle_${
+          !status ? "in" : "status"
+        }&type=${shopType}`;
+        
+        wx.navigateTo({ url });
       });
     },
 

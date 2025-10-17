@@ -50,6 +50,7 @@
         wx:for="{{[merchantType === 3 ? 'restaurant' : 'shop', 'enterprise']}}"
         wx:key="index"
         bindtap="selectShopType"
+        data-index="{{index}}"
       >
         <view class="shop-type-name-wrap">
           <view class="shop-type-name">
