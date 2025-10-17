@@ -44,10 +44,10 @@ Page({
       fields: ["userInfo"]
     });
 
-    const { id, superiorId = "", scene = "" } = options || {};
+    const { id, scene = "" } = options || {};
     const decodedSceneList = scene ? decodeURIComponent(scene).split("-") : [];
     this.goodsId = +id || decodedSceneList[0];
-    this.superiorId = superiorId || decodedSceneList[1] || "";
+    this.superiorId = decodedSceneList[1] || "";
 
     getApp().onLaunched(async () => {
       if (this.superiorId && !store.superiorInfo) {

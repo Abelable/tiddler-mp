@@ -47,7 +47,7 @@ App({
     const { superiorId = '' } = options.query || {};
     if (superiorId && !store.superiorInfo) {
       wx.setStorageSync("superiorId", superiorId);
-      const superiorInfo = await noteService.getUserInfo(superiorId);
+      const superiorInfo = await baseService.getUserInfo(superiorId);
       if (superiorInfo.promoterInfo) {
         store.setSuperiorInfo(superiorInfo);
       }

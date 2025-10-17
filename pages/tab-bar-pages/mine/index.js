@@ -52,9 +52,9 @@ Component({
   },
 
   observers: {
-    userInfo: function (userInfo) {
-      if (userInfo) {
-        const { avatar = "" } = store.userInfo || {};
+    userInfo: function (info) {
+      if (info) {
+        const { avatar = "" } = info || {};
         if (
           (!avatar || avatar.includes("default_avatar")) &&
           !this.authInfoPopupShown

@@ -141,7 +141,7 @@
 </view>
 
 <view class="settle-btn-wrap">
-  <view class="settle-btn row center {{agree ? 'active' : ''}}">立即入驻</view>
+  <view class="settle-btn row center {{agree ? 'active' : ''}}" bindtap="settle">立即入驻</view>
   <view class="agreement-tips row" bindtap="toggleAgree">
     <image class="checkbox" src="https://static.tiddler.cn/mp/register/select{{agree ? 'ed' : ''}}.png" />
     <text>阅读并同意</text>

@@ -1,8 +1,9 @@
 import { WEBVIEW_BASE_URL } from "../../../../../../config";
 import { store } from "../../../../../../store/index";
-import SettingService from '../../utils/settingService'
+import { checkLogin } from "../../../../../../utils/index";
+import MerchantService from "./utils/merchantService";
 
-const settingService = new SettingService()
+const merchantService = new MerchantService();
 const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Page({
@@ -21,18 +22,7 @@ Page({
   },
 
   onLoad(options) {
-    const { type, superiorId = "" } = options || {};
-
-    getApp().onLaunched(async () => {
-      if (superiorId && !store.superiorInfo) {
-        wx.setStorageSync("superiorId", superiorId);
-        const superiorInfo = await settingService.getUserInfo(superiorId);
-        if (superiorInfo.promoterInfo) {
-          store.setSuperiorInfo(superiorInfo);
-        }
-      }
-    });
-
+    const { type } = options || {};
     if (type) {
       this.setData({ merchantType: +type });
     }
@@ -42,6 +32,39 @@ Page({
     // 2.确认商家认证状态:
     //   a.对于审核通过或驳回的情况，给出弹窗提示，由商家自行选择是否前去确认;
     //   b.对于已经是某个类型的商家，点击入驻时，给出提示，请勿重复操作
+    this.showConfirmModal();
+  },
+
+  showConfirmModal() {
+    if (store.userInfo) {
+      const {
+        scenicMerchantId,
+        scenicMerchantStatus,
+        hotelMerchantId,
+        hotelMerchantStatus,
+        cateringMerchantId,
+        cateringMerchantStatus,
+        merchantId,
+        merchantStatus
+      } = store.userInfo;
+
+      if (scenicMerchantId && [1]) {
+        wx.showModal({
+          title: '您的景区服务商申请已通过',
+          content: '',
+          confirmColor: '#009bff',
+        });
+      }
+
+      if (hotelMerchantId) {
+      }
+
+      if (cateringMerchantId) {
+      }
+
+      if (merchantId) {
+      }
+    }
   },
 
   selectMerchantType(e) {
@@ -57,6 +80,18 @@ Page({
   toggleAgree() {
     this.setData({
       agree: !this.data.agree
+    });
+  },
+
+  settle() {
+    checkLogin(() => {
+      const { agree } = this.data;
+      if (!agree) {
+        wx.showToast({
+          title: "请先阅读并同意商家服务协议",
+          icon: "none"
+        });
+      }
     });
   },
 

@@ -23,16 +23,10 @@ Page({
   },
 
   async onLoad(options) {
-    const {
-      id,
-      authorId,
-      mediaScene,
-      superiorId = "",
-      scene = ""
-    } = options || {};
+    const { id, authorId, mediaScene, scene = "" } = options || {};
     const decodedSceneList = scene ? decodeURIComponent(scene).split("-") : [];
     this.videoId = +id || decodedSceneList[0];
-    this.superiorId = superiorId || decodedSceneList[1] || "";
+    this.superiorId = decodedSceneList[1] || "";
     this.authorId = authorId ? +authorId : 0;
     this.mediaScene = mediaScene ? +mediaScene : 0;
 

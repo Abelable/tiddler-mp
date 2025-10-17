@@ -18,10 +18,10 @@ Page({
   },
 
   async onLoad(options) {
-    const { id, superiorId = "", scene = "" } = options || {};
+    const { id, scene = "" } = options || {};
     const decodedSceneList = scene ? decodeURIComponent(scene).split("-") : [];
     this.roomId = +id || decodedSceneList[0];
-    this.superiorId = superiorId || decodedSceneList[1] || "";
+    this.superiorId = decodedSceneList[1] || "";
 
     getApp().onLaunched(async () => {
       if (this.superiorId && !store.superiorInfo) {
