@@ -66,8 +66,10 @@ Page({
   },
 
   async setQrcode() {
-    const page = "pages/subpages/home/media/author-center/index";
-    const qrCode = await taskService.getQrCode("1", page);
+    const { productType, taskId } = this.data.taskInfo
+    const scene = `${productType}-${store.userInfo.id}-${taskId}`;
+    const page = "pages/subpages/mine/setting/subpages/merchant-settle/index";
+    const qrCode = await taskService.getQrCode(scene, page);
     this.setData({ qrCode });
   },
 
