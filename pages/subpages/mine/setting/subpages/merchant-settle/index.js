@@ -17,6 +17,7 @@ Component({
   data: {
     statusBarHeight,
     headerVisible: false,
+    merchantTypeSelectionVisible: true,
     merchantTypeList: [
       { name: "景区服务商", icon: "scenic", status: 0 },
       { name: "酒店服务商", icon: "hotel", status: 0 },
@@ -61,9 +62,14 @@ Component({
         : [];
       this.type = type || decodedSceneList[0];
       this.inviterId = decodedSceneList[1] || "";
+      this.taskId = decodedSceneList[2] || "";
 
       if (this.type) {
         this.setData({ merchantType: +this.type });
+      }
+
+      if (this.inviterId) {
+        this.setData({ merchantTypeSelectionVisible: false });
       }
 
       // todo

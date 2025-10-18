@@ -15,7 +15,7 @@
     </view>
   </view>
 
-  <view class="card">
+  <view class="card" wx:if="{{merchantTypeSelectionVisible}}">
     <view class="card-title row center">
       <image class="title-decoration" src="https://static.tiddler.cn/mp/merchant/settle/title_decoration_left.webp" />
       <view>选择商家类型</view>
