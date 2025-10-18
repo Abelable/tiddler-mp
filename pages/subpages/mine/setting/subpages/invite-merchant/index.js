@@ -14,9 +14,11 @@ Page({
     finished: false
   },
 
-  async onLoad() {
+  async onShow() {
     await this.setTaskList(true);
-    this.getMenuTop();
+    if (!this.menuTop) {
+      this.getMenuTop();
+    }
   },
 
   selectMenu(e) {

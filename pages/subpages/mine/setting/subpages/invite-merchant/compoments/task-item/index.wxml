@@ -1,6 +1,6 @@
 <view class="task-item">
   <view class="row top between">
-    <view class="merchant-name">{{item.productName}}</view>
+    <view class="merchant-name">{{item.merchantName}}</view>
     <view class="task-status {{status}}" wx:if="{{isUserTask}}">
       {{statusDesc}}
     </view>

@@ -15,7 +15,7 @@
   </view>
 
   <view class="task-info">
-    <view class="merchant-name">{{taskInfo.productName}}</view>
+    <view class="merchant-name">{{taskInfo.merchantName}}</view>
     <view class="position-info row">
       <image class="position-icon" src="https://static.tiddler.cn/mp/invite_merchant/address.png" />
       <view class="address-info row">

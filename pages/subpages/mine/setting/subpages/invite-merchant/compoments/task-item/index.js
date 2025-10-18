@@ -65,7 +65,7 @@ Component({
   methods: {
     navigation() {
       const {
-        productName: name,
+        merchantName: name,
         address,
         latitude,
         longitude

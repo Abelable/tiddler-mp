@@ -23,17 +23,17 @@ Page({
     const taskInfo = await taskService.getTaskDetail(this.taskId);
     this.setData({ taskInfo });
 
-    const { status, step, createdAt, longitude, latitude } = taskInfo;
+    const { status, step, pickTime, longitude, latitude } = taskInfo;
 
     this.setDistance(longitude, latitude);
 
     if (status === 1 && step === 0) {
-      this.setCountdown(createdAt);
+      this.setCountdown(pickTime);
 
       this.setQrcode();
 
       const effectiveTime = dayjs(
-        dayjs(createdAt).valueOf() + 24 * 60 * 60 * 1000
+        dayjs(pickTime).valueOf() + 24 * 60 * 60 * 1000
       ).format("YYYY-MM-DD HH:mm:ss");
       this.setData({ effectiveTime });
     }
@@ -48,9 +48,9 @@ Page({
     }
   },
 
-  setCountdown(createdAt) {
+  setCountdown(pickTime) {
     const countdown = Math.floor(
-      (dayjs(createdAt).valueOf() + 24 * 60 * 60 * 1000 - dayjs().valueOf()) /
+      (dayjs(pickTime).valueOf() + 24 * 60 * 60 * 1000 - dayjs().valueOf()) /
         1000
     );
     this.setData({ countdown });
@@ -66,8 +66,8 @@ Page({
   },
 
   async setQrcode() {
-    const { productType, taskId } = this.data.taskInfo
-    const scene = `${productType}-${store.userInfo.id}-${taskId}`;
+    const { merchantType, taskId } = this.data.taskInfo
+    const scene = `${merchantType}-${store.userInfo.id}-${taskId}`;
     const page = "pages/subpages/mine/setting/subpages/merchant-settle/index";
     const qrCode = await taskService.getQrCode(scene, page);
     this.setData({ qrCode });
@@ -99,11 +99,11 @@ Page({
   },
 
   navigate() {
-    const { productName, address, latitude, longitude } = this.data.taskInfo;
+    const { merchantName, address, latitude, longitude } = this.data.taskInfo;
     wx.openLocation({
       latitude: +latitude,
       longitude: +longitude,
-      name: productName,
+      name: merchantName,
       address
     });
   },

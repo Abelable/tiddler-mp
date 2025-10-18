@@ -1,10 +1,10 @@
 import SettingService from "../../../utils/settingService";
 
 class TaskService extends SettingService {
-  async getTaskList(productType, page, limit = 10) {
+  async getTaskList(merchantType, page, limit = 10) {
     return await this.get({
       url: `${this.baseUrl}/task/list`,
-      data: { status: 1, productType, page, limit },
+      data: { status: 1, merchantType, page, limit },
       loadingTitle: "正在加载"
     });
   }
