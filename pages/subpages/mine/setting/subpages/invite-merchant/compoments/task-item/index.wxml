@@ -17,7 +17,7 @@
     </view>
     <view class="row" wx:if="{{!isUserTask}}">
       <view class="navigate-btn" bindtap="navigation">导航</view>
-      <view class="task-btn {{item.status === 1 ? 'active' : ''}}" bindtap="receive">
+      <view class="task-btn {{item.status === 1 ? 'active' : ''}}" bindtap="pick">
         {{item.status === 1 ? '领取任务' : '已领取'}}
       </view>
     </view>

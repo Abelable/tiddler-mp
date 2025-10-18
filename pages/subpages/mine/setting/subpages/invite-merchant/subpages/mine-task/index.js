@@ -10,7 +10,7 @@ Page({
     finished: false
   },
 
-  onLoad() {
+  onShow() {
     this.setTaskData();
     this.setTaskList(true);
   },

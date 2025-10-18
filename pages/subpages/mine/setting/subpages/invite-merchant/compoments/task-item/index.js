@@ -78,10 +78,10 @@ Component({
       });
     },
 
-    receive() {
+    pick() {
       const { id, status } = this.properties.item;
       if (status === 1) {
-        taskService.receiveTask(id, () => {
+        taskService.pickTask(id, () => {
           this.setData({
             ["item.status"]: 2
           });
@@ -92,8 +92,8 @@ Component({
     },
 
     checkDetail() {
-      const { id } = this.properties.item;
-      const url = `/pages/subpages/mine/setting/subpages/invite-merchant/subpages/task-detail/index?id=${id}`;
+      const { taskId } = this.properties.item;
+      const url = `/pages/subpages/mine/setting/subpages/invite-merchant/subpages/task-detail/index?id=${taskId}`;
       wx.navigateTo({ url });
     }
   }

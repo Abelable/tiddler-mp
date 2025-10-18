@@ -14,7 +14,7 @@ Component({
       type: Object,
       observer(info) {
         if (info) {
-          this.setCountDown(new Date(info.noticeTime).getTime());
+          this.setCountdown(new Date(info.noticeTime).getTime());
           this.setFollowStatus();
         }
       },
@@ -23,24 +23,24 @@ Component({
 
   data: {
     statusBarHeight,
-    countDown: 0,
+    countdown: 0,
     isFollow: false,
   },
 
   detached() {
-    clearInterval(this.countDownInterval);
+    clearInterval(this.countdownInterval);
   },
 
   methods: {
-    setCountDown(startTime) {
+    setCountdown(startTime) {
       const currentTime = new Date().getTime();
-      let countDown = (startTime - currentTime) / 1000;
-      this.setData({ countDown });
-      this.countDownInterval = setInterval(() => {
-        if (countDown > 0) {
-          --countDown;
-          this.setData({ countDown });
-        } else clearInterval(this.countDownInterval);
+      let countdown = (startTime - currentTime) / 1000;
+      this.setData({ countdown });
+      this.countdownInterval = setInterval(() => {
+        if (countdown > 0) {
+          --countdown;
+          this.setData({ countdown });
+        } else clearInterval(this.countdownInterval);
       }, 1000);
     },
 

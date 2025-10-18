@@ -3,25 +3,26 @@
   padding-bottom: calc(168rpx + env(safe-area-inset-bottom));
 }
 
-.countdown-wrap {
+.status-wrap {
+  margin-bottom: 24rpx;
   padding: 24rpx;
   background: #fff;
   border-radius: 24rpx;
 }
-.countdown-info {
+.status-info {
   flex: 1;
 }
-.countdown {
+.status-title, .countdown {
   color: #333;
   font-size: 30rpx;
   font-weight: bold;
 }
-.countdown-tips {
+.status-tips {
   margin-top: 6rpx;
   color: #999;
   font-size: 22rpx;
 }
-.cancel-btn {
+.cancel-btn, .repick-btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,9 +33,18 @@
   border-radius: 30rpx;
   border: 0.5px solid #ddd;
 }
+.cancel-btn {
+  color: #333;
+  border: 0.5px solid #ddd;
+}
+.repick-btn {
+  color: #fff;
+  background: linear-gradient(135deg, #ff5f3e 0%, #ff0057 100%);
+  border: none;
+}
 
 .task-info {
-  margin-top: 24rpx;
+  margin-bottom: 24rpx;
   padding: 24rpx;
   background: #fff;
   border-radius: 24rpx;
@@ -57,8 +67,9 @@
   color: #999;
   font-size: 26rpx;
 }
-.address-detail {
+.address-distance {
   flex: 1;
+  white-space: nowrap;
 }
 .navigate-btn, .consult-btn {
   display: flex;
@@ -88,7 +99,6 @@
 }
 
 .step-info-wrap {
-  margin-top: 24rpx;
   padding: 24rpx;
   background: #fff;
   border-radius: 24rpx;
@@ -185,6 +195,9 @@
   color: #fff;
   font-size: 30rpx;
   font-weight: bold;
-  background: linear-gradient(135deg, #ff5f3e 0%, #ff0057 100%);
+  background: #e6e6e6;
   border-radius: 50rpx;
+}
+.receive-btn.active {
+  background: linear-gradient(135deg, #ff5f3e 0%, #ff0057 100%);
 }

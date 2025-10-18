@@ -1,26 +1,33 @@
+<wxs module="TIME" src="/utils/filters/time.wxs" />
+
 <view class="container">
-  <view class="countdown-wrap row">
-    <view class="countdown-info">
-      <view class="countdown">1天｜23:24:56</view>
-      <view class="countdown-tips">已为您锁定该任务，请尽快联系商家完成入驻</view>
+  <view class="status-wrap row" wx:if="{{(taskInfo.status === 1 && taskInfo.step === 0) || taskInfo.status === 6}}">
+    <view class="status-info">
+      <view class="status-title" wx:if="{{taskInfo.status === 6}}">已取消</view>
+      <view class="countdown" wx:if="{{taskInfo.status === 1}}">1天｜{{TIME.countdown(countdown, 'hh:mm:ss')}}</view>
+      <view class="status-tips">
+        <text>{{taskInfo.status === 1 ? '已为您锁定该任务，请尽快联系商家完成入驻' : '任务已取消'}}</text>
+        <text wx:if="{{taskInfo.status === 6 && taskInfo.taskStatus === 1}}">，您可以重新领取任务</text>
+      </view>
     </view>
-    <view class="cancel-btn">取消任务</view>
+    <view class="cancel-btn" wx:if="{{taskInfo.status === 1}}" bindtap="cancelTask">取消任务</view>
+    <view class="repick-btn" wx:if="{{taskInfo.status === 6 && taskInfo.taskStatus === 1}}" bindtap="repickTask">重新领取</view>
   </view>
 
   <view class="task-info">
-    <view class="merchant-name">阿尔法夜市</view>
+    <view class="merchant-name">{{taskInfo.productName}}</view>
     <view class="position-info row">
       <image class="position-icon" src="https://static.tiddler.cn/mp/invite_merchant/address.png" />
       <view class="address-info row">
-        <view class="address-detail row omit single">千岛湖镇青溪大道301号千岛湖阿尔法城</view>
-        <view>，据您2km</view>
+        <view class="address-detail omit single">{{taskInfo.address}}</view>
+        <view class="address-distance" wx:if="{{distance}}">，距您{{distance}}</view>
       </view>
-      <view class="navigate-btn">导航</view>
+      <view class="navigate-btn" bindtap="navigate">导航</view>
     </view>
-    <view class="tel-info row">
+    <view class="tel-info row" wx:if="{{taskInfo.tel}}">
       <image class="tel-icon" src="https://static.tiddler.cn/mp/invite_merchant/tel.png" />
-      <view class="tel">15869035014</view>
-      <view class="consult-btn">咨询</view>
+      <view class="tel">{{taskInfo.tel}}</view>
+      <view class="consult-btn" bindtap="consult">咨询</view>
     </view>
   </view>
   
@@ -28,58 +35,64 @@
     <view class="title">任务进度</view>
     <view class="step-info">
       <view class="step-title-wrap row">
-        <image class="step-icon" src="https://static.tiddler.cn/mp/invite_merchant/step_{{curStep >= 1 ? 'success' : 'waiting'}}.png" />
+        <image class="step-icon" src="https://static.tiddler.cn/mp/invite_merchant/step_{{taskInfo.step > 0 ? 'success' : 'waiting'}}.png" />
         <view class="step-title">邀请商家扫码入驻</view>
       </view>
-      <view class="step-content {{curStep >= 1 ? 'active' : ''}}">
-        <view class="qr-code-wrap row">
+      <view class="step-content {{taskInfo.step > 0 ? 'active' : ''}}">
+        <view class="qr-code-wrap row" wx:if="{{taskInfo.status === 1 && qrCode}}">
           <image class="qr-code" src="{{qrCode}}" show-menu-by-longpress />
           <view class="qr-code-title">长按分享或保存</view>
-          <view class="qr-code-tips">二维码2025-10-15 20:44:32内有效</view>
+          <view class="qr-code-tips">二维码{{effectiveTime}}内有效</view>
         </view>
       </view>
     </view>
     <view class="step-info">
       <view class="step-title-wrap row">
-        <image class="step-icon" src="https://static.tiddler.cn/mp/invite_merchant/step_waiting.png" />
+        <image class="step-icon" src="https://static.tiddler.cn/mp/invite_merchant/step_{{taskInfo.step > 1 ? 'success' : 'waiting'}}.png" />
         <view class="step-title">商家入驻成功</view>
         <view class="reward-info row">
           <view>先得</view>
           <image class="coin-icon" src="https://static.tiddler.cn/mp/invite_merchant/coin.png" />
-          <view class="reward">50元</view>
+          <view class="reward">{{taskInfo.rewardList[0]}}元</view>
         </view>
       </view>
-      <view class="step-content"></view>
+      <view class="step-content {{taskInfo.step > 1 ? 'active' : ''}}"></view>
     </view>
     <view class="step-info">
       <view class="step-title-wrap row">
-        <image class="step-icon" src="https://static.tiddler.cn/mp/invite_merchant/step_waiting.png" />
+        <image class="step-icon" src="https://static.tiddler.cn/mp/invite_merchant/step_{{taskInfo.step > 2 ? 'success' : 'waiting'}}.png" />
         <view class="step-title">商品发布成功</view>
         <view class="reward-info row">
           <view>再得</view>
           <image class="coin-icon" src="https://static.tiddler.cn/mp/invite_merchant/coin.png" />
-          <view class="reward">100元</view>
+          <view class="reward">{{taskInfo.rewardList[1]}}元</view>
         </view>
       </view>
-      <view class="step-content">
+      <view class="step-content {{taskInfo.step > 2 ? 'active' : ''}}">
         <view class="content-tips">商品保持7天可被用户购买</view>
       </view>
     </view>
     <view class="step-info">
       <view class="step-title-wrap row">
-        <image class="step-icon" src="https://static.tiddler.cn/mp/invite_merchant/step_waiting.png" />
+        <image class="step-icon" src="https://static.tiddler.cn/mp/invite_merchant/step_{{taskInfo.step > 3 ? 'success' : 'waiting'}}.png" />
         <view class="step-title">奖励发放</view>
         <view class="reward-info row">
           <view>最后得</view>
           <image class="coin-icon" src="https://static.tiddler.cn/mp/invite_merchant/coin.png" />
-          <view class="reward">150元</view>
+          <view class="reward">{{taskInfo.rewardList[2]}}元</view>
         </view>
       </view>
-      <view class="step-content">
+      <view class="step-content {{taskInfo.step > 3 ? 'active' : ''}}">
         <view class="content-tips">30天内至少成交1笔订单</view>
       </view>
     </view>
   </view>
 </view>
 
-<view class="receive-btn">领取奖励</view>
+<view 
+  class="receive-btn {{taskInfo.step > 3 ? 'active' : ''}}" 
+  wx:if="{{taskInfo.status !== 6}}"
+  bindtap="receiveReward"
+>
+  {{taskInfo.status === 1 ? '领取奖励' : '查看奖励领取状态'}}
+</view>

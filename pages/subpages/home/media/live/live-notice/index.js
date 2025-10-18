@@ -7,7 +7,7 @@ Page({
   data: {
     statusBarHeight,
     roomInfo: null,
-    countDown: 0,
+    countdown: 0,
   },
 
   onLoad() {
@@ -18,19 +18,19 @@ Page({
     const roomInfo = await liveService.getNoticeRoomInfo()
     if (roomInfo) {
       this.setData({ roomInfo })
-      this.setCountDown(new Date(roomInfo.noticeTime).getTime())
+      this.setCountdown(new Date(roomInfo.noticeTime).getTime())
     }
   },
 
-  setCountDown(startTime) {
+  setCountdown(startTime) {
     const currentTime = (new Date()).getTime()
-    let countDown = (startTime - currentTime) / 1000
-    this.setData({ countDown })
-    this.countDownInterval = setInterval(() => {
-      if (countDown > 0) {
-        --countDown
-        this.setData({ countDown })
-      } else clearInterval(this.countDownInterval)
+    let countdown = (startTime - currentTime) / 1000
+    this.setData({ countdown })
+    this.countdownInterval = setInterval(() => {
+      if (countdown > 0) {
+        --countdown
+        this.setData({ countdown })
+      } else clearInterval(this.countdownInterval)
     }, 1000)
   },
 
@@ -60,6 +60,6 @@ Page({
   },
 
   onUnload() {
-    clearInterval(this.countDownInterval)
+    clearInterval(this.countdownInterval)
   }
 })

@@ -1,19 +1,10 @@
-import MallService from "../../../../../mall/utils/mallService";
+import SettingService from "../../../utils/settingService";
 
-class MerchantService extends MallService {
-  async getTaskList(productType, page, limit = 10) {
+class MerchantService extends SettingService {
+  async getTaskStatus(userId, taskId) {
     return await this.get({
-      url: `${this.baseUrl}/task/list`,
-      data: { status: 1, productType, page, limit },
-      loadingTitle: "正在加载"
-    });
-  }
-
-  async receiveTask(id, success) {
-    return await this.post({
-      url: `${this.baseUrl}/task/receive`,
-      data: { id },
-      success
+      url: `${this.baseUrl}/task/status`,
+      data: { userId, taskId }
     });
   }
 }

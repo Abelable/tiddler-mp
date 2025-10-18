@@ -84,6 +84,6 @@
 
 <button class="create-btn" bindtap="startLive">{{isNotice ? '创建预告' : '开始直播'}}</button>
 
-<count-down wx:if="{{countDownVisible}}" />
+<count-down wx:if="{{countdownVisible}}" />
 
 <goods-picker-popup show="{{goodsPickerPopupVisible}}" bind:confirm="setGoodsIds" bind:hide="hideGoodsPickerPopup" />

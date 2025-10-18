@@ -69,14 +69,23 @@ Component({
       }
 
       if (this.inviterId) {
+        this.checkQrcodeValidity();
         this.setData({ merchantTypeSelectionVisible: false });
       }
+    },
 
-      // todo
-      // 1.绑定分享者逻辑：识别二维码获取分享者id
-      // 2.确认商家认证状态:
-      //   a.对于审核通过或驳回的情况，给出弹窗提示，由商家自行选择是否前去确认;
-      //   b.对于已经是某个类型的商家，点击入驻时，给出提示，请勿重复操作
+    checkQrcodeValidity() {
+      const status = merchantService.getTaskStatus(this.inviterId, this.taskId);
+      if (status !== 1) {
+        wx.showModal({
+          title: "温馨提示",
+          content: "二维码已过期，请联系邀请人",
+          showCancel: false,
+          confirmColor: "#00B2FF"
+        });
+      } else {
+        this.qrcodeValid = true;
+      }
     },
 
     selectMerchantType(e) {
@@ -112,7 +121,11 @@ Component({
           !status ? "in" : "status"
         }&type=${shopType}`;
 
-        wx.navigateTo({ url });
+        wx.navigateTo({
+          url: this.qrcodeValid
+            ? `${url}&inviter_id=${this.inviterId}&task_id=${this.taskId}`
+            : url
+        });
       });
     },
 

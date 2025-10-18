@@ -1,6 +1,6 @@
-import MallService from "../../../../../mall/utils/mallService";
+import SettingService from "../../../utils/settingService";
 
-class TaskService extends MallService {
+class TaskService extends SettingService {
   async getTaskList(productType, page, limit = 10) {
     return await this.get({
       url: `${this.baseUrl}/task/list`,
@@ -9,9 +9,17 @@ class TaskService extends MallService {
     });
   }
 
-  async receiveTask(id, success) {
+  async pickTask(id, success) {
     return await this.post({
-      url: `${this.baseUrl}/task/receive`,
+      url: `${this.baseUrl}/task/pick`,
+      data: { id },
+      success
+    });
+  }
+
+  async cancelTask(id, success) {
+    return await this.post({
+      url: `${this.baseUrl}/task/cancel`,
       data: { id },
       success
     });
@@ -27,6 +35,14 @@ class TaskService extends MallService {
     return await this.get({
       url: `${this.baseUrl}/task/user_list`,
       data: { status, page, limit },
+      loadingTitle: "正在加载"
+    });
+  }
+
+  async getTaskDetail(id) {
+    return await this.get({
+      url: `${this.baseUrl}/task/detail`,
+      data: { id },
       loadingTitle: "正在加载"
     });
   }
