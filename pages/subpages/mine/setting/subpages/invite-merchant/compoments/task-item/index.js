@@ -92,8 +92,8 @@ Component({
     },
 
     checkDetail() {
-      const { taskId } = this.properties.item;
-      const url = `/pages/subpages/mine/setting/subpages/invite-merchant/subpages/task-detail/index?id=${taskId}`;
+      const { isUserTask, item } = this.properties;
+      const url = `/pages/subpages/mine/setting/subpages/invite-merchant/subpages/task-detail/index?id=${isUserTask ? item.taskId : item.id}`;
       wx.navigateTo({ url });
     }
   }

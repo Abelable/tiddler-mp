@@ -84,13 +84,14 @@
       </view>
       <view class="step-content {{taskInfo.step > 3 ? 'active' : ''}}">
         <view class="content-tips">30天内至少成交1笔订单</view>
+        <view class="content-tips">订单保持14天，不产生售后，即可领取奖励</view>
       </view>
     </view>
   </view>
 </view>
 
 <view 
-  class="receive-btn {{taskInfo.step > 3 ? 'active' : ''}}" 
+  class="receive-btn {{receiveBtnActive ? 'active' : ''}}" 
   wx:if="{{taskInfo.status !== 6}}"
   bindtap="receiveReward"
 >

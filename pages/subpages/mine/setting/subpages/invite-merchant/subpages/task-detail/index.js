@@ -11,7 +11,8 @@ Page({
     distance: "",
     countdown: 0,
     qrCode: "",
-    effectiveTime: ""
+    effectiveTime: "",
+    receiveBtnActive: false
   },
 
   onLoad({ id }) {
@@ -23,19 +24,23 @@ Page({
     const taskInfo = await taskService.getTaskDetail(this.taskId);
     this.setData({ taskInfo });
 
-    const { status, step, pickTime, longitude, latitude } = taskInfo;
+    const { status, step, longitude, latitude, pickTime, finishTime } =
+      taskInfo;
 
     this.setDistance(longitude, latitude);
 
     if (status === 1 && step === 0) {
-      this.setCountdown(pickTime);
-
-      this.setQrcode();
-
+      await this.setQrcode();
       const effectiveTime = dayjs(
         dayjs(pickTime).valueOf() + 24 * 60 * 60 * 1000
       ).format("YYYY-MM-DD HH:mm:ss");
       this.setData({ effectiveTime });
+
+      this.setCountdown(pickTime);
+    }
+
+    if (step === 4 && dayjs().diff(dayjs(finishTime), "day") >= 14) {
+      this.setData({ receiveBtnActive: true });
     }
   },
 
@@ -66,7 +71,7 @@ Page({
   },
 
   async setQrcode() {
-    const { merchantType, taskId } = this.data.taskInfo
+    const { merchantType, taskId } = this.data.taskInfo;
     const scene = `${merchantType}-${store.userInfo.id}-${taskId}`;
     const page = "pages/subpages/mine/setting/subpages/merchant-settle/index";
     const qrCode = await taskService.getQrCode(scene, page);
@@ -76,11 +81,8 @@ Page({
   cancelTask() {
     const { taskId } = this.data.taskInfo;
     taskService.cancelTask(taskId, () => {
-      this.setData({
-        ["taskInfo.status"]: 6,
-        ["taskInfo.taskStatus"]: 1
-      });
       clearInterval(this.countdownInterval);
+      this.setTaskInfo();
     });
   },
 
@@ -93,7 +95,11 @@ Page({
 
   // todo
   receiveReward() {
-    if (this.data.taskInfo.status === 1) {
+    const { taskInfo, receiveBtnActive } = this.data;
+    if (!receiveBtnActive) {
+      return;
+    }
+    if (taskInfo.status === 1) {
     } else {
     }
   },
