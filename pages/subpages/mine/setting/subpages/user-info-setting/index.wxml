@@ -1,6 +1,6 @@
 <view class="container">
   <view class="header row center">
-    <image class="bg" src="{{userInfo.bg || 'https://static.tiddler.cn/mp/bg.png'}}" mode="aspectFill" />
+    <image class="bg" src="{{userInfo.bg ? (userInfo.bg + '?x-oss-process=image/format,webp') : 'https://static.tiddler.cn/mp/bg.webp'}}" mode="aspectFill" />
     <view class="avatar-wrap" bindtap="cropAvatar">
       <image class="avatar" src="{{userInfo.avatar}}" mode="aspectFill" />
       <view class="avatar-edit-btn row center">

@@ -39,6 +39,7 @@
 }
 .repick-btn {
   color: #fff;
+  font-weight: bold;
   background: linear-gradient(135deg, #ff5f3e 0%, #ff0057 100%);
   border: none;
 }
