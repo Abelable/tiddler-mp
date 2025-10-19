@@ -18,7 +18,7 @@
   font-weight: bold;
 }
 .status-tips {
-  margin-top: 6rpx;
+  margin-top: 8rpx;
   color: #999;
   font-size: 22rpx;
 }
