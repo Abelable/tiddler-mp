@@ -148,7 +148,7 @@ Page({
 
   checkWithdrawRecord() {
     wx.navigateTo({
-      url: `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/promoter/withdrawal_record`
+      url: `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/withdrawal_record/commission`
     });
   },
 

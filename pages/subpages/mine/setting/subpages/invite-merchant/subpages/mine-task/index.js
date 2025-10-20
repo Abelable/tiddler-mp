@@ -1,3 +1,4 @@
+import { WEBVIEW_BASE_URL } from "../../../../../../../../config";
 import TaskService from "../../utils/taskService";
 
 const taskService = new TaskService();
@@ -52,7 +53,7 @@ Page({
 
   checkRecord() {
     wx.navigateTo({
-      url: "../reward-decord/index"
+      url: `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/withdrawal_record/reward`
     });
   }
 });

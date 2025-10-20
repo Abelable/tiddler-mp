@@ -203,7 +203,7 @@ Page({
     this.setData({ timeData });
   },
 
-    async setCateringShopOrderList(init = false) {
+  async setCateringShopOrderList(init = false) {
     if (init) {
       this.page = 0;
       this.setData({ orderList: [], finished: false });
@@ -323,8 +323,18 @@ Page({
   },
 
   checkWithdrawRecord() {
+    const {
+      scenicShopId,
+      hotelShopId,
+      cateringShopId,
+      shopId: goodsShopId
+    } = store.userInfo;
+    const { merchantType } = this.data;
+    const shopId = [scenicShopId, hotelShopId, cateringShopId, goodsShopId][
+      merchantType - 1
+    ];
     wx.navigateTo({
-      url: `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/withdrawal_record`
+      url: `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/withdrawal_record/income&merchant_type=${merchantType}&shop_id=${shopId}`
     });
   }
 });

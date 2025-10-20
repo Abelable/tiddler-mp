@@ -98,33 +98,28 @@ Page({
   },
 
   withdraw() {
-    const {
-      btnActive,
-      scene,
-      amount: withdrawAmount,
-      pathOptions,
-      curOptionIdx,
-      remark
-    } = this.data;
+    const { btnActive, scene, amount, pathOptions, curOptionIdx, remark } =
+      this.data;
     if (!btnActive) {
       return;
     }
     if (store.userInfo.authInfoId) {
       const path = pathOptions[curOptionIdx].value;
-      if (scene < 4) {
+      if (scene <= 3) {
         withdrawService.applyCommissionWithdraw(
-          { scene, withdrawAmount, path, remark },
+          { scene, amount, path, remark },
+          this.withdrawSuccess
+        );
+      } else if (scene > 3 && scene <= 7) {
+        withdrawService.applyIncomeWithdraw(
+          { merchantType: scene - 3, amount, path, remark },
           this.withdrawSuccess
         );
       } else {
-        switch (scene) {
-          case 7:
-            withdrawService.applyShopWithdraw(
-              { withdrawAmount, path, remark },
-              this.withdrawSuccess
-            );
-            break;
-        }
+        withdrawService.applyRewardWithdraw(
+          { amount, path, remark },
+          this.withdrawSuccess
+        );
       }
     } else {
       this.setData({ authModalVisible: true });
@@ -132,7 +127,7 @@ Page({
   },
 
   withdrawSuccess() {
-    const { scene, curOptionIdx } = this.data
+    const { scene, curOptionIdx } = this.data;
     if (curOptionIdx === 0) {
       this.setData({ amount: 0 });
       wx.showToast({
