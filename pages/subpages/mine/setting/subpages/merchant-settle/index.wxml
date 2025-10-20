@@ -47,7 +47,7 @@
     <view class="shop-type-options">
       <view
         class="shop-type-option {{shopType === index + 1 ? 'active' : ''}}"
-        wx:for="{{[merchantType === 3 ? 'restaurant' : 'shop', 'enterprise']}}"
+        wx:for="{{['enterprise', merchantType === 3 ? 'restaurant' : 'shop']}}"
         wx:key="index"
         bindtap="selectShopType"
         data-index="{{index}}"

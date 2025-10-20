@@ -96,11 +96,20 @@ Page({
   // todo
   receiveReward() {
     const { taskInfo, receiveBtnActive } = this.data;
+    wx.navigateTo({
+      url: `/pages/subpages/mine/withdraw/index?scene=8&amount=${taskInfo.taskReward}`
+    });
     if (!receiveBtnActive) {
       return;
     }
     if (taskInfo.status === 1) {
+      wx.navigateTo({
+        url: `/pages/subpages/mine/withdraw/index?scene=8&amount=${taskInfo.taskReward}`
+      });
     } else {
+      wx.navigateTo({
+        url: "/pages/subpages/mine/setting/subpages/invite-merchant/subpages/reward-decord/index"
+      });
     }
   },
 
