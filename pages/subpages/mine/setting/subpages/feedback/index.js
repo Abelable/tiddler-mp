@@ -68,7 +68,7 @@ Page({
         icon: "none"
       });
       setTimeout(() => {
-        wx.navigateTo();
+        wx.navigateBack();
       }, 2000);
     });
   }
