@@ -12,6 +12,7 @@ Page({
     scene: 1,
     amount: 0,
     taxFee: 0,
+    handlingFee: 0,
     actualAmount: 0,
     pathOptions: [],
     curOptionIdx: 0,
@@ -22,32 +23,41 @@ Page({
   },
 
   onLoad(options) {
+    this.taskId = Number(options.taskId || 0);
+
     const scene = Number(options.scene);
     const amount = Number(options.amount);
-    const taxFee =
-      scene === 2 || scene === 3 ? Math.floor(amount * 0.06 * 100) / 100 : 0;
-    const actualAmount = amount - taxFee - 1;
+    const taxFee = [2, 3, 8].includes(scene)
+      ? Math.floor(amount * 0.06 * 100) / 100
+      : 0;
+    const handlingFee = Math.floor(amount * 0.006 * 100) / 100;
+    const actualAmount = Math.max(0, amount - taxFee - handlingFee);
     this.setData({
       scene,
       amount,
       taxFee,
-      actualAmount: actualAmount < 0 ? 0 : actualAmount,
+      handlingFee,
+      actualAmount,
       pathOptions:
         actualAmount >= 500
           ? [
-              { cn: "余额", en: "balance", value: 3 },
-              { cn: "银行卡", en: "card", value: 2 }
+              { cn: "余额（立即到账）", en: "balance", value: 3 },
+              { cn: "银行卡（1~3个工作日到账）", en: "card", value: 2 }
             ]
           : [
-              { cn: "余额", en: "balance", value: 3 },
-              { cn: "微信", en: "wx", value: 1 },
-              { cn: "银行卡", en: "card", value: 2 }
+              { cn: "余额（立即到账）", en: "balance", value: 3 },
+              { cn: "微信（1~3个工作日到账）", en: "wx", value: 1 },
+              { cn: "银行卡（1~3个工作日到账）", en: "card", value: 2 }
             ]
     });
 
-    const date = new Date().getDate();
-    if (date >= 25 && amount > 1) {
+    if (scene === 8) {
       this.setData({ btnActive: true });
+    } else {
+      const date = new Date().getDate();
+      if (date >= 25 && amount > 1) {
+        this.setData({ btnActive: true });
+      }
     }
   },
 
@@ -103,26 +113,26 @@ Page({
     if (!btnActive) {
       return;
     }
-    if (store.userInfo.authInfoId) {
-      const path = pathOptions[curOptionIdx].value;
-      if (scene <= 3) {
-        withdrawService.applyCommissionWithdraw(
-          { scene, amount, path, remark },
-          this.withdrawSuccess
-        );
-      } else if (scene > 3 && scene <= 7) {
-        withdrawService.applyIncomeWithdraw(
-          { merchantType: scene - 3, amount, path, remark },
-          this.withdrawSuccess
-        );
-      } else {
-        withdrawService.applyRewardWithdraw(
-          { amount, path, remark },
-          this.withdrawSuccess
-        );
-      }
-    } else {
+    if (!store.userInfo.authInfoId) {
       this.setData({ authModalVisible: true });
+      return;
+    }
+    const path = pathOptions[curOptionIdx].value;
+    if (scene <= 3) {
+      withdrawService.applyCommissionWithdraw(
+        { scene, amount, path, remark },
+        this.withdrawSuccess
+      );
+    } else if (scene > 3 && scene <= 7) {
+      withdrawService.applyIncomeWithdraw(
+        { merchantType: scene - 3, amount, path, remark },
+        this.withdrawSuccess
+      );
+    } else {
+      withdrawService.applyRewardWithdraw(
+        { taskId: this.taskId, amount, path, remark },
+        this.withdrawSuccess
+      );
     }
   },
 

@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import { calcDistance } from "../../../../../../../../utils/index";
 import { store } from "../../../../../../../../store/index";
+import { WEBVIEW_BASE_URL } from "../../../../../../../../config";
 import TaskService from "../../utils/taskService";
 
 const taskService = new TaskService();
@@ -96,19 +97,17 @@ Page({
   // todo
   receiveReward() {
     const { taskInfo, receiveBtnActive } = this.data;
-    wx.navigateTo({
-      url: `/pages/subpages/mine/withdraw/index?scene=8&amount=${taskInfo.taskReward}`
-    });
+    const { taskId, taskReward } = taskInfo;
     if (!receiveBtnActive) {
       return;
     }
     if (taskInfo.status === 1) {
       wx.navigateTo({
-        url: `/pages/subpages/mine/withdraw/index?scene=8&amount=${taskInfo.taskReward}`
+        url: `/pages/subpages/mine/withdraw/index?scene=8&amount=${taskReward}&taskId=${taskId}`
       });
     } else {
       wx.navigateTo({
-        url: "/pages/subpages/mine/setting/subpages/invite-merchant/subpages/reward-decord/index"
+        url: `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/withdrawal_record/reward`
       });
     }
   },

@@ -119,6 +119,21 @@
   color: #3C3F42;
   font-size: 24rpx;
 }
+.withdraw-tip {
+  position: relative;
+  margin-top: 8rpx;
+  padding-left: 18rpx;
+}
+.withdraw-tip::before {
+  position: absolute;
+  top: 16rpx;
+  left: 0;
+  width: 6rpx;
+  height: 6rpx;
+  content: '';
+  background: #3C3F42;
+  border-radius: 50%;
+}
 
 .withdraw-btn {
   position: fixed;
@@ -132,11 +147,10 @@
   height: 94rpx;
   color: #fff;
   font-size: 36rpx;
-  background: var(--blue-1);
+  background: #e6e6e6;
   border-radius: 47rpx;
-  z-index: 100%;
-  opacity: 0.3;
+  z-index: 100;
 } 
 .withdraw-btn.active {
-  opacity: 1;
+  background: var(--blue-1);
 }

@@ -18,10 +18,10 @@ class WithdrawService extends BaseService {
     });
   }
 
-  async applyRewardWithdraw({ amount, path, remark }, success) {
+  async applyRewardWithdraw({ taskId, amount, path, remark }, success) {
     await this.post({
       url: `${this.baseUrl}/withdraw/reward/submit`,
-      data: cleanObject({ amount, path, remark }),
+      data: cleanObject({ taskId, amount, path, remark }),
       success
     });
   }
