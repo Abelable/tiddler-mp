@@ -9,7 +9,6 @@
         <image class="cover" src="{{cover}}" mode="widthFix" />
         <button class="cover-editor" hover-class="none">编辑封面</button>
       </view>
-      
     </view>
   </view>
 

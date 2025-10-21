@@ -32,18 +32,24 @@ Page({
     }, true);
   },
 
-  settleIn(e) {
+  settleIn() {
     checkLogin(() => {
       wx.navigateTo({
-        url: "/pages/subpages/mine/setting/subpages/merchant-settle/index"
+        url: "./subpages/merchant-settle/index"
       });
     }, true);
+  },
+
+  feedback() {
+    wx.navigateTo({
+      url: "./subpages/feedback/index"
+    });
   },
 
   inviteMerchant() {
     checkLogin(() => {
       wx.navigateTo({
-        url: "/pages/subpages/mine/setting/subpages/invite-merchant/index"
+        url: "./subpages/invite-merchant/index"
       });
     }, true);
   },

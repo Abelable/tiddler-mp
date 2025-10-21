@@ -138,7 +138,7 @@
   font-size: 30rpx;
   font-weight: 500;
   border-radius: 40rpx;
-  background: var(--blue-1-btn-bg);
+  background: var(--blue-linear-1);
 }
 
 .delete-btn {

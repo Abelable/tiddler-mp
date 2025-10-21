@@ -1,0 +1,23 @@
+<view class="card">
+  <view class="title required">反馈描述</view>
+  <view class="textarea-wrap">
+    <textarea class="content-textarea" bindinput="setContent" placeholder="请填写10字以上的反馈描述，以便我们提供更好的帮助服务。" maxlength="200" />
+    <view class="length-desc">{{content.length}}/200</view>
+  </view>
+  <view class="title">上传凭证（{{imageList.length}}/5）</view>
+  <view class="uploader-wrap">
+    <van-uploader file-list="{{imageList}}" bind:after-read="uploadImage" bind:delete="deleteImage" accept="image" max-count="5" deletable />
+  </view>
+</view>
+
+<view class="card">
+  <view class="title">联系电话</view>
+  <input 
+    class="mobile-input" 
+    bindinput="setMobile" 
+    placeholder="请输入正确手机号" 
+    type="number" 
+  />
+</view>
+
+<view class="submit-btn" bindtap="submit">提交</view>
