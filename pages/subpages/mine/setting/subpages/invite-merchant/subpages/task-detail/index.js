@@ -94,7 +94,6 @@ Page({
     });
   },
 
-  // todo
   receiveReward() {
     const { taskInfo, receiveBtnActive } = this.data;
     const { taskId, taskReward } = taskInfo;
