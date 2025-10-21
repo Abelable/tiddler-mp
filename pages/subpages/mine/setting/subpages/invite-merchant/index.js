@@ -80,12 +80,6 @@ Page({
     }
   },
 
-  checkGuide() {
-    wx.navigateTo({
-      url: "./subpages/guide/index"
-    });
-  },
-
   checkMineTask() {
     wx.navigateTo({
       url: "./subpages/mine-task/index"

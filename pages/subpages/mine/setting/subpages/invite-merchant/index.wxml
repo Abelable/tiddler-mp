@@ -1,9 +1,6 @@
 <view class="header {{headerVisible ? 'show' : ''}}" style="padding-top: {{statusBarHeight}}px">
   <view class="nav-bar row">
     <back-icon />
-    <view class="guide-btn" bindtap="checkGuide">
-      <image class="guide-icon" src="https://static.tiddler.cn/mp/invite_merchant/qa.png" />
-    </view>
     <button class="share-btn" open-type='share' hover-class="none">
       <image class="share-icon" src="https://static.tiddler.cn/mp/invite_merchant/share.png" />
     </button>

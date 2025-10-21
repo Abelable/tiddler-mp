@@ -111,7 +111,6 @@
       "mine/setting/subpages/invite-merchant/index",
       "mine/setting/subpages/invite-merchant/subpages/mine-task/index",
       "mine/setting/subpages/invite-merchant/subpages/task-detail/index",
-      "mine/setting/subpages/invite-merchant/subpages/guide/index",
       "mine/setting/subpages/merchant-settle/index"
     ]
   }],
