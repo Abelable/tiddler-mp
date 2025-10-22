@@ -39,7 +39,7 @@
     <view class="title">推荐给好友</view>
     <image class="arrow" src="./images/arrow.png" />
   </button>
-  <view class="list row between">
+  <view class="list row between" bindtap="checkAboutUs">
     <view class="title">关于小鱼游</view>
     <view class="row">
       <view class="content">v{{version}}</view>

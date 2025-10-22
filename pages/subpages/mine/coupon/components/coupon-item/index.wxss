@@ -31,7 +31,7 @@
 }
 .coupon-main::after {
   bottom: -24rpx;
-  background: #f5f6f7;
+  background: #f5f6fe;
 }
 
 .chapter {

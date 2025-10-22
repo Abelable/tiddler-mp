@@ -54,6 +54,12 @@ Page({
     }, true);
   },
 
+  checkAboutUs() {
+    wx.navigateTo({
+      url: './subpages/about-us/index'
+    });
+  },
+
   onShareAppMessage() {
     const { id } = store.superiorInfo || {};
     const path = id

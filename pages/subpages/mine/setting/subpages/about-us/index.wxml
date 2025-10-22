@@ -1,0 +1,38 @@
+<view class="container">
+  <view class="main">
+    <image class="logo" src="https://static.tiddler.cn/mp/logo.png" />
+    <view class="title">共建家乡⽂旅与百姓⽣活之间的桥梁</view>
+    <view class="content">
+      <view class="section">小鱼游是一家专注于千岛湖本地文旅的OTA平台，平台基于S2B2C商业模式运营。</view>
+      <view class="section">平台致力于链接家乡文旅与家乡百姓，打造“家乡好物 × 家乡代言人”的创新生态，让更多家乡人参与并受益于家乡文旅事业。</view>
+      <view class="section">我们不仅提供一站式旅游预订服务，还整合本地农产品与特产电商资源，通过严格筛选与透明运营，为用户持续提供高品质、高性价比的文旅好物。</view>
+      <view class="section">小鱼游以“让家乡好物走出家乡，让家乡故事传向远方”为愿景，推动文旅融合与乡村振兴的可持续发展。</view>
+    </view>
+  </view>
+  
+  <view class="info">
+    <view class="info-title">资质证明</view>
+    <view class="info-list">
+      <view class="info-item">
+        <view class="info-content">鱼小小科技资质展示</view>
+        <image class="arrow" src="./images/arrow.png" />
+      </view>
+    </view>
+  </view>
+  
+  <view class="info">
+    <view class="info-title">平台协议</view>
+    <view class="info-list">
+      <view 
+        class="info-item" 
+        wx:for="{{protocolList}}" 
+        wx:key="index"
+        bindtap="checkProtocol"
+        data-path="{{item.path}}"
+      >
+        <view class="info-content">{{item.name}}</view>
+        <image class="arrow" src="./images/arrow.png" />
+      </view>
+    </view>
+  </view>
+</view>

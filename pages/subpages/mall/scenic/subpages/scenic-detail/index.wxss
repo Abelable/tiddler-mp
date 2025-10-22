@@ -300,8 +300,8 @@
   font-size: 22rpx;
   line-height: 40rpx;
   border-radius: 22rpx;
-  background: #f5f6f7;
-  border: 1px solid #f5f6f7;
+  background: #f5f6fe;
+  border: 1px solid #f5f6fe;
 }
 .ticket-type-item.active {
   color: #333;
@@ -334,7 +334,7 @@
 .qa-item:first-child {
   margin-bottom: 8px;
   background: #fff;
-  box-shadow: 0 0 12rpx 6rpx #f5f6f7;
+  box-shadow: 0 0 12rpx 6rpx #f5f6fe;
   border-radius: 18rpx;
   border-bottom: none;
 }

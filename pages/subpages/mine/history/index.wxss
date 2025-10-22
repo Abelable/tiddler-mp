@@ -10,6 +10,7 @@
   height: 88rpx;
   background: #fff;
   border-top: 1px solid #f5f6fa;
+  z-index: 100;
 }
 .menu-item {
   position: relative;

@@ -3,7 +3,7 @@
   width: 180rpx;
   font-size: 0;
   border-radius: 12rpx;
-  box-shadow: 0 0 12rpx 6rpx #f5f6f7;
+  box-shadow: 0 0 12rpx 6rpx #f5f6fe;
 }
 .project-image {
   border-radius: 12rpx 12rpx 0 0;

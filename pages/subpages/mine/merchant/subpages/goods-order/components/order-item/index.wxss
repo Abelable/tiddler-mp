@@ -37,7 +37,7 @@
 .deliver-info-wrap {
   margin-top: 24rpx;
   padding: 24rpx;
-  background: #f5f6f7;
+  background: #f5f6fe;
   border-radius: 24rpx;
 }
 .deliver-info {

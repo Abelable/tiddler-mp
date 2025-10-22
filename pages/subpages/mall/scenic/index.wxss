@@ -21,7 +21,7 @@
   width: 360rpx;
   height: 36px;
   border-radius: 18px;
-  background: #f5f6f7;
+  background: #f5f6fe;
 }
 .search-icon {
   margin-right: 5px;

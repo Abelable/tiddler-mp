@@ -55,7 +55,7 @@
 }
 
 .menu-tab-list {
-  border-top: 1px solid #f5f6f7;
+  border-top: 1px solid #f5f6fe;
 }
 .menu-tab {
   flex: 1;
