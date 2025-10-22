@@ -11,10 +11,6 @@
     <view class="title">商家入驻</view>
     <image class="arrow" src="./images/arrow.png" />
   </view>
-  <view class="list row between" bindtap="inviteMerchant">
-    <view class="title">邀请商家入驻</view>
-    <image class="arrow" src="./images/arrow.png" />
-  </view>
 </view>
 
 <view class="list-wrap">
@@ -31,6 +27,10 @@
      <view class="title">在线客服</view>
     <image class="arrow" src="./images/arrow.png" />
   </button>
+  <view class="list row between" bindtap="inviteMerchant">
+    <view class="title">邀请商家入驻</view>
+    <image class="arrow" src="./images/arrow.png" />
+  </view>
   <button 
     class="list row between"
     open-type="share" 
