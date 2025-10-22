@@ -113,7 +113,8 @@
       "mine/setting/subpages/invite-merchant/subpages/task-detail/index",
       "mine/setting/subpages/merchant-settle/index",
       "mine/setting/subpages/feedback/index",
-      "mine/setting/subpages/about-us/index"
+      "mine/setting/subpages/about-us/index",
+      "mine/setting/subpages/license/index"
     ]
   }],
   "tabBar": {

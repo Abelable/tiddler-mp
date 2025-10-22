@@ -54,6 +54,12 @@ Page({
     ]
   },
 
+  checkLicense() {
+    wx.navigateTo({
+      url: "../license/index"
+    });
+  },
+
   checkProtocol(e) {
     const { path } = e.currentTarget.dataset;
     wx.navigateTo({

@@ -13,7 +13,7 @@
   <view class="info">
     <view class="info-title">资质证明</view>
     <view class="info-list">
-      <view class="info-item">
+      <view class="info-item" bindtap="checkLicense">
         <view class="info-content">鱼小小科技资质展示</view>
         <image class="arrow" src="./images/arrow.png" />
       </view>
