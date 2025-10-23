@@ -1,3 +1,4 @@
+import { store } from "../../../../../store/index";
 import MediaService from "../../utils/mediaService";
 
 const mediaService = new MediaService();
@@ -39,5 +40,12 @@ Page({
     const { id } = e.currentTarget.dataset;
     const url = `/pages/subpages/mall/scenic/subpages/scenic-detail/index?id=${id}`;
     wx.navigateTo({ url });
+  },
+
+  onShareAppMessage() {
+    const { id } = store.superiorInfo || {};
+    const originalPath = "/pages/subpages/home/theme/hot-scenic/index";
+    const path = id ? `${originalPath}?superiorId=${id}` : originalPath;
+    return { path };
   }
 });
