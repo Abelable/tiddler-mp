@@ -46,7 +46,7 @@
       wx:key="index" 
       item="{{item}}" 
       index="{{index}}" 
-      bind:update="updateScenicOrderList"
+      bind:update="updateOrderList"
       bind:checkQRcode="showQRcodeModal"
     />
   </view>
@@ -56,7 +56,7 @@
       wx:key="index" 
       item="{{item}}" 
       index="{{index}}" 
-      bind:update="updateHotelOrderList"
+      bind:update="updateOrderList"
       bind:checkQRcode="showQRcodeModal"
     />
   </view>
@@ -66,7 +66,7 @@
       wx:key="index" 
       item="{{item}}" 
       index="{{index}}" 
-      bind:update="updateMealTicketOrderList"
+      bind:update="updateOrderList"
       bind:checkQRcode="showQRcodeModal"
     />
   </view>
@@ -76,7 +76,7 @@
       wx:key="index" 
       item="{{item}}" 
       index="{{index}}" 
-      bind:update="updateSetMealOrderList"
+      bind:update="updateOrderList"
       bind:checkQRcode="showQRcodeModal"
     />
   </view>
@@ -86,7 +86,7 @@
       wx:key="index" 
       item="{{item}}" 
       index="{{index}}" 
-      bind:update="updateGoodsOrderList"
+      bind:update="updateOrderList"
       bind:checkQRcode="showQRcodeModal"
     />
   </view>

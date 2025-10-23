@@ -100,7 +100,7 @@ Page({
     });
   },
 
-  updateGoodsOrderList(e) {
+  updateOrderList(e) {
     const statusEmuns = {
       cancel: 102,
       pay: 201,

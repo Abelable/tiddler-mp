@@ -10,12 +10,11 @@ Page({
     isSearching: false,
     orderList: [],
     verifyCode: "",
-    qrCodeModalVisible: false
   },
 
-  onLoad({ type = "1" }) {
+  onLoad({ shopId, type = "1" }) {
+    this.shopId = shopId;
     this.setData({ type: +type });
-
     this.setHistoryKeywords();
   },
 
@@ -52,7 +51,7 @@ Page({
 
   saveKeywords(keywords) {
     const { type } = this.data;
-    searchService.saveOrderKeywords(type, keywords);
+    searchService.saveOrderKeywords(this.shopId, type, keywords);
   },
 
   async setOrderList() {
@@ -60,20 +59,21 @@ Page({
     let orderList;
     switch (type) {
       case 1:
-        orderList = (await searchService.searchScenicOrderList(keywords)) || [];
+        orderList = (await searchService.searchScenicOrderList(this.shopId, keywords)) || [];
         break;
       case 2:
-        orderList = (await searchService.searchHotelOrderList(keywords)) || [];
+        orderList = (await searchService.searchHotelOrderList(this.shopId, keywords)) || [];
         break;
       case 3:
         orderList =
-          (await searchService.searchMealTicketOrderList(keywords)) || [];
+          (await searchService.searchMealTicketOrderList(this.shopId, keywords)) || [];
         break;
       case 4:
-        orderList = (await searchService.searchSetMealOrderList(keywords)) || [];
+        orderList =
+          (await searchService.searchSetMealOrderList(this.shopId, keywords)) || [];
         break;
       case 5:
-        orderList = (await searchService.searchGoodsOrderList(keywords)) || [];
+        orderList = (await searchService.searchGoodsOrderList(this.shopId, keywords)) || [];
         break;
     }
     this.setData({ orderList });
@@ -81,7 +81,7 @@ Page({
 
   async setHistoryKeywords() {
     const { type } = this.data;
-    const historyKeywords = await searchService.getOrderHistoryKeywords(type);
+    const historyKeywords = await searchService.getOrderHistoryKeywords(this.shopId, type);
     this.setData({ historyKeywords });
   },
 
@@ -100,7 +100,7 @@ Page({
     });
   },
 
-  updateGoodsOrderList(e) {
+  updateOrderList(e) {
     const statusEmuns = {
       cancel: 102,
       pay: 201,
@@ -119,19 +119,4 @@ Page({
       });
     }
   },
-
-  showQRcodeModal(e) {
-    const { verifyCode } = e.detail;
-    this.setData({
-      verifyCode,
-      qrCodeModalVisible: true
-    });
-  },
-
-  hideQRcodeModal() {
-    this.setData({
-      qrCodeModalVisible: false
-    });
-    this.setOrderList(true);
-  }
 });
