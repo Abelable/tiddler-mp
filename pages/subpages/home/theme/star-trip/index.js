@@ -72,6 +72,6 @@ Page({
     const { id } = store.superiorInfo || {};
     const originalPath = "/pages/subpages/home/theme/star-trip/index";
     const path = id ? `${originalPath}?superiorId=${id}` : originalPath;
-    return { path };
+    return { path, title: "明星同游" };
   }
 });

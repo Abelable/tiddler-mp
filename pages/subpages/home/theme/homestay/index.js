@@ -61,6 +61,6 @@ Page({
     const { id } = store.superiorInfo || {};
     const originalPath = "/pages/subpages/home/theme/homestay/index";
     const path = id ? `${originalPath}?superiorId=${id}` : originalPath;
-    return { path };
+    return { path, title: "湖畔民宿" };
   }
 });

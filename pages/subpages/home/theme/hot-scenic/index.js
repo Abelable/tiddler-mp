@@ -46,6 +46,6 @@ Page({
     const { id } = store.superiorInfo || {};
     const originalPath = "/pages/subpages/home/theme/hot-scenic/index";
     const path = id ? `${originalPath}?superiorId=${id}` : originalPath;
-    return { path };
+    return { path, title: "网红打卡" };
   }
 });

@@ -19,6 +19,6 @@ Page({
     const { id } = store.superiorInfo || {};
     const originalPath = "/pages/subpages/home/theme/night-trip/index";
     const path = id ? `${originalPath}?superiorId=${id}` : originalPath;
-    return { path };
+    return { path, title: "夜游千岛" };
   }
 });

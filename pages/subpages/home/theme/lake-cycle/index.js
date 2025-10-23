@@ -71,6 +71,6 @@ Page({
     const { id } = store.superiorInfo || {};
     const originalPath = "/pages/subpages/home/theme/lake-cycle/index";
     const path = id ? `${originalPath}?superiorId=${id}` : originalPath;
-    return { path };
+    return { path, title: "环湖骑行" };
   }
 });
