@@ -36,7 +36,7 @@ Page({
     if (!keywords) {
       return;
     }
-    orderService.saveKeywords(keywords);
+    this.saveKeywords(keywords);
     this.setOrderList();
     this.setData({ isSearching: true });
   },
@@ -50,6 +50,27 @@ Page({
     });
   },
 
+  saveKeywords(keywords) {
+    const { type } = this.data;
+    switch (type) {
+      case 1:
+        orderService.saveScenicKeywords(keywords);
+        break;
+      case 2:
+        orderService.saveHotelKeywords(keywords);
+        break;
+      case 3:
+        orderService.saveMealTicketKeywords(keywords);
+        break;
+      case 4:
+        orderService.saveSetMealKeywords(keywords);
+        break;
+      case 5:
+        orderService.saveGoodsKeywords(keywords);
+        break;
+    }
+  },
+
   async setOrderList() {
     const { type, keywords } = this.data;
     let orderList;
@@ -61,7 +82,8 @@ Page({
         orderList = (await orderService.searchHotelOrderList(keywords)) || [];
         break;
       case 3:
-        orderList = (await orderService.searchMealTicketOrderList(keywords)) || [];
+        orderList =
+          (await orderService.searchMealTicketOrderList(keywords)) || [];
         break;
       case 4:
         orderList = (await orderService.searchSetMealOrderList(keywords)) || [];
@@ -159,5 +181,5 @@ Page({
       qrCodeModalVisible: false
     });
     this.setOrderList(true);
-  },
+  }
 });

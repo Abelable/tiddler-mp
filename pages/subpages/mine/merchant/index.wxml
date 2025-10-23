@@ -8,7 +8,7 @@
     <view class="nav-bar-title">
       {{merchantList.length > 1 ? merchantList[curMerchantIdx].name : "商家中心"}}
     </view>
-    <view style="flex: 1;"></view>
+    <view style="flex: 1;"/>
   </view>
 </view>
 
@@ -23,7 +23,7 @@
     </swiper-item>
   </swiper>
 
-  <view class="dots row">
+  <view class="dots row" wx:if="{{merchantList.length > 1}}">
     <view class="dot {{curMerchantIdx === index ? 'active' : ''}}" wx:for="{{merchantList}}" wx:key="index"></view>
   </view>
 </view>
