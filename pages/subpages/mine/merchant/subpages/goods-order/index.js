@@ -97,8 +97,9 @@ Page({
   },
 
   search() {
+   const { shopId } = store.userInfo;
     wx.navigateTo({
-      url: "./subpages/search/index"
+      url: `../order-search/index?shopId=${shopId}&type=5`
     });
   }
 });
