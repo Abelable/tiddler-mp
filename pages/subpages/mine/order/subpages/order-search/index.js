@@ -52,23 +52,7 @@ Page({
 
   saveKeywords(keywords) {
     const { type } = this.data;
-    switch (type) {
-      case 1:
-        orderService.saveScenicKeywords(keywords);
-        break;
-      case 2:
-        orderService.saveHotelKeywords(keywords);
-        break;
-      case 3:
-        orderService.saveMealTicketKeywords(keywords);
-        break;
-      case 4:
-        orderService.saveSetMealKeywords(keywords);
-        break;
-      case 5:
-        orderService.saveGoodsKeywords(keywords);
-        break;
-    }
+    orderService.saveOrderKeywords(type, keywords);
   },
 
   async setOrderList() {
@@ -96,24 +80,8 @@ Page({
   },
 
   async setHistoryKeywords() {
-    let historyKeywords;
-    switch (this.data.type) {
-      case 1:
-        historyKeywords = await orderService.getScenicHistoryKeywords();
-        break;
-      case 2:
-        historyKeywords = await orderService.getHotelHistoryKeywords();
-        break;
-      case 3:
-        historyKeywords = await orderService.getMealTicketHistoryKeywords();
-        break;
-      case 4:
-        historyKeywords = await orderService.getSetMealHistoryKeywords();
-        break;
-      case 5:
-        historyKeywords = await orderService.getGoodsHistoryKeywords();
-        break;
-    }
+    const { type } = this.data;
+    const historyKeywords = await orderService.getOrderHistoryKeywords(type);
     this.setData({ historyKeywords });
   },
 
@@ -126,23 +94,7 @@ Page({
           this.setData({
             historyKeywords: []
           });
-          switch (this.data.type) {
-            case 1:
-              orderService.clearScenicHistoryKeywords();
-              break;
-            case 2:
-              orderService.clearHotelHistoryKeywords();
-              break;
-            case 3:
-              orderService.clearMealTicketHistoryKeywords();
-              break;
-            case 4:
-              orderService.clearSetMealHistoryKeywords();
-              break;
-            case 5:
-              orderService.clearGoodsHistoryKeywords();
-              break;
-          }
+          orderService.clearOrderHistoryKeywords(this.data.type);
         }
       }
     });

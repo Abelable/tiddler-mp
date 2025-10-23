@@ -19,26 +19,6 @@ class OrderService extends BaseService {
     });
   }
 
-  async getScenicHistoryKeywords() {
-    return await this.get({
-      url: `${this.baseUrl}/scenic/order/keyword/list`,
-      loadingTitle: "正在加载"
-    });
-  }
-
-  async saveScenicKeywords(keywords) {
-    return await this.post({
-      url: `${this.baseUrl}/scenic/order/keyword/add`,
-      data: { keywords }
-    });
-  }
-
-  async clearScenicHistoryKeywords() {
-    return await this.post({
-      url: `${this.baseUrl}/scenic/order/keyword/clear`
-    });
-  }
-
   async getScenicVerifyCode(orderId, scenicId) {
     return await this.get({
       url: `${this.baseUrl}/scenic/order/verify_code`,
@@ -108,26 +88,6 @@ class OrderService extends BaseService {
       url: `${this.baseUrl}/hotel/order/search`,
       data: { keywords },
       loadingTitle: "正在加载"
-    });
-  }
-
-  async getHotelHistoryKeywords() {
-    return await this.get({
-      url: `${this.baseUrl}/hotel/order/keyword/list`,
-      loadingTitle: "正在加载"
-    });
-  }
-
-  async saveHotelKeywords(keywords) {
-    return await this.post({
-      url: `${this.baseUrl}/hotel/order/keyword/add`,
-      data: { keywords }
-    });
-  }
-
-  async clearHotelHistoryKeywords() {
-    return await this.post({
-      url: `${this.baseUrl}/hotel/order/keyword/clear`
     });
   }
 
@@ -203,26 +163,6 @@ class OrderService extends BaseService {
     });
   }
 
-  async getMealTicketHistoryKeywords() {
-    return await this.get({
-      url: `${this.baseUrl}/catering/meal_ticket/order/keyword/list`,
-      loadingTitle: "正在加载"
-    });
-  }
-
-  async saveMealTicketKeywords(keywords) {
-    return await this.post({
-      url: `${this.baseUrl}/catering/meal_ticket/order/keyword/add`,
-      data: { keywords }
-    });
-  }
-
-  async clearMealTicketHistoryKeywords() {
-    return await this.post({
-      url: `${this.baseUrl}/catering/meal_ticket/order/keyword/clear`
-    });
-  }
-
   async getMealTicketVerifyCode(orderId, restaurantId) {
     return await this.get({
       url: `${this.baseUrl}/catering/meal_ticket/order/verify_code`,
@@ -277,26 +217,6 @@ class OrderService extends BaseService {
       url: `${this.baseUrl}/catering/set_meal/order/search`,
       data: { keywords },
       loadingTitle: "正在加载"
-    });
-  }
-
-  async getSetMealHistoryKeywords() {
-    return await this.get({
-      url: `${this.baseUrl}/catering/set_meal/order/keyword/list`,
-      loadingTitle: "正在加载"
-    });
-  }
-
-  async saveSetMealKeywords(keywords) {
-    return await this.post({
-      url: `${this.baseUrl}/catering/set_meal/order/keyword/add`,
-      data: { keywords }
-    });
-  }
-
-  async clearSetMealHistoryKeywords() {
-    return await this.post({
-      url: `${this.baseUrl}/catering/set_meal/order/keyword/clear`
     });
   }
 
@@ -357,23 +277,25 @@ class OrderService extends BaseService {
     });
   }
 
-  async getGoodsHistoryKeywords() {
+  async getOrderHistoryKeywords(productType) {
     return await this.get({
       url: `${this.baseUrl}/order/keyword/list`,
+      data: { productType },
       loadingTitle: "正在加载"
     });
   }
 
-  async saveGoodsKeywords(keywords) {
+  async saveOrderKeywords(productType, keywords) {
     return await this.post({
       url: `${this.baseUrl}/order/keyword/add`,
-      data: { keywords }
+      data: { productType, keywords }
     });
   }
 
-  async clearGoodsHistoryKeywords() {
+  async clearOrderHistoryKeywords(productType) {
     return await this.post({
-      url: `${this.baseUrl}/order/keyword/clear`
+      url: `${this.baseUrl}/order/keyword/clear`,
+      data: { productType }
     });
   }
 
