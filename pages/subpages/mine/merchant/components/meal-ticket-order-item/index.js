@@ -1,7 +1,7 @@
 import { store } from "../../../../../../store/index";
-import MealTicketService from "../../subpages/meal-ticket-order/utils/mealTicketOrderService";
+import MerchantService from "../../utils/merchantService";
 
-const mealTicketService = new MealTicketService();
+const merchantService = new MerchantService();
 
 Component({
   options: {
@@ -21,7 +21,7 @@ Component({
           if (result.confirm) {
             const { item, index } = this.properties;
             const { cateringShopId } = store.userInfo;
-            mealTicketService.refundOrder(cateringShopId, item.id, () => {
+            merchantService.refundMealTicketOrder(cateringShopId, item.id, () => {
               this.setData({ refundBtnVisible: false });
               this.triggerEvent("update", { type: "refund", index });
             });
@@ -33,7 +33,7 @@ Component({
     approveOrder() {
       const { item, index } = this.properties;
       const { cateringShopId } = store.userInfo;
-      mealTicketService.approveOrder(cateringShopId, item.id, () => {
+      merchantService.approveMealTicketOrder(cateringShopId, item.id, () => {
         this.triggerEvent("update", { type: "approve", index });
       });
     },

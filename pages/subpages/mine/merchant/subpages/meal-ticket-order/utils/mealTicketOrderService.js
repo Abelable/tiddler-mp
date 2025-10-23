@@ -18,22 +18,6 @@ class MealTicketOrderService extends MerchantService {
       loadingTitle: '正在加载'
     })
   }
-
-  async approveOrder(shopId, orderId, success) {
-    await this.post({
-      url: `${this.baseUrl}/catering/shop/meal_ticket/order/approve`,
-      data: { shopId, orderId },
-      success
-    });
-  }
-
-  async refundOrder(shopId, orderId, success) {
-    await this.post({
-      url: `${this.baseUrl}/catering/shop/meal_ticket/order/refund`,
-      data: { shopId, orderId },
-      success
-    });
-  }
 }
 
 export default MealTicketOrderService
