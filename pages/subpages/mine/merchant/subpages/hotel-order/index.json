@@ -4,6 +4,6 @@
   "usingComponents": {
     "back-icon": "/components/back-icon/index",
     "empty-illus": "/components/empty-illus/index",
-    "order-item": "./components/order-item/index"
+    "order-item": "../../components/hotel-order-item/index"
   }
 }

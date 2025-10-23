@@ -1,8 +1,0 @@
-{
-  "navigationBarTitleText": "订单搜索",
-  "usingComponents": {
-    "empty-illus": "/components/empty-illus/index",
-    "fall-flow": "/components/fall-flow/index",
-    "order-item": "../../components/order-item/index"
-  }
-}

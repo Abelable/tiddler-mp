@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "订单搜索",
+  "usingComponents": {
+    "empty-illus": "/components/empty-illus/index",
+    "fall-flow": "/components/fall-flow/index",
+    "scenic-order-item": "../../components/scenic-order-item/index",
+    "hotel-order-item": "../../components/hotel-order-item/index",
+    "meal-ticket-order-item": "../../components/meal-ticket-order-item/index",
+    "set-meal-order-item": "../../components/set-meal-order-item/index",
+    "goods-order-item": "../../components/goods-order-item/index"
+  }
+}
