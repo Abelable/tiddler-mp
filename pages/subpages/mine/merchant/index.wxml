@@ -5,27 +5,25 @@
     <view style="flex: 1;">
       <back-icon />
     </view>
-    <view class="nav-bar-title" wx:if="{{titleMenu.length === 1}}">商家中心</view>
-    <picker 
-      wx:if="{{titleMenu.length > 1}}" 
-      bindchange="selectTitle" 
-      value="{{curTitleIdx}}" 
-      range="{{titleMenu}}"
-      range-key="name"      
-    > 
-      <view class="nav-bar-title row center">
-        <text>{{titleMenu[curTitleIdx].name}}</text>
-        <image class="switch-icon" src="https://static.tiddler.cn/mp/merchant/switch.png" />
-      </view>
-    </picker>
+    <view class="nav-bar-title">
+      {{merchantList.length > 1 ? merchantList[curMerchantIdx].name : "商家中心"}}
+    </view>
     <view style="flex: 1;"></view>
   </view>
 </view>
 
-<view class="container {{titleMenu[curTitleIdx].type}}" style="padding-top: {{statusBarHeight + 56}}px">
-  <image class="bg" wx:if="{{titleMenu.length}}" src="https://static.tiddler.cn/mp/merchant/{{titleMenu[curTitleIdx].type}}/bg.png" />
-  <scenic-shop wx:if="{{titleMenu[curTitleIdx].value === 1}}" />
-  <hotel-shop wx:if="{{titleMenu[curTitleIdx].value === 2}}" />
-  <catering-shop wx:if="{{titleMenu[curTitleIdx].value === 3}}" />
-  <goods-shop wx:if="{{titleMenu[curTitleIdx].value === 4}}" />
+<view class="container">
+  <swiper class="merchant-list" bindchange="selectTitle">
+    <swiper-item class="merchant {{merchantList[curMerchantIdx].type}}" style="padding-top: {{statusBarHeight + 56}}px" wx:for="{{merchantList}}" wx:key="index">
+      <image class="bg" src="https://static.tiddler.cn/mp/merchant/{{item.type}}/bg.png" />
+      <scenic-shop wx:if="{{item.value === 1}}" />
+      <hotel-shop wx:if="{{item.value === 2}}" />
+      <catering-shop wx:if="{{item.value === 3}}" />
+      <goods-shop wx:if="{{item.value === 4}}" />
+    </swiper-item>
+  </swiper>
+
+  <view class="dots row">
+    <view class="dot {{curMerchantIdx === index ? 'active' : ''}}" wx:for="{{merchantList}}" wx:key="index"></view>
+  </view>
 </view>

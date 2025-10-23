@@ -22,21 +22,44 @@
 
 .container {
   position: relative;
+}
+.merchant-list {
+  height: 100vh;
+}
+.merchant {
+  position: relative;
   padding: 24rpx;
-  min-height: 100vh;
 }
-.container.scenic {
-  background: linear-gradient(180deg, #EDF6FE 20%, #F6F6F6 55%);
+.merchant.scenic {
+  background: linear-gradient(180deg, #edf6fe 20%, #f5f6fe 55%);
 }
-.container.hotel {
-  background: linear-gradient( 180deg, #F3EDFE 20%, #F6F6F6 55%);
+.merchant.hotel {
+  background: linear-gradient(180deg, #f3edfe 20%, #f5f6fe 55%);
 }
-.container.catering {
-  background: linear-gradient( 180deg, #FEF4EA 20%, #F6F6F6 55%);
+.merchant.catering {
+  background: linear-gradient(180deg, #fef4ea 20%, #f5f6fe 55%);
 }
-.container.goods {
-  background: linear-gradient( 180deg, #FEEDED 20%, #F6F6F6 55%);
+.merchant.goods {
+  background: linear-gradient(180deg, #feeded 20%, #f5f6fe 55%);
 }
+
+.dots {
+  position: absolute;
+  left: 50%;
+  bottom: 50rpx;
+  transform: translateX(-50%);
+}
+.dot {
+  margin: 0 12rpx;
+  width: 80rpx;
+  height: 8rpx;
+  background: #fff;
+  border-radius: 4rpx;
+}
+.dot.active {
+  background: #000;
+}
+
 .bg {
   position: absolute;
   top: 0;
@@ -53,16 +76,16 @@
   overflow: hidden;
 }
 .data-card.scenic {
-  background: linear-gradient(135deg, #67BAF6 0%, #2769F7 100%);
+  background: linear-gradient(135deg, #67baf6 0%, #2769f7 100%);
 }
 .data-card.hotel {
-  background: linear-gradient(270deg, #5E5CDE 0%, #B779E5 100%);
+  background: linear-gradient(270deg, #5e5cde 0%, #b779e5 100%);
 }
 .data-card.catering {
-  background: linear-gradient( 90deg, #ECD075 0%, #FFB700 100%);
+  background: linear-gradient(90deg, #ecd075 0%, #ffb700 100%);
 }
 .data-card.goods {
-  background: linear-gradient(135deg, #FE918D 0%, #FF4B7F 100%);
+  background: linear-gradient(135deg, #fe918d 0%, #ff4b7f 100%);
 }
 .data-card-bg {
   position: absolute;
@@ -90,7 +113,8 @@
 .data-items-wrap {
   margin-top: 48rpx;
 }
-.data-title, .data-supplement {
+.data-title,
+.data-supplement {
   color: #fff;
   font-size: 22rpx;
 }

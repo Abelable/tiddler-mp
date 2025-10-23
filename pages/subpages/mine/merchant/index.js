@@ -5,8 +5,8 @@ const { statusBarHeight } = getApp().globalData.systemInfo;
 Page({
   data: {
     statusBarHeight,
-    titleMenu: [],
-    curTitleIdx: 0,
+    merchantList: [],
+    curMerchantIdx: 0,
     shopIncomeOverview: null,
     shopOrderTotal: null
   },
@@ -24,35 +24,35 @@ Page({
       shopId
     } = userInfo;
 
-    const titleMenu = [];
+    const merchantList = [];
     if (scenicShopId) {
-      titleMenu.push({ name: "景区管理", type: "scenic", value: 1 });
+      merchantList.push({ name: "景区管理", type: "scenic", value: 1 });
     }
     if (hotelShopId) {
-      titleMenu.push({ name: "酒店管理", type: "hotel", value: 2 });
+      merchantList.push({ name: "酒店管理", type: "hotel", value: 2 });
     }
     if (cateringShopId) {
-      titleMenu.push({ name: "餐饮管理", type: "catering", value: 3 });
+      merchantList.push({ name: "餐饮管理", type: "catering", value: 3 });
     }
     if (shopId) {
-      titleMenu.push({ name: "电商管理", type: "goods", value: 4 });
+      merchantList.push({ name: "电商管理", type: "goods", value: 4 });
     }
 
-    const curTitleIdx = merchantType
-      ? titleMenu.findIndex(item => item.value === merchantType)
+    const curMerchantIdx = merchantType
+      ? merchantList.findIndex(item => item.value === merchantType)
       : 0;
 
-    this.setData({ titleMenu, curTitleIdx });
+    this.setData({ merchantList, curMerchantIdx });
   },
 
   selectTitle(e) {
-    const curTitleIdx = +e.detail.value;
-    this.setData({ curTitleIdx });
+    const curMerchantIdx = e.detail.current;
+    this.setData({ curMerchantIdx });
   },
 
   onUnload() {
-    const { titleMenu, curTitleIdx } = this.data;
-    const merchantType = titleMenu[curTitleIdx].value;
+    const { merchantList, curMerchantIdx } = this.data;
+    const merchantType = merchantList[curMerchantIdx].value;
     store.setMerchantType(merchantType);
   }
 });
