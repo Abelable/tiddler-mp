@@ -83,8 +83,9 @@ Page({
   },
 
   search() {
+    const { cateringShopId } = store.userInfo;
     wx.navigateTo({
-      url: "./subpages/search/index"
+      url: `../order-search/index?shopId=${cateringShopId}&type=4`
     });
   }
 });

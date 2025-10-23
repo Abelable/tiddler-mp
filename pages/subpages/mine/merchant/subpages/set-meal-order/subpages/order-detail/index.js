@@ -49,7 +49,7 @@ Page({
 
   approveOrder() {
     const { cateringShopId } = store.userInfo;
-    setMealOrderService.approveOrder(cateringShopId, this.orderId, () => {
+    setMealOrderService.approveSetMealOrder(cateringShopId, this.orderId, () => {
       this.setOrderInfo();
     });
   },
@@ -60,7 +60,7 @@ Page({
       success: result => {
         if (result.confirm) {
           const { cateringShopId } = store.userInfo;
-          setMealOrderService.refundOrder(cateringShopId, this.orderId, () => {
+          setMealOrderService.refundSetMealOrder(cateringShopId, this.orderId, () => {
             this.setOrderInfo();
           });
         }

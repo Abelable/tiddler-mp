@@ -139,6 +139,22 @@ class MerchantService extends BaseService {
       success
     });
   }
+
+  async approveSetMealOrder(shopId, orderId, success) {
+    await this.post({
+      url: `${this.baseUrl}/catering/shop/set_meal/order/approve`,
+      data: { shopId, orderId },
+      success
+    });
+  }
+
+  async refundSetMealOrder(shopId, orderId, success) {
+    await this.post({
+      url: `${this.baseUrl}/catering/shop/set_meal/order/refund`,
+      data: { shopId, orderId },
+      success
+    });
+  }
 }
 
 export default MerchantService;

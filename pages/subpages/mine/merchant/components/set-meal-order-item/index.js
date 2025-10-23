@@ -1,7 +1,7 @@
 import { store } from "../../../../../../store/index";
-import SetMealService from "../../subpages/set-meal-order/utils/setMealOrderService";
+import MerchantService from "../../utils/merchantService";
 
-const setMealService = new SetMealService();
+const merchantService = new MerchantService();
 
 Component({
   options: {
@@ -21,7 +21,7 @@ Component({
           if (result.confirm) {
             const { item, index } = this.properties;
             const { cateringShopId } = store.userInfo;
-            setMealService.refundOrder(cateringShopId, item.id, () => {
+            merchantService.refundSetMealOrder(cateringShopId, item.id, () => {
               this.setData({ refundBtnVisible: false });
               this.triggerEvent("update", { type: "refund", index });
             });
@@ -33,7 +33,7 @@ Component({
     approveOrder() {
       const { item, index } = this.properties;
       const { cateringShopId } = store.userInfo;
-      setMealService.approveOrder(cateringShopId, item.id, () => {
+      merchantService.approveSetMealOrder(cateringShopId, item.id, () => {
         this.triggerEvent("update", { type: "approve", index });
       });
     },

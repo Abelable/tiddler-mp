@@ -1,4 +1,4 @@
-<wxs module="ORDER" src="../../../../../utils/setMealOrder.wxs" />
+<wxs module="ORDER" src="../../../utils/setMealOrder.wxs" />
 
 <view class="order-item" catchtap="navToDetail">
   <view class="order-header row between">
