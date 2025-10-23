@@ -91,6 +91,38 @@ class MerchantService extends BaseService {
       data: { shopId }
     });
   }
+
+  async refundScenicOrder(shopId, orderId, success) {
+    await this.post({
+      url: `${this.baseUrl}/scenic/shop/order/refund`,
+      data: { shopId, orderId },
+      success
+    });
+  }
+
+  async approveScenicOrder(shopId, orderId, success) {
+    await this.post({
+      url: `${this.baseUrl}/scenic/shop/order/approve`,
+      data: { shopId, orderId },
+      success
+    });
+  }
+
+  async approveHotelOrder(shopId, orderId, success) {
+    await this.post({
+      url: `${this.baseUrl}/hotel/shop/order/approve`,
+      data: { shopId, orderId },
+      success
+    });
+  }
+
+  async refundHotelOrder(shopId, orderId, success) {
+    await this.post({
+      url: `${this.baseUrl}/hotel/shop/order/refund`,
+      data: { shopId, orderId },
+      success
+    });
+  }
 }
 
 export default MerchantService;

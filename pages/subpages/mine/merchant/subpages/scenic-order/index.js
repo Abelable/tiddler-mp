@@ -89,8 +89,9 @@ Page({
   },
 
   search() {
+    const { scenicShopId } = store.userInfo;
     wx.navigateTo({
-      url: "./subpages/search/index"
+      url: `../order-search/index?shopId=${scenicShopId}&type=1`
     });
   }
 });

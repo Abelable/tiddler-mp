@@ -53,7 +53,7 @@ Page({
       success: result => {
         if (result.confirm) {
           const { hotelShopId } = store.userInfo;
-          hotelOrderService.refundOrder(hotelShopId, this.orderId, () => {
+          hotelOrderService.refundHotelOrder(hotelShopId, this.orderId, () => {
             this.setOrderInfo();
           });
         }
@@ -63,7 +63,7 @@ Page({
 
   approveOrder() {
     const { hotelShopId } = store.userInfo;
-    hotelOrderService.approveOrder(hotelShopId, this.orderId, () => {
+    hotelOrderService.approveHotelOrder(hotelShopId, this.orderId, () => {
       this.setOrderInfo();
     });
   },

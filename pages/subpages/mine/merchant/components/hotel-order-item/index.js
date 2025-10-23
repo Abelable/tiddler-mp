@@ -1,7 +1,7 @@
 import { store } from "../../../../../../store/index";
-import HotelOrderService from "../../subpages/hotel-order/utils/hotelOrderService";
+import MerchantService from "../../utils/merchantService";
 
-const hotelOrderService = new HotelOrderService();
+const merchantService = new MerchantService();
 
 Component({
   options: {
@@ -21,7 +21,7 @@ Component({
           if (result.confirm) {
             const { item, index } = this.properties;
             const { hotelShopId } = store.userInfo;
-            hotelOrderService.refundOrder(hotelShopId, item.id, () => {
+            merchantService.refundHotelOrder(hotelShopId, item.id, () => {
               this.setData({ refundBtnVisible: false });
               this.triggerEvent("update", { type: "refund", index });
             });
@@ -33,7 +33,7 @@ Component({
     approveOrder() {
       const { item, index } = this.properties;
       const { hotelShopId } = store.userInfo;
-      hotelOrderService.approveOrder(hotelShopId, item.id, () => {
+      merchantService.approveHotelOrder(hotelShopId, item.id, () => {
         this.triggerEvent("update", { type: "approve", index });
       });
     },

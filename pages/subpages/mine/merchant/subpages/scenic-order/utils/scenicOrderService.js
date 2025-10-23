@@ -18,22 +18,6 @@ class ScenicOrderService extends MerchantService {
       loadingTitle: "正在加载"
     });
   }
-
-  async approveOrder(shopId, orderId, success) {
-    await this.post({
-      url: `${this.baseUrl}/scenic/shop/order/approve`,
-      data: { shopId, orderId },
-      success
-    });
-  }
-
-  async refundOrder(shopId, orderId, success) {
-    await this.post({
-      url: `${this.baseUrl}/scenic/shop/order/refund`,
-      data: { shopId, orderId },
-      success
-    });
-  }
 }
 
 export default ScenicOrderService;

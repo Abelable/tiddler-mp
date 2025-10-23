@@ -89,8 +89,9 @@ Page({
   },
 
   search() {
+    const { hotelShopId } = store.userInfo;
     wx.navigateTo({
-      url: "./subpages/search/index"
+      url: `../order-search/index?shopId=${hotelShopId}&type=2`
     });
   }
 });

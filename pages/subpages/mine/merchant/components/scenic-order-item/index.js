@@ -1,7 +1,7 @@
 import { store } from "../../../../../../store/index";
-import ScenicOrderService from "../../subpages/scenic-order/utils/scenicOrderService";
+import MerchantService from "../../utils/merchantService";
 
-const scenicOrderService = new ScenicOrderService();
+const merchantService = new MerchantService();
 
 Component({
   options: {
@@ -21,7 +21,7 @@ Component({
           if (result.confirm) {
             const { item, index } = this.properties;
             const { scenicShopId } = store.userInfo;
-            scenicOrderService.refundOrder(scenicShopId, item.id, () => {
+            merchantService.refundScenicOrder(scenicShopId, item.id, () => {
               this.setData({ refundBtnVisible: false });
               this.triggerEvent("update", { type: "refund", index });
             });
@@ -33,7 +33,7 @@ Component({
     approveOrder() {
       const { item, index } = this.properties;
       const { scenicShopId } = store.userInfo;
-      scenicOrderService.approveOrder(scenicShopId, item.id, () => {
+      merchantService.approveScenicOrder(scenicShopId, item.id, () => {
         this.triggerEvent("update", { type: "approve", index });
       });
     },

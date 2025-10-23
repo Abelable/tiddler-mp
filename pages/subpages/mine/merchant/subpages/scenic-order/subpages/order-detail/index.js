@@ -49,7 +49,7 @@ Page({
 
   approveOrder() {
     const { scenicShopId } = store.userInfo;
-    scenicOrderService.approveOrder(scenicShopId, this.orderId, () => {
+    scenicOrderService.approveScenicOrder(scenicShopId, this.orderId, () => {
       this.setOrderInfo();
     });
   },
@@ -60,7 +60,7 @@ Page({
       success: result => {
         if (result.confirm) {
           const { scenicShopId } = store.userInfo;
-          scenicOrderService.refundOrder(scenicShopId, this.orderId, () => {
+          scenicOrderService.refundScenicOrder(scenicShopId, this.orderId, () => {
             this.setOrderInfo();
           });
         }
