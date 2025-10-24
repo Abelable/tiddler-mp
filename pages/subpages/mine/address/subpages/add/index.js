@@ -38,7 +38,7 @@ Page({
       })
       return
     }
-    if (!this.mobile || !/^1[345789][0-9]{9}$/.test(this.mobile)) {
+    if (!this.mobile || !/^1[3-9]\d{9}$/.test(this.mobile)) {
       wx.showToast({ 
         title: '请输入正确手机号', 
         icon: 'none' 

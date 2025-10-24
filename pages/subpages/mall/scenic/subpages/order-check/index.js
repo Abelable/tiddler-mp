@@ -176,7 +176,7 @@ Component({
       if (!consignee || !mobile || !idCardNumber) {
         return;
       }
-      if (!/^1[345789][0-9]{9}$/.test(mobile)) {
+      if (!/^1[3-9]\d{9}$/.test(mobile)) {
         wx.showToast({
           title: "请输入正确手机号",
           icon: "none",
