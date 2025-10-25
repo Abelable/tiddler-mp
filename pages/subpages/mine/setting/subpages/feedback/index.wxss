@@ -23,7 +23,7 @@
   position: relative;
   margin: 24rpx 0;
   padding: 24rpx;
-  background: #f5f6fe;
+  background: #f5f6f8;
   border-radius: 24rpx;
 }
 .content-textarea {

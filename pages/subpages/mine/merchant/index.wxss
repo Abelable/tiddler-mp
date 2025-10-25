@@ -31,16 +31,16 @@
   padding: 24rpx;
 }
 .merchant.scenic {
-  background: linear-gradient(180deg, #edf6fe 20%, #f5f6fe 55%);
+  background: linear-gradient(180deg, #edf6fe 20%, #f5f6f8 55%);
 }
 .merchant.hotel {
-  background: linear-gradient(180deg, #f3edfe 20%, #f5f6fe 55%);
+  background: linear-gradient(180deg, #f3edfe 20%, #f5f6f8 55%);
 }
 .merchant.catering {
-  background: linear-gradient(180deg, #fef4ea 20%, #f5f6fe 55%);
+  background: linear-gradient(180deg, #fef4ea 20%, #f5f6f8 55%);
 }
 .merchant.goods {
-  background: linear-gradient(180deg, #feeded 20%, #f5f6fe 55%);
+  background: linear-gradient(180deg, #feeded 20%, #f5f6f8 55%);
 }
 
 .dots {

@@ -4,7 +4,7 @@
   left: 0;
   width: 100%;
   background: #fff;
-  border-top: 1px solid #f5f6fe;
+  border-top: 1px solid #f5f6f8;
   box-shadow: 0 1px 1px 0 rgba(0,0,0,0.05);
   z-index: 100;
 }
@@ -92,7 +92,7 @@
 
 .feature-item {
   padding-top: 24rpx;
-  border-bottom: 1px solid #f5f6fe;
+  border-bottom: 1px solid #f5f6f8;
 }
 .feature-item:first-child {
   padding-top: 0;
@@ -116,7 +116,7 @@
 
 .policy-item {
   padding: 24rpx 0;
-  border-bottom: 1px solid #f5f6fe;
+  border-bottom: 1px solid #f5f6f8;
 }
 .policy-item:first-child {
   padding-top: 0;

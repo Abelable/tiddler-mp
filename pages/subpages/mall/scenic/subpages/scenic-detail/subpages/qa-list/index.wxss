@@ -8,7 +8,7 @@
   padding: 24rpx;
   padding-left: 42rpx;
   background: #fff;
-  box-shadow: 0 0 12rpx 6rpx #f5f6fe;
+  box-shadow: 0 0 12rpx 6rpx #f5f6f8;
   border-radius: 18rpx;
   border-bottom: none;
 }
@@ -92,7 +92,7 @@
   height: 80rpx;
   font-size: 26rpx;
   border-radius: 40rpx;
-  background: #f5f6fe;
+  background: #f5f6f8;
 }
 .submit-btn {
   margin-left: 24rpx;

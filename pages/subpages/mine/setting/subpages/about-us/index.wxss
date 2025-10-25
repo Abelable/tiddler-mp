@@ -45,14 +45,14 @@
   font-weight: bold;
 }
 .info-list {
-  border-top: 0.5px solid #f5f6fe;
+  border-top: 0.5px solid #f5f6f8;
 }
 .info-item {
   display: flex;
   align-items: center;
   margin: 0 24rpx;
   height: 100rpx;
-  border-bottom: 0.5px solid #f5f6fe;
+  border-bottom: 0.5px solid #f5f6f8;
 }
 .info-item:last-child {
   border-bottom: none;

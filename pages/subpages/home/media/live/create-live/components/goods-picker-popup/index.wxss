@@ -4,7 +4,7 @@
   padding-bottom: 100rpx;
   height: 1100rpx;
   max-height: 100vh;
-  background: #f5f6fe;
+  background: #f5f6f8;
 }
 
 .goods-list-wrap {

@@ -6,7 +6,7 @@
   flex-direction: column;
   width: 100vw;
   height: 100vh;
-  background: #f5f6fe;
+  background: #f5f6f8;
 }
 
 .header {
@@ -143,7 +143,7 @@
   margin: 0 24rpx;
   padding: 0 24rpx;
   height: 86rpx;
-  background: #f5f6fe;
+  background: #f5f6f8;
   border-radius: 43rpx;
 }
 .chat-input {
@@ -201,7 +201,7 @@
   margin-right: 54rpx;
   width: 140rpx;
   height: 140rpx;
-  background-color: #f5f6fe;
+  background-color: #f5f6f8;
   border-radius: 46rpx;
 }
 

@@ -21,7 +21,7 @@
   width: 400rpx;
   height: 36px;
   border-radius: 18px;
-  background: #f5f6fe;
+  background: #f5f6f8;
 }
 .calendar-bar {
   padding-right: 24rpx;

@@ -57,7 +57,7 @@ page {
   box-shadow: 0px 1px 12px 0px rgba(0,0,0,0.1);
 }
 .search-bar.active {
-  background: #f5f6fe;
+  background: #f5f6f8;
   box-shadow: none;
 }
 .search-icon {

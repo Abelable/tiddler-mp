@@ -85,7 +85,7 @@
   margin-right: 10rpx;
   color: #999;
   font-size: 18rpx;
-  background: #f5f6fe;
+  background: #f5f6f8;
   padding: 2rpx 10rpx;
   border-radius: 10rpx;
 }

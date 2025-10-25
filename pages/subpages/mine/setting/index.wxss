@@ -2,11 +2,11 @@
   margin-bottom: 12rpx;
   padding: 0 24rpx;
   background: #fff;
-  border-top: 1px solid #f5f6fe;
+  border-top: 1px solid #f5f6f8;
 }
 .list {
   height: 100rpx;
-  border-bottom: 1px solid #f5f6fe;
+  border-bottom: 1px solid #f5f6f8;
 }
 .list:last-child {
   border-bottom: none;

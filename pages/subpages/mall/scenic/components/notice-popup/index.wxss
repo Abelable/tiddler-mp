@@ -82,7 +82,7 @@
 
 .btn-wrap {
   padding: 18rpx 24rpx;
-  border-top: 1px solid #f5f6fe;
+  border-top: 1px solid #f5f6f8;
 }
 .confirm-btn {
   height: 88rpx;

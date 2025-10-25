@@ -255,7 +255,7 @@
   margin: 6rpx 12rpx 6rpx 0;
   color: #666;
   font-size: 18rpx;
-  background: #f5f6fe;
+  background: #f5f6f8;
   padding: 6rpx 14rpx;
   border-radius: 16rpx;
 }
@@ -445,7 +445,7 @@
 
 .room-list {
   margin: 0 20rpx;
-  background: #f5f6fe;
+  background: #f5f6f8;
   border-radius: 0 0 32rpx 32rpx;
 }
 
@@ -469,7 +469,7 @@
 .qa-item:first-child {
   margin-bottom: 8px;
   background: #fff;
-  box-shadow: 0 0 12rpx 6rpx #f5f6fe;
+  box-shadow: 0 0 12rpx 6rpx #f5f6f8;
   border-radius: 18rpx;
   border-bottom: none;
 }

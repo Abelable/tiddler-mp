@@ -1,4 +1,4 @@
-<popup bind:hide="hide" background="#f5f6fe">
+<popup bind:hide="hide" background="#f5f6f8">
   <view class="goods-shelves-popup">
     <view class="header row between">
       <view class="menu-wrap row">
