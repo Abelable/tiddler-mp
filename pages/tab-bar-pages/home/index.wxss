@@ -113,6 +113,8 @@
 }
 .banner {
   height: 200rpx;
+  border-radius: 40rpx;
+  overflow: hidden;
 }
 .banner-item {
   border-radius: 40rpx;
