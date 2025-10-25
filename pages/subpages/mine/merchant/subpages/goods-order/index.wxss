@@ -43,7 +43,7 @@
   width: 100%;
   height: 44px;
   background: #fff;
-  border-top: 1px solid #f5f6fa;
+  border-top: 1px solid #f5f6f8;
 }
 .menu-item {
   position: relative;

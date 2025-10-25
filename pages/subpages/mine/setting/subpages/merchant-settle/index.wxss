@@ -218,7 +218,7 @@
   align-items: center;
   margin-top: 24rpx;
   padding: 24rpx;
-  background: #f5f6fa;
+  background: #f5f6f8;
   border-radius: 24rpx;
 }
 .material-info {

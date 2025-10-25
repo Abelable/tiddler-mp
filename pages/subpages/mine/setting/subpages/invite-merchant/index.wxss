@@ -59,7 +59,7 @@
 .container {
   margin-top: -48rpx;
   min-height: calc(100vh - 500rpx);
-  background: #f5f6fa;
+  background: #f5f6f8;
   border-radius: 32rpx 32rpx 0 0;
 }
 

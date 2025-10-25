@@ -13,7 +13,7 @@
   width: 120rpx;
   height: 120rpx;
   border-radius: 50%;
-  background: #f5f6fa;
+  background: #f5f6f8;
 }
 .info {
   margin-left: 16rpx;

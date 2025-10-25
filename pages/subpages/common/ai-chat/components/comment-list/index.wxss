@@ -82,7 +82,7 @@
   padding: 0 24rpx;
   margin-top: 24rpx;
   height: 88rpx;
-  background: #f5f6fa;
+  background: #f5f6f8;
   border-radius: 24rpx;
 }
 .tip-content {

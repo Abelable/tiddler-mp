@@ -46,7 +46,7 @@
   display: flex;
   align-items: center;
   width: 100%;
-  border-top: 1px solid #f5f6fa;
+  border-top: 1px solid #f5f6f8;
 }
 .menu-item {
   display: flex;

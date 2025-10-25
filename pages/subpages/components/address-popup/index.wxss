@@ -1,6 +1,6 @@
 .address-select-popup {
   padding: 24rpx;
-  background: #f5f6fa;
+  background: #f5f6f8;
 }
 
 .title {

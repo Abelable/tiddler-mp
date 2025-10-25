@@ -30,7 +30,7 @@
   height: 50rpx;
   color: #666;
   font-size: 22rpx;
-  background: #f5f6fa;
+  background: #f5f6f8;
   border-radius: 25rpx;
 }
 .alarm-icon {

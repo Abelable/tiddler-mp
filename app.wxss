@@ -1,7 +1,7 @@
 page {
   position: relative;
   min-height: 100vh;
-  background-color: #f5f6fa;
+  background-color: #f5f6f8;
   --blue-1: #09AFFF;
   --blue-2: #00C8FF;
   --blue-3: #C6EFFF;
