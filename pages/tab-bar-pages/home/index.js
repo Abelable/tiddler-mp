@@ -131,7 +131,9 @@ Component({
     },
 
     onRefresh() {
-      this.setBannerList();
+      if (this.data.curMenuIndex === 1) {
+        this.setBannerList();
+      }
       this.setList(SCENE_REFRESH);
       wx.stopPullDownRefresh();
     },
