@@ -29,9 +29,9 @@ class HomeService extends BaseService {
     });
   }
 
-  async getNearbyMediaList(longitude, latitude, page, limit = 10) {
+  async getNearbyProductList(longitude, latitude, page, limit = 10) {
     return await this.get({
-      url: `${this.baseUrl}/media/nearby_list`,
+      url: `${this.baseUrl}/mall/nearby_product_list`,
       data: { longitude, latitude, page, limit }
     });
   }

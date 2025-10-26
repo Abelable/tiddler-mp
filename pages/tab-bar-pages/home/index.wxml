@@ -124,7 +124,7 @@
   </swiper-item>
   <swiper-item>
     <scroll-view 
-      class="content-wrap" 
+      class="content-wrap nearby" 
       style="padding-top: {{statusBarHeight + 96}}px;"
       refresher-triggered="{{nearbyRefreshing}}"
       bindrefresherrefresh="onRefresh"
@@ -136,17 +136,14 @@
       scroll-with-animation
     >
       <view class="content" style="margin-top: 4px;">
-        <fall-flow 
-          class="fall-flow" 
-          list="{{nearbyMediaList}}" 
-          loading="{{nearbyLoading}}"
-          finished="{{nearbyFinished}}"
-          generic:item="media-item" 
-          showDistance
-        />
-        <view class="no-more-tips" wx:if="{{nearbyFinished && nearbyMediaList.length}}">～没有更多啦～</view>
+        <product-item wx:for="{{nearbyProductList}}" wx:key="index" item="{{item}}" />
+        <view class="loading row center" wx:if="{{nearbyProductList.length && nearbyLoading}}">
+          <image class="loading-icon" src="https://static.tiddler.cn/mp/loading.gif" />
+          <text>正在加载</text>
+        </view>
+        <view class="no-more-tips" wx:if="{{nearbyFinished && nearbyProductList.length}}">～没有更多啦～</view>
         <empty-illus 
-          wx:if="{{nearbyFinished && !nearbyMediaList.length}}" 
+          wx:if="{{nearbyFinished && !nearbyProductList.length}}" 
           desc="暂无附近游记" 
         >
           <view class="postioning-btn row center" bindtap="openLocationSetting">开启定位</view>

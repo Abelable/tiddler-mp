@@ -46,7 +46,7 @@ Component({
     refreshing: false,
     loading: false,
     finished: false,
-    nearbyMediaList: [],
+    nearbyProductList: [],
     nearbyRefreshing: false,
     nearbyLoading: false,
     nearbyFinished: false,
@@ -126,7 +126,7 @@ Component({
     },
 
     setList(scene) {
-      const { curMenuIndex, followMediaList, mediaList, nearbyMediaList } =
+      const { curMenuIndex, followMediaList, mediaList, nearbyProductList } =
         this.data;
       switch (scene) {
         case SCENE_SWITCH_TAB:
@@ -139,7 +139,7 @@ Component({
               this.setData({ refreshing: true });
             }
           } else {
-            if (!nearbyMediaList.length) {
+            if (!nearbyProductList.length) {
               this.setData({ nearbyRefreshing: true });
             }
           }
@@ -152,7 +152,7 @@ Component({
           } else if (curMenuIndex === 1) {
             this.setMediaList(true);
           } else {
-            this.setNearbyMediaList(true);
+            this.setNearbyProductList(true);
           }
           break;
 
@@ -162,7 +162,7 @@ Component({
           } else if (curMenuIndex === 1) {
             this.setMediaList();
           } else {
-            this.setNearbyMediaList();
+            this.setNearbyProductList();
           }
           break;
       }
@@ -272,35 +272,35 @@ Component({
       }
     },
 
-    setNearbyMediaList(init = false) {
+    setNearbyProductList(init = false) {
       checkLogin(async () => {
         if (init) {
           this.nearbyPage = 0;
           this.setData({
-            nearbyMediaList: [],
+            nearbyProductList: [],
             nearbyRefreshing: true,
             nearbyFinished: false
           });
         }
         const { longitude = 0, latitude = 0 } = store.locationInfo || {};
-        const { nearbyMediaList } = this.data;
+        const { nearbyProductList } = this.data;
 
         this.setData({ nearbyLoading: true });
         const { list = [] } =
-          (await homeService.getNearbyMediaList(
+          (await homeService.getNearbyProductList(
             longitude,
             latitude,
             ++this.nearbyPage
           )) || {};
         if (init) {
           this.setData({
-            nearbyMediaList: list,
+            nearbyProductList: list,
             nearbyLoading: false,
             nearbyRefreshing: false
           });
         } else {
           this.setData({
-            nearbyMediaList: [...nearbyMediaList, ...list],
+            nearbyProductList: [...nearbyProductList, ...list],
             nearbyLoading: false
           });
         }

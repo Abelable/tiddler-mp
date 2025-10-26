@@ -1,0 +1,23 @@
+<view class="product-item" bindtap="checkDetail">
+  <view class="header">
+    <image class="bg" src="{{item.cover}}?x-oss-process=image/format,webp" mode="aspectFill" />
+    <view class="more-btn">
+      <view>{{['景点', item.categoryId === 5 ? '民宿' : '酒店', '美食'][item.type - 1]}} · 了解更多</view>
+      <image class="arrow" src="https://static.tiddler.cn/mp/trip_type/night_trip/arrow.png" />
+    </view>
+    <view class="product-info">
+      <view class="product-name omit single">{{item.name}}</view>
+      <view class="address-info">
+        <image class="address-icon" src="https://static.tiddler.cn/mp/address.png" />
+        <view class="address-detail omit single">{{item.address}}</view>
+        <view class="address-distance">，距您{{distance}}</view>
+      </view>
+    </view>
+  </view>
+
+  <scroll-view class="media-list-wrap" wx:if="{{mediaList.length}}" scroll-x>
+    <view class="media-list">
+      <media-item wx:for="{{mediaList}}" wx:key="index" item="{{item}}" />
+    </view>
+  </scroll-view>
+</view>
