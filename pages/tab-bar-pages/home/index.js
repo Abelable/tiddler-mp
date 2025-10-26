@@ -35,6 +35,7 @@ Component({
     adModalVisible: false,
     navBarActive: [false, false],
     curMenuIndex: 1,
+    curSubMenuIndex: 0,
     bannerList: [],
     curDot: 0,
     topMediaList: [],

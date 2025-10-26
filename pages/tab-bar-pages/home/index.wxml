@@ -29,6 +29,15 @@
       <image style="width: 20px; height: 20px;" src="https://static.tiddler.cn/mp/home/search_white.png" />
     </view>
   </view>
+  <view class="sub-menu-tabs" wx:if="{{curMenuIndex === 2}}">
+    <view 
+      class="sub-menu-tab {{curSubMenuIndex === index ? 'active' : ''}} row center" 
+      wx:for="{{['综合', '景点', '酒店', '美食']}}"
+      bindtap="switchSubMenu"
+    >
+      {{item}}
+    </view>
+  </view>
 </view>
 
 <swiper wx:if="{{pageLoaded}}" class="container" current="{{curMenuIndex}}" bindchange="swiperChange">
@@ -125,7 +134,7 @@
   <swiper-item>
     <scroll-view 
       class="content-wrap nearby" 
-      style="padding-top: {{statusBarHeight + 96}}px;"
+      style="padding-top: {{statusBarHeight + 135}}px;"
       refresher-triggered="{{nearbyRefreshing}}"
       bindrefresherrefresh="onRefresh"
       bindscrolltolower="onLoadMore"

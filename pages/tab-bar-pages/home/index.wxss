@@ -93,6 +93,26 @@
   background: var(--blue-1);
 }
 
+.sub-menu-tabs {
+  display: flex;
+  margin: 10px 12px;
+}
+.sub-menu-tab {
+  margin-right: 6px;
+  width: 60px;
+  height: 30px;
+  color: #383a3f;
+  font-size: 24rpx;
+  font-weight: bold;
+  border-radius: 12px;
+  background: #f2f4f5;
+  border-radius: 12px;
+}
+.sub-menu-tab.active {
+  color: #fff;
+  background: #1b1d1e;
+}
+
 .container {
   height: 100vh;
 }
