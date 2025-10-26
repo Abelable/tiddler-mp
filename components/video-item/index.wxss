@@ -1,6 +1,6 @@
 .video-item {
+  position: relative;
   margin-bottom: 30rpx;
-  width: 350rpx;
   opacity: 0;
 }
 .video-item.show {
@@ -10,12 +10,13 @@
 
 .cover-wrap {
   position: relative;
+  width: 100%;
   font-size: 0;
   border-radius: 32rpx;
   overflow: hidden;
 }
 .cover {
-  width: 350rpx;
+  width: 100%;
 }
 .final-cover {
   position: absolute;
@@ -31,15 +32,14 @@
 
 .private-tag {
   position: absolute;
-  top: 12rpx;
-  left: 12rpx;
+  top: 24rpx;
+  left: 24rpx;
   padding: 0 12rpx;
   height: 36rpx;
   color: #fff;
   font-size: 20rpx;
-  line-height: 1;
   background: #EE3769;
-  border-radius: 6rpx;
+  border-radius: 12rpx;
 }
 .private-icon {
   margin-right: 4rpx;
@@ -90,8 +90,6 @@
 .video-title {
   margin-top: 12rpx;
   padding: 0 10rpx;
-  color: #333;
-  font-size: 26rpx;
   font-weight: bold;
 }
 
@@ -101,8 +99,6 @@
   justify-content: space-between;
   margin-top: 10rpx;
   padding: 0 10rpx;
-  color: #666;
-  font-size: 22rpx;
 }
 .author-info {
   display: flex;
@@ -112,8 +108,6 @@
 }
 .author-avatar {
   margin-right: 8rpx;
-  width: 36rpx;
-  height: 36rpx;
   border-radius: 50%;
 }
 .author-name {

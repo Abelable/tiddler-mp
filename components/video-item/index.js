@@ -13,7 +13,46 @@ Component({
       type: Number,
       value: 1
     },
-    showDistance: Boolean
+    marginBottom: {
+      type: Number,
+      value: 30
+    },
+    marginRight: {
+      type: Number,
+      value: 0
+    },
+    coverWidth: {
+      type: Number,
+      value: 350
+    },
+    coverHeight: Number,
+    showAddress: {
+      type: Boolean,
+      value: true
+    },
+    showDistance: Boolean,
+    titleSingle: Boolean,
+    titleColor: {
+      type: String,
+      value: "#333"
+    },
+    titleFontSize: {
+      type: Number,
+      value: 26
+    },
+    infoColor: {
+      type: String,
+      value: "#666"
+    },
+    infoFontSize: {
+      type: Number,
+      value: 22
+    },
+    avatarSize: {
+      type: Number,
+      value: 36
+    },
+    whiteHeart: Boolean
   },
 
   data: {

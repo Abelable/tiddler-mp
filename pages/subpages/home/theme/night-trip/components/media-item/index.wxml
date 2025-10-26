@@ -1,4 +1,34 @@
 <view class="media-item">
-  <video-item wx:if="{{item.type === 2}}" item="{{item}}" />
-  <note-item wx:if="{{item.type === 3}}" item="{{item}}" />
+  <video-item 
+    wx:if="{{item.type === 2}}" 
+    item="{{item}}" 
+    marginRight="{{16}}" 
+    marginBottom="{{0}}" 
+    coverWidth="{{316}}" 
+    coverHeight="{{423}}" 
+    showAddress="{{false}}"
+    titleSingle
+    titleColor="#fff"
+    titleFontSize="{{24}}"
+    infoColor="#fff"
+    infoFontSize="{{20}}"
+    avatarSize="{{32}}"
+    whiteHeart
+  />
+  <note-item 
+    wx:if="{{item.type === 3}}" 
+    item="{{item}}" 
+    marginRight="{{16}}" 
+    marginBottom="{{0}}" 
+    coverWidth="{{316}}" 
+    coverHeight="{{423}}" 
+    showAddress="{{false}}"
+    titleSingle
+    titleColor="#fff"
+    titleFontSize="{{24}}"
+    infoColor="#fff"
+    infoFontSize="{{20}}"
+    avatarSize="{{32}}"
+    whiteHeart
+  />
 </view>

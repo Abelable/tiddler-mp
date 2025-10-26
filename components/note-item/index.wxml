@@ -1,46 +1,70 @@
 <wxs module="NUM" src="/utils/filters/num.wxs" />
 
-<view class="note-item {{item.coverHeight ? 'show' : ''}}" catchtap="navToNoteDetail">
+<view 
+  class="note-item {{(coverHeight || item.coverHeight) ? 'show' : ''}}" 
+  style="margin-right: {{marginRight}}rpx; margin-bottom: {{marginBottom}}rpx; width: {{coverWidth}}rpx;"
+  catchtap="navToNoteDetail"
+>
   <view class="cover-wrap">
     <image 
-      class="final-cover {{visible ? 'show' : ''}}" 
-      style="height: {{item.coverHeight}}rpx;"
+      class="cover" 
+      style="height: {{coverHeight}}rpx"
+      wx:if="{{coverHeight}}"
       src="{{item.imageList[0]}}?x-oss-process=image/resize,w_500/format,webp" 
-      bindload="onVisible" 
       mode="aspectFill" 
     />
-    <image 
-      class="cover" 
-      style="height: {{item.coverHeight}}rpx;" 
-      wx:if="{{item.coverHeight}}" 
-      src="{{item.imageList[0]}}?x-oss-process=image/resize,w_10/format,webp" 
-      mode="aspectFill" 
-    />
-    <image 
-      class="cover" 
-      wx:if="{{!item.coverHeight}}" 
-      src="{{item.imageList[0]}}?x-oss-process=image/resize,w_10/format,webp" 
-      bindload="onCoverLoaded" 
-      mode="widthFix" 
-    />
+    <block wx:if="{{!coverHeight}}">
+      <image 
+        class="cover" 
+        style="height: {{coverHeight}}rpx"
+        wx:if="{{coverHeight}}"
+        src="{{item.cover}}?x-oss-process=image/resize,w_500/format,webp" 
+        mode="aspectFill" 
+      />
+      <image 
+        class="final-cover {{visible ? 'show' : ''}}" 
+        style="height: {{item.coverHeight}}rpx;"
+        src="{{item.imageList[0]}}?x-oss-process=image/resize,w_500/format,webp" 
+        bindload="onVisible" 
+        mode="aspectFill" 
+      />
+      <image 
+        class="cover" 
+        style="height: {{item.coverHeight}}rpx;" 
+        wx:if="{{item.coverHeight}}" 
+        src="{{item.imageList[0]}}?x-oss-process=image/resize,w_10/format,webp" 
+        mode="aspectFill" 
+      />
+      <image 
+        class="cover" 
+        wx:if="{{!item.coverHeight}}" 
+        src="{{item.imageList[0]}}?x-oss-process=image/resize,w_10/format,webp" 
+        bindload="onCoverLoaded" 
+        mode="widthFix" 
+      />
+    </block>
+
     <view class="private-tag row" wx:if="{{item.isPrivate}}">
       <image class="private-icon" src="/images/private-icon.png" />
       <text>私密</text>
     </view>
-    <view class="address-info" wx:if="{{item.address}}">
+
+    <view class="address-info" wx:if="{{showAddress && item.address}}">
       <image class="address-icon" src="https://static.tiddler.cn/mp/address.png" />
       <view class="address-detail omit single">{{item.address}}</view>
       <view class="address-distance" wx:if="{{showDistance}}">，距您{{distance}}</view>
     </view>
   </view>
-  <view class="note-title omit">{{item.title}}</view>
-  <view class="info-wrap">
+
+  <view class="note-title omit {{titleSingle ? 'single' : ''}}" style="color: {{titleColor}}; font-size: {{titleFontSize}}rpx;">{{item.title}}</view>
+
+  <view class="info-wrap" style="color: {{infoColor}}; font-size: {{infoFontSize}}rpx;">
     <view class="author-info">
-      <image class="author-avatar avatar-default" src="{{item.authorInfo.avatar}}" />
+      <image class="author-avatar avatar-default" style="width: {{avatarSize}}rpx; height: {{avatarSize}}rpx;" src="{{item.authorInfo.avatar}}" />
       <text class="author-name omit single">{{item.authorInfo.nickname}}</text>
     </view>
     <view class="praise-info">
-      <image class="praise-icon" src="https://img.ubo.vip/tiddler/media-item/heart.png" />
+      <image class="praise-icon" src="https://static.tiddler.cn/mp/media_item/{{whiteHeart ? 'white_' : ''}}heart.png" />
       <text>{{NUM.over(item.likeNumber, 100000)}}</text>
     </view>
   </view>

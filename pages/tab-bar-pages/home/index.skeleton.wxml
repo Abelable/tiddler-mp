@@ -9,13 +9,9 @@
       <view class="classification-icon sk-animate" />
     </view>
     <view class="media-index--top-media-wrap sk-animate" />
-    <view class="flow-index--fall-flow">
-      <view class="note-item-index--cover-wrap">
-        <view class="note-item-index--cover sk-animate" style="height: 260px;" />
-      </view>
-      <view class="note-item-index--cover-wrap">
-        <view class="note-item-index--cover sk-animate" style="height: 260px;" />
-      </view>
+    <view class="sk-fall-flow">
+      <view class="sk-media-item sk-animate" />
+      <view class="sk-media-item sk-animate" />
     </view>
   </view>
 </template>

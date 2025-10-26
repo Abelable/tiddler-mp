@@ -9,6 +9,16 @@
   border-radius: 40rpx;
 }
 
+.sk-fall-flow {
+  display: flex;
+  justify-content: space-between;
+}
+.sk-media-item {
+  width: 350rpx;
+  height: 520rpx;
+  border-radius: 32rpx;
+}
+
 .sk-animate {
   background: #f2f3f5;
   animation: blink 1.2s ease-in-out infinite;
