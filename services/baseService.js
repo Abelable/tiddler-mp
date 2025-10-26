@@ -604,6 +604,48 @@ class BaseService extends Base {
       loadingTitle: "正在加载"
     });
   }
+
+  async getNearbyScenicList({
+    id,
+    longitude,
+    latitude,
+    radius = 10,
+    page,
+    limit = 10
+  }) {
+    return await this.get({
+      url: `${this.baseUrl}/scenic/nearby_list`,
+      data: cleanObject({ id, longitude, latitude, radius, page, limit }),
+    });
+  }
+
+  async getNearbyHotelList({
+    id,
+    longitude,
+    latitude,
+    radius = 10,
+    page,
+    limit = 10
+  }) {
+    return await this.get({
+      url: `${this.baseUrl}/hotel/nearby_list`,
+      data: cleanObject({ id, longitude, latitude, radius, page, limit }),
+    });
+  }
+
+  async getNearbyRestaurantList({
+    id,
+    longitude,
+    latitude,
+    radius = 10,
+    page,
+    limit = 10
+  }) {
+    return await this.get({
+      url: `${this.baseUrl}/catering/restaurant/nearby_list`,
+      data: cleanObject({ id, longitude, latitude, radius, page, limit }),
+    });
+  }
 }
 
 export default BaseService;

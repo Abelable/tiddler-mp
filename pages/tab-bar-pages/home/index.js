@@ -5,6 +5,7 @@ import { checkLogin, debounce } from "../../../utils/index";
 import HomeService from "./utils/homeService";
 import {
   SCENE_SWITCH_TAB,
+  SCENE_SWITCH_SUB_TAB,
   SCENE_REFRESH,
   SCENE_LOADMORE
 } from "../../../utils/emuns/listScene";
@@ -103,6 +104,19 @@ Component({
       }
     },
 
+    switchSubMenu(e) {
+      const index = Number(e.currentTarget.dataset.index);
+      if (index !== this.data.curSubMenuIndex) {
+        this.setData({ curSubMenuIndex: index }, () => {
+          this.setList(SCENE_SWITCH_SUB_TAB);
+        });
+      } else {
+        this.setData({
+          [`scrollTopList[${index}]`]: 0
+        });
+      }
+    },
+
     swiperChange(e) {
       this.handleMenuChange(Number(e.detail.current));
     },
@@ -145,6 +159,10 @@ Component({
             }
           }
           this.setActiveMediaItem();
+          break;
+
+        case SCENE_SWITCH_SUB_TAB:
+          this.setData({ nearbyRefreshing: true });
           break;
 
         case SCENE_REFRESH:
@@ -218,13 +236,12 @@ Component({
           this.followPage = 0;
           this.setData({
             followMediaList: [],
-            followRefreshing: true,
-            followFinished: false
+            followRefreshing: true
           });
         }
         const { followMediaList } = this.data;
 
-        this.setData({ followLoading: true });
+        this.setData({ followLoading: true, followFinished: false });
         const { list = [] } =
           (await homeService.getFollowMediaList(++this.followPage)) || {};
         if (init) {
@@ -248,11 +265,11 @@ Component({
     async setMediaList(init = false) {
       if (init) {
         this.page = 0;
-        this.setData({ mediaList: [], refreshing: true, finished: false });
+        this.setData({ mediaList: [], refreshing: true });
       }
       const { mediaList } = this.data;
 
-      this.setData({ loading: true });
+      this.setData({ loading: true, finished: false });
       const { list = [] } =
         (await homeService.getRandomMediaList(++this.page)) || {};
       if (init) {
@@ -279,20 +296,59 @@ Component({
           this.nearbyPage = 0;
           this.setData({
             nearbyProductList: [],
-            nearbyRefreshing: true,
-            nearbyFinished: false
+            nearbyRefreshing: true
           });
         }
         const { longitude = 0, latitude = 0 } = store.locationInfo || {};
-        const { nearbyProductList } = this.data;
+        const { nearbyProductList, curSubMenuIndex } = this.data;
 
-        this.setData({ nearbyLoading: true });
-        const { list = [] } =
-          (await homeService.getNearbyProductList(
-            longitude,
-            latitude,
-            ++this.nearbyPage
-          )) || {};
+        this.setData({ nearbyLoading: true, nearbyFinished: false });
+        let res, list;
+        switch (curSubMenuIndex) {
+          case 0:
+            res =
+              (await homeService.getNearbyProductList(
+                longitude,
+                latitude,
+                ++this.nearbyPage
+              )) || {};
+            list = res.list;
+            break;
+
+          case 1:
+            res =
+              (await homeService.getNearbyScenicList({
+                longitude,
+                latitude,
+                page: ++this.nearbyPage,
+                radius: 0
+              })) || {};
+            list = res.list.map(item => ({ ...item, type: 1 }));
+            break;
+
+          case 2:
+            res =
+              (await homeService.getNearbyHotelList({
+                longitude,
+                latitude,
+                page: ++this.nearbyPage,
+                radius: 0
+              })) || {};
+            list = res.list.map(item => ({ ...item, type: 2 }));
+            break;
+
+          case 3:
+            res =
+              (await homeService.getNearbyRestaurantList({
+                longitude,
+                latitude,
+                page: ++this.nearbyPage,
+                radius: 0
+              })) || {};
+            list = res.list.map(item => ({ ...item, type: 3 }));
+            break;
+        }
+
         if (init) {
           this.setData({
             nearbyProductList: list,

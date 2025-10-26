@@ -33,7 +33,9 @@
     <view 
       class="sub-menu-tab {{curSubMenuIndex === index ? 'active' : ''}} row center" 
       wx:for="{{['综合', '景点', '酒店', '美食']}}"
+      wx:key="index"
       bindtap="switchSubMenu"
+      data-index="{{index}}"
     >
       {{item}}
     </view>
