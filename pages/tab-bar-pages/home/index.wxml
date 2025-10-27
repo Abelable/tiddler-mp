@@ -147,7 +147,7 @@
       scroll-with-animation
     >
       <view class="content" style="margin-top: 4px;">
-        <product-item wx:for="{{nearbyProductList}}" wx:key="index" item="{{item}}" />
+        <product-item wx:for="{{nearbyProductList}}" wx:key="id" item="{{item}}" />
         <view class="loading row center" wx:if="{{nearbyProductList.length && nearbyLoading}}">
           <image class="loading-icon" src="https://static.tiddler.cn/mp/loading.gif" />
           <text>正在加载</text>

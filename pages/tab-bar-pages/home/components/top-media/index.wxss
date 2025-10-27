@@ -1,6 +1,6 @@
 .top-media-wrap {
   position: relative;
-  margin-bottom: 15rpx;
+  margin-bottom: 16rpx;
   height: 440rpx;
   text-shadow: 0 0 1px #999;
   border-radius: 40rpx;
