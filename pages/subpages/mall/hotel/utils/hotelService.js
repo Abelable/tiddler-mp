@@ -18,7 +18,7 @@ class HotelService extends MallService {
 
   async getRoomTypeOptions(hotelId) {
     return await this.get({
-      url: `${this.baseUrl}/hotel/room/type_options`,
+      url: `${this.baseUrl}/hotel/room/type/options`,
       data: { hotelId },
     });
   }
