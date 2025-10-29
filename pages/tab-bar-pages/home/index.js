@@ -489,6 +489,12 @@ Component({
       wx.navigateTo({ url });
     },
 
+    checkPromoter() {
+      wx.navigateTo({
+        url: "/pages/subpages/common/promoter/index"
+      });
+    },
+
     onShareAppMessage() {
       const { id } = store.superiorInfo || {};
       const path = id

@@ -1,0 +1,74 @@
+<view class="header {{headerVisible ? 'show' : ''}}" style="padding-top: {{statusBarHeight}}px">
+  <view class="nav-bar row">
+    <back-icon />
+    <view class="title" wx:if="{{headerVisible}}">家乡代言人</view>
+  </view>
+</view>
+
+<view class="container">
+  <view class="promoter-info-wrap" wx:if="{{superiorInfo}}" style="margin-top: {{statusBarHeight + 128}}px;">
+    <view class="promoter-avatar-wrap">
+      <image class="promoter-avatar" src="{{superiorInfo.avatar}}" />
+      <image 
+        class="promoter-medal" 
+        src="https://static.tiddler.cn/mp/promoter/level_{{superiorInfo.promoterInfo.level}}/medal.gif" 
+      />
+    </view>
+    <view class="promoter-name-wrap row between">
+      <view class="promoter-name row">
+        <view>{{superiorInfo.nickname}}</view>
+        <view class="promoter-level level-{{superiorInfo.promoterInfo.level}} row">Lv.{{superiorInfo.promoterInfo.level}}</view>
+      </view>
+      <view class="contact-btns row">
+        <view class="chat-btn row center">
+          <image class="chat-icon" src="https://static.tiddler.cn/mp/promoter/center/chat.png" />
+          <view>在线问</view>
+        </view>
+        <view class="tel-btn row center">
+          <image class="tel-icon" src="https://static.tiddler.cn/mp/promoter/center/tel.png" />
+        </view>
+      </view>
+    </view>
+    <view class="promoter-tags">
+      <view class="promoter-tag row">本地人</view>
+      <view class="promoter-tag row">热心市民</view>
+    </view>
+    <view class="promoter-data row">
+      <image class="star-icon" src="https://static.tiddler.cn/mp/promoter/center/star.png" />
+      <view class="data">{{score || '--'}}</view>
+      <view class="split-line">/</view>
+      <view>回答数</view>
+      <view class="data">{{answerNum || '--'}}</view>
+      <view class="split-line">/</view>
+      <view>平均响应</view>
+      <view class="data">{{durantion || '--'}}</view>
+    </view>
+  </view>
+
+  <view class="menu row">
+    <view 
+      class="menu-item {{curMenuIdx === index ? 'active' : ''}}" 
+      wx:for="{{['问答', '评价']}}" 
+      wx:key="index"
+      bindtap="selectMenu"
+      data-index="{{index}}"
+    >
+      {{item}}
+    </view>
+  </view>
+
+  <view class="qa-wrap" wx:if="{{curMenuIdx === 0}}">
+    <empty-illus desc="暂无问答" height="520rpx" />
+  </view>
+
+  <view class="evaluation-wrap" wx:if="{{curMenuIdx === 1}}">
+    <empty-illus desc="暂无评价" height="520rpx" />
+  </view>
+
+  <view class="complaint-tips row center">
+    <view>投诉TA</view>
+    <image class="tips-arrow" src="/images/arrow_gray.png" />
+  </view>
+</view>
+
+<view class="submit-btn row center">{{curMenuIdx === 0 ? '我要提问' : '评价一下'}}</view>

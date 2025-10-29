@@ -134,7 +134,7 @@
   justify-content: center;
   width: 80rpx;
   height: 80rpx;
-  background: rgb(228, 247, 255, 1);
+  background: #e4f7ff;
   border-radius: 24rpx;
 }
 .merchant-icon {
