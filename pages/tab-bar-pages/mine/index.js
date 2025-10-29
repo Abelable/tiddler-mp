@@ -271,7 +271,7 @@ Component({
     async setVideoList(init = false) {
       if (init) {
         this.videoPage = 0;
-        this.setData({ videoList: [], videoFinished: false });
+        this.setData({ videoFinished: false });
       }
       const { videoList } = this.data;
 
@@ -295,7 +295,7 @@ Component({
     async setNoteList(init = false) {
       if (init) {
         this.notePage = 0;
-        this.setData({ noteList: [], noteFinished: false });
+        this.setData({ noteFinished: false });
       }
       const { noteList } = this.data;
 
@@ -317,7 +317,7 @@ Component({
     async setCollectMediaList(init = false) {
       if (init) {
         this.collectPage = 0;
-        this.setData({ collectMediaList: [], collectFinished: false });
+        this.setData({ collectFinished: false });
       }
       const { collectMediaList } = this.data;
 
@@ -336,7 +336,7 @@ Component({
     async setLikeMediaList(init = false) {
       if (init) {
         this.likePage = 0;
-        this.setData({ likeMediaList: [], likeFinished: false });
+        this.setData({ likeFinished: false });
       }
       const { likeMediaList } = this.data;
 

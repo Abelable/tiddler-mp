@@ -19,12 +19,12 @@
         <view>{{superiorInfo.nickname}}</view>
         <view class="promoter-level level-{{superiorInfo.promoterInfo.level}} row">Lv.{{superiorInfo.promoterInfo.level}}</view>
       </view>
-      <view class="contact-btns row">
-        <view class="chat-btn row center">
+      <view class="contact-btns row" wx:if="{{superiorInfo.id !== userInfo.id}}">
+        <view class="chat-btn row center" bindtap="contact">
           <image class="chat-icon" src="https://static.tiddler.cn/mp/promoter/center/chat.png" />
           <view>在线问</view>
         </view>
-        <view class="tel-btn row center">
+        <view class="tel-btn row center" bindtap="makePhoneCall">
           <image class="tel-icon" src="https://static.tiddler.cn/mp/promoter/center/tel.png" />
         </view>
       </view>
@@ -65,10 +65,15 @@
     <empty-illus desc="暂无评价" height="520rpx" />
   </view>
 
-  <view class="complaint-tips row center">
+  <view class="complaint-tips row center" wx:if="{{superiorInfo.id !== userInfo.id}}" bindtap="complain">
     <view>投诉TA</view>
     <image class="tips-arrow" src="/images/arrow_gray.png" />
   </view>
 </view>
 
-<view class="submit-btn row center">{{curMenuIdx === 0 ? '我要提问' : '评价一下'}}</view>
+<view 
+  class="submit-btn row center" 
+  wx:if="{{superiorInfo.id !== userInfo.id}}"
+>
+  {{curMenuIdx === 0 ? '我要提问' : '评价一下'}}
+</view>

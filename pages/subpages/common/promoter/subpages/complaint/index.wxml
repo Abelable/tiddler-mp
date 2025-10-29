@@ -1,0 +1,26 @@
+<view class="container">
+  <view class="card">
+    <view class="title required">投诉原因</view>
+  
+    <checkbox-group class="selection" bindchange="selectOption">
+      <view class="option row" wx:for="{{options}}" wx:key="index">
+        <label class="option-main" for="{{item.value}}">
+          <text class="option-title">{{item.title}}：</text>
+          <text class="option-content">{{item.content}}</text>
+        </label>
+        <checkbox id="{{item.value}}" value="{{item.value}}" color="#00B2FF" />
+      </view>
+    </checkbox-group>
+  
+    <view class="textarea-wrap">
+      <textarea class="content-textarea" bindinput="setContent" placeholder="请输入其他问题或详细描述（不超过200字）" maxlength="200" />
+      <view class="length-desc">{{content.length}}/200</view>
+    </view>
+    <view class="title">上传凭证（{{imageList.length}}/5）</view>
+    <view class="uploader-wrap">
+      <van-uploader file-list="{{imageList}}" bind:after-read="uploadImage" bind:delete="deleteImage" accept="image" max-count="5" deletable />
+    </view>
+  </view>
+</view>
+
+<view class="submit-btn" bindtap="submit">提交</view>

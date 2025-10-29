@@ -16,13 +16,31 @@ Page({
   onLoad() {
     this.storeBindings = createStoreBindings(this, {
       store,
-      fields: ["superiorInfo"]
+      fields: ["superiorInfo", "userInfo"]
     });
   },
 
   selectMenu(e) {
     const { index: curMenuIdx } = e.currentTarget.dataset;
     this.setData({ curMenuIdx });
+  },
+
+  contact() {
+    const { id, avatar, nickname } = store.superiorInfo;
+    const url = `/pages/subpages/notice/chat/index?userId=${id}&name=${nickname}&avatar=${avatar}`;
+    wx.navigateTo({ url });
+  },
+
+  makePhoneCall() {
+    wx.makePhoneCall({
+      phoneNumber: store.superiorInfo.mobile
+    });
+  },
+
+  complain() {
+    const { id } = store.superiorInfo;
+    const url = `./subpages/complaint/index?promoterId=${id}`;
+    wx.navigateTo({ url });
   },
 
   onPageScroll(e) {
@@ -41,6 +59,6 @@ Page({
     const { id } = store.superiorInfo || {};
     const originalPath = "/pages/subpages/common/promoter/index";
     const path = id ? `${originalPath}?superiorId=${id}` : originalPath;
-    return { path };
+    return { path, title: "为您推荐优秀家乡代言人" };
   }
 });
