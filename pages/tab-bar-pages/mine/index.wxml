@@ -4,11 +4,6 @@
 <view class="nav-bar row" style="padding-top: {{statusBarHeight}}px;">
   <image class="nav-bg" wx:if="{{navBarVisible}}" src="{{userInfo.bg ? (userInfo.bg + '?x-oss-process=image/format,webp') : 'https://static.tiddler.cn/mp/bg.webp'}}" />
   <view class="bg-cover" wx:if="{{navBarVisible}}" />
-  <!-- <image class="sign-in-icon" wx:if="{{!navBarVisible}}" src="https://static.tiddler.cn/mp/sign_in.png" /> -->
-  <view class="promoter-icon" wx:if="{{!userInfo.promoterInfo && superiorInfo}}">
-    <image class="promoter-avatar" src="{{superiorInfo.avatar ? (superiorInfo.avatar + '?x-oss-process=image/format,webp') : 'https://static.tiddler.cn/mp/default_avatar.png'}}" />
-    <image class="promoter-medal-small" src="https://static.tiddler.cn/mp/promoter/level_{{superiorInfo.promoterInfo.level}}/medal.gif" />
-  </view>
   <view class="mine-avatar-wrap" wx:if="{{navBarVisible}}">
     <image class="mine-avatar" src="{{userInfo.avatar ? (userInfo.avatar + '?x-oss-process=image/format,webp') : 'https://static.tiddler.cn/mp/default_avatar.png'}}" />
     <image 

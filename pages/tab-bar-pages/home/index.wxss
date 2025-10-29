@@ -37,11 +37,6 @@
   font-weight: 600;
 }
 
-.sign-in-icon {
-  width: 35px;
-  height: 29.5px;
-}
-
 .promoter-icon {
   position: relative;
   width: 34px;

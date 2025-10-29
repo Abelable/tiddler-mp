@@ -4,7 +4,6 @@
 <view class="nav-bar {{navBarActive[curMenuIndex] ? 'active': ''}}" style="padding-top: {{statusBarHeight}}px">
   <view class="menu-tabs-wrap">
     <view style="flex: 1">
-      <!-- <image class="sign-in-icon" src="https://static.tiddler.cn/mp/sign_in.png" /> -->
       <view class="promoter-icon" wx:if="{{superiorInfo}}" bindtap="checkPromoter">
         <image class="promoter-avatar" src="{{superiorInfo.avatar ? (superiorInfo.avatar + '?x-oss-process=image/format,webp') : 'https://static.tiddler.cn/mp/default_avatar.png'}}" />
         <image class="promoter-medal" src="https://static.tiddler.cn/mp/promoter/level_{{superiorInfo.promoterInfo.level}}/medal.gif" />

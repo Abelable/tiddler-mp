@@ -8,7 +8,7 @@ Component({
 
   storeBindings: {
     store,
-    fields: ["userInfo", "superiorInfo", "contactList"]
+    fields: ["contactList"]
   },
 
   data: {
