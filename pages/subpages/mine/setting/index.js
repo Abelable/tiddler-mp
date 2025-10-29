@@ -15,7 +15,6 @@ Page({
     if (envVersion === "release") {
       this.setData({ version, toolVisible: true });
     }
-      this.setData({ version, toolVisible: true });
   },
 
   editUserInfo() {
