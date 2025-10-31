@@ -17,7 +17,7 @@
   <view class="info-wrap">
     <view class="title omit">{{item.title}}</view>
     <view class="info row">
-      <image class="anchor-avatar avatar-default" src="{{item.anchorInfo.avatar}}" lazy-load mode="aspectFill" />
+      <image class="anchor-avatar avatar-default" src="{{item.anchorInfo.avatar}}?x-oss-process=image/format,webp" lazy-load mode="aspectFill" />
       <view class="anchor-name omit single">{{item.anchorInfo.nickname}}</view>
       <view class="praise-info row" wx:if="{{item.status === 1}}">
         <image class="praise-icon" src="https://static.tiddler.cn/mp/fire.png" />

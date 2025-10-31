@@ -4,7 +4,7 @@
   <image class="nav-bg" wx:if="{{navBarVisible}}" src="{{authorInfo.bg || 'https://static.tiddler.cn/mp/bg.png'}}" />
   <view class="bg-cover" wx:if="{{navBarVisible}}" />
   <back-icon style="margin-left: 8px;" noBorder="{{navBarVisible}}" />
-  <image class="user-avatar" wx:if="{{navBarVisible}}" src="{{authorInfo.avatar}}" />
+  <image class="user-avatar" wx:if="{{navBarVisible}}" src="{{authorInfo.avatar}}?x-oss-process=image/format,webp" />
   <view class="user-name" wx:if="{{navBarVisible}}">{{authorInfo.nickname}}</view>
 </view>
 
@@ -12,7 +12,7 @@
   <image class="bg" src="{{authorInfo.bg || 'https://static.tiddler.cn/mp/bg.png'}}" mode="aspectFill" />
   <view class="content">
     <view class="avatar-wrap">
-      <image class="avatar" src="{{authorInfo.avatar}}" bindtap="checkAvatar" />
+      <image class="avatar" src="{{authorInfo.avatar}}?x-oss-process=image/format,webp" bindtap="checkAvatar" />
       <view class="btns-wrap row end">
         <button class="chat-btn" wx:if="{{isFollow}}" bindtap="chat" hover-class="none">
           <image class="btn-icon" src="./images/chat.png" />

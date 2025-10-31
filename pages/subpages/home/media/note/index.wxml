@@ -5,7 +5,7 @@
   <view class="header-main row">
     <back-icon />
     <view class="author-info-wrap row" wx:if="{{noteInfo}}" bindtap="navToAuthorCenter">
-      <image class="author-avatar avatar-default" src="{{noteInfo.authorInfo.avatar}}" lazy-load />
+      <image class="author-avatar avatar-default" src="{{noteInfo.authorInfo.avatar}}?x-oss-process=image/format,webp" lazy-load />
       <view class="name-wrap">
         <view class="author-name omit single">{{noteInfo.authorInfo.nickname}}</view>
         <view class="time">{{TIME.timeDiff(noteInfo.createdAt)}}</view>
@@ -63,7 +63,7 @@
 </view>
 
 <view class="btn-wrap">
-  <image class="user-avatar avatar-default" src="{{userInfo.avatar}}" />
+  <image class="user-avatar avatar-default" src="{{userInfo.avatar}}?x-oss-process=image/format,webp" />
   <view class="comment-input row" bindtap="showInputModal">说点什么...</view>
   <view class="other-btns">
     <view class="btn-item" bindtap="share">

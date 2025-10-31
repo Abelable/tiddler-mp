@@ -2,7 +2,7 @@
   <view class="header row center">
     <image class="bg" src="{{userInfo.bg ? (userInfo.bg + '?x-oss-process=image/format,webp') : 'https://static.tiddler.cn/mp/bg.webp'}}" mode="aspectFill" />
     <view class="avatar-wrap" bindtap="cropAvatar">
-      <image class="avatar" src="{{userInfo.avatar}}" mode="aspectFill" />
+      <image class="avatar" src="{{userInfo.avatar}}?x-oss-process=image/format,webp" mode="aspectFill" />
       <view class="avatar-edit-btn row center">
         <image class="edit-icon" src="./images/edit.png" />
       </view>

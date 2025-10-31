@@ -2,7 +2,7 @@
 
 <view class="comment-item {{isReply ? 'is-reply' : ''}}">
   <view class="main">
-    <image class="user-avatar avatar-default {{isReply ? 'is-reply' : ''}}" src="{{item.userInfo.avatar}}" />
+    <image class="user-avatar avatar-default {{isReply ? 'is-reply' : ''}}" src="{{item.userInfo.avatar}}?x-oss-process=image/format,webp" />
     <view class="list-content">
       <view class="row">
         <view class="user-name">{{item.userInfo.nickname}}</view>

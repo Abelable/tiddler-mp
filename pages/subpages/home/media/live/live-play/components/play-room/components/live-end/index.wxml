@@ -3,7 +3,7 @@
 
 <view class="live-end-wrap">
   <view class="anchor-info">
-    <image class="anchor-avatar" src="{{anchorInfo.avatar}}"></image>
+    <image class="anchor-avatar" src="{{anchorInfo.avatar}}?x-oss-process=image/format,webp"></image>
     <view class="anchor-name">{{anchorInfo.nickname}}</view>
   </view>
   <view class="time-wrap">

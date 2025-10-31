@@ -24,7 +24,7 @@
       <view class="top-media-info">
         <view class="top-media-title omit single">{{item.title}}</view>
         <view class="author-info-wrap">
-          <image class="author-avatar avatar-default" src="{{item.authorInfo.avatar}}" />
+          <image class="author-avatar avatar-default" src="{{item.authorInfo.avatar}}?x-oss-process=image/format,webp" />
           <text class="author-name omit single">{{item.authorInfo.nickname}}</text>
           <text wx:if="{{item.address}}" style="margin: 0 8rpx;">·</text>
           <text class="address-detail omit single" wx:if="{{item.address}}">{{item.address}}</text>

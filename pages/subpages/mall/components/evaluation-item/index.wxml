@@ -2,7 +2,7 @@
 
 <view class="evaluation-item">
   <view class="user-info-wrap row">
-    <image class="user-avatar" src="{{item.userInfo.avatar}}" />
+    <image class="user-avatar" src="{{item.userInfo.avatar}}?x-oss-process=image/format,webp" />
     <view class="user-info">
       <view class="user-name">{{item.userInfo.nickname}}</view>
       <view class="comment-date">{{TIME.timeDiff(item.createdAt)}}</view>

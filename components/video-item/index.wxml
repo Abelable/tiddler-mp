@@ -57,7 +57,7 @@
 
   <view class="info-wrap" style="color: {{infoColor}}; font-size: {{infoFontSize}}rpx;">
     <view class="author-info">
-      <image class="author-avatar avatar-default" style="width: {{avatarSize}}rpx; height: {{avatarSize}}rpx;" src="{{item.authorInfo.avatar}}" />
+      <image class="author-avatar avatar-default" style="width: {{avatarSize}}rpx; height: {{avatarSize}}rpx;" src="{{item.authorInfo.avatar}}?x-oss-process=image/format,webp" />
       <text class="author-name omit single">{{item.authorInfo.nickname}}</text>
     </view>
     <view class="praise-info">

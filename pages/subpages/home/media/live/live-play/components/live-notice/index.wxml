@@ -11,7 +11,7 @@
 
   <view class="anchor-info" bindtap="navToUserCenter">
     <view class="avatar-wrap">
-      <image class="anchor-avatar avatar-default" src="{{roomInfo.anchorInfo.avatar}}" />
+      <image class="anchor-avatar avatar-default" src="{{roomInfo.anchorInfo.avatar}}?x-oss-process=image/format,webp" />
       <image class="follow-icon" wx:if="{{!isFollow}}" bindtap="follow" src="./images/follow.png" />
     </view>
     <view class="anchor-name omit single">{{roomInfo.anchorInfo.nickname}}</view>

@@ -1,7 +1,7 @@
 <wxs module="NUM" src="/utils/filters/num.wxs" />
 
 <view class="anchor-capsule row" catchtap="navToAnchorCenter">
-  <image class="anchor-avatar avatar-default" src="{{anchorInfo.avatar}}" />
+  <image class="anchor-avatar avatar-default" src="{{anchorInfo.avatar}}?x-oss-process=image/format,webp" />
   <view class="anchor-capsule-content">
     <view class="anchor-name omit single">{{anchorInfo.nickname}}</view>
     <view class="audience-count">{{NUM.over(audienceCount, 100000)}}人观看</view>

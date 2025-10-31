@@ -21,7 +21,7 @@
     <view class="answer-list">
       <view class="answer-item" wx:for="{{answerList}}" wx:key="index">
         <view class="user-info row">
-          <image class="user-avatar" src="{{item.userInfo.avatar}}" lazy-load />
+          <image class="user-avatar" src="{{item.userInfo.avatar}}?x-oss-process=image/format,webp" lazy-load />
           <view class="user-name">{{item.userInfo.nickname}}</view>
         </view>
         <view class="answer-content">{{item.content}}</view>
