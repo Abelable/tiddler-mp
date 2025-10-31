@@ -41,7 +41,7 @@ Component({
         : "/pages/tab-bar-pages/promoter/index";
       return {
         path,
-        title: "为家乡代言",
+        title: "家乡代言人",
         imageUrl: "https://static.tiddler.cn/mp/promoter/bg.png"
       };
     },
@@ -51,7 +51,7 @@ Component({
       const query = id ? `superiorId=${id}` : "";
       return {
         query,
-        title: "为家乡代言",
+        title: "家乡代言人",
         imageUrl: "https://static.tiddler.cn/mp/promoter/bg.png"
       };
     }
