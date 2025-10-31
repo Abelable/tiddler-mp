@@ -11,7 +11,7 @@
   <view class="answer-wrap">
     <view class="answer">
       <text class="tips">回答：</text>
-      <text>{{item.answer || '暂未回答'}}</text>
+      <text>{{item.answer || '暂无回答'}}</text>
     </view>
     <view class="answer-btn" wx:if="{{isPromoter && !item.answer}}" bindtap="answer">回答提问</view>
   </view>
