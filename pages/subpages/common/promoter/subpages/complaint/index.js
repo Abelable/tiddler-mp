@@ -90,20 +90,26 @@ Page({
   submit() {
     if (!this.reasonIds || !this.reasonIds.length) {
       wx.showToast({
-        title: '请选择投诉原因',
-        icon: 'none'
-      });
-      return
-    }
-    const { content, imageList } = this.data;
-    promoterService.submitFeedback(content, imageList, this.mobile, () => {
-      wx.showToast({
-        title: "提交成功",
+        title: "请选择投诉原因",
         icon: "none"
       });
-      setTimeout(() => {
-        wx.navigateBack();
-      }, 2000);
-    });
+      return;
+    }
+    const { content, imageList } = this.data;
+    promoterService.complain(
+      this.promoterId,
+      this.reasonIds,
+      content,
+      imageList,
+      () => {
+        wx.showToast({
+          title: "提交成功",
+          icon: "none"
+        });
+        setTimeout(() => {
+          wx.navigateBack();
+        }, 2000);
+      }
+    );
   }
 });

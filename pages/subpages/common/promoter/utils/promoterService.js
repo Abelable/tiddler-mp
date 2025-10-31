@@ -1,11 +1,12 @@
+import { cleanObject } from "../../../../../utils/index";
 import BaseService from "../../../../../services/baseService";
 
 class PromoterService extends BaseService {
-  aiChat(query) {
+  complain(promoterId, optionIds, content, imageList, success) {
     return this.post({
-      url: `${this.baseUrl}/ai/mp_stream`,
-      data: { query },
-      enableChunked: true
+      url: `${this.baseUrl}/promoter/complaint/submit`,
+      data: cleanObject({ promoterId, optionIds, content, imageList }),
+      success
     });
   }
 }
