@@ -1,3 +1,4 @@
+import { store } from "../../../store/index";
 import GiftService from "./utils/giftService";
 
 const giftService = new GiftService();
@@ -78,5 +79,12 @@ Page({
     } else {
       if (navBarVisible) this.setData({ navBarVisible: false });
     }
+  },
+
+  onShareAppMessage() {
+    const { id } = store.superiorInfo || {};
+    const originalPath = "/pages/subpages/gift/index";
+    const path = id ? `${originalPath}?superiorId=${id}` : originalPath;
+    return { path, title: "家乡好物" };
   }
 });

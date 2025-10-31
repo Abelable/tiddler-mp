@@ -39,13 +39,21 @@ Component({
       const path = id
         ? `/pages/tab-bar-pages/promoter/index?superiorId=${id}`
         : "/pages/tab-bar-pages/promoter/index";
-      return { path };
+      return {
+        path,
+        title: "为家乡代言",
+        imageUrl: "https://static.tiddler.cn/mp/promoter/bg.png"
+      };
     },
 
     onShareTimeline() {
       const { id } = store.superiorInfo || {};
       const query = id ? `superiorId=${id}` : "";
-      return { query };
+      return {
+        query,
+        title: "为家乡代言",
+        imageUrl: "https://static.tiddler.cn/mp/promoter/bg.png"
+      };
     }
   }
 });
