@@ -58,7 +58,15 @@
   </view>
 
   <view class="qa-wrap" wx:if="{{curMenuIdx === 0}}">
-    <empty-illus desc="暂无问答" height="520rpx" />
+    <qa-item 
+      wx:for="{{qaList}}" 
+      wx:key="index" 
+      item="{{item}}" 
+      showBorder="{{index}}" 
+      isPromoter="{{superiorInfo.id === userInfo.id}}" 
+      bind:answer="answer"
+    />
+    <empty-illus wx:if="{{!qaList.length}}" desc="暂无问答" height="520rpx" />
   </view>
 
   <view class="evaluation-wrap" wx:if="{{curMenuIdx === 1}}">
@@ -73,11 +81,16 @@
 
 <view 
   class="submit-btn row center" 
+  wx:if="{{superiorInfo.id !== userInfo.id}}"
   bindtap="interact"
 >
   {{curMenuIdx === 0 ? '我要提问' : '评价一下'}}
 </view>
 
 <modal-mask wx:if="{{inputPopupVisible}}" catchtap="hideInputPopup" />
-<input-popup wx:if="{{inputPopupVisible}}" promoterId="{{superiorInfo.id}}" bind:finish="hideInputPopup" />
-
+<input-popup 
+  wx:if="{{inputPopupVisible}}" 
+  promoterId="{{superiorInfo.id}}" 
+  questionId="{{curQuestionId}}" 
+  bind:finish="finishInput"
+/>

@@ -196,9 +196,14 @@
 
 .qa-wrap, .evaluation-wrap {
   margin-top: 12rpx;
-  padding: 32rpx;
   background: #fff;
   border-radius: 32rpx;
+}
+.qa-wrap {
+  padding: 0 32rpx;
+}
+.evaluation-wrap {
+  padding: 32rpx;
 }
 
 .complaint-tips {

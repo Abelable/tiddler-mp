@@ -8,7 +8,8 @@ Component({
   },
 
   properties: {
-    promoterId: Number
+    promoterId: Number,
+    questionId: Number
   },
 
   data: {
@@ -34,18 +35,22 @@ Component({
     send() {
       if (!this.content) {
         wx.showToast({
-          title: "请输入您需要咨询的问题",
+          title: "内容不能为空",
           icon: "none"
         });
         return;
       }
-      promoterService.submitQuestion(
-        this.properties.promoterId,
-        this.content,
-        () => {
+      const { promoterId, questionId } = this.properties;
+      debugger
+      if (questionId) {
+        promoterService.answerQuestion(questionId, this.content, () => {
           this.triggerEvent("finish");
-        }
-      );
+        });
+      } else {
+        promoterService.submitQuestion(promoterId, this.content, () => {
+          this.triggerEvent("finish");
+        });
+      }
     }
   }
 });

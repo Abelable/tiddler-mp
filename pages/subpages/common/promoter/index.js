@@ -18,6 +18,7 @@ Page({
     qaFinished: false,
     evaluationList: [],
     evaluationFinished: false,
+    curQuestionId: 0,
     inputPopupVisible: false
   },
 
@@ -26,7 +27,9 @@ Page({
       store,
       fields: ["superiorInfo", "userInfo"]
     });
+  },
 
+  onShow() {
     this.setSummary();
     this.setQaList(true);
     this.setEvaluationList(true);
@@ -35,6 +38,24 @@ Page({
   selectMenu(e) {
     const { index: curMenuIdx } = e.currentTarget.dataset;
     this.setData({ curMenuIdx });
+  },
+
+  onPullDownRefresh() {
+    this.setSummary();
+    if (this.data.curMenuIdx) {
+      this.setEvaluationList(true);
+    } else {
+      this.setQaList(true);
+    }
+    wx.stopPullDownRefresh();
+  },
+
+  onReachBottom() {
+    if (this.data.curMenuIdx) {
+      this.setEvaluationList();
+    } else {
+      this.setQaList();
+    }
   },
 
   async setSummary() {
@@ -52,9 +73,10 @@ Page({
     if (init) {
       this.qaPage = 0;
     }
-    const { superiorInfo, qaList } = this.data;
+    const { qaList } = this.data;
     const { list = [] } =
-      (await promoterService.getQaList(superiorInfo.id)) || {};
+      (await promoterService.getQaList(store.superiorInfo.id, ++this.qaPage)) ||
+      {};
     this.setData({ qaList: init ? list : [...qaList, ...list] });
     if (!list.length) {
       this.setData({ qaFinished: true });
@@ -65,9 +87,12 @@ Page({
     if (init) {
       this.evaluationPage = 0;
     }
-    const { superiorInfo, evaluationList } = this.data;
+    const { evaluationList } = this.data;
     const { list = [] } =
-      (await promoterService.getEvaluationList(superiorInfo.id)) || {};
+      (await promoterService.getEvaluationList(
+        store.superiorInfo.id,
+        ++this.evaluationPage
+      )) || {};
     this.setData({
       evaluationList: init ? list : [...evaluationList, ...list]
     });
@@ -95,7 +120,21 @@ Page({
     }
   },
 
+  answer(e) {
+    const { id: curQuestionId } = e.detail;
+    this.setData({ curQuestionId, inputPopupVisible: true });
+  },
+
+  finishInput() {
+    this.setSummary();
+    this.setQaList(true);
+    this.hideInputPopup();
+  },
+
   hideInputPopup() {
+    if (this.data.curMenuIdx) {
+      this.setData({ curQuestionId: 0 });
+    }
     this.setData({ inputPopupVisible: false });
   },
 

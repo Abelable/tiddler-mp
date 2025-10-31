@@ -1,0 +1,18 @@
+<wxs module="STRING" src="/utils/filters/string.wxs" />
+<wxs module="TIME" src="/utils/filters/time.wxs" />
+
+<view class="qa-item {{showBorder ? 'show-border' : ''}}">
+  <view class="user-info">
+    <image class="user-avatar" src="{{item.userInfo.avatar}}?x-oss-process=image/format,webp" />
+    <view class="user-name">{{STRING.nicknameFilter(item.userInfo.nickname || '')}}</view>
+    <view class="time">{{TIME.transform(item.createdAt, 'YYYY年MM月DD日')}}</view>
+  </view>
+  <view class="question">{{item.question}}</view>
+  <view class="answer-wrap">
+    <view class="answer">
+      <text class="tips">回答：</text>
+      <text>{{item.answer || '暂未回答'}}</text>
+    </view>
+    <view class="answer-btn" wx:if="{{isPromoter && !item.answer}}" bindtap="answer">回答提问</view>
+  </view>
+</view>

@@ -33,16 +33,24 @@ class PromoterService extends BaseService {
     });
   }
 
+  answerQuestion(id, content, success) {
+    return this.post({
+      url: `${this.baseUrl}/promoter/qa/answer`,
+      data: { id, content },
+      success
+    });
+  }
+
   getEvaluationSummary(promoterId) {
     return this.get({
-      url: `${this.baseUrl}/promoter/evalution/summary`,
+      url: `${this.baseUrl}/promoter/evaluation/summary`,
       data: { promoterId }
     });
   }
 
   getEvaluationList(promoterId, page, limit = 10) {
     return this.get({
-      url: `${this.baseUrl}/promoter/evalution/list`,
+      url: `${this.baseUrl}/promoter/evaluation/list`,
       data: { promoterId, page, limit },
       loadingTitle: "正在加载"
     });
@@ -50,7 +58,7 @@ class PromoterService extends BaseService {
 
   evaluate(promoterId, tagIds, score, content, imageList, success) {
     return this.post({
-      url: `${this.baseUrl}/promoter/evalution/add`,
+      url: `${this.baseUrl}/promoter/evaluation/add`,
       data: cleanObject({ promoterId, tagIds, score, content, imageList }),
       success
     });

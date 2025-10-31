@@ -8,7 +8,7 @@
     bindblur="setFocus"
     bindkeyboardheightchange="setFocus"
     focus="{{focus}}"
-    placeholder="请输入您需要咨询的问题" 
+    placeholder="{{questionId ? '请根据游客提问给出您宝贵的意见' : '请输入您需要咨询的问题'}}" 
     type="text" 
     confirm-type="send"
     hold-keyboard
