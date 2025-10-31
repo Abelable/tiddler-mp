@@ -41,7 +41,6 @@ Component({
         return;
       }
       const { promoterId, questionId } = this.properties;
-      debugger
       if (questionId) {
         promoterService.answerQuestion(questionId, this.content, () => {
           this.triggerEvent("finish");
