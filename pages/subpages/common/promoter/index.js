@@ -1,6 +1,8 @@
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { store } from "../../../../store/index";
+import PromoterService from "./utils/promoterService";
 
+const promoterService = new PromoterService();
 const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Page({
@@ -8,9 +10,15 @@ Page({
     statusBarHeight,
     headerVisible: false,
     curMenuIdx: 0,
-    score: 0,
-    answerNum: 0,
-    durantion: 0
+    tagList: [],
+    avgScore: 0,
+    answerCount: 0,
+    averageDuration: 0,
+    qaList: [],
+    qaFinished: false,
+    evaluationList: [],
+    evaluationFinished: false,
+    inputPopupVisible: false
   },
 
   onLoad() {
@@ -18,11 +26,54 @@ Page({
       store,
       fields: ["superiorInfo", "userInfo"]
     });
+
+    this.setSummary();
+    this.setQaList(true);
+    this.setEvaluationList(true);
   },
 
   selectMenu(e) {
     const { index: curMenuIdx } = e.currentTarget.dataset;
     this.setData({ curMenuIdx });
+  },
+
+  async setSummary() {
+    const { id } = store.superiorInfo;
+    const { tagList, avgScore } = await promoterService.getEvaluationSummary(
+      id
+    );
+    const { answerCount, averageDuration } = await promoterService.getQaSummary(
+      id
+    );
+    this.setData({ tagList, avgScore, answerCount, averageDuration });
+  },
+
+  async setQaList(init) {
+    if (init) {
+      this.qaPage = 0;
+    }
+    const { superiorInfo, qaList } = this.data;
+    const { list = [] } =
+      (await promoterService.getQaList(superiorInfo.id)) || {};
+    this.setData({ qaList: init ? list : [...qaList, ...list] });
+    if (!list.length) {
+      this.setData({ qaFinished: true });
+    }
+  },
+
+  async setEvaluationList(init) {
+    if (init) {
+      this.evaluationPage = 0;
+    }
+    const { superiorInfo, evaluationList } = this.data;
+    const { list = [] } =
+      (await promoterService.getEvaluationList(superiorInfo.id)) || {};
+    this.setData({
+      evaluationList: init ? list : [...evaluationList, ...list]
+    });
+    if (!list.length) {
+      this.setData({ evaluationFinished: true });
+    }
   },
 
   contact() {
@@ -35,6 +86,17 @@ Page({
     wx.makePhoneCall({
       phoneNumber: store.superiorInfo.mobile
     });
+  },
+
+  interact() {
+    if (this.data.curMenuIdx) {
+    } else {
+      this.setData({ inputPopupVisible: true });
+    }
+  },
+
+  hideInputPopup() {
+    this.setData({ inputPopupVisible: false });
   },
 
   complain() {

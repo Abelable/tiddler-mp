@@ -2,6 +2,8 @@
   "navigationStyle": "custom",
   "usingComponents": {
     "back-icon": "/components/back-icon/index",
-    "empty-illus": "/components/empty-illus/index"
+    "empty-illus": "/components/empty-illus/index",
+    "modal-mask": "/components/modal-mask/index",
+    "input-popup": "./components/input-popup/index"
   }
 }

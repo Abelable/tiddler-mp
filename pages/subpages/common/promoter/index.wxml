@@ -35,13 +35,13 @@
     </view>
     <view class="promoter-data row">
       <image class="star-icon" src="https://static.tiddler.cn/mp/promoter/center/star.png" />
-      <view class="data">{{score || '--'}}</view>
+      <view class="data">{{avgScore || '--'}}</view>
       <view class="split-line">/</view>
       <view>回答数</view>
-      <view class="data">{{answerNum || '--'}}</view>
+      <view class="data">{{answerCount || '--'}}</view>
       <view class="split-line">/</view>
       <view>平均响应</view>
-      <view class="data">{{durantion || '--'}}</view>
+      <view class="data">{{averageDuration || '--'}}</view>
     </view>
   </view>
 
@@ -73,7 +73,11 @@
 
 <view 
   class="submit-btn row center" 
-  wx:if="{{superiorInfo.id !== userInfo.id}}"
+  bindtap="interact"
 >
   {{curMenuIdx === 0 ? '我要提问' : '评价一下'}}
 </view>
+
+<modal-mask wx:if="{{inputPopupVisible}}" catchtap="hideInputPopup" />
+<input-popup wx:if="{{inputPopupVisible}}" promoterId="{{superiorInfo.id}}" bind:finish="hideInputPopup" />
+
