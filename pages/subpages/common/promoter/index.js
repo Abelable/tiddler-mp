@@ -115,6 +115,9 @@ Page({
 
   interact() {
     if (this.data.curMenuIdx) {
+      const { id } = store.superiorInfo;
+      const url = `./subpages/evaluation/index?promoterId=${id}`;
+      wx.navigateTo({ url });
     } else {
       this.setData({ inputPopupVisible: true });
     }

@@ -17,6 +17,7 @@
       "common/ai-chat/index",
       "common/promoter/index",
       "common/promoter/subpages/complaint/index",
+      "common/promoter/subpages/evaluation/index",
       "home/media/note/index",
       "home/media/video/index",
       "home/media/author-center/index",

@@ -1,0 +1,36 @@
+<view class="container">
+  <view class="evaluation-info-wrap">
+    <view class="goods-score row">
+      <view class="score-title">评分</view>
+      <van-rate value="{{score}}" bind:change="setScore" gutter="0" color="#15a6fc" void-icon="star" void-color="#e4f7ff" />
+      <view class="score">{{score}}分</view>
+    </view>
+
+    <view class="evaluation-tags">
+      <view 
+        class="evaluation-tag {{item.selected ? 'selected' : ''}} row" 
+        wx:for="{{tagList}}" 
+        wx:key="index"
+        bindtap="selectTag"
+        data-index="{{index}}"
+      >
+        {{item.text}}
+      </view>
+    </view>
+
+    <textarea class="evaluation-content" value="{{content}}" bindinput="setContent" placeholder="请输入您的评价内容" />
+
+    <view class="uploader-wrap">
+      <van-uploader 
+        file-list="{{imageList}}" 
+        bind:after-read="uploadImage" 
+        bind:delete="deleteImage" 
+        accept="image" 
+        max-count="10" 
+        deletable 
+      />
+    </view>
+  </view>
+</view>
+
+<view class="submit-btn row center" bindtap="submit">提交</view>
