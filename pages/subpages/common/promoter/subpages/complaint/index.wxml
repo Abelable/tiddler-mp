@@ -4,11 +4,11 @@
   
     <checkbox-group class="selection" bindchange="selectOption">
       <view class="option row" wx:for="{{options}}" wx:key="index">
-        <label class="option-main" for="{{item.value}}">
+        <label class="option-main" for="{{item.id}}">
           <text class="option-title">{{item.title}}：</text>
           <text class="option-content">{{item.content}}</text>
         </label>
-        <checkbox id="{{item.value}}" value="{{item.value}}" color="#00B2FF" />
+        <checkbox id="{{item.id}}" value="{{item.id}}" color="#00B2FF" />
       </view>
     </checkbox-group>
   

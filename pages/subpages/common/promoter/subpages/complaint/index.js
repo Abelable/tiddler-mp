@@ -4,38 +4,20 @@ const promoterService = new PromoterService();
 
 Page({
   data: {
-    options: [
-      { title: "态度恶劣", content: "对游客冷漠、不耐烦或言语不当", value: 1 },
-      { title: "服务不积极", content: "咨询回复慢，承诺服务未兑现", value: 2 },
-      { title: "虚假宣传", content: "推荐内容与实际情况不符", value: 3 },
-      { title: "信息不透明", content: "未说明价格、条件或真实情况", value: 4 },
-      {
-        title: "诱导消费",
-        content: "有强制推销或额外收费行为",
-        value: 5
-      },
-      { title: "代游客下单", content: "未经授权擅自帮游客下单", value: 6 },
-      {
-        title: "不安全引导",
-        content: "推荐存在安全隐患的路线或场所",
-        value: 7
-      },
-      {
-        title: "泄露隐私",
-        content: "未经允许泄露游客隐私信息",
-        value: 8
-      },
-      { title: "冒充官方身份", content: "假借平台名义接单或宣传", value: 9 },
-      { title: "不当推广行为", content: "私下拉群、推销其他平台", value: 10 },
-      { title: "其他问题", content: "请填写具体情况", value: 11 }
-    ],
-    result: ["a", "b"],
+    options: [],
     content: "",
     imageList: []
   },
 
   onLoad({ promoterId }) {
     this.promoterId = +promoterId;
+
+    this.setOptions()
+  },
+
+  async setOptions() {
+    const options = await promoterService.getComplaintOptions(5);
+    this.setData({ options });
   },
 
   selectOption(e) {

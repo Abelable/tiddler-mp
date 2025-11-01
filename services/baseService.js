@@ -646,6 +646,20 @@ class BaseService extends Base {
       data: cleanObject({ id, longitude, latitude, radius, page, limit }),
     });
   }
+
+  getEvaluationTagList(scene, type) {
+    return this.get({
+      url: `${this.baseUrl}/evaluation_tag_list`,
+      data: { scene, type }
+    });
+  }
+
+  getComplaintOptions(type) {
+    return this.get({
+      url: `${this.baseUrl}/complaint_options`,
+      data: { type }
+    });
+  }
 }
 
 export default BaseService;
