@@ -1,0 +1,38 @@
+<wxs module="TIME" src="/utils/filters/time.wxs" />
+<wxs module="STRING" src="/utils/filters/string.wxs" />
+
+<view class="evaluation-item {{showBorder ? 'show-border' : ''}}">
+  <view class="user-info-wrap row">
+    <image class="user-avatar" src="{{item.userInfo.avatar}}?x-oss-process=image/format,webp" />
+    <view class="user-info">
+      <view class="user-name">{{STRING.nicknameFilter(item.userInfo.nickname || '')}}</view>
+      <view class="comment-date">{{TIME.timeDiff(item.createdAt)}}</view>
+    </view>
+    <view class="row">
+      <van-rate value="{{item.score || 0}}" size="16" gutter="0" color="#fa2458" void-icon="star" void-color="#fedbe4" readonly />
+      <view class="comment-rate">{{item.score}}分</view>
+    </view>
+  </view>
+
+  <view class="evaluation-tags">
+    <view class="evaluation-tag row" wx:for="{{item.tagList}}" wx:key="index" wx:for-item="tag">{{tag}}</view>
+  </view>
+
+  <view class="comment-content">{{item.content}}</view>
+
+  <view class="comment-images row between" wx:if="{{item.imageList.length}}">
+    <image 
+      class="comment-image" 
+      wx:for="{{imageList}}" 
+      wx:key="imageIndex" 
+      wx:for-index="imageIndex" 
+      wx:for-item="image" 
+      src="{{image}}"
+      bindtap="previewImage"
+      data-current="{{image}}"
+      mode="aspectFill"
+      lazy-load
+    />
+    <view class="more-image-tips row center">+{{item.imageList.length - 3}}</view>
+  </view>
+</view>

@@ -5,7 +5,7 @@
   <view class="user-info">
     <image class="user-avatar" src="{{item.userInfo.avatar}}?x-oss-process=image/format,webp" />
     <view class="user-name">{{STRING.nicknameFilter(item.userInfo.nickname || '')}}</view>
-    <view class="time">{{TIME.transform(item.createdAt, 'YYYY年MM月DD日')}}</view>
+    <view class="time">{{TIME.timeDiff(item.createdAt)}}</view>
   </view>
   <view class="question">{{item.question}}</view>
   <view class="answer-wrap">

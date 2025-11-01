@@ -6,6 +6,7 @@
     "empty-illus": "/components/empty-illus/index",
     "modal-mask": "/components/modal-mask/index",
     "qa-item": "./components/qa-item/index",
+    "evaluation-item": "./components/evaluation-item/index",
     "input-popup": "./components/input-popup/index"
   }
 }

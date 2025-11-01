@@ -34,6 +34,10 @@
     <view class="promoter-tags">
       <view class="promoter-tag row">本地人</view>
       <view class="promoter-tag row">热心市民</view>
+      <view class="promoter-tag row" wx:for="{{tagList}}" wx:key="index">
+        <text>{{item.content}}</text>
+        <text wx:if="{{item.count > 1}}" style="margin-left: 8rpx">{{item.count}}</text>
+      </view>
     </view>
     <view class="promoter-data row">
       <image class="star-icon" src="https://static.tiddler.cn/mp/promoter/center/star.png" />
@@ -72,7 +76,13 @@
   </view>
 
   <view class="evaluation-wrap" wx:if="{{curMenuIdx === 1}}">
-    <empty-illus desc="暂无评价" height="520rpx" />
+    <evaluation-item 
+      wx:for="{{evaluationList}}" 
+      wx:key="index" 
+      item="{{item}}" 
+      showBorder="{{index}}" 
+    />
+    <empty-illus wx:if="{{!evaluationList.length}}" desc="暂无评价" height="520rpx" />
   </view>
 
   <view class="complaint-tips row center" wx:if="{{superiorInfo.id !== userInfo.id}}" bindtap="complain">

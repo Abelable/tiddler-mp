@@ -1,0 +1,75 @@
+.evaluation-item {
+  padding: 32rpx 0;
+}
+.evaluation-item.show-border {
+  border-top: 0.5px solid #eee;
+}
+
+.user-avatar {
+  width: 68rpx;
+  height: 68rpx;
+  border-radius: 50%;
+}
+.user-info {
+  margin-left: 18rpx;
+  flex: 1;
+}
+.user-name {
+  color: #333;
+  font-size: 24rpx;
+  font-weight: bold;
+}
+.comment-date {
+  color: #999;
+  font-size: 20rpx;
+}
+.comment-rate {
+  margin-left: 8rpx;
+  color: #333;
+  font-size: 24rpx;
+  font-weight: bold;
+}
+
+.evaluation-tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 12rpx;
+}
+.evaluation-tag {
+  margin-top: 12rpx;
+  margin-right: 12rpx;
+  padding: 0 12rpx;
+  height: 40rpx;
+  color: #5c5d66;
+  font-size: 22rpx;
+  background: #f5f7fa;
+  border-radius: 8rpx;
+}
+
+.comment-content {
+  margin-top: 24rpx;
+  color: #333;
+  font-size: 26rpx;
+}
+.comment-images {
+  position: relative;
+  margin-top: 18rpx;
+  border-radius: 8rpx;
+  overflow: hidden;
+}
+.comment-image {
+  width: 214rpx;
+  height: 214rpx;
+  border-radius: 8rpx;
+}
+.more-image-tips {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 50rpx;
+  height: 50rpx;
+  color: #333;
+  font-size: 22rpx;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 4rpx;
+}

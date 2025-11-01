@@ -66,7 +66,7 @@ Page({
     const { answerCount, averageDuration } = await promoterService.getQaSummary(
       id
     );
-    this.setData({ tagList, avgScore, answerCount, averageDuration });
+    this.setData({ tagList: tagList.slice(0, 6), avgScore, answerCount, averageDuration });
   },
 
   async setQaList(init) {
