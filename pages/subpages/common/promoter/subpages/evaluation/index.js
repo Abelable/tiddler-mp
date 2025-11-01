@@ -4,16 +4,7 @@ const promoterService = new PromoterService();
 
 Page({
   data: {
-    tagList: [
-      { text: "热情友好", value: 1, selected: false },
-      { text: "耐心细致", value: 2, selected: false },
-      { text: "专业高效", value: 3, selected: false },
-      { text: "回复迅速", value: 4, selected: false },
-      { text: "服务周到", value: 5, selected: false },
-      { text: "沟通顺畅", value: 6, selected: false },
-      { text: "积极跟进", value: 7, selected: false },
-      { text: "超出预期", value: 8, selected: false }
-    ],
+    tagList: [],
     score: 0,
     content: "",
     imageList: []
@@ -25,6 +16,14 @@ Page({
 
   setScore(e) {
     this.setData({ score: e.detail });
+    this.setTagList();
+  },
+
+  async setTagList() {
+    const type = this.data.score <= 2 ? 3 : this.data.score === 3 ? 2 : 1;
+    const list = await promoterService.getEvaluationTagList(5, type);
+    const tagList = list.map(item => ({ ...item, selected: false }));
+    this.setData({ tagList });
   },
 
   selectTag(e) {
@@ -109,13 +108,12 @@ Page({
   },
 
   evaluate() {
-    const { score, content, goodsList, imageList } = this.data;
-    const goodsIds = goodsList.map(item => item.goodsId);
-    promoterService.submitEvaluation(
-      this.status,
-      this.orderId,
-      goodsIds,
+    const { score, tagList, content, imageList } = this.data;
+    const tagIds = tagList.filter(item => item.selected).map(item => item.id);
+    promoterService.evaluate(
+      this.promoterId,
       score,
+      tagIds,
       content,
       imageList.map(item => item.url),
       () => {

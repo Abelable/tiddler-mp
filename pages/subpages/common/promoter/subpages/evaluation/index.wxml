@@ -14,7 +14,7 @@
         bindtap="selectTag"
         data-index="{{index}}"
       >
-        {{item.text}}
+        {{item.content}}
       </view>
     </view>
 

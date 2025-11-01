@@ -56,10 +56,10 @@ class PromoterService extends BaseService {
     });
   }
 
-  evaluate(promoterId, tagIds, score, content, imageList, success) {
+  evaluate(promoterId, score, tagIds, content, imageList, success) {
     return this.post({
       url: `${this.baseUrl}/promoter/evaluation/add`,
-      data: cleanObject({ promoterId, tagIds, score, content, imageList }),
+      data: cleanObject({ promoterId, score, tagIds, content, imageList }),
       success
     });
   }
