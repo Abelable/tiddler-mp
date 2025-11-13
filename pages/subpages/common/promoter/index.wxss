@@ -4,11 +4,11 @@
   left: 0;
   width: 100%;
   z-index: 100;
-  transition: .2s ease;
+  transition: 0.2s ease;
 }
 .header.show {
   background: #fff;
-  transition: .2s ease;
+  transition: 0.2s ease;
 }
 .nav-bar {
   padding-left: 8px;
@@ -89,17 +89,27 @@
   border-radius: 16rpx;
 }
 .promoter-level.level-1 {
-  background: linear-gradient(135deg, #4063FF 0%, #7AB2FF 100%);
+  background: linear-gradient(135deg, #4063ff 0%, #7ab2ff 100%);
 }
 .promoter-level.level-2 {
-  background: linear-gradient(135deg, #46DAA4 0%, #FCEC87 100%);
+  background: linear-gradient(135deg, #46daa4 0%, #fcec87 100%);
 }
 .promoter-level.level-3 {
-  background: linear-gradient(135deg, #9356EE 0%, #F881C9 100%);
+  background: linear-gradient(135deg, #9356ee 0%, #f881c9 100%);
 }
 .promoter-level.level-4 {
-  color: #FFE5BD;
-  background: linear-gradient(90deg, #434D5E 0%, #0F131A 100%);
+  color: #ffe5bd;
+  background: linear-gradient(90deg, #434d5e 0%, #0f131a 100%);
+}
+
+.qrcode-btn {
+  padding: 0 24rpx;
+  height: 60rpx;
+  color: var(--blue-5);
+  font-size: 26rpx;
+  font-weight: bold;
+  background: #e4f7ff;
+  border-radius: 30rpx;
 }
 
 .chat-btn {
@@ -188,12 +198,13 @@
   width: 36rpx;
   height: 12rpx;
   content: "";
-  background-image: url('https://static.tiddler.cn/mp/promoter/center/active_tag.png');
+  background-image: url("https://static.tiddler.cn/mp/promoter/center/active_tag.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
 
-.qa-wrap, .evaluation-wrap {
+.qa-wrap,
+.evaluation-wrap {
   margin-top: 12rpx;
   padding: 0 32rpx;
   background: #fff;
@@ -222,4 +233,27 @@
   font-weight: 500;
   border-radius: 44rpx;
   background: var(--blue-linear-1);
+}
+
+.qr-code-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.qr-code {
+  padding: 18rpx;
+  width: 360rpx;
+  height: 360rpx;
+  border-radius: 50%;
+  background: #fff;
+  z-index: 100;
+}
+.close-icon {
+  margin-top: 32rpx;
+  width: 60rpx;
+  height: 60rpx;
 }

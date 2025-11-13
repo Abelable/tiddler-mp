@@ -21,6 +21,9 @@
         <view>{{superiorInfo.nickname}}</view>
         <view class="promoter-level level-{{superiorInfo.promoterInfo.level}} row">Lv.{{superiorInfo.promoterInfo.level}}</view>
       </view>
+      <view class="qrcode-btn row center" wx:if="{{superiorInfo.id === userInfo.id}}" bindtap="showQrCode">
+        我的二维码
+      </view>
       <view class="contact-btns row" wx:if="{{superiorInfo.id !== userInfo.id}}">
         <view class="chat-btn row center" bindtap="contact">
           <image class="chat-icon" src="https://static.tiddler.cn/mp/promoter/center/chat.png" />
@@ -99,10 +102,15 @@
   {{curMenuIdx === 0 ? '我要提问' : '评价一下'}}
 </view>
 
-<modal-mask wx:if="{{inputPopupVisible}}" catchtap="hideInputPopup" />
+<modal-mask wx:if="{{inputPopupVisible || qrCodeVisible}}" catchtap="hidePopup" />
 <input-popup 
   wx:if="{{inputPopupVisible}}" 
   promoterId="{{superiorInfo.id}}" 
   questionId="{{curQuestionId}}" 
   bind:finish="finishInput"
 />
+
+<view class="qr-code-modal">
+  <image class="qr-code" wx:if="{{qrCodeVisible}}" src="{{qrCode}}" show-menu-by-longpress />
+  <image class="close-icon" catchtap="hideQrCode" src="https://static.tiddler.cn/mp/home/close_icon.webp" />
+</view>

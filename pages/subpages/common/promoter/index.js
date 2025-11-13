@@ -19,13 +19,29 @@ Page({
     evaluationList: [],
     evaluationFinished: false,
     curQuestionId: 0,
-    inputPopupVisible: false
+    inputPopupVisible: false,
+    qrCode: "",
+    qrCodeVisible: false
   },
 
-  onLoad() {
+  onLoad(options) {
     this.storeBindings = createStoreBindings(this, {
       store,
       fields: ["superiorInfo", "userInfo"]
+    });
+
+    const { scene = "" } = options || {};
+    const decodedSceneList = scene ? decodeURIComponent(scene).split("-") : [];
+    this.superiorId = decodedSceneList[0] || "";
+
+    getApp().onLaunched(async () => {
+      if (this.superiorId && !store.superiorInfo) {
+        wx.setStorageSync("superiorId", this.superiorId);
+        const superiorInfo = await promoterService.getUserInfo(this.superiorId);
+        if (superiorInfo.promoterInfo) {
+          store.setSuperiorInfo(superiorInfo);
+        }
+      }
     });
   },
 
@@ -66,7 +82,12 @@ Page({
     const { answerCount, averageDuration } = await promoterService.getQaSummary(
       id
     );
-    this.setData({ tagList: tagList.slice(0, 6), avgScore, answerCount, averageDuration });
+    this.setData({
+      tagList: tagList.slice(0, 6),
+      avgScore,
+      answerCount,
+      averageDuration
+    });
   },
 
   async setQaList(init) {
@@ -139,6 +160,33 @@ Page({
       this.setData({ curQuestionId: 0 });
     }
     this.setData({ inputPopupVisible: false });
+  },
+
+  async showQrCode() {
+    if (!this.data.qrCode) {
+      await this.setQrcode();
+    }
+    this.setData({ qrCodeVisible: true });
+  },
+
+  async setQrcode() {
+    const scene = `${store.userInfo.id}`;
+    const page = "pages/subpages/common/promoter/index";
+    const qrCode = await promoterService.getQrCode(scene, page);
+    this.setData({ qrCode });
+  },
+
+  hideQrCode() {
+    this.setData({ qrCodeVisible: false });
+  },
+
+  hidePopup() {
+    if (this.data.inputPopupVisible) {
+      this.hideInputPopup();
+    }
+    if (this.data.qrCodeVisible) {
+      this.hideQrCode();
+    }
   },
 
   complain() {
