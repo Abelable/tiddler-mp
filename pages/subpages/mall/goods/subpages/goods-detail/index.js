@@ -383,6 +383,10 @@ Page({
     wx.stopPullDownRefresh();
   },
 
+  onUnload() {
+    this.storeBindings.destroyStoreBindings();
+  },
+
   onShareAppMessage() {
     const { id: superiorId } = store.superiorInfo || {};
     const { id, name: title, cover: imageUrl } = this.data.goodsInfo;

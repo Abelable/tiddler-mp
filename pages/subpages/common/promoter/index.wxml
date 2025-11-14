@@ -8,11 +8,12 @@
 </view>
 
 <view class="container">
-  <view class="promoter-info-wrap" wx:if="{{superiorInfo}}" style="margin-top: {{statusBarHeight + 128}}px;">
+  <view class="promoter-info-wrap" style="margin-top: {{statusBarHeight + 128}}px;">
     <view class="promoter-avatar-wrap">
-      <image class="promoter-avatar" src="{{superiorInfo.avatar}}?x-oss-process=image/format,webp" />
+      <image class="promoter-avatar" src="{{superiorInfo.avatar || 'https://static.tiddler.cn/mp/default_avatar.png'}}?x-oss-process=image/format,webp" />
       <image 
         class="promoter-medal" 
+        wx:if="{{superiorInfo}}" 
         src="https://static.tiddler.cn/mp/promoter/level_{{superiorInfo.promoterInfo.level}}/medal.gif" 
       />
     </view>
