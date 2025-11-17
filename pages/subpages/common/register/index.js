@@ -1,4 +1,5 @@
 import { WEBVIEW_BASE_URL } from "../../../../config";
+import tim from "../../../../utils/tim/index";
 import BaseService from "../../../../services/baseService";
 
 const baseService = new BaseService();
@@ -31,11 +32,18 @@ Page({
     );
     if (token) {
       wx.setStorageSync("token", token);
+      this.initTim();
+      await baseService.getMyInfo();
       if (this.superiorId) {
         wx.removeStorageSync("superiorId");
       }
       wx.navigateBack();
     }
+  },
+
+  async initTim() {
+    const { userId, sdkAppId, userSig } = await baseService.getTimLoginInfo();
+    tim.init(Number(sdkAppId), String(userId), userSig);
   },
 
   toast() {
