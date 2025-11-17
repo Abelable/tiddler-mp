@@ -70,8 +70,8 @@
 }
 .tips {
   margin-top: 24rpx;
-  color: #999;
-  font-size: 22rpx;
+  color: #666;
+  font-size: 24rpx;
   font-weight: 300;
   text-align: center;
 }
