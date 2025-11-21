@@ -135,13 +135,13 @@ Component({
         { name: "收货地址", icon: "address" },
         promoterInfo ? { name: "代言奖励", icon: "promoter" } : undefined,
         scenicShopId ||
-        scenicShopManagerList.findIndex(item => item.roleId !== 3) !== -1 ||
+        scenicShopManagerList.findIndex(item => [1, 2].includes(item.roleId)) !== -1 ||
         hotelShopId ||
-        hotelShopManagerList.findIndex(item => item.roleId !== 3) !== -1 ||
+        hotelShopManagerList.findIndex(item => [1, 2].includes(item.roleId)) !== -1 ||
         cateringShopId ||
-        cateringShopManagerList.findIndex(item => item.roleId !== 3) !== -1 ||
+        cateringShopManagerList.findIndex(item => [1, 2].includes(item.roleId)) !== -1 ||
         shopId ||
-        shopManagerList.findIndex(item => item.roleId !== 3) !== -1
+        shopManagerList.findIndex(item => [1, 2].includes(item.roleId)) !== -1
           ? { name: "商家中心", icon: "merchant" }
           : undefined,
         scenicShopId ||
