@@ -1,0 +1,54 @@
+.card {
+  margin: 24rpx;
+  padding: 24rpx;
+  background: #fff;
+  border-radius: 24rpx;
+}
+
+.form {
+  margin-top: 24rpx;
+}
+.form:first-child {
+  margin-top: 0;
+}
+
+.title {
+  position: relative;
+  width: fit-content;
+  color: #333;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+.title.required::after {
+  position: absolute;
+  top: -4rpx;
+  right: -18rpx;
+  content: '*';
+  color: red;
+}
+
+.password-input {
+  margin-top: 24rpx;
+  padding: 24rpx;
+  font-size: 26rpx;
+  background: #f5f6f8;
+  border-radius: 24rpx;
+}
+
+.submit-btn {
+  position: fixed;
+  left: 50%;
+  bottom: calc(24rpx + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(100vw - 48rpx);
+  height: 88rpx;
+  color: #fff;
+  font-size: 30rpx;
+  font-weight: 500;
+  border-radius: 44rpx;
+  background: var(--blue-1);
+  z-index: 100;
+}

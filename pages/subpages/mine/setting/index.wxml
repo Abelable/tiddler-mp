@@ -1,7 +1,14 @@
 <view class="list-wrap">
   <view class="list row between" bindtap="editUserInfo">
-    <view class="title">编辑个人信息</view>
+    <view class="title">个人信息</view>
     <image class="arrow" src="./images/arrow.png" />
+  </view>
+  <view class="list row between" bindtap="setPassword">
+    <view class="title">登录密码</view>
+    <view class="row">
+      <view class="content">{{(userInfo && userInfo.password) ? "已设置" : "未设置"}}</view>
+      <image class="arrow" src="./images/arrow.png" />
+    </view>
   </view>
   <view class="list row between" wx:if="{{toolVisible}}" bindtap="navToAuth">
     <view class="title">实名认证</view>
@@ -27,10 +34,6 @@
      <view class="title">在线客服</view>
     <image class="arrow" src="./images/arrow.png" />
   </button>
-  <view class="list row between" bindtap="inviteMerchant">
-    <view class="title">邀请商家入驻</view>
-    <image class="arrow" src="./images/arrow.png" />
-  </view>
   <button 
     class="list row between"
     open-type="share" 
@@ -39,6 +42,10 @@
     <view class="title">推荐给好友</view>
     <image class="arrow" src="./images/arrow.png" />
   </button>
+  <view class="list row between" bindtap="inviteMerchant">
+    <view class="title">邀请商家入驻</view>
+    <image class="arrow" src="./images/arrow.png" />
+  </view>
   <view class="list row between" bindtap="checkAboutUs">
     <view class="title">关于小鱼游</view>
     <view class="row">

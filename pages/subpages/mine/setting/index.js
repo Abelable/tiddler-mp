@@ -1,5 +1,6 @@
-import { WEBVIEW_BASE_URL } from "../../../../config";
+import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { store } from "../../../../store/index";
+import { WEBVIEW_BASE_URL } from "../../../../config";
 import { checkLogin } from "../../../../utils/index";
 
 Page({
@@ -9,6 +10,11 @@ Page({
   },
 
   onLoad() {
+    this.storeBindings = createStoreBindings(this, {
+      store,
+      fields: ["userInfo"]
+    });
+
     // todo 用于前期提交审核隐藏部分功能，后期需要删除
     const { version = "1.0.0", envVersion } =
       wx.getAccountInfoSync().miniProgram || {};
@@ -27,6 +33,14 @@ Page({
     checkLogin(() => {
       const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/auth`;
       wx.navigateTo({ url });
+    }, true);
+  },
+
+  setPassword() {
+    checkLogin(() => {
+      wx.navigateTo({
+        url: "./subpages/password-setting/index"
+      });
     }, true);
   },
 
@@ -56,6 +70,10 @@ Page({
     wx.navigateTo({
       url: './subpages/about-us/index'
     });
+  },
+
+  onUnload() {
+    this.storeBindings.destroyStoreBindings();
   },
 
   onShareAppMessage() {
