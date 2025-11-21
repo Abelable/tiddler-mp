@@ -28,32 +28,32 @@ Page({
     if (store.userInfo.password) {
       if (!this.password) {
         wx.showToast({
-          title: '请输入原始密码',
-          icon: 'none'
+          title: "请输入原始密码",
+          icon: "none"
         });
-        return
+        return;
       }
     }
     if (!this.newPassword) {
       wx.showToast({
-        title: '请输入新密码',
-        icon: 'none'
+        title: "请输入新密码",
+        icon: "none"
       });
-      return
+      return;
     }
     if (!this.passwordConfirm) {
       wx.showToast({
-        title: '请再次输入新密码',
-        icon: 'none'
+        title: "请再次输入新密码",
+        icon: "none"
       });
-      return
+      return;
     }
     if (this.newPassword !== this.passwordConfirm) {
       wx.showToast({
-        title: '两次密码不一致，请重新输入',
-        icon: 'none'
+        title: "两次密码不一致，请重新输入",
+        icon: "none"
       });
-      return
+      return;
     }
 
     if (store.userInfo.password) {
@@ -72,6 +72,7 @@ Page({
           title: "设置成功",
           icon: "none"
         });
+        store.setUserInfo({ ...store.userInfo, password: this.newPassword });
         setTimeout(() => {
           wx.navigateBack();
         }, 2000);
