@@ -1,0 +1,98 @@
+<view class="status {{['ing', 'ing', 'ing', 'done', 'fail'][status]}}" wx:if="{{status !== undefined}}">
+  {{ ['信息审核中，请耐心等待', '审核通过，请寄回商品', '请等待商家确认收货', '退款成功', '退款失败'][status] }}
+</view>
+<view class="fail-reason" wx:if="{{status === 4}}">
+  <view>失败原因：</view>
+  <view>{{ failureReason }}</view>
+</view>
+
+<view 
+  class="card" 
+  wx:if="{{status === undefined || status === 0 || status === 4}}"
+>
+  <view class="form-item row">
+    <label class="form-label">可退金额</label>
+    <view class="form-content">¥{{refundAmount}}</view>
+  </view>
+  <view class="form-item row">
+    <label class="form-label {{(status === undefined || status === 4) ? 'requied' : ''}}">退款方式</label>
+    <picker 
+      class="form-picker {{refundType === undefined ? 'placeholder' : ''}}" 
+      wx:if="{{status === undefined || status === 4}}"
+      range="{{typeList}}"
+      bindchange="selectRefundType" 
+    >
+      {{refundType === undefined ? '请选择退款方式' : typeList[refundType]}}
+    </picker>
+    <image class="arrow" wx:if="{{status === undefined || status === 4}}" src="/images/arrow.png" />
+    <view class="form-content" wx:if="{{status === 0}}">{{typeList[refundType]}}</view>
+  </view>
+  <view class="form-item">
+    <label class="form-label {{(status === undefined || status === 4) ? 'requied' : ''}}">退款说明</label>
+    <textarea class="form-textarea" wx:if="{{status === undefined || status === 4}}" value="{{refundReason}}" bindinput="setRefundReason" placeholder="请输入退款理由" />
+    <view class="form-textarea" wx:if="{{status === 0}}">{{refundReason}}</view>
+  </view>
+  <view class="form-item" wx:if="{{status === undefined || status === 4 || (status === 0 && imageList.length)}}">
+    <label class="form-label">相关图片</label>
+    <view class="uploader-wrap" wx:if="{{status === undefined || status === 4}}">
+      <van-uploader 
+        file-list="{{imageList}}" 
+        bind:after-read="uploadImage" 
+        bind:delete="deleteImage" 
+        accept="image" 
+        max-count="10" 
+        deletable 
+        multiple
+      />
+    </view>
+    <view class="relation-images" wx:if="{{status === 0}}" >
+      <image class="relation-image" wx:for="{{imageList}}" wx:key="index" src="{{item.url}}" mode="aspectFill" />
+    </view>
+  </view>
+</view>
+
+<view class="card" wx:if="{{status === 1 || status === 2}}">
+  <view class="form-item row">
+    <label class="form-label">收件人</label>
+    <view class="form-content">{{merchantInfo.consigneeName}}</view>
+  </view>
+  <view class="form-item row">
+    <label class="form-label">收件人手机号</label>
+    <view class="form-content">{{merchantInfo.mobile}}</view>
+  </view>
+  <view class="form-item row">
+    <label class="form-label">收件地址</label>
+    <view class="form-content">{{merchantInfo.addressDetail}}</view>
+  </view>
+</view>
+
+<view class="card" wx:if="{{status === 1 || status === 2}}">
+  <view class="form-item row">
+    <label class="form-label {{status === 1 ? 'requied' : ''}}">物流公司</label>
+    <picker 
+      class="form-picker {{selectedExpressIdx === undefined ? 'placeholder' : ''}}" 
+      wx:if="{{status === 1}}"
+      range="{{expressOptions}}"
+      range-key="name"
+      bindchange="selectExpress" 
+    >
+      {{selectedExpressIdx === undefined ? '请选择物流公司' : expressOptions[selectedExpressIdx].name}}
+    </picker>
+    <image class="arrow" wx:if="{{status === 1}}" src="/images/arrow.png" />
+    <view class="form-content" wx:if="{{status === 2}}">{{expressOptions[selectedExpressIdx].name}}</view>
+  </view>
+  <view class="form-item row">
+    <label class="form-label {{status === 1 ? 'requied' : ''}}">快递单号</label>
+    <input class="form-input" wx:if="{{status === 1}}" value="{{shipSn}}" bindinput="setShipSn" placeholder="请输入快递单号" />
+    <view class="form-content" wx:if="{{status === 2}}">{{shipSn}}</view>
+    <view class="ship-btn" wx:if="{{status === 2}}" bindtap="navToShipping">查看物流</view>
+  </view>
+</view>
+
+<view 
+  class="submit-btn row center" 
+  wx:if="{{status === undefined || status === 1 || status === 4}}" 
+  bindtap="submit"
+>
+  提交
+</view>

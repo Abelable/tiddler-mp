@@ -72,7 +72,14 @@
         <view class="countdown">{{TIME.countdown(countdown, 'hh:mm:ss')}}</view>
       </view>
     </view>
-    <goods-list list="{{orderInfo.goodsList}}" status="{{orderInfo.status}}" />
+    <view class="goods-list">
+      <goods-item 
+        wx:for="{{orderInfo.goodsList}}" 
+        wx:key="index" 
+        item="{{item}}" 
+        orderInfo="{{orderInfo}}"
+      />
+    </view>
     <view class="list row between">
       <view class="title">商品总价</view>
       <price-unit price="{{orderInfo.goodsPrice || 0}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />

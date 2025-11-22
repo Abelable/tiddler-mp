@@ -2,7 +2,7 @@
   "usingComponents": {
     "address-popup": "/pages/subpages/components/address-popup/index",
     "price-unit": "/components/price-unit/index",
-    "goods-list": "./components/goods-list/index",
+    "goods-item": "./components/goods-item/index",
     "qr-code-modal": "../../../components/qr-code-modal/index"
   }
 }

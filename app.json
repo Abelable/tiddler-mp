@@ -71,6 +71,7 @@
       "mine/order/subpages/order-search/index",
       "mine/order/subpages/goods-order/order-detail/index",
       "mine/order/subpages/goods-order/evaluation/index",
+      "mine/order/subpages/goods-order/refund/index",
       "mine/order/subpages/scenic-order/order-detail/index",
       "mine/order/subpages/scenic-order/evaluation/index",
       "mine/order/subpages/hotel-order/order-detail/index",
