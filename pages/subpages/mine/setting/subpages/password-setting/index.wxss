@@ -1,5 +1,8 @@
+.container {
+  padding: 24rpx;
+}
+
 .card {
-  margin: 24rpx;
   padding: 24rpx;
   background: #fff;
   border-radius: 24rpx;
@@ -36,14 +39,10 @@
 }
 
 .submit-btn {
-  position: fixed;
-  left: 50%;
-  bottom: calc(24rpx + env(safe-area-inset-bottom));
-  transform: translateX(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
-  width: calc(100vw - 48rpx);
+  margin-top: 100rpx;
   height: 88rpx;
   color: #fff;
   font-size: 30rpx;
