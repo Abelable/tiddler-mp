@@ -43,7 +43,9 @@ class BaseService extends Base {
   }
 
   async refreshToken() {
-    const token = await this.post({ url: `${this.baseUrl}/auth/token_refresh` });
+    const token = await this.post({
+      url: `${this.baseUrl}/auth/token_refresh`
+    });
     if (token) {
       wx.setStorageSync("token", token);
     }
@@ -615,7 +617,7 @@ class BaseService extends Base {
   }) {
     return await this.get({
       url: `${this.baseUrl}/scenic/nearby_list`,
-      data: cleanObject({ id, longitude, latitude, radius, page, limit }),
+      data: cleanObject({ id, longitude, latitude, radius, page, limit })
     });
   }
 
@@ -629,7 +631,7 @@ class BaseService extends Base {
   }) {
     return await this.get({
       url: `${this.baseUrl}/hotel/nearby_list`,
-      data: cleanObject({ id, longitude, latitude, radius, page, limit }),
+      data: cleanObject({ id, longitude, latitude, radius, page, limit })
     });
   }
 
@@ -643,7 +645,7 @@ class BaseService extends Base {
   }) {
     return await this.get({
       url: `${this.baseUrl}/catering/restaurant/nearby_list`,
-      data: cleanObject({ id, longitude, latitude, radius, page, limit }),
+      data: cleanObject({ id, longitude, latitude, radius, page, limit })
     });
   }
 
@@ -658,6 +660,12 @@ class BaseService extends Base {
     return this.get({
       url: `${this.baseUrl}/complaint_options`,
       data: { type }
+    });
+  }
+
+  getExpressOptions() {
+    return this.get({
+      url: `${this.baseUrl}/shop/express_options`
     });
   }
 }

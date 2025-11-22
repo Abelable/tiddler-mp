@@ -1,5 +1,4 @@
-import { expressOptions } from "../../../../../../utils/index";
-import OrderService from "../../utils/orderService";
+import OrderService from "../../../utils/orderService";
 
 const orderService = new OrderService();
 
@@ -12,27 +11,25 @@ Page({
     refundType: undefined,
     refundReason: "",
     imageList: [],
-    merchantInfo: null,
-    expressOptions,
+    refundAddressInfo: null,
+    expressOptions: [],
     selectedExpressIdx: undefined,
     shipSn: ""
   },
 
-  onLoad({ orderId, orderSn, goodsId, couponId, merchantId }) {
+  onLoad({ orderId, orderSn, couponId, goodsId, refundAddressId }) {
     this.orderId = +orderId;
     this.orderSn = orderSn;
-    this.goodsId = +goodsId;
     this.couponId = +couponId;
-    this.merchantId = +merchantId;
+    this.goodsId = +goodsId;
+    this.refundAddressId = +refundAddressId;
 
     this.setRefundInfo();
+    this.setExpressOptions();
   },
 
   async setRefundInfo() {
-    const refundInfo = await orderService.getRefund(
-      this.orderId,
-      this.goodsId
-    );
+    const refundInfo = await orderService.getRefund(this.orderId, this.goodsId);
     if (refundInfo) {
       const {
         id,
@@ -56,7 +53,7 @@ Page({
       });
 
       if (status === 1 || status === 2) {
-        this.setMerchantInfo();
+        this.setRefundAddressInfo();
       }
       if (status === 2) {
         this.setData({
@@ -80,19 +77,11 @@ Page({
     this.setData({ refundAmount });
   },
 
-  async setMerchantInfo() {
-    if (this.merchantId === 0) {
-      this.setData({
-        merchantInfo: {
-          consigneeName: "令先生",
-          mobile: "13957118152",
-          addressDetail: "浙江省杭州市余杭区五常街道向往街368号2幢11层1143室"
-        }
-      });
-    } else {
-      const merchantInfo = await orderService.getMerchantInfo(this.merchantId);
-      this.setData({ merchantInfo });
-    }
+  async setRefundAddressInfo() {
+    const refundAddressInfo = await orderService.getRefundAddressInfo(
+      this.refundAddressId
+    );
+    this.setData({ refundAddressInfo });
   },
 
   selectRefundType(e) {
@@ -105,14 +94,19 @@ Page({
     this.setData({ refundReason });
   },
 
+  async setExpressOptions() {
+    const expressOptions = await orderService.getExpressOptions();
+    this.setData({ expressOptions });
+  },
+
   uploadImage(e) {
     const { index, file } = e.detail;
     file.forEach(async (item, _index) => {
       this.setData({
         imageList: [
           ...this.data.imageList,
-          { status: "uploading", message: "上传中", deletable: true },
-        ],
+          { status: "uploading", message: "上传中", deletable: true }
+        ]
       });
       const url = (await orderService.uploadFile(item.url)) || "";
       if (url) {
@@ -121,19 +115,19 @@ Page({
             ...this.data.imageList[index + _index],
             status: "done",
             message: "上传成功",
-            url,
-          },
+            url
+          }
         });
       } else {
         this.setData({
           [`imageList[${index + _index}]`]: {
             ...this.data.imageList[index + _index],
             status: "fail",
-            message: "上传失败",
-          },
+            message: "上传失败"
+          }
         });
       }
-    })
+    });
   },
 
   deleteImage(e) {
@@ -238,10 +232,11 @@ Page({
     }
   },
 
-  navToShipping() {
-    const { expressOptions, selectedExpressIdx, shipSn, merchantInfo } =
+  checkShippingInfo() {
+    const { expressOptions, selectedExpressIdx, shipSn, refundAddressInfo } =
       this.data;
-    const url = `../shipping/index?shipCode=${expressOptions[selectedExpressIdx].value}&shipSn=${shipSn}&mobile=${merchantInfo.mobile}`;
+    const shipCode = expressOptions[selectedExpressIdx].value;
+    const url = `../shipping/index?shipCode=${shipCode}&shipSn=${shipSn}&mobile=${refundAddressInfo.mobile}`;
     wx.navigateTo({ url });
   }
 });

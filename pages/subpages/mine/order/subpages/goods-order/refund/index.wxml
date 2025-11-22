@@ -54,15 +54,15 @@
 <view class="card" wx:if="{{status === 1 || status === 2}}">
   <view class="form-item row">
     <label class="form-label">收件人</label>
-    <view class="form-content">{{merchantInfo.consigneeName}}</view>
+    <view class="form-content">{{refundAddressInfo.consigneeName}}</view>
   </view>
   <view class="form-item row">
     <label class="form-label">收件人手机号</label>
-    <view class="form-content">{{merchantInfo.mobile}}</view>
+    <view class="form-content">{{refundAddressInfo.mobile}}</view>
   </view>
   <view class="form-item row">
     <label class="form-label">收件地址</label>
-    <view class="form-content">{{merchantInfo.addressDetail}}</view>
+    <view class="form-content">{{refundAddressInfo.addressDetail}}</view>
   </view>
 </view>
 
@@ -85,7 +85,7 @@
     <label class="form-label {{status === 1 ? 'requied' : ''}}">快递单号</label>
     <input class="form-input" wx:if="{{status === 1}}" value="{{shipSn}}" bindinput="setShipSn" placeholder="请输入快递单号" />
     <view class="form-content" wx:if="{{status === 2}}">{{shipSn}}</view>
-    <view class="ship-btn" wx:if="{{status === 2}}" bindtap="navToShipping">查看物流</view>
+    <view class="ship-btn" wx:if="{{status === 2}}" bindtap="checkShippingInfo">查看物流</view>
   </view>
 </view>
 

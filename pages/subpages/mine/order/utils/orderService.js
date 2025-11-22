@@ -338,13 +338,6 @@ class OrderService extends BaseService {
     });
   }
 
-  async getShippingTracker(order_id) {
-    return await this.get({
-      url: `${this.baseUrl}/order/tracker-order-id`,
-      data: { order_id }
-    });
-  }
-
   async getEvaluation(orderId) {
     return await this.get({
       url: `${this.baseUrl}/goods/evaluation/detail`,
@@ -365,6 +358,20 @@ class OrderService extends BaseService {
       url: `${this.baseUrl}/goods/evaluation/add`,
       data: { orderId, goodsIds, score, content, imageList },
       success
+    });
+  }
+
+  async getRefundAddressInfo(id) {
+    return await this.get({
+      url: `${this.baseUrl}/shop/refund_address/detail`,
+      data: { id }
+    });
+  }
+
+  async getShippingInfo(shipCode, shipSn, mobile) {
+    return await this.get({
+      url: `${this.baseUrl}/shipping_info`,
+      data: { shipCode, shipSn, mobile }
     });
   }
 }
