@@ -43,7 +43,7 @@ class BaseService extends Base {
   }
 
   async refreshToken() {
-    const token = await this.get({ url: `${this.baseUrl}/auth/token_refresh` });
+    const token = await this.post({ url: `${this.baseUrl}/auth/token_refresh` });
     if (token) {
       wx.setStorageSync("token", token);
     }
