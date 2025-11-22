@@ -1,11 +1,11 @@
 <view class="container">
   <view class="card">
     <view class="form" wx:if="{{userInfo.password}}">
-      <view class="title">原始密码</view>
+      <view class="title">原密码</view>
       <input 
         class="password-input" 
         bindinput="setPassword" 
-        placeholder="请输入原始密码" 
+        placeholder="请输入原密码" 
       />
     </view>
     
