@@ -92,6 +92,8 @@
       "mine/merchant/subpages/set-meal-order/subpages/order-detail/index",
       "mine/merchant/subpages/goods-order/index",
       "mine/merchant/subpages/goods-order/subpages/order-detail/index",
+      "mine/merchant/subpages/goods-refund/index",
+      "mine/merchant/subpages/goods-refund/subpages/refund-detail/index",
       "mine/merchant/subpages/order-search/index",
       "mine/create-video/index",
       "mine/create-note/index",

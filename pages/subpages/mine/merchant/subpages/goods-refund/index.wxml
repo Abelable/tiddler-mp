@@ -1,0 +1,33 @@
+<view class="header" style="padding-top: {{statusBarHeight}}px;">
+  <view class="nav-bar row">
+    <back-icon />
+    <view class="search-bar" bindtap="search">
+      <image class="search-icon" src="https://static.tiddler.cn/mp/search.png" />
+      <text class="placeholder">搜索订单</text>
+    </view>
+  </view>
+  <view class="menu-wrap">
+    <view 
+      class="menu-item {{curMenuIndex === index ? 'selected' : ''}} row center" 
+      wx:for="{{menuList}}" wx:key="index" 
+      bindtap="selectMenu" data-index="{{index}}"
+    >
+      <view>{{item.name}}</view>
+      <view class="total-spot" wx:if="{{item.total > 0}}" />
+    </view>
+  </view>
+</view>
+
+<view class="content" style="margin-top: {{statusBarHeight + 88}}px;">
+  <view class="order-list">
+    <order-item 
+      wx:for="{{orderList}}" 
+      wx:key="index" 
+      item="{{item}}" 
+      index="{{index}}" 
+      bind:update="updateOrderList"
+    />
+  </view>
+  <empty-illus wx:if="{{finished && !orderList.length}}" desc="暂无订单列表" />
+  <view class="no-more-tips" wx:if="{{finished && orderList.length}}">～没有更多啦～</view>
+</view>
