@@ -1,4 +1,3 @@
-import { store } from "../../../../../../store/index";
 import RefundService from "./utils/refundService";
 
 const refundService = new RefundService();
@@ -11,17 +10,16 @@ Page({
       { name: "全部", status: undefined, total: 0 },
       { name: "待审核", status: 0, total: 0 },
       { name: "待确认", status: 2, total: 0 },
+      { name: "已退款", status: 3, total: 0 },
+      { name: "已驳回", status: 4, total: 0 }
     ],
     curMenuIndex: 0,
     refundList: [],
     finished: false
   },
 
-  onLoad({ status = "0" }) {
-    const curMenuIndex = this.data.menuList.findIndex(
-      item => item.status === Number(status)
-    );
-    this.setData({ curMenuIndex });
+  onLoad({ shopId }) {
+    this.shopId = +shopId
   },
 
   onShow() {
@@ -36,21 +34,19 @@ Page({
   },
 
   async setShopRefundTotal() {
-    const { shopId } = store.userInfo;
-    const orderTotal = await refundService.getShopRefundTotal(shopId);
+    const orderTotal = await refundService.getShopRefundTotal(this.shopId);
     this.setData({
       ["menuList[1].total"]: orderTotal[0],
-      ["menuList[2].total"]: orderTotal[1],
+      ["menuList[2].total"]: orderTotal[1]
     });
   },
 
   async setRefundList(init = false) {
     const limit = 10;
-    const { shopId } = store.userInfo;
     const { menuList, curMenuIndex, refundList } = this.data;
     if (init) this.page = 0;
     const list = await refundService.getRefundList({
-      shopId,
+      shopId: this.shopId,
       status: menuList[curMenuIndex].status,
       page: ++this.page,
       limit
@@ -91,9 +87,8 @@ Page({
   },
 
   search() {
-   const { shopId } = store.userInfo;
     wx.navigateTo({
-      url: `./subpages/order-search/index?shopId=${shopId}`
+      url: `./subpages/refund-search/index?shopId=${this.shopId}`
     });
   }
 });

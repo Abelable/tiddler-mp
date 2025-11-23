@@ -1,4 +1,3 @@
-import { store } from "../../../../../../store/index";
 import OrderService from "./utils/orderService";
 
 const orderService = new OrderService();
@@ -19,7 +18,9 @@ Page({
     finished: false
   },
 
-  onLoad({ status = "0" }) {
+  onLoad({ shopId, status = "0" }) {
+    this.shopId = +shopId;
+
     const curMenuIndex = this.data.menuList.findIndex(
       item => item.status === Number(status)
     );
@@ -38,8 +39,7 @@ Page({
   },
 
   async setShopOrderTotal() {
-    const { shopId } = store.userInfo;
-    const orderTotal = await orderService.getShopOrderTotal(shopId);
+    const orderTotal = await orderService.getShopOrderTotal(this.shopId);
     this.setData({
       ["menuList[1].total"]: orderTotal[0],
       ["menuList[2].total"]: orderTotal[1],
@@ -49,11 +49,10 @@ Page({
 
   async setOrderList(init = false) {
     const limit = 10;
-    const { shopId } = store.userInfo;
     const { menuList, curMenuIndex, orderList } = this.data;
     if (init) this.page = 0;
     const list = await orderService.getOrderList({
-      shopId,
+      shopId: this.shopId,
       status: menuList[curMenuIndex].status,
       page: ++this.page,
       limit
@@ -95,9 +94,8 @@ Page({
   },
 
   search() {
-   const { shopId } = store.userInfo;
     wx.navigateTo({
-      url: `./subpages/order-search/index?shopId=${shopId}`
+      url: `./subpages/order-search/index?shopId=${this.shopId}`
     });
   }
 });

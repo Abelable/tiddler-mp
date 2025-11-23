@@ -1,8 +1,8 @@
-import { store } from "../../../../../../store/index";
-import { WEBVIEW_BASE_URL } from "../../../../../../config";
-import MerchantService from '../../utils/merchantService'
+import { store } from "../../../../../../../../store/index";
+import { WEBVIEW_BASE_URL } from "../../../../../../../../config";
+import RefundService from "../../utils/refundService";
 
-const merchantService = new MerchantService()
+const refundService = new RefundService();
 
 Component({
   options: {
@@ -49,8 +49,8 @@ Component({
           if (result.confirm) {
             const { shopId } = store.userInfo;
             const { item, index } = this.properties;
-            merchantService.refundGoodsOrder(shopId, item.id, () => {
-              this.setData({ ['item.status']: 204 });
+            refundService.refundGoodsOrder(shopId, item.id, () => {
+              this.setData({ ["item.status"]: 204 });
               this.triggerEvent("update", { type: "refund", index });
             });
           }
