@@ -1,6 +1,6 @@
 <van-popup show="{{show}}" round position="bottom" bind:close="hide">
   <van-datetime-picker 
-    title="选择自取时间" 
+    title="选择自提时间" 
     type="datetime" 
     min-date="{{minDate}}"
     min-hour="{{9}}"
