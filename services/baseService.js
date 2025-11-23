@@ -668,6 +668,13 @@ class BaseService extends Base {
       url: `${this.baseUrl}/shop/express_options`
     });
   }
+
+  async getShippingInfo(shipCode, shipSn, mobile) {
+    return await this.get({
+      url: `${this.baseUrl}/shipping_info`,
+      data: { shipCode, shipSn, mobile }
+    });
+  }
 }
 
 export default BaseService;

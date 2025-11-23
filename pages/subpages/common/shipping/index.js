@@ -1,6 +1,6 @@
-import OrderService from "../../../utils/orderService";
+import BaseService from "../../../../services/baseService";
 
-const orderService = new OrderService();
+const baseService = new BaseService();
 
 Page({
   data: {
@@ -19,12 +19,12 @@ Page({
   },
 
   async setExpressOptions() {
-    this.expressOptions = await orderService.getExpressOptions();
+    this.expressOptions = await baseService.getExpressOptions();
     this.setData({ expressOptions });
   },
 
   async setShippingInfo(shipCode, shipSn, mobile) {
-    const traces = await orderService.getShippingInfo(shipCode, shipSn, mobile);
+    const traces = await baseService.getShippingInfo(shipCode, shipSn, mobile);
     this.setData({ traces });
   }
 });

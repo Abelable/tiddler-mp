@@ -68,7 +68,8 @@ Component({
 
     initOverviewData() {
       this.setShopIncomeOverview();
-      this.setShopOrderTotal();
+      this.setShopMealTicketOrderTotal();
+      this.setShopSetMealOrderTotal();
     },
 
     async setShopIncomeOverview() {

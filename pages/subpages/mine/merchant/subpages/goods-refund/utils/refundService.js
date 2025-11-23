@@ -1,12 +1,20 @@
-import MerchantService from '../../../utils/merchantService'
+import { cleanObject } from "../../../../../../../utils/index";
+import MerchantService from "../../../utils/merchantService";
 
 class RefundService extends MerchantService {
-  async getRefundList({ shopId, status, page, limit = 10 }) {
+  getShopRefundTotal(shopId) {
+    return this.get({
+      url: `${this.baseUrl}/shop/refund/total`,
+      data: { shopId }
+    });
+  }
+
+  async getRefundList({ shopId, status, orderSn, page, limit = 10 }) {
     const { list = [] } =
       (await this.post({
         url: `${this.baseUrl}/shop/refund/list`,
-        data: { shopId, status, page, limit },
-        loadingTitle: "正在加载",
+        data: cleanObject({ shopId, status, orderSn, page, limit }),
+        loadingTitle: "正在加载"
       })) || {};
     return list;
   }
@@ -15,9 +23,9 @@ class RefundService extends MerchantService {
     return await this.get({
       url: `${this.baseUrl}/shop/refund/detail`,
       data: { shopId, orderId },
-      loadingTitle: '正在加载'
-    })
+      loadingTitle: "正在加载"
+    });
   }
 }
 
-export default RefundService
+export default RefundService;

@@ -367,13 +367,6 @@ class OrderService extends BaseService {
       data: { id }
     });
   }
-
-  async getShippingInfo(shipCode, shipSn, mobile) {
-    return await this.get({
-      url: `${this.baseUrl}/shipping_info`,
-      data: { shipCode, shipSn, mobile }
-    });
-  }
 }
 
 export default OrderService;

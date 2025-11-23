@@ -243,7 +243,7 @@ Page({
     const { expressOptions, selectedExpressIdx, shipSn, refundAddressInfo } =
       this.data;
     const { code } = expressOptions[selectedExpressIdx];
-    const url = `../shipping/index?shipCode=${code}&shipSn=${shipSn}&mobile=${refundAddressInfo.mobile}`;
+    const url = `/pages/subpages/common/shipping/index?shipCode=${code}&shipSn=${shipSn}&mobile=${refundAddressInfo.mobile}`;
     wx.navigateTo({ url });
   }
 });

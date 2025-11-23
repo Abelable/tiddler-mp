@@ -3,7 +3,7 @@
     <back-icon />
     <view class="search-bar" bindtap="search">
       <image class="search-icon" src="https://static.tiddler.cn/mp/search.png" />
-      <text class="placeholder">搜索订单</text>
+      <text class="placeholder">搜索售后订单</text>
     </view>
   </view>
   <view class="menu-wrap">
@@ -28,6 +28,6 @@
       bind:update="updateOrderList"
     />
   </view>
-  <empty-illus wx:if="{{finished && !orderList.length}}" desc="暂无售后列表" />
+  <empty-illus wx:if="{{finished && !orderList.length}}" desc="暂无售后订单列表" />
   <view class="no-more-tips" wx:if="{{finished && orderList.length}}">～没有更多啦～</view>
 </view>

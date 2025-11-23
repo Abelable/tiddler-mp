@@ -8,14 +8,12 @@ Page({
   data: {
     statusBarHeight,
     menuList: [
-      { name: "全部", status: 0, total: 0 },
-      { name: "待发货", status: 1, total: 0 },
-      { name: "待收货", status: 2, total: 0 },
-      { name: "待自提", status: 3, total: 0 },
-      { name: "已评价", status: 4, total: 0 },
+      { name: "全部", status: undefined, total: 0 },
+      { name: "待审核", status: 0, total: 0 },
+      { name: "待确认", status: 2, total: 0 },
     ],
     curMenuIndex: 0,
-    orderList: [],
+    refundList: [],
     finished: false
   },
 
@@ -27,39 +25,38 @@ Page({
   },
 
   onShow() {
-    this.setShopOrderTotal();
-    this.setOrderList(true);
+    this.setShopRefundTotal();
+    this.setRefundList(true);
   },
 
   selectMenu(e) {
     const { index: curMenuIndex } = e.currentTarget.dataset;
     this.setData({ curMenuIndex });
-    this.setOrderList(true);
+    this.setRefundList(true);
   },
 
-  async setShopOrderTotal() {
+  async setShopRefundTotal() {
     const { shopId } = store.userInfo;
-    const orderTotal = await refundService.getShopOrderTotal(shopId);
+    const orderTotal = await refundService.getShopRefundTotal(shopId);
     this.setData({
       ["menuList[1].total"]: orderTotal[0],
       ["menuList[2].total"]: orderTotal[1],
-      ["menuList[3].total"]: orderTotal[2],
     });
   },
 
-  async setOrderList(init = false) {
+  async setRefundList(init = false) {
     const limit = 10;
     const { shopId } = store.userInfo;
-    const { menuList, curMenuIndex, orderList } = this.data;
+    const { menuList, curMenuIndex, refundList } = this.data;
     if (init) this.page = 0;
-    const list = await refundService.getOrderList({
+    const list = await refundService.getRefundList({
       shopId,
       status: menuList[curMenuIndex].status,
       page: ++this.page,
       limit
     });
     this.setData({
-      orderList: init ? list : [...orderList, ...list]
+      refundList: init ? list : [...refundList, ...list]
     });
     if (list.length < limit) {
       this.setData({ finished: true });
@@ -67,29 +64,28 @@ Page({
   },
 
   onPullDownRefresh() {
-    this.setOrderList(true);
+    this.setRefundList(true);
     wx.stopPullDownRefresh();
   },
 
   onReachBottom() {
-    this.setOrderList();
+    this.setRefundList();
   },
 
   updateOrderList(e) {
     const statusEmuns = {
-      cancel: 102,
-      pay: 201,
-      refund: 204,
-      confirm: 401
+      approve: 1,
+      reject: 4,
+      confirm: 3
     };
     const { type, index } = e.detail;
-    const { curMenuIndex, orderList } = this.data;
+    const { curMenuIndex, refundList } = this.data;
     if (type === "delete" || curMenuIndex !== 0) {
-      orderList.splice(index, 1);
-      this.setData({ orderList });
+      refundList.splice(index, 1);
+      this.setData({ refundList });
     } else {
       this.setData({
-        [`orderList[${index}].status`]: statusEmuns[type]
+        [`refundList[${index}].status`]: statusEmuns[type]
       });
     }
   },
