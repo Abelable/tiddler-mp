@@ -1,6 +1,6 @@
-import OrderService from "../../../utils/orderService";
+import RefundService from "./utils/refundService";
 
-const orderService = new OrderService();
+const refundService = new RefundService();
 
 Page({
   data: {
@@ -17,10 +17,11 @@ Page({
     shipSn: ""
   },
 
-  onLoad({ orderId, orderSn, couponId, goodsId, refundAddressId }) {
+  onLoad({ orderId, orderSn, couponId, shopId, goodsId, refundAddressId }) {
     this.orderId = +orderId;
     this.orderSn = orderSn;
     this.couponId = +couponId;
+    this.shopId = +shopId;
     this.goodsId = +goodsId;
     this.refundAddressId = +refundAddressId;
 
@@ -29,7 +30,10 @@ Page({
   },
 
   async setRefundInfo() {
-    const refundInfo = await orderService.getRefund(this.orderId, this.goodsId);
+    const refundInfo = await refundService.getRefund(
+      this.orderId,
+      this.goodsId
+    );
     if (refundInfo) {
       const {
         id,
@@ -69,7 +73,7 @@ Page({
   },
 
   async setRefundAmount() {
-    const refundAmount = await orderService.getRefundAmount(
+    const refundAmount = await refundService.getRefundAmount(
       this.orderId,
       this.goodsId,
       this.couponId
@@ -78,7 +82,7 @@ Page({
   },
 
   async setRefundAddressInfo() {
-    const refundAddressInfo = await orderService.getRefundAddressInfo(
+    const refundAddressInfo = await refundService.getRefundAddressInfo(
       this.refundAddressId
     );
     this.setData({ refundAddressInfo });
@@ -95,7 +99,7 @@ Page({
   },
 
   async setExpressOptions() {
-    const expressOptions = await orderService.getExpressOptions();
+    const expressOptions = await refundService.getExpressOptions();
     this.setData({ expressOptions });
   },
 
@@ -108,7 +112,7 @@ Page({
           { status: "uploading", message: "上传中", deletable: true }
         ]
       });
-      const url = (await orderService.uploadFile(item.url)) || "";
+      const url = (await refundService.uploadFile(item.url)) || "";
       if (url) {
         this.setData({
           [`imageList[${index + _index}]`]: {
@@ -163,9 +167,9 @@ Page({
         });
         return;
       }
-      orderService.submitShipInfo(
+      refundService.submitShipInfo(
         this.refundInfoId,
-        expressOptions[selectedExpressIdx].value,
+        expressOptions[selectedExpressIdx].code,
         shipSn,
         () => {
           wx.showToast({
@@ -194,7 +198,7 @@ Page({
         return;
       }
       if (this.refundInfoId) {
-        orderService.editRefund(
+        refundService.editRefund(
           this.refundInfoId,
           refundType + 1,
           refundReason,
@@ -210,7 +214,8 @@ Page({
           }
         );
       } else {
-        orderService.addRefund(
+        refundService.addRefund(
+          this.shopId,
           this.orderId,
           this.orderSn,
           this.goodsId,
@@ -235,8 +240,8 @@ Page({
   checkShippingInfo() {
     const { expressOptions, selectedExpressIdx, shipSn, refundAddressInfo } =
       this.data;
-    const shipCode = expressOptions[selectedExpressIdx].value;
-    const url = `../shipping/index?shipCode=${shipCode}&shipSn=${shipSn}&mobile=${refundAddressInfo.mobile}`;
+    const { code } = expressOptions[selectedExpressIdx];
+    const url = `../shipping/index?shipCode=${code}&shipSn=${shipSn}&mobile=${refundAddressInfo.mobile}`;
     wx.navigateTo({ url });
   }
 });
