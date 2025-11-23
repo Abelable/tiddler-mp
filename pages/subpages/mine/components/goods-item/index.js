@@ -4,6 +4,6 @@ Component({
   },
 
   properties: {
-    list: Array
+    item: Object
   },
 })

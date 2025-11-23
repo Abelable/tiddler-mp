@@ -19,7 +19,7 @@
     </view>
   </view>
   <view class="list-content">
-    <goods-list list="{{item.goodsList || []}}" />
+    <goods-item wx:for="{{item.goodsList}}" wx:key="index" wx:for-item="goods" item="{{goods}}" />
   </view>
   <view class="list-footer">
     <view class="total-info row baseline">

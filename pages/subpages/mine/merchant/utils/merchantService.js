@@ -1,92 +1,92 @@
 import BaseService from "../../../../../services/baseService";
 
 class MerchantService extends BaseService {
-  getScenicShopIncomeSum(shopId) {
-    return this.get({
+  async getScenicShopIncomeSum(shopId) {
+    return await this.get({
       url: `${this.baseUrl}/scenic/shop/income/sum`,
       data: { shopId }
     });
   }
 
-  getScenicShopTimeData(shopId, timeType) {
-    return this.get({
+  async getScenicShopTimeData(shopId, timeType) {
+    return await this.get({
       url: `${this.baseUrl}/scenic/shop/income/time_data`,
       data: { shopId, timeType }
     });
   }
 
-  getScenicShopOrderTotal(shopId) {
-    return this.get({
+  async getScenicShopOrderTotal(shopId) {
+    return await this.get({
       url: `${this.baseUrl}/scenic/shop/order/total`,
       data: { shopId }
     });
   }
 
-  getHotelShopIncomeSum(shopId) {
-    return this.get({
+  async getHotelShopIncomeSum(shopId) {
+    return await this.get({
       url: `${this.baseUrl}/hotel/shop/income/sum`,
       data: { shopId }
     });
   }
 
-  getHotelShopTimeData(shopId, timeType) {
-    return this.get({
+  async getHotelShopTimeData(shopId, timeType) {
+    return await this.get({
       url: `${this.baseUrl}/hotel/shop/income/time_data`,
       data: { shopId, timeType }
     });
   }
 
-  getHotelShopOrderTotal(shopId) {
-    return this.get({
+  async getHotelShopOrderTotal(shopId) {
+    return await this.get({
       url: `${this.baseUrl}/hotel/shop/order/total`,
       data: { shopId }
     });
   }
 
-  getCateringShopIncomeSum(shopId) {
-    return this.get({
+  async getCateringShopIncomeSum(shopId) {
+    return await this.get({
       url: `${this.baseUrl}/catering/shop/income/sum`,
       data: { shopId }
     });
   }
 
-  getCateringShopTimeData(shopId, timeType) {
-    return this.get({
+  async getCateringShopTimeData(shopId, timeType) {
+    return await this.get({
       url: `${this.baseUrl}/catering/shop/income/time_data`,
       data: { shopId, timeType }
     });
   }
 
-  getShopMealTicketOrderTotal(shopId) {
-    return this.get({
+  async getShopMealTicketOrderTotal(shopId) {
+    return await this.get({
       url: `${this.baseUrl}/catering/shop/meal_ticket/order/total`,
       data: { shopId }
     });
   }
 
-  getShopSetMealOrderTotal(shopId) {
-    return this.get({
+  async getShopSetMealOrderTotal(shopId) {
+    return await this.get({
       url: `${this.baseUrl}/catering/shop/set_meal/order/total`,
       data: { shopId }
     });
   }
 
-  getShopIncomeSum(shopId) {
-    return this.get({
+  async getShopIncomeSum(shopId) {
+    return await this.get({
       url: `${this.baseUrl}/shop/income/sum`,
       data: { shopId }
     });
   }
 
-  getShopTimeData(shopId, timeType) {
-    return this.get({
+  async getShopTimeData(shopId, timeType) {
+    return await this.get({
       url: `${this.baseUrl}/shop/income/time_data`,
       data: { shopId, timeType }
     });
   }
 
-  getShopOrderTotal(shopId) {
-    return this.get({
+  async getShopOrderTotal(shopId) {
+    return await this.get({
       url: `${this.baseUrl}/shop/order/total`,
       data: { shopId }
     });

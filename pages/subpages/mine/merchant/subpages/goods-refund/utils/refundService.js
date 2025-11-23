@@ -2,8 +2,8 @@ import { cleanObject } from "../../../../../../../utils/index";
 import MerchantService from "../../../utils/merchantService";
 
 class RefundService extends MerchantService {
-  getShopRefundTotal(shopId) {
-    return this.get({
+  async getShopRefundTotal(shopId) {
+    return await this.get({
       url: `${this.baseUrl}/shop/refund/total`,
       data: { shopId }
     });

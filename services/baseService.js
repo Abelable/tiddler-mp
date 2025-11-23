@@ -73,7 +73,7 @@ class BaseService extends Base {
   }
 
   async getUserInfo(userId) {
-    return this.get({
+    return await this.get({
       url: `${this.baseUrl}/user/info`,
       data: { userId }
     });
@@ -649,22 +649,22 @@ class BaseService extends Base {
     });
   }
 
-  getEvaluationTagList(scene, type) {
-    return this.get({
+  async getEvaluationTagList(scene, type) {
+    return await this.get({
       url: `${this.baseUrl}/evaluation_tag_list`,
       data: { scene, type }
     });
   }
 
-  getComplaintOptions(type) {
-    return this.get({
+  async getComplaintOptions(type) {
+    return await this.get({
       url: `${this.baseUrl}/complaint_options`,
       data: { type }
     });
   }
 
-  getExpressOptions() {
-    return this.get({
+  async getExpressOptions() {
+    return await this.get({
       url: `${this.baseUrl}/shop/express_options`
     });
   }

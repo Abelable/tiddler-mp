@@ -1,9 +1,6 @@
 .goods-item {
   margin-bottom: 24rpx;
 }
-.goods-item:last-child {
-  margin-bottom: 0;
-}
 .goods-img {
   margin-right: 18rpx;
   width: 184rpx;

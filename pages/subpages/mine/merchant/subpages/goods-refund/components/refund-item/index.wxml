@@ -1,21 +1,21 @@
 <wxs module="ORDER" src="../../../utils/order.wxs" />
 
-<view class="order-item" catchtap="navToDetail">
+<view class="refund-item" catchtap="navToDetail">
   <view class="list-header row between">
     <view class="user-info row" catchtap="contact">
       <image class="user-avatar" src="{{item.userInfo.avatar}}?x-oss-process=image/format,webp" mode="aspectFill" lazy-load />
       <view class="user-name omit single">{{item.userInfo.nickname}}</view>
       <image style="width: 20rpx; height: 20rpx;" src="/images/arrow_gray.png" />
     </view>
-    <view class="order-status">{{ORDER.statusDescForShop(item.status)}}</view>
+    <view class="order-status">{{['待审核', '同意退货，待寄回', '已寄出，待确认', '退款成功', '已驳回'][item.status]}}</view>
   </view>
   <view class="list-content">
-    <goods-list list="{{item.goodsList || []}}" />
+    <goods-item item="{{item.goodsInfo}}" />
   </view>
   <view class="list-footer">
     <view class="total-info row baseline">
-      <view>{{ORDER.paymentDesc(item.status)}}：</view>
-      <price-unit price="{{item.paymentAmount || 0}}" color="#333" fontSize="26rpx" integerFontSize="36rpx" />
+      <view>退款金额：</view>
+      <price-unit price="{{item.refundAmount || 0}}" color="#333" fontSize="26rpx" integerFontSize="36rpx" />
     </view>
     <view class="deliver-info-wrap">
       <view class="deliver-info row" catchtap="copyOrderSn">
@@ -23,29 +23,40 @@
         <view class="order-sn">订单编号 {{item.orderSn}}</view>
         <image class="copy-icon" src="./images/copy.png" />
       </view>
-      <view class="deliver-info row top" wx:if="{{item.deliveryMode === 1}}" catchtap="copyAddress">
-        <image class="address-icon" src="./images/address.png" />
-        <view class="address-detail">{{item.consignee}}，{{item.mobile}}，{{item.address}}</view>
-        <image class="copy-icon" src="./images/copy.png" />
-      </view>
     </view>
     <view class="btn-wrap">
       <button class="btn" catchtap="navToDetail" hover-class="none">查看详情</button>
       <button 
         class="btn active" 
-        wx:if="{{item.status === 201 || item.status === 202 || item.status === 302}}" 
-        catchtap="refund" 
+        wx:if="{{item.status === 0}}" 
+        catchtap="approve" 
         hover-class="none"
       >
-        退款
+        {{item.refundType === 1 ? "同意退款" : "同意退货"}}
       </button>
       <button 
         class="btn active" 
-        wx:if="{{item.status === 201 && item.deliveryMode === 1}}" 
-        catchtap="ship" 
+        wx:if="{{item.status === 0}}" 
+        catchtap="reject" 
         hover-class="none"
       >
-        发货
+        {{item.refundType === 1 ? "拒绝退款" : "拒绝退货"}}
+      </button>
+      <button 
+        class="btn active" 
+        wx:if="{{item.status === 2}}" 
+        catchtap="checkShpping" 
+        hover-class="none"
+      >
+        查看物流
+      </button>
+      <button 
+        class="btn active" 
+        wx:if="{{item.status === 2}}" 
+        catchtap="confirm" 
+        hover-class="none"
+      >
+        确认收货
       </button>
     </view>
   </view>
