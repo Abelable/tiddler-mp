@@ -70,7 +70,7 @@
   </view>
 
   <view class="card">
-    <goods-list list="{{orderInfo.goodsList}}" status="{{orderInfo.status}}" />
+    <goods-item />
     <view class="list row between">
       <view class="title">商品总价</view>
       <price-unit price="{{orderInfo.goodsPrice || 0}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />

@@ -4,8 +4,7 @@ Component({
   },
 
   properties: {
-    list: Array,
-    status: Number
+    item: Object,
   },
   
   methods: {
