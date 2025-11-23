@@ -36,7 +36,7 @@
 
     <view class="function-wrap" wx:if="{{authorInfo.shopId}}">
       <navigator class="function-item" url="/pages/subpages/mall/goods/subpages/shop/index?id={{authorInfo.shopId}}" hover-class="none">
-        <image class="function-icon" src="https://img.ubo.vip/tiddler/mine/shop.png" />
+        <image class="function-icon" src="https://static.tiddler.cn/mp/mine/shop.png" />
         <view class="function-desc">作者店铺</view>
       </navigator>
     </view>

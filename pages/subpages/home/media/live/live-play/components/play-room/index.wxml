@@ -18,7 +18,7 @@
               class="exsit-full-screen-icon" 
               wx:if="{{fullScreen}}" 
               catchtap="exitFullScreen" 
-              src="https://img.ubo.vip/mp/index/room/exit-fullscreen-icon.png" 
+              src="https://static.tiddler.cn/mp/live/exit_fullscreen.png" 
             />
           </view>
 
@@ -32,7 +32,7 @@
             class="full-screen-icon" 
             wx:if="{{roomInfo.direction === 2 && !fullScreen}}" 
             catchtap="setFullScreen" 
-            src="https://img.ubo.vip/mp/index/room/request-fullscreen-icon.png" 
+            src="https://static.tiddler.cn/mp/live/fullscreen.png" 
           />
   
           <view class="footer">

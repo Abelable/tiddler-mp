@@ -2,7 +2,7 @@
   <view class="card row between">
     <view class="cover-uploader row center" bindtap="cropCover">
       <block wx:if="{{!cover && !uploadCoverLoading}}">
-        <image class="uploader-icon" src="https://img.ubo.vip/mp/sass/create-live/plus.png" />
+        <image class="uploader-icon" src="https://static.tiddler.cn/mp/live/plus.png" />
         <view class="uploader-size">比例2:3</view>
         <view class="uploader-tips">上传列表封面</view>
       </block>
@@ -14,7 +14,7 @@
     </view>
     <view class="share-cover-uploader row center" bindtap="cropShareCover">
       <block wx:if="{{!shareCover && !uploadShareCoverLoading}}">
-        <image class="uploader-icon" src="https://img.ubo.vip/mp/sass/create-live/plus.png" />
+        <image class="uploader-icon" src="https://static.tiddler.cn/mp/live/plus.png" />
         <view class="uploader-size">比例1:1</view>
         <view class="uploader-tips">上传分享封面</view>
       </block>

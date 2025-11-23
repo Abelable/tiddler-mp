@@ -45,7 +45,7 @@
     <view class="name" bindtap="navToUserInfoSetting">{{userInfo.nickname}}</view>
     <view class="introduce row" wx:if="{{userInfo}}" bindtap="navToUserInfoSetting">
       <text>{{ userInfo.signature || '点击添加签名，让大家了解你～' }}</text>
-      <image class="edit-icon" wx:if="{{!userInfo.signature}}" src="https://img.ubo.vip/tiddler/mine/edit.png" />
+      <image class="edit-icon" wx:if="{{!userInfo.signature}}" src="https://static.tiddler.cn/mp/mine/edit.png" />
     </view>
 
     <view class="tool-wrap {{toolList.length > 5 ? 'overflow' : ''}}">
@@ -87,7 +87,7 @@
             <view class="total-info row between">
               <view class="total-tips">共{{videoListTotal}}条视频游记</view>
               <button class="add-btn" bindtap="navToVideoCreate" hover-class="none">
-                <image class="add-icon" src="https://img.ubo.vip/tiddler/mine/add.png" />
+                <image class="add-icon" src="https://static.tiddler.cn/mp/mine/add.png" />
                 <text>视频游记</text>
               </button>
             </view>
@@ -114,7 +114,7 @@
             <view class="total-info row between">
               <view class="total-tips">共{{noteListTotal}}条图文游记</view>
               <button class="add-btn" bindtap="navToNoteCreate" hover-class="none">
-                <image class="add-icon" src="https://img.ubo.vip/tiddler/mine/add.png" />
+                <image class="add-icon" src="https://static.tiddler.cn/mp/mine/add.png" />
                 <text>图文游记</text>
               </button>
             </view>

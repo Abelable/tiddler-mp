@@ -8,6 +8,6 @@
       <view class="code">{{STRING.codeFilter(code)}}</view>
       <view class="tips">为了保证您的权益，请勿提前提供给商家</view>
     </view>
-    <image class="close-icon" bindtap="hide" src="https://img.ubo.vip/mp/index/close-icon.png" />
+    <image class="close-icon" bindtap="hide" src="https://static.tiddler.cn/mp/home/close_icon.webp" />
   </view>
 </view>

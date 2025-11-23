@@ -172,7 +172,7 @@ Component({
               style: `top: ${y - 40}px; left: ${
                 x - 40
               }px; transform: rotate(${deg}deg); animation: float 0.6s linear;`,
-              url: "https://img.ubo.vip/mp/praise-heart.png",
+              url: "https://static.tiddler.cn/mp/live/praise_heart.png",
             };
             this.setData({
               [`praiseHeartArr[${this.data.praiseHeartArr.length}]`]:
