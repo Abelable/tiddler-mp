@@ -1,3 +1,4 @@
+import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
 import { store } from "../../../../../../store/index";
 import { WEBVIEW_BASE_URL } from "../../../../../../config";
 import ShopService from "./utils/shopService";
@@ -26,6 +27,13 @@ Component({
     addGlobalClass: true
   },
 
+  behaviors: [storeBindingsBehavior],
+
+  storeBindings: {
+    store,
+    fields: ["userInfo"]
+  },
+
   lifetimes: {
     attached() {
       this.init();
@@ -34,10 +42,14 @@ Component({
 
   pageLifetimes: {
     show() {
-      this.init();
+      if (this.inited) {
+        this.initOverviewData();
+      }
     }
   },
+
   data: {
+    shopId: 0,
     shopIncomeOverview: null,
     shopOrderTotal: null,
     orderToolList,
@@ -46,21 +58,30 @@ Component({
 
   methods: {
     init() {
+      const { shopId, shopManagerList } = store.userInfo;
+      this.setData({
+        shopId: shopId || shopManagerList[0].shopId
+      });
+      this.inited = true;
+      this.initOverviewData();
+    },
+
+    initOverviewData() {
       this.setShopIncomeOverview();
       this.setShopOrderTotal();
     },
 
     async setShopIncomeOverview() {
-      const { shopId } = store.userInfo;
       const shopIncomeOverview = await shopService.getShopIncomeOverview(
-        shopId
+        this.data.shopId
       );
       this.setData({ shopIncomeOverview });
     },
 
     async setShopOrderTotal() {
-      const { shopId } = store.userInfo;
-      const shopOrderTotal = await shopService.getShopOrderTotal(shopId);
+      const shopOrderTotal = await shopService.getShopOrderTotal(
+        this.data.shopId
+      );
       this.setData({ shopOrderTotal });
     },
 
@@ -84,8 +105,7 @@ Component({
 
     checkTool(e) {
       const { route } = e.currentTarget.dataset;
-      const { shopId } = store.userInfo;
-      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/goods/shop/${route}&shop_id=${shopId}`;
+      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/goods/shop/${route}&shop_id=${this.data.shopId}`;
       wx.navigateTo({ url });
     }
   }
