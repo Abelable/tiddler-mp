@@ -11,7 +11,7 @@ Page({
       { name: "全部", status: 0, total: 0 },
       { name: "待发货", status: 1, total: 0 },
       { name: "待收货", status: 2, total: 0 },
-      { name: "待使用", status: 3, total: 0 },
+      { name: "待自提", status: 3, total: 0 },
       { name: "已评价", status: 4, total: 0 },
     ],
     curMenuIndex: 0,
