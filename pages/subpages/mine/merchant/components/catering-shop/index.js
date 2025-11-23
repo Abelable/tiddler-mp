@@ -1,3 +1,4 @@
+import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
 import { store } from "../../../../../../store/index";
 import { WEBVIEW_BASE_URL } from "../../../../../../config";
 import ShopService from "./utils/shopService";
@@ -25,6 +26,13 @@ Component({
     addGlobalClass: true
   },
 
+  behaviors: [storeBindingsBehavior],
+
+  storeBindings: {
+    store,
+    fields: ["userInfo"]
+  },
+
   lifetimes: {
     attached() {
       this.init();
@@ -33,11 +41,14 @@ Component({
 
   pageLifetimes: {
     show() {
-      this.init();
+      if (this.inited) {
+        this.initOverviewData();
+      }
     }
   },
 
   data: {
+    shopId: 0,
     shopIncomeOverview: null,
     shopMealTicketOrderTotal: null,
     shopSetMealOrderTotal: null,
@@ -47,30 +58,35 @@ Component({
 
   methods: {
     init() {
+      const { cateringShopId, cateringShopManagerList } = store.userInfo;
+      this.setData({
+        shopId: cateringShopId || cateringShopManagerList[0].shopId
+      });
+      this.inited = true;
+      this.initOverviewData();
+    },
+
+    initOverviewData() {
       this.setShopIncomeOverview();
-      this.setShopMealTicketOrderTotal();
-      this.setShopSetMealOrderTotal();
+      this.setShopOrderTotal();
     },
 
     async setShopIncomeOverview() {
-      const { cateringShopId } = store.userInfo;
       const shopIncomeOverview = await shopService.getShopIncomeOverview(
-        cateringShopId
+        this.data.shopId
       );
       this.setData({ shopIncomeOverview });
     },
 
     async setShopMealTicketOrderTotal() {
-      const { cateringShopId } = store.userInfo;
       const shopMealTicketOrderTotal =
-        await shopService.getShopMealTicketOrderTotal(cateringShopId);
+        await shopService.getShopMealTicketOrderTotal(this.data.shopId);
       this.setData({ shopMealTicketOrderTotal });
     },
 
     async setShopSetMealOrderTotal() {
-      const { cateringShopId } = store.userInfo;
       const shopSetMealOrderTotal = await shopService.getShopSetMealOrderTotal(
-        cateringShopId
+        this.data.shopId
       );
       this.setData({ shopSetMealOrderTotal });
     },
@@ -108,8 +124,7 @@ Component({
 
     checkTool(e) {
       const { route } = e.currentTarget.dataset;
-      const { hotelShopId } = store.userInfo;
-      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/hotel_shop/${route}&shop_id=${hotelShopId}`;
+      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/hotel_shop/${route}&shop_id=${this.data.shopId}`;
       wx.navigateTo({ url });
     }
   }

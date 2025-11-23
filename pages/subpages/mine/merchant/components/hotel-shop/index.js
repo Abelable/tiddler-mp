@@ -1,3 +1,4 @@
+import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
 import { store } from "../../../../../../store/index";
 import { WEBVIEW_BASE_URL } from "../../../../../../config";
 import ShopService from "./utils/shopService";
@@ -16,12 +17,19 @@ const toolList = [
   { icon: "room", name: "房间管理", route: "room/list" },
   { icon: "manager", name: "人员管理", route: "manager/list" },
   { icon: "shop", name: "店铺管理", route: "info" },
-  { icon: "bond", name: "店铺保证金", route: "deposit" },
+  { icon: "bond", name: "店铺保证金", route: "deposit" }
 ];
 
 Component({
   options: {
     addGlobalClass: true
+  },
+
+  behaviors: [storeBindingsBehavior],
+
+  storeBindings: {
+    store,
+    fields: ["userInfo"]
   },
 
   lifetimes: {
@@ -32,11 +40,14 @@ Component({
 
   pageLifetimes: {
     show() {
-      this.init();
+      if (this.inited) {
+        this.initOverviewData();
+      }
     }
   },
 
   data: {
+    shopId: 0,
     shopIncomeOverview: null,
     shopOrderTotal: null,
     orderToolList,
@@ -45,21 +56,30 @@ Component({
 
   methods: {
     init() {
+      const { hotelShopId, hotelShopManagerList } = store.userInfo;
+      this.setData({
+        shopId: hotelShopId || hotelShopManagerList[0].shopId
+      });
+      this.inited = true;
+      this.initOverviewData();
+    },
+
+    initOverviewData() {
       this.setShopIncomeOverview();
       this.setShopOrderTotal();
     },
 
     async setShopIncomeOverview() {
-      const { hotelShopId } = store.userInfo;
       const shopIncomeOverview = await shopService.getShopIncomeOverview(
-        hotelShopId
+        this.data.shopId
       );
       this.setData({ shopIncomeOverview });
     },
 
     async setShopOrderTotal() {
-      const { hotelShopId } = store.userInfo;
-      const shopOrderTotal = await shopService.getHotelShopOrderTotal(hotelShopId);
+      const shopOrderTotal = await shopService.getHotelShopOrderTotal(
+        this.data.shopId
+      );
       this.setData({ shopOrderTotal });
     },
 
@@ -83,8 +103,7 @@ Component({
 
     checkTool(e) {
       const { route } = e.currentTarget.dataset;
-      const { hotelShopId } = store.userInfo;
-      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/hotel/shop/${route}&shop_id=${hotelShopId}`;
+      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/hotel/shop/${route}&shop_id=${this.data.shopId}`;
       wx.navigateTo({ url });
     }
   }
