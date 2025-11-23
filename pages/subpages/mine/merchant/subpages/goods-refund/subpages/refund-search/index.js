@@ -4,15 +4,16 @@ const searchService = new SearchService();
 
 Page({
   data: {
+    shopId: 0,
     historyKeywords: [],
     keywords: "",
     isSearching: false,
     orderList: [],
-    verifyCode: "",
+    verifyCode: ""
   },
 
   onLoad({ shopId }) {
-    this.shopId = shopId;
+    this.setData({ shopId: +shopId });
     this.setHistoryKeywords();
   },
 
@@ -48,38 +49,45 @@ Page({
   },
 
   saveKeywords(keywords) {
-    const { type } = this.data;
-    searchService.saveOrderKeywords(this.shopId, type, keywords);
+    const { shopId, type } = this.data;
+    searchService.saveOrderKeywords(shopId, type, keywords);
   },
 
   async setOrderList() {
-    const { type, keywords } = this.data;
+    const { shopId, type, keywords } = this.data;
     let orderList;
     switch (type) {
       case 1:
-        orderList = (await searchService.searchScenicOrderList(this.shopId, keywords)) || [];
+        orderList =
+          (await searchService.searchScenicOrderList(shopId, keywords)) || [];
         break;
       case 2:
-        orderList = (await searchService.searchHotelOrderList(this.shopId, keywords)) || [];
+        orderList =
+          (await searchService.searchHotelOrderList(shopId, keywords)) || [];
         break;
       case 3:
         orderList =
-          (await searchService.searchMealTicketOrderList(this.shopId, keywords)) || [];
+          (await searchService.searchMealTicketOrderList(shopId, keywords)) ||
+          [];
         break;
       case 4:
         orderList =
-          (await searchService.searchSetMealOrderList(this.shopId, keywords)) || [];
+          (await searchService.searchSetMealOrderList(shopId, keywords)) || [];
         break;
       case 5:
-        orderList = (await searchService.searchGoodsOrderList(this.shopId, keywords)) || [];
+        orderList =
+          (await searchService.searchGoodsOrderList(shopId, keywords)) || [];
         break;
     }
     this.setData({ orderList });
   },
 
   async setHistoryKeywords() {
-    const { type } = this.data;
-    const historyKeywords = await searchService.getOrderHistoryKeywords(this.shopId, type);
+    const { shopId, type } = this.data;
+    const historyKeywords = await searchService.getOrderHistoryKeywords(
+      shopId,
+      type
+    );
     this.setData({ historyKeywords });
   },
 
@@ -116,5 +124,5 @@ Page({
         [`orderList[${index}].status`]: statusEmuns[type]
       });
     }
-  },
+  }
 });

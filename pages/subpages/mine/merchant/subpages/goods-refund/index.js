@@ -6,6 +6,7 @@ const { statusBarHeight } = getApp().globalData.systemInfo;
 Page({
   data: {
     statusBarHeight,
+    shopId: 0,
     menuList: [
       { name: "全部", status: undefined, total: 0 },
       { name: "待审核", status: 0, total: 0 },
@@ -19,7 +20,7 @@ Page({
   },
 
   onLoad({ shopId }) {
-    this.shopId = +shopId
+    this.setData({ shopId: +shopId });
   },
 
   onShow() {
@@ -34,7 +35,7 @@ Page({
   },
 
   async setShopRefundTotal() {
-    const orderTotal = await refundService.getShopRefundTotal(this.shopId);
+    const orderTotal = await refundService.getShopRefundTotal(this.data.shopId);
     this.setData({
       ["menuList[1].total"]: orderTotal[0],
       ["menuList[2].total"]: orderTotal[1]
@@ -43,10 +44,10 @@ Page({
 
   async setRefundList(init = false) {
     const limit = 10;
-    const { menuList, curMenuIndex, refundList } = this.data;
+    const { shopId, menuList, curMenuIndex, refundList } = this.data;
     if (init) this.page = 0;
     const list = await refundService.getRefundList({
-      shopId: this.shopId,
+      shopId,
       status: menuList[curMenuIndex].status,
       page: ++this.page,
       limit
@@ -68,7 +69,7 @@ Page({
     this.setRefundList();
   },
 
-  updateOrderList(e) {
+  updateRefundList(e) {
     const statusEmuns = {
       approve: 1,
       reject: 4,
@@ -76,7 +77,7 @@ Page({
     };
     const { type, index } = e.detail;
     const { curMenuIndex, refundList } = this.data;
-    if (type === "delete" || curMenuIndex !== 0) {
+    if (curMenuIndex !== 0) {
       refundList.splice(index, 1);
       this.setData({ refundList });
     } else {
@@ -88,7 +89,7 @@ Page({
 
   search() {
     wx.navigateTo({
-      url: `./subpages/refund-search/index?shopId=${this.shopId}`
+      url: `./subpages/refund-search/index?shopId=${this.data.shopId}`
     });
   }
 });

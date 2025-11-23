@@ -6,12 +6,13 @@ const { statusBarHeight } = getApp().globalData.systemInfo;
 Page({
   data: {
     statusBarHeight,
+    shopId: 0,
     menuList: [
       { name: "全部", status: 0, total: 0 },
       { name: "待发货", status: 1, total: 0 },
       { name: "待收货", status: 2, total: 0 },
       { name: "待自提", status: 3, total: 0 },
-      { name: "已评价", status: 4, total: 0 },
+      { name: "已评价", status: 4, total: 0 }
     ],
     curMenuIndex: 0,
     orderList: [],
@@ -19,7 +20,7 @@ Page({
   },
 
   onLoad({ shopId, status = "0" }) {
-    this.shopId = +shopId;
+    this.setData({ shopId: +shopId });
 
     const curMenuIndex = this.data.menuList.findIndex(
       item => item.status === Number(status)
@@ -39,20 +40,20 @@ Page({
   },
 
   async setShopOrderTotal() {
-    const orderTotal = await orderService.getShopOrderTotal(this.shopId);
+    const orderTotal = await orderService.getShopOrderTotal(this.data.shopId);
     this.setData({
       ["menuList[1].total"]: orderTotal[0],
       ["menuList[2].total"]: orderTotal[1],
-      ["menuList[3].total"]: orderTotal[2],
+      ["menuList[3].total"]: orderTotal[2]
     });
   },
 
   async setOrderList(init = false) {
     const limit = 10;
-    const { menuList, curMenuIndex, orderList } = this.data;
+    const { shopId, menuList, curMenuIndex, orderList } = this.data;
     if (init) this.page = 0;
     const list = await orderService.getOrderList({
-      shopId: this.shopId,
+      shopId,
       status: menuList[curMenuIndex].status,
       page: ++this.page,
       limit
@@ -95,7 +96,7 @@ Page({
 
   search() {
     wx.navigateTo({
-      url: `./subpages/order-search/index?shopId=${this.shopId}`
+      url: `./subpages/order-search/index?shopId=${this.data.shopId}`
     });
   }
 });

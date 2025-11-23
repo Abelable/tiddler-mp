@@ -1,4 +1,3 @@
-import { store } from "../../../../../../store/index";
 import MerchantService from "../../utils/merchantService";
 
 const merchantService = new MerchantService();
@@ -9,6 +8,7 @@ Component({
   },
 
   properties: {
+    shopId: Number,
     item: Object,
     index: Number
   },
@@ -19,9 +19,8 @@ Component({
         title: "确定取消订单吗？",
         success: result => {
           if (result.confirm) {
-            const { item, index } = this.properties;
-            const { cateringShopId } = store.userInfo;
-            merchantService.refundMealTicketOrder(cateringShopId, item.id, () => {
+            const { shopId, item, index } = this.properties;
+            merchantService.refundMealTicketOrder(shopId, item.id, () => {
               this.setData({ ['item.status']: 203 });
               this.triggerEvent("update", { type: "refund", index });
             });
@@ -31,9 +30,8 @@ Component({
     },
 
     approveOrder() {
-      const { item, index } = this.properties;
-      const { cateringShopId } = store.userInfo;
-      merchantService.approveMealTicketOrder(cateringShopId, item.id, () => {
+      const { shopId, item, index } = this.properties;
+      merchantService.approveMealTicketOrder(shopId, item.id, () => {
         this.triggerEvent("update", { type: "approve", index });
       });
     },

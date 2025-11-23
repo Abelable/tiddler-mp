@@ -1,8 +1,7 @@
-import { store } from "../../../../../../store/index";
 import { WEBVIEW_BASE_URL } from "../../../../../../config";
-import MerchantService from '../../utils/merchantService'
+import MerchantService from "../../utils/merchantService";
 
-const merchantService = new MerchantService()
+const merchantService = new MerchantService();
 
 Component({
   options: {
@@ -10,6 +9,7 @@ Component({
   },
 
   properties: {
+    shopId: Number,
     item: Object,
     index: Number
   },
@@ -36,9 +36,8 @@ Component({
     },
 
     ship() {
-      const { shopId } = store.userInfo;
-      const { id } = this.properties.item;
-      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/ship&shop_id=${shopId}&order_id=${id}`;
+      const { shopId, item } = this.properties.item;
+      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/ship&shop_id=${shopId}&order_id=${item.id}`;
       wx.navigateTo({ url });
     },
 
@@ -47,10 +46,9 @@ Component({
         title: "确定退款该订单吗？",
         success: result => {
           if (result.confirm) {
-            const { shopId } = store.userInfo;
-            const { item, index } = this.properties;
+            const { shopId, item, index } = this.properties;
             merchantService.refundGoodsOrder(shopId, item.id, () => {
-              this.setData({ ['item.status']: 204 });
+              this.setData({ ["item.status"]: 204 });
               this.triggerEvent("update", { type: "refund", index });
             });
           }

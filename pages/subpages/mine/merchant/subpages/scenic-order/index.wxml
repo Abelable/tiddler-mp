@@ -25,6 +25,7 @@
       wx:key="id" 
       item="{{item}}" 
       index="{{index}}" 
+      shopId="{{shopId}}"
       bind:update="updateOrderList"
     />
   </view>

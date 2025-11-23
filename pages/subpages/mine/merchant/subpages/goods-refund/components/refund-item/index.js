@@ -1,5 +1,3 @@
-import { store } from "../../../../../../../../store/index";
-import { WEBVIEW_BASE_URL } from "../../../../../../../../config";
 import RefundService from "../../utils/refundService";
 
 const refundService = new RefundService();
@@ -36,12 +34,12 @@ Component({
     approve() {
       const { shopId, item, index } = this.properties;
       wx.showModal({
-        title: `确定${item.refundType === 1 ? "同意退款" : "同意退货"}吗？`,
+        title: `确定同意${item.refundType === 1 ? "退款" : "退货"}吗？`,
         success: result => {
           if (result.confirm) {
-            refundService.refundGoodsOrder(shopId, item.id, () => {
-              this.setData({ ["item.status"]: 204 });
-              this.triggerEvent("update", { type: "refund", index });
+            refundService.approveRefund(shopId, item.id, () => {
+              this.setData({ ["item.status"]: 1 });
+              this.triggerEvent("update", { type: "approve", index });
             });
           }
         }

@@ -1,4 +1,3 @@
-import { store } from "../../../../../../store/index";
 import HotelOrderService from "./utils/hotelOrderService";
 
 const hotelOrderService = new HotelOrderService();
@@ -7,6 +6,7 @@ const { statusBarHeight } = getApp().globalData.systemInfo;
 Page({
   data: {
     statusBarHeight,
+    shopId: 0,
     menuList: [
       { name: "全部", status: 0, total: 0 },
       { name: "待确认", status: 1, total: 0 },
@@ -19,7 +19,9 @@ Page({
     finished: false
   },
 
-  onLoad({ status = "0" }) {
+  onLoad({ shopId, status = "0" }) {
+    this.setData({ shopId: +shopId });
+
     const curMenuIndex = this.data.menuList.findIndex(
       item => item.status === Number(status)
     );
@@ -38,9 +40,8 @@ Page({
   },
 
   async setShopOrderTotal() {
-    const { hotelShopId } = store.userInfo;
     const orderTotal = await hotelOrderService.getHotelShopOrderTotal(
-      hotelShopId
+      this.data.shopId
     );
     this.setData({
       ["menuList[1].total"]: orderTotal[0],
@@ -51,11 +52,10 @@ Page({
 
   async setOrderList(init = false) {
     const limit = 10;
-    const { hotelShopId } = store.userInfo;
-    const { menuList, curMenuIndex, orderList } = this.data;
+    const { shopId, menuList, curMenuIndex, orderList } = this.data;
     if (init) this.page = 0;
     const list = await hotelOrderService.getOrderList({
-      shopId: hotelShopId,
+      shopId,
       status: menuList[curMenuIndex].status,
       page: ++this.page,
       limit
@@ -89,9 +89,8 @@ Page({
   },
 
   search() {
-    const { hotelShopId } = store.userInfo;
     wx.navigateTo({
-      url: `../order-search/index?shopId=${hotelShopId}&type=2`
+      url: `../order-search/index?shopId=${this.data.shopId}&type=2`
     });
   }
 });

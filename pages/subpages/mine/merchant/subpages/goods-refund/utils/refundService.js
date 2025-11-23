@@ -26,6 +26,14 @@ class RefundService extends MerchantService {
       loadingTitle: "正在加载"
     });
   }
+
+  async approveRefund(shopId, id, success) {
+    await this.post({
+      url: `${this.baseUrl}/shop/refund/approved`,
+      data: { shopId, id },
+      success
+    });
+  }
 }
 
 export default RefundService;

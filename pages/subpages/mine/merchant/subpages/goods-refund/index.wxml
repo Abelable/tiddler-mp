@@ -25,7 +25,8 @@
       wx:key="index" 
       item="{{item}}" 
       index="{{index}}" 
-      bind:update="updateOrderList"
+      shopId="{{shopId}}"
+      bind:update="updateRefundList"
     />
   </view>
   <empty-illus wx:if="{{finished && !refundList.length}}" desc="暂无售后订单列表" />

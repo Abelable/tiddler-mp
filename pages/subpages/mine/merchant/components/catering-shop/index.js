@@ -99,11 +99,12 @@ Component({
 
     checkTicketOrders(e) {
       const { status } = e.currentTarget.dataset;
+      const { shopId } = this.data;
       if (status === 4) {
         // todo 售后
       } else {
         wx.navigateTo({
-          url: `/pages/subpages/mine/merchant/subpages/meal-ticket-order/index?status=${
+          url: `/pages/subpages/mine/merchant/subpages/meal-ticket-order/index?shopId=${shopId}&status=${
             status || 0
           }`
         });
