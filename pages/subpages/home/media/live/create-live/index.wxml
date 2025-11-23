@@ -51,7 +51,7 @@
       <view class="title">展示方式</view>
       <view class="list-seletion row">
         <view class="selection-item row" wx:for="{{['竖屏', '横屏']}}" wx:key="index" bindtap="selectDirection" data-direction="{{index + 1}}">
-          <image class="selection-icon" src="https://img.ubo.vip/mp/sass/create-live/{{direction === (index + 1) ? 'selected' : 'unselected'}}.png" />
+          <image class="selection-icon" src="https://static.tiddler.cn/mp/live/{{direction === (index + 1) ? 'selected' : 'unselected'}}.png" />
           <text>{{item}}</text>
         </view>
       </view>

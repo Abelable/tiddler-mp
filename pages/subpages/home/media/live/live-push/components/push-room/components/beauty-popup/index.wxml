@@ -5,7 +5,7 @@
         <view class="menu-item {{curMenuIndex === index ? 'selected' : ''}}" wx:for="{{['美颜美白', '滤镜', '滤声']}}" wx:key="index" catchtap="switchMenu" data-index="{{index}}">{{item}}</view>
       </view>
       <view class="reset-btn" catchtap="reset">
-        <image class="reset-icon" src="https://img.ubo.vip/mp/sass/live-push/beauty-popup/reset.png" />
+        <image class="reset-icon" src="https://static.tiddler.cn/mp/live/reset.png" />
         <text>重置</text>
       </view>
     </view>
@@ -29,7 +29,7 @@
           catchtap="setVisualFilter" 
           data-index="{{index}}"
         >
-          <image class="visual-filter-icon" style="" src="https://img.ubo.vip/mp/sass/live-push/beauty-popup/visual-filter-{{index}}.png" />
+          <image class="visual-filter-icon" style="" src="https://static.tiddler.cn/mp/live/beauty/visual-filter-{{index}}.png" />
           <view>{{item}}</view>
         </view>
       </scroll-view>
@@ -41,7 +41,7 @@
           catchtap="setSoundFilter" 
           data-index="{{index}}"
         >
-          <image wx:if="{{index === 0}}" class="sound-filter-icon" src="https://img.ubo.vip/mp/sass/live-push/beauty-popup/visual-filter-0.png" />
+          <image wx:if="{{index === 0}}" class="sound-filter-icon" src="https://static.tiddler.cn/mp/live/beauty/visual-filter-0.png" />
           <view class="sound-filter-item-inner" wx:else>{{item}}</view>
         </view>
       </scroll-view>

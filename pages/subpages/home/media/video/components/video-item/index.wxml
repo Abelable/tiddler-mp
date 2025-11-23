@@ -80,7 +80,7 @@
     </scroll-view>
   </view>
 
-  <image class="pause-icon" wx:if="{{videoStop}}" src="https://img.ubo.vip/mp/index/room/pause-icon.png" />
+  <image class="pause-icon" wx:if="{{videoStop}}" src="https://static.tiddler.cn/mp/media_item/pause_icon.png" />
 
   <image class="praise-heart" style="{{item.style}}" wx:for="{{praiseHeartArr}}" wx:key="index" src="{{item.url}}" />
 </video>

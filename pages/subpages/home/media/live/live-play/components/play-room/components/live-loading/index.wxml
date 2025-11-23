@@ -1,5 +1,5 @@
 <view class="live-break">
-  <image class="tea-cup" src="https://img.ubo.vip/mp/index/room/i-status-break/tea-cup.png"/>
+  <image class="tea-cup" src="https://static.tiddler.cn/mp/live/tea-cup.webp"/>
   <view class="break-tips">别走开~</view>
   <view class="break-tips">片刻之后精彩继续呈现</view>
 </view>
