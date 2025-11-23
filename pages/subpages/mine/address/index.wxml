@@ -5,7 +5,7 @@
       async-close right-width="{{ 65 }}"
     >
       <view class="inner row" catchtap="editAddress" data-id="{{item.id}}">
-        <image class="address-icon" src="https://img.ubo.vip/mp/selection/goods-detail/order-check/address-icon.png" />
+        <image class="address-icon" src="https://static.tiddler.cn/mp/order/address_icon.png" />
         <view class="content">
           <view class="row">
             <text class="user-name">{{item.name}}</text>

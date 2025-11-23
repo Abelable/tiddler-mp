@@ -10,7 +10,7 @@
     <scroll-view class="address-list" scroll-y>
       <radio-group bindchange="selectAddress">
         <view class="address-item row" wx:for="{{addressList}}" wx:key="index">
-          <image class="address-icon" src="https://img.ubo.vip/mp/selection/goods-detail/order-check/address-icon.png" />
+          <image class="address-icon" src="https://static.tiddler.cn/mp/order/address_icon.png" />
           <view class="content">
             <view class="row">
               <text class="user-name">{{item.name}}</text>

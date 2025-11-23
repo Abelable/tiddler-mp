@@ -173,7 +173,7 @@ Component({
             "rgba(225, 225, 225, 0.6)"
           );
           await this.drawImage(
-            "https://img.ubo.vip/tiddler/poster/play-icon.png",
+            "https://static.tiddler.cn/mp/poster/play_icon.png",
             153,
             218,
             16,
@@ -361,7 +361,7 @@ Component({
 
       const likeNumberWidth = ctx.measureText(likeNumber).width;
       await this.drawImage(
-        "https://img.ubo.vip/tiddler/media-item/heart.png",
+        "https://static.tiddler.cn/mp/poster/heart.png",
         x - likeNumberWidth - 15,
         y - 9,
         13,
