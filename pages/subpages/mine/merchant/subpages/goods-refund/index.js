@@ -15,6 +15,7 @@ Page({
       { name: "已驳回", status: 4, total: 0 }
     ],
     curMenuIndex: 0,
+    orderSn: "",
     refundList: [],
     finished: false,
     refundId: 0,
@@ -44,13 +45,27 @@ Page({
     });
   },
 
+  setOrderSn(e) {
+    this.setData({ orderSn: e.detail.value });
+  },
+
+  search() {
+    this.setRefundList(true);
+  },
+
+  cancelSearch() {
+    this.setData({ orderSn: "" });
+    this.setRefundList(true);
+  },
+
   async setRefundList(init = false) {
     const limit = 10;
-    const { shopId, menuList, curMenuIndex, refundList } = this.data;
+    const { shopId, menuList, curMenuIndex, orderSn, refundList } = this.data;
     if (init) this.page = 0;
     const list = await refundService.getRefundList({
       shopId,
       status: menuList[curMenuIndex].status,
+      orderSn,
       page: ++this.page,
       limit
     });

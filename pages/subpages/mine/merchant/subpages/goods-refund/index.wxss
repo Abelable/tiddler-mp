@@ -17,7 +17,7 @@
   align-items: center;
   margin-left: 16rpx;
   padding: 0 22rpx;
-  width: 340rpx;
+  width: 360rpx;
   height: 36px;
   border-radius: 18px;
   background: #fff;
@@ -27,11 +27,16 @@
   width: 16px;
   height: 16px;
 }
-.placeholder {
+.search-input {
+  padding-left: 12rpx;
   flex: 1;
-  margin-left: 12rpx;
-  color: #a1a9b3;
+  height: 36px;
+  color: #333;
   font-size: 26rpx;
+}
+.cancel-icon {
+  width: 18px;
+  height: 18px;
 }
 
 

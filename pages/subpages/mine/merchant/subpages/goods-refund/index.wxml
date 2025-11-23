@@ -3,7 +3,21 @@
     <back-icon />
     <view class="search-bar" bindtap="search">
       <image class="search-icon" src="https://static.tiddler.cn/mp/search.png" />
-      <text class="placeholder">搜索售后订单</text>
+      <input 
+        class="search-input"
+        value="{{orderSn}}" 
+        bindinput="setOrderSn" 
+        bindconfirm="search" 
+        placeholder="请输入订单编号" 
+        type="text" 
+        confirm-type="search" 
+      />
+      <image 
+        class="cancel-icon" 
+        wx:if="{{orderSn}}" 
+        bindtap="cancelSearch" 
+        src="https://static.tiddler.cn/mp/search/clear.png" 
+      />
     </view>
   </view>
   <view class="menu-wrap">
