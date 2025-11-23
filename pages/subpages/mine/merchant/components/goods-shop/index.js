@@ -93,7 +93,9 @@ Component({
     checkOrders(e) {
       const { status } = e.currentTarget.dataset;
       if (status === 5) {
-        // todo 售后
+        wx.navigateTo({
+          url: "/pages/subpages/mine/merchant/subpages/goods-refund/index"
+        });
       } else {
         wx.navigateTo({
           url: `/pages/subpages/mine/merchant/subpages/goods-order/index?status=${
