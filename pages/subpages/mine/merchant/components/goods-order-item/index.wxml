@@ -30,8 +30,23 @@
       </view>
     </view>
     <view class="btn-wrap">
-      <button class="btn active" wx:if="{{item.status === 201}}" catchtap="ship" hover-class="none">去发货</button>
       <button class="btn" catchtap="navToDetail" hover-class="none">查看详情</button>
+      <button 
+        class="btn active" 
+        wx:if="{{item.status === 201 && item.deliveryMode === 1}}" 
+        catchtap="ship" 
+        hover-class="none"
+      >
+        发货
+      </button>
+      <button 
+        class="btn active" 
+        wx:if="{{item.status === 201 || item.status === 202 || item.status === 302}}" 
+        catchtap="refund" 
+        hover-class="none"
+      >
+        退款
+      </button>
     </view>
   </view>
 </view>

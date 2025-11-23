@@ -1,5 +1,8 @@
 import { store } from "../../../../../../store/index";
 import { WEBVIEW_BASE_URL } from "../../../../../../config";
+import MerchantService from '../../utils/merchantService'
+
+const merchantService = new MerchantService()
 
 Component({
   options: {
@@ -37,6 +40,22 @@ Component({
       const { id } = this.properties.item;
       const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/ship&shop_id=${shopId}&order_id=${id}`;
       wx.navigateTo({ url });
+    },
+
+    refund() {
+      wx.showModal({
+        title: "确定退款该订单吗？",
+        success: result => {
+          if (result.confirm) {
+            const { shopId } = store.userInfo;
+            const { item, index } = this.properties;
+            merchantService.refundGoodsOrder(shopId, item.id, () => {
+              this.setData({ ['item.status']: 204 });
+              this.triggerEvent("update", { type: "refund", index });
+            });
+          }
+        }
+      });
     },
 
     contact() {

@@ -81,7 +81,7 @@ Page({
     const statusEmuns = {
       cancel: 102,
       pay: 201,
-      refund: 203,
+      refund: 204,
       confirm: 401
     };
     const { type, index } = e.detail;

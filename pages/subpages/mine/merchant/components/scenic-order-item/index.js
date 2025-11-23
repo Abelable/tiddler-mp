@@ -22,7 +22,7 @@ Component({
             const { item, index } = this.properties;
             const { scenicShopId } = store.userInfo;
             merchantService.refundScenicOrder(scenicShopId, item.id, () => {
-              this.setData({ refundBtnVisible: false });
+              this.setData({ ['item.status']: 203 });
               this.triggerEvent("update", { type: "refund", index });
             });
           }

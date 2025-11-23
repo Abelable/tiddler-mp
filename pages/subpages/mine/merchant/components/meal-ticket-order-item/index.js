@@ -22,7 +22,7 @@ Component({
             const { item, index } = this.properties;
             const { cateringShopId } = store.userInfo;
             merchantService.refundMealTicketOrder(cateringShopId, item.id, () => {
-              this.setData({ refundBtnVisible: false });
+              this.setData({ ['item.status']: 203 });
               this.triggerEvent("update", { type: "refund", index });
             });
           }
