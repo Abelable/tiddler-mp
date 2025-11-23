@@ -14,7 +14,7 @@
           <text>{{TIME.transform(checkOutDate, 'MM-DD')}}</text>
         </view>
       </view>
-      <image class="search-icon" src="https://img.ubo.vip/mp/index/search/index-search.png" />
+      <image class="search-icon" src="https://static.tiddler.cn/mp/search/search.png" />
       <input 
         class="search-input"
         value="{{keywords}}" 
@@ -25,7 +25,7 @@
         confirm-type="search" 
       />
       <view class="cancel-btn" wx:if="{{keywords}}" bindtap="cancelSearch">
-        <image class="cancel-icon" src="https://img.ubo.vip/mp/search/clear-search.png" />
+        <image class="cancel-icon" src="https://static.tiddler.cn/mp/search/clear.png" />
       </view>
       <button class="search-btn" bindtap="search">搜索</button>
     </view>
@@ -54,7 +54,7 @@
 <view class="history-keywords-wrap" wx:if="{{!searching}}">
   <view class="title row between">
     <view>历史搜索</view>
-    <image class="delete-icon" wx:if="{{historyKeywords.length}}" src="https://img.ubo.vip/mp/selection/search/del-history.png" bindtap="clearHistoryKeywords" />
+    <image class="delete-icon" wx:if="{{historyKeywords.length}}" src="https://static.tiddler.cn/mp/search/delete.png" bindtap="clearHistoryKeywords" />
   </view>
   <view class="keywords-list" wx:if="{{historyKeywords.length}}">
     <view 

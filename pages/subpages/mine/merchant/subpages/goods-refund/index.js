@@ -1,7 +1,7 @@
 import { store } from "../../../../../../store/index";
-import GoodsRefundService from "./utils/goodsRefundService";
+import RefundService from "./utils/refundService";
 
-const goodsRefundService = new GoodsRefundService();
+const refundService = new RefundService();
 const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Page({
@@ -39,7 +39,7 @@ Page({
 
   async setShopOrderTotal() {
     const { shopId } = store.userInfo;
-    const orderTotal = await goodsRefundService.getShopOrderTotal(shopId);
+    const orderTotal = await refundService.getShopOrderTotal(shopId);
     this.setData({
       ["menuList[1].total"]: orderTotal[0],
       ["menuList[2].total"]: orderTotal[1],
@@ -52,7 +52,7 @@ Page({
     const { shopId } = store.userInfo;
     const { menuList, curMenuIndex, orderList } = this.data;
     if (init) this.page = 0;
-    const list = await goodsRefundService.getOrderList({
+    const list = await refundService.getOrderList({
       shopId,
       status: menuList[curMenuIndex].status,
       page: ++this.page,
@@ -97,7 +97,7 @@ Page({
   search() {
    const { shopId } = store.userInfo;
     wx.navigateTo({
-      url: `../order-search/index?shopId=${shopId}&type=5`
+      url: `./subpages/order-search/index?shopId=${shopId}`
     });
   }
 });

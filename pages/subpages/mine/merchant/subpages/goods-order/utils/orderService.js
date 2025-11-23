@@ -1,6 +1,6 @@
 import MerchantService from '../../../utils/merchantService'
 
-class GoodsOrderService extends MerchantService {
+class OrderService extends MerchantService {
   async getOrderList({ shopId, status, page, limit = 10 }) {
     const { list = [] } =
       (await this.post({
@@ -20,4 +20,4 @@ class GoodsOrderService extends MerchantService {
   }
 }
 
-export default GoodsOrderService
+export default OrderService

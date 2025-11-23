@@ -20,7 +20,7 @@
 
 <view class="content" style="margin-top: {{statusBarHeight + 88}}px;">
   <view class="order-list">
-    <order-item 
+    <refund-item 
       wx:for="{{orderList}}" 
       wx:key="index" 
       item="{{item}}" 
@@ -28,6 +28,6 @@
       bind:update="updateOrderList"
     />
   </view>
-  <empty-illus wx:if="{{finished && !orderList.length}}" desc="暂无订单列表" />
+  <empty-illus wx:if="{{finished && !orderList.length}}" desc="暂无售后列表" />
   <view class="no-more-tips" wx:if="{{finished && orderList.length}}">～没有更多啦～</view>
 </view>

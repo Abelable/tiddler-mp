@@ -1,8 +1,8 @@
 import { WEBVIEW_BASE_URL } from "../../../../../../../../config";
 import { store } from "../../../../../../../../store/index";
-import GoodsOrderService from "../../utils/goodsRefundService";
+import RefundService from "../../utils/refundService";
 
-const goodsOrderService = new GoodsOrderService();
+const refundService = new RefundService();
 
 Page({
   data: {
@@ -16,7 +16,7 @@ Page({
 
   async setOrderInfo() {
     const { shopId } = store.userInfo;
-    const orderInfo = await goodsOrderService.getOrderDetail(
+    const orderInfo = await refundService.getRefundDetail(
       shopId,
       this.orderId
     );
