@@ -45,7 +45,7 @@
       <button 
         class="btn active" 
         wx:if="{{item.status === 2}}" 
-        catchtap="checkShpping" 
+        catchtap="checkShippingInfo" 
         hover-class="none"
       >
         查看物流

@@ -27,8 +27,17 @@
       index="{{index}}" 
       shopId="{{shopId}}"
       bind:update="updateRefundList"
+      bind:reject="showRejectModal"
     />
   </view>
   <empty-illus wx:if="{{finished && !refundList.length}}" desc="暂无售后订单列表" />
   <view class="no-more-tips" wx:if="{{finished && refundList.length}}">～没有更多啦～</view>
 </view>
+
+<reject-modal 
+  wx:if="{{rejectModalVisible}}"
+  shopId="{{shopId}}"
+  refundId="{{refundId}}"
+  bind:confirm="rejected" 
+  bind:hide="hideRejectModal" 
+/>

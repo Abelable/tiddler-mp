@@ -16,7 +16,9 @@ Page({
     ],
     curMenuIndex: 0,
     refundList: [],
-    finished: false
+    finished: false,
+    refundId: 0,
+    rejectModalVisible: false
   },
 
   onLoad({ shopId }) {
@@ -70,12 +72,12 @@ Page({
   },
 
   updateRefundList(e) {
+    const { type, index } = e.detail;
     const statusEmuns = {
       approve: 1,
       reject: 4,
       confirm: 3
     };
-    const { type, index } = e.detail;
     const { curMenuIndex, refundList } = this.data;
     if (curMenuIndex !== 0) {
       refundList.splice(index, 1);
@@ -85,6 +87,26 @@ Page({
         [`refundList[${index}].status`]: statusEmuns[type]
       });
     }
+  },
+
+  showRejectModal(e) {
+    const { id: refundId } = e.detail;
+    this.setData({
+      refundId,
+      rejectModalVisible: true
+    });
+  },
+
+  rejected() {
+    this.setRefundList(true);
+    this.hideRejectModal();
+  },
+
+  hideRejectModal() {
+    this.setData({
+      refundId: 0,
+      rejectModalVisible: false
+    });
   },
 
   search() {

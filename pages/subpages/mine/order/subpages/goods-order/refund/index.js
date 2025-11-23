@@ -222,6 +222,7 @@ Page({
           this.orderGoodsId,
           this.goodsId,
           this.couponId,
+          this.refundAddressId,
           refundType,
           refundReason,
           imageList.map(item => item.url),

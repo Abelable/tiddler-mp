@@ -46,6 +46,34 @@ Component({
       });
     },
 
+    reject() {
+      const { id } = this.properties.item;
+      this.triggerEvent("reject", { id });
+    },
+
+    confirm() {
+      const { shopId, item, index } = this.properties;
+      wx.showModal({
+        title: "确认收货之前，请核实物流信息",
+        content: "点击确定，确认收货并退款",
+        success: result => {
+          if (result.confirm) {
+            refundService.approveRefund(shopId, item.id, () => {
+              this.setData({ ["item.status"]: 3 });
+              this.triggerEvent("update", { type: "approve", index });
+            });
+          }
+        }
+      });
+    },
+
+    async checkShippingInfo() {
+      const { refundAddressInfo, shipCode, shipSn } = this.properties.item;
+      const { mobile } = refundAddressInfo;
+      const url = `/pages/subpages/common/shipping/index?shipCode=${shipCode}&shipSn=${shipSn}&mobile=${mobile}`;
+      wx.navigateTo({ url });
+    },
+
     navToDetail() {
       const { id } = this.properties.item;
       const url = `/pages/subpages/mine/merchant/subpages/goods-refund/subpages/refund-detail/index?id=${id}`;

@@ -5,6 +5,7 @@
   "usingComponents": {
     "back-icon": "/components/back-icon/index",
     "empty-illus": "/components/empty-illus/index",
-    "refund-item": "./components/refund-item/index"
+    "refund-item": "./components/refund-item/index",
+    "reject-modal": "./components/reject-modal/index"
   }
 }

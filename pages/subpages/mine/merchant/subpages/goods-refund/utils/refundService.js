@@ -34,6 +34,14 @@ class RefundService extends MerchantService {
       success
     });
   }
+
+  async rejectRefund(shopId, id, failureReason, success) {
+    await this.post({
+      url: `${this.baseUrl}/shop/refund/reject`,
+      data: { shopId, id, failureReason},
+      success
+    });
+  }
 }
 
 export default RefundService;
