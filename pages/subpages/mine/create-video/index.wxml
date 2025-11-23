@@ -25,7 +25,7 @@
       <view class="title">位置信息</view>
       <view class="list-picker row" wx:if="{{!address}}" bindtap="openLocationSetting">
         <text>获取位置信息</text>
-        <image class="arrow" src="https://img.ubo.vip/mp/sass/mine/gray-arrow.png" />
+        <image class="arrow" src="https://static.tiddler.cn/mp/arrow_gray.png" />
       </view>
       <input class="list-input" wx:if="{{address}}" value="{{address}}" bindinput="editAddress" />
     </view>

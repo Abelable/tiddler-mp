@@ -60,7 +60,7 @@
       <view class="title">添加商品</view>
       <view class="list-picker row" bindtap="showGoodsPickerPopup">
         <text>{{pickedGoodsIds.length ? ('已选' + pickedGoodsIds.length + '件商品') : '请选择商品'}}</text>
-        <image class="arrow" src="https://img.ubo.vip/mp/sass/mine/gray-arrow.png" />
+        <image class="arrow" src="https://static.tiddler.cn/mp/arrow_gray.png" />
       </view>
     </view>
   </view>
@@ -75,7 +75,7 @@
       <date-picker value="{{noticeTimeString}}" bind:change="setNoticeTime">
         <view class="list-picker row">
           <text>{{ noticeTimeString || '选择时间' }}</text>
-          <image class="arrow" src="https://img.ubo.vip/mp/sass/mine/gray-arrow.png" />
+          <image class="arrow" src="https://static.tiddler.cn/mp/arrow_gray.png" />
         </view>
       </date-picker>
     </view>

@@ -57,7 +57,7 @@
 .list:last-child {
   border-bottom: none;
 }
-.list-input, .list-picker {
+.list-input {
   margin-left: 30rpx;
   flex: 1;
   text-align: right;
