@@ -17,11 +17,12 @@ Page({
     shipSn: ""
   },
 
-  onLoad({ orderId, orderSn, couponId, shopId, goodsId, refundAddressId }) {
+  onLoad({ orderId, orderSn, couponId, orderGoodsId, shopId, goodsId, refundAddressId }) {
     this.orderId = +orderId;
     this.orderSn = orderSn;
     this.couponId = +couponId;
     this.shopId = +shopId;
+    this.orderGoodsId = +orderGoodsId;
     this.goodsId = +goodsId;
     this.refundAddressId = +refundAddressId;
 
@@ -218,6 +219,7 @@ Page({
           this.shopId,
           this.orderId,
           this.orderSn,
+          this.orderGoodsId,
           this.goodsId,
           this.couponId,
           refundType,

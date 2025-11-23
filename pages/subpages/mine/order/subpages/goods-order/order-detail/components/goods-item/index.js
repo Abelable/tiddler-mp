@@ -6,8 +6,8 @@ Component({
   },
 
   properties: {
-    item: Object,
-    orderInfo: Object
+    orderInfo: Object,
+    item: Object
   },
 
   data: {
@@ -35,10 +35,10 @@ Component({
     },
 
     applyRefund() {
-      const { item, orderInfo } = this.properties;
-      const { shopId, goodsId, refundAddressId } = item;
+      const { orderInfo, item } = this.properties;
       const { id: orderId, orderSn, couponId } = orderInfo;
-      const url = `/pages/subpages/mine/order/subpages/goods-order/refund/index?orderId=${orderId}&orderSn=${orderSn}&couponId=${couponId}&shopId=${shopId}&goodsId=${goodsId}&refundAddressId=${refundAddressId}`;
+      const { id: orderGoodsId, shopId, goodsId, refundAddressId } = item;
+      const url = `/pages/subpages/mine/order/subpages/goods-order/refund/index?orderId=${orderId}&orderSn=${orderSn}&couponId=${couponId}&orderGoodsId=${orderGoodsId}&shopId=${shopId}&goodsId=${goodsId}&refundAddressId=${refundAddressId}`;
       wx.navigateTo({ url });
     }
   }

@@ -19,6 +19,7 @@ class RefundService extends OrderService {
     shopId,
     orderId,
     orderSn,
+    orderGoodsId,
     goodsId,
     couponId,
     type,
@@ -28,7 +29,7 @@ class RefundService extends OrderService {
   ) {
     await this.post({
       url: `${this.baseUrl}/refund/add`,
-      data: { shopId, orderId, orderSn, goodsId, couponId, type, reason, imageList },
+      data: { shopId, orderId, orderSn, orderGoodsId, goodsId, couponId, type, reason, imageList },
       success
     });
   }
