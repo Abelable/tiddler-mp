@@ -13,7 +13,6 @@ Page({
       { name: "待收货", status: 2, total: 0 },
       { name: "待使用", status: 3, total: 0 },
       { name: "已评价", status: 4, total: 0 },
-      { name: "售后", status: 5, total: 0 }
     ],
     curMenuIndex: 0,
     orderList: [],
@@ -45,7 +44,6 @@ Page({
       ["menuList[1].total"]: orderTotal[0],
       ["menuList[2].total"]: orderTotal[1],
       ["menuList[3].total"]: orderTotal[2],
-      ["menuList[5].total"]: orderTotal[4]
     });
   },
 

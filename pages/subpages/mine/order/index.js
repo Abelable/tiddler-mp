@@ -64,7 +64,7 @@ const menuList = [
       { name: "全部", status: 0 },
       { name: "待付款", status: 1, total: 0 },
       { name: "待发货", status: 2, total: 0 },
-      { name: "待收货/使用", status: 3, total: 0 },
+      { name: "待收货/自提", status: 3, total: 0 },
       { name: "评价", status: 4, total: 0 },
       { name: "售后", status: 5, total: 0 }
     ]
