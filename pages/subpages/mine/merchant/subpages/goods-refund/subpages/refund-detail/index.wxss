@@ -27,6 +27,16 @@
   border-top: 1px solid #f0f0f0;
 }
 
+.relation-images {
+  display: flex;
+  margin-top: 24rpx;
+}
+.relation-image {
+  margin-right: 16rpx;
+  width: 160rpx;
+  height: 160rpx;
+}
+
 .bottom-bar {
   position: fixed;
   left: 0;

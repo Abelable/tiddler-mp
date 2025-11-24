@@ -103,5 +103,11 @@ Page({
     const { id: userId, avatar, nickname } = userInfo;
     const url = `/pages/subpages/notice/chat/index?userId=${userId}&name=${nickname}&avatar=${avatar}&orderId=${orderId}&productType=4`;
     wx.navigateTo({ url });
-  }
+  },
+
+  previewImage(e) {
+    const { current } = e.currentTarget.dataset;
+    const urls = this.data.refundInfo.imageList;
+    wx.previewImage({ current, urls });
+  },
 });

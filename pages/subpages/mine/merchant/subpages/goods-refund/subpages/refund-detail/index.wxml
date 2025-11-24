@@ -1,26 +1,9 @@
-<wxs module="TIME" src="/utils/filters/time.wxs" />
-
 <view class="container" wx:if="{{refundInfo}}">
   <view class="card">
-    <goods-item navigable />
-    <view class="list row between">
-      <view class="title">商品总价</view>
-      <price-unit price="{{refundInfo.goodsPrice || 0}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />
-    </view>
-    <view class="list row between" wx:if="{{refundInfo.deliveryMode === 1}}">
-      <view class="title">运费</view>
-      <price-unit price="{{refundInfo.freightPrice || 0}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />
-    </view>
-    <view class="list row between" wx:if="{{refundInfo.deductionBalance}}">
-      <view class="title">余额抵扣</view>
-      <view class="row">
-        <text>-</text>
-        <price-unit price="{{refundInfo.deductionBalance || 0}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />
-      </view>
-    </view>
+    <goods-item item="{{refundInfo.goodsInfo}}" navigable />
     <view class="list row between">
       <view class="title">退款金额</view>
-      <price-unit price="{{refundInfo.paymentAmount || 0}}" />
+      <price-unit price="{{refundInfo.refundAmount || 0}}" />
     </view>
     <view class="more-info-wrap">
       <view class="list row between">
@@ -31,29 +14,66 @@
           <text style="color: #333" bindtap="copyOrderSn">复制</text>
         </view>
       </view>
-      <view class="list row between" wx:if="{{refundInfo.payTime}}">
-        <view class="title">付款时间：</view>
-        <text>{{TIME.transform(refundInfo.payTime, 'YYYY-MM-DD hh:mm:ss')}}</text>
-      </view>
-      <view class="list row between" wx:if="{{refundInfo.shipTime}}">
-        <view class="title">发货时间：</view>
-        <text>{{TIME.transform(refundInfo.shipTime, 'YYYY-MM-DD hh:mm:ss')}}</text>
-      </view>
-      <view class="list row between" wx:if="{{refundInfo.confirmTime}}">
-        <view class="title">成交时间：</view>
-        <text>{{TIME.transform(refundInfo.confirmTime, 'YYYY-MM-DD hh:mm:ss')}}</text>
+      <view class="list row between">
+        <view class="title">售后类型：</view>
+        <text>{{refundInfo.refundType === 1 ? "仅退款" : "退货退款"}}</text>
       </view>
       <view class="list row between">
-        <view class="title">创建时间：</view>
-        <text>{{TIME.transform(refundInfo.createdAt, 'YYYY-MM-DD hh:mm:ss')}}</text>
+        <view class="title">售后原因：</view>
+        <text>{{refundInfo.refundReason}}</text>
+      </view>
+      <view class="list">
+        <view class="title">相关图片：</view>
+        <view class="relation-images">
+          <image 
+            class="relation-image" 
+            wx:for="{{refundInfo.imageList}}" 
+            wx:key="index" 
+            src="{{item}}" 
+            bindtap="previewImage"
+            data-current="{{item}}"
+            mode="aspectFill" 
+          />
+        </view>
       </view>
     </view>
   </view>
 </view>
 
 <view class="bottom-bar">
-  <button class="btn" bindtap="contact">联系客户</button>
-  <button class="btn active" wx:if="{{item.status === 201}}" catchtap="ship">去发货</button>
+  <button class="btn" bindtap="contact" hover-class="none">联系客户</button>
+  <button 
+    class="btn active" 
+    wx:if="{{refundInfo.status === 0}}" 
+    catchtap="approve" 
+    hover-class="none"
+  >
+    {{refundInfo.refundType === 1 ? "同意退款" : "同意退货"}}
+  </button>
+  <button 
+    class="btn active" 
+    wx:if="{{refundInfo.status === 0}}" 
+    catchtap="reject" 
+    hover-class="none"
+  >
+    {{refundInfo.refundType === 1 ? "拒绝退款" : "拒绝退货"}}
+  </button>
+  <button 
+    class="btn active" 
+    wx:if="{{refundInfo.status === 2}}" 
+    catchtap="checkShippingInfo" 
+    hover-class="none"
+  >
+    查看物流
+  </button>
+  <button 
+    class="btn active" 
+    wx:if="{{refundInfo.status === 2}}" 
+    catchtap="confirm" 
+    hover-class="none"
+  >
+    确认收货
+  </button>
 </view>
 
 <reject-modal 
@@ -63,5 +83,3 @@
   bind:confirm="rejected" 
   bind:hide="hideRejectModal" 
 />
-
-  
