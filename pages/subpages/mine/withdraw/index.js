@@ -9,7 +9,7 @@ Page({
   data: {
     statusBarHeight,
     navBarBgVisible: false,
-    scene: 1,
+    scene: 1, // 1，2，3-佣金提现；4，5，6，7-店铺收益提现；8-奖励提现；
     amount: 0,
     taxFee: 0,
     handlingFee: 0,
@@ -28,9 +28,9 @@ Page({
     const scene = Number(options.scene);
     const amount = Number(options.amount);
     const taxFee = [2, 3, 8].includes(scene)
-      ? Math.floor(amount * 0.06 * 100) / 100
+      ? Math.round(amount * 0.06 * 100) / 100
       : 0;
-    const handlingFee = Math.floor(amount * 0.006 * 100) / 100;
+    const handlingFee = Math.round(amount * 0.006 * 100) / 100;
     const actualAmount = Math.max(0, amount - taxFee - handlingFee);
     this.setData({
       scene,
@@ -38,17 +38,18 @@ Page({
       taxFee,
       handlingFee,
       actualAmount,
-      pathOptions:
-        actualAmount >= 500
-          ? [
-              { cn: "余额（立即到账）", en: "balance", value: 3 },
-              { cn: "银行卡（1~3个工作日到账）", en: "card", value: 2 }
-            ]
-          : [
-              { cn: "余额（立即到账）", en: "balance", value: 3 },
-              { cn: "微信（1~3个工作日到账）", en: "wx", value: 1 },
-              { cn: "银行卡（1~3个工作日到账）", en: "card", value: 2 }
-            ]
+      pathOptions: [4, 5, 6, 7].includes(scene)
+        ? [{ cn: "银行卡（1~3个工作日到账）", en: "card", value: 2 }]
+        : actualAmount >= 500
+        ? [
+            { cn: "余额（立即到账）", en: "balance", value: 3 },
+            { cn: "银行卡（1~3个工作日到账）", en: "card", value: 2 }
+          ]
+        : [
+            { cn: "余额（立即到账）", en: "balance", value: 3 },
+            { cn: "微信（1~3个工作日到账）", en: "wx", value: 1 },
+            { cn: "银行卡（1~3个工作日到账）", en: "card", value: 2 }
+          ]
     });
 
     if (scene === 8) {
@@ -71,13 +72,37 @@ Page({
   },
 
   async setBankCardInfo() {
-    const bancCardInfo = await withdrawService.getBankCardInfo();
-    if (bancCardInfo) {
-      const { code, ...rest } = bancCardInfo;
+    let bankName, code;
+    switch (this.data.scene) {
+      case 4:
+        ({ bankName, bankCardNumber: code } =
+          await withdrawService.getScenicMerchantInfo());
+        break;
+
+      case 5:
+        ({ bankName, bankCardNumber: code } =
+          await withdrawService.getHotelMerchantInfo());
+        break;
+
+      case 6:
+        ({ bankName, bankCardNumber: code } =
+          await withdrawService.getCateringMerchantInfo());
+        break;
+      case 7:
+        ({ bankName, bankCardNumber: code } =
+          await withdrawService.getGoodsMerchantInfo());
+        break;
+
+      default:
+        ({ bankName, code } = (await withdrawService.getBankCardInfo()) || {});
+        break;
+    }
+
+    if (bankName) {
       this.setData({
         bancCardInfo: {
-          code: `${code.slice(0, 5)}****${code.slice(-5)}`,
-          ...rest
+          bankName,
+          code: `${code.slice(0, 5)}****${code.slice(-5)}`
         }
       });
     }
@@ -125,7 +150,7 @@ Page({
       );
     } else if (scene > 3 && scene <= 7) {
       withdrawService.applyIncomeWithdraw(
-        { merchantType: scene - 3, amount, path, remark },
+        { merchantType: scene - 3, amount, remark },
         this.withdrawSuccess
       );
     } else {

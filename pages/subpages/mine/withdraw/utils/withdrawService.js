@@ -10,10 +10,10 @@ class WithdrawService extends BaseService {
     });
   }
 
-  async applyIncomeWithdraw({ merchantType, amount, path, remark }, success) {
+  async applyIncomeWithdraw({ merchantType, amount, remark }, success) {
     await this.post({
       url: `${this.baseUrl}/withdraw/income/submit`,
-      data: cleanObject({ merchantType, amount, path, remark }),
+      data: cleanObject({ merchantType, amount, remark }),
       success
     });
   }
@@ -45,6 +45,30 @@ class WithdrawService extends BaseService {
       url: `${this.baseUrl}/bank_card/edit`,
       data: { name, code, bankName },
       success
+    });
+  }
+
+  async getScenicMerchantInfo() {
+    return await this.get({
+      url: `${this.baseUrl}/scenic/merchant/info`
+    });
+  }
+
+  async getHotelMerchantInfo() {
+    return await this.get({
+      url: `${this.baseUrl}/hotel/merchant/info`
+    });
+  }
+
+  async getCateringMerchantInfo() {
+    return await this.get({
+      url: `${this.baseUrl}/catering/merchant/info`
+    });
+  }
+
+  async getGoodsMerchantInfo() {
+    return await this.get({
+      url: `${this.baseUrl}/merchant/info`
     });
   }
 }

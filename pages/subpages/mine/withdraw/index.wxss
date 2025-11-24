@@ -97,9 +97,16 @@
   height: 36rpx;
 }
 .bind-bank-tips {
-  margin-left: 72rpx;
+  margin-top: 8rpx;
+  margin-left: 60rpx;
   color: #9899A1;
   font-size: 24rpx;
+}
+.bank-info {
+  flex: 1;
+}
+.bind-btn {
+  margin-left: 24rpx;
 }
 .arrow {
   width: 24rpx;
