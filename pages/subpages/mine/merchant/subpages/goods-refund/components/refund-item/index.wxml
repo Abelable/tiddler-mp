@@ -1,5 +1,3 @@
-<wxs module="ORDER" src="../../../utils/order.wxs" />
-
 <view class="refund-item" catchtap="navToDetail">
   <view class="list-header row between">
     <view class="user-info row" catchtap="contact">
