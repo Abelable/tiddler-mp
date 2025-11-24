@@ -99,7 +99,7 @@ Component({
         });
       } else {
         wx.navigateTo({
-          url: `/pages/subpages/mine/merchant/subpages/goods-order/index??shopId=${shopId}&status=${
+          url: `/pages/subpages/mine/merchant/subpages/goods-order/index?shopId=${shopId}&status=${
             status || 0
           }`
         });
