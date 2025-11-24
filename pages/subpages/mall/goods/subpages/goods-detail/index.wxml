@@ -91,7 +91,7 @@
         <image class="gift-bar-slogan" src="https://static.tiddler.cn/mp/gift_bar_slogan.webp" />
       </view>
       <view class="gift-duration row">
-        {{userInfo.promoterInfo ? '助力家乡千岛湖' : '代言家乡' + goodsInfo.giftDuration + '天'}}
+        {{(userInfo.promoterInfo && userInfo.promoterInfo.status === 1) ? '助力家乡千岛湖' : '代言家乡' + goodsInfo.giftDuration + '天'}}
       </view>
     </view>
   </view>
@@ -106,7 +106,7 @@
         />
         <view class="market-price" wx:if="{{goodsInfo.marketPrice}}">￥{{goodsInfo.marketPrice}}</view>
       </view>
-      <view class="commission-tag" wx:if="{{userInfo.promoterInfo && !goodsInfo.isGift && commission}}" bindtap="toggleCommissionVisible">
+      <view class="commission-tag" wx:if="{{commission && userInfo.promoterInfo && (!goodsInfo.isGift || (goodsInfo.isGift && userInfo.promoterInfo.status === 1))}}" bindtap="toggleCommissionVisible">
         <text wx:if="{{commissionVisible}}">奖励¥{{commission}}</text>
         <text wx:if="{{!commissionVisible}}" style="padding-top: 8rpx; font-size: 28rpx;">******</text>
         <image class="commission-visible-icon" src="/images/{{commissionVisible ? '' : 'in'}}visible.png" />
