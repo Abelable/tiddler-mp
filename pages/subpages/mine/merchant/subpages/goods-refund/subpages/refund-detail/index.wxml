@@ -1,76 +1,8 @@
 <wxs module="TIME" src="/utils/filters/time.wxs" />
-<wxs module="ORDER" src="../../../../../utils/order.wxs" />
 
 <view class="container" wx:if="{{orderInfo}}">
-  <view class="card" wx:if="{{orderInfo.deliveryMode === 1}}">
-    <view class="ship-info-wrap" wx:if="{{packageList.length}}">
-      <view class="package-info row" wx:if="{{packageList.length > 1}}">
-        <scroll-view class="package-list-wrap" scroll-x>
-          <view class="package-list">
-            <view 
-              class="package {{index === selectedPackageIdx ? 'selected' : ''}}" 
-              wx:for="{{packageList}}" 
-              wx:key="id" 
-              wx:for-item="package"
-              bindtap="selectPackage"
-              data-index="{{index}}"
-            >
-              <view class="package-goods" wx:for="{{package.goodsList}}" wx:key="id" wx:for-item="goods">
-                <image class="package-goods-cover" src="{{goods.goodsCover}}" />
-                <view class="package-goods-num">x{{goods.goodsNumber}}</view>
-              </view>
-            </view>
-          </view>
-        </scroll-view>
-        <view class="package-num">共{{packageList.length}}件包裹</view>
-      </view>
-      <view class="row" bindtap="checkShippingInfo">
-        <image class="ship-icon" src="./images/ship.png" />
-        <view class="ship-code omit single">
-          {{packageList[selectedPackageIdx].shipChannel}}｜{{packageList[selectedPackageIdx].shipSn}}
-        </view>
-        <view class="more-btn row center">
-          <view>查看物流</view>
-          <image class="more-icon" src="./images/arrow.png" />
-        </view>
-      </view>
-    </view>
-    <view class="consignee-info-wrap row">
-      <image class="address-icon" src="./images/address.png" />
-      <view class="consignee-info">
-        <view class="row">
-          <text class="consignee-name">{{orderInfo.consignee}}</text>
-          <text class="consignee-mobile">{{orderInfo.mobile}}</text>
-        </view>
-        <view class="address-detail">{{orderInfo.address}}</view>
-      </view>
-      <view class="copy-btn row center" bindtap="copyAddress">复制</view>
-    </view>
-  </view>
-
-  <view class="card" wx:if="{{orderInfo.deliveryMode === 2}}" bindtap="navigation">
-    <view class="pickup-address-info row">
-      <view class="pickup-address">
-        <view class="pickup-address-name">{{orderInfo.pickupAddress.name}}</view>
-        <view class="pickup-address-detail">{{orderInfo.pickupAddress.addressDetail}}</view>
-      </view>
-      <view class="navgation-btn row">
-        <view>导航</view>
-        <image class="navgation-btn-arrow" src="/images/arrow.png" />
-      </view>
-    </view>
-    <view class="list row between">
-      <view class="title">自提时间</view>
-      <text>{{orderInfo.pickupTime}}</text>
-    </view>
-    <view class="list row between">
-      <view class="title">预留手机号</view>
-      <text>{{orderInfo.pickupMobile}}</text>
-    </view>
-  </view>
-
   <view class="card">
-    <goods-item />
+    <goods-item navigable />
     <view class="list row between">
       <view class="title">商品总价</view>
       <price-unit price="{{orderInfo.goodsPrice || 0}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />
@@ -87,12 +19,8 @@
       </view>
     </view>
     <view class="list row between">
-      <view class="title">{{ORDER.paymentDesc(orderInfo.status)}}</view>
-      <price-unit price="{{orderInfo.paymentAmount || 0}}" />
-    </view>
-    <view view class="list row between" wx:if="{{orderInfo.status === 204}}">
       <view class="title">退款金额</view>
-      <price-unit price="{{orderInfo.refundAmount || 0}}" color="#333" fontSize="20rpx" integerFontSize="28rpx" />
+      <price-unit price="{{orderInfo.paymentAmount || 0}}" />
     </view>
     <view class="more-info-wrap">
       <view class="list row between">

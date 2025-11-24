@@ -1,4 +1,4 @@
-<view class="goods-item row">
+<view class="goods-item" bindtap="navToGoodsDetail">
   <image class="goods-img" src="{{item.cover}}" mode="aspectFill" lazy-load />
   <view class="goods-content">
     <view class="goods-name omit">{{item.name}}</view>
