@@ -19,10 +19,10 @@ class RefundService extends MerchantService {
     return list;
   }
 
-  async getRefundDetail(shopId, orderId) {
+  async getRefundDetail(shopId, id) {
     return await this.get({
       url: `${this.baseUrl}/shop/refund/detail`,
-      data: { shopId, orderId },
+      data: { shopId, id },
       loadingTitle: "正在加载"
     });
   }

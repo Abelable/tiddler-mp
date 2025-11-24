@@ -1,5 +1,4 @@
 import { WEBVIEW_BASE_URL } from "../../../../../../../../config";
-import { store } from "../../../../../../../../store/index";
 import OrderService from "../../utils/orderService";
 
 const orderService = new OrderService();
@@ -9,15 +8,15 @@ Page({
     orderInfo: null
   },
 
-  onLoad({ id }) {
-    this.orderId = id;
+  onLoad({ shopId, id }) {
+    this.shopId = +shopId;
+    this.orderId = +id;
     this.setOrderInfo();
   },
 
   async setOrderInfo() {
-    const { shopId } = store.userInfo;
     const orderInfo = await orderService.getOrderDetail(
-      shopId,
+      this.shopId,
       this.orderId
     );
     this.setData({ orderInfo });
@@ -64,8 +63,7 @@ Page({
   },
 
   ship() {
-    const { shopId } = store.userInfo;
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/ship&shop_id=${shopId}&order_id=${this.orderId}`;
+    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/ship&shop_id=${this.shopId}&order_id=${this.orderId}`;
     wx.navigateTo({ url });
   },
 

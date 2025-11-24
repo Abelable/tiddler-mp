@@ -1,4 +1,3 @@
-import { store } from "../../../../../../../../store/index";
 import HotelOrderService from "../../utils/hotelOrderService";
 
 const hotelOrderService = new HotelOrderService();
@@ -8,15 +7,15 @@ Page({
     orderInfo: null
   },
 
-  onLoad({ id }) {
-    this.orderId = id;
+  onLoad({ shopId, id }) {
+    this.shopId = +shopId;
+    this.orderId = +id;
     this.setOrderInfo();
   },
 
   async setOrderInfo() {
-    const { hotelShopId } = store.userInfo;
     const orderInfo = await hotelOrderService.getOrderDetail(
-      hotelShopId,
+      this.shopId,
       this.orderId
     );
     this.setData({ orderInfo });
@@ -52,8 +51,7 @@ Page({
       title: "确定取消订单吗？",
       success: result => {
         if (result.confirm) {
-          const { hotelShopId } = store.userInfo;
-          hotelOrderService.refundHotelOrder(hotelShopId, this.orderId, () => {
+          hotelOrderService.refundHotelOrder(this.shopId, this.orderId, () => {
             this.setOrderInfo();
           });
         }
@@ -62,8 +60,7 @@ Page({
   },
 
   approveOrder() {
-    const { hotelShopId } = store.userInfo;
-    hotelOrderService.approveHotelOrder(hotelShopId, this.orderId, () => {
+    hotelOrderService.approveHotelOrder(this.shopId, this.orderId, () => {
       this.setOrderInfo();
     });
   },

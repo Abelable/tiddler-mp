@@ -1,4 +1,3 @@
-import { store } from "../../../../../../../../store/index";
 import ScenicOrderService from "../../utils/scenicOrderService";
 
 const scenicOrderService = new ScenicOrderService();
@@ -8,15 +7,15 @@ Page({
     orderInfo: null
   },
 
-  onLoad({ id }) {
-    this.orderId = id;
+  onLoad({ shopId, id }) {
+    this.shopId = +shopId;
+    this.orderId = +id;
     this.setOrderInfo();
   },
 
   async setOrderInfo() {
-    const { scenicShopId } = store.userInfo;
     const orderInfo = await scenicOrderService.getOrderDetail(
-      scenicShopId,
+      this.shopId,
       this.orderId
     );
     this.setData({ orderInfo });
@@ -48,8 +47,7 @@ Page({
   },
 
   approveOrder() {
-    const { scenicShopId } = store.userInfo;
-    scenicOrderService.approveScenicOrder(scenicShopId, this.orderId, () => {
+    scenicOrderService.approveScenicOrder(this.shopId, this.orderId, () => {
       this.setOrderInfo();
     });
   },
@@ -59,8 +57,7 @@ Page({
       title: "确定取消订单吗？",
       success: result => {
         if (result.confirm) {
-          const { scenicShopId } = store.userInfo;
-          scenicOrderService.refundScenicOrder(scenicShopId, this.orderId, () => {
+          scenicOrderService.refundScenicOrder(this.shopId, this.orderId, () => {
             this.setOrderInfo();
           });
         }

@@ -1,4 +1,3 @@
-import { store } from "../../../../../../../../store/index";
 import MealTicketOrderService from "../../utils/mealTicketOrderService";
 
 const mealTicketOrderService = new MealTicketOrderService();
@@ -8,15 +7,15 @@ Page({
     orderInfo: null
   },
 
-  onLoad({ id }) {
-    this.orderId = id;
+  onLoad({ shopId, id }) {
+    this.shopId = +shopId;
+    this.orderId = +id;
     this.setOrderInfo();
   },
 
   async setOrderInfo() {
-    const { cateringShopId } = store.userInfo;
     const orderInfo = await mealTicketOrderService.getOrderDetail(
-      cateringShopId,
+      this.shopId,
       this.orderId
     );
     this.setData({ orderInfo });
@@ -48,8 +47,7 @@ Page({
   },
 
   approveOrder() {
-    const { cateringShopId } = store.userInfo;
-    mealTicketOrderService.approveMealTicketOrder(cateringShopId, this.orderId, () => {
+    mealTicketOrderService.approveMealTicketOrder(this.shopId, this.orderId, () => {
       this.setOrderInfo();
     });
   },
@@ -59,9 +57,8 @@ Page({
       title: "确定取消订单吗？",
       success: result => {
         if (result.confirm) {
-          const { cateringShopId } = store.userInfo;
           mealTicketOrderService.refundMealTicketOrder(
-            cateringShopId,
+            this.shopId,
             this.orderId,
             () => {
               this.setOrderInfo();

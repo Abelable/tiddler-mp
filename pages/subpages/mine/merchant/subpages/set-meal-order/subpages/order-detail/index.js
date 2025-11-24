@@ -1,4 +1,3 @@
-import { store } from "../../../../../../../../store/index";
 import SetMealOrderService from "../../utils/setMealOrderService";
 
 const setMealOrderService = new SetMealOrderService();
@@ -8,15 +7,15 @@ Page({
     orderInfo: null
   },
 
-  onLoad({ id }) {
-    this.orderId = id;
+  onLoad({ shopId, id }) {
+    this.shopId = +shopId;
+    this.orderId = +id;
     this.setOrderInfo();
   },
 
   async setOrderInfo() {
-    const { cateringShopId } = store.userInfo;
     const orderInfo = await setMealOrderService.getOrderDetail(
-      cateringShopId,
+      this.shopId,
       this.orderId
     );
     this.setData({ orderInfo });
@@ -48,8 +47,7 @@ Page({
   },
 
   approveOrder() {
-    const { cateringShopId } = store.userInfo;
-    setMealOrderService.approveSetMealOrder(cateringShopId, this.orderId, () => {
+    setMealOrderService.approveSetMealOrder(this.shopId, this.orderId, () => {
       this.setOrderInfo();
     });
   },
@@ -59,8 +57,7 @@ Page({
       title: "确定取消订单吗？",
       success: result => {
         if (result.confirm) {
-          const { cateringShopId } = store.userInfo;
-          setMealOrderService.refundSetMealOrder(cateringShopId, this.orderId, () => {
+          setMealOrderService.refundSetMealOrder(this.shopId, this.orderId, () => {
             this.setOrderInfo();
           });
         }

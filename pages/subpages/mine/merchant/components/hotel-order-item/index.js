@@ -44,8 +44,8 @@ Component({
     },
 
     navToDetail() {
-      const { id } = this.properties.item;
-      const url = `/pages/subpages/mine/merchant/subpages/hotel-order/subpages/order-detail/index?id=${id}`;
+      const { shopId, item } = this.properties;
+      const url = `/pages/subpages/mine/merchant/subpages/hotel-order/subpages/order-detail/index?shopId=${shopId}&id=${item.id}`;
       wx.navigateTo({ url });
     }
   }
