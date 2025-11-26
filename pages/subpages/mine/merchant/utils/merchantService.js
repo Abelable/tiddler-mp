@@ -124,7 +124,7 @@ class MerchantService extends BaseService {
     });
   }
 
-   async refundGoodsOrder(shopId, orderId, success) {
+  async refundGoodsOrder(shopId, orderId, success) {
     await this.post({
       url: `${this.baseUrl}/shop/order/refund`,
       data: { shopId, orderId },
