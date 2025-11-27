@@ -72,8 +72,8 @@ Page({
           title: "设置成功",
           icon: "none"
         });
-        store.setUserInfo({ ...store.userInfo, password: this.newPassword });
         setTimeout(() => {
+          store.setUserInfo({ ...store.userInfo, password: this.newPassword });
           wx.navigateBack();
         }, 2000);
       });
