@@ -1,5 +1,3 @@
-import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
-import { store } from "../../../../../../store/index";
 import { WEBVIEW_BASE_URL } from "../../../../../../config";
 import ShopService from "./utils/shopService";
 
@@ -27,11 +25,16 @@ Component({
     addGlobalClass: true
   },
 
-  behaviors: [storeBindingsBehavior],
+  properties: {
+    shopId: Number,
+    roleId: Number
+  },
 
-  storeBindings: {
-    store,
-    fields: ["userInfo"]
+  data: {
+    shopIncomeOverview: null,
+    shopOrderTotal: null,
+    orderToolList,
+    toolList
   },
 
   lifetimes: {
@@ -48,20 +51,8 @@ Component({
     }
   },
 
-  data: {
-    shopId: 0,
-    shopIncomeOverview: null,
-    shopOrderTotal: null,
-    orderToolList,
-    toolList
-  },
-
   methods: {
     init() {
-      const { shopId, shopManagerList } = store.userInfo;
-      this.setData({
-        shopId: shopId || shopManagerList[0].shopId
-      });
       this.inited = true;
       this.initOverviewData();
     },
@@ -72,27 +63,28 @@ Component({
     },
 
     async setShopIncomeOverview() {
+      const { shopId } = this.properties;
       const shopIncomeOverview = await shopService.getShopIncomeOverview(
-        this.data.shopId
+        shopId
       );
       this.setData({ shopIncomeOverview });
     },
 
     async setShopOrderTotal() {
-      const shopOrderTotal = await shopService.getShopOrderTotal(
-        this.data.shopId
-      );
+      const { shopId } = this.properties;
+      const shopOrderTotal = await shopService.getShopOrderTotal(shopId);
       this.setData({ shopOrderTotal });
     },
 
     withdraw() {
-      const url = `/pages/subpages/mine/merchant/subpages/income-detail/index?merchantType=4`;
+      const { shopId } = this.properties;
+      const url = `/pages/subpages/mine/merchant/subpages/income-detail/index?merchantType=4&shopId=${shopId}`;
       wx.navigateTo({ url });
     },
 
     checkOrders(e) {
       const { status } = e.currentTarget.dataset;
-      const { shopId } = this.data;
+      const { shopId } = this.properties;
       if (status === 5) {
         wx.navigateTo({
           url: `/pages/subpages/mine/merchant/subpages/goods-refund/index?shopId=${shopId}`
@@ -108,7 +100,8 @@ Component({
 
     checkTool(e) {
       const { route } = e.currentTarget.dataset;
-      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/goods/shop/${route}&shop_id=${this.data.shopId}`;
+      const { shopId } = this.properties;
+      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/goods/shop/${route}&shop_id=${shopId}`;
       wx.navigateTo({ url });
     }
   }

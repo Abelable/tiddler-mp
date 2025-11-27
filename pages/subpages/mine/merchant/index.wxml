@@ -14,16 +14,23 @@
 
 <view class="container">
   <swiper class="merchant-list" bindchange="selectTitle">
-    <swiper-item class="merchant {{merchantList[curMerchantIdx].type}}" style="padding-top: {{statusBarHeight + 56}}px" wx:for="{{merchantList}}" wx:key="index">
+    <swiper-item 
+      class="merchant {{merchantList[curMerchantIdx].type}}" 
+      style="padding-top: {{statusBarHeight + 56}}px" 
+      wx:for="{{merchantList}}" 
+      wx:key="index"
+    >
       <image class="bg" src="https://static.tiddler.cn/mp/merchant/{{item.type}}/bg.png" />
-      <scenic-shop wx:if="{{item.value === 1}}" />
-      <hotel-shop wx:if="{{item.value === 2}}" />
-      <catering-shop wx:if="{{item.value === 3}}" />
-      <goods-shop wx:if="{{item.value === 4}}" />
+
+      <!-- todo 店铺选择（当前shopId固定为选项第一个） -->
+      <scenic-shop wx:if="{{item.type === 'scenic'}}" shopId="{{item.shopOptions[0].id}}" roleId="{{item.shopOptions[0].roleId}}" />
+      <hotel-shop wx:if="{{item.type === 'hotel'}}" shopId="{{item.shopOptions[0].id}}" roleId="{{item.shopOptions[0].roleId}}" />
+      <catering-shop wx:if="{{item.type === 'catering'}}" shopId="{{item.shopOptions[0].id}}" roleId="{{item.shopOptions[0].roleId}}" />
+      <goods-shop wx:if="{{item.type === 'goods'}}" shopId="{{item.shopOptions[0].id}}" roleId="{{item.shopOptions[0].roleId}}" />
     </swiper-item>
   </swiper>
 
   <view class="dots row" wx:if="{{merchantList.length > 1}}">
-    <view class="dot {{curMerchantIdx === index ? 'active' : ''}}" wx:for="{{merchantList}}" wx:key="index"></view>
+    <view class="dot {{curMerchantIdx === index ? 'active' : ''}}" wx:for="{{merchantList}}" wx:key="index" />
   </view>
 </view>

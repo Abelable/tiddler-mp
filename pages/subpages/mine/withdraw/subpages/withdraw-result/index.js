@@ -23,17 +23,20 @@ Page({
       });
     } else if (this.scene > 3 && this.scene <= 7) {
       const {
-        scenicShopId,
-        hotelShopId,
-        cateringShopId,
-        shopId: goodsShopId
+        scenicShopOptions,
+        hotelShopOptions,
+        cateringShopOptions,
+        goodsShopOptions
       } = store.userInfo;
       const merchantType = this.scene - 3;
-      const shopId = [scenicShopId, hotelShopId, cateringShopId, goodsShopId][
-        merchantType - 1
-      ];
+      const { id } = [
+        scenicShopOptions,
+        hotelShopOptions,
+        cateringShopOptions,
+        goodsShopOptions
+      ][merchantType - 1][0];
       wx.navigateTo({
-        url: `${baseUrl}/income&merchant_type=${merchantType}&shop_id=${shopId}`
+        url: `${baseUrl}/income&merchant_type=${merchantType}&shop_id=${id}`
       });
     } else {
       wx.navigateTo({

@@ -120,41 +120,38 @@ Component({
       const {
         promoterInfo,
         authInfoId,
-        scenicShopId,
-        scenicShopManagerList = [],
-        hotelShopId,
-        hotelShopManagerList = [],
-        cateringShopId,
-        cateringShopManagerList = [],
-        shopId,
-        shopManagerList = []
+        scenicShopOptions = [],
+        hotelShopOptions = [],
+        cateringShopOptions = [],
+        goodsShopOptions = []
       } = store.userInfo || {};
 
       const toolList = [
         { name: "订单中心", icon: "order" },
         { name: "收货地址", icon: "address" },
         promoterInfo ? { name: "代言奖励", icon: "promoter" } : undefined,
-        scenicShopId ||
-        scenicShopManagerList.findIndex(item => [1, 2].includes(item.roleId)) !== -1 ||
-        hotelShopId ||
-        hotelShopManagerList.findIndex(item => [1, 2].includes(item.roleId)) !== -1 ||
-        cateringShopId ||
-        cateringShopManagerList.findIndex(item => [1, 2].includes(item.roleId)) !== -1 ||
-        shopId ||
-        shopManagerList.findIndex(item => [1, 2].includes(item.roleId)) !== -1
+        scenicShopOptions.findIndex(item => [0, 1, 2].includes(item.roleId)) !==
+          -1 ||
+        hotelShopOptions.findIndex(item => [0, 1, 2].includes(item.roleId)) !==
+          -1 ||
+        cateringShopOptions.findIndex(item =>
+          [0, 1, 2].includes(item.roleId)
+        ) !== -1 ||
+        goodsShopOptions.findIndex(item => [0, 1, 2].includes(item.roleId)) !==
+          -1
           ? { name: "商家中心", icon: "merchant" }
           : undefined,
-        scenicShopId ||
-        scenicShopManagerList.length ||
-        hotelShopId ||
-        hotelShopManagerList.length ||
-        cateringShopId ||
-        cateringShopManagerList.length ||
-        shopId ||
-        shopManagerList.length
+        scenicShopOptions.length ||
+        hotelShopOptions.length ||
+        cateringShopOptions.length ||
+        goodsShopOptions.length
           ? { name: "扫码核销", icon: "scan" }
           : undefined,
-        promoterInfo || scenicShopId || hotelShopId || cateringShopId || shopId
+        promoterInfo ||
+        scenicShopOptions.length ||
+        hotelShopOptions.length ||
+        cateringShopOptions.length ||
+        goodsShopOptions.length
           ? { name: "我的余额", icon: "balance" }
           : undefined,
         { name: "优惠券", icon: "coupon" },
@@ -439,20 +436,16 @@ Component({
 
     scan() {
       const {
-        scenicShopId,
-        scenicShopManagerList,
-        hotelShopId,
-        hotelShopManagerList,
-        cateringShopId,
-        cateringShopManagerList,
-        shopId,
-        shopManagerList
+        scenicShopOptions,
+        hotelShopOptions,
+        cateringShopOptions,
+        shopOptions
       } = store.userInfo;
       wx.scanCode({
         success: res => {
           const code = res.result;
           if (code.length === 12) {
-            if (scenicShopId || scenicShopManagerList.length) {
+            if (scenicShopOptions.length) {
               mineService.verifyScenicCode(code, () => {
                 wx.showToast({
                   title: "核销成功",
@@ -467,7 +460,7 @@ Component({
             }
           }
           if (code.length === 11) {
-            if (hotelShopId || hotelShopManagerList.length) {
+            if (hotelShopOptions.length) {
               mineService.verifyHotelCode(code, () => {
                 wx.showToast({
                   title: "核销成功",
@@ -482,7 +475,7 @@ Component({
             }
           }
           if (code.length === 10) {
-            if (cateringShopId || cateringShopManagerList.length) {
+            if (cateringShopOptions.length) {
               mineService.verifyMealTicketCode(code, () => {
                 wx.showToast({
                   title: "核销成功",
@@ -497,7 +490,7 @@ Component({
             }
           }
           if (code.length === 9) {
-            if (cateringShopId || cateringShopManagerList.length) {
+            if (cateringShopOptions.length) {
               mineService.verifySetMealCode(code, () => {
                 wx.showToast({
                   title: "核销成功",
@@ -512,7 +505,7 @@ Component({
             }
           }
           if (code.length === 8) {
-            if (shopId || shopManagerList.length) {
+            if (shopOptions.length) {
               mineService.verifyGoodsCode(code, () => {
                 wx.showToast({
                   title: "核销成功",

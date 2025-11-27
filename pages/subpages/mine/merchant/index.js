@@ -18,24 +18,37 @@ Page({
   async setTitleMenu() {
     const { merchantType, userInfo } = store;
     const {
-      scenicShopId,
-      hotelShopId,
-      cateringShopId,
-      shopId
+      scenicShopOptions = [],
+      hotelShopOptions = [],
+      cateringShopOptions = [],
+      goodsShopOptions = []
     } = userInfo;
 
     const merchantList = [];
-    if (scenicShopId) {
-      merchantList.push({ name: "景区管理", type: "scenic", value: 1 });
+
+    if (scenicShopOptions.length) {
+      const shopOptions = scenicShopOptions.filter(item =>
+        [0, 1, 2].includes(item.roleId)
+      );
+      merchantList.push({ name: "景区管理", type: "scenic", shopOptions });
     }
-    if (hotelShopId) {
-      merchantList.push({ name: "酒店管理", type: "hotel", value: 2 });
+    if (hotelShopOptions.length) {
+      const shopOptions = hotelShopOptions.filter(item =>
+        [0, 1, 2].includes(item.roleId)
+      );
+      merchantList.push({ name: "酒店管理", type: "hotel", shopOptions });
     }
-    if (cateringShopId) {
-      merchantList.push({ name: "餐饮管理", type: "catering", value: 3 });
+    if (cateringShopOptions.length) {
+      const shopOptions = cateringShopOptions.filter(item =>
+        [0, 1, 2].includes(item.roleId)
+      );
+      merchantList.push({ name: "餐饮管理", type: "catering", shopOptions });
     }
-    if (shopId) {
-      merchantList.push({ name: "电商管理", type: "goods", value: 4 });
+    if (goodsShopOptions.length) {
+      const shopOptions = goodsShopOptions.filter(item =>
+        [0, 1, 2].includes(item.roleId)
+      );
+      merchantList.push({ name: "电商管理", type: "goods", shopOptions });
     }
 
     const curMerchantIdx = merchantType

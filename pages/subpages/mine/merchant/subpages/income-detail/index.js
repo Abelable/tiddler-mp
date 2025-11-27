@@ -1,5 +1,4 @@
 import { WEBVIEW_BASE_URL } from "../../../../../../config";
-import { store } from "../../../../../../store/index";
 import IncomeService from "./utils/incomeService";
 
 const incomeService = new IncomeService();
@@ -24,8 +23,9 @@ Page({
     finished: false
   },
 
-  onLoad({ merchantType }) {
+  onLoad({ merchantType, shopId }) {
     this.setData({ merchantType: +merchantType });
+    this.shopId = +shopId;
   },
 
   onShow() {
@@ -102,16 +102,14 @@ Page({
   },
 
   async setScenicShopIncomeSum() {
-    const { scenicShopId } = store.userInfo;
-    const incomeSum = await incomeService.getScenicShopIncomeSum(scenicShopId);
+    const incomeSum = await incomeService.getScenicShopIncomeSum(this.shopId);
     this.setData({ incomeSum });
   },
 
   async setScenicShopTimeData() {
-    const { scenicShopId } = store.userInfo;
     const { dateList, curDateIdx } = this.data;
     const timeData = await incomeService.getScenicShopTimeData(
-      scenicShopId,
+      this.shopId,
       dateList[curDateIdx].value
     );
     this.setData({ timeData });
@@ -123,12 +121,11 @@ Page({
       this.setData({ orderList: [], finished: false });
     }
 
-    const { scenicShopId: shopId } = store.userInfo;
     const { dateList, curDateIdx } = this.data;
     const page = ++this.page;
 
     const list = await incomeService.getScenicShopIncomeOrderList({
-      shopId,
+      shopId: this.shopId,
       timeType: dateList[curDateIdx].value,
       statusList: [1, 2, 3, 4],
       page
@@ -144,16 +141,14 @@ Page({
   },
 
   async setHotelShopIncomeSum() {
-    const { hotelShopId } = store.userInfo;
-    const incomeSum = await incomeService.getHotelShopIncomeSum(hotelShopId);
+    const incomeSum = await incomeService.getHotelShopIncomeSum(this.shopId);
     this.setData({ incomeSum });
   },
 
   async setHotelShopTimeData() {
-    const { hotelShopId } = store.userInfo;
     const { dateList, curDateIdx } = this.data;
     const timeData = await incomeService.getHotelShopTimeData(
-      hotelShopId,
+      this.shopId,
       dateList[curDateIdx].value
     );
     this.setData({ timeData });
@@ -165,12 +160,11 @@ Page({
       this.setData({ orderList: [], finished: false });
     }
 
-    const { hotelShopId: shopId } = store.userInfo;
     const { dateList, curDateIdx } = this.data;
     const page = ++this.page;
 
     const list = await incomeService.getHotelShopIncomeOrderList({
-      shopId,
+      shopId: this.shopId,
       timeType: dateList[curDateIdx].value,
       statusList: [1, 2, 3, 4],
       page
@@ -186,18 +180,14 @@ Page({
   },
 
   async setCateringShopIncomeSum() {
-    const { cateringShopId } = store.userInfo;
-    const incomeSum = await incomeService.getCateringShopIncomeSum(
-      cateringShopId
-    );
+    const incomeSum = await incomeService.getCateringShopIncomeSum(this.shopId);
     this.setData({ incomeSum });
   },
 
   async setCateringShopTimeData() {
-    const { cateringShopId } = store.userInfo;
     const { dateList, curDateIdx } = this.data;
     const timeData = await incomeService.getCateringShopTimeData(
-      cateringShopId,
+      this.shopId,
       dateList[curDateIdx].value
     );
     this.setData({ timeData });
@@ -209,12 +199,11 @@ Page({
       this.setData({ orderList: [], finished: false });
     }
 
-    const { cateringShopId: shopId } = store.userInfo;
     const { dateList, curDateIdx } = this.data;
     const page = ++this.page;
 
     const list = await incomeService.getCateringShopIncomeOrderList({
-      shopId,
+      shopId: this.shopId,
       timeType: dateList[curDateIdx].value,
       statusList: [1, 2, 3, 4],
       page
@@ -230,16 +219,14 @@ Page({
   },
 
   async setShopIncomeSum() {
-    const { shopId } = store.userInfo;
-    const incomeSum = await incomeService.getShopIncomeSum(shopId);
+    const incomeSum = await incomeService.getShopIncomeSum(this.shopId);
     this.setData({ incomeSum });
   },
 
   async setShopTimeData() {
-    const { shopId } = store.userInfo;
     const { dateList, curDateIdx } = this.data;
     const timeData = await incomeService.getShopTimeData(
-      shopId,
+      this.shopId,
       dateList[curDateIdx].value
     );
     this.setData({ timeData });
@@ -251,12 +238,11 @@ Page({
       this.setData({ orderList: [], finished: false });
     }
 
-    const { shopId } = store.userInfo;
     const { dateList, curDateIdx } = this.data;
     const page = ++this.page;
 
     const incomeList = await incomeService.getShopIncomeOrderList({
-      shopId,
+      shopId: this.shopId,
       timeType: dateList[curDateIdx].value,
       statusList: [1, 2, 3, 4],
       page
@@ -323,18 +309,8 @@ Page({
   },
 
   checkWithdrawRecord() {
-    const {
-      scenicShopId,
-      hotelShopId,
-      cateringShopId,
-      shopId: goodsShopId
-    } = store.userInfo;
-    const { merchantType } = this.data;
-    const shopId = [scenicShopId, hotelShopId, cateringShopId, goodsShopId][
-      merchantType - 1
-    ];
     wx.navigateTo({
-      url: `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/withdrawal_record/income&merchant_type=${merchantType}&shop_id=${shopId}`
+      url: `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/withdrawal_record/income&merchant_type=${merchantType}&shop_id=${this.shopId}`
     });
   }
 });

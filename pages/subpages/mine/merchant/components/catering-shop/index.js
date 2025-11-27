@@ -1,5 +1,3 @@
-import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
-import { store } from "../../../../../../store/index";
 import { WEBVIEW_BASE_URL } from "../../../../../../config";
 import ShopService from "./utils/shopService";
 
@@ -26,11 +24,17 @@ Component({
     addGlobalClass: true
   },
 
-  behaviors: [storeBindingsBehavior],
+  properties: {
+    shopId: Number,
+    roleId: Number
+  },
 
-  storeBindings: {
-    store,
-    fields: ["userInfo"]
+  data: {
+    shopIncomeOverview: null,
+    shopMealTicketOrderTotal: null,
+    shopSetMealOrderTotal: null,
+    orderToolList,
+    toolList
   },
 
   lifetimes: {
@@ -47,21 +51,8 @@ Component({
     }
   },
 
-  data: {
-    shopId: 0,
-    shopIncomeOverview: null,
-    shopMealTicketOrderTotal: null,
-    shopSetMealOrderTotal: null,
-    orderToolList,
-    toolList
-  },
-
   methods: {
     init() {
-      const { cateringShopId, cateringShopManagerList } = store.userInfo;
-      this.setData({
-        shopId: cateringShopId || cateringShopManagerList[0].shopId
-      });
       this.inited = true;
       this.initOverviewData();
     },
@@ -73,33 +64,37 @@ Component({
     },
 
     async setShopIncomeOverview() {
+      const { shopId } = this.properties;
       const shopIncomeOverview = await shopService.getShopIncomeOverview(
-        this.data.shopId
+        shopId
       );
       this.setData({ shopIncomeOverview });
     },
 
     async setShopMealTicketOrderTotal() {
+      const { shopId } = this.properties;
       const shopMealTicketOrderTotal =
-        await shopService.getShopMealTicketOrderTotal(this.data.shopId);
+        await shopService.getShopMealTicketOrderTotal(shopId);
       this.setData({ shopMealTicketOrderTotal });
     },
 
     async setShopSetMealOrderTotal() {
+      const { shopId } = this.properties;
       const shopSetMealOrderTotal = await shopService.getShopSetMealOrderTotal(
-        this.data.shopId
+        shopId
       );
       this.setData({ shopSetMealOrderTotal });
     },
 
     withdraw() {
-      const url = `/pages/subpages/mine/merchant/subpages/income-detail/index?merchantType=3`;
+      const { shopId } = this.properties;
+      const url = `/pages/subpages/mine/merchant/subpages/income-detail/index?merchantType=3&shopId=${shopId}`;
       wx.navigateTo({ url });
     },
 
     checkTicketOrders(e) {
       const { status } = e.currentTarget.dataset;
-      const { shopId } = this.data;
+      const { shopId } = this.properties;
       if (status === 4) {
         // todo 售后
       } else {
@@ -113,7 +108,7 @@ Component({
 
     checkSetMealOrders(e) {
       const { status } = e.currentTarget.dataset;
-      const { shopId } = this.data;
+      const { shopId } = this.properties;
       if (status === 4) {
         // todo 售后
       } else {
@@ -127,7 +122,8 @@ Component({
 
     checkTool(e) {
       const { route } = e.currentTarget.dataset;
-      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/hotel_shop/${route}&shop_id=${this.data.shopId}`;
+      const { shopId } = this.properties;
+      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/hotel_shop/${route}&shop_id=${shopId}`;
       wx.navigateTo({ url });
     }
   }
