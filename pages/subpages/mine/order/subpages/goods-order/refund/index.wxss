@@ -70,6 +70,23 @@
   background: #f5f6f7;
 }
 
+.address-info-item {
+  padding: 24rpx 0;
+  border-bottom: 1px solid #f5f6f8;
+}
+.address-info-item:last-child {
+  border-bottom: none;
+}
+.address-info-title {
+  color: #666;
+  font-size: 28rpx;
+}
+.address-info-content {
+  margin-top: 8rpx;
+  color: #333;
+  font-size: 28rpx;
+}
+
 .ship-btn {
   margin-left: 24rpx;
   padding: 0 20rpx;
@@ -77,7 +94,7 @@
   color: #fff;
   font-size: 20rpx;
   line-height: 50rpx;
-  background: #FF7925;
+  background: var(--blue-1);
   border-radius: 25rpx;
 }
 
@@ -108,6 +125,6 @@
   color: #fff;
   font-size: 30rpx;
   font-weight: 500;
-  background: #FF7925;
+  background: var(--blue-1);
   border-radius: 50rpx;
 }

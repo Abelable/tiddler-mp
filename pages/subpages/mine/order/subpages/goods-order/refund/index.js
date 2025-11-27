@@ -17,7 +17,15 @@ Page({
     shipSn: ""
   },
 
-  onLoad({ orderId, orderSn, couponId, orderGoodsId, shopId, goodsId, refundAddressId }) {
+  async onLoad({
+    orderId,
+    orderSn,
+    couponId,
+    orderGoodsId,
+    shopId,
+    goodsId,
+    refundAddressId
+  }) {
     this.orderId = +orderId;
     this.orderSn = orderSn;
     this.couponId = +couponId;
@@ -26,8 +34,8 @@ Page({
     this.goodsId = +goodsId;
     this.refundAddressId = +refundAddressId;
 
+    await this.setExpressOptions();
     this.setRefundInfo();
-    this.setExpressOptions();
   },
 
   async setRefundInfo() {
@@ -63,7 +71,7 @@ Page({
       if (status === 2) {
         this.setData({
           selectedExpressIdx: this.data.expressOptions.findIndex(
-            item => item.value === shipCode
+            item => item.code === shipCode
           ),
           shipSn
         });
@@ -168,9 +176,11 @@ Page({
         });
         return;
       }
+      const { name, code } = expressOptions[selectedExpressIdx];
       refundService.submitShipInfo(
         this.refundInfoId,
-        expressOptions[selectedExpressIdx].code,
+        name,
+        code,
         shipSn,
         () => {
           wx.showToast({

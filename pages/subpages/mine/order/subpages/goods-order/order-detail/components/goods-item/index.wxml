@@ -14,6 +14,13 @@
     </view>
   </view>
   <view class="btn-wrap">
-    <button class="btn" wx:if="{{refundBtnVisible}}" catchtap="applyRefund" hover-class="none">售后申请</button>
+    <button 
+      class="btn" 
+      wx:if="{{refundBtnVisible}}" 
+      catchtap="applyRefund" 
+      hover-class="none"
+    >
+      {{(orderInfo.status === 203 || orderInfo.status === 204) ? "查看售后" : "售后申请"}}
+    </button>
   </view>
 </view>

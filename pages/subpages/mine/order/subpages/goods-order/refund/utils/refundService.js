@@ -54,10 +54,10 @@ class RefundService extends OrderService {
     });
   }
 
-  async submitShipInfo(id, shipCode, shipSn, success) {
+  async submitShipInfo(id, shipChannel, shipCode, shipSn, success) {
     await this.post({
       url: `${this.baseUrl}/refund/submit_shipping_info`,
-      data: { id, shipCode, shipSn },
+      data: { id, shipChannel, shipCode, shipSn },
       success
     });
   }

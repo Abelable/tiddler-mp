@@ -18,7 +18,7 @@ Component({
     attached() {
       const { item, orderInfo } = this.properties;
       if (
-        [401, 402, 403, 501, 502].includes(orderInfo.status) &&
+        [203, 401, 402, 403, 501, 502].includes(orderInfo.status) &&
         item.refundStatus === 1 &&
         dayjs().diff(dayjs(orderInfo.confirmTime), "day") <= 7
       ) {

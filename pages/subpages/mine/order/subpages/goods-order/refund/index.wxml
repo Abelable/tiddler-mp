@@ -2,8 +2,7 @@
   {{ ['信息审核中，请耐心等待', '审核通过，请寄回商品', '请等待商家确认收货', '退款成功', '退款失败'][status] }}
 </view>
 <view class="fail-reason" wx:if="{{status === 4}}">
-  <view>失败原因：</view>
-  <view>{{ failureReason }}</view>
+  失败原因：{{ failureReason }}
 </view>
 
 <view 
@@ -24,7 +23,7 @@
     >
       {{refundType === undefined ? '请选择退款方式' : typeList[refundType]}}
     </picker>
-    <image class="arrow" wx:if="{{status === undefined || status === 4}}" src="/images/arrow.png" />
+    <image class="arrow" wx:if="{{status === undefined || status === 4}}" src="/images/arrow_gray.png" />
     <view class="form-content" wx:if="{{status === 0}}">{{typeList[refundType]}}</view>
   </view>
   <view class="form-item">
@@ -52,17 +51,17 @@
 </view>
 
 <view class="card" wx:if="{{status === 1 || status === 2}}">
-  <view class="form-item row">
-    <label class="form-label">收件人</label>
-    <view class="form-content">{{refundAddressInfo.consigneeName}}</view>
+  <view class="address-info-item">
+    <label class="address-info-title">收件人</label>
+    <view class="address-info-content">{{refundAddressInfo.consigneeName}}</view>
   </view>
-  <view class="form-item row">
-    <label class="form-label">收件人手机号</label>
-    <view class="form-content">{{refundAddressInfo.mobile}}</view>
+  <view class="address-info-item">
+    <label class="address-info-title">收件人手机号</label>
+    <view class="address-info-content">{{refundAddressInfo.mobile}}</view>
   </view>
-  <view class="form-item row">
-    <label class="form-label">收件地址</label>
-    <view class="form-content">{{refundAddressInfo.addressDetail}}</view>
+  <view class="address-info-item">
+    <label class="address-info-title">收件地址</label>
+    <view class="address-info-content">{{refundAddressInfo.addressDetail}}</view>
   </view>
 </view>
 
@@ -78,7 +77,7 @@
     >
       {{selectedExpressIdx === undefined ? '请选择物流公司' : expressOptions[selectedExpressIdx].name}}
     </picker>
-    <image class="arrow" wx:if="{{status === 1}}" src="/images/arrow.png" />
+    <image class="arrow" wx:if="{{status === 1}}" src="/images/arrow_gray.png" />
     <view class="form-content" wx:if="{{status === 2}}">{{expressOptions[selectedExpressIdx].name}}</view>
   </view>
   <view class="form-item row">
