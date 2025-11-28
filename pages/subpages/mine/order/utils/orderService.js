@@ -347,6 +347,7 @@ class OrderService extends BaseService {
   }
 
   async submitEvaluation(
+    status,
     orderId,
     goodsIds,
     score,
@@ -355,7 +356,7 @@ class OrderService extends BaseService {
     success
   ) {
     return await this.post({
-      url: `${this.baseUrl}/goods/evaluation/add`,
+      url: `${this.baseUrl}/goods/evaluation/${status === 501 ? 'edit' : 'add'}`,
       data: { orderId, goodsIds, score, content, imageList },
       success
     });

@@ -308,11 +308,12 @@ page {
 
 .evaluation-summary-wrap {
   margin: 20rpx;
+  padding: 0 32rpx;
   background: #fff;
   border-radius: 32rpx;
 }
 .evaluation-total {
-  padding: 32rpx;
+  padding: 32rpx 0;
 }
 .evaluation-title {
   color: #333;
@@ -328,8 +329,8 @@ page {
   height: 18rpx;
 }
 .evaluation-list {
-  padding: 32rpx;
-  border-top: 1px solid #eee;
+  padding: 32rpx 0;
+  border-top: 0.5px solid #eee;
 }
 .evaluation-item {
   margin-bottom: 32rpx;

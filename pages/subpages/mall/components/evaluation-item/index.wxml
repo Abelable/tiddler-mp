@@ -13,19 +13,21 @@
     </view>
   </view>
   <view class="comment-content {{contentOmit ? 'omit' : ''}}">{{item.content}}</view>
-  <view class="comment-images row between" wx:if="{{item.imageList.length}}">
-    <image 
-      class="comment-image" 
-      wx:for="{{imageList}}" 
-      wx:key="imageIndex" 
-      wx:for-index="imageIndex" 
-      wx:for-item="image" 
-      src="{{image}}"
-      bindtap="previewImage"
-      data-current="{{image}}"
-      mode="aspectFill"
-      lazy-load
-    />
-    <view class="more-image-tips row center">+{{item.imageList.length - 3}}</view>
+  <view class="comment-images-wrap">
+    <view class="comment-images row" wx:if="{{item.imageList.length}}">
+      <image 
+        class="comment-image" 
+        wx:for="{{imageList}}" 
+        wx:key="imageIndex" 
+        wx:for-index="imageIndex" 
+        wx:for-item="image" 
+        src="{{image}}"
+        bindtap="previewImage"
+        data-current="{{image}}"
+        mode="aspectFill"
+        lazy-load
+      />
+    </view>
+    <view class="more-image-tips row center" wx:if="{{item.imageList.length > 3}}">+{{item.imageList.length - 3}}</view>
   </view>
 </view>
