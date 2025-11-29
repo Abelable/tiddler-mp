@@ -187,7 +187,7 @@ Page({
       pickupTime,
       pickupMobile
     } = this.data;
-    const { errMsg, addressInfo = {} } = preOrderInfo;
+    const { errMsg, addressInfo = {}, couponList } = preOrderInfo;
     const addressId = addressInfo.id || "";
     if (errMsg) {
       return;
@@ -206,6 +206,9 @@ Page({
     ) {
       return;
     }
+    if (this.couponId === undefined && couponList.length) {
+      this.couponId = couponList[0].id;
+    }
     const orderIds = await goodsService.submitOrder({
       deliveryMode: curMenuIdx + 1,
       addressId: curMenuIdx === 0 ? addressId : "",
@@ -215,6 +218,7 @@ Page({
         curMenuIdx === 1 ? dayjs(pickupTime).format("YYYY-MM-DD HH:mm:ss") : "",
       pickupMobile: curMenuIdx === 1 ? pickupMobile : "",
       cartGoodsIds: this.cartGoodsIds,
+      couponId: this.couponId || undefined,
       useBalance: this.useBalance ? 1 : 0
     });
     if (orderIds) {

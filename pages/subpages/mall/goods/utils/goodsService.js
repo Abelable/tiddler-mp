@@ -87,6 +87,7 @@ class GoodsService extends MallService {
     pickupTime = "",
     pickupMobile = "",
     cartGoodsIds,
+    couponId,
     useBalance
   }) {
     return await this.post({
@@ -98,6 +99,7 @@ class GoodsService extends MallService {
         pickupTime,
         pickupMobile,
         cartGoodsIds,
+        couponId,
         useBalance
       }),
       loadingTitle: "订单提交中"
