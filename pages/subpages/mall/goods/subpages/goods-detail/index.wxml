@@ -295,8 +295,8 @@
 />
 <coupon-popup 
   show="{{couponPopupVisible}}"
-  basePrice="{{goodsInfo.skuList.length ? goodsInfo.skuList[selectedSkuIndex].price : goodsInfo.price}}"
-  couponList="{{goodsInfo.couponList}}" 
+  basePrice="{{goodsInfo ? (goodsInfo.skuList.length ? goodsInfo.skuList[selectedSkuIndex].price : goodsInfo.price) : 0}}"
+  couponList="{{goodsInfo ? goodsInfo.couponList : []}}" 
   bind:receive="receiveCoupon"
   bind:showSpecPopup="showSpecPopup" 
   bind:share="share"
