@@ -682,6 +682,8 @@ Component({
 
     hide() {
       this.triggerEvent("hide");
-    }
+    },
+
+    catch() {}
   }
 });

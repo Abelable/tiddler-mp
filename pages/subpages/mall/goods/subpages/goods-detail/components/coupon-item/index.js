@@ -15,8 +15,8 @@ Component({
 
   lifetimes: {
     attached() {
-      const { status, expirationTime } = this.properties.item;
-      if (status === 1 && expirationTime) {
+      const { expirationTime } = this.properties.item;
+      if (expirationTime) {
         const countdown = Math.floor(
           (dayjs(expirationTime).valueOf() - dayjs().valueOf()) / 1000
         );
@@ -45,11 +45,15 @@ Component({
       }, 1000);
     },
 
-    use() {
-      const { status, goodsId } = this.properties.item;
-      if (status === 1) {
-        const url = `/pages/subpages/mall/goods/subpages/goods-detail/index?id=${goodsId}`;
-        wx.navigateTo({ url });
+    receive() {
+      const { isUsed, isReceived } = this.properties.item;
+      if (isUsed) {
+        return;
+      }
+      if (isReceived) {
+        this.triggerEvent("showSpecPopup");
+      } else {
+        this.triggerEvent("receive");
       }
     }
   }

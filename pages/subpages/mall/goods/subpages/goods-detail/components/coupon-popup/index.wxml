@@ -1,0 +1,102 @@
+<van-popup show="{{show}}" round position="bottom" bind:close="hide">
+  <view class="coupon-popup">
+    <view class="popup-header row between">
+      <view class="title">优惠</view>
+      <view class="share-btn-wrap row">
+        <view class="share-btn row" bindtap="share">邀请好友领券</view>
+        <image class="close-icon" bindtap="hide" src="./images/close.png" />
+      </view>
+    </view>
+    <scroll-view class="popup-main" scroll-y>
+      <view class="discount-formula-wrap">
+        <view class="discount-title">{{discountTitle}}</view>
+        <view class="discount-formula row" wx:if="{{couponList[0].type === 1}}">
+          <view class="arrow" />
+          <view class="formula-result">
+            <view class="result-price">
+              <text style="font-size: 24rpx;">¥</text>
+              <text>{{ discountPrice }}</text>
+            </view>
+            <view class="result-desc">到手价</view>
+          </view>
+          <view class="symbol">=</view>
+          <view class="formula-unit">
+            <view class="unit-price">
+              <text style="font-size: 24rpx;">¥</text>
+              <text>{{basePrice}}</text>
+            </view>
+            <view class="unit-desc">起始价</view>
+          </view>
+          <view class="symbol">-</view>
+          <view class="formula-unit">
+            <view class="unit-price">
+              <text style="font-size: 24rpx;">¥</text>
+              <text>{{couponList[0].denomination}}</text>
+            </view>
+            <view class="unit-desc">优惠券</view>
+          </view>
+        </view>
+        <view class="discount-formula row" wx:if="{{couponList[0].type === 2}}">
+          <view class="arrow" />
+          <view class="formula-result">
+            <view class="result-price">
+              <text style="font-size: 24rpx;">¥</text>
+              <text>{{discountPrice}}</text>
+            </view>
+            <view class="result-desc">单件到手</view>
+          </view>
+          <view class="symbol">=</view>
+          <view class="bracket">(</view>
+          <view class="formula-unit">
+            <view class="unit-price">
+              <text style="font-size: 24rpx;">¥</text>
+              <text>{{totalPrice}}</text>
+            </view>
+            <view class="unit-desc">{{couponList[0].numLimit}}件总价</view>
+          </view>
+          <view class="symbol">-</view>
+          <view class="formula-unit">
+            <view class="unit-price">
+              <text style="font-size: 24rpx;">¥</text>
+              <text>{{couponList[0].denomination}}</text>
+            </view>
+            <view class="unit-desc">优惠券</view>
+          </view>
+          <view class="bracket">)</view>
+          <view class="symbol">÷</view>
+          <view class="formula-unit">{{couponList[0].numLimit}}</view>
+        </view>
+        <view class="discount-formula row" wx:if="{{couponList[0].type === 3}}">
+          <view class="arrow" />
+          <view class="formula-result">
+            <view class="result-price">
+              <text style="font-size: 24rpx;">¥</text>
+              <text>{{ discountPrice }}</text>
+            </view>
+            <view class="result-desc">满减到手</view>
+          </view>
+          <view class="symbol">=</view>
+          <view class="formula-unit">
+            <view class="unit-price">
+              <text style="font-size: 24rpx;">¥</text>
+              <text>{{couponList[0].priceLimit}}</text>
+            </view>
+            <view class="unit-desc">满减最低价</view>
+          </view>
+          <view class="symbol">-</view>
+          <view class="formula-unit">
+            <view class="unit-price">
+              <text style="font-size: 24rpx;">¥</text>
+              <text>{{couponList[0].denomination}}</text>
+            </view>
+            <view class="unit-desc">优惠券</view>
+          </view>
+        </view>
+      </view>
+  
+      <view class="coupon-list">
+        <coupon-item wx:for="{{couponList}}" wx:key="index" item="{{item}}" bind:receive="receive" data-index="{{index}}" bind:showSpecPopup="showSpecPopup" />
+      </view>
+    </scroll-view>
+  </view>
+</van-popup>

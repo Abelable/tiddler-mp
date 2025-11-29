@@ -19,8 +19,10 @@ Page({
     selectedSkuIndex: 0,
     commission: 0,
     commissionVisible: false,
+    bottomPrice: 0,
     evaluationSummary: null,
     cartGoodsNumber: 0,
+    couponPopupVisible: false,
     servicePopupVisible: false,
     selectedSpecDesc: "",
     specPopupVisible: false,
@@ -78,6 +80,7 @@ Page({
         this.getDetailTop();
       });
     }
+    this.setBottomPrice();
     this.setCommission();
     this.setRecommendGoodsList(true);
   },
@@ -95,6 +98,34 @@ Page({
       this.goodsId
     );
     this.setData({ evaluationSummary });
+  },
+
+  setBottomPrice() {
+    const { goodsInfo, selectedSkuIndex } = this.data;
+    const { price, couponList, skuList } = goodsInfo;
+    const basePrice = skuList.length ? skuList[selectedSkuIndex].price : price;
+
+    if (couponList.length) {
+      const bottomPrice = couponList.map(
+        ({ type, numLimit, priceLimit, denomination }) => {
+          switch (type) {
+            case 1:
+              return Math.round((basePrice - denomination) * 100) / 100;
+            case 2:
+              return (
+                Math.round(
+                  ((basePrice * numLimit - denomination) / numLimit) * 100
+                ) / 100
+              );
+            case 3:
+              return priceLimit <= basePrice
+                ? Math.round((basePrice - denomination) * 100) / 100
+                : 0;
+          }
+        }
+      )[0];
+      this.setData({ bottomPrice });
+    }
   },
 
   setCommission() {
@@ -179,6 +210,26 @@ Page({
       if (res[0] !== null) {
         this.detailTop = res[0].top;
       }
+    });
+  },
+
+  showCouponPopup() {
+    this.setData({ couponPopupVisible: true });
+  },
+
+  hideCouponPopup() {
+    this.setData({ couponPopupVisible: false });
+  },
+
+  receiveCoupon(e) {
+    const { index } = e.detail;
+    const { couponList } = this.data.goodsInfo;
+    const { id, receivedNum } = couponList[index];
+    goodsService.receiveCoupon(id, () => {
+      this.setData({
+        [`goodsInfo.couponList[${index}].isReceived`]: 1,
+        [`goodsInfo.couponList[${index}].receivedNum`]: receivedNum + 1
+      });
     });
   },
 
@@ -284,6 +335,7 @@ Page({
     if (status === 1 && stock) {
       const { mode = 0 } = e.currentTarget.dataset;
       this.setData({
+        couponPopupVisible: false,
         specPopupVisible: true,
         actionMode: mode
       });

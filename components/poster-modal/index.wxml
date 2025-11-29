@@ -1,6 +1,6 @@
-<view class="poster-modal">
-  <canvas id="poster" class="poster" type="2d" />
-  <view class="btns">
+<view class="poster-modal" bindtap="hide">
+  <canvas id="poster" class="poster" type="2d" catchtap="catch" />
+  <view class="btns" catchtap="catch">
     <button class="btn" open-type='share' hover-class="none">
       <image class="btn-icon" src="https://static.tiddler.cn/mp/poster/link.png" />
       <view>分享链接</view>
@@ -9,6 +9,6 @@
       <image class="btn-icon" src="https://static.tiddler.cn/mp/poster/download.png" />
       <view>保存海报</view>
     </button>
-    <image class="close-icon" catchtap="hide" src="https://static.tiddler.cn/mp/poster/close.png" />
+    <image class="close-icon" bindtap="hide" src="https://static.tiddler.cn/mp/poster/close.png" />
   </view>
 </view>

@@ -109,6 +109,14 @@ class GoodsService extends MallService {
       loadingTitle: "正在加载",
     });
   }
+
+  async receiveCoupon(id, success) {
+    return await this.post({
+      url: `${this.baseUrl}/coupon/receive`,
+      data: { id },
+      success
+    });
+  }
 }
 
 export default GoodsService;

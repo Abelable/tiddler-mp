@@ -113,6 +113,18 @@
       </view>
       <view class="sale-volume" wx:if="{{goodsInfo.salesVolume}}">已售{{goodsInfo.salesVolume}}件</view>
     </view>
+    <view class="coupon-wrap row" wx:if="{{goodsInfo.couponList.length}}" bindtap="showCouponPopup">
+      <view class="coupon-list row">
+        <view class="coupon row" wx:for="{{goodsInfo.couponList}}" wx:key="id">
+          <view class="coupon-title">券</view>
+          <view class="coupon-content">{{item.name}}</view>
+        </view>
+      </view>
+      <view class="receive-btn">
+        <view>领取</view>
+        <image class="receive-btn-arrow" src="./images/btn-arrow.png" />
+      </view>
+    </view>
     <view class="goods-name">
       <image class="self-support-tag" wx:if="{{!goodsInfo.shopInfo}}" src="https://static.tiddler.cn/mp/self_support.webp" />
       <text>{{goodsInfo.name}}</text>
@@ -144,7 +156,7 @@
       <view class="option-content row">
         <image class="confidence-tag" src="./images/confidence-tag.png" />
         <view>
-          <text wx:if="{{goodsInfo.refundStatus}}">七天无理由退货·</text>
+          <text wx:if="{{goodsInfo.refundStatus}}">七天无理由·</text>
           <text>品质严保·极速退款</text>
         </view>
       </view>
@@ -250,9 +262,10 @@
       加入购物车
     </button>
     <button class="buy-btn" bindtap="showSpecPopup" data-mode="{{2}}">
-      <view>
-        <view>{{goodsInfo.couponList.length ? "领券购买" : "立即购买"}}</view>
-        <view wx:if="{{goodsInfo.couponList.length}}" style="margin-top: 10rpx;">券后¥{{bottomPrice}}起</view>
+      <view wx:if="{{!goodsInfo.couponList.length}}">立即购买</view>
+      <view class="coupon-tips" wx:if="{{goodsInfo.couponList.length}}">
+        <view>领券购买</view>
+        <view class="coupon-price">券后¥{{bottomPrice}}起</view>
       </view>
     </button>
   </view>
@@ -265,6 +278,7 @@
   goodsInfo="{{goodsInfo}}"
   commission="{{commission}}"
   commissionVisible="{{commissionVisible}}"
+  bind:showCouponPopup="showCouponPopup" 
   bind:selectSpec="selectSpec"
   bind:addCartSuccess="addCartSuccess"
   bind:hide="hideSpecPopup"
@@ -279,5 +293,13 @@
   refundStatus="{{goodsInfo.refundStatus || 0}}"
   bind:hide="hideServicePopup"
 />
-
+<coupon-popup 
+  show="{{couponPopupVisible}}"
+  basePrice="{{goodsInfo.skuList.length ? goodsInfo.skuList[selectedSkuIndex].price : goodsInfo.price}}"
+  couponList="{{goodsInfo.couponList}}" 
+  bind:receive="receiveCoupon"
+  bind:showSpecPopup="showSpecPopup" 
+  bind:share="share"
+  bind:hide="hideCouponPopup"
+/>
 <poster-modal wx:if="{{posterModalVisible}}" scene="7" info="{{posterInfo}}" bind:hide="hidePosterModal" />

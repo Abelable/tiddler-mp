@@ -52,8 +52,8 @@
   font-size: 26rpx;
 }
 .spec-content-arrow {
-  width: 24rpx;
-  height: 24rpx;
+  width: 18rpx;
+  height: 18rpx;
 } 
 .spec-tips {
   display: inline-block;
