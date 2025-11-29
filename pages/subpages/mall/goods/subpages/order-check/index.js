@@ -20,7 +20,8 @@ Page({
     pickupTime: "",
     pickupTimePopupVisible: false,
     pickupMobile: "",
-    mobileModalVisible: false
+    mobileModalVisible: false,
+    couponPopupVisible: false
   },
 
   async onLoad(options) {
@@ -37,6 +38,30 @@ Page({
     }
 
     this.setPreOrderInfo();
+  },
+
+  async setPreOrderInfo() {
+    const preOrderInfo = await goodsService.getPreOrderInfo(
+      this.data.curMenuIdx + 1,
+      this.cartGoodsIds,
+      this.addressId,
+      this.couponId,
+      this.useBalance
+    );
+    this.setData({ preOrderInfo });
+  },
+
+  async setPickupAddressList(cartGoodsId) {
+    const { longitude: lo1 = 0, latitude: la1 = 0 } = store.locationInfo || {};
+    const list = await goodsService.getPickupAddressList(cartGoodsId);
+    const pickupAddressList = list.map(item => {
+      const { longitude, latitude } = item;
+      const la2 = +latitude;
+      const lo2 = +longitude;
+      const distance = lo1 ? calcDistance(la1, lo1, la2, lo2) : 0;
+      return { ...item, distance };
+    });
+    this.setData({ pickupAddressList });
   },
 
   selectMenu(e) {
@@ -133,27 +158,22 @@ Page({
     this.setPreOrderInfo();
   },
 
-  async setPreOrderInfo() {
-    const preOrderInfo = await goodsService.getPreOrderInfo(
-      this.data.curMenuIdx + 1,
-      this.cartGoodsIds,
-      this.addressId,
-      this.useBalance
-    );
-    this.setData({ preOrderInfo });
+  showCouponPopup() {
+    this.setData({
+      couponPopupVisible: true
+    });
   },
 
-  async setPickupAddressList(cartGoodsId) {
-    const { longitude: lo1 = 0, latitude: la1 = 0 } = store.locationInfo || {};
-    const list = await goodsService.getPickupAddressList(cartGoodsId);
-    const pickupAddressList = list.map(item => {
-      const { longitude, latitude } = item;
-      const la2 = +latitude;
-      const lo2 = +longitude;
-      const distance = lo1 ? calcDistance(la1, lo1, la2, lo2) : 0;
-      return { ...item, distance };
+  confirmCouponSelect(e) {
+    this.couponId = e.detail.id;
+    this.setPreOrderInfo();
+    this.hideCouponPopup();
+  },
+
+  hideCouponPopup() {
+    this.setData({
+      couponPopupVisible: false
     });
-    this.setData({ pickupAddressList });
   },
 
   // 提交订单

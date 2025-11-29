@@ -1,0 +1,15 @@
+<van-popup show="{{show}}" round position="bottom" bind:close="hide">
+  <view class="coupon-popup">
+    <view class="title">优惠券</view>
+    <scroll-view class="coupon-list" scroll-y>
+      <radio-group bindchange="selectCoupon">
+        <view class="coupon-item row" wx:for="{{couponList}}" wx:key="index">
+          <view class="coupon-name">{{item.name}}</view>
+          <view class="coupon-denomination" wx:if="{{item.denomination}}">减¥{{item.denomination}}</view>
+          <radio class="radio" value="{{index}}" checked="{{ selectedIndex === index }}" color="#09AFFF" />
+        </view>
+      </radio-group>
+    </scroll-view>
+    <button class="confirm-btn" bindtap="confirm">确定</button>
+  </view>
+</van-popup>

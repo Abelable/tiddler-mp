@@ -126,6 +126,16 @@
       </view>
       <price-unit price="{{preOrderInfo.freightPrice || 0}}" color="#333" />
     </view>
+    <view class="list row between" wx:if="{{preOrderInfo.couponList.length}}" bindtap="showCouponPopup">
+      <view class="list-title">
+        <text>优惠券</text>
+      </view>
+      <view class="row">
+        <text style="color: #ff5040">-</text>
+        <price-unit price="{{preOrderInfo.couponDenomination || 0}}" />
+        <image class="arrow" src="./images/arrow.png" />
+      </view>
+    </view>
     <view class="list row between" wx:if="{{preOrderInfo.deductionBalance}}">
       <view class="list-title">
         <text>余额抵扣</text>
@@ -178,4 +188,10 @@
   wx:if="{{mobileModalVisible}}"
   bind:confirm="confirmMobileSet" 
   bind:hide="hideMobileModal" 
+/>
+<coupon-popup 
+  show="{{couponPopupVisible}}"
+  list="{{preOrderInfo.couponList ? preOrderInfo.couponList : []}}"
+  bind:confirm="confirmCouponSelect" 
+  bind:hide="hideCouponPopup"
 />

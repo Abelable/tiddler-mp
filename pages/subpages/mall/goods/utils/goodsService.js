@@ -65,6 +65,7 @@ class GoodsService extends MallService {
     deliveryMode,
     cartGoodsIds,
     addressId,
+    couponId,
     useBalance = false
   ) {
     return await this.post({
@@ -73,6 +74,7 @@ class GoodsService extends MallService {
         deliveryMode,
         cartGoodsIds,
         addressId,
+        couponId,
         useBalance
       })
     });
