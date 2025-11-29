@@ -36,6 +36,6 @@
   </view>
   <view class="coupon-desc">
     <text>{{item.description}}</text>
-    <text wx:if="{{item.receiveNumLimit}}">，每人限领{{item.receiveNumLimit}}张</text>
+    <text wx:if="{{item.receiveLimit}}">，每人限领{{item.receiveLimit}}张</text>
   </view>
 </view>
