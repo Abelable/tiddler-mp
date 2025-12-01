@@ -63,7 +63,7 @@ Page({
   },
 
   ship() {
-    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/ship&shop_id=${this.shopId}&order_id=${this.orderId}`;
+    const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/goods/shop/order_ship&shop_id=${this.shopId}&order_id=${this.orderId}`;
     wx.navigateTo({ url });
   },
 

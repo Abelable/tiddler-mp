@@ -36,8 +36,8 @@ Component({
     },
 
     ship() {
-      const { shopId, item } = this.properties.item;
-      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/shop/ship&shop_id=${shopId}&order_id=${item.id}`;
+      const { shopId, item } = this.properties;
+      const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/goods/shop/order_ship&shop_id=${shopId}&order_id=${item.id}`;
       wx.navigateTo({ url });
     },
 

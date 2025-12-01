@@ -184,7 +184,7 @@ Component({
 
       if (selectedSkuIndex !== -1) {
         const { limit, stock } = skuList[selectedSkuIndex];
-        const _limit = limit || numberLimit;
+        const _limit = +limit || +numberLimit;
         const _stock = stock || totalStock;
         if (_limit) {
           const purchasedItem = this.purchasedList.find(

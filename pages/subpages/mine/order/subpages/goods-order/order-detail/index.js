@@ -52,15 +52,7 @@ Page({
       title: titleEnums[orderInfo.status]
     });
 
-    const {
-      id,
-      status,
-      payTime,
-      packageList = [],
-      shipChannel,
-      shipSn,
-      createdAt
-    } = orderInfo;
+    const { status, payTime, packageList = [], createdAt } = orderInfo;
     if (status === 101) {
       const countdown = Math.floor(
         (dayjs(createdAt).valueOf() + 24 * 60 * 60 * 1000 - dayjs().valueOf()) /
@@ -78,12 +70,8 @@ Page({
       }
     }
 
-    if ([204, 301, 401, 402, 501, 502].includes(status)) {
-      if (packageList.length) {
-        this.setData({ packageList });
-      } else {
-        this.setData({ packageList: [{ id, shipChannel, shipSn }] });
-      }
+    if ([204, 301, 401, 402, 501, 502].includes(status) && packageList.length) {
+      this.setData({ packageList });
     }
   },
 
