@@ -2,11 +2,12 @@ import { cleanObject } from "../../../../../utils/index";
 import MallService from "../../utils/mallService";
 
 class GoodsService extends MallService {
-  async getGoodsList({ shopCategoryId, categoryId, sort, order, page, limit = 10 }) {
+  async getGoodsList({ shopCategoryId, categoryId, sort, order, page, limit = 10, loadingTitle = "" }) {
     const { list = [] } =
       (await this.get({
         url: `${this.baseUrl}/goods/list`,
         data: cleanObject({ shopCategoryId, categoryId, sort, order, page, limit }),
+        loadingTitle,
       })) || {};
     return list;
   }

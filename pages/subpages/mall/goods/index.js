@@ -86,7 +86,8 @@ Page({
         categoryId: subCategoryOptions.length
           ? subCategoryOptions[activeSubTabIdx].id
           : undefined,
-        page: ++this.page
+        page: ++this.page,
+        loadingTitle: "正在加载"
       })) || [];
     this.setData({
       goodsList: init ? list : [...goodsList, ...list],
