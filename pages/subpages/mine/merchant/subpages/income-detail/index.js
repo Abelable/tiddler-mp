@@ -280,11 +280,11 @@ Page({
   },
 
   checkOrderDetail(e) {
-    const { id, scene } = e.currentTarget.dataset;
-    if (scene === 1) {
-      const url = `/pages/subpages/mine/order/subpages/goods-order/order-detail/index?id=${id}`;
-      wx.navigateTo({ url });
-    }
+    const { id } = e.currentTarget.dataset;
+    const url = `/pages/subpages/mine/merchant/subpages/${
+      ["scenic", "hotel", "catering", "goods"][this.data.merchantType - 1]
+    }-order/subpages/order-detail/index?shopId=${this.shopId}&id=${id}`;
+    wx.navigateTo({ url });
   },
 
   onPageScroll(e) {

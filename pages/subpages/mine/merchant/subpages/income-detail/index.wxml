@@ -103,9 +103,9 @@
     <view class="sales-record-item" wx:for="{{orderList}}" wx:key="index">
       <view class="order-info">
         <view class="order-sn-wrap">
-          <view class="order-sn" bindtap="checkOrderDetail" data-id="{{item.id}}" data-scene="{{item.scene}}">
+          <view class="order-sn" bindtap="checkOrderDetail" data-id="{{item.id}}">
             <view>订单编号：{{item.orderSn}}</view>
-            <image class="order-sn-arrow" wx:if="{{item.scene === 1}}" src="./images/more-gray.png" />
+            <image class="order-sn-arrow" src="./images/more-gray.png" />
           </view>
           <view class="order-status-wrap">
             <view class="order-status">{{item.status === 1 ? '待结算' : '已结算'}}</view>
@@ -124,9 +124,9 @@
     <view class="sales-record-item" wx:for="{{orderList}}" wx:key="index">
       <view class="order-info">
         <view class="order-sn-wrap">
-          <view class="order-sn" bindtap="checkOrderDetail" data-id="{{item.id}}" data-scene="{{item.scene}}">
+          <view class="order-sn" bindtap="checkOrderDetail" data-id="{{item.id}}">
             <view>订单编号：{{item.orderSn}}</view>
-            <image class="order-sn-arrow" wx:if="{{item.scene === 1}}" src="./images/more-gray.png" />
+            <image class="order-sn-arrow" src="./images/more-gray.png" />
           </view>
           <view class="order-status-wrap">
             <view class="order-status">{{item.status === 1 ? '待结算' : '已结算'}}</view>
@@ -145,9 +145,9 @@
     <view class="sales-record-item" wx:for="{{orderList}}" wx:key="index">
       <view class="order-info">
         <view class="order-sn-wrap">
-          <view class="order-sn" bindtap="checkOrderDetail" data-id="{{item.id}}" data-scene="{{item.scene}}">
+          <view class="order-sn" bindtap="checkOrderDetail" data-id="{{item.id}}">
             <view>订单编号：{{item.orderSn}}</view>
-            <image class="order-sn-arrow" wx:if="{{item.scene === 1}}" src="./images/more-gray.png" />
+            <image class="order-sn-arrow" src="./images/more-gray.png" />
           </view>
           <view class="order-status-wrap">
             <view class="order-status">{{item.status === 1 ? '待结算' : '已结算'}}</view>
@@ -164,12 +164,12 @@
   </view>
 
   <view class="sales-record-list" wx:if="{{merchantType === 4 && orderList.length}}">
-    <view class="sales-record-item" wx:for="{{orderList}}" wx:key="index">
+    <view class="sales-record-item" wx:for="{{orderList}}" wx:key="index" bindtap="checkOrderDetail" data-id="{{item.orderId}}">
       <view class="order-info">
         <view class="order-sn-wrap">
-          <view class="order-sn" bindtap="checkOrderDetail" data-id="{{item.id}}" data-scene="{{item.scene}}">
+          <view class="order-sn">
             <view>订单编号：{{item.orderSn}}</view>
-            <image class="order-sn-arrow" wx:if="{{item.scene === 1}}" src="./images/more-gray.png" />
+            <image class="order-sn-arrow" src="./images/more-gray.png" />
           </view>
           <view class="order-status-wrap">
             <view class="order-status">{{item.status === 1 ? '待结算' : '已结算'}}</view>
@@ -181,15 +181,13 @@
         </view>
       </view>
       <view class="goods-list">
-        <goods-item wx:for="{{item.goodsList}}" wx:key="indxe" wx:for-item="goods" item="{{goods}}" />
-        <!-- <view class="goods-info-wrap" wx:for="{{item.goodsList}}" wx:key="id" wx:for-item="goods">
-          <image class="goods-cover" src="{{goods.cover}}" />
-          <view class="goods-info">
-            <view class="goods-name omit">{{goods.name}}</view>
-            <view class="goods-spec omit single">{{goods.selectedSkuName}}</view>
-            <view class="goods-commission">收益¥{{NUM.toFixed(goods.incomeAmount, 2)}}</view>
-          </view>
-        </view> -->
+        <goods-item 
+          wx:for="{{item.goodsList}}" 
+          wx:key="indxe" 
+          wx:for-item="goods" 
+          item="{{goods}}" 
+          isLast="{{index === (item.goodsList.length - 1)}}" 
+        />
       </view>
     </view>
   </view>

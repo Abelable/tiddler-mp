@@ -5,7 +5,8 @@ Component({
 
   properties: {
     item: Object,
-    navigable: Boolean
+    navigable: Boolean,
+    isLast: Boolean
   },
 
   methods: {
