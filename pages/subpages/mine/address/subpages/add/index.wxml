@@ -20,7 +20,7 @@
     <label class="title">省市区</label>
     <picker 
       class="content {{regionDesc ? '' : 'placeholder'}}" 
-      value="{{addressInfo.regionCodeList}}"
+      value="{{regionCodeList}}"
       bindchange="selectRegion" 
       mode="region"
     >

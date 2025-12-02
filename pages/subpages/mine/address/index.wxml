@@ -5,22 +5,29 @@
       async-close right-width="{{ 65 }}"
     >
       <view class="inner row" catchtap="editAddress" data-id="{{item.id}}">
-        <image class="address-icon" src="https://static.tiddler.cn/mp/order/address_icon.png" />
+        <image class="address-icon" src="https://img.ubo.vip/mp/selection/goods-detail/order-check/address-icon.png" />
         <view class="content">
           <view class="row">
             <text class="user-name">{{item.name}}</text>
             <text>{{item.mobile}}</text>
             <text class="default-icon" wx:if="{{item.isDefault}}">默认</text>
+            <image class="copy-icon" catchtap="copy" data-info="{{item}}" src="./images/copy.png" />
           </view>
           <view class="address-detail">{{item.regionDesc + ' ' + item.addressDetail}}</view>
         </view>
-        <van-icon name="edit"/>
+        <van-icon name="edit" />
       </view>
-      <button class="swipe-cell-delete-btn" slot="right" hover-class="none">删除</button>
+      <button class="swipe-cell-delete-btn" slot="right">删除</button>
     </van-swipe-cell>
   </view>
 </view>
 
 <empty-illus wx:if="{{!addressList.length}}" desc="暂无地址列表" />
 
-<button class="add-btn" bindtap="addAddress">添加地址</button>
+<view class="btn-wrap">
+  <view class="add-btn" bindtap="addAddress">添加地址</view>
+  <view class="wx-btn" bindtap="getWxAddress">
+    <image class="wx-icon" src="./images/wx.png" />
+    <view>获取微信地址</view>
+  </view>
+</view>

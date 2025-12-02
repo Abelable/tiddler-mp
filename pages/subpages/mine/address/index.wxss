@@ -33,7 +33,12 @@
   font-size: 20rpx;
   line-height: 1;
   border-radius: 8rpx;
-  border: 1px solid var(--blue-1);
+  border: 2rpx solid var(--blue-1);
+}
+.copy-icon {
+  margin-left: 18rpx;
+  width: 36rpx;
+  height: 36rpx;
 }
 .address-detail {
   margin-top: 16rpx;
@@ -46,18 +51,39 @@
   height: 100%;
   color: #fff;
   font-size: 28rpx;
-  background: #FD2D55;
+  background: #FD0807;
 }
 
-.add-btn {
+.btn-wrap {
   position: fixed;
-  left: 50%;
+  left: 0;
   bottom: calc(24rpx + env(safe-area-inset-bottom));
-  transform: translateX(-50%);
-  width: 712rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 24rpx;
+  width: 100%;
+}
+.add-btn, .wx-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
   height: 80rpx;
-  color: #fff;
   font-size: 28rpx;
   border-radius: 40rpx;
+}
+.add-btn {
+  margin-right: 12rpx;
+  color: #fff;
   background: var(--blue-1);
+}
+.wx-btn {
+  margin-left: 12rpx;
+  color: #333;
+  background: #fff;
+}
+.wx-icon {
+  margin-right: 12rpx;
+  width: 32rpx;
+  height: 32rpx;
 }
