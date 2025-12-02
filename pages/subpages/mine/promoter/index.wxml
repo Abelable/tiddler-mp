@@ -156,7 +156,7 @@
         <view class="title">我的伙伴</view>
         <view class="check-more-btn row" bindtap="navToCustomer" data-type="0">
           <text>查看全部</text>
-          <image class="more-icon" src="./images/arrow.png" />
+          <image class="more-icon" src="/images/arrow_gray.png" />
         </view>
       </view>
       <view class="customer-data-list">
