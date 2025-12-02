@@ -2,6 +2,7 @@ import { WEBVIEW_BASE_URL } from "../../../../../../../../config";
 import OrderService from "../../utils/orderService";
 
 const orderService = new OrderService();
+const plugin = requirePlugin("logisticsPlugin");
 
 Page({
   data: {
@@ -69,7 +70,7 @@ Page({
         if (result.confirm) {
           const { id } = this.data.orderInfo;
           orderService.refundGoodsOrder(this.shopId, id, () => {
-            this.setOrderInfo()
+            this.setOrderInfo();
           });
         }
       }

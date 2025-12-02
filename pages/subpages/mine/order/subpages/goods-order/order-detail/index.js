@@ -4,6 +4,7 @@ import dayjs from "dayjs";
 import OrderService from "../../../utils/orderService";
 
 const orderService = new OrderService();
+const plugin = requirePlugin("logisticsPlugin");
 
 Page({
   data: {
