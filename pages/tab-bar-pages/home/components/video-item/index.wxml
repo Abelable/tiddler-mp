@@ -42,7 +42,7 @@
       <view class="row between baseline">
         <view class="row baseline">
           <price-unit price="{{item.goodsInfo.price || 0}}" fontSize="22rpx" integerFontSize="26rpx" />
-          <view class="market-price">¥{{item.goodsInfo.marketPrice}}</view>
+          <view class="market-price" wx:if="{{item.goodsInfo.marketPrice && item.goodsInfo.marketPrice !== '0.00'}}">¥{{item.goodsInfo.marketPrice}}</view>
         </view>
         <view class="sales-volumns">已售{{item.goodsInfo.salesVolume}}件</view>
       </view>

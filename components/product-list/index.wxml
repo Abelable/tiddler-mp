@@ -17,7 +17,7 @@
         <view class="row between baseline">
           <view class="row baseline" wx:if="{{item.price}}">
             <price-unit price="{{item.price || 0}}" unit="{{item.type !== 4 ? '起' : ''}}" fontSize="22rpx" integerFontSize="26rpx" />
-            <view class="market-price" wx:if="{{item.marketPrice}}">¥{{item.marketPrice}}</view>
+            <view class="market-price" wx:if="{{item.marketPrice && item.marketPrice !== '0.00'}}">¥{{item.marketPrice}}</view>
           </view>
           <view class="free-tips" wx:if="{{!item.price}}">免费打卡</view>
           <view class="sales-volumns" wx:if="{{item.salesVolume}}">已售{{item.salesVolume}}</view>

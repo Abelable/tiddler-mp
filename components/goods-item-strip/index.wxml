@@ -8,7 +8,7 @@
     <view class="info-wrap row between">
       <view class="row baseline">
         <price-unit price="{{item.price || 0}}" />
-        <view class="market-price">¥{{item.marketPrice}}</view>
+        <view class="market-price" wx:if="{{item.marketPrice && item.marketPrice !== '0.00'}}">¥{{item.marketPrice}}</view>
       </view>
       <view class="sales-volume">
         <text>已售</text>

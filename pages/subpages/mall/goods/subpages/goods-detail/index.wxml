@@ -104,7 +104,7 @@
           fontSize="32rpx" 
           integerFontSize="52rpx"
         />
-        <view class="market-price" wx:if="{{goodsInfo.marketPrice}}">￥{{goodsInfo.marketPrice}}</view>
+        <view class="market-price" wx:if="{{goodsInfo.marketPrice && goodsInfo.marketPrice !== '0.00'}}">￥{{goodsInfo.marketPrice}}</view>
       </view>
       <view class="commission-tag" wx:if="{{commission && userInfo.promoterInfo && (!goodsInfo.isGift || (goodsInfo.isGift && userInfo.promoterInfo.status === 1))}}" bindtap="toggleCommissionVisible">
         <text wx:if="{{commissionVisible}}">奖励¥{{commission}}</text>

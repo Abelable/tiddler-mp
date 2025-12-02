@@ -70,7 +70,7 @@
           <view class="product-data-wrap row between baseline">
             <view class="row baseline" wx:if="{{_item.price}}">
               <price-unit price="{{_item.price || 0}}" unit="{{_item.type !== 4 ? '起' : ''}}" color="#FFDD00" unitColor="#fff" fontSize="22rpx" integerFontSize="28rpx" unitFontSize="18rpx" />
-              <view class="market-price" wx:if="{{_item.marketPrice}}">¥{{_item.marketPrice}}</view>
+              <view class="market-price" wx:if="{{_item.marketPrice && _item.marketPrice !== '0.00'}}">¥{{_item.marketPrice}}</view>
             </view>
             <view class="free-tips" wx:if="{{!_item.price}}">免费打卡</view>
             <view class="sales-volumns" wx:if="{{_item.salesVolume}}">已售{{_item.salesVolume}}</view>
