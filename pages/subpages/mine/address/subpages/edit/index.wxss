@@ -9,13 +9,14 @@
   height: 100rpx;
   color: #333;
   font-size: 28rpx;
-  border-bottom: 1rpx solid #e5e5e5;
+  border-bottom: 0.5px solid #eee;
 }
 .info-list:last-child {
   border: none;
 }
 .title {
   width: 160rpx;
+  font-weight: 500;
 }
 .content {
   flex: 1;

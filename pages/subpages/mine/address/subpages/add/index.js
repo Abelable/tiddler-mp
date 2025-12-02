@@ -5,6 +5,7 @@ const addressService = new AddressService();
 Page({
   data: {
     text: "",
+    regionCodeList: [],
     regionDesc: "",
     name: "",
     addressDetail: ""
@@ -27,24 +28,23 @@ Page({
       return;
     }
     const {
-      address,
+      town,
+      detail,
       province,
-      province_code,
+      zipCode,
       city,
-      city_code,
-      county,
-      county_code,
-      person: name,
-      phonenum: mobile
+      cityCode,
+      area,
+      countyCode,
+      name,
+      mobile
     } = await addressService.analyzeAddress(this.data.text);
 
-    const regionDesc = `${province}${city}${county}`;
-    this.regionCodeList = [province_code, city_code, county_code];
-    const addressDetail = address
-      .replace(province, "")
-      .replace(city, "")
-      .replace(county, "");
-    this.setData({ name, mobile, regionDesc, addressDetail });
+    const regionDesc = `${province} ${city} ${area}`;
+    const regionCodeList = [zipCode, cityCode, countyCode];
+    const addressDetail = `${town}${detail}`;
+
+    this.setData({ name, mobile, regionCodeList, regionDesc, addressDetail });
   },
 
   setName(e) {
@@ -57,9 +57,9 @@ Page({
 
   selectRegion(e) {
     const { code, value } = e.detail;
-    this.regionCodeList = code;
+    const regionCodeList = code;
     const regionDesc = Array.from(new Set(value)).join(" ");
-    this.setData({ regionDesc });
+    this.setData({ regionCodeList, regionDesc });
   },
 
   setAddressDetail(e) {
@@ -71,7 +71,7 @@ Page({
   },
 
   save() {
-    const { name, mobile, regionDesc, addressDetail } = this.data;
+    const { name, mobile, regionCodeList, regionDesc, addressDetail } = this.data;
     if (!name) {
       wx.showToast({
         title: "请输入姓名",
@@ -86,14 +86,14 @@ Page({
       });
       return;
     }
-    if (!this.regionCodeList) {
+    if (!regionCodeList.length) {
       wx.showToast({
         title: "请选择省市区",
         icon: "none"
       });
       return;
     }
-    const errRegionCodeIdx = this.regionCodeList.findIndex(item => item.length !== 6)
+    const errRegionCodeIdx = regionCodeList.findIndex(item => item.length !== 6)
     if (errRegionCodeIdx !== -1) {
       wx.showToast({
         title: "省市区获取异常，请手动选择省市区",
@@ -112,7 +112,7 @@ Page({
     addressService.addAddress(
       name,
       mobile,
-      JSON.stringify(this.regionCodeList),
+      JSON.stringify(regionCodeList),
       regionDesc,
       addressDetail,
       this.isDefault,
