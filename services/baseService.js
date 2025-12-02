@@ -58,6 +58,13 @@ class BaseService extends Base {
     });
   }
 
+  async modifyOrderAddressInfo(orderId, addressId) {
+    return await this.post({
+      url: `${this.baseUrl}/order/modify_address_info`,
+      data: { orderId, addressId }
+    });
+  }
+
   async getMyInfo() {
     const userInfo = await this.get({ url: `${this.baseUrl}/user/me` });
     store.setUserInfo(userInfo);
