@@ -1,6 +1,5 @@
 <wxs module="TIME" src="/utils/filters/time.wxs" />
 <wxs module="ORDER" src="../../../utils/scenicOrder.wxs" />
-
 <view class="order-item" catchtap="navToDetail">
   <view class="list-header row between">
     <!-- todo 先不进行店铺跳转 catchtap="navToShop" -->
@@ -18,68 +17,31 @@
       </view>
     </view>
   </view>
-  
   <view class="list-content">
-    <ticket-item 
-      status="{{item.status || 0}}" 
-      ticketInfo="{{item.ticketInfo || null}}" 
-      bind:checkQRcode="checkQRcode"
-    />
+    <ticket-item status="{{item.status || 0}}" ticketInfo="{{item.ticketInfo || null}}" bind:checkQRcode="checkQRcode" />
   </view>
-  
   <view class="list-footer">
     <view class="total-info row baseline">
       <view>{{ORDER.paymentDesc(item.status)}}：</view>
       <price-unit price="{{item.paymentAmount || 0}}" color="#333" fontSize="26rpx" integerFontSize="36rpx" />
     </view>
     <view class="btn-wrap">
-      <button 
-        class="btn" 
-        wx:if="{{item.status === 102 || item.status === 103 || item.status === 104}}" 
-        catchtap="deleteOrder"
-        hover-class="none"
-      >
+      <button class="btn" wx:if="{{item.status === 102 || item.status === 103 || item.status === 104}}" catchtap="deleteOrder" hover-class="none">
         删除订单
       </button>
-      <button 
-        class="btn" 
-        wx:if="{{item.status === 101}}" 
-        catchtap="confirmOrderCancel"
-        hover-class="none"
-      >
+      <button class="btn" wx:if="{{item.status === 101}}" catchtap="confirmOrderCancel" hover-class="none">
         取消订单
       </button>
-      <button 
-        class="btn" 
-        catchtap="navToDetail"
-        hover-class="none"
-      >
-        查看详情
-      </button>
-      <button 
-        class="btn active" 
-        wx:if="{{item.status === 101}}" 
-        catchtap="payOrder"
-        hover-class="none"
-      >
+      <button class="btn active" wx:if="{{item.status === 101}}" catchtap="payOrder" hover-class="none">
         继续付款
       </button>
-      <button 
-        class="btn active"
-        wx:if="{{refundBtnVisible}}"
-        catchtap="refundOrder"
-        hover-class="none"
-      >
+      <button class="btn active" wx:if="{{refundBtnVisible}}" catchtap="refundOrder" hover-class="none">
         申请退款
       </button>
-      <button 
-        class="btn active" 
-        wx:if="{{item.status === 401 || item.status === 402 || item.status === 403}}" 
-        catchtap="navToEvaluation"
-        hover-class="none"
-      >
+      <button class="btn active" wx:if="{{item.status === 401 || item.status === 402 || item.status === 403}}" catchtap="navToEvaluation" hover-class="none">
         评价
       </button>
+      <button class="btn" catchtap="navToDetail" hover-class="none">查看详情</button>
     </view>
   </view>
 </view>

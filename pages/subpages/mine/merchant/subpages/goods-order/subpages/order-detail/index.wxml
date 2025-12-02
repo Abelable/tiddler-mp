@@ -136,6 +136,14 @@
 
 <view class="bottom-bar">
   <button class="btn" bindtap="contact">联系客户</button>
-  <button class="btn active" wx:if="{{item.status === 201}}" catchtap="ship">去发货</button>
+  <button 
+    class="btn active" 
+    wx:if="{{orderInfo.status === 201 || orderInfo.status === 202 || orderInfo.status === 302}}" 
+    catchtap="refund" 
+    hover-class="none"
+  >
+    退款
+  </button>
+  <button class="btn active" wx:if="{{(orderInfo.status === 201 && orderInfo.deliveryMode === 1) || orderInfo.status === 202}}" catchtap="ship">发货</button>
 </view>
   

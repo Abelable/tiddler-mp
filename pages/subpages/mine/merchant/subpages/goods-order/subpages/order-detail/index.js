@@ -62,6 +62,20 @@ Page({
     });
   },
 
+  refund() {
+    wx.showModal({
+      title: "确定退款吗？",
+      success: result => {
+        if (result.confirm) {
+          const { id } = this.data.orderInfo;
+          orderService.refundGoodsOrder(this.shopId, id, () => {
+            this.setOrderInfo()
+          });
+        }
+      }
+    });
+  },
+
   ship() {
     const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/goods/shop/order_ship&shop_id=${this.shopId}&order_id=${this.orderId}`;
     wx.navigateTo({ url });

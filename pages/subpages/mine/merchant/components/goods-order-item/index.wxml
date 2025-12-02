@@ -30,7 +30,6 @@
       </view>
     </view>
     <view class="btn-wrap">
-      <button class="btn" catchtap="navToDetail" hover-class="none">查看详情</button>
       <button 
         class="btn active" 
         wx:if="{{item.status === 201 || item.status === 202 || item.status === 302}}" 
@@ -41,12 +40,13 @@
       </button>
       <button 
         class="btn active" 
-        wx:if="{{item.status === 201 && item.deliveryMode === 1}}" 
+        wx:if="{{(item.status === 201 && item.deliveryMode === 1) || item.status === 202}}" 
         catchtap="ship" 
         hover-class="none"
       >
         发货
       </button>
+      <button class="btn" catchtap="navToDetail" hover-class="none">查看详情</button>
     </view>
   </view>
 </view>

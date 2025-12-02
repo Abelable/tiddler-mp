@@ -43,7 +43,7 @@ Component({
 
     refund() {
       wx.showModal({
-        title: "确定退款该订单吗？",
+        title: "确定退款吗？",
         success: result => {
           if (result.confirm) {
             const { shopId, item, index } = this.properties;

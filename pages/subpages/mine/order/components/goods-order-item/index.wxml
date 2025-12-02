@@ -45,7 +45,6 @@
         catchtap="navToEvaluation"
         hover-class="none"
       >查看评价</button>
-      <button class="btn" catchtap="navToDetail">查看详情</button>
       <button 
         class="btn active" 
         wx:if="{{item.status === 301}}" 
@@ -76,6 +75,7 @@
         catchtap="navToEvaluation"
         hover-class="none"
       >评价</button>
+      <button class="btn" catchtap="navToDetail">查看详情</button>
     </view>
   </view>
 </view>

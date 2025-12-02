@@ -23,7 +23,6 @@
       </view>
     </view>
     <view class="btn-wrap">
-      <button class="btn" catchtap="navToDetail" hover-class="none">查看详情</button>
       <button 
         class="btn active" 
         wx:if="{{item.status === 0}}" 
@@ -56,6 +55,7 @@
       >
         确认收货
       </button>
+      <button class="btn" catchtap="navToDetail" hover-class="none">查看详情</button>
     </view>
   </view>
 </view>
