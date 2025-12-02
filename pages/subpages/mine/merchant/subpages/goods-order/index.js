@@ -29,6 +29,10 @@ Page({
   },
 
   onShow() {
+    this.init();
+  },
+
+  init() {
     this.setShopOrderTotal();
     this.setOrderList(true);
   },
@@ -75,23 +79,8 @@ Page({
     this.setOrderList();
   },
 
-  updateOrderList(e) {
-    const statusEmuns = {
-      cancel: 102,
-      pay: 201,
-      refund: 204,
-      confirm: 401
-    };
-    const { type, index } = e.detail;
-    const { curMenuIndex, orderList } = this.data;
-    if (type === "delete" || curMenuIndex !== 0) {
-      orderList.splice(index, 1);
-      this.setData({ orderList });
-    } else {
-      this.setData({
-        [`orderList[${index}].status`]: statusEmuns[type]
-      });
-    }
+  updateOrderList() {
+    this.init();
   },
 
   search() {

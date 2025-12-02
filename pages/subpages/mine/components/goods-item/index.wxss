@@ -22,7 +22,7 @@
   font-weight: 500;
 }
 .goods-sku {
-  padding: 12rpx;
+  padding: 8rpx 16rpx;
   width: fit-content;
   color: #999;
   font-size: 24rpx;
@@ -36,7 +36,7 @@
 }
 .count-wrap {
   font-size: 24rpx;
-  color: var(--blue-1);
+  color: #333;
 }
 .count {
   margin-left: 5rpx;
