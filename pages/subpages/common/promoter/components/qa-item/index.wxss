@@ -1,8 +1,9 @@
 .qa-item {
   padding: 32rpx 0;
+  border-bottom: 0.5px solid #eee;
 }
-.qa-item.show-border {
-  border-top: 0.5px solid #eee;
+.qa-item.is-last {
+  border-bottom: none;
 }
 
 .user-info {

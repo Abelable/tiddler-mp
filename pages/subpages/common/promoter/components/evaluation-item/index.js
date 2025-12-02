@@ -12,7 +12,7 @@ Component({
         })
       }
     },
-    showBorder: {
+    isLast: {
       type: Boolean,
       value: true
     }

@@ -2,7 +2,7 @@ Component({
   properties: {
     item: Object,
     isPromoter: Boolean,
-    showBorder: {
+    isLast: {
       type: Boolean,
       value: true
     }

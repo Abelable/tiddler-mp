@@ -181,14 +181,15 @@
         </view>
       </view>
       <view class="goods-list">
-        <view class="goods-info-wrap" wx:for="{{item.goodsList}}" wx:key="id" wx:for-item="goods">
+        <goods-item wx:for="{{item.goodsList}}" wx:key="indxe" wx:for-item="goods" item="{{goods}}" />
+        <!-- <view class="goods-info-wrap" wx:for="{{item.goodsList}}" wx:key="id" wx:for-item="goods">
           <image class="goods-cover" src="{{goods.cover}}" />
           <view class="goods-info">
             <view class="goods-name omit">{{goods.name}}</view>
             <view class="goods-spec omit single">{{goods.selectedSkuName}}</view>
             <view class="goods-commission">收益¥{{NUM.toFixed(goods.incomeAmount, 2)}}</view>
           </view>
-        </view>
+        </view> -->
       </view>
     </view>
   </view>

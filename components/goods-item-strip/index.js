@@ -1,7 +1,7 @@
 Component({
   properties: {
     item: Object,
-    showBorder: {
+    isLast: {
       type: Boolean,
       value: true
     }

@@ -1,5 +1,5 @@
 <navigator 
-  class="restaurant {{showBorder ? 'show-border' : ''}}"
+  class="restaurant {{isLast ? 'is-last' : ''}}"
   wx:key="index"
   url="/pages/subpages/mall/catering/subpages/restaurant-detail/index?id={{item.id}}"
   hover-class="none"

@@ -1,7 +1,7 @@
 <wxs module="TIME" src="/utils/filters/time.wxs" />
 <wxs module="STRING" src="/utils/filters/string.wxs" />
 
-<view class="evaluation-item {{showBorder ? 'show-border' : ''}}">
+<view class="evaluation-item {{isLast ? 'is-last' : ''}}">
   <view class="user-info-wrap row">
     <image class="user-avatar" src="{{item.userInfo.avatar}}?x-oss-process=image/format,webp" />
     <view class="user-info">

@@ -72,7 +72,7 @@
       wx:for="{{qaList}}" 
       wx:key="index" 
       item="{{item}}" 
-      showBorder="{{index}}" 
+      isLast="{{index === (qaList.length - 1)}}" 
       isPromoter="{{superiorInfo.id === userInfo.id}}" 
       bind:answer="answer"
     />
@@ -84,7 +84,7 @@
       wx:for="{{evaluationList}}" 
       wx:key="index" 
       item="{{item}}" 
-      showBorder="{{index}}" 
+      isLast="{{index === (qaList.length - 1)}}" 
     />
     <empty-illus wx:if="{{!evaluationList.length}}" desc="暂无评价" height="520rpx" />
   </view>

@@ -45,7 +45,7 @@
               wx:key="index" 
               wx:for-item="product" 
               item="{{product}}"
-              showBorder="{{index !== (item.productList.length - 1)}}" 
+              isLast="{{index === (item.productList.length - 1)}}" 
             />
           </view>
           <view class="product-list" wx:if="{{item.productList.length && item.productType === 2}}">
@@ -54,7 +54,7 @@
               wx:key="index" 
               wx:for-item="product" 
               item="{{product}}" 
-              showBorder="{{index !== (item.productList.length - 1)}}" 
+              isLast="{{index === (item.productList.length - 1)}}" 
             />
           </view>
           <view class="product-list" wx:if="{{item.productList.length && item.productType === 3}}">
@@ -63,7 +63,7 @@
               wx:key="index" 
               wx:for-item="product" 
               item="{{product}}" 
-              showBorder="{{index !== (item.productList.length - 1)}}" 
+              isLast="{{index === (item.productList.length - 1)}}" 
             />
           </view>
           <view class="product-list" wx:if="{{item.productList.length && item.productType === 4}}">
@@ -72,7 +72,7 @@
               wx:key="index" 
               wx:for-item="product" 
               item="{{product}}" 
-              showBorder="{{index !== (item.productList.length - 1)}}" 
+              isLast="{{index === (item.productList.length - 1)}}" 
             />
           </view>
           

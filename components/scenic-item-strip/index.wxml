@@ -1,5 +1,5 @@
 <navigator 
-  class="scenic {{showBorder ? 'show-border' : ''}}"
+  class="scenic {{isLast ? 'is-last' : ''}}"
   wx:key="index"
   url="/pages/subpages/mall/scenic/subpages/scenic-detail/index?id={{item.id}}"
   hover-class="none"

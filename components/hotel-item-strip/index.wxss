@@ -13,8 +13,8 @@
   font-size: 0;
   border-bottom: 1px solid #f5f6f8;
 }
-.hotel-item.show-border {
-  border-bottom: 1px solid #f5f6f8;
+.hotel-item.is-last {
+  border-bottom: none;
 }
 
 .cover {
