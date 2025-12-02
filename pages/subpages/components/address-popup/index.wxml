@@ -1,10 +1,10 @@
-<van-popup show="{{show}}" round position="bottom" bind:close="hide">
+<van-popup show="{{show}}" safe-area-inset-bottom="{{false}}" round position="bottom" bind:close="hide">
   <view class="address-select-popup">
     <view class="row between">
       <view class="title">常用地址</view>
-      <view class="row" bindtap="navToAddressListPage">
+      <view class="add-btn row" bindtap="navToAddressListPage">
         <van-icon name="plus" color="#169dfe" size="12px" />
-        <view class="add-btn">增加</view>
+        <view class="add-btn">新增</view>
       </view>
     </view>
     <scroll-view class="address-list" scroll-y>
