@@ -312,5 +312,11 @@ Page({
     wx.navigateTo({
       url: `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/withdrawal_record/income&merchant_type=${merchantType}&shop_id=${this.shopId}`
     });
+  },
+
+  checkWithdrawRules() {
+    wx.navigateTo({
+      url: `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/protocol/withdraw`
+    });
   }
 });

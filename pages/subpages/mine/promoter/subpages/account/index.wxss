@@ -101,6 +101,7 @@
   background: var(--blue-linear-1);
   border-radius: 24rpx;
 }
+
 .withdraw-tips-wrap {
   padding: 24rpx 20rpx;
 }

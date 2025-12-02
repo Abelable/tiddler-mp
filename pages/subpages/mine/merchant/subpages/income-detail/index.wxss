@@ -114,6 +114,27 @@
   background: #FF4C80;
 }
 
+.withdraw-tips-wrap {
+  margin-top: 32rpx;
+  padding-top: 24rpx;
+  border-top: 0.5px solid #eee;
+}
+.withdraw-time-tips {
+  flex: 1;
+  color: #6A6F75;
+  font-size: 24rpx;
+}
+.withdraw-rules-btn {
+  display: flex;
+  align-items: center;
+  color: var(--blue-1);
+  font-size: 24rpx;
+}
+.arrow {
+  width: 24rpx;
+  height: 24rpx;
+}
+
 .daily-data-wrap {
   margin-top: 24rpx;
   padding: 28rpx;
