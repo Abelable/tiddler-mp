@@ -101,10 +101,18 @@
   </view>
 
   <view class="sales-record-list" wx:if="{{orderList.length}}">
-    <view class="sales-record-item" wx:for="{{orderList}}" wx:key="index">
+    <view 
+      class="sales-record-item" 
+      wx:for="{{orderList}}" 
+      wx:key="index"
+      bindtap="checkOrderDetail" 
+      data-scene="{{item.scene}}" 
+      data-type="{{item.productType}}" 
+      data-id="{{item.orderId}}"
+    >
       <view class="order-info">
         <view class="order-sn-wrap">
-          <view class="order-sn" bindtap="checkOrderDetail" data-id="{{item.id}}" data-scene="{{item.scene}}">
+          <view class="order-sn">
             <view>订单编号：{{item.orderSn}}</view>
             <image class="order-sn-arrow" wx:if="{{item.scene === 1}}" src="./images/more-gray.png" />
           </view>
@@ -123,16 +131,13 @@
       <meal-ticket-item wx:if="{{item.productType === 5}}" ticketInfo="{{item.productList[0]}}" />
       <set-meal-item wx:if="{{item.productType === 6}}" info="{{item.productList[0]}}" />
       <view class="goods-list" wx:if="{{item.productType === 4}}">
-        <view class="goods-info-wrap" wx:for="{{item.productList}}" wx:key="id" wx:for-item="goods">
-          <image class="goods-cover" src="{{goods.cover}}" />
-          <view class="goods-info">
-            <view class="goods-name omit">{{goods.name}}</view>
-            <view class="goods-spec omit single">{{goods.selectedSkuName}}</view>
-            <view class="goods-commission">
-              {{item.scene === 1 ? "返现" : "奖励"}}¥{{NUM.toFixed(goods.commissionAmount, 2)}}
-            </view>
-          </view>
-        </view>
+        <goods-item 
+          wx:for="{{item.productList}}" 
+          wx:key="index" 
+          wx:for-item="goods" 
+          item="{{goods}}" 
+          isLast="{{index === (item.productList.length - 1)}}" 
+        />
       </view>
     </view>
   </view>

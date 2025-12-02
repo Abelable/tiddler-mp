@@ -109,9 +109,11 @@ Page({
   },
 
   checkOrderDetail(e) {
-    const { id, scene } = e.currentTarget.dataset;
+    const { scene, type, id } = e.currentTarget.dataset;
     if (scene === 1) {
-      const url = `/pages/mine/subpages/order/subpages/order-detail/index?id=${id}`;
+      const url = `/pages/subpages/mine/order/subpages/${
+        ["scenic", "hotel", "", "goods", "meal-ticket", "set-meal"][type - 1]
+      }-order/order-detail/index?id=${id}`;
       wx.navigateTo({ url });
     }
   },
@@ -154,7 +156,7 @@ Page({
 
   checkWithdrawRules() {
     wx.navigateTo({
-      url: `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/agreements/withdraw_rules`
+      url: `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/protocol/withdraw`
     });
   },
 

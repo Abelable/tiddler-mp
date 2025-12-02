@@ -183,7 +183,7 @@
       <view class="goods-list">
         <goods-item 
           wx:for="{{item.goodsList}}" 
-          wx:key="indxe" 
+          wx:key="index" 
           wx:for-item="goods" 
           item="{{goods}}" 
           isLast="{{index === (item.goodsList.length - 1)}}" 

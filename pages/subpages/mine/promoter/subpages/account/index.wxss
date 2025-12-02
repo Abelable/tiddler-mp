@@ -254,38 +254,6 @@
   border-radius: 8rpx;
 }
 
-.goods-info-wrap {
-  display: flex;
-  align-items: center;
-}
-.goods-cover {
-  width: 150rpx;
-  height: 150rpx;
-  border-radius: 16rpx;
-}
-.goods-info {
-  display: flex;
-  flex-direction: column;
-  margin-left: 16rpx;
-  flex: 1;
-  height: 150rpx;
-}
-.goods-name {
-  color: #14191F;
-  font-size: 26rpx;
-  font-weight: 550;
-}
-.goods-spec {
-  margin: 4rpx;
-  flex: 1;
-  color: #6A6F75;
-  font-size: 22rpx;
-}
-.goods-commission {
-  color: var(--blue-1);
-  font-size: 24rpx;
-}
-
 .no-more-tips {
   padding: 24rpx 0 36rpx;
   color: #999;

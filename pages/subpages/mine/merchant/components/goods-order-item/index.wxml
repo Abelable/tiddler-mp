@@ -10,7 +10,7 @@
     <view class="order-status">{{ORDER.statusDescForShop(item.status)}}</view>
   </view>
   <view class="list-content">
-    <goods-item wx:for="{{item.goodsList}}" wx:key="indxe" wx:for-item="goods" item="{{goods}}" />
+    <goods-item wx:for="{{item.goodsList}}" wx:key="index" wx:for-item="goods" item="{{goods}}" />
   </view>
   <view class="list-footer">
     <view class="total-info row baseline">
