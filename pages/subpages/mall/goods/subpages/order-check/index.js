@@ -25,19 +25,11 @@ Page({
   },
 
   async onLoad(options) {
-    const { cartGoodsIds, deliveryMode = 1 } = options || {};
+    const { cartGoodsIds } = options || {};
     this.cartGoodsIds = JSON.parse(cartGoodsIds);
 
-    const goodsDeliveryMode = +deliveryMode;
-    this.setData({ goodsDeliveryMode });
-    if (goodsDeliveryMode !== 1) {
-      if (!store.locationInfo) {
-        await goodsService.getLocationInfo();
-      }
-      this.setPickupAddressList(this.cartGoodsIds[0]);
-    }
-
-    this.setPreOrderInfo();
+    await this.setPreOrderInfo();
+    this.setGoodsDeliveryMode();
   },
 
   async setPreOrderInfo() {
@@ -49,6 +41,27 @@ Page({
       this.useBalance
     );
     this.setData({ preOrderInfo });
+  },
+
+  async setGoodsDeliveryMode() {
+    const { goodsLists } = this.data.preOrderInfo;
+    if (goodsLists.length > 1) {
+      this.setData({ goodsDeliveryMode: 1 });
+    } else {
+      const { goodsList } = goodsLists[0];
+      if (goodsList.length > 1) {
+        this.setData({ goodsDeliveryMode: 1 });
+      } else {
+        this.setData({ goodsDeliveryMode: goodsList[0].deliveryMode });
+      }
+    }
+
+    if (this.data.goodsDeliveryMode !== 1) {
+      if (!store.locationInfo) {
+        await goodsService.getLocationInfo();
+      }
+      this.setPickupAddressList(this.cartGoodsIds[0]);
+    }
   },
 
   async setPickupAddressList(cartGoodsId) {
