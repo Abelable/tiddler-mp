@@ -439,7 +439,7 @@ Component({
         scenicShopOptions,
         hotelShopOptions,
         cateringShopOptions,
-        shopOptions
+        goodsShopOptions
       } = store.userInfo;
       wx.scanCode({
         success: res => {
@@ -505,7 +505,7 @@ Component({
             }
           }
           if (code.length === 8) {
-            if (shopOptions.length) {
+            if (goodsShopOptions.length) {
               mineService.verifyGoodsCode(code, () => {
                 wx.showToast({
                   title: "核销成功",

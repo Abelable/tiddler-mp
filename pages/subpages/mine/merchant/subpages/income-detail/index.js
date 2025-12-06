@@ -310,7 +310,7 @@ Page({
 
   checkWithdrawRecord() {
     wx.navigateTo({
-      url: `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/withdrawal_record/income&merchant_type=${merchantType}&shop_id=${this.shopId}`
+      url: `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/withdrawal_record/income&merchant_type=${this.data.merchantType}&shop_id=${this.shopId}`
     });
   },
 
