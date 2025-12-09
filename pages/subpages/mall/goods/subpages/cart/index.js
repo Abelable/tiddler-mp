@@ -49,16 +49,18 @@ Page({
     }
     const { cartList, recommendGoodsList } = this.data;
     const goodsIds = [];
-    const shopCategoryIds = [];
-    cartList.forEach(({ goodsId, shopCategoryId }) => {
-      goodsIds.push(goodsId);
-      shopCategoryIds.push(shopCategoryId);
+    this.shopCategoryIds = [];
+    cartList.forEach(({ goodsList }) => {
+      goodsList.forEach(({ goodsId, shopCategoryIds }) => {
+        goodsIds.push(goodsId);
+        this.shopCategoryIds = [...this.shopCategoryIds, ...shopCategoryIds];
+      });
     });
 
     this.setData({ loading: true });
     const list = await goodsService.getRecommedGoodsList(
       goodsIds,
-      shopCategoryIds,
+      new Set(this.shopCategoryIds),
       ++this.page
     );
     this.setData({
