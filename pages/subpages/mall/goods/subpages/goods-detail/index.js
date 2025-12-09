@@ -318,13 +318,13 @@ Page({
 
   contact() {
     if (this.data.goodsInfo.shopInfo) {
-      const { userId, ownerAvatar, ownerName, managerList } =
+      const { userId, logo, name, ownerAvatar, ownerName, managerList } =
         this.data.goodsInfo.shopInfo;
       const cs = managerList.find(item => item.roleId === 4);
       const url = `/pages/subpages/notice/chat/index?userId=${
         cs ? cs.userId : userId
-      }&name=${cs ? cs.nickname : ownerName}&avatar=${
-        cs ? cs.avatar : ownerAvatar
+      }&name=${cs ? cs.nickname : ownerName || name}&avatar=${
+        cs ? cs.avatar : ownerAvatar || logo
       }&productId=${this.goodsId}&productType=4`;
       wx.navigateTo({ url });
     }
