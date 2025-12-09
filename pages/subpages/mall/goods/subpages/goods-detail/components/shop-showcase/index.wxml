@@ -1,7 +1,9 @@
+<wxs module="ARRAY" src="/utils/filters/array.wxs" />
+
 <view class="shop-showcase">
   <view class="shop-info">
     <view class="avatar-wrap">
-      <image class="shop-logo" src="{{shopInfo.logo}}" />
+      <image class="shop-logo" src="{{shopInfo.logo}}" mode="aspectFill" />
       <image class="enterprise-label" wx:if="{{shopInfo.type === 2}}" src="https://static.tiddler.cn/mp/mine/firm-icon.png" />
     </view>
     <view class="name omit">{{shopInfo.name}}</view>
@@ -10,7 +12,7 @@
   <view class="goods-list" wx:if="{{shopInfo.goodsList.length}}">
     <view 
       class="goods-item" 
-      wx:for="{{shopInfo.goodsList}}" 
+      wx:for="{{ARRAY.slice(shopInfo.goodsList, 0, 3)}}" 
       wx:key="index" 
       bindtap="navToGoodsDetail"
       data-id="{{item.id}}"

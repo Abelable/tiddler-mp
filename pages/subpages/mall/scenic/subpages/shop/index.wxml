@@ -10,7 +10,7 @@
 
 <view class="container">
   <view class="shop-info-wrap row">
-    <image class="shop-logo" src="{{shopInfo.logo}}" />
+    <image class="shop-logo" src="{{shopInfo.logo}}" mode="aspectFill" />
     <view class="info">
       <view class="shop-name omit single">{{shopInfo.name}}</view>
       <view class="authentication row">{{['景区官方', '旅行社', '平台自营'][shopInfo.type - 1]}}</view>

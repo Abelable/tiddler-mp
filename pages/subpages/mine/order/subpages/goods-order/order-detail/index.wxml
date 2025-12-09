@@ -61,7 +61,7 @@
   <view class="card">
     <view class="card-header row between">
       <view class="shop-info row" wx:if="{{orderInfo.shopInfo}}" catchtap="navToShop" data-id="{{orderInfo.shopInfo.id}}">
-        <image class="shop-logo" src="{{orderInfo.shopInfo.logo}}" />
+        <image class="shop-logo" src="{{orderInfo.shopInfo.logo}}" mode="aspectFill" />
         <view class="shop-name omit single">{{orderInfo.shopInfo.name}}</view>
         <image style="width: 20rpx; height: 20rpx;" src="/images/arrow_gray.png" />
       </view>

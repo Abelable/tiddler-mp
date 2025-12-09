@@ -66,17 +66,13 @@
   border-radius: 18rpx;
 }
 
-.goods-item {
-  display: inline-block;
+.goods-list {
+  display: flex;
+  justify-content: space-between;
   margin-top: 24rpx;
-  margin-right: 18rpx;
-  width: 210rpx;
-  vertical-align: top;
-  font-size: 0;
-  overflow: hidden;
 }
-.goods-item:nth-child(3n) {
-  margin-right: 0;
+.goods-item {
+  width: 210rpx;
 }
 .goods-image {
   width: 210rpx;
