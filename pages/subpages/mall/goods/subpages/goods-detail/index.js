@@ -159,12 +159,12 @@ Page({
       this.setData({ recommendGoodsList: [], finished: false });
     }
     const { goodsInfo, recommendGoodsList } = this.data;
-    const { id, shopCategoryId } = goodsInfo;
+    const { id, shopCategoryIds } = goodsInfo;
 
     this.setData({ loading: true });
     const list = await goodsService.getRecommedGoodsList(
       [id],
-      [shopCategoryId],
+      shopCategoryIds,
       ++this.page
     );
     this.setData({
