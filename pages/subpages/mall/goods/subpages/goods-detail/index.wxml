@@ -223,7 +223,8 @@
 <!-- 底部工具栏 -->
 <view class="bottom-bar row between">
   <view class="shortcut-wrap row">
-    <view class="shortcut" wx:if="{{goodsInfo.shopInfo}}" bindtap="contact">
+    <!-- todo 前期先用官方客服 -->
+    <!-- <view class="shortcut" wx:if="{{goodsInfo.shopInfo}}" bindtap="contact">
       <image class="shortcut-icon" src="./images/cs-icon.png"/>
       <view>客服</view>
     </view>
@@ -241,7 +242,21 @@
         <image class="shortcut-icon" src="./images/cs-icon.png"/>
         <view>客服</view>
       </view>
-    </button>
+    </button> -->
+    <button 
+      send-message-title="{{goodsInfo.name}}"
+      send-message-img="{{goodsInfo.imageList[0]}}"
+      send-message-path="/pages/subpages/mall/goods/subpages/goods-detail/index?id={{goodsInfo.id}}"
+      show-message-card="{{true}}"
+      open-type="contact" 
+      session-from="sessionFrom" 
+      hover-class="none"
+    >
+      <view class="shortcut">
+        <image class="shortcut-icon" src="./images/cs-icon.png"/>
+        <view>客服</view>
+      </view>
+    </button> 
     <view class="shortcut" wx:if="{{userInfo}}" bindtap="share">
       <image class="shortcut-icon" src="./images/share-icon.png"/>
       <view>分享</view>
