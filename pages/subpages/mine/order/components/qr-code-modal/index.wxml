@@ -4,7 +4,7 @@
   <view class="qr-code-poster" catchtap="catchtap">
     <view class="info-wrap">
       <view class="info-title">核销码</view>
-      <image class="qr-code" src="{{qrCode}}" />
+      <image class="qr-code" src="{{qrCode}}" show-menu-by-longpress />
       <view class="code">{{STRING.codeFilter(code)}}</view>
       <view class="tips">为了保证您的权益，请勿提前提供给商家</view>
     </view>
