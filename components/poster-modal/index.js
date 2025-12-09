@@ -22,7 +22,7 @@ Component({
     info: Object,
     shopTypeList: {
       type: Array,
-      value: ['个人店铺', '企业店铺']
+      value: ['企业店铺', '个人店铺']
     }
   },
 

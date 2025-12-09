@@ -73,6 +73,8 @@
 }
 .goods-item {
   width: 210rpx;
+  font-size: 0;
+  overflow: hidden;
 }
 .goods-image {
   width: 210rpx;
