@@ -444,79 +444,81 @@ Component({
       wx.scanCode({
         success: res => {
           const code = res.result;
-          if (code.length === 12) {
-            if (scenicShopOptions.length) {
-              mineService.verifyScenicCode(code, () => {
+          if (code && code.length === 12) {
+            if (code.startsWith(1)) {
+              if (scenicShopOptions.length) {
+                mineService.verifyScenicCode(code, () => {
+                  wx.showToast({
+                    title: "核销成功",
+                    icon: "none"
+                  });
+                });
+              } else {
                 wx.showToast({
-                  title: "核销成功",
+                  title: "暂无核销权限",
                   icon: "none"
                 });
-              });
-            } else {
-              wx.showToast({
-                title: "暂无核销权限",
-                icon: "none"
-              });
+              }
             }
-          }
-          if (code.length === 11) {
-            if (hotelShopOptions.length) {
-              mineService.verifyHotelCode(code, () => {
+            if (code.startsWith(2)) {
+              if (hotelShopOptions.length) {
+                mineService.verifyHotelCode(code, () => {
+                  wx.showToast({
+                    title: "核销成功",
+                    icon: "none"
+                  });
+                });
+              } else {
                 wx.showToast({
-                  title: "核销成功",
+                  title: "暂无核销权限",
                   icon: "none"
                 });
-              });
-            } else {
-              wx.showToast({
-                title: "暂无核销权限",
-                icon: "none"
-              });
+              }
             }
-          }
-          if (code.length === 10) {
-            if (cateringShopOptions.length) {
-              mineService.verifyMealTicketCode(code, () => {
+            if (code.startsWith(5)) {
+              if (cateringShopOptions.length) {
+                mineService.verifyMealTicketCode(code, () => {
+                  wx.showToast({
+                    title: "核销成功",
+                    icon: "none"
+                  });
+                });
+              } else {
                 wx.showToast({
-                  title: "核销成功",
+                  title: "暂无核销权限",
                   icon: "none"
                 });
-              });
-            } else {
-              wx.showToast({
-                title: "暂无核销权限",
-                icon: "none"
-              });
+              }
             }
-          }
-          if (code.length === 9) {
-            if (cateringShopOptions.length) {
-              mineService.verifySetMealCode(code, () => {
+            if (code.startsWith(6)) {
+              if (cateringShopOptions.length) {
+                mineService.verifySetMealCode(code, () => {
+                  wx.showToast({
+                    title: "核销成功",
+                    icon: "none"
+                  });
+                });
+              } else {
                 wx.showToast({
-                  title: "核销成功",
+                  title: "暂无核销权限",
                   icon: "none"
                 });
-              });
-            } else {
-              wx.showToast({
-                title: "暂无核销权限",
-                icon: "none"
-              });
+              }
             }
-          }
-          if (code.length === 8) {
-            if (goodsShopOptions.length) {
-              mineService.verifyGoodsCode(code, () => {
+            if (code.startsWith(4)) {
+              if (goodsShopOptions.length) {
+                mineService.verifyGoodsCode(code, () => {
+                  wx.showToast({
+                    title: "核销成功",
+                    icon: "none"
+                  });
+                });
+              } else {
                 wx.showToast({
-                  title: "核销成功",
+                  title: "暂无核销权限",
                   icon: "none"
                 });
-              });
-            } else {
-              wx.showToast({
-                title: "暂无核销权限",
-                icon: "none"
-              });
+              }
             }
           }
         }
