@@ -141,6 +141,7 @@ page {
   position: absolute;
   left: 0;
   top: 740rpx;
+  padding-bottom: calc(100rpx + env(safe-area-inset-bottom));
   width: 100%;
 }
 .container.gift {
