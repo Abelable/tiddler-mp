@@ -94,7 +94,7 @@
   height: 17rpx;
 }
 .bar-duration {
-  margin-left: -28rpx;
+  margin-left: -32rpx;
   margin-right: -40rpx;
   padding: 0 14rpx;
   height: 46rpx;
