@@ -17,7 +17,7 @@
       bindtap="navToGoodsDetail"
       data-id="{{item.id}}"
     >
-      <image class="goods-image" src="{{item.cover}}" lazy-load />
+      <image class="goods-image" src="{{item.cover}}" lazy-load  mode="aspectFill" />
       <view class="goods-title omit">{{item.name}}</view>
       <view class="price-wrap row between">
         <price-unit price="{{item.price || 0}}" />

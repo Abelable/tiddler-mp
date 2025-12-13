@@ -296,10 +296,11 @@
   font-weight: 500;
 }
 .goods-sku {
-  padding: 12rpx;
+  padding: 8rpx 12rpx;
   width: fit-content;
   color: #999;
   font-size: 24rpx;
+  line-height: 1.8;
   background: #f9f9f9;
   border-radius: 8rpx;
 }
