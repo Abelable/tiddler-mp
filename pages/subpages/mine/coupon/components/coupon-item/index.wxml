@@ -3,7 +3,7 @@
 <view class="coupon-item {{item.status !== 1 ? 'invalid' : ''}}">
   <view class="coupon-main-wrap">
     <view class="coupon-main row">
-      <image class="chapter" src="./images/chapter_{{['received', 'used', 'expierd'][item.status - 1]}}.png" />
+      <image class="chapter" src="./images/chapter_{{['received', 'used', 'expired'][item.status - 1]}}.png" />
       <view class="coupon-denomination-wrap">
         <view class="coupon-denomination">
           <text style="font-size: 32rpx;">¥</text>
