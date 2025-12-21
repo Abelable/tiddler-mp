@@ -1,5 +1,6 @@
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
 import { store } from "../../../../store/index";
+import { checkLogin } from "../../../../utils/index";
 import PromoterService from "./utils/promoterService";
 
 const promoterService = new PromoterService();
@@ -146,9 +147,11 @@ Component({
     },
 
     contact() {
-      const { id, avatar, nickname } = store.superiorInfo;
-      const url = `/pages/subpages/notice/chat/index?userId=${id}&name=${nickname}&avatar=${avatar}`;
-      wx.navigateTo({ url });
+      checkLogin(() => {
+        const { id, avatar, nickname } = store.superiorInfo;
+        const url = `/pages/subpages/notice/chat/index?userId=${id}&name=${nickname}&avatar=${avatar}`;
+        wx.navigateTo({ url });
+      })
     },
 
     makePhoneCall() {
