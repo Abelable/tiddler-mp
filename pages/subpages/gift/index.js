@@ -10,12 +10,16 @@ Page({
     navBarVisible: false,
     menuList: [],
     curMenuIdx: 0,
-    goodsList: [],
-    loading: false,
-    finished: false
+    goodsLists: [
+      { list: [], loading: false, finished: false },
+      { list: [], loading: false, finished: false },
+      { list: [], loading: false, finished: false },
+      { list: [], loading: false, finished: false }
+    ]
   },
 
   async onLoad() {
+    this.pageList = [0, 0, 0, 0];
     await this.setMenuList();
     await this.setGoodsList(true);
 
@@ -25,7 +29,9 @@ Page({
   selectMenu(e) {
     const { index: curMenuIdx } = e.currentTarget.dataset;
     this.setData({ curMenuIdx });
-    this.setGoodsList(true);
+    if (!this.data.goodsLists[curMenuIdx].list.length) {
+      this.setGoodsList(true);
+    }
   },
 
   onPullDownRefresh() {
@@ -51,23 +57,29 @@ Page({
   },
 
   async setGoodsList(init = false) {
+    const { curMenuIdx } = this.data;
     if (init) {
-      this.setData({ goodsList: [], finished: false });
-      this.page = 0;
+      this.setData({
+        [`goodsLists[${curMenuIdx}].list`]: [],
+        [`goodsLists[${curMenuIdx}].finished`]: false
+      });
+      this.pageList[curMenuIdx] = 0;
     }
-    const { menuList, curMenuIdx, goodsList } = this.data;
+    const { menuList, goodsLists } = this.data;
+    const goodsList = goodsLists[curMenuIdx].list;
 
-    this.setData({ loading: true });
-    const { list } = await giftService.getGiftList(
-      menuList[curMenuIdx].id,
-      ++this.page
-    );
+    this.setData({ [`goodsLists[${curMenuIdx}].loading`]: true });
+    const { list = [] } =
+      (await giftService.getGiftList(
+        menuList[curMenuIdx].id,
+        ++this.pageList[curMenuIdx]
+      )) || {};
     this.setData({
-      goodsList: init ? list : [...goodsList, ...list],
-      loading: false
+      [`goodsLists[${curMenuIdx}].list`]: init ? list : [...goodsList, ...list],
+      [`goodsLists[${curMenuIdx}].loading`]: false
     });
     if (!list.length) {
-      this.setData({ finished: true });
+      this.setData({ [`goodsLists[${curMenuIdx}].finished`]: true });
     }
   },
 

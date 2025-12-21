@@ -31,15 +31,17 @@
       </view>
     </view>
 
-    <view class="goods-list">
-      <fall-flow 
-        wx:if="{{goodsList}}" 
-        list="{{goodsList}}" 
-        loading="{{loading}}"
-        finished="{{finished}}"
-        generic:item="goods-item" 
-      />
-      <empty-illus wx:if="{{finished && !goodsList.length}}" desc="暂无家乡好物" />
-    </view>
+    <block wx:for="{{goodsLists}}" wx:key="index">
+      <view class="goods-list" wx:if="{{curMenuIdx === index}}">
+        <fall-flow 
+          wx:if="{{item.list.length}}" 
+          list="{{item.list}}" 
+          loading="{{item.loading}}"
+          finished="{{item.finished}}"
+          generic:item="goods-item" 
+        />
+        <empty-illus wx:if="{{item.finished && !item.list.length}}" desc="暂无家乡好物" />
+      </view>
+    </block>
   </view>
 </view>
