@@ -68,13 +68,16 @@
 
 .goods-list {
   display: flex;
-  justify-content: space-between;
   margin-top: 24rpx;
 }
 .goods-item {
+  margin-right: 24rpx;
   width: 210rpx;
   font-size: 0;
   overflow: hidden;
+}
+.goods-item:last-child {
+  margin-right: 0;
 }
 .goods-image {
   width: 210rpx;
