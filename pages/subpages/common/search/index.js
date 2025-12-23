@@ -132,7 +132,7 @@ Page({
         if (init) {
           this.setVideoList(true);
           this.setNoteList(true);
-          this.setLiveList(true);
+          // this.setLiveList(true);
           this.setScenicList(true);
           this.setHotelList(true);
           this.setRestaurantList(true);
@@ -148,22 +148,22 @@ Page({
       case 2:
         this.setNoteList(init);
         break;
+      // case 3:
+      //   this.setLiveList(init);
+      //   break;
       case 3:
-        this.setLiveList(init);
-        break;
-      case 4:
         this.setScenicList(init);
         break;
-      case 5:
+      case 4:
         this.setHotelList(init);
         break;
-      case 6:
+      case 5:
         this.setRestaurantList(init);
         break;
-      case 7:
+      case 6:
         this.setGoodsList(init);
         break;
-      case 8:
+      case 7:
         this.setUserList(init);
         break;
     }

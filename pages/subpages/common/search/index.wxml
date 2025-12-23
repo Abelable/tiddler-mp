@@ -39,8 +39,17 @@
     enable-flex
     scroll-with-animation
   >
-    <view 
+    <!-- <view 
       wx:for="{{['综合', '视频游记', '图文游记', '直播', '景点', '酒店', '餐厅', '商品', '用户']}}" 
+      wx:key="index" 
+      class="menu-tab {{curMenuIdx === index ? 'active' : ''}}" 
+      bindtap="selectMenu" 
+      data-index="{{ index }}"
+    >
+      {{item}}
+    </view> -->
+    <view 
+      wx:for="{{['综合', '视频游记', '图文游记', '景点', '酒店', '餐厅', '商品', '用户']}}" 
       wx:key="index" 
       class="menu-tab {{curMenuIdx === index ? 'active' : ''}}" 
       bindtap="selectMenu" 
@@ -177,7 +186,7 @@
   <empty-illus wx:if="{{noteFinished && !noteList.length}}" desc="没有找到相关图文游记" />
 </view>
 
-<view class="list-wrap" wx:if="{{searching && curMenuIdx === 3}}">
+<!-- <view class="list-wrap" wx:if="{{searching && curMenuIdx === 3}}">
   <fall-flow 
     wx:if="{{liveList.length}}" 
     list="{{liveList}}" 
@@ -186,9 +195,9 @@
     generic:item="live-item" 
   />
   <empty-illus wx:if="{{liveFinished && !liveList.length}}" desc="没有找到相关直播" />
-</view>
+</view> -->
 
-<view class="list-wrap" wx:if="{{searching && curMenuIdx === 4}}">
+<view class="list-wrap" wx:if="{{searching && curMenuIdx === 3}}">
   <fall-flow 
     wx:if="{{scenicList}}" 
     list="{{scenicList}}" 
@@ -199,7 +208,7 @@
   <empty-illus wx:if="{{scenicFinished && !scenicList.length}}" desc="没有找到相关景点" />
 </view>
 
-<view class="list-wrap" wx:if="{{searching && curMenuIdx === 5}}">
+<view class="list-wrap" wx:if="{{searching && curMenuIdx === 4}}">
   <fall-flow 
     wx:if="{{hotelList}}" 
     list="{{hotelList}}" 
@@ -210,7 +219,7 @@
   <empty-illus wx:if="{{hotelFinished && !hotelList.length}}" desc="没有找到相关酒店" />
 </view>
 
-<view class="list-wrap" wx:if="{{searching && curMenuIdx === 6}}">
+<view class="list-wrap" wx:if="{{searching && curMenuIdx === 5}}">
   <fall-flow 
     wx:if="{{restaurantList}}" 
     list="{{restaurantList}}" 
@@ -221,7 +230,7 @@
   <empty-illus wx:if="{{restaurantFinished && !restaurantList.length}}" desc="没有找到相关餐饮美食" />
 </view>
 
-<view class="list-wrap" wx:if="{{searching && curMenuIdx === 7}}">
+<view class="list-wrap" wx:if="{{searching && curMenuIdx === 6}}">
   <fall-flow 
     wx:if="{{goodsList.length}}" 
     list="{{goodsList}}" 
@@ -232,7 +241,7 @@
   <empty-illus wx:if="{{goodsFinished && !goodsList.length}}" desc="没有找到相关商品" />
 </view>
 
-<view class="list-wrap" wx:if="{{searching && curMenuIdx === 8}}">
+<view class="list-wrap" wx:if="{{searching && curMenuIdx === 7}}">
   <user-item 
     wx:for="{{userList}}" 
     wx:key="index" 
