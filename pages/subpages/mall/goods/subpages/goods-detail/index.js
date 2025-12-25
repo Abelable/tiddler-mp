@@ -310,6 +310,11 @@ Page({
     });
   },
 
+  previewImage(e) {
+    const { current, urls } = e.currentTarget.dataset;
+    wx.previewImage({ current, urls });
+  },
+
   toggleCommissionVisible() {
     this.setData({
       commissionVisible: !this.data.commissionVisible
