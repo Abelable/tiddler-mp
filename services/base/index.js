@@ -45,7 +45,7 @@ class Base {
         return await this.handleResult(url, client, success, fail);
       } else {
         wx.showToast({
-          title: err.errMsg.includes("request:fail") ? "网络异常" : err.errMsg,
+          title: err.errMsg.includes("request:fail") ? "网络不稳定" : err.errMsg,
           icon: "none"
         });
       }
