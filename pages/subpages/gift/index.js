@@ -18,7 +18,11 @@ Page({
     ]
   },
 
-  async onLoad() {
+  async onLoad({ curMenuIdx = 0 }) {
+    if (curMenuIdx !== 0) {
+      this.setData({ curMenuIdx: Number(curMenuIdx) });
+    }
+
     this.pageList = [0, 0, 0, 0];
     await this.setMenuList();
     await this.setGoodsList(true);
@@ -95,9 +99,10 @@ Page({
   },
 
   onShareAppMessage() {
+    const { curMenuIdx } = this.data;
     const { id } = store.superiorInfo || {};
-    const originalPath = "/pages/subpages/gift/index";
-    const path = id ? `${originalPath}?superiorId=${id}` : originalPath;
+    const originalPath = `/pages/subpages/gift/index?curMenuIdx=${curMenuIdx}`;
+    const path = id ? `${originalPath}&superiorId=${id}` : originalPath;
     return { path, title: "家乡好物" };
   }
 });
