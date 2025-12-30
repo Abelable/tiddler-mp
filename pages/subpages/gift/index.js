@@ -72,7 +72,8 @@ Page({
     const { list = [] } =
       (await giftService.getGiftList(
         menuList[curMenuIdx].id,
-        ++this.pageList[curMenuIdx]
+        ++this.pageList[curMenuIdx],
+        init ? "加载中" : ""
       )) || {};
     this.setData({
       [`goodsLists[${curMenuIdx}].list`]: init ? list : [...goodsList, ...list],

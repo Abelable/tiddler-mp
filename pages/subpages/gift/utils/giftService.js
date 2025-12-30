@@ -7,10 +7,11 @@ class GiftService extends BaseService {
     });
   }
 
-  async getGiftList(typeId, page, limit = 10) {
+  async getGiftList(typeId, page, loadingTitle, limit = 10) {
     return await this.get({
       url: `${this.baseUrl}/gift/list`,
-      data: { typeId, page, limit }
+      data: { typeId, page, limit },
+      loadingTitle
     });
   }
 }
