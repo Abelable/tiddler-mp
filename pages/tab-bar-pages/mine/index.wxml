@@ -105,7 +105,7 @@
               desc="{{userInfo ? '暂无作品，快去发布吧' : '您还未登录'}}" 
               height="520rpx"
             >
-              <view class="login-btn row center"  wx:if="{{!userInfo}}" bindtap="register">点击登录</view>
+              <view class="login-btn row center" wx:if="{{!userInfo}}" bindtap="register">点击登录</view>
             </empty-illus>
           </view>
         </swiper-item>
