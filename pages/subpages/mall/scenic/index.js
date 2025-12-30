@@ -21,6 +21,11 @@ Page({
   },
 
   async onLoad() {
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ["shareAppMessage", "shareTimeline"]
+    });
+
     if (!store.locationInfo) {
       await scenicService.getLocationInfo();
     }
@@ -105,5 +110,26 @@ Page({
     wx.navigateTo({
       url: "/pages/subpages/common/search/index?scene=4"
     });
+  },
+
+  onShareAppMessage() {
+    const { id } = store.superiorInfo || {};
+    const originalPath = "/pages/subpages/mall/scenic/index";
+    const path = id ? `${originalPath}?superiorId=${id}` : originalPath;
+    return {
+      path,
+      title: "千岛湖景点乐园",
+      imageUrl: "https://static.tiddler.cn/mp/share_cover.png"
+    };
+  },
+
+  onShareTimeline() {
+    const { id } = store.superiorInfo || {};
+    const query = id ? `superiorId=${id}` : "";
+    return {
+      query,
+      title: "千岛湖景点乐园",
+      imageUrl: "https://static.tiddler.cn/mp/share_cover.png"
+    };
   }
 });

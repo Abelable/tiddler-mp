@@ -25,6 +25,11 @@ Page({
   },
 
   async onLoad() {
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ["shareAppMessage", "shareTimeline"]
+    });
+
     this.storeBindings = createStoreBindings(this, {
       store,
       fields: ["checkInDate", "checkOutDate"]
@@ -151,5 +156,26 @@ Page({
 
   onUnload() {
     this.storeBindings.destroyStoreBindings();
+  },
+
+  onShareAppMessage() {
+    const { id } = store.superiorInfo || {};
+    const originalPath = "/pages/subpages/mall/hotel/index";
+    const path = id ? `${originalPath}?superiorId=${id}` : originalPath;
+    return {
+      path,
+      title: "千岛湖酒店民宿",
+      imageUrl: "https://static.tiddler.cn/mp/share_cover.png"
+    };
+  },
+
+  onShareTimeline() {
+    const { id } = store.superiorInfo || {};
+    const query = id ? `superiorId=${id}` : "";
+    return {
+      query,
+      title: "千岛湖酒店民宿",
+      imageUrl: "https://static.tiddler.cn/mp/share_cover.png"
+    };
   }
 });

@@ -1,3 +1,4 @@
+import { store } from "../../../../store/index";
 import { checkLogin, customBack } from "../../../../utils/index";
 import GoodsService from "./utils/goodsService";
 
@@ -19,6 +20,11 @@ Page({
   },
 
   async onLoad() {
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ["shareAppMessage", "shareTimeline"]
+    });
+
     await this.setCategoryOptions();
     this.setGoodsList(true);
   },
@@ -120,5 +126,26 @@ Page({
     wx.navigateTo({
       url: "/pages/subpages/common/search/index?scene=7"
     });
+  },
+
+  onShareAppMessage() {
+    const { id } = store.superiorInfo || {};
+    const originalPath = "/pages/subpages/mall/goods/index";
+    const path = id ? `${originalPath}?superiorId=${id}` : originalPath;
+    return {
+      path,
+      title: "千岛湖特色商品",
+      imageUrl: "https://static.tiddler.cn/mp/share_cover.png"
+    };
+  },
+
+  onShareTimeline() {
+    const { id } = store.superiorInfo || {};
+    const query = id ? `superiorId=${id}` : "";
+    return {
+      query,
+      title: "千岛湖特色商品",
+      imageUrl: "https://static.tiddler.cn/mp/share_cover.png"
+    };
   }
 });
