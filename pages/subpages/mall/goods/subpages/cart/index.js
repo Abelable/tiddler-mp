@@ -60,7 +60,7 @@ Page({
     this.setData({ loading: true });
     const list = await goodsService.getRecommedGoodsList(
       goodsIds,
-      new Set(this.shopCategoryIds),
+      [...new Set(this.shopCategoryIds)],
       ++this.page
     );
     this.setData({
