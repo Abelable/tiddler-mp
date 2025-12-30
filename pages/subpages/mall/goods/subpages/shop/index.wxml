@@ -4,7 +4,7 @@
   <view class="back-icon-wrap row" style="top: {{statusBarHeight}}px;">
     <back-icon />
   </view>
-  <image class="cover" mode="widthFix" src="{{shopInfo.cover || 'https://static.tiddler.cn/mp/shop_bg.webp'}}" />
+  <image class="cover" mode="widthFix" src="{{shopInfo.bg || 'https://static.tiddler.cn/mp/shop_bg.webp'}}" />
 </view>
 
 
