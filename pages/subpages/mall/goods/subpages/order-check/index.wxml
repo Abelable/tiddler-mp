@@ -1,11 +1,13 @@
 <wxs module="TIME" src="/utils/filters/time.wxs" />
 
-<view class="container" style="padding-top: {{statusBarHeight}}px;">
-  <view class="header row">
+<view class="header {{showBg ? 'show-bg' : ''}}" style="padding-top: {{statusBarHeight}}px;">
+  <view class="header-inner row">
     <back-icon />
     <view class="title">确认订单</view>
   </view>
+</view>
 
+<view class="container" style="padding-top: {{statusBarHeight + 44}}px;">
   <view class="card err row" wx:if="{{preOrderInfo.errMsg}}">
     <image class="err-icon" src="./images/err-icon.png" />
     <view class="err-msg">{{preOrderInfo.errMsg}}</view>

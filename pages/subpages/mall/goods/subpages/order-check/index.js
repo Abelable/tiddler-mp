@@ -9,6 +9,7 @@ const { statusBarHeight } = getApp().globalData.systemInfo;
 Page({
   data: {
     statusBarHeight,
+    showBg: false,
     goodsDeliveryMode: 1,
     curMenuIdx: 0,
     preOrderInfo: null,
@@ -274,5 +275,14 @@ Page({
       name: name || addressDetail,
       address: addressDetail
     });
+  },
+
+  onPageScroll(e) {
+    const scrollTop = e.scrollTop;
+    if (scrollTop > 20 && !this.data.showBg) {
+      this.setData({ showBg: true });
+    } else if (scrollTop <= 20 && this.data.showBg) {
+      this.setData({ showBg: false });
+    }
   }
 });

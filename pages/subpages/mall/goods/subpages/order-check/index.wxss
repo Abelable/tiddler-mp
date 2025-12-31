@@ -1,3 +1,26 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+.header.show-bg {
+  background: #00B2FF;
+}
+.header-inner {
+  padding-left: 8px;
+  padding-right: 40px;
+  height: 44px;
+}
+.title {
+  flex: 1;
+  color: #fff;
+  font-size: 32rpx;
+  text-align: center;
+  font-weight: bold;
+}
+
 .container {
   position: relative;
   padding-bottom: calc(60px + env(safe-area-inset-bottom));
@@ -13,18 +36,7 @@
   z-index: -1;
 }
 
-.header {
-  padding-left: 8px;
-  padding-right: 40px;
-  height: 44px;
-}
-.title {
-  flex: 1;
-  color: #fff;
-  font-size: 32rpx;
-  text-align: center;
-  font-weight: bold;
-}
+
 
 .card {
   margin: 24rpx;
