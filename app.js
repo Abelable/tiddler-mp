@@ -19,8 +19,6 @@ App({
     }
 
     if (wx.getStorageSync("token")) {
-      this.initTim();
-
       const userInfo = await baseService.getMyInfo();
       if (userInfo.promoterInfo) {
         store.setSuperiorInfo(userInfo);
@@ -30,6 +28,8 @@ App({
           store.setSuperiorInfo(superiorInfo);
         }
       }
+      
+      this.initTim();
     } else {
       const superiorId = wx.getStorageSync("superiorId");
       if (superiorId) {
