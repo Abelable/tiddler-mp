@@ -19,6 +19,11 @@ Page({
   },
 
   async onLoad({ curMenuIdx = 0 }) {
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ["shareAppMessage", "shareTimeline"]
+    });
+
     if (curMenuIdx !== 0) {
       this.setData({ curMenuIdx: Number(curMenuIdx) });
     }
@@ -103,6 +108,17 @@ Page({
     const { id } = store.superiorInfo || {};
     const originalPath = `/pages/subpages/gift/index?curMenuIdx=${curMenuIdx}`;
     const path = id ? `${originalPath}&superiorId=${id}` : originalPath;
-    return { path, title: "家乡好物" };
+    return {
+      path,
+      title: "家乡好物",
+      imageUrl: "https://static.tiddler.cn/mp/gift/share.webp"
+    };
+  },
+
+  onShareTimeline() {
+    const { curMenuIdx } = this.data;
+    const { id } = store.superiorInfo || {};
+    const query = id ? `curMenuIdx=${curMenuIdx}&superiorId=${id}` : `curMenuIdx=${curMenuIdx}`;
+    return { query, title: "家乡好物", imageUrl: "https://static.tiddler.cn/mp/gift/share.jpg" };
   }
 });
