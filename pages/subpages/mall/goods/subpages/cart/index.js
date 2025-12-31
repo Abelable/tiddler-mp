@@ -25,8 +25,16 @@ Page({
   },
 
   async init() {
+    wx.showLoading({ title: "加载中" });
     await this.setCartList();
-    this.setRecommendGoodsList(true);
+    await this.setRecommendGoodsList(true);
+    wx.hideLoading();
+    this.setData({
+      isSelectAll: false,
+      totalPrice: 0,
+      selectedCount: 0,
+      deleteBtnVisible: false
+    });
   },
 
   async setCartList() {

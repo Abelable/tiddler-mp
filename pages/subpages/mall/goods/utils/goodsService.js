@@ -2,12 +2,27 @@ import { cleanObject } from "../../../../../utils/index";
 import MallService from "../../utils/mallService";
 
 class GoodsService extends MallService {
-  async getGoodsList({ shopCategoryId, categoryId, sort, order, page, limit = 10, loadingTitle = "" }) {
+  async getGoodsList({
+    shopCategoryId,
+    categoryId,
+    sort,
+    order,
+    page,
+    limit = 10,
+    loadingTitle = ""
+  }) {
     const { list = [] } =
       (await this.get({
         url: `${this.baseUrl}/goods/list`,
-        data: cleanObject({ shopCategoryId, categoryId, sort, order, page, limit }),
-        loadingTitle,
+        data: cleanObject({
+          shopCategoryId,
+          categoryId,
+          sort,
+          order,
+          page,
+          limit
+        }),
+        loadingTitle
       })) || {};
     return list;
   }
@@ -15,14 +30,14 @@ class GoodsService extends MallService {
   async getGoodsEvaluationSummary(goodsId) {
     return await this.get({
       url: `${this.baseUrl}/goods/evaluation/summary`,
-      data: { goodsId },
+      data: { goodsId }
     });
   }
 
   async getShopInfo(id) {
     return await this.get({
       url: `${this.baseUrl}/shop/info`,
-      data: { id },
+      data: { id }
     });
   }
 
@@ -30,7 +45,7 @@ class GoodsService extends MallService {
     const { list = [] } =
       (await this.get({
         url: `${this.baseUrl}/goods/shop_list`,
-        data: { shopId, page, limit },
+        data: { shopId, page, limit }
       })) || {};
     return list;
   }
@@ -41,8 +56,7 @@ class GoodsService extends MallService {
 
   async getCartList() {
     return await this.get({
-      url: `${this.baseUrl}/cart/list`,
-      loadingTitle: "正在加载",
+      url: `${this.baseUrl}/cart/list`
     });
   }
 
@@ -50,7 +64,7 @@ class GoodsService extends MallService {
     return await this.post({
       url: `${this.baseUrl}/cart/delete`,
       data: { ids },
-      success,
+      success
     });
   }
 
@@ -111,7 +125,7 @@ class GoodsService extends MallService {
     return await this.get({
       url: `${this.baseUrl}/goods/evaluation/list`,
       data: { goodsId, page, limit },
-      loadingTitle: "正在加载",
+      loadingTitle: "正在加载"
     });
   }
 

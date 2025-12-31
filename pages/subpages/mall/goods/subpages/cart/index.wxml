@@ -69,6 +69,8 @@
     <fall-flow 
       list="{{recommendGoodsList}}" 
       generic:item="goods-item" 
+      loading="{{loading}}"
+      finished="{{finished}}"
     />
   </view>
 </view>
