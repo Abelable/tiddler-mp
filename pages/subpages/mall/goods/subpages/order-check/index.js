@@ -49,10 +49,12 @@ Page({
       this.setData({ goodsDeliveryMode: 1 });
     } else {
       const { goodsList } = goodsLists[0];
-      if (goodsList.length > 1) {
-        this.setData({ goodsDeliveryMode: 1 });
+      const deliveryMode = goodsList[0].deliveryMode;
+      const allSame = goodsList.every(item => item.deliveryMode === deliveryMode);
+      if (allSame) {
+        this.setData({ goodsDeliveryMode: deliveryMode });
       } else {
-        this.setData({ goodsDeliveryMode: goodsList[0].deliveryMode });
+        this.setData({ goodsDeliveryMode: 1 });
       }
     }
 
