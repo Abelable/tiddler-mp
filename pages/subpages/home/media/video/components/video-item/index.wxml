@@ -1,5 +1,6 @@
 <wxs module="NUM" src="/utils/filters/num.wxs" />
 <wxs module="STRING" src="/utils/filters/string.wxs" />
+<wxs module="IMG" src="/utils/filters/img.wxs" />
 
 <video 
   class="video-item" 
@@ -15,7 +16,7 @@
 >
   <view class="interactive-area">
     <view class="author-avatar" catchtap="navToAuthorCenter">
-      <image class="avatar-img avatar-default" src="{{item.authorInfo.avatar}}?x-oss-process=image/format,webp" lazy-load />
+      <image class="avatar-img avatar-default" src="{{IMG.webp(item.authorInfo.avatar)}}" lazy-load />
       <image class="follow-icon" wx:if="{{!item.isFollow}}" catchtap="followAuthor" src="./images/follow.png" />
     </view>
     <view class="btn" catchtap="like">

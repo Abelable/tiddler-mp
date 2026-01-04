@@ -1,5 +1,7 @@
 <import src="index.skeleton.wxml"/>
+
 <wxs module="TIME" src="/utils/filters/time.wxs" />
+<wxs module="IMG" src="/utils/filters/img.wxs" />
 
 <page-meta page-style="{{ telPopupVisible ? 'overflow: hidden;' : '' }}" />
 
@@ -201,7 +203,7 @@
         <view class="qa-question">{{ item.content }}</view>
         <view class="first-answer" wx:if="{{index === 0 && item.firstAnswer}}">
           <view class="answer-user row">
-            <image class="answer-user-avatar" src="{{item.firstAnswer.userInfo.avatar}}?x-oss-process=image/format,webp" />
+            <image class="answer-user-avatar" src="{{IMG.webp(item.firstAnswer.userInfo.avatar)}}" />
             <view class="answer-user-name">{{item.firstAnswer.userInfo.nickname}}</view>
           </view>
           <view class="qa-answer omit single">{{item.firstAnswer.content}}</view>
@@ -209,7 +211,7 @@
         <view class="qa-no-answer" wx:if="{{index === 0 && !item.firstAnswer}}">暂无回答</view>
         <view class="qa-answers row" wx:if="{{index !== 0}}">
           <view class="qa-answers-avatars row" wx:if="{{item.answerNum}}">
-            <image class="answer-user-avatar" wx:for="{{item.userList}}" wx:key="userIdx" wx:for-index="userIdx" wx:for-item="user" src="{{user.avatar}}?x-oss-process=image/format,webp" />
+            <image class="answer-user-avatar" wx:for="{{item.userList}}" wx:key="userIdx" wx:for-index="userIdx" wx:for-item="user" src="{{IMG.webp(user.avatar)}}" />
           </view>
           <view class="qa-answers-number">{{item.answerNum ? item.answerNum + '人回答' : '暂无回答'}}</view>
         </view>
