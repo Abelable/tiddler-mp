@@ -6,7 +6,7 @@
   <view class="header-main row">
     <back-icon />
     <view class="author-info-wrap row" wx:if="{{noteInfo}}" bindtap="navToAuthorCenter">
-      <image class="author-avatar avatar-default" src="{{noteInfo.authorInfo.avatar}}?x-oss-process=image/format,webp" lazy-load />
+      <image class="author-avatar avatar-default" src="{{IMG.webp(noteInfo.authorInfo.avatar)}}" lazy-load />
       <view class="name-wrap">
         <view class="author-name omit single">{{noteInfo.authorInfo.nickname}}</view>
         <view class="time">{{TIME.timeDiff(noteInfo.createdAt)}}</view>
@@ -25,7 +25,7 @@
     indicator-active-color="#00C8FF"
   >
     <swiper-item wx:for="{{noteInfo.imageList}}" wx:key="index" wx:for-item="image">
-      <image class="note-img" src="{{image}}?x-oss-process=image/format,webp" bindtap="previewImage" data-current="{{image}}" mode="aspectFill" lazy-load />
+      <image class="note-img" src="{{IMG.webp(image)}}" bindtap="previewImage" data-current="{{image}}" mode="aspectFill" lazy-load />
     </swiper-item>
   </swiper>
 

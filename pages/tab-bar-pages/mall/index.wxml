@@ -5,7 +5,7 @@
 
 <view class="nav-bar {{navBarActive ? 'active': ''}}" style="padding-top: {{statusBarHeight}}px">
   <view class="promoter-icon" wx:if="{{superiorInfo}}" bindtap="checkPromoter">
-    <image class="promoter-avatar" src="{{superiorInfo.avatar ? (superiorInfo.avatar + '?x-oss-process=image/format,webp') : 'https://static.tiddler.cn/mp/default_avatar.png'}}" />
+    <image class="promoter-avatar" src="{{superiorInfo.avatar ? IMG.webp(superiorInfo.avatar): 'https://static.tiddler.cn/mp/default_avatar.png'}}" />
     <image class="promoter-medal" src="https://static.tiddler.cn/mp/promoter/level_{{superiorInfo.promoterInfo.level}}/medal.gif" />
   </view>
   <view class="search-bar {{navBarActive ? 'active': ''}}" bindtap="search">

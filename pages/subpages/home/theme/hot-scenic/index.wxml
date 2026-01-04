@@ -7,7 +7,7 @@
 
 <view class="container" wx:if="{{hotScenicList.length}}">
   <view class="header">
-    <image class="bg" src="{{hotScenicList[curMenuIdx].scenicCover}}?x-oss-process=image/format,webp" mode="aspectFill" />
+    <image class="bg" src="{{IMG.webp(hotScenicList[curMenuIdx].scenicCover)}}" mode="aspectFill" />
     <view class="title-wrap">
       <image class="title" src="https://static.tiddler.cn/mp/trip_type/hot_scenic/title.png" />
     </view>

@@ -40,7 +40,7 @@
       class="top-media-menu-item {{curMediaIdx === index ? 'active' : ''}}" 
       wx:for="{{mediaList}}" 
       wx:key="index" 
-      src="{{item.cover}}?x-oss-process=image/resize,w_120/format,webp"
+      src="{{IMG.webp(item.cover, 120)}}"
       bindtap="selectTopMedia"
       data-index="{{index}}"
       mode="aspectFill"

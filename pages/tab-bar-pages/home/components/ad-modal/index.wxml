@@ -1,6 +1,8 @@
+<wxs module="IMG" src="/utils/filters/img.wxs" />
+
 <view class="modal-mask" bindtap="hide">
   <view class="ad-poster" catchtap="catchtap">
-    <image class="ad-poster-img" src="{{info.cover}}?x-oss-process=image/format,webp" catchtap="linkTo" mode="widthFix" />
+    <image class="ad-poster-img" src="{{IMG.webp(info.cover)}}" catchtap="linkTo" mode="widthFix" />
     <image class="close-icon" catchtap="hide" src="https://static.tiddler.cn/mp/home/close_icon.webp" />
   </view>
 </view>
