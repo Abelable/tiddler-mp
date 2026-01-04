@@ -1,3 +1,5 @@
+<wxs module="IMG" src="/utils/filters/img.wxs" />
+
 <view class="back-icon-wrap" style="top: {{statusBarHeight + 5}}px">
   <back-icon />
 </view>
@@ -11,7 +13,7 @@
   <image class="sub-title" src="https://static.tiddler.cn/mp/trip_type/lake_trip/sub_title_1.png" />
   <view class="island-list">
     <view class="island-item" wx:for="{{centerLakeList}}" wx:key="index" bindtap="checkScenic" data-id="{{item.scenicId}}">
-      <image class="island-cover" src="{{item.scenicCover}}?x-oss-process=image/format,webp" mode="aspectFill" />
+      <image class="island-cover" src="{{IMG.webp(item.scenicCover)}}" mode="aspectFill" />
       <view class="island-name-wrap">
         <view class="island-name">千岛湖中心湖区 {{item.scenicName}}</view>
         <view class="island-desc">{{item.desc}}</view>
