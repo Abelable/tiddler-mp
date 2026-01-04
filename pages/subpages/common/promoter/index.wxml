@@ -1,4 +1,5 @@
 <wxs module="TIME" src="/utils/filters/time.wxs" />
+<wxs module="IMG" src="/utils/filters/img.wxs" />
 
 <view class="header {{headerVisible ? 'show' : ''}}" style="padding-top: {{statusBarHeight}}px">
   <view class="nav-bar row">
@@ -10,7 +11,7 @@
 <view class="container">
   <view class="promoter-info-wrap" style="margin-top: {{statusBarHeight + 128}}px;">
     <view class="promoter-avatar-wrap">
-      <image class="promoter-avatar" src="{{superiorInfo.avatar || 'https://static.tiddler.cn/mp/default_avatar.png'}}?x-oss-process=image/format,webp" />
+      <image class="promoter-avatar" src="{{IMG.webp(superiorInfo.avatar || 'https://static.tiddler.cn/mp/default_avatar.png')}}" />
       <image 
         class="promoter-medal" 
         wx:if="{{superiorInfo}}" 

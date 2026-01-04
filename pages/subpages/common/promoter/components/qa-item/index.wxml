@@ -1,9 +1,10 @@
 <wxs module="STRING" src="/utils/filters/string.wxs" />
 <wxs module="TIME" src="/utils/filters/time.wxs" />
+<wxs module="IMG" src="/utils/filters/img.wxs" />
 
 <view class="qa-item {{isLast ? 'is-last' : ''}}">
   <view class="user-info">
-    <image class="user-avatar" src="{{item.userInfo.avatar}}?x-oss-process=image/format,webp" />
+    <image class="user-avatar" src="{{IMG.webp(item.userInfo.avatar)}}" />
     <view class="user-name">{{STRING.nicknameFilter(item.userInfo.nickname || '')}}</view>
     <view class="time">{{TIME.timeDiff(item.createdAt)}}</view>
   </view>

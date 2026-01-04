@@ -1,8 +1,9 @@
 <wxs module="TIME" src="/utils/filters/time.wxs" />
+<wxs module="IMG" src="/utils/filters/img.wxs" />
 
 <view class="comment-item {{isReply ? 'is-reply' : ''}}">
   <view class="main">
-    <image class="user-avatar avatar-default {{isReply ? 'is-reply' : ''}}" src="{{item.userInfo.avatar}}?x-oss-process=image/format,webp" />
+    <image class="user-avatar avatar-default {{isReply ? 'is-reply' : ''}}" src="{{IMG.webp(item.userInfo.avatar)}}" />
     <view class="list-content">
       <view class="row">
         <view class="user-name">{{item.userInfo.nickname}}</view>

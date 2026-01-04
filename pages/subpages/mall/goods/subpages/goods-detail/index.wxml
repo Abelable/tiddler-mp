@@ -3,6 +3,7 @@
 <wxs module="STRING" src="/utils/filters/string.wxs" />
 <wxs module="TIME" src="/utils/filters/time.wxs" />
 <wxs module="NUM" src="/utils/filters/num.wxs" />
+<wxs module="IMG" src="/utils/filters/img.wxs" />
 
 <page-meta page-style="{{ specPopupVisible ? 'overflow: hidden;' : '' }}" />
 
@@ -177,7 +178,7 @@
     <view class="evaluation-list">
       <view class="evaluation-item" wx:for="{{evaluationSummary.list}}" wx:key="index">
         <view class="evaluation-user-info row">
-          <image class="evaluation-user-avatar" src="{{item.userInfo.avatar}}?x-oss-process=image/format,webp" />
+          <image class="evaluation-user-avatar" src="{{IMG.webp(item.userInfo.avatar)}}" />
           <view class="evaluation-user-name">{{item.userInfo.nickname}}</view>
           <van-rate style="margin-bottom: 6rpx" value="{{item.score || 0}}" size="12" gutter="0" color="#fa2458" void-icon="star" void-color="#fedbe4" allow-half readonly />
         </view>
