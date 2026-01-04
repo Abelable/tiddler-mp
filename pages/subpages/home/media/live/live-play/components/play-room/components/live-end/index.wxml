@@ -1,9 +1,10 @@
 <wxs module="TIME" src="/utils/filters/time.wxs" />
 <wxs module="NUM" src="/utils/filters/num.wxs" />
+<wxs module="IMG" src="/utils/filters/img.wxs" />
 
 <view class="live-end-wrap">
   <view class="anchor-info">
-    <image class="anchor-avatar" src="{{anchorInfo.avatar}}?x-oss-process=image/format,webp" />
+    <image class="anchor-avatar" src="{{IMG.webp(anchorInfo.avatar)}}" />
     <view class="anchor-name">{{anchorInfo.nickname}}</view>
   </view>
   <view class="time-wrap">
