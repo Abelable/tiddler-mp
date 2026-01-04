@@ -53,7 +53,7 @@
   <swiper class="customer-banner" vertical autoplay circular>
     <swiper-item class="customer-info-wrap" wx:for="{{goodsInfo.customerList}}" wx:key="index">
       <view class="customer-info">
-        <image class="customer-avatar" src="{{item.avatar}}?x-oss-process=image/format,webp" />
+        <image class="customer-avatar" src="{{IMG.webp(item.avatar)}}" />
         <view class="customer-name">{{STRING.nicknameFilter(item.nickname || '')}}</view>
         <view class="customer-content">{{TIME.timeDiff(item.createdAt)}}购买了该商品</view>
       </view>
