@@ -1,9 +1,11 @@
+<wxs module="IMG" src="/utils/filters/img.wxs" />
+
 <view class="scenic-item {{item.coverHeight ? 'show' : ''}}" bindtap="checkDetail">
   <view class="cover-wrap">
     <image 
       class="final-cover {{visible ? 'show' : ''}}" 
       style="height: {{item.coverHeight}}rpx;" 
-      src="{{item.cover}}?x-oss-process=image/resize,w_500/format,webp" 
+      src="{{IMG.webp(item.cover, 500)}}" 
       bindload="onVisible" 
       mode="aspectFill" 
     />
@@ -11,13 +13,13 @@
       class="cover" 
       style="height: {{item.coverHeight}}rpx;" 
       wx:if="{{item.coverHeight}}" 
-      src="{{item.cover}}?x-oss-process=image/resize,w_10/format,webp" 
+      src="{{IMG.webp(item.cover, 10)}}" 
       mode="aspectFill" 
     />
     <image 
       class="cover" 
       wx:if="{{!item.coverHeight}}" 
-      src="{{item.cover}}?x-oss-process=image/resize,w_10/format,webp" 
+      src="{{IMG.webp(item.cover, 10)}}" 
       bindload="onCoverLoaded" 
       mode="widthFix" 
     />
