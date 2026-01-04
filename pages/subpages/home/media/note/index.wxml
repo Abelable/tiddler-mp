@@ -1,5 +1,6 @@
 <wxs module="TIME" src="/utils/filters/time.wxs" />
 <wxs module="NUM" src="/utils/filters/num.wxs" />
+<wxs module="IMG" src="/utils/filters/img.wxs" />
 
 <view class="header" style="padding-top: {{statusBarHeight}}px;">
   <view class="header-main row">
@@ -63,7 +64,7 @@
 </view>
 
 <view class="btn-wrap">
-  <image class="user-avatar avatar-default" src="{{userInfo.avatar}}?x-oss-process=image/format,webp" />
+  <image class="user-avatar avatar-default" src="{{IMG.webp(userInfo.avatar)}}" />
   <view class="comment-input row" bindtap="showInputModal">说点什么...</view>
   <view class="other-btns">
     <view class="btn-item" bindtap="share">
