@@ -129,3 +129,8 @@ export const randomNickname = () => {
   const timestamp = (now % 1000000) + random;
   return timestamp.toString().slice(-6);
 };
+
+export const timeToMinutes = timeStr => {
+  const [h, m] = timeStr.split(":").map(Number);
+  return h * 60 + m;
+};

@@ -1,6 +1,6 @@
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { store } from "../../../../../../store/index";
-import { checkLogin } from "../../../../../../utils/index";
+import { checkLogin, timeToMinutes } from "../../../../../../utils/index";
 import ScenicService from "../../utils/scenicService";
 
 const scenicService = new ScenicService();
@@ -87,18 +87,38 @@ Page({
   },
 
   setCurOpenTime(openTimeList) {
-    const date = new Date();
-    const curMonth = date.getMonth() + 1;
-    const curOpenTime = openTimeList.find(
-      item => curMonth >= item.openMonth && curMonth <= item.closeMonth
-    );
-    const openTime = Number(curOpenTime.openTime.replace(":", ""));
-    const closeTime = Number(curOpenTime.closeTime.replace(":", ""));
-    const curTime = Number(
-      `${date.getHours()}` + `${date.getMinutes()}`.padStart(2, "0")
-    );
-    const isOpen = curTime >= openTime && curTime <= closeTime;
-    this.setData({ curOpenTime, isOpen });
+    const now = new Date();
+    const curMonth = now.getMonth() + 1;
+    const curMinutes = now.getHours() * 60 + now.getMinutes();
+
+    const curOpenTime = openTimeList.find(item => {
+      const { openMonth, closeMonth } = item;
+
+      // 是否跨年
+      if (openMonth <= closeMonth) {
+        return curMonth >= openMonth && curMonth <= closeMonth;
+      }
+      return curMonth >= openMonth || curMonth <= closeMonth;
+    });
+
+    // 未匹配到时间段
+    if (!curOpenTime) {
+      this.setData({
+        curOpenTime: null,
+        isOpen: false
+      });
+      return;
+    }
+
+    const openMinutes = timeToMinutes(curOpenTime.openTime);
+    const closeMinutes = timeToMinutes(curOpenTime.closeTime);
+
+    const isOpen = curMinutes >= openMinutes && curMinutes <= closeMinutes;
+
+    this.setData({
+      curOpenTime,
+      isOpen
+    });    
   },
 
   async setSourceTicketList() {
@@ -511,7 +531,7 @@ Page({
   onShareAppMessage() {
     const { id: superiorId } = store.superiorInfo || {};
     const { id, name, imageList } = this.data.scenicInfo;
-    const originalPath = `/pages/subpages/mall/scenic/subpages/scenic-detail/index?id=${id}`
+    const originalPath = `/pages/subpages/mall/scenic/subpages/scenic-detail/index?id=${id}`;
     const path = superiorId
       ? `${originalPath}&superiorId=${superiorId}`
       : originalPath;
