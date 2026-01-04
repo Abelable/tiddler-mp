@@ -1,18 +1,19 @@
 <wxs module="NUM" src="/utils/filters/num.wxs" />
+<wxs module="IMG" src="/utils/filters/img.wxs" />
 
 <view class="nav-bar row" style="padding-top: {{statusBarHeight}}px;">
-  <image class="nav-bg" wx:if="{{navBarVisible}}" src="{{authorInfo.bg || 'https://static.tiddler.cn/mp/bg.png'}}" />
+  <image class="nav-bg" wx:if="{{navBarVisible}}" src="{{IMG.webp(authorInfo.bg || 'https://static.tiddler.cn/mp/bg.png')}}" />
   <view class="bg-cover" wx:if="{{navBarVisible}}" />
   <back-icon style="margin-left: 8px;" noBorder="{{navBarVisible}}" />
-  <image class="user-avatar" wx:if="{{navBarVisible}}" src="{{authorInfo.avatar}}?x-oss-process=image/format,webp" />
+  <image class="user-avatar" wx:if="{{navBarVisible}}" src="{{IMG.webp(authorInfo.avatar)}}" />
   <view class="user-name" wx:if="{{navBarVisible}}">{{authorInfo.nickname}}</view>
 </view>
 
 <view class="container">
-  <image class="bg" src="{{authorInfo.bg || 'https://static.tiddler.cn/mp/bg.png'}}" mode="aspectFill" />
+  <image class="bg" src="{{IMG.webp(authorInfo.bg || 'https://static.tiddler.cn/mp/bg.png')}}" mode="aspectFill" />
   <view class="content">
     <view class="avatar-wrap">
-      <image class="avatar" src="{{authorInfo.avatar}}?x-oss-process=image/format,webp" bindtap="checkAvatar" />
+      <image class="avatar" src="{{IMG.webp(authorInfo.avatar)}}" bindtap="checkAvatar" />
       <view class="btns-wrap row end">
         <button class="chat-btn" wx:if="{{isFollow}}" bindtap="chat" hover-class="none">
           <image class="btn-icon" src="./images/chat.png" />
