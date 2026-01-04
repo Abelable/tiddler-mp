@@ -1,6 +1,8 @@
+<wxs module="IMG" src="/utils/filters/img.wxs" />
+
 <view class="product-item" bindtap="checkDetail">
   <view class="header">
-    <image class="bg" src="{{item.cover}}?x-oss-process=image/format,webp" mode="aspectFill" />
+    <image class="bg" src="{{IMG.webp(item.cover)}}" mode="aspectFill" />
     <view class="more-btn">
       <view>{{['景点', item.categoryId === 5 ? '民宿' : '酒店', '美食'][item.type - 1]}} · 了解更多</view>
       <image class="arrow" src="https://static.tiddler.cn/mp/trip_type/night_trip/arrow.png" />

@@ -1,3 +1,5 @@
+<wxs module="IMG" src="/utils/filters/img.wxs" />
+
 <view class="nav-bar-wrap" style="padding-top: {{statusBarHeight}}px;">
   <view class="nav-bar row">
     <back-icon />
@@ -9,7 +11,7 @@
   <swiper class="trip-list" bindchange="swiperChange" previous-margin="32rpx" next-margin="328rpx" circular>
     <swiper-item wx:for="{{starTripList}}" wx:key="index">
       <view class="trip-item {{curTripIdx !== index ? 'unselect' : ''}}" bindtap="checkTrip" data-index="{{index}}">
-        <image class="trip-cover" src="{{item.cover}}?x-oss-process=image/format,webp" mode="aspectFill" lazy-load />
+        <image class="trip-cover" src="{{IMG.webp(item.cover)}}" mode="aspectFill" lazy-load />
         <view class="trip-info">
           <view class="trip-name">{{item.name}}</view>
           <view class="trip-desc row">

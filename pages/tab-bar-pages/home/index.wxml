@@ -1,6 +1,8 @@
 <import src="index.skeleton.wxml"/>
 <template is="skeleton" wx:if="{{!pageLoaded}}" data="{{statusBarHeight}}" />
 
+<wxs module="IMG" src="/utils/filters/img.wxs" />
+
 <view class="nav-bar {{navBarActive[curMenuIndex] ? 'active': ''}}" style="padding-top: {{statusBarHeight}}px">
   <view class="menu-tabs-wrap">
     <view style="flex: 1">
@@ -101,7 +103,7 @@
               data-scene="{{item.scene}}"
               data-param="{{item.param}}"
             >
-              <image class="banner-img" src="{{item.cover}}?x-oss-process=image/format,webp" mode="aspectFill" lazy-load />
+              <image class="banner-img" src="{{IMG.webp(item.cover)}}" mode="aspectFill" lazy-load />
             </swiper-item>
           </swiper>
           <view class="banner-dots" style="width: {{12 * bannerList.length}}px;" wx:if="{{bannerList.length > 1}}">

@@ -1,3 +1,5 @@
+<wxs module="IMG" src="/utils/filters/img.wxs" />
+
 <view class="top-media-wrap">
   <swiper class="top-media-swiper" current="{{curMediaIdx}}" bindchange="swiperChange" autoplay="{{autoplay}}" interval="8000" circular>
     <swiper-item 
@@ -8,7 +10,7 @@
       data-id="{{item.id}}" 
       data-type="{{item.type}}"
     >
-      <image class="top-media-cover" src="{{item.cover}}?x-oss-process=image/format,webp" mode="aspectFill" lazy-load />
+      <image class="top-media-cover" src="{{IMG.webp(item.cover)}}" mode="aspectFill" lazy-load />
       <view class="top-media-time row">
         <view class="time-date">{{item.date}}</view>
         <view class="time-split"></view>

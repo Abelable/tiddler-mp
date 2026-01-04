@@ -1,3 +1,5 @@
+<wxs module="IMG" src="/utils/filters/img.wxs" />
+
 <scroll-view 
   class="comment-showcase {{fullScreen ? 'full-screen': ''}}" 
   scroll-y 
@@ -12,7 +14,7 @@
   >
   <view class="comment-list">
     <view class="comment" wx:if="{{index >= (liveMsgList.length - 10 * multiple)}}" wx:for="{{liveMsgList}}" wx:key="index">
-      <image class="avatar" wx:if="{{item.avatar}}?x-oss-process=image/format,webp" src="{{item.avatar}}?x-oss-process=image/format,webp" />
+      <image class="avatar" wx:if="{{item.avatar}}" src="{{item.avatar}}?x-oss-process=image/format,webp" />
       <text class="nickname" wx:if="{{item.nickname}}">{{item.nickname}}</text>
       <text class="tag anchor" wx:if="{{item.identity === 2}}">主播</text>
       <text class="content">{{item.content}}</text>
