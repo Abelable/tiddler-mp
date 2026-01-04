@@ -1,11 +1,12 @@
 <wxs module="NUM" src="/utils/filters/num.wxs" />
 <wxs module="ARRAY" src="/utils/filters/array.wxs" />
+<wxs module="IMG" src="/utils/filters/img.wxs" />
 
 <view class="nav-bar row" style="padding-top: {{statusBarHeight}}px;">
-  <image class="nav-bg" wx:if="{{navBarVisible}}" src="{{userInfo.bg ? (userInfo.bg + '?x-oss-process=image/format,webp') : 'https://static.tiddler.cn/mp/bg.webp'}}" />
+  <image class="nav-bg" wx:if="{{navBarVisible}}" src="{{userInfo.bg ? IMG.webp(userInfo.bg) : 'https://static.tiddler.cn/mp/bg.webp'}}" />
   <view class="bg-cover" wx:if="{{navBarVisible}}" />
   <view class="mine-avatar-wrap" wx:if="{{navBarVisible}}">
-    <image class="mine-avatar" src="{{userInfo.avatar ? (userInfo.avatar + '?x-oss-process=image/format,webp') : 'https://static.tiddler.cn/mp/default_avatar.png'}}" />
+    <image class="mine-avatar" src="{{userInfo.avatar ? IMG.webp(userInfo.avatar) : 'https://static.tiddler.cn/mp/default_avatar.png'}}" />
     <image 
       class="mine-medal" 
       wx:if="{{userInfo.promoterInfo}}" 
@@ -16,11 +17,11 @@
 </view>
 
 <view class="container">
-  <image class="bg" src="{{userInfo.bg ? (userInfo.bg + '?x-oss-process=image/format,webp') : 'https://static.tiddler.cn/mp/bg.webp'}}" bindtap="navToUserInfoSetting" mode="aspectFill" />
+  <image class="bg" src="{{userInfo.bg ? IMG.webp(userInfo.bg) : 'https://static.tiddler.cn/mp/bg.webp'}}" bindtap="navToUserInfoSetting" mode="aspectFill" />
   <view class="content">
     <view class="user-info-wrap">
       <view class="avatar-wrap">
-        <image class="avatar" bindtap="navToUserInfoSetting" src="{{userInfo.avatar ? (userInfo.avatar + '?x-oss-process=image/format,webp') : 'https://static.tiddler.cn/mp/default_avatar.png'}}" />
+        <image class="avatar" bindtap="navToUserInfoSetting" src="{{userInfo.avatar ? IMG.webp(userInfo.avatar) : 'https://static.tiddler.cn/mp/default_avatar.png'}}" />
         <image 
           class="promoter-medal" 
           wx:if="{{userInfo.promoterInfo}}" 

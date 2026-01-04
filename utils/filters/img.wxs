@@ -1,7 +1,36 @@
 function resize(url, width) {
-  return url + '?x-oss-process=image/resize,w_' + width;     
+  return url + "?x-oss-process=image/resize,w_" + width;
+}
+
+function webp(url, width) {
+  if (!url) return "";
+
+  if (url.indexOf("x-oss-process=") !== -1) {
+    return url;
+  }
+
+  var lower = url.toLowerCase();
+  var isVideo =
+    lower.indexOf(".mp4") !== -1 ||
+    lower.indexOf(".mov") !== -1 ||
+    lower.indexOf(".webm") !== -1 ||
+    lower.indexOf(".m3u8") !== -1;
+
+  var resize = width ? "/resize,w_" + width : "";
+
+  if (isVideo) {
+    return (
+      url +
+      "?x-oss-process=video/snapshot,t_0" +
+      (resize ? "/image" + resize : "") +
+      "/format,webp"
+    );
+  }
+
+  return url + "?x-oss-process=image" + resize + "/format,webp";
 }
 
 module.exports = {
-  resize: resize
+  resize: resize,
+  webp: webp
 };

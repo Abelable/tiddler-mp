@@ -1,4 +1,5 @@
 <wxs module="NUM" src="/utils/filters/num.wxs" />
+<wxs module="IMG" src="/utils/filters/img.wxs" />
 
 <view 
   class="note-item {{(coverHeight || item.coverHeight) ? 'show' : ''}}" 
@@ -10,21 +11,14 @@
       class="cover" 
       style="height: {{coverHeight}}rpx"
       wx:if="{{coverHeight}}"
-      src="{{item.imageList[0]}}?x-oss-process=image/resize,w_500/format,webp" 
+      src="{{IMG.webp(item.imageList[0], 500)}}" 
       mode="aspectFill" 
     />
     <block wx:if="{{!coverHeight}}">
       <image 
-        class="cover" 
-        style="height: {{coverHeight}}rpx"
-        wx:if="{{coverHeight}}"
-        src="{{item.cover}}?x-oss-process=image/resize,w_500/format,webp" 
-        mode="aspectFill" 
-      />
-      <image 
         class="final-cover {{visible ? 'show' : ''}}" 
         style="height: {{item.coverHeight}}rpx;"
-        src="{{item.imageList[0]}}?x-oss-process=image/resize,w_500/format,webp" 
+        src="{{IMG.webp(item.imageList[0], 500)}}" 
         bindload="onVisible" 
         mode="aspectFill" 
       />
@@ -32,13 +26,13 @@
         class="cover" 
         style="height: {{item.coverHeight}}rpx;" 
         wx:if="{{item.coverHeight}}" 
-        src="{{item.imageList[0]}}?x-oss-process=image/resize,w_10/format,webp" 
+        src="{{IMG.webp(item.imageList[0], 10)}}" 
         mode="aspectFill" 
       />
       <image 
         class="cover" 
         wx:if="{{!item.coverHeight}}" 
-        src="{{item.imageList[0]}}?x-oss-process=image/resize,w_10/format,webp" 
+        src="{{IMG.webp(item.imageList[0], 10)}}" 
         bindload="onCoverLoaded" 
         mode="widthFix" 
       />
@@ -60,7 +54,7 @@
 
   <view class="info-wrap" style="color: {{infoColor}}; font-size: {{infoFontSize}}rpx;">
     <view class="author-info">
-      <image class="author-avatar avatar-default" style="width: {{avatarSize}}rpx; height: {{avatarSize}}rpx;" src="{{item.authorInfo.avatar}}?x-oss-process=image/format,webp" />
+      <image class="author-avatar avatar-default" style="width: {{avatarSize}}rpx; height: {{avatarSize}}rpx;" src="{{IMG.webp(item.authorInfo.avatar)}}" />
       <text class="author-name omit single">{{item.authorInfo.nickname}}</text>
     </view>
     <view class="praise-info">
