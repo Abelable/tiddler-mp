@@ -9,6 +9,7 @@ export const store = observable({
   tabType: "home",
   userInfo: null,
   superiorInfo: null,
+  merchantInfo: null,
   merchantType: undefined,
   activeMediaItem: null,
   croppedImagePath: "",
@@ -31,6 +32,9 @@ export const store = observable({
   }),
   setSuperiorInfo: action(function (info) {
     this.superiorInfo = info;
+  }),
+  setMerchantInfo: action(function (info) {
+    this.merchantInfo = info;
   }),
   setMerchantType: action(function (type) {
     this.merchantType = type;

@@ -33,7 +33,7 @@ Page({
     if (token) {
       wx.setStorageSync("token", token);
       this.initTim();
-      await baseService.getMyInfo();
+      await baseService.getUserInfo();
       if (this.superiorId) {
         wx.removeStorageSync("superiorId");
       }

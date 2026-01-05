@@ -21,6 +21,7 @@ Component({
 
   data: {
     statusBarHeight,
+    socialStats: null,
     toolList: [
       { name: "订单中心", icon: "order" },
       { name: "收货地址", icon: "address" },
@@ -93,8 +94,14 @@ Component({
         duration: 0
       });
 
+      this.setSocialStats();
       this.updateOrderTotal();
       this.setList(SCENE_REFRESH);
+    },
+
+    async setSocialStats() {
+      const socialStats = await mineService.getSocialStats();
+      this.setData({ socialStats });
     },
 
     async updateOrderTotal() {
@@ -117,6 +124,9 @@ Component({
     },
 
     initToolList() {
+      // todo 用于前期提交审核隐藏部分功能，后期需要删除
+      const { envVersion } = wx.getAccountInfoSync().miniProgram || {};
+
       const {
         promoterInfo,
         authInfoId,
@@ -140,6 +150,8 @@ Component({
         goodsShopOptions.findIndex(item => [0, 1, 2].includes(item.roleId)) !==
           -1
           ? { name: "商家中心", icon: "merchant" }
+          : envVersion === "release"
+          ? { name: "商家入驻", icon: "merchant" }
           : undefined,
         scenicShopOptions.length ||
         hotelShopOptions.length ||
@@ -419,6 +431,27 @@ Component({
         this.navToLive();
       } else if (type === "scan") {
         this.scan();
+      } else if (type === "merchant") {
+        const {
+          scenicShopOptions = [],
+          hotelShopOptions = [],
+          cateringShopOptions = [],
+          goodsShopOptions = []
+        } = store.userInfo || {};
+        if (
+          !scenicShopOptions.length &&
+          !hotelShopOptions.length &&
+          !cateringShopOptions.length &&
+          !goodsShopOptions.length
+        ) {
+          wx.navigateTo({
+            url: "/pages/subpages/mine/setting/subpages/merchant-settle/index"
+          });
+        } else {
+          wx.navigateTo({
+            url: "/pages/subpages/mine/merchant/index"
+          });
+        }
       } else {
         if (type === "setting") {
           wx.navigateTo({

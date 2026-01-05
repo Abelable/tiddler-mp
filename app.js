@@ -19,11 +19,11 @@ App({
     }
 
     if (wx.getStorageSync("token")) {
-      const userInfo = await baseService.getMyInfo();
+      const userInfo = await baseService.getUserInfo();
       if (userInfo.promoterInfo) {
         store.setSuperiorInfo(userInfo);
       } else if (userInfo.superiorId) {
-        const superiorInfo = await baseService.getUserInfo(userInfo.superiorId);
+        const superiorInfo = await baseService.getUserInfoById(userInfo.superiorId);
         if (superiorInfo.promoterInfo) {
           store.setSuperiorInfo(superiorInfo);
         }
@@ -33,7 +33,7 @@ App({
     } else {
       const superiorId = wx.getStorageSync("superiorId");
       if (superiorId) {
-        const superiorInfo = await baseService.getUserInfo(superiorId);
+        const superiorInfo = await baseService.getUserInfoById(superiorId);
         if (superiorInfo.promoterInfo) {
           store.setSuperiorInfo(superiorInfo);
         }
@@ -44,7 +44,7 @@ App({
     const { superiorId = "" } = options.query || {};
     if (superiorId && !store.superiorInfo) {
       wx.setStorageSync("superiorId", superiorId);
-      const superiorInfo = await baseService.getUserInfo(superiorId);
+      const superiorInfo = await baseService.getUserInfoById(superiorId);
       if (superiorInfo.promoterInfo) {
         store.setSuperiorInfo(superiorInfo);
       }

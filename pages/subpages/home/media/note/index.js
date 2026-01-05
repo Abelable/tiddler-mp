@@ -39,7 +39,7 @@ Page({
     getApp().onLaunched(async () => {
       if (this.superiorId && !store.superiorInfo) {
         wx.setStorageSync("superiorId", this.superiorId);
-        const superiorInfo = await noteService.getUserInfo(this.superiorId);
+        const superiorInfo = await noteService.getUserInfoById(this.superiorId);
         if (superiorInfo.promoterInfo) {
           store.setSuperiorInfo(superiorInfo);
         }

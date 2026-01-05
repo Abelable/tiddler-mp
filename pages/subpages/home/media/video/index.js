@@ -33,7 +33,7 @@ Page({
     getApp().onLaunched(async () => {
       if (this.superiorId && !store.superiorInfo) {
         wx.setStorageSync("superiorId", this.superiorId);
-        const superiorInfo = await videoService.getUserInfo(this.superiorId);
+        const superiorInfo = await videoService.getUserInfoById(this.superiorId);
         if (superiorInfo.promoterInfo) {
           store.setSuperiorInfo(superiorInfo);
         }

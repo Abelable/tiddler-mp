@@ -65,13 +65,13 @@ class BaseService extends Base {
     });
   }
 
-  async getMyInfo() {
+  async getUserInfo() {
     const userInfo = await this.get({ url: `${this.baseUrl}/user/me` });
     store.setUserInfo(userInfo);
     return userInfo;
   }
 
-  async updateMyInfo(userInfo, success) {
+  async updateUserInfo(userInfo, success) {
     return await this.post({
       url: `${this.baseUrl}/user/update`,
       data: cleanObject(userInfo),
@@ -79,7 +79,7 @@ class BaseService extends Base {
     });
   }
 
-  async getUserInfo(userId) {
+  async getUserInfoById(userId) {
     return await this.get({
       url: `${this.baseUrl}/user/info`,
       data: { userId }
@@ -460,6 +460,20 @@ class BaseService extends Base {
         loadingTitle
       })) || {};
     return list;
+  }
+
+  async getSocialStats() {
+    return await this.get({
+      url: `${this.baseUrl}/user/social_stats`
+    });
+  }
+
+  async getMerchantInfo() {
+    const merchantInfo = await this.get({
+      url: `${this.baseUrl}/user/merchant_info`
+    });
+    store.setMerchantInfo(merchantInfo);
+    return merchantInfo;
   }
 
   async getOrderTotal() {

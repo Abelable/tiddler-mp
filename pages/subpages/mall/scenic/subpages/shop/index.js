@@ -31,7 +31,7 @@ Page({
     getApp().onLaunched(async () => {
       if (this.superiorId && !store.superiorInfo) {
         wx.setStorageSync("superiorId", this.superiorId);
-        const superiorInfo = await scenicService.getUserInfo(this.superiorId);
+        const superiorInfo = await scenicService.getUserInfoById(this.superiorId);
         if (superiorInfo.promoterInfo) {
           store.setSuperiorInfo(superiorInfo);
         }
