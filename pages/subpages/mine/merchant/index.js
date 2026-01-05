@@ -16,13 +16,13 @@ Page({
   },
 
   async setTitleMenu() {
-    const { merchantType, userInfo } = store;
+    const { merchantType, merchantInfo } = store;
     const {
       scenicShopOptions = [],
       hotelShopOptions = [],
       cateringShopOptions = [],
       goodsShopOptions = []
-    } = userInfo;
+    } = merchantInfo;
 
     const merchantList = [];
 

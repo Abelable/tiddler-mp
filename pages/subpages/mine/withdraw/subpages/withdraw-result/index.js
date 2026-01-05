@@ -23,11 +23,11 @@ Page({
       });
     } else if (this.scene > 3 && this.scene <= 7) {
       const {
-        scenicShopOptions,
-        hotelShopOptions,
-        cateringShopOptions,
-        goodsShopOptions
-      } = store.userInfo;
+        scenicShopOptions = [],
+        hotelShopOptions = [],
+        cateringShopOptions = [],
+        goodsShopOptions = []
+      } = store.merchantInfo || {};
       const merchantType = this.scene - 3;
       const { id } = [
         scenicShopOptions,

@@ -11,7 +11,7 @@ Component({
   behaviors: [storeBindingsBehavior],
   storeBindings: {
     store,
-    fields: ["userInfo"]
+    fields: ["merchantInfo"]
   },
 
   data: {
@@ -30,13 +30,13 @@ Component({
   },
 
   observers: {
-    userInfo: function (info) {
+    merchantInfo: function (info) {
       if (info) {
         const {
           scenicMerchantId,
           hotelMerchantId,
           cateringMerchantId,
-          merchantId
+          goodsMerchantId
         } = info;
         if (scenicMerchantId) {
           this.setData({ ["merchantTypeList[0].status"]: 1 });
@@ -47,7 +47,7 @@ Component({
         if (cateringMerchantId) {
           this.setData({ ["merchantTypeList[2].status"]: 1 });
         }
-        if (merchantId) {
+        if (goodsMerchantId) {
           this.setData({ ["merchantTypeList[3].status"]: 1 });
         }
       }

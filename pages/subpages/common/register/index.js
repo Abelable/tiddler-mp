@@ -32,8 +32,8 @@ Page({
     );
     if (token) {
       wx.setStorageSync("token", token);
+      baseService.getUserInfo();
       this.initTim();
-      await baseService.getUserInfo();
       if (this.superiorId) {
         wx.removeStorageSync("superiorId");
       }

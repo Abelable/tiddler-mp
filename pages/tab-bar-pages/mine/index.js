@@ -63,8 +63,6 @@ Component({
           this.setData({ authInfoPopupVisible: true });
           this.authInfoPopupShown = true;
         }
-
-        this.initToolList();
       }
     }
   },
@@ -87,13 +85,15 @@ Component({
   },
 
   methods: {
-    init() {
+    async init() {
       this.scrollTopArr = [0, 0, 0, 0];
       wx.pageScrollTo({
         scrollTop: 0,
         duration: 0
       });
 
+      await mineService.getMerchantInfo();
+      this.initToolList();
       this.setSocialStats();
       this.updateOrderTotal();
       this.setList(SCENE_REFRESH);
@@ -127,14 +127,13 @@ Component({
       // todo 用于前期提交审核隐藏部分功能，后期需要删除
       const { envVersion } = wx.getAccountInfoSync().miniProgram || {};
 
+      const { promoterInfo, authInfoId } = store.userInfo || {};
       const {
-        promoterInfo,
-        authInfoId,
         scenicShopOptions = [],
         hotelShopOptions = [],
         cateringShopOptions = [],
         goodsShopOptions = []
-      } = store.userInfo || {};
+      } = store.merchantInfo || {};
 
       const toolList = [
         { name: "订单中心", icon: "order" },
@@ -437,7 +436,7 @@ Component({
           hotelShopOptions = [],
           cateringShopOptions = [],
           goodsShopOptions = []
-        } = store.userInfo || {};
+        } = store.merchantInfo || {};
         if (
           !scenicShopOptions.length &&
           !hotelShopOptions.length &&
@@ -469,11 +468,11 @@ Component({
 
     scan() {
       const {
-        scenicShopOptions,
-        hotelShopOptions,
-        cateringShopOptions,
-        goodsShopOptions
-      } = store.userInfo;
+        scenicShopOptions = [],
+        hotelShopOptions = [],
+        cateringShopOptions = [],
+        goodsShopOptions = []
+      } = store.merchantInfo || {};
       wx.scanCode({
         success: res => {
           const code = res.result;
