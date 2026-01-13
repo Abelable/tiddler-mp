@@ -14,6 +14,7 @@ Page({
       { list: [], loading: false, finished: false },
       { list: [], loading: false, finished: false },
       { list: [], loading: false, finished: false },
+      { list: [], loading: false, finished: false },
       { list: [], loading: false, finished: false }
     ]
   },
@@ -28,7 +29,7 @@ Page({
       this.setData({ curMenuIdx: Number(curMenuIdx) });
     }
 
-    this.pageList = [0, 0, 0, 0];
+    this.pageList = [0, 0, 0, 0, 0];
     await this.setMenuList();
     await this.setGoodsList(true);
 
