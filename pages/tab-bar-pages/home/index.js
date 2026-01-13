@@ -149,7 +149,9 @@ Component({
         case SCENE_SWITCH_TAB:
           if (curMenuIndex === 0) {
             if (!followMediaList.length) {
-              this.setData({ followRefreshing: true });
+              checkLogin(() => {
+                this.setData({ followRefreshing: true });
+              }, false);
             }
           } else if (curMenuIndex === 1) {
             if (!mediaList.length) {
@@ -292,81 +294,79 @@ Component({
       }
     },
 
-    setNearbyProductList(init = false) {
-      checkLogin(async () => {
-        if (init) {
-          this.nearbyPage = 0;
-          this.setData({
-            nearbyProductList: [],
-            nearbyRefreshing: true
-          });
-        }
-        const { longitude = 0, latitude = 0 } = store.locationInfo || {};
-        const { nearbyProductList, curSubMenuIndex } = this.data;
+    async setNearbyProductList(init = false) {
+      if (init) {
+        this.nearbyPage = 0;
+        this.setData({
+          nearbyProductList: [],
+          nearbyRefreshing: true
+        });
+      }
+      const { longitude = 0, latitude = 0 } = store.locationInfo || {};
+      const { nearbyProductList, curSubMenuIndex } = this.data;
 
-        this.setData({ nearbyLoading: true, nearbyFinished: false });
-        let res, list;
-        switch (curSubMenuIndex) {
-          case 0:
-            res =
-              (await homeService.getNearbyProductList(
-                longitude,
-                latitude,
-                ++this.nearbyPage
-              )) || {};
-            list = res.list;
-            break;
+      this.setData({ nearbyLoading: true, nearbyFinished: false });
+      let res, list;
+      switch (curSubMenuIndex) {
+        case 0:
+          res =
+            (await homeService.getNearbyProductList(
+              longitude,
+              latitude,
+              ++this.nearbyPage
+            )) || {};
+          list = res.list;
+          break;
 
-          case 1:
-            res =
-              (await homeService.getNearbyScenicList({
-                longitude,
-                latitude,
-                page: ++this.nearbyPage,
-                radius: 0
-              })) || {};
-            list = res.list.map(item => ({ ...item, type: 1 }));
-            break;
+        case 1:
+          res =
+            (await homeService.getNearbyScenicList({
+              longitude,
+              latitude,
+              page: ++this.nearbyPage,
+              radius: 0
+            })) || {};
+          list = res.list.map(item => ({ ...item, type: 1 }));
+          break;
 
-          case 2:
-            res =
-              (await homeService.getNearbyHotelList({
-                longitude,
-                latitude,
-                page: ++this.nearbyPage,
-                radius: 0
-              })) || {};
-            list = res.list.map(item => ({ ...item, type: 2 }));
-            break;
+        case 2:
+          res =
+            (await homeService.getNearbyHotelList({
+              longitude,
+              latitude,
+              page: ++this.nearbyPage,
+              radius: 0
+            })) || {};
+          list = res.list.map(item => ({ ...item, type: 2 }));
+          break;
 
-          case 3:
-            res =
-              (await homeService.getNearbyRestaurantList({
-                longitude,
-                latitude,
-                page: ++this.nearbyPage,
-                radius: 0
-              })) || {};
-            list = res.list.map(item => ({ ...item, type: 3 }));
-            break;
-        }
+        case 3:
+          res =
+            (await homeService.getNearbyRestaurantList({
+              longitude,
+              latitude,
+              page: ++this.nearbyPage,
+              radius: 0
+            })) || {};
+          list = res.list.map(item => ({ ...item, type: 3 }));
+          break;
+      }
 
-        if (init) {
-          this.setData({
-            nearbyProductList: list,
-            nearbyLoading: false,
-            nearbyRefreshing: false
-          });
-        } else {
-          this.setData({
-            nearbyProductList: [...nearbyProductList, ...list],
-            nearbyLoading: false
-          });
-        }
-        if (!list.length) {
-          this.setData({ nearbyFinished: true });
-        }
-      }, false);
+      if (init) {
+        this.setData({
+          nearbyProductList: list,
+          nearbyLoading: false,
+          nearbyRefreshing: false
+        });
+      } else {
+        this.setData({
+          nearbyProductList: [...nearbyProductList, ...list],
+          nearbyLoading: false
+        });
+      }
+      if (!list.length) {
+        this.setData({ nearbyFinished: true });
+      }
     },
 
     onPageScroll(e) {
