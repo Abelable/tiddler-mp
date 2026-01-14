@@ -274,7 +274,7 @@ Component({
         }
 
         if (["4", "5", "6", "7"].includes(scene)) {
-          if (scene === "7" && marketPrice) {
+          if (scene === "7" && +marketPrice) {
             this.setGoodsPrice(price, `¥${marketPrice}`, 27, 468);
           } else {
             this.setPrice(price, 28, 468);
