@@ -1,0 +1,122 @@
+.task-popup-main {
+  background: linear-gradient(180deg, #eecaff 0%, #fff 50%, #fff 100%);
+}
+
+.title-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32rpx;
+  padding-bottom: 0;
+}
+
+.task-popup-title {
+  width: 240rpx;
+}
+
+.refresh-btn {
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+  color: #3d099a;
+}
+
+.refresh-icon {
+  width: 24rpx;
+  height: 24rpx;
+  margin-left: 8rpx;
+}
+
+.task-list-wrap {
+  margin-top: 24rpx;
+  height: 880rpx;
+}
+.task-list {
+  margin: 0 32rpx;
+  padding-bottom: calc(env(safe-area-inset-bottom));
+}
+
+.task-invite {
+  display: flex;
+  margin-bottom: 8rpx;
+  padding: 24rpx;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(12rpx);
+  -webkit-backdrop-filter: blur(12rpx);
+  border-radius: 32rpx;
+}
+
+.task-title {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: bold;
+}
+
+.task-content {
+  margin-top: 4rpx;
+  font-size: 24rpx;
+  color: #666;
+  display: flex;
+  align-items: center;
+}
+
+.luck-icon {
+  width: 22rpx;
+  height: 22rpx;
+  margin: 0 4rpx;
+}
+
+.task-luck {
+  color: #9338ff;
+  font-weight: bold;
+}
+
+.friends {
+  display: flex;
+  margin-top: 18rpx;
+}
+
+.friend {
+  width: 58rpx;
+  height: 58rpx;
+  margin-right: 16rpx;
+  border-radius: 24rpx;
+  border: 1rpx dashed #3d099a;
+  overflow: hidden;
+}
+
+.friend-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.task-bth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24rpx;
+  height: 64rpx;
+  font-size: 24rpx;
+  color: #fff;
+  font-weight: bold;
+  background: linear-gradient(90deg, #996cfe 0%, #441aef 100%);
+  border-radius: 32rpx;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 0;
+}
+
+.task-icon {
+  margin-right: 16rpx;
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 16rpx;
+}
+
+.task-info {
+  flex: 1;
+}

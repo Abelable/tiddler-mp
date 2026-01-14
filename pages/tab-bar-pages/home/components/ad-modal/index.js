@@ -34,7 +34,7 @@ Component({
             });
             break;
           case 6:
-            wx.navigateTo({ url: param });
+            wx.navigateTo({ url: '/pages/subpages/common/new-year/index' });
             break;
         }
       }

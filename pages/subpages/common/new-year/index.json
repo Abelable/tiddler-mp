@@ -1,0 +1,9 @@
+{
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "back-icon-white": "/components/back-icon-white/index",
+    "back-icon": "/components/back-icon/index",
+    "task-popup": "./components/task-popup/index"
+  }
+}

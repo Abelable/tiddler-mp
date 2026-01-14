@@ -1,0 +1,121 @@
+<view class="nav-bar {{showBg ? 'show-bg' : ''}}" style="padding-top: {{statusBarHeight}}px;">
+  <view class="nav-bar-inner">
+    <back-icon-white wx:if="{{!showBg}}" />
+    <back-icon wx:if="{{showBg}}" />
+    <view class="nav-bar-title" wx:if="{{showBg}}">
+      <image class="title-img" src="https://static.tiddler.cn/mp/new_year/title.webp" />
+    </view>
+  </view>
+</view>
+
+<view class="bg-wrap">
+  <image class="bg" src="https://static.tiddler.cn/mp/new_year/bg.webp" mode="widthFix" />
+
+  <view class="count-down-wrap">
+    <image class="count-down-tips" src="https://static.tiddler.cn/mp/new_year/count_down_tips.webp" mode="widthFix" />
+    <view class="count-down">
+      <view class="count-down-unit">
+        <view class="time">{{days}}</view>
+        <view class="desc">天</view>
+      </view>
+      <view class="split">:</view>
+      <view class="count-down-unit">
+        <view class="time">{{hours}}</view>
+        <view class="desc">时</view>
+      </view>
+      <view class="split">:</view>
+      <view class="count-down-unit">
+        <view class="time">{{minutes}}</view>
+        <view class="desc">分</view>
+      </view>
+      <view class="split">:</view>
+      <view class="count-down-unit">
+        <view class="time">{{seconds}}</view>
+        <view class="desc">秒</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="container">
+  <view class="luck-draw">
+    <view class="luck-score-wrap">
+      <view class="luck-score">
+        <view class="luck-score-tips">
+          <view>我的福气值</view>
+          <image class="tips-arrow" src="https://static.tiddler.cn/mp/new_year/arrow.png" />
+        </view>
+        <view class="luck-score-value">
+          <image class="luck-bag" src="https://static.tiddler.cn/mp/new_year/luck_bag.webp" />
+          <view>0</view>
+        </view>
+        <view class="activity-time">
+          活动时间：2026.01.08-2026.02.24
+        </view>
+      </view>
+
+      <view class="luck-btn" bindtap="showTaskPopup">
+        获取更多福气值
+      </view>
+    </view>
+
+    <view class="draw-wheel">
+      <scroll-view class="prize-list" scroll-x show-scrollbar="false">
+        <block wx:for="{{prizes}}" wx:key="index">
+          <view class="prize {{item.big ? 'big' : ''}}">
+            <image class="prize-cover" src="{{item.cover}}" mode="aspectFit" />
+            <view class="prize-name {{item.big ? 'big' : ''}}">{{item.name}}</view>
+            <view wx:if="{{item.big}}" class="big-prize-tag">本期大奖</view>
+          </view>
+        </block>
+      </scroll-view>
+      
+      <view 
+        class="draw-btn {{press ? 'pressed' : ''}}" 
+        bindtouchstart="onPressStart" 
+        bindtouchend="onPressEnd"
+      >
+        <view class="draw-btn-bg" />
+        <view class="draw-btn-text">消耗20福气值</view>
+      </view>
+
+      <view class="my-prize-btn-wrap">
+        <view class="my-prize-btn">
+          <text>我的</text>
+          <text>奖品</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="luck-exchange">
+    <image class="luck-exchange-title" src="https://static.tiddler.cn/mp/new_year/exchange_title.webp" mode="widthFix" />
+    <view class="goods-list">
+      <view class="goods" wx:for="{{goodsList}}" wx:key="index">
+        <image class="goods-cover" src="{{item.cover}}" mode="aspectFill" />
+        <view class="goods-info">
+          <view class="goods-name">{{item.name}}</view>
+          <view class="goods-exchange">
+            <view class="goods-need-luck">{{item.needLuck}}福气值</view>
+            <view class="goods-exchange-btn">兑换</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="split-tips">合作伙伴</view>
+  <view class="partters">
+    <block wx:for="{{partters}}" wx:key="index">
+      <view class="partter">
+        <image wx:if="{{item.logo}}" class="partter-logo" src="{{item.logo}}" />
+        <view wx:if="{{item.title}}" class="patter-settle-title">{{item.title}}</view>
+      </view>
+    </block>
+  </view>
+</view>
+
+<task-popup 
+  show="{{taskPopupVisible}}" 
+  bind:hide="hideTaskPopup"
+/>
