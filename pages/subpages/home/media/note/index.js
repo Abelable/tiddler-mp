@@ -253,11 +253,9 @@ Page({
 
   navToAuthorCenter() {
     const { id } = this.data.noteInfo.authorInfo;
-    if (store.userInfo.id !== id) {
-      wx.navigateTo({
-        url: `/pages/subpages/home/media/author-center/index?id=${id}`
-      });
-    }
+    wx.navigateTo({
+      url: `/pages/subpages/home/media/author-center/index?id=${id}`
+    });
   },
 
   share() {
