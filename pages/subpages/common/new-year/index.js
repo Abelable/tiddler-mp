@@ -84,7 +84,7 @@ Page({
       { title: "品牌入驻" },
       { title: "品牌入驻" }
     ],
-
+    luckPopupVisible: false,
     taskPopupVisible: false
   },
 
@@ -129,6 +129,14 @@ Page({
   },
   onPressEnd() {
     this.setData({ press: false });
+  },
+
+  showLuckPopup() {
+    this.setData({ luckPopupVisible: true })
+  },
+
+  hideLuckPopup() {
+    this.setData({ luckPopupVisible: false })
   },
 
   showTaskPopup() {

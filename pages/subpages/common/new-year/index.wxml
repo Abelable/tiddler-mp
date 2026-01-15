@@ -41,7 +41,7 @@
   <view class="luck-draw">
     <view class="luck-score-wrap">
       <view class="luck-score">
-        <view class="luck-score-tips">
+        <view class="luck-score-tips" bindtap="showLuckPopup">
           <view>我的福气值</view>
           <image class="tips-arrow" src="https://static.tiddler.cn/mp/new_year/arrow.png" />
         </view>
@@ -50,7 +50,7 @@
           <view>0</view>
         </view>
         <view class="activity-time">
-          活动时间：2026.01.08-2026.02.24
+          活动时间：2026.01.24-2026.02.24
         </view>
       </view>
 
@@ -115,6 +115,10 @@
   </view>
 </view>
 
+<luck-popup 
+  show="{{luckPopupVisible}}" 
+  bind:hide="hideLuckPopup"
+/>
 <task-popup 
   show="{{taskPopupVisible}}" 
   bind:hide="hideTaskPopup"

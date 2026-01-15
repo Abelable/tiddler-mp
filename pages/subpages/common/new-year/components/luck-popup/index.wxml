@@ -1,0 +1,31 @@
+<van-popup show="{{show}}" safe-area-inset-bottom="{{false}}" round position="bottom" bind:close="hide">
+  <view class="luck-popup-main">
+    <view class="title-wrap">
+      <image class="luck-popup-title" src="https://static.tiddler.cn/mp/new_year/luck_popup_title.webp" mode="widthFix"/>
+      <view class="luck-total">
+          <image class="luck-bag" src="https://static.tiddler.cn/mp/new_year/luck_bag.webp" />
+          <view>0</view>
+        </view>
+    </view>
+
+    <scroll-view class="luck-list-wrap" scroll-y="true" scroll-with-animation="true">
+      <view class="luck-list">
+        <view class="luck">
+          <view class="luck-info">
+            <text class="luck-title">逛家乡好物会场</text>
+            <view class="luck-time">2026.01.24 12:12:12</view>
+          </view>
+          <view class="luck-score">+20</view>
+        </view>
+  
+        <view class="luck">
+          <view class="luck-info">
+            <text class="luck-title">福气兑换</text>
+            <view class="luck-time">2026.01.24 12:12:12</view>
+          </view>
+          <view class="luck-score used">-20</view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</van-popup>

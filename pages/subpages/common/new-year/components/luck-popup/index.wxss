@@ -1,0 +1,72 @@
+.luck-popup-main {
+  background: linear-gradient(180deg, #eecaff 0%, #fff 50%, #fff 100%);
+}
+
+.title-wrap {
+  display: flex;
+  justify-content: space-between;
+  padding: 32rpx;
+  padding-bottom: 0;
+}
+
+.luck-popup-title {
+  width: 180rpx;
+}
+
+.luck-total {
+  display: flex;
+  align-items: center;
+  font-size: 44rpx;
+  font-weight: bolder;
+  color: #3d099a;
+  line-height: 1;
+}
+.luck-bag {
+  margin-right: 8rpx;
+  width: 44rpx;
+  height: 44rpx;
+}
+
+.luck-list-wrap {
+  margin-top: 32rpx;
+  height: 988rpx;
+}
+.luck-list {
+  margin: 0 32rpx;
+  padding-bottom: calc(env(safe-area-inset-bottom));
+}
+.luck {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24rpx;
+  padding: 24rpx;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(12rpx);
+  -webkit-backdrop-filter: blur(12rpx);
+  border-radius: 32rpx;
+}
+.luck-info {
+  flex: 1;
+}
+.luck-title {
+  font-size: 30rpx;
+  color: #333;
+  font-weight: bold;
+}
+.luck-time {
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  color: #666;
+  display: flex;
+  align-items: center;
+}
+
+.luck-score {
+  color: #3d099a;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.luck-score.used {
+  color: #c71a20;
+}
+
