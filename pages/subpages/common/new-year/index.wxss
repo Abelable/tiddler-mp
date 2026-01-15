@@ -44,6 +44,7 @@
   display: block;
   margin: 0 auto;
   width: 320rpx;
+  height: 48rpx;
 }
 .count-down {
   display: flex;

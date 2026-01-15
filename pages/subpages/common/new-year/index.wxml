@@ -12,7 +12,7 @@
   <image class="bg" src="https://static.tiddler.cn/mp/new_year/bg.webp" mode="widthFix" />
 
   <view class="count-down-wrap">
-    <image class="count-down-tips" src="https://static.tiddler.cn/mp/new_year/count_down_tips.webp" mode="widthFix" />
+    <image class="count-down-tips" src="https://static.tiddler.cn/mp/new_year/count_down_tips.webp" />
     <view class="count-down">
       <view class="count-down-unit">
         <view class="time">{{days}}</view>
