@@ -9,7 +9,7 @@
 </view>
 
 <view class="bg-wrap">
-  <image class="bg" src="https://static.tiddler.cn/mp/new_year/bg.webp" mode="widthFix" />
+  <image class="bg" src="https://static.tiddler.cn/mp/new_year/bg.webp" />
 
   <view class="count-down-wrap">
     <image class="count-down-tips" src="https://static.tiddler.cn/mp/new_year/count_down_tips.webp" />
@@ -40,8 +40,8 @@
 <view class="container">
   <view class="luck-draw">
     <view class="luck-score-wrap">
-      <view class="luck-score">
-        <view class="luck-score-tips" bindtap="showLuckPopup">
+      <view class="luck-score" bindtap="showLuckPopup">
+        <view class="luck-score-tips">
           <view>我的福气值</view>
           <image class="tips-arrow" src="https://static.tiddler.cn/mp/new_year/arrow.png" />
         </view>
