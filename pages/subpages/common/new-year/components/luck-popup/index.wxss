@@ -64,7 +64,7 @@
 .luck-score {
   color: #3d099a;
   font-size: 32rpx;
-  font-weight: bold;
+  font-weight: bolder;
 }
 .luck-score.used {
   color: #c71a20;
