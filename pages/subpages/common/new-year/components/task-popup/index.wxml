@@ -10,7 +10,6 @@
 
     <scroll-view class="task-list-wrap" scroll-y="true" scroll-with-animation="true">
       <view class="task-list">
-        <!-- 邀请好友任务 -->
         <view class="task-invite">
           <view class="task-info">
             <text class="task-title">邀请好友助力 0/4</text>
@@ -29,187 +28,24 @@
           <view class="task-bth">去邀请</view>
         </view>
   
-        <!-- 普通任务列表 -->
-        <view class="task">
-          <image class="task-icon" src="https://static.tiddler.cn/mp/new_year/hometown_goods.webp" />
+        <view 
+          class="task" 
+          wx:for="{{taskList}}" 
+          wx:key="index"
+          bindtap="finishTask"
+          data-type="{{item.type}}"
+          data-param="{{item.param}}"
+        >
+          <image class="task-icon" src="{{item.icon}}" />
           <view class="task-info">
-            <text class="task-title">逛一逛家乡好物会场</text>
+            <text class="task-title">{{item.name}}</text>
             <view class="task-content">
-              <text>浏览10秒可得</text>
+              <text>{{item.desc}}可得</text>
               <image class="luck-icon" src="https://static.tiddler.cn/mp/new_year/luck_bag.webp" />
-              <text class="task-luck">10福气值</text>
+              <text class="task-luck">{{item.luckScore}}福气值</text>
             </view>
           </view>
-          <view class="task-bth">去逛逛</view>
-        </view>
-  
-        <view class="task">
-          <image class="task-icon" src="https://static.tiddler.cn/mp/new_year/hometown_goods.webp" />
-          <view class="task-info">
-            <text class="task-title">分享家乡好物</text>
-            <view class="task-content">
-              <text>分享成功可得</text>
-              <image class="luck-icon" src="https://static.tiddler.cn/mp/new_year/luck_bag.webp" />
-              <text class="task-luck">10福气值</text>
-            </view>
-          </view>
-          <view class="task-bth">去分享</view>
-        </view>
-  
-        <view class="task">
-          <image class="task-icon" src="https://static.tiddler.cn/mp/new_year/hometown_goods.webp" />
-          <view class="task-info">
-            <text class="task-title">选购家乡好物</text>
-            <view class="task-content">
-              <text>选购成功可得</text>
-              <image class="luck-icon" src="https://static.tiddler.cn/mp/new_year/luck_bag.webp" />
-              <text class="task-luck">80福气值</text>
-            </view>
-          </view>
-          <view class="task-bth">去选购</view>
-        </view>
-  
-        <view class="task">
-          <image class="task-icon" src="https://static.tiddler.cn/mp/new_year/group.webp" />
-          <view class="task-info">
-            <text class="task-title">加入家乡代言人群聊</text>
-            <view class="task-content">
-              <text>加群成功可得</text>
-              <image class="luck-icon" src="https://static.tiddler.cn/mp/new_year/luck_bag.webp" />
-              <text class="task-luck">20福气值</text>
-            </view>
-          </view>
-          <view class="task-bth">去加群</view>
-        </view>
-  
-        <view class="task">
-          <image class="task-icon" src="https://static.tiddler.cn/mp/new_year/mine.webp" />
-          <view class="task-info">
-            <text class="task-title">设置头像昵称</text>
-            <view class="task-content">
-              <text>设置成功可得</text>
-              <image class="luck-icon" src="https://static.tiddler.cn/mp/new_year/luck_bag.webp" />
-              <text class="task-luck">10福气值</text>
-            </view>
-          </view>
-          <view class="task-bth">去设置</view>
-        </view>
-  
-        <view class="task">
-          <image class="task-icon" src="https://static.tiddler.cn/mp/new_year/home.webp" />
-          <view class="task-info">
-            <text class="task-title">去首页逛逛</text>
-            <view class="task-content">
-              <text>浏览10秒可得</text>
-              <image class="luck-icon" src="https://static.tiddler.cn/mp/new_year/luck_bag.webp" />
-              <text class="task-luck">10福气值</text>
-            </view>
-          </view>
-          <view class="task-bth">去逛逛</view>
-        </view>
-  
-        <view class="task">
-          <image class="task-icon" src="https://static.tiddler.cn/mp/new_year/tourism.webp" />
-          <view class="task-info">
-            <text class="task-title">分享趣味游记</text>
-            <view class="task-content">
-              <text>分享成功可得</text>
-              <image class="luck-icon" src="https://static.tiddler.cn/mp/new_year/luck_bag.webp" />
-              <text class="task-luck">10福气值</text>
-            </view>
-          </view>
-          <view class="task-bth">去分享</view>
-        </view>
-  
-        <view class="task">
-          <image class="task-icon" src="https://static.tiddler.cn/mp/new_year/scenic.webp" />
-          <view class="task-info">
-            <text class="task-title">逛一逛景点乐园</text>
-            <view class="task-content">
-              <text>浏览10秒可得</text>
-              <image class="luck-icon" src="https://static.tiddler.cn/mp/new_year/luck_bag.webp" />
-              <text class="task-luck">10福气值</text>
-            </view>
-          </view>
-          <view class="task-bth">去逛逛</view>
-        </view>
-  
-        <view class="task">
-          <image class="task-icon" src="https://static.tiddler.cn/mp/new_year/scenic.webp" />
-          <view class="task-info">
-            <text class="task-title">邀请景点商家入驻</text>
-            <view class="task-content">
-              <text>入驻成功可得</text>
-              <image class="luck-icon" src="https://static.tiddler.cn/mp/new_year/luck_bag.webp" />
-              <text class="task-luck">80福气值</text>
-            </view>
-          </view>
-          <view class="task-bth">去邀请</view>
-        </view>
-  
-        <view class="task">
-          <image class="task-icon" src="https://static.tiddler.cn/mp/new_year/hotel.webp" />
-          <view class="task-info">
-            <text class="task-title">逛一逛酒店名宿</text>
-            <view class="task-content">
-              <text>浏览10秒可得</text>
-              <image class="luck-icon" src="https://static.tiddler.cn/mp/new_year/luck_bag.webp" />
-              <text class="task-luck">10福气值</text>
-            </view>
-          </view>
-          <view class="task-bth">去逛逛</view>
-        </view>
-  
-        <view class="task">
-          <image class="task-icon" src="https://static.tiddler.cn/mp/new_year/hotel.webp" />
-          <view class="task-info">
-            <text class="task-title">邀请酒店商家入驻</text>
-            <view class="task-content">
-              <text>入驻成功可得</text>
-              <image class="luck-icon" src="https://static.tiddler.cn/mp/new_year/luck_bag.webp" />
-              <text class="task-luck">80福气值</text>
-            </view>
-          </view>
-          <view class="task-bth">去邀请</view>
-        </view>
-  
-        <view class="task">
-          <image class="task-icon" src="https://static.tiddler.cn/mp/new_year/catering.webp" />
-          <view class="task-info">
-            <text class="task-title">逛一逛餐饮美食</text>
-            <view class="task-content">
-              <text>浏览10秒可得</text>
-              <image class="luck-icon" src="https://static.tiddler.cn/mp/new_year/luck_bag.webp" />
-              <text class="task-luck">10福气值</text>
-            </view>
-          </view>
-          <view class="task-bth">去逛逛</view>
-        </view>
-  
-        <view class="task">
-          <image class="task-icon" src="https://static.tiddler.cn/mp/new_year/catering.webp" />
-          <view class="task-info">
-            <text class="task-title">邀请餐饮商家入驻</text>
-            <view class="task-content">
-              <text>入驻成功可得</text>
-              <image class="luck-icon" src="https://static.tiddler.cn/mp/new_year/luck_bag.webp" />
-              <text class="task-luck">80福气值</text>
-            </view>
-          </view>
-          <view class="task-bth">去邀请</view>
-        </view>
-  
-        <view class="task">
-          <image class="task-icon" src="https://static.tiddler.cn/mp/new_year/bug.webp" />
-          <view class="task-info">
-            <text class="task-title">发现提交BUG</text>
-            <view class="task-content">
-              <text>提交成功可得</text>
-              <image class="luck-icon" src="https://static.tiddler.cn/mp/new_year/luck_bag.webp" />
-              <text class="task-luck">10福气值</text>
-            </view>
-          </view>
-          <view class="task-bth">去提交</view>
+          <view class="task-bth">{{item.btnContent}}</view>
         </view>
       </view>
     </scroll-view>

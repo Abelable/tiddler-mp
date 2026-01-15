@@ -1,4 +1,3 @@
-import { checkLogin } from "../../../../../../utils/index";
 import NewYearService from "../../utils/newYearService";
 
 const newYearService = new NewYearService();
@@ -10,52 +9,36 @@ Component({
       type: Boolean,
       observer(truthy) {
         if (truthy) {
-          // this.setAddressList();
+          this.setTaskList();
         }
       }
     }
   },
 
   data: {
-    addressList: [],
-    selectedIndex: 0
+    taskList: []
   },
 
   methods: {
-    async setAddressList() {
-      const addressList = await newYearService.getAddressList();
-      this.setData({ addressList });
+    async setTaskList() {
+      const taskList = await newYearService.getTaskList();
+      this.setData({ taskList });
+    },
 
-      const { addressId } = this.properties;
-      if (addressId) {
-        const selectedIndex = addressList.findIndex(
-          item => item.id === addressId
-        );
-        this.setData({ selectedIndex });
+    finishTask(e) {
+      const { type, param } = e.currentTarget.dataset;
+      if (type === 1) {
+        if (param.includes("tab-bar-pages")) {
+          wx.switchTab({ url: param });
+        } else {
+          wx.navigateTo({ url: param });
+        }
+      } else {
       }
-    },
-
-    selectAddress(e) {
-      this.setData({
-        selectedIndex: Number(e.detail.value)
-      });
-    },
-
-    confirm() {
-      const { addressList, selectedIndex } = this.data;
-      this.triggerEvent("hide", addressList[selectedIndex].id);
     },
 
     hide() {
       this.triggerEvent("hide");
-    },
-
-    navToAddressListPage() {
-      checkLogin(() => {
-        wx.navigateTo({
-          url: "/pages/subpages/mine/address/index"
-        });
-      });
     }
   }
 });

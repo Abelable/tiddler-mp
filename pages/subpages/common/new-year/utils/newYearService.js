@@ -2,25 +2,9 @@ import { cleanObject } from "../../../../../utils/index";
 import BaseService from "../../../../../services/baseService";
 
 class NewYearService extends BaseService {
-  async complain(promoterId, optionIds, content, imageList, success) {
-    return await this.post({
-      url: `${this.baseUrl}/promoter/complaint/submit`,
-      data: cleanObject({ promoterId, optionIds, content, imageList }),
-      success
-    });
-  }
-
-  async getQaSummary(promoterId) {
+  async getTaskList() {
     return await this.get({
-      url: `${this.baseUrl}/promoter/qa/summary`,
-      data: { promoterId }
-    });
-  }
-
-  async getQaList(promoterId, page, limit = 10) {
-    return await this.get({
-      url: `${this.baseUrl}/promoter/qa/list`,
-      data: { promoterId, page, limit },
+      url: `${this.baseUrl}/activity/new_year/task_list`,
       loadingTitle: "正在加载"
     });
   }
