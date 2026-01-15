@@ -80,7 +80,7 @@
       </view>
 
       <view class="my-prize-btn-wrap">
-        <view class="my-prize-btn">
+        <view class="my-prize-btn" bindtap="showPrizePopup">
           <text>我的</text>
           <text>奖品</text>
         </view>
@@ -122,4 +122,8 @@
 <task-popup 
   show="{{taskPopupVisible}}" 
   bind:hide="hideTaskPopup"
+/>
+<prize-popup 
+  show="{{prizePopupVisible}}" 
+  bind:hide="hidePrizePopup"
 />

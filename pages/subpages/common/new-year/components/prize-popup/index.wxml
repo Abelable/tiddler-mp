@@ -1,0 +1,79 @@
+<van-popup show="{{show}}" safe-area-inset-bottom="{{false}}" round position="bottom" bind:close="hide">
+  <view class="prize-popup-main">
+    <view class="title-wrap">
+      <image class="prize-popup-title" src="https://static.tiddler.cn/mp/new_year/prize_popup_title.webp" mode="widthFix"/>
+    </view>
+
+    <scroll-view class="prize-list-wrap" scroll-y="true" scroll-with-animation="true">
+      <view class="prize-list">
+        <view class="prize">
+          <image class="prize-icon" src="https://static.tiddler.cn/mp/new_year/hometown_goods.webp" />
+          <view class="prize-info">
+            <text class="prize-title">逛一逛家乡好物会场</text>
+            <view class="prize-time">2026.01.24 12:12:12</view>
+          </view>
+          <view class="prize-bth">去逛逛</view>
+        </view>
+  
+        <view class="prize">
+          <image class="prize-icon" src="https://static.tiddler.cn/mp/new_year/hometown_goods.webp" />
+          <view class="prize-info">
+            <text class="prize-title">分享家乡好物</text>
+            <view class="prize-time">2026.01.24 12:12:12</view>
+          </view>
+          <view class="prize-bth">去分享</view>
+        </view>
+        <view class="prize">
+          <image class="prize-icon" src="https://static.tiddler.cn/mp/new_year/hometown_goods.webp" />
+          <view class="prize-info">
+            <text class="prize-title">逛一逛家乡好物会场</text>
+            <view class="prize-time">2026.01.24 12:12:12</view>
+          </view>
+          <view class="prize-bth">去逛逛</view>
+        </view>
+  
+        <view class="prize">
+          <image class="prize-icon" src="https://static.tiddler.cn/mp/new_year/hometown_goods.webp" />
+          <view class="prize-info">
+            <text class="prize-title">分享家乡好物</text>
+            <view class="prize-time">2026.01.24 12:12:12</view>
+          </view>
+          <view class="prize-bth">去分享</view>
+        </view>
+        <view class="prize">
+          <image class="prize-icon" src="https://static.tiddler.cn/mp/new_year/hometown_goods.webp" />
+          <view class="prize-info">
+            <text class="prize-title">逛一逛家乡好物会场</text>
+            <view class="prize-time">2026.01.24 12:12:12</view>
+          </view>
+          <view class="prize-bth">去逛逛</view>
+        </view>
+  
+        <view class="prize">
+          <image class="prize-icon" src="https://static.tiddler.cn/mp/new_year/hometown_goods.webp" />
+          <view class="prize-info">
+            <text class="prize-title">分享家乡好物</text>
+            <view class="prize-time">2026.01.24 12:12:12</view>
+          </view>
+          <view class="prize-bth">去分享</view>
+        </view><view class="prize">
+          <image class="prize-icon" src="https://static.tiddler.cn/mp/new_year/hometown_goods.webp" />
+          <view class="prize-info">
+            <text class="prize-title">逛一逛家乡好物会场</text>
+            <view class="prize-time">2026.01.24 12:12:12</view>
+          </view>
+          <view class="prize-bth">去逛逛</view>
+        </view>
+  
+        <view class="prize">
+          <image class="prize-icon" src="https://static.tiddler.cn/mp/new_year/hometown_goods.webp" />
+          <view class="prize-info">
+            <text class="prize-title">分享家乡好物</text>
+            <view class="prize-time">2026.01.24 12:12:12</view>
+          </view>
+          <view class="prize-bth">去分享</view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</van-popup>

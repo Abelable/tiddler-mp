@@ -85,7 +85,8 @@ Page({
       { title: "品牌入驻" }
     ],
     luckPopupVisible: false,
-    taskPopupVisible: false
+    taskPopupVisible: false,
+    prizePopupVisible: false
   },
 
   onLoad() {
@@ -145,6 +146,14 @@ Page({
 
   hideTaskPopup() {
     this.setData({ taskPopupVisible: false })
+  },
+
+  showPrizePopup() {
+    this.setData({ prizePopupVisible: true })
+  },
+
+  hidePrizePopup() {
+    this.setData({ prizePopupVisible: false })
   },
 
   onPageScroll(e) {
