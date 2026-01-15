@@ -106,12 +106,14 @@
 
   <view class="split-tips">合作伙伴</view>
   <view class="partters">
-    <block wx:for="{{partters}}" wx:key="index">
-      <view class="partter">
-        <image wx:if="{{item.logo}}" class="partter-logo" src="{{item.logo}}" />
-        <view wx:if="{{item.title}}" class="patter-settle-title">{{item.title}}</view>
-      </view>
-    </block>
+    <view class="partter" wx:for="{{partters}}" 
+      wx:key="index"
+      bindtap="checkBrand"
+      data-brand="{{item.logo}}"
+    >
+      <image wx:if="{{item.logo}}" class="partter-logo" src="https://static.tiddler.cn/mp/new_year/{{item.logo}}.webp" />
+      <view wx:if="{{!item.logo}}" class="patter-settle-title">品牌入驻</view>
+    </view>
   </view>
 </view>
 

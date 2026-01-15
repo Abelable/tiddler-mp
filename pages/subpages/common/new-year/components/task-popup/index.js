@@ -9,7 +9,7 @@ Component({
       type: Boolean,
       observer(truthy) {
         if (truthy) {
-          this.setTaskList();
+          this.init();
         }
       }
     }
@@ -20,6 +20,10 @@ Component({
   },
 
   methods: {
+    init() {
+      this.setTaskList();
+    },
+
     async setTaskList() {
       const taskList = await newYearService.getTaskList();
       this.setData({ taskList });

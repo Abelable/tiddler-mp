@@ -74,15 +74,15 @@ Page({
     ],
 
     partters: [
-      { logo: "https://static.tiddler.cn/mp/new_year/qdnp.webp" },
-      { logo: "https://static.tiddler.cn/mp/new_year/qdlw.webp" },
-      { logo: "https://static.tiddler.cn/mp/new_year/qdcy.webp" },
-      { logo: "https://static.tiddler.cn/mp/new_year/klj.webp" },
-      { logo: "https://static.tiddler.cn/mp/new_year/yj.webp" },
-      { title: "品牌入驻" },
-      { title: "品牌入驻" },
-      { title: "品牌入驻" },
-      { title: "品牌入驻" }
+      { logo: "qdnp" },
+      { logo: "qdlw" },
+      { logo: "qdcy" },
+      { logo: "klj" },
+      { logo: "yj" },
+      { logo: "" },
+      { logo: "" },
+      { logo: "" },
+      { logo: "" }
     ],
     luckPopupVisible: false,
     taskPopupVisible: false,
@@ -128,53 +128,77 @@ Page({
   onPressStart() {
     this.setData({ press: true });
   },
+  
   onPressEnd() {
     this.setData({ press: false });
   },
 
   showLuckPopup() {
-    this.setData({ luckPopupVisible: true })
+    this.setData({ luckPopupVisible: true });
   },
 
   hideLuckPopup() {
-    this.setData({ luckPopupVisible: false })
+    this.setData({ luckPopupVisible: false });
   },
 
   showTaskPopup() {
-    this.setData({ taskPopupVisible: true })
+    this.setData({ taskPopupVisible: true });
   },
 
   hideTaskPopup() {
-    this.setData({ taskPopupVisible: false })
+    this.setData({ taskPopupVisible: false });
   },
 
   showPrizePopup() {
-    this.setData({ prizePopupVisible: true })
+    this.setData({ prizePopupVisible: true });
   },
 
   hidePrizePopup() {
-    this.setData({ prizePopupVisible: false })
+    this.setData({ prizePopupVisible: false });
+  },
+
+  checkBrand(e) {
+    const { brand } = e.currentTarget.dataset;
+    if (brand) {
+      switch (brand) {
+        case "qdnp":
+          wx.navigateTo({
+            url: "/pages/subpages/mall/goods/subpages/shop/index?id=1"
+          });
+          break;
+
+        case "qdlw":
+          wx.navigateTo({
+            url: "/pages/subpages/mall/goods/subpages/shop/index?id=5"
+          });
+          break;
+      }
+    } else {
+      wx.navigateTo({
+        url: "/pages/subpages/mine/setting/subpages/merchant-settle/index?type=4"
+      });
+    }
   },
 
   onPageScroll(e) {
     if (e.scrollTop > 100 && !this.data.showBg) {
       this.setData({ showBg: true });
       wx.setNavigationBarColor({
-        frontColor: '#000000',
-        backgroundColor: '#ffffff',
+        frontColor: "#000000",
+        backgroundColor: "#ffffff",
         animation: {
           duration: 300,
-          timingFunc: 'easeIn'
+          timingFunc: "easeIn"
         }
       });
     } else if (e.scrollTop <= 100 && this.data.showBg) {
       this.setData({ showBg: false });
       wx.setNavigationBarColor({
-        frontColor: '#ffffff',
-        backgroundColor: 'transparent',
+        frontColor: "#ffffff",
+        backgroundColor: "transparent",
         animation: {
           duration: 300,
-          timingFunc: 'easeOut'
+          timingFunc: "easeOut"
         }
       });
     }

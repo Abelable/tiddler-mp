@@ -2,7 +2,7 @@
   <view class="task-popup-main">
     <view class="title-wrap">
       <image class="task-popup-title" src="https://static.tiddler.cn/mp/new_year/task_popup_title.webp" mode="widthFix"/>
-      <view class="refresh-btn">
+      <view class="refresh-btn" bindtap="init">
         <text>每日刷新</text>
         <image class="refresh-icon" src="https://static.tiddler.cn/mp/new_year/refresh.png" />
       </view>
