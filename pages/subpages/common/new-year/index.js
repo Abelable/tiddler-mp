@@ -13,7 +13,7 @@ Page({
     minutes: "00",
     seconds: "00",
     timer: null,
-    rawList: [],
+    prizeList: [],
     renderList: [],
     translateX: 0,
     listWidth: 0,
@@ -49,7 +49,7 @@ Page({
   async setPrizeList() {
     const list = await newYearService.getPrizeList();
 
-    const rawList = [
+    const prizeList = [
       ...list,
       {
         cover: "https://static.tiddler.cn/mp/new_year/thanks.webp",
@@ -58,8 +58,8 @@ Page({
     ];
 
     this.setData({
-      rawList,
-      renderList: rawList.concat(rawList, rawList)
+      prizeList,
+      renderList: prizeList.concat(prizeList, prizeList)
     });
 
     wx.nextTick(() => {
@@ -215,7 +215,7 @@ Page({
 
     step();
   },
-  
+
   showLuckPopup() {
     this.setData({ luckPopupVisible: true });
   },
