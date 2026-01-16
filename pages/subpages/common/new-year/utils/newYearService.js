@@ -9,6 +9,12 @@ class NewYearService extends BaseService {
     });
   }
 
+  async getPrizeList() {
+    return await this.get({
+      url: `${this.baseUrl}/activity/new_year/prize_list`
+    });
+  }
+
   async getGoodsList() {
     return await this.get({
       url: `${this.baseUrl}/activity/new_year/goods_list`

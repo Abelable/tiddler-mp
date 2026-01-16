@@ -61,11 +61,11 @@
 
     <view class="draw-wheel">
       <scroll-view class="prize-list" scroll-x show-scrollbar="false">
-        <block wx:for="{{prizes}}" wx:key="index">
-          <view class="prize {{item.big ? 'big' : ''}}">
-            <image class="prize-cover" src="{{item.cover}}" mode="aspectFit" />
-            <view class="prize-name {{item.big ? 'big' : ''}}">{{item.name}}</view>
-            <view wx:if="{{item.big}}" class="big-prize-tag">本期大奖</view>
+        <block wx:for="{{prizeList}}" wx:key="index">
+          <view class="prize {{item.isBig ? 'big' : ''}}">
+            <image class="prize-cover" src="{{item.cover}}" mode="aspectFill" />
+            <view class="prize-name {{item.isBig ? 'big' : ''}}">{{item.name}}</view>
+            <view wx:if="{{item.isBig}}" class="big-prize-tag">本期大奖</view>
           </view>
         </block>
       </scroll-view>

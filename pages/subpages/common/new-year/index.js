@@ -13,25 +13,7 @@ Page({
     minutes: "00",
     seconds: "00",
     timer: null,
-    prizes: [
-      {
-        name: "测试测试测试",
-        cover: "https://static.tiddler.cn/mp/new_year/qdcy.webp"
-      },
-      {
-        name: "测试测试测试",
-        cover: "https://static.tiddler.cn/mp/new_year/qdcy.webp"
-      },
-      {
-        name: "测试测试测试",
-        cover: "https://static.tiddler.cn/mp/new_year/qdcy.webp",
-        big: true
-      },
-      {
-        name: "测试测试测试",
-        cover: "https://static.tiddler.cn/mp/new_year/qdcy.webp"
-      }
-    ],
+    prizeList: [],
     goodsList: [],
     partters: [
       { logo: "qdnp" },
@@ -54,7 +36,13 @@ Page({
     const timer = setInterval(this.updateCountDown.bind(this), 1000);
     this.setData({ timer });
 
+    this.setPrizeList();
     this.setGoodsList();
+  },
+
+  async setPrizeList() {
+    const prizeList = await newYearService.getPrizeList();
+    this.setData({ prizeList });
   },
 
   async setGoodsList() {
