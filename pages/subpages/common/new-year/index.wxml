@@ -60,15 +60,26 @@
     </view>
 
     <view class="draw-wheel">
-      <scroll-view class="prize-list" scroll-x show-scrollbar="false">
-        <block wx:for="{{prizeList}}" wx:key="index">
-          <view class="prize {{item.isBig ? 'big' : ''}}">
-            <image class="prize-cover" src="{{item.cover}}" mode="aspectFill" />
-            <view class="prize-name {{item.isBig ? 'big' : ''}}">{{item.name}}</view>
-            <view wx:if="{{item.isBig}}" class="big-prize-tag">本期大奖</view>
-          </view>
-        </block>
-      </scroll-view>
+      <view class="prize-viewport">
+        <view
+          class="prize-track"
+          style="transform: translateX({{translateX}}px);"
+          bindtouchstart="onTouchStart"
+          bindtouchmove="onTouchMove"
+        >
+          <block wx:for="{{renderList}}" wx:key="index">
+            <view class="prize {{item.isBig ? 'big' : ''}}">
+              <image class="prize-cover" src="{{item.cover}}" mode="aspectFill" />
+              <view class="prize-name {{item.isBig ? 'big' : ''}}">
+                {{item.name}}
+              </view>
+              <view wx:if="{{item.isBig}}" class="big-prize-tag">
+                本期大奖
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
       
       <view 
         class="draw-btn {{press ? 'pressed' : ''}}" 

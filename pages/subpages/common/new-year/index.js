@@ -13,7 +13,12 @@ Page({
     minutes: "00",
     seconds: "00",
     timer: null,
-    prizeList: [],
+    rawList: [],
+    renderList: [],
+    translateX: 0,
+    listWidth: 0,
+    startX: 0,
+    startTranslateX: 0,
     goodsList: [],
     partters: [
       { logo: "qdnp" },
@@ -31,18 +36,84 @@ Page({
     prizePopupVisible: false
   },
 
-  onLoad() {
+  async onLoad() {
     this.updateCountDown();
     const timer = setInterval(this.updateCountDown.bind(this), 1000);
     this.setData({ timer });
 
-    this.setPrizeList();
     this.setGoodsList();
+    await this.setPrizeList();
+    this.calcListWidth();
   },
 
   async setPrizeList() {
-    const prizeList = await newYearService.getPrizeList();
-    this.setData({ prizeList });
+    const list = await newYearService.getPrizeList();
+
+    const rawList = [
+      ...list,
+      {
+        cover: "https://static.tiddler.cn/mp/new_year/thanks.webp",
+        name: "谢谢参与"
+      }
+    ];
+
+    this.setData({
+      rawList,
+      renderList: rawList.concat(rawList, rawList)
+    });
+
+    wx.nextTick(() => {
+      this.calcListWidth();
+    });
+  },
+
+  calcListWidth() {
+    wx.createSelectorQuery()
+      .in(this)
+      .selectAll(".prize")
+      .boundingClientRect(rects => {
+        const singleCount = rects.length / 3;
+        let width = 0;
+
+        for (let i = 0; i < singleCount; i++) {
+          width += rects[i].width;
+        }
+
+        this.setData({
+          listWidth: width,
+          translateX: -width
+        });
+      })
+      .exec();
+  },
+
+  onTouchStart(e) {
+    this.data.startX = e.touches[0].clientX;
+    this.data.startTranslateX = this.data.translateX;
+  },
+
+  onTouchMove(e) {
+    this.lastX = e.touches[0].clientX;
+    if (this.rafLock) return;
+
+    this.rafLock = true;
+
+    setTimeout(() => {
+      const delta = this.lastX - this.data.startX;
+      let nextX = this.data.startTranslateX + delta;
+      const { listWidth } = this.data;
+
+      if (!listWidth) {
+        this.rafLock = false;
+        return;
+      }
+
+      if (nextX > 0) nextX -= listWidth;
+      if (nextX < -listWidth * 2) nextX += listWidth;
+
+      this.setData({ translateX: nextX });
+      this.rafLock = false;
+    }, 16);
   },
 
   async setGoodsList() {
