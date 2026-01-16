@@ -320,16 +320,16 @@
   width: calc((100% - 18rpx)/2);
   font-size: 0;
   background: #fff;
-  border-radius: 36rpx;
+  border-radius: 32rpx;
   overflow: hidden;
 }
 
 .goods-cover-wrap {
   position: relative;
   width: 100%;
-  height: 336rpx;
+  height: 320rpx;
   font-size: 0;
-  border-radius: 36rpx;
+  border-radius: 32rpx;
   overflow: hidden;
 }
 .goods-cover {
