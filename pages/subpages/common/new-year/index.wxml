@@ -91,12 +91,22 @@
   <view class="luck-exchange">
     <image class="luck-exchange-title" src="https://static.tiddler.cn/mp/new_year/exchange_title.webp" mode="widthFix" />
     <view class="goods-list">
-      <view class="goods" wx:for="{{goodsList}}" wx:key="index">
-        <image class="goods-cover" src="{{item.cover}}" mode="aspectFill" />
+      <view 
+        class="goods" 
+        wx:for="{{goodsList}}" 
+        wx:key="index"
+        bindtap="exchange"
+        data-id="{{item.id}}"
+        data-goods-id="{{item.goodsId}}"
+      >
+        <view class="goods-cover-wrap">
+          <image class="goods-cover" src="{{item.cover}}" mode="aspectFill" />
+          <image class="goods-cover-decoration" src="https://static.tiddler.cn/mp/new_year/decoration.webp" mode="aspectFill" />
+        </view>
         <view class="goods-info">
           <view class="goods-name">{{item.name}}</view>
           <view class="goods-exchange">
-            <view class="goods-need-luck">{{item.needLuck}}福气值</view>
+            <view class="goods-need-luck">{{item.luckScore}}福气值</view>
             <view class="goods-exchange-btn">兑换</view>
           </view>
         </view>

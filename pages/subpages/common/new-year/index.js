@@ -1,3 +1,6 @@
+import NewYearService from "./utils/newYearService";
+
+const newYearService = new NewYearService();
 const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Page({
@@ -29,50 +32,7 @@ Page({
         cover: "https://static.tiddler.cn/mp/new_year/qdcy.webp"
       }
     ],
-
-    goodsList: [
-      {
-        name: "测试测试商品1",
-        cover: "https://static.tiddler.cn/mp/new_year/qdcy.webp",
-        needLuck: 300
-      },
-      {
-        name: "测试测试商品2",
-        cover: "https://static.tiddler.cn/mp/new_year/qdcy.webp",
-        needLuck: 300
-      },
-      {
-        name: "测试测试商品3",
-        cover: "https://static.tiddler.cn/mp/new_year/qdcy.webp",
-        needLuck: 300
-      },
-      {
-        name: "测试测试商品1",
-        cover: "https://static.tiddler.cn/mp/new_year/qdcy.webp",
-        needLuck: 300
-      },
-      {
-        name: "测试测试商品2",
-        cover: "https://static.tiddler.cn/mp/new_year/qdcy.webp",
-        needLuck: 300
-      },
-      {
-        name: "测试测试商品3",
-        cover: "https://static.tiddler.cn/mp/new_year/qdcy.webp",
-        needLuck: 300
-      },
-      {
-        name: "测试测试商品2",
-        cover: "https://static.tiddler.cn/mp/new_year/qdcy.webp",
-        needLuck: 300
-      },
-      {
-        name: "测试测试商品3",
-        cover: "https://static.tiddler.cn/mp/new_year/qdcy.webp",
-        needLuck: 300
-      }
-    ],
-
+    goodsList: [],
     partters: [
       { logo: "qdnp" },
       { logo: "qdlw" },
@@ -93,10 +53,13 @@ Page({
     this.updateCountDown();
     const timer = setInterval(this.updateCountDown.bind(this), 1000);
     this.setData({ timer });
+
+    this.setGoodsList();
   },
 
-  onUnload() {
-    if (this.data.timer) clearInterval(this.data.timer);
+  async setGoodsList() {
+    const goodsList = await newYearService.getGoodsList();
+    this.setData({ goodsList });
   },
 
   updateCountDown() {
@@ -128,7 +91,7 @@ Page({
   onPressStart() {
     this.setData({ press: true });
   },
-  
+
   onPressEnd() {
     this.setData({ press: false });
   },
@@ -180,6 +143,13 @@ Page({
     }
   },
 
+  exchange(e) {
+    const { id, goodsId } = e.currentTarget.dataset;
+    wx.navigateTo({
+      url: `/pages/subpages/mall/goods/subpages/goods-detail/index?id=${goodsId}`
+    });
+  },
+
   onPageScroll(e) {
     if (e.scrollTop > 100 && !this.data.showBg) {
       this.setData({ showBg: true });
@@ -202,5 +172,9 @@ Page({
         }
       });
     }
+  },
+
+  onUnload() {
+    if (this.data.timer) clearInterval(this.data.timer);
   }
 });
