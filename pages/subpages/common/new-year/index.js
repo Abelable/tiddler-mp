@@ -153,8 +153,69 @@ Page({
 
   onPressEnd() {
     this.setData({ press: false });
-  },
 
+    if (this.animating) return;
+    this.animating = true;
+
+    const { translateX, listWidth, renderList } = this.data;
+    if (!listWidth || !renderList.length) {
+      this.animating = false;
+      return;
+    }
+
+    let currentX = translateX;
+
+    // 模拟服务端返回中奖索引
+    const prizeIndex = Math.floor(Math.random() * renderList.length);
+    console.log("中奖索引：", prizeIndex);
+
+    const totalSpins = 3;
+    const duration = 3500; // 增加滚动时间
+    const fps = 60;
+    const interval = 1000 / fps;
+
+    const prizeWidth = listWidth / renderList.length;
+    const prizeOffset = prizeIndex * prizeWidth;
+    const totalDistance = listWidth * totalSpins + prizeOffset;
+
+    let elapsed = 0;
+
+    const easeInOutCubic = t =>
+      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+    const step = () => {
+      elapsed += interval;
+      const t = Math.min(elapsed / duration, 1);
+      const eased = easeInOutCubic(t);
+      const deltaX = totalDistance * eased;
+
+      let nextX = currentX - deltaX;
+
+      // ✅ while 修正，保证 translateX 永远在 [-listWidth*2, 0] 之间
+      while (nextX < -listWidth * 2) nextX += listWidth;
+      while (nextX > 0) nextX -= listWidth;
+
+      this.setData({ translateX: nextX });
+
+      if (t < 1) {
+        setTimeout(step, interval);
+      } else {
+        // 精准停在中奖位置
+        const finalX = currentX - totalDistance;
+        let correctedX = finalX;
+        while (correctedX < -listWidth * 2) correctedX += listWidth;
+        while (correctedX > 0) correctedX -= listWidth;
+
+        this.setData({ translateX: correctedX });
+        this.animating = false;
+
+        console.log("抽奖结束，中奖索引：", prizeIndex);
+      }
+    };
+
+    step();
+  },
+  
   showLuckPopup() {
     this.setData({ luckPopupVisible: true });
   },
