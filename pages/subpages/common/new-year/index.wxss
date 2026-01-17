@@ -33,7 +33,7 @@
 }
 .bg-wrap .bg {
   width: 750rpx;
-  height: 1256rpx;
+  height: 1008rpx;
 }
 .count-down-wrap {
   position: absolute;
