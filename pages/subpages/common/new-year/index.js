@@ -1,3 +1,4 @@
+import { store } from "../../../../store/index";
 import NewYearService from "./utils/newYearService";
 
 const newYearService = new NewYearService();
@@ -37,6 +38,11 @@ Page({
   },
 
   async onLoad() {
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ["shareAppMessage", "shareTimeline"]
+    });
+
     this.updateCountDown();
     const timer = setInterval(this.updateCountDown.bind(this), 1000);
     this.setData({ timer });
@@ -299,5 +305,26 @@ Page({
 
   onUnload() {
     if (this.data.timer) clearInterval(this.data.timer);
+  },
+
+  onShareAppMessage() {
+    const { id } = store.superiorInfo || {};
+    const originalPath = "/pages/subpages/common/new-year/index";
+    const path = id ? `${originalPath}?superiorId=${id}` : originalPath;
+    return {
+      path,
+      title: "团圆家乡年",
+      imageUrl: "https://static.tiddler.cn/mp/new_year/share_cover.webp"
+    };
+  },
+
+  onShareTimeline() {
+    const { id } = store.superiorInfo || {};
+    const query = id ? `superiorId=${id}` : "";
+    return {
+      query,
+      title: "团圆家乡年",
+      imageUrl: "https://static.tiddler.cn/mp/new_year/share_cover.png"
+    };
   }
 });
