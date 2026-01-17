@@ -245,7 +245,9 @@ Page({
   },
 
   showLuckPopup() {
-    this.setData({ luckPopupVisible: true });
+    checkLogin(() => {
+      this.setData({ luckPopupVisible: true });
+    })
   },
 
   hideLuckPopup() {
@@ -253,7 +255,9 @@ Page({
   },
 
   showTaskPopup() {
-    this.setData({ taskPopupVisible: true });
+    checkLogin(() => {
+      this.setData({ taskPopupVisible: true });
+    })
   },
 
   hideTaskPopup() {
@@ -261,7 +265,9 @@ Page({
   },
 
   showPrizePopup() {
-    this.setData({ prizePopupVisible: true });
+    checkLogin(() => {
+      this.setData({ prizePopupVisible: true });
+    })
   },
 
   hidePrizePopup() {
