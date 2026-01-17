@@ -442,3 +442,22 @@
   font-weight: bold;
   color: #e8e8e8;
 }
+
+.share-btn {
+  position: fixed;
+  right: 0;
+  display: flex;
+  align-items: center;
+  padding-left: 18rpx;
+  padding-right: 8rpx;
+  height: 58rpx;
+  font-size: 24rpx;
+  font-weight: bolder;
+  line-height: 1;
+  color: #ffdcad;
+  background: #c71a20;
+  border-radius: 36rpx 0 0 36rpx;
+  border: 1px solid #ffdcad;
+  border-right: none;
+  z-index: 100;
+}

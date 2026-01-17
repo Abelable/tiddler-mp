@@ -138,15 +138,26 @@
   </view>
 </view>
 
+<view 
+  class="share-btn" 
+  style="top: {{statusBarHeight + 68}}px;"
+  bindtap="showPosterModal"
+>
+  分享福气
+</view>
+
 <luck-popup 
   show="{{luckPopupVisible}}" 
   bind:hide="hideLuckPopup"
 />
 <task-popup 
   show="{{taskPopupVisible}}" 
+  bind:share="showPosterModal"
   bind:hide="hideTaskPopup"
 />
 <prize-popup 
   show="{{prizePopupVisible}}" 
   bind:hide="hidePrizePopup"
 />
+
+<poster-modal wx:if="{{posterModalVisible}}" qrCode="{{qrCode}}" bind:hide="hidePosterModal" />

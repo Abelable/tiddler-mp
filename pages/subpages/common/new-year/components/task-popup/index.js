@@ -41,6 +41,10 @@ Component({
       }
     },
 
+    share() {
+      this.triggerEvent("share");
+    },
+
     hide() {
       this.triggerEvent("hide");
     }

@@ -25,7 +25,7 @@
               <view class="friend"><image class="friend-avatar" src="https://static.tiddler.cn/mp/new_year/friend_empty.webp" /></view>
             </view>
           </view>
-          <view class="task-bth">去邀请</view>
+          <view class="task-bth" bindtap="share">去邀请</view>
         </view>
   
         <view 

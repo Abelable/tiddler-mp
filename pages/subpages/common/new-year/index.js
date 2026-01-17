@@ -1,4 +1,5 @@
 import { store } from "../../../../store/index";
+import { checkLogin } from "../../../../utils/index";
 import NewYearService from "./utils/newYearService";
 
 const newYearService = new NewYearService();
@@ -34,13 +35,31 @@ Page({
     ],
     luckPopupVisible: false,
     taskPopupVisible: false,
-    prizePopupVisible: false
+    prizePopupVisible: false,
+    qrCode: "",
+    posterModalVisible: false
   },
 
-  async onLoad() {
+  async(options) {
     wx.showShareMenu({
       withShareTicket: true,
       menus: ["shareAppMessage", "shareTimeline"]
+    });
+
+    const { scene = "" } = options || {};
+    const decodedSceneList = scene ? decodeURIComponent(scene).split("-") : [];
+    this.superiorId = decodedSceneList[0] || "";
+
+    getApp().onLaunched(async () => {
+      if (this.superiorId && !store.superiorInfo) {
+        wx.setStorageSync("superiorId", this.superiorId);
+        const superiorInfo = await newYearService.getUserInfoById(
+          this.superiorId
+        );
+        if (superiorInfo.promoterInfo) {
+          store.setSuperiorInfo(superiorInfo);
+        }
+      }
     });
 
     this.updateCountDown();
@@ -247,6 +266,23 @@ Page({
 
   hidePrizePopup() {
     this.setData({ prizePopupVisible: false });
+  },
+
+  showPosterModal() {
+    checkLogin(async () => {
+      const scene = store.superiorInfo ? `${store.superiorInfo.id}` : "";
+      const page = "pages/subpages/mall/goods/subpages/goods-detail/index";
+      const qrCode = await newYearService.getQrCode(scene, page);
+
+      this.setData({
+        posterModalVisible: true,
+        qrCode
+      });
+    });
+  },
+
+  hidePosterModal() {
+    this.setData({ posterModalVisible: false });
   },
 
   checkBrand(e) {
