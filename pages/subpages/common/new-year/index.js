@@ -40,7 +40,7 @@ Page({
     posterModalVisible: false
   },
 
-  async(options) {
+  onLoad(options) {
     wx.showShareMenu({
       withShareTicket: true,
       menus: ["shareAppMessage", "shareTimeline"]
@@ -271,7 +271,7 @@ Page({
   showPosterModal() {
     checkLogin(async () => {
       const scene = store.superiorInfo ? `${store.superiorInfo.id}` : "";
-      const page = "pages/subpages/mall/goods/subpages/goods-detail/index";
+      const page = "pages/subpages/common/new-year/index";
       const qrCode = await newYearService.getQrCode(scene, page);
 
       this.setData({
