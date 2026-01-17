@@ -212,7 +212,7 @@
   object-fit: cover;
 }
 .prize-name {
-  margin-top: 12rpx;
+  margin-top: 16rpx;
   font-size: 20rpx;
   font-weight: bold;
   color: #420f9d;
