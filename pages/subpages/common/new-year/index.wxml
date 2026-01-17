@@ -63,7 +63,7 @@
       <view class="prize-viewport">
         <view
           class="prize-track"
-          style="transform: translateX({{translateX}}px);"
+          style="transform: translateX({{translateX}}px); transition: {{transition}};"
           bindtouchstart="onTouchStart"
           bindtouchmove="onTouchMove"
         >

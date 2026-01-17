@@ -13,12 +13,12 @@ Page({
     minutes: "00",
     seconds: "00",
     timer: null,
+    translateX: 0,
+    transition: "none",
     prizeList: [],
     renderList: [],
-    translateX: 0,
     listWidth: 0,
-    startX: 0,
-    startTranslateX: 0,
+    animating: false,
     goodsList: [],
     partters: [
       { logo: "qdnp" },
@@ -42,8 +42,7 @@ Page({
     this.setData({ timer });
 
     this.setGoodsList();
-    await this.setPrizeList();
-    this.calcListWidth();
+    this.setPrizeList();
   },
 
   async setPrizeList() {
@@ -68,23 +67,32 @@ Page({
   },
 
   calcListWidth() {
-    wx.createSelectorQuery()
-      .in(this)
-      .selectAll(".prize")
-      .boundingClientRect(rects => {
-        const singleCount = rects.length / 3;
-        let width = 0;
+    const query = wx.createSelectorQuery().in(this);
+    query.select(".prize-viewport").boundingClientRect();
+    query.selectAll(".prize").boundingClientRect();
+    query.exec(res => {
+      const viewport = res[0];
+      const rects = res[1];
+      if (!rects || rects.length === 0) return;
 
-        for (let i = 0; i < singleCount; i++) {
-          width += rects[i].width;
-        }
+      const singleCount = this.data.prizeList.length;
+      let singleListWidth = 0;
+      // 计算一组奖品的总宽度（包含margin）
+      for (let i = 0; i < singleCount; i++) {
+        const nextRect = rects[i + 1];
+        const currentRect = rects[i];
+        // 宽度 = 当前奖品宽 + 奖品间的间距
+        const margin = nextRect ? nextRect.left - currentRect.right : 18;
+        singleListWidth += currentRect.width + margin;
+      }
 
-        this.setData({
-          listWidth: width,
-          translateX: -width
-        });
-      })
-      .exec();
+      this.setData({
+        listWidth: singleListWidth,
+        viewportWidth: viewport.width,
+        // 初始位置停在第二组的开头
+        translateX: -singleListWidth
+      });
+    });
   },
 
   onTouchStart(e) {
@@ -153,67 +161,62 @@ Page({
 
   onPressEnd() {
     this.setData({ press: false });
-
-    if (this.animating) return;
+    if (this.animating || !this.data.listWidth) return;
     this.animating = true;
 
-    const { translateX, listWidth, renderList } = this.data;
-    if (!listWidth || !renderList.length) {
-      this.animating = false;
-      return;
-    }
+    const { prizeList, listWidth, viewportWidth } = this.data;
 
-    let currentX = translateX;
+    // 1. 模拟中奖索引 (0 - 8)
+    const targetIndex = Math.floor(Math.random() * prizeList.length);
 
-    // 模拟服务端返回中奖索引
-    const prizeIndex = Math.floor(Math.random() * renderList.length);
-    console.log("中奖索引：", prizeIndex);
+    // 2. 重新获取位置信息（防止布局抖动）
+    const query = wx.createSelectorQuery().in(this);
+    query.selectAll(".prize").boundingClientRect();
+    query.exec(res => {
+      const rects = res[0];
+      const singleCount = prizeList.length;
 
-    const totalSpins = 3;
-    const duration = 3500; // 增加滚动时间
-    const fps = 60;
-    const interval = 1000 / fps;
+      // 目标设在第二组里的对应位置
+      const targetRect = rects[singleCount + targetIndex];
 
-    const prizeWidth = listWidth / renderList.length;
-    const prizeOffset = prizeIndex * prizeWidth;
-    const totalDistance = listWidth * totalSpins + prizeOffset;
+      // 3. 计算居中偏移量
+      // 奖品相对于 track 起点的中心点 = (奖品left - 容器left) + 奖品宽度/2
+      const prizeCenterRelative =
+        targetRect.left - rects[0].left + targetRect.width / 2;
+      // 最终 X = 视口中心 - 奖品中心
+      const finalX = viewportWidth / 2 - prizeCenterRelative;
 
-    let elapsed = 0;
+      // 4. 执行动画
+      // 先瞬间重置到“第一组”对应的位置，为滚动留出至少一圈的距离
+      const startX = finalX + listWidth;
 
-    const easeInOutCubic = t =>
-      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      this.setData(
+        {
+          transition: "none",
+          translateX: startX
+        },
+        () => {
+          // 延迟触发动画，确保重置位置已渲染
+          setTimeout(() => {
+            this.setData({
+              // 使用贝塞尔曲线：先极快，后极慢，最后丝滑停止
+              transition: "transform 4s cubic-bezier(0.1, 0, 0.1, 1)",
+              translateX: finalX
+            });
 
-    const step = () => {
-      elapsed += interval;
-      const t = Math.min(elapsed / duration, 1);
-      const eased = easeInOutCubic(t);
-      const deltaX = totalDistance * eased;
-
-      let nextX = currentX - deltaX;
-
-      // ✅ while 修正，保证 translateX 永远在 [-listWidth*2, 0] 之间
-      while (nextX < -listWidth * 2) nextX += listWidth;
-      while (nextX > 0) nextX -= listWidth;
-
-      this.setData({ translateX: nextX });
-
-      if (t < 1) {
-        setTimeout(step, interval);
-      } else {
-        // 精准停在中奖位置
-        const finalX = currentX - totalDistance;
-        let correctedX = finalX;
-        while (correctedX < -listWidth * 2) correctedX += listWidth;
-        while (correctedX > 0) correctedX -= listWidth;
-
-        this.setData({ translateX: correctedX });
-        this.animating = false;
-
-        console.log("抽奖结束，中奖索引：", prizeIndex);
-      }
-    };
-
-    step();
+            // 5. 动画结束回调
+            setTimeout(() => {
+              this.animating = false;
+              wx.showModal({
+                title: "中奖啦",
+                content: `恭喜获得：${prizeList[targetIndex].name}`,
+                showCancel: false
+              });
+            }, 4000);
+          }, 50);
+        }
+      );
+    });
   },
 
   showLuckPopup() {
