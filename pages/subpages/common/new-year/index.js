@@ -45,6 +45,37 @@ Page({
     this.setPrizeList();
   },
 
+  updateCountDown() {
+    const targetTime = new Date("2026-02-16T23:59:59+08:00").getTime();
+    const now = Date.now();
+    let diff = targetTime - now;
+
+    if (diff <= 0) {
+      this.setData({ days: "00", hours: "00", minutes: "00", seconds: "00" });
+      return;
+    }
+
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    diff %= 1000 * 60 * 60 * 24;
+    const h = Math.floor(diff / (1000 * 60 * 60));
+    diff %= 1000 * 60 * 60;
+    const m = Math.floor(diff / (1000 * 60));
+    const s = Math.floor((diff % (1000 * 60)) / 1000);
+    const format = n => String(n).padStart(2, "0");
+
+    this.setData({
+      days: format(d),
+      hours: format(h),
+      minutes: format(m),
+      seconds: format(s)
+    });
+  },
+
+  async setGoodsList() {
+    const goodsList = await newYearService.getGoodsList();
+    this.setData({ goodsList });
+  },
+
   async setPrizeList() {
     const list = await newYearService.getPrizeList();
 
@@ -92,66 +123,6 @@ Page({
         // 初始位置停在第二组的开头
         translateX: -singleListWidth
       });
-    });
-  },
-
-  onTouchStart(e) {
-    this.data.startX = e.touches[0].clientX;
-    this.data.startTranslateX = this.data.translateX;
-  },
-
-  onTouchMove(e) {
-    this.lastX = e.touches[0].clientX;
-    if (this.rafLock) return;
-
-    this.rafLock = true;
-
-    setTimeout(() => {
-      const delta = this.lastX - this.data.startX;
-      let nextX = this.data.startTranslateX + delta;
-      const { listWidth } = this.data;
-
-      if (!listWidth) {
-        this.rafLock = false;
-        return;
-      }
-
-      if (nextX > 0) nextX -= listWidth;
-      if (nextX < -listWidth * 2) nextX += listWidth;
-
-      this.setData({ translateX: nextX });
-      this.rafLock = false;
-    }, 16);
-  },
-
-  async setGoodsList() {
-    const goodsList = await newYearService.getGoodsList();
-    this.setData({ goodsList });
-  },
-
-  updateCountDown() {
-    const targetTime = new Date("2026-02-16T23:59:59+08:00").getTime();
-    const now = Date.now();
-    let diff = targetTime - now;
-
-    if (diff <= 0) {
-      this.setData({ days: "00", hours: "00", minutes: "00", seconds: "00" });
-      return;
-    }
-
-    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-    diff %= 1000 * 60 * 60 * 24;
-    const h = Math.floor(diff / (1000 * 60 * 60));
-    diff %= 1000 * 60 * 60;
-    const m = Math.floor(diff / (1000 * 60));
-    const s = Math.floor((diff % (1000 * 60)) / 1000);
-    const format = n => String(n).padStart(2, "0");
-
-    this.setData({
-      days: format(d),
-      hours: format(h),
-      minutes: format(m),
-      seconds: format(s)
     });
   },
 
@@ -217,6 +188,35 @@ Page({
         }
       );
     });
+  },
+
+  onTouchStart(e) {
+    this.data.startX = e.touches[0].clientX;
+    this.data.startTranslateX = this.data.translateX;
+  },
+
+  onTouchMove(e) {
+    this.lastX = e.touches[0].clientX;
+    if (this.rafLock) return;
+
+    this.rafLock = true;
+
+    setTimeout(() => {
+      const delta = this.lastX - this.data.startX;
+      let nextX = this.data.startTranslateX + delta;
+      const { listWidth } = this.data;
+
+      if (!listWidth) {
+        this.rafLock = false;
+        return;
+      }
+
+      if (nextX > 0) nextX -= listWidth;
+      if (nextX < -listWidth * 2) nextX += listWidth;
+
+      this.setData({ translateX: nextX });
+      this.rafLock = false;
+    }, 16);
   },
 
   showLuckPopup() {
