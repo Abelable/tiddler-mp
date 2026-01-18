@@ -46,6 +46,16 @@ Component({
         { ...store.userInfo, avatar, nickname },
         () => {
           store.setUserInfo({ ...store.userInfo, avatar, nickname });
+          if (
+            store.superiorInfo &&
+            store.superiorInfo.id === store.userInfo.id
+          ) {
+            store.setSuperiorInfo({ ...store.superiorInfo, avatar, nickname });
+          }
+
+          // todo 团圆家乡年
+          mineService.finishTask(5);
+
           this.hide();
         }
       );
