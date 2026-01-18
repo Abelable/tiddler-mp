@@ -30,8 +30,8 @@ Component({
     },
 
     finishTask(e) {
-      const { type, param } = e.currentTarget.dataset;
-      if (type === 1) {
+      const { scene, param } = e.currentTarget.dataset;
+      if (scene === 1) {
         if (param.includes("tab-bar-pages")) {
           wx.switchTab({ url: param });
         } else {

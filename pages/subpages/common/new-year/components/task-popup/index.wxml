@@ -33,7 +33,7 @@
           wx:for="{{taskList}}" 
           wx:key="index"
           bindtap="finishTask"
-          data-type="{{item.type}}"
+          data-scene="{{item.scene}}"
           data-param="{{item.param}}"
         >
           <image class="task-icon" src="{{item.icon}}" />
