@@ -73,7 +73,7 @@ Page({
       ) {
         goodsService.finishTask(2, this.superiorId);
       }
-    }, 3000);
+    }, 2000);
   },
 
   onShow() {

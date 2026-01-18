@@ -51,15 +51,17 @@ Page({
       fields: ["userInfo"]
     });
 
-    const { id, scene = "" } = options || {};
+    const { id, superiorId = "", scene = "" } = options || {};
     const decodedSceneList = scene ? decodeURIComponent(scene).split("-") : [];
-    this.scenicId = +id || decodedSceneList[0];
-    this.superiorId = decodedSceneList[1] || "";
+    this.scenicId = Number(id || decodedSceneList[0]);
+    this.superiorId = Number(superiorId || decodedSceneList[1] || 0);
 
     getApp().onLaunched(async () => {
       if (this.superiorId && !store.superiorInfo) {
         wx.setStorageSync("superiorId", this.superiorId);
-        const superiorInfo = await scenicService.getUserInfoById(this.superiorId);
+        const superiorInfo = await scenicService.getUserInfoById(
+          this.superiorId
+        );
         if (superiorInfo.promoterInfo) {
           store.setSuperiorInfo(superiorInfo);
         }
@@ -72,6 +74,16 @@ Page({
     this.setMenuList();
     this.setData({ pageLoaded: true });
     this.setMediaList(true);
+
+    // todo 团圆家乡年
+    setTimeout(() => {
+      if (
+        this.superiorId &&
+        (!store.userInfo || this.superiorId !== store.userInfo.id)
+      ) {
+        scenicService.finishTask(10, this.superiorId);
+      }
+    }, 2000);
   },
 
   async setScenicCategoryOptions() {
@@ -118,7 +130,7 @@ Page({
     this.setData({
       curOpenTime,
       isOpen
-    });    
+    });
   },
 
   async setSourceTicketList() {
