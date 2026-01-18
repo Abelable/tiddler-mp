@@ -46,15 +46,17 @@ Page({
       fields: ["userInfo"]
     });
 
-    const { id, scene = "" } = options || {};
+    const { id, superiorId = "", scene = "" } = options || {};
     const decodedSceneList = scene ? decodeURIComponent(scene).split("-") : [];
-    this.goodsId = +id || decodedSceneList[0];
-    this.superiorId = decodedSceneList[1] || "";
+    this.goodsId = Number(id || decodedSceneList[0]);
+    this.superiorId = Number(superiorId || decodedSceneList[1] || 0);
 
     getApp().onLaunched(async () => {
       if (this.superiorId && !store.superiorInfo) {
         wx.setStorageSync("superiorId", this.superiorId);
-        const superiorInfo = await goodsService.getUserInfoById(this.superiorId);
+        const superiorInfo = await goodsService.getUserInfoById(
+          this.superiorId
+        );
         if (superiorInfo.promoterInfo) {
           store.setSuperiorInfo(superiorInfo);
         }
@@ -62,6 +64,16 @@ Page({
     });
 
     this.init();
+
+    // todo 团圆家乡年
+    setTimeout(() => {
+      if (
+        this.superiorId &&
+        (!store.userInfo || this.superiorId !== store.userInfo.id)
+      ) {
+        goodsService.finishTask(2, this.superiorId);
+      }
+    }, 3000);
   },
 
   onShow() {

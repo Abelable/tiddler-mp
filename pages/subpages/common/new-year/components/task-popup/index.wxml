@@ -32,9 +32,6 @@
           class="task" 
           wx:for="{{taskList}}" 
           wx:key="index"
-          bindtap="finishTask"
-          data-scene="{{item.scene}}"
-          data-param="{{item.param}}"
         >
           <image class="task-icon" src="{{item.icon}}" />
           <view class="task-info">
@@ -45,7 +42,14 @@
               <text class="task-luck">{{item.luckScore}}福气值</text>
             </view>
           </view>
-          <view class="task-bth">{{item.btnContent}}</view>
+          <view 
+            class="task-bth"
+            bindtap="finishTask"
+            data-scene="{{item.scene}}"
+            data-param="{{item.param}}"
+          >
+            {{item.btnContent}}
+          </view>
         </view>
       </view>
     </scroll-view>

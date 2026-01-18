@@ -275,6 +275,7 @@ Page({
 
   hideTaskPopup() {
     this.setData({ taskPopupVisible: false });
+    this.setLuckScore();
   },
 
   showPrizePopup() {

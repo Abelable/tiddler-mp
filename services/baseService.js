@@ -698,10 +698,10 @@ class BaseService extends Base {
   }
 
   // todo 团圆家乡年
-  async finishTask(taskId) {
+  async finishTask(taskId, userId = undefined) {
     return await this.post({
       url: `${this.baseUrl}/activity/new_year/finish_task`,
-      data: { taskId }
+      data: cleanObject({ taskId, userId })
     });
   }
 }
