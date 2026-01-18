@@ -37,7 +37,8 @@ Page({
     taskPopupVisible: false,
     prizePopupVisible: false,
     qrCode: "",
-    posterModalVisible: false
+    posterModalVisible: false,
+    rulePopupVisible: false
   },
 
   onLoad(options) {
@@ -247,7 +248,7 @@ Page({
   showLuckPopup() {
     checkLogin(() => {
       this.setData({ luckPopupVisible: true });
-    })
+    });
   },
 
   hideLuckPopup() {
@@ -257,7 +258,7 @@ Page({
   showTaskPopup() {
     checkLogin(() => {
       this.setData({ taskPopupVisible: true });
-    })
+    });
   },
 
   hideTaskPopup() {
@@ -267,11 +268,19 @@ Page({
   showPrizePopup() {
     checkLogin(() => {
       this.setData({ prizePopupVisible: true });
-    })
+    });
   },
 
   hidePrizePopup() {
     this.setData({ prizePopupVisible: false });
+  },
+
+  showRulePopup() {
+    this.setData({ rulePopupVisible: true });
+  },
+
+  hideRulePopup() {
+    this.setData({ rulePopupVisible: false });
   },
 
   showPosterModal() {

@@ -103,6 +103,9 @@
   background: linear-gradient(90deg, #996cfe 0%, #441aef 100%);
   border-radius: 32rpx;
 }
+.task-bth.finished {
+  opacity: 0.5;
+}
 
 .task {
   display: flex;

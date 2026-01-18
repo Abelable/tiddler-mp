@@ -7,6 +7,7 @@
     "luck-popup": "./components/luck-popup/index",
     "task-popup": "./components/task-popup/index",
     "prize-popup": "./components/prize-popup/index",
-    "poster-modal": "./components/poster-modal/index"
+    "poster-modal": "./components/poster-modal/index",
+    "rule-popup": "./components/rule-popup/index"
   }
 }

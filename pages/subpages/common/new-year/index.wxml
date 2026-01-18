@@ -141,9 +141,9 @@
 <view 
   class="share-btn" 
   style="top: {{statusBarHeight + 68}}px;"
-  bindtap="showPosterModal"
+  bindtap="showRulePopup"
 >
-  分享福气
+  规则
 </view>
 
 <luck-popup 
@@ -158,6 +158,10 @@
 <prize-popup 
   show="{{prizePopupVisible}}" 
   bind:hide="hidePrizePopup"
+/>
+<rule-popup 
+  show="{{rulePopupVisible}}" 
+  bind:hide="hideRulePopup"
 />
 
 <poster-modal wx:if="{{posterModalVisible}}" qrCode="{{qrCode}}" bind:hide="hidePosterModal" />
