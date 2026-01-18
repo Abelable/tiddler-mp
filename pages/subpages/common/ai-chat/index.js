@@ -1,6 +1,11 @@
-import { createStoreBindings } from "mobx-miniprogram-bindings";
 import * as TextEncoding from "text-encoding-shim";
+import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { store } from "../../../../store/index";
+import { checkLogin } from "../../../../utils/index";
+import BaseService from "../../../../services/baseService";
+
+const baseService = new BaseService();
+
 const { statusBarHeight } = getApp().globalData.systemInfo;
 
 Page({
@@ -122,6 +127,20 @@ Page({
         });
       }
     });
+
+    // todo 团圆家乡年
+    this.newYearTask()
+  },
+
+  // todo 团圆家乡年
+  newYearTask() {
+    checkLogin(() => {
+      if (this.finished) {
+        return
+      }
+      baseService.finishTask(8);
+      this.finished = true
+    }, false);
   },
 
   onUnload() {
