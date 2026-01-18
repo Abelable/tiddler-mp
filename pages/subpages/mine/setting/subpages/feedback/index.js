@@ -1,3 +1,4 @@
+import { checkLogin } from "../../../../../../utils/index";
 import SettingService from "../../utils/settingService";
 
 const settingService = new SettingService();
@@ -63,13 +64,24 @@ Page({
       return;
     }
     settingService.submitFeedback(content, imageList, this.mobile, () => {
+      // todo 团圆家乡年
+      this.newYearTask();
+
       wx.showToast({
         title: "提交成功",
         icon: "none"
       });
+
       setTimeout(() => {
         wx.navigateBack();
       }, 2000);
     });
+  },
+
+  // todo 团圆家乡年
+  newYearTask() {
+    checkLogin(() => {
+      settingService.finishTask(18);
+    }, false);
   }
 });
