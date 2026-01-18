@@ -47,7 +47,7 @@
         </view>
         <view class="luck-score-value">
           <image class="luck-bag" src="https://static.tiddler.cn/mp/new_year/luck_bag.webp" />
-          <view>0</view>
+          <view>{{luckScore}}</view>
         </view>
         <view class="activity-time">
           活动时间：2026.01.24-2026.02.24
@@ -147,6 +147,7 @@
 </view>
 
 <luck-popup 
+  luckScore="{{luckScore}}"
   show="{{luckPopupVisible}}" 
   bind:hide="hideLuckPopup"
 />

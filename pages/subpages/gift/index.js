@@ -1,4 +1,5 @@
 import { store } from "../../../store/index";
+import { checkLogin } from "../../../utils/index";
 import GiftService from "./utils/giftService";
 
 const giftService = new GiftService();
@@ -34,6 +35,13 @@ Page({
     await this.setGoodsList(true);
 
     this.setMenuTop();
+
+    // todo 团圆家乡年
+    checkLogin(() => {
+      this.taskTimeout = setTimeout(() => {
+        giftService.finishTask(1)
+      }, 10000);
+    }, false)
   },
 
   selectMenu(e) {
@@ -101,6 +109,13 @@ Page({
       if (!navBarVisible) this.setData({ navBarVisible: true });
     } else {
       if (navBarVisible) this.setData({ navBarVisible: false });
+    }
+  },
+
+  onUnload() {
+    // todo 团圆家乡年
+    if (this.taskTimeout) {
+      clearTimeout(this.taskTimeout)
     }
   },
 

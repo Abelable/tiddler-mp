@@ -1,61 +1,40 @@
-import { checkLogin } from "../../../../../../utils/index";
 import NewYearService from "../../utils/newYearService";
 
 const newYearService = new NewYearService();
 
 Component({
   properties: {
-    addressId: Number,
+    luckScore: Number,
     show: {
       type: Boolean,
       observer(truthy) {
         if (truthy) {
-          // this.setAddressList();
+          this.setLuckList(true);
         }
       }
     }
   },
 
   data: {
-    addressList: [],
-    selectedIndex: 0
+    luckList: []
   },
 
   methods: {
-    async setAddressList() {
-      const addressList = await newYearService.getAddressList();
-      this.setData({ addressList });
-
-      const { addressId } = this.properties;
-      if (addressId) {
-        const selectedIndex = addressList.findIndex(
-          item => item.id === addressId
-        );
-        this.setData({ selectedIndex });
-      }
+    loadMore() {
+      this.setLuckList();
     },
 
-    selectAddress(e) {
+    async setLuckList(init = false) {
+      if (init) this.page = 0;
+      const { list = [] } =
+        (await newYearService.getLuckList(++this.page)) || {};
       this.setData({
-        selectedIndex: Number(e.detail.value)
+        luckList: init ? list : [...this.data.luckList, ...list]
       });
-    },
-
-    confirm() {
-      const { addressList, selectedIndex } = this.data;
-      this.triggerEvent("hide", addressList[selectedIndex].id);
     },
 
     hide() {
       this.triggerEvent("hide");
-    },
-
-    navToAddressListPage() {
-      checkLogin(() => {
-        wx.navigateTo({
-          url: "/pages/subpages/mine/address/index"
-        });
-      });
     }
   }
 });

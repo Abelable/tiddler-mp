@@ -696,6 +696,14 @@ class BaseService extends Base {
       data: { shipCode, shipSn, mobile }
     });
   }
+
+  // todo 团圆家乡年
+  async finishTask(taskId) {
+    return await this.post({
+      url: `${this.baseUrl}/activity/new_year/finish_task`,
+      data: { taskId }
+    });
+  }
 }
 
 export default BaseService;

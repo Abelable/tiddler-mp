@@ -9,6 +9,7 @@ Page({
   data: {
     statusBarHeight,
     showBg: false,
+    luckScore: 0,
     press: false,
     days: "00",
     hours: "00",
@@ -71,6 +72,12 @@ Page({
     this.setPrizeList();
   },
 
+  onShow() {
+    checkLogin(() => {
+      this.setLuckScore();
+    }, false);
+  },
+
   updateCountDown() {
     const targetTime = new Date("2026-02-16T23:59:59+08:00").getTime();
     const now = Date.now();
@@ -95,6 +102,11 @@ Page({
       minutes: format(m),
       seconds: format(s)
     });
+  },
+
+  async setLuckScore() {
+    const luckScore = await newYearService.getLuckScore();
+    this.setData({ luckScore });
   },
 
   async setGoodsList() {
