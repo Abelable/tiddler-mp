@@ -23,17 +23,30 @@ Page({
   },
 
   async onLoad(options) {
-    const { id, authorId, mediaScene, scene = "" } = options || {};
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ["shareAppMessage", "shareTimeline"]
+    });
+
+    const {
+      id,
+      authorId,
+      mediaScene,
+      superiorId = "",
+      scene = ""
+    } = options || {};
     const decodedSceneList = scene ? decodeURIComponent(scene).split("-") : [];
-    this.videoId = +id || decodedSceneList[0];
-    this.superiorId = decodedSceneList[1] || "";
+    this.videoId = Number(id || decodedSceneList[0]);
+    this.superiorId = Number(superiorId || decodedSceneList[1] || 0);
     this.authorId = authorId ? +authorId : 0;
     this.mediaScene = mediaScene ? +mediaScene : 0;
 
     getApp().onLaunched(async () => {
       if (this.superiorId && !store.superiorInfo) {
         wx.setStorageSync("superiorId", this.superiorId);
-        const superiorInfo = await videoService.getUserInfoById(this.superiorId);
+        const superiorInfo = await videoService.getUserInfoById(
+          this.superiorId
+        );
         if (superiorInfo.promoterInfo) {
           store.setSuperiorInfo(superiorInfo);
         }
@@ -42,10 +55,15 @@ Page({
 
     this.setVideoList();
 
-    wx.showShareMenu({
-      withShareTicket: true,
-      menus: ["shareAppMessage", "shareTimeline"]
-    });
+    // todo 团圆家乡年
+    setTimeout(() => {
+      if (
+        this.superiorId &&
+        (!store.userInfo || this.superiorId !== store.userInfo.id)
+      ) {
+        videoService.finishTask(7, this.superiorId);
+      }
+    }, 2000);
   },
 
   changeVideo(e) {

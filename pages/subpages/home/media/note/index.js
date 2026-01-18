@@ -31,10 +31,10 @@ Page({
       fields: ["userInfo"]
     });
 
-    const { id, scene = "" } = options || {};
+    const { id, superiorId = "", scene = "" } = options || {};
     const decodedSceneList = scene ? decodeURIComponent(scene).split("-") : [];
-    this.noteId = +id || decodedSceneList[0];
-    this.superiorId = decodedSceneList[1] || "";
+    this.noteId = Number(id || decodedSceneList[0]);
+    this.superiorId = Number(superiorId || decodedSceneList[1] || 0);
 
     getApp().onLaunched(async () => {
       if (this.superiorId && !store.superiorInfo) {
@@ -48,6 +48,16 @@ Page({
 
     this.setNoteInfo();
     this.setCommentList(true);
+
+    // todo 团圆家乡年
+    setTimeout(() => {
+      if (
+        this.superiorId &&
+        (!store.userInfo || this.superiorId !== store.userInfo.id)
+      ) {
+        noteService.finishTask(7, this.superiorId);
+      }
+    }, 2000);
   },
 
   onPullDownRefresh() {
