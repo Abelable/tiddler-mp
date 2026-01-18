@@ -1,4 +1,5 @@
 import { store } from "../../../../store/index";
+import { checkLogin } from "../../../../utils/index";
 import ScenicService from "./utils/scenicService";
 
 const scenicService = new ScenicService();
@@ -31,6 +32,13 @@ Page({
     }
     await this.setCategoryOptions();
     this.setScenicList(true);
+
+    // todo 团圆家乡年
+    checkLogin(() => {
+      this.taskTimeout = setTimeout(() => {
+        scenicService.finishTask(9);
+      }, 10000);
+    }, false);
   },
 
   async setCategoryOptions() {
@@ -110,6 +118,13 @@ Page({
     wx.navigateTo({
       url: "/pages/subpages/common/search/index?scene=4"
     });
+  },
+
+  onUnload() {
+    // todo 团圆家乡年
+    if (this.taskTimeout) {
+      clearTimeout(this.taskTimeout);
+    }
   },
 
   onShareAppMessage() {

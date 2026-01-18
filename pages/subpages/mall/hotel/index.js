@@ -1,5 +1,6 @@
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { store } from "../../../../store/index";
+import { checkLogin } from "../../../../utils/index";
 import { formatter } from "./utils/index";
 import HotelService from "./utils/hotelService";
 
@@ -44,6 +45,13 @@ Page({
 
     await this.setCategoryOptions();
     this.setHotelList(true);
+
+    // todo 团圆家乡年
+    checkLogin(() => {
+      this.taskTimeout = setTimeout(() => {
+        hotelService.finishTask(12);
+      }, 10000);
+    }, false);
   },
 
   async setCategoryOptions() {
@@ -156,6 +164,11 @@ Page({
 
   onUnload() {
     this.storeBindings.destroyStoreBindings();
+
+    // todo 团圆家乡年
+    if (this.taskTimeout) {
+      clearTimeout(this.taskTimeout);
+    }
   },
 
   onShareAppMessage() {

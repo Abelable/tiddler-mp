@@ -1,5 +1,5 @@
-import { createStoreBindings } from "mobx-miniprogram-bindings";
 import { store } from "../../../../store/index";
+import { checkLogin } from "../../../../utils/index";
 import { formatter } from "./utils/index";
 import CateringService from "./utils/cateringService";
 
@@ -29,16 +29,18 @@ Page({
       menus: ["shareAppMessage", "shareTimeline"]
     });
 
-    this.storeBindings = createStoreBindings(this, {
-      store,
-      fields: ["checkInDate", "checkOutDate"]
-    });
-
     if (!store.locationInfo) {
       await cateringService.getLocationInfo();
     }
     await this.setCategoryOptions();
     this.setRestaurantList(true);
+
+    // todo 团圆家乡年
+    checkLogin(() => {
+      this.taskTimeout = setTimeout(() => {
+        cateringService.finishTask(15);
+      }, 10000);
+    }, false);
   },
 
   async setCategoryOptions() {
@@ -121,7 +123,10 @@ Page({
   },
 
   onUnload() {
-    this.storeBindings.destroyStoreBindings();
+    // todo 团圆家乡年
+    if (this.taskTimeout) {
+      clearTimeout(this.taskTimeout);
+    }
   },
 
   onShareAppMessage() {

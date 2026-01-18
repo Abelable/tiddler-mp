@@ -39,9 +39,9 @@ Page({
     // todo 团圆家乡年
     checkLogin(() => {
       this.taskTimeout = setTimeout(() => {
-        giftService.finishTask(1)
+        giftService.finishTask(1);
       }, 10000);
-    }, false)
+    }, false);
   },
 
   selectMenu(e) {
@@ -115,7 +115,7 @@ Page({
   onUnload() {
     // todo 团圆家乡年
     if (this.taskTimeout) {
-      clearTimeout(this.taskTimeout)
+      clearTimeout(this.taskTimeout);
     }
   },
 
@@ -134,7 +134,13 @@ Page({
   onShareTimeline() {
     const { curMenuIdx } = this.data;
     const { id } = store.superiorInfo || {};
-    const query = id ? `curMenuIdx=${curMenuIdx}&superiorId=${id}` : `curMenuIdx=${curMenuIdx}`;
-    return { query, title: "家乡好物", imageUrl: "https://static.tiddler.cn/mp/gift/share.jpg" };
+    const query = id
+      ? `curMenuIdx=${curMenuIdx}&superiorId=${id}`
+      : `curMenuIdx=${curMenuIdx}`;
+    return {
+      query,
+      title: "家乡好物",
+      imageUrl: "https://static.tiddler.cn/mp/gift/share.jpg"
+    };
   }
 });
