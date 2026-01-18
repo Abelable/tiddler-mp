@@ -59,6 +59,20 @@ Component({
   pageLifetimes: {
     show() {
       store.setTabType("home");
+
+      // todo 团圆家乡年
+      checkLogin(() => {
+        this.taskTimeout = setTimeout(() => {
+          homeService.finishTask(6);
+        }, 10000);
+      }, false);
+    },
+
+    hide() {
+      // todo 团圆家乡年
+      if (this.taskTimeout) {
+        clearTimeout(this.taskTimeout);
+      }
     }
   },
 
