@@ -43,12 +43,13 @@
             </view>
           </view>
           <view 
-            class="task-bth"
+            class="task-bth {{item.status !== 1 ? 'finished' : ''}}"
             bindtap="finishTask"
+            data-status="{{item.status}}"
             data-scene="{{item.scene}}"
             data-param="{{item.param}}"
           >
-            {{item.btnContent}}
+            {{item.status === 1 ? item.btnContent : '已完成'}}
           </view>
         </view>
       </view>
