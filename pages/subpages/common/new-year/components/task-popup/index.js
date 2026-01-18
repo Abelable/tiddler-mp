@@ -15,6 +15,12 @@ Component({
     }
   },
 
+  pageLifetimes: {
+    show() {
+      this.init();
+    }
+  },
+
   data: {
     taskList: []
   },
@@ -35,7 +41,7 @@ Component({
       if (status !== 1) {
         return
       }
-      
+
       if (scene === 1) {
         if (param.includes("tab-bar-pages")) {
           wx.switchTab({ url: param });
