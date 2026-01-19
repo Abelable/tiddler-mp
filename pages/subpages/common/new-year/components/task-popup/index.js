@@ -17,7 +17,9 @@ Component({
 
   pageLifetimes: {
     show() {
-      this.init();
+      if (this.properties.show) {
+        this.init();
+      }
     }
   },
 
@@ -39,7 +41,7 @@ Component({
       const { status, scene, param } = e.currentTarget.dataset;
 
       if (status !== 1) {
-        return
+        return;
       }
 
       if (scene === 1) {
