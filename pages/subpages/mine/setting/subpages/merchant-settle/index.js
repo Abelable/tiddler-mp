@@ -56,11 +56,12 @@ Component({
 
   methods: {
     onLoad(options) {
-      const { type, scene = "" } = options || {};
+      const { type, superiorId = "", scene = "" } = options || {};
       const decodedSceneList = scene
         ? decodeURIComponent(scene).split("-")
         : [];
       this.type = type || decodedSceneList[0];
+      this.superiorId = superiorId;
       this.inviterId = decodedSceneList[1] || "";
       this.taskId = decodedSceneList[2] || "";
 
@@ -123,7 +124,7 @@ Component({
 
         wx.navigateTo({
           url: this.qrcodeValid
-            ? `${url}&inviter_id=${this.inviterId}&task_id=${this.taskId}`
+            ? `${url}&inviter_id=${this.inviterId || this.superiorId}&task_id=${this.taskId}`
             : url
         });
       });
