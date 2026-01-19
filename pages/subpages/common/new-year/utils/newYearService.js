@@ -30,7 +30,7 @@ class NewYearService extends BaseService {
     return await this.get({
       url: `${this.baseUrl}/activity/new_year/luck_list`,
       data: { page, limit },
-      loadingTitle: "加载中"
+      loadingTitle: "正在加载"
     });
   }
 }

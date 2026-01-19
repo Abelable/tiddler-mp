@@ -91,7 +91,7 @@ Page({
       (await giftService.getGiftList(
         menuList[curMenuIdx].id,
         ++this.pageList[curMenuIdx],
-        init ? "加载中" : ""
+        init ? "正在加载" : ""
       )) || {};
     this.setData({
       [`goodsLists[${curMenuIdx}].list`]: init ? list : [...goodsList, ...list],

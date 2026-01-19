@@ -326,6 +326,14 @@ class BaseService extends Base {
     });
   }
 
+  async getWecomGroupQrCode(remark = "") {
+    return await this.get({
+      url: `${this.baseUrl}/wx/wecom_group_qr_code`,
+      data: cleanObject({ remark }),
+      loadingTitle: "正在加载"
+    });
+  }
+
   async getHistoryKeywords() {
     return await this.get({
       url: `${this.baseUrl}/keyword/list`,

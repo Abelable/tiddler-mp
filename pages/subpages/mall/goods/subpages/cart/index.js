@@ -25,7 +25,7 @@ Page({
   },
 
   async init() {
-    wx.showLoading({ title: "加载中" });
+    wx.showLoading({ title: "正在加载" });
     await this.setCartList();
     await this.setRecommendGoodsList(true);
     wx.hideLoading();

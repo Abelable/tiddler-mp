@@ -66,6 +66,7 @@ Component({
           wx.navigateTo({ url: param });
         }
       } else {
+        // newYearService.getWecomGroupQrCode()
       }
     },
 
