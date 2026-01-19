@@ -27,12 +27,6 @@ class PromoterService extends BaseService {
     });
   }
 
-  async getTodayNewCustomerList() {
-    return await this.get({
-      url: `${this.baseUrl}/promoter/today_new_customer_list`
-    });
-  }
-
   async getTodayOrderingCustomerList() {
     return await this.get({
       url: `${this.baseUrl}/promoter/today_ordering_customer_list`

@@ -24,12 +24,27 @@ Component({
   },
 
   data: {
+    invitedUserList: [{}, {}, {}, {}, {}],
+    invitedUserCount: 0,
     taskList: []
   },
 
   methods: {
     init() {
+      this.setInvitedUserList();
       this.setTaskList();
+    },
+
+    async setInvitedUserList() {
+      const list = await newYearService.getTodayNewCustomerList();
+      const invitedUserList = list.slice(0, 4);
+      while (invitedUserList.length < 4) {
+        invitedUserList.push({});
+      }
+      this.setData({
+        invitedUserList,
+        invitedUserCount: Math.min(list.length, 4)
+      });
     },
 
     async setTaskList() {
@@ -55,6 +70,9 @@ Component({
     },
 
     share() {
+      if (this.data.invitedUserCount === 4) {
+        return
+      }
       this.triggerEvent("share");
     },
 

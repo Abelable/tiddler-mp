@@ -12,20 +12,24 @@
       <view class="task-list">
         <view class="task-invite">
           <view class="task-info">
-            <text class="task-title">邀请新人助力 0/4</text>
+            <text class="task-title">邀请新人助力 {{invitedUserCount}}/4</text>
             <view class="task-content">
               <text>邀请成功可得</text>
               <image class="luck-icon" src="https://static.tiddler.cn/mp/new_year/luck_bag.webp" />
               <text class="task-luck">80福气值</text>
             </view>
             <view class="friends">
-              <view class="friend"><image class="friend-avatar" src="https://static.tiddler.cn/mp/new_year/friend_empty.webp" /></view>
-              <view class="friend"><image class="friend-avatar" src="https://static.tiddler.cn/mp/new_year/friend_empty.webp" /></view>
-              <view class="friend"><image class="friend-avatar" src="https://static.tiddler.cn/mp/new_year/friend_empty.webp" /></view>
-              <view class="friend"><image class="friend-avatar" src="https://static.tiddler.cn/mp/new_year/friend_empty.webp" /></view>
+              <view class="friend {{!item.avatar ? 'empty' : ''}}" wx:for="{{invitedUserList}}" wx:key="index">
+                <image class="friend-avatar" src="{{item.avatar || 'https://static.tiddler.cn/mp/new_year/friend_empty.webp'}}" />
+              </view>
             </view>
           </view>
-          <view class="task-bth" bindtap="share">去邀请</view>
+          <view 
+            class="task-bth {{invitedUserCount === 4 ? 'finished' : ''}}" 
+            bindtap="share"
+          >
+            {{invitedUserCount === 4 ? '已完成' : '去邀请'}}
+          </view>
         </view>
   
         <view 

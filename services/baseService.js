@@ -704,6 +704,12 @@ class BaseService extends Base {
       data: cleanObject({ taskId, userId, referenceId })
     });
   }
+
+  async getTodayNewCustomerList() {
+    return await this.get({
+      url: `${this.baseUrl}/promoter/today_new_customer_list`
+    });
+  }
 }
 
 export default BaseService;

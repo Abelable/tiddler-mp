@@ -81,8 +81,10 @@
   height: 58rpx;
   margin-right: 16rpx;
   border-radius: 24rpx;
-  border: 1rpx dashed #3d099a;
   overflow: hidden;
+}
+.friend.empty {
+  border: 1rpx dashed #3d099a;
 }
 
 .friend-avatar {
