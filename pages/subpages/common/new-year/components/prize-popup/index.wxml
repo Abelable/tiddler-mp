@@ -6,7 +6,12 @@
       <image class="prize-popup-title" src="https://static.tiddler.cn/mp/new_year/prize_popup_title.webp" mode="widthFix"/>
     </view>
 
-    <scroll-view class="prize-list-wrap" scroll-y="true" scroll-with-animation="true">
+    <scroll-view 
+      class="prize-list-wrap" 
+      bindscrolltolower="loadMore"
+      scroll-y 
+      scroll-with-animation
+    >
       <view class="prize-list">
         <view class="prize" wx:for="{{prizeList}}" wx:key="index">
           <image class="prize-icon" src="{{item.cover}}" />

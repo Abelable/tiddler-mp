@@ -8,7 +8,7 @@ Component({
       type: Boolean,
       observer(truthy) {
         if (truthy) {
-          this.setPrizeList();
+          this.setPrizeList(true);
         }
       }
     }
@@ -20,10 +20,14 @@ Component({
   },
 
   methods: {
+    loadMore() {
+      this.setPrizeList();
+    },
+
     async setPrizeList(init = false) {
       if (init) this.page = 0;
       const { list = [] } =
-        (await newYearService.getPrizeList(++this.page)) || {};
+        (await newYearService.getUserPrizeList(++this.page)) || {};
       const handleList = list.map(item => {
         const { prizeType, status } = item;
         let btnDesc = "";
