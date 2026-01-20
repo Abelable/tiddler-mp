@@ -39,6 +39,14 @@ class NewYearService extends BaseService {
       url: `${this.baseUrl}/activity/new_year/draw`
     });
   }
+
+  async getUserPrizeList(page, limit = 10) {
+    return await this.get({
+      url: `${this.baseUrl}/activity/new_year/user_prize_list`,
+      data: { page, limit },
+      loadingTitle: "正在加载"
+    });
+  }
 }
 
 export default NewYearService;

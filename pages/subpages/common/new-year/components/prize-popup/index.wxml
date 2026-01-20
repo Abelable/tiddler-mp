@@ -1,3 +1,5 @@
+<wxs module="TIME" src="/utils/filters/time.wxs" />
+
 <van-popup show="{{show}}" safe-area-inset-bottom="{{false}}" round position="bottom" bind:close="hide">
   <view class="prize-popup-main">
     <view class="title-wrap">
@@ -6,72 +8,21 @@
 
     <scroll-view class="prize-list-wrap" scroll-y="true" scroll-with-animation="true">
       <view class="prize-list">
-        <view class="prize">
-          <image class="prize-icon" src="https://static.tiddler.cn/mp/new_year/hometown_goods.webp" />
+        <view class="prize" wx:for="{{prizeList}}" wx:key="index">
+          <image class="prize-icon" src="{{item.cover}}" />
           <view class="prize-info">
-            <text class="prize-title">逛一逛家乡好物会场</text>
-            <view class="prize-time">2026.01.24 12:12:12</view>
+            <text class="prize-title">{{item.name}}</text>
+            <view class="prize-time">{{TIME.transform(item.createdAt, 'YYYY-MM-DD hh:mm:ss')}}</view>
           </view>
-          <view class="prize-bth">去逛逛</view>
-        </view>
-  
-        <view class="prize">
-          <image class="prize-icon" src="https://static.tiddler.cn/mp/new_year/hometown_goods.webp" />
-          <view class="prize-info">
-            <text class="prize-title">分享家乡好物</text>
-            <view class="prize-time">2026.01.24 12:12:12</view>
+          <view 
+            class="prize-bth {{item.status === 1 ? 'used' : ''}}" 
+            wx:if="{{item.prizeType === 2 || item.prizeType === 3}}"
+            bindtap="use"
+            data-type="{{item.prizeType}}"
+            data-id="{{item.goodsId}}"
+          >
+            {{item.btnDesc}}
           </view>
-          <view class="prize-bth">去分享</view>
-        </view>
-        <view class="prize">
-          <image class="prize-icon" src="https://static.tiddler.cn/mp/new_year/hometown_goods.webp" />
-          <view class="prize-info">
-            <text class="prize-title">逛一逛家乡好物会场</text>
-            <view class="prize-time">2026.01.24 12:12:12</view>
-          </view>
-          <view class="prize-bth">去逛逛</view>
-        </view>
-  
-        <view class="prize">
-          <image class="prize-icon" src="https://static.tiddler.cn/mp/new_year/hometown_goods.webp" />
-          <view class="prize-info">
-            <text class="prize-title">分享家乡好物</text>
-            <view class="prize-time">2026.01.24 12:12:12</view>
-          </view>
-          <view class="prize-bth">去分享</view>
-        </view>
-        <view class="prize">
-          <image class="prize-icon" src="https://static.tiddler.cn/mp/new_year/hometown_goods.webp" />
-          <view class="prize-info">
-            <text class="prize-title">逛一逛家乡好物会场</text>
-            <view class="prize-time">2026.01.24 12:12:12</view>
-          </view>
-          <view class="prize-bth">去逛逛</view>
-        </view>
-  
-        <view class="prize">
-          <image class="prize-icon" src="https://static.tiddler.cn/mp/new_year/hometown_goods.webp" />
-          <view class="prize-info">
-            <text class="prize-title">分享家乡好物</text>
-            <view class="prize-time">2026.01.24 12:12:12</view>
-          </view>
-          <view class="prize-bth">去分享</view>
-        </view><view class="prize">
-          <image class="prize-icon" src="https://static.tiddler.cn/mp/new_year/hometown_goods.webp" />
-          <view class="prize-info">
-            <text class="prize-title">逛一逛家乡好物会场</text>
-            <view class="prize-time">2026.01.24 12:12:12</view>
-          </view>
-          <view class="prize-bth">去逛逛</view>
-        </view>
-  
-        <view class="prize">
-          <image class="prize-icon" src="https://static.tiddler.cn/mp/new_year/hometown_goods.webp" />
-          <view class="prize-info">
-            <text class="prize-title">分享家乡好物</text>
-            <view class="prize-time">2026.01.24 12:12:12</view>
-          </view>
-          <view class="prize-bth">去分享</view>
         </view>
       </view>
     </scroll-view>

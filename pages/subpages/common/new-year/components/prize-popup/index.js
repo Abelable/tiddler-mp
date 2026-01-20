@@ -1,61 +1,60 @@
-import { checkLogin } from "../../../../../../utils/index";
 import NewYearService from "../../utils/newYearService";
 
 const newYearService = new NewYearService();
 
 Component({
   properties: {
-    addressId: Number,
     show: {
       type: Boolean,
       observer(truthy) {
         if (truthy) {
-          // this.setAddressList();
+          this.setPrizeList();
         }
       }
     }
   },
 
   data: {
-    addressList: [],
+    prizeList: [],
     selectedIndex: 0
   },
 
   methods: {
-    async setAddressList() {
-      const addressList = await newYearService.getAddressList();
-      this.setData({ addressList });
-
-      const { addressId } = this.properties;
-      if (addressId) {
-        const selectedIndex = addressList.findIndex(
-          item => item.id === addressId
-        );
-        this.setData({ selectedIndex });
-      }
-    },
-
-    selectAddress(e) {
+    async setPrizeList(init = false) {
+      if (init) this.page = 0;
+      const { list = [] } =
+        (await newYearService.getPrizeList(++this.page)) || {};
+      const handleList = list.map(item => {
+        const { prizeType, status } = item;
+        let btnDesc = "";
+        if (prizeType === 2) {
+          btnDesc = status ? "已使用" : "去使用";
+        } else if (prizeType === 3) {
+          btnDesc = status ? "已领取" : "去领取";
+        }
+        return {
+          ...item,
+          btnDesc
+        };
+      });
       this.setData({
-        selectedIndex: Number(e.detail.value)
+        prizeList: init ? handleList : [...this.data.prizeList, ...handleList]
       });
     },
 
-    confirm() {
-      const { addressList, selectedIndex } = this.data;
-      this.triggerEvent("hide", addressList[selectedIndex].id);
+    use(e) {
+      const { type, id } = e.currentTarget.dataset;
+      if (type === 2) {
+        const url = `/pages/subpages/mall/goods/subpages/goods-detail/index?id=${id}`;
+        wx.navigateTo({ url });
+      }
+      if (type === 3) {
+        // 兑换奖品
+      }
     },
 
     hide() {
       this.triggerEvent("hide");
-    },
-
-    navToAddressListPage() {
-      checkLogin(() => {
-        wx.navigateTo({
-          url: "/pages/subpages/mine/address/index"
-        });
-      });
     }
   }
 });
