@@ -1,7 +1,6 @@
 {
   "component": true,
   "usingComponents": {
-    "van-popup": "/pages/subpages/components/weapp/popup/index",
-    "van-icon": "/pages/subpages/components/weapp/icon/index"
+    "van-popup": "/pages/subpages/components/weapp/popup/index"
   }
 }

@@ -47,6 +47,7 @@
             </view>
           </view>
           <view 
+            wx:if="{{item.scene === 1}}"
             class="task-bth {{item.status !== 1 ? 'finished' : ''}}"
             bindtap="finishTask"
             data-status="{{item.status}}"
@@ -54,6 +55,20 @@
             data-param="{{item.param}}"
           >
             {{item.status === 1 ? item.btnContent : '已完成'}}
+          </view>
+          <view 
+            wx:if="{{item.scene === 2}}"
+            class="task-bth {{item.status !== 1 ? 'finished' : ''}}"
+          >
+            {{item.status === 1 ? item.btnContent : '已完成'}}
+            <cell 
+              wx:if="{{item.status === 1}}"
+              class="wx-company-btn"
+              bind:completemessage="joinGroupCallback" 
+              url='https://work.weixin.qq.com/gm/5ecba849a298d50f46a7599f9d87f95c'
+              iconUrl=""
+              contactText=""
+            />
           </view>
         </view>
       </view>

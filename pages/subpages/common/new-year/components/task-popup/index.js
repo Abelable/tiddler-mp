@@ -65,8 +65,13 @@ Component({
         } else {
           wx.navigateTo({ url: param });
         }
-      } else {
-        // newYearService.getWecomGroupQrCode()
+      }
+    },
+
+    async joinGroupCallback(e) {
+      if (e.detail.errcode === -3006) {
+        await newYearService.finishTask(4)
+        this.init()
       }
     },
 
