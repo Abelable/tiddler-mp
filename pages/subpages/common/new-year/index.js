@@ -120,6 +120,7 @@ Page({
     const prizeList = [
       ...list,
       {
+        id: 0,
         cover: "https://static.tiddler.cn/mp/new_year/thanks.webp",
         name: "谢谢参与"
       }
@@ -168,15 +169,26 @@ Page({
     this.setData({ press: true });
   },
 
-  onPressEnd() {
+  async onPressEnd() {
     this.setData({ press: false });
+
+    if (this.data.luckScore < 20) {
+      wx.showToast({
+        title: "当前福气值不足20",
+        icon: "none"
+      });
+      return
+    }
+
     if (this.animating || !this.data.listWidth) return;
     this.animating = true;
 
     const { prizeList, listWidth, viewportWidth } = this.data;
 
-    // 1. 模拟中奖索引 (0 - 8)
-    const targetIndex = Math.floor(Math.random() * prizeList.length);
+    const prizeId = await newYearService.draw();
+    const targetIndex = prizeList.findIndex(item => item.id === prizeId);
+
+    this.setLuckScore();
 
     // 2. 重新获取位置信息（防止布局抖动）
     const query = wx.createSelectorQuery().in(this);

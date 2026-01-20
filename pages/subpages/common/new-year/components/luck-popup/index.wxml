@@ -23,7 +23,7 @@
             <view class="luck-time">{{TIME.transform(item.createdAt, 'YYYY-MM-DD hh:mm:ss')}}</view>
           </view>
           <view class="luck-score {{item.type === 2 ? 'used' : ''}}">
-            {{item.type === 1 ? '+' : '-'}}{{item.score}}
+            {{item.type === 1 ? '+' : ''}}{{item.score}}
           </view>
         </view>
       </view>

@@ -33,6 +33,12 @@ class NewYearService extends BaseService {
       loadingTitle: "正在加载"
     });
   }
+
+   async draw() {
+    return await this.post({
+      url: `${this.baseUrl}/activity/new_year/draw`
+    });
+  }
 }
 
 export default NewYearService;
