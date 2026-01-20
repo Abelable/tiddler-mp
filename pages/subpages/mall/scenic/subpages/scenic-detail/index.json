@@ -3,7 +3,7 @@
   "navigationBarTextStyle": "white",
   "usingComponents": {
     "back-icon": "/components/back-icon-white/index",
-    "van-rate": "@vant/weapp/rate/index",
+    "van-rate": "/pages/subpages/components/weapp/rate/index",
     "evaluation-item": "../../../components/evaluation-item/index",
     "hotel-item": "../../../components/hotel-item/index",
     "scenic-item": "../../../components/scenic-item/index",

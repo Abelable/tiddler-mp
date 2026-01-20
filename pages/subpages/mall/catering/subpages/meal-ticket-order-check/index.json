@@ -3,7 +3,7 @@
   "navigationBarTextStyle": "white",
   "usingComponents": {
     "back-icon": "/components/back-icon-white/index",
-    "van-stepper": "@vant/weapp/stepper/index",
+    "van-stepper": "/pages/subpages/components/weapp/stepper/index",
     "price-unit": "/components/price-unit/index",
     "notice-popup": "./components/notice-popup/index"
   }

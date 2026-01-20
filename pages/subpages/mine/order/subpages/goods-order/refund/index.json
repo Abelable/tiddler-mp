@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "售后申请",
   "usingComponents": {
-    "van-uploader": "@vant/weapp/uploader/index"
+    "van-uploader": "/pages/subpages/components/weapp/uploader/index"
   }
 }

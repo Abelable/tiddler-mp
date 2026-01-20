@@ -3,8 +3,8 @@
   "navigationBarTextStyle": "white",
   "usingComponents": {
     "back-icon": "/components/back-icon-white/index",
-    "van-stepper": "@vant/weapp/stepper/index",
-    "van-calendar": "@vant/weapp/calendar/index",
+    "van-stepper": "/pages/subpages/components/weapp/stepper/index",
+    "van-calendar": "/pages/subpages/components/weapp/calendar/index",
     "price-unit": "/components/price-unit/index",
     "price-detail-popup": "./components/price-detail-popup/index",
     "notice-popup": "../../components/notice-popup/index"

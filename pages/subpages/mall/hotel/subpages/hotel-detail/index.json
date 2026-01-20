@@ -2,9 +2,9 @@
   "navigationStyle": "custom",
   "navigationBarTextStyle": "white",
   "usingComponents": {
-    "van-index-bar": "@vant/weapp/index-bar/index",
-    "van-index-anchor": "@vant/weapp/index-anchor/index",
-    "van-calendar": "@vant/weapp/calendar/index",
+    "van-index-bar": "/pages/subpages/components/weapp/index-bar/index",
+    "van-index-anchor": "/pages/subpages/components/weapp/index-anchor/index",
+    "van-calendar": "/pages/subpages/components/weapp/calendar/index",
     "back-icon": "/components/back-icon-white/index",
     "price-unit": "/components/price-unit/index",
     "room-item": "./components/room-item/index",

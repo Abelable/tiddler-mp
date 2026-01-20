@@ -2,7 +2,7 @@
   "navigationBarTitleText": "搜索",
   "enablePullDownRefresh": true,
   "usingComponents": {
-    "van-calendar": "@vant/weapp/calendar/index",
+    "van-calendar": "/pages/subpages/components/weapp/calendar/index",
     "empty-illus": "/components/empty-illus/index",
     "fall-flow": "/components/fall-flow/index",
     "media-item": "/components/media-item",
