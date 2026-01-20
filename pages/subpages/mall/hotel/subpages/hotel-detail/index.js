@@ -104,11 +104,9 @@ Component({
 
       // todo 团圆家乡年
       setTimeout(() => {
-        if (
-          this.superiorId &&
-          (!store.userInfo || this.superiorId !== store.userInfo.id)
-        ) {
-          hotelService.finishTask(13, this.superiorId);
+        const userId = store.userInfo ? store.userInfo.id : 0;
+        if (this.superiorId && (!userId || this.superiorId !== userId)) {
+          hotelService.finishTask(13, this.superiorId, userId);
         }
       }, 2000);
     },

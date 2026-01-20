@@ -67,11 +67,9 @@ Page({
 
     // todo 团圆家乡年
     setTimeout(() => {
-      if (
-        this.superiorId &&
-        (!store.userInfo || this.superiorId !== store.userInfo.id)
-      ) {
-        goodsService.finishTask(2, this.superiorId);
+      const userId = store.userInfo ? store.userInfo.id : 0;
+      if (this.superiorId && (!userId || this.superiorId !== userId)) {
+        goodsService.finishTask(2, this.superiorId, userId);
       }
     }, 2000);
   },
