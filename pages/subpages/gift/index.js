@@ -40,7 +40,7 @@ Page({
     checkLogin(() => {
       this.taskTimeout = setTimeout(() => {
         giftService.finishTask(1);
-      }, 10000);
+      }, 15000);
     }, false);
   },
 

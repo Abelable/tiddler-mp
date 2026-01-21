@@ -64,7 +64,7 @@ Component({
       checkLogin(() => {
         this.taskTimeout = setTimeout(() => {
           homeService.finishTask(6);
-        }, 10000);
+        }, 15000);
       }, false);
     },
 

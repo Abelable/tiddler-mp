@@ -39,7 +39,7 @@ Page({
     checkLogin(() => {
       this.taskTimeout = setTimeout(() => {
         cateringService.finishTask(15);
-      }, 10000);
+      }, 15000);
     }, false);
   },
 

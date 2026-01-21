@@ -50,7 +50,7 @@ Page({
     checkLogin(() => {
       this.taskTimeout = setTimeout(() => {
         hotelService.finishTask(12);
-      }, 10000);
+      }, 15000);
     }, false);
   },
 
