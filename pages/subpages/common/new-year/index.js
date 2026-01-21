@@ -174,7 +174,7 @@ Page({
 
     if (this.data.luckScore < 20) {
       wx.showToast({
-        title: "当前福气值不足20",
+        title: "福气值不足，去做任务吧",
         icon: "none"
       });
       return
