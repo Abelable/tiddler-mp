@@ -11,7 +11,7 @@
     <view class="card win-animate">
       <image class="title {{info.id === 0 ? 'thanks' : ''}}" src="https://static.tiddler.cn/mp/new_year/prize_modal/title_{{info.id === 0 ? 2 : 1}}.webp" />
       <view class="content">
-        <text>{{info.id === 0 ? '下一份福气正在路上' : '恭喜您抽中'}}</text>
+        <text>{{info.id === 0 ? '感谢参与，下一份福气正在路上' : '恭喜您抽中'}}</text>
         <text style="color: #441aef" wx:if="{{info.id !== 0}}"> {{info.name}}</text>
       </view>
       <view class="prize-cover-wrap">
