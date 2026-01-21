@@ -1,0 +1,167 @@
+/* --- 遮罩基础 --- */
+.modal-mask {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6); /* 加深遮罩使光晕更亮 */
+  z-index: 180;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main {
+  position: relative;
+  width: 600rpx;
+  height: 722rpx;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* --- 增强光晕效果 --- */
+.light-base {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 700rpx;
+  height: 700rpx;
+  background: radial-gradient(circle, rgba(255, 220, 100, 0.8) 0%, rgba(255, 180, 0, 0) 70%);
+  transform: translate(-50%, -50%);
+  filter: blur(40rpx);
+  z-index: 1;
+  opacity: 0.6;
+}
+
+.light-ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 900rpx;
+  height: 900rpx;
+  border-radius: 50%;
+  background: radial-gradient(circle, transparent 40%, rgba(255, 230, 150, 0.5) 50%, transparent 65%);
+  transform: translate(-50%, -50%);
+  animation: rippleSpread 2.5s linear infinite;
+  z-index: 1;
+}
+
+@keyframes rippleSpread {
+  0% { transform: translate(-50%, -50%) scale(0.6); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(1.6); opacity: 0; }
+}
+
+/* --- 碎花 (Confetti) 效果 --- */
+.confetti {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12rpx;   /* 碎纸片宽度 */
+  height: 20rpx;  /* 碎纸片高度 */
+  background: transparent;
+}
+
+@keyframes confettiExplode {
+  0% {
+    transform: translate(-50%, -50%) scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    /* 爆发扩散，scale(1.5) 确保扩散范围大 */
+    transform: translate(-50%, -50%) scale(1.5) rotate(360deg);
+    opacity: 0;
+    /* 利用 box-shadow 绘制彩色不规则碎纸片 */
+    box-shadow: 
+      -280rpx -350rpx 0 #FFD700, 280rpx -350rpx 0 #FF4D4D,
+      -350rpx -100rpx 0 #4D94FF, 350rpx -100rpx 0 #4DFFAD,
+      -200rpx 300rpx 0 #FF8C00, 200rpx 300rpx 0 #E066FF,
+      -400rpx 100rpx 0 #FFEB3B, 400rpx 100rpx 0 #03A9F4,
+      0rpx -450rpx 0 #FF4081, 0rpx 450rpx 0 #8BC34A,
+      -150rpx -400rpx 0 #FFFFFF, 150rpx -400rpx 0 #FFD700;
+  }
+}
+
+.flower1 { animation: confettiExplode 2s cubic-bezier(0.1, 0.5, 0.3, 1) infinite; }
+.flower2 { animation: confettiExplode 2s cubic-bezier(0.1, 0.5, 0.3, 1) infinite 0.5s; transform: rotate(15deg); }
+.flower3 { animation: confettiExplode 2s cubic-bezier(0.1, 0.5, 0.3, 1) infinite 1s; transform: rotate(45deg); }
+.flower4 { animation: confettiExplode 2s cubic-bezier(0.1, 0.5, 0.3, 1) infinite 1.5s; transform: rotate(-20deg); }
+
+/* --- 卡片动画 --- */
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 600rpx;
+  height: 722rpx;
+  background-image: url("https://static.tiddler.cn/mp/new_year/prize_modal/bg.webp");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  z-index: 2;
+}
+.card.win-animate {
+  animation: winBoom 0.6s cubic-bezier(0.22, 1.6, 0.36, 1) forwards;
+}
+@keyframes winBoom {
+  0% { transform: scale(0.4); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.title {
+  margin-top: 32rpx;
+  width: 390rpx;
+  height: 80rpx;
+}
+.title.thanks {
+  width: 446rpx;
+}
+.content {
+  margin-top: 24rpx;
+  color: #333;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.prize-cover-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 24rpx;
+  width: 320rpx;
+  height: 320rpx;
+}
+.prize-cover {
+  width: 100%;
+}
+.confirm-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 32rpx;
+  width: 480rpx;
+  height: 88rpx;
+  border-radius: 44rpx;
+  background: linear-gradient(90deg, #FF3F4A 0%, #FF40A8 100%);
+}
+.btn-desc {
+  width: 156rpx;
+  height: 40rpx;
+}
+.tips {
+  margin-top: 12rpx;
+  color: #999;
+  font-size: 24rpx;
+}
+
+/* --- 关闭按钮 --- */
+.close-icon {
+  position: absolute;
+  bottom: -110rpx;
+  width: 64rpx;
+  height: 64rpx;
+  z-index: 4;
+}

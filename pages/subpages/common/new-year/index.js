@@ -20,6 +20,8 @@ Page({
     transition: "none",
     prizeList: [],
     renderList: [],
+    curPrizeIdx: -1,
+    prizeModalVisible: false,
     listWidth: 0,
     animating: false,
     goodsList: [],
@@ -177,7 +179,7 @@ Page({
         title: "福气值不足，去做任务吧",
         icon: "none"
       });
-      return
+      return;
     }
 
     if (this.animating || !this.data.listWidth) return;
@@ -186,7 +188,7 @@ Page({
     const { prizeList, listWidth, viewportWidth } = this.data;
 
     const prizeId = await newYearService.draw();
-    const targetIndex = prizeList.findIndex(item => item.id === prizeId);
+    const curPrizeIdx = prizeList.findIndex(item => item.id === prizeId);
 
     this.setLuckScore();
 
@@ -198,7 +200,7 @@ Page({
       const singleCount = prizeList.length;
 
       // 目标设在第二组里的对应位置
-      const targetRect = rects[singleCount + targetIndex];
+      const targetRect = rects[singleCount + curPrizeIdx];
 
       // 3. 计算居中偏移量
       // 奖品相对于 track 起点的中心点 = (奖品left - 容器left) + 奖品宽度/2
@@ -228,10 +230,9 @@ Page({
             // 5. 动画结束回调
             setTimeout(() => {
               this.animating = false;
-              wx.showModal({
-                title: "中奖啦",
-                content: `恭喜获得：${prizeList[targetIndex].name}`,
-                showCancel: false
+              this.setData({
+                curPrizeIdx,
+                prizeModalVisible: true
               });
             }, 4000);
           }, 50);
@@ -306,6 +307,13 @@ Page({
 
   hideRulePopup() {
     this.setData({ rulePopupVisible: false });
+  },
+
+  hidePrizeModal() {
+    this.setData({ 
+      curPrizeIdx: -1,
+      prizeModalVisible: false 
+    });
   },
 
   showPosterModal() {

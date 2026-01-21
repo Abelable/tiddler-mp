@@ -8,6 +8,7 @@
     "task-popup": "./components/task-popup/index",
     "prize-popup": "./components/prize-popup/index",
     "poster-modal": "./components/poster-modal/index",
-    "rule-popup": "./components/rule-popup/index"
+    "rule-popup": "./components/rule-popup/index",
+    "prize-modal": "./components/prize-modal/index"
   }
 }

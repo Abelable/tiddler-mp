@@ -164,5 +164,13 @@
   show="{{rulePopupVisible}}" 
   bind:hide="hideRulePopup"
 />
-
-<poster-modal wx:if="{{posterModalVisible}}" qrCode="{{qrCode}}" bind:hide="hidePosterModal" />
+<prize-modal 
+  wx:if="{{prizeModalVisible}}"
+  info="{{prizeList[curPrizeIdx]}}"
+  bind:hide="hidePrizeModal" 
+/>
+<poster-modal 
+  wx:if="{{posterModalVisible}}" 
+  qrCode="{{qrCode}}" 
+  bind:hide="hidePosterModal" 
+/>

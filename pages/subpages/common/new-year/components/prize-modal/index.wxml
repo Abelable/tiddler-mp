@@ -1,0 +1,37 @@
+<view class="modal-mask" bindtap="hide">
+  <view class="light-base"></view>
+  <view class="light-ripple"></view>
+
+  <view class="main" catchtap="catchtap">
+    <view class="confetti flower1"></view>
+    <view class="confetti flower2"></view>
+    <view class="confetti flower3"></view>
+    <view class="confetti flower4"></view>
+
+    <view class="card win-animate">
+      <image class="title {{info.id === 0 ? 'thanks' : ''}}" src="https://static.tiddler.cn/mp/new_year/prize_modal/title_{{info.id === 0 ? 2 : 1}}.webp" />
+      <view class="content">
+        <text>{{info.id === 0 ? '下一份福气正在路上' : '恭喜您抽中'}}</text>
+        <text style="color: #441aef" wx:if="{{info.id !== 0}}"> {{info.name}}</text>
+      </view>
+      <view class="prize-cover-wrap">
+        <image 
+          wx:if="{{cover}}"
+          class="prize-cover" 
+          src="https://static.tiddler.cn/mp/new_year/prize_modal/{{cover}}.webp" 
+          mode="widthFix" 
+        />
+      </view>
+      <view class="confirm-btn" catchtap="receive">
+        <image class="btn-desc" wx:if="{{btnDescIdx}}" src="https://static.tiddler.cn/mp/new_year/prize_modal/btn_desc_{{btnDescIdx}}.webp" />
+      </view>
+      <view class="tips" wx:if="{{info.id !== 0}}">可在「我的奖品」查看</view>
+    </view>
+
+    <image
+      class="close-icon"
+      catchtap="hide"
+      src="https://static.tiddler.cn/mp/home/close_icon.webp"
+    />
+  </view>
+</view>
