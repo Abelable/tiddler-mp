@@ -9,7 +9,7 @@ Page({
   data: {
     statusBarHeight,
     navBarBgVisible: false,
-    scene: 1, // 1，2，3-佣金提现；4，5，6，7-店铺收益提现；8-奖励提现；
+    scene: 1, // 1，2，3-佣金提现；4，5，6，7-店铺收益提现；8-任务奖励提现；
     amount: 0,
     taxFee: 0,
     handlingFee: 0,
@@ -24,14 +24,20 @@ Page({
 
   onLoad(options) {
     this.taskId = Number(options.taskId || 0);
-
     const scene = Number(options.scene);
     const amount = Number(options.amount);
+
     const taxFee = [2, 3, 8].includes(scene)
       ? Math.round(amount * 0.06 * 100) / 100
       : 0;
-    const handlingFee = Math.round(amount * 0.006 * 100) / 100;
+      
+    // todo 除了商家收益外，都需要手续费
+    const handlingFee = [1, 2, 3, 8].includes(scene)
+      ? Math.round(amount * 0.006 * 100) / 100
+      : 0;
+
     const actualAmount = Math.max(0, amount - taxFee - handlingFee);
+
     this.setData({
       scene,
       amount,
@@ -41,15 +47,15 @@ Page({
       pathOptions: [4, 5, 6, 7].includes(scene)
         ? [{ cn: "银行卡（1~3个工作日到账）", en: "card", value: 2 }]
         : actualAmount >= 500
-        ? [
-            { cn: "余额（立即到账）", en: "balance", value: 3 },
-            { cn: "银行卡（1~3个工作日到账）", en: "card", value: 2 }
-          ]
-        : [
-            { cn: "余额（立即到账）", en: "balance", value: 3 },
-            { cn: "微信（1~3个工作日到账）", en: "wx", value: 1 },
-            { cn: "银行卡（1~3个工作日到账）", en: "card", value: 2 }
-          ]
+          ? [
+              { cn: "余额（立即到账）", en: "balance", value: 3 },
+              { cn: "银行卡（1~3个工作日到账）", en: "card", value: 2 }
+            ]
+          : [
+              { cn: "余额（立即到账）", en: "balance", value: 3 },
+              { cn: "微信（1~3个工作日到账）", en: "wx", value: 1 },
+              { cn: "银行卡（1~3个工作日到账）", en: "card", value: 2 }
+            ]
     });
 
     if (scene === 8) {
@@ -88,9 +94,10 @@ Page({
         ({ bankName, bankCardNumber: code } =
           await withdrawService.getCateringMerchantInfo());
         break;
+
       case 7:
-        ({ bankName, bankCardNumber: code } =
-          await withdrawService.getGoodsMerchantInfo());
+        ({ bankName = "", bankCardNumber: code = "" } =
+          (await withdrawService.getGoodsMerchantInfo()) || {});
         break;
 
       default:
@@ -135,14 +142,16 @@ Page({
   withdraw() {
     const { btnActive, scene, amount, pathOptions, curOptionIdx, remark } =
       this.data;
+    const path = pathOptions[curOptionIdx].value;
+
     if (!btnActive) {
       return;
     }
-    if (!store.userInfo.authInfoId) {
+    if (path !== 3 && !store.userInfo.authInfoId) {
       this.setData({ authModalVisible: true });
       return;
     }
-    const path = pathOptions[curOptionIdx].value;
+
     if (scene <= 3) {
       withdrawService.applyCommissionWithdraw(
         { scene, amount, path, remark },

@@ -182,4 +182,7 @@
   </view>
 </view>
 
-<auth-info-popup show="{{authInfoPopupVisible}}" bind:hide="hideAuthInfoPopup" />
+<auth-info-popup 
+  wx:if="{{authInfoPopupVisible}}" 
+  bind:hide="hideAuthInfoPopup" 
+/>

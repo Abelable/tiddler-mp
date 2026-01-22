@@ -17,10 +17,16 @@
       <view class="fee-label">税费（费率6%）</view>
       <view class="fee-amount">¥{{NUM.toFixed(taxFee, 2)}}</view>
     </view>
-    <view class="fee-item" wx:if="{{pathOptions[curOptionIdx].value !== 3}}">
+
+    <!-- todo (scene === 1 || scene === 2 || scene === 3 || scene === 8) - 除商家收益外，其他都需要手续费 -->
+    <view 
+      class="fee-item" 
+      wx:if="{{pathOptions[curOptionIdx].value !== 3 && (scene === 1 || scene === 2 || scene === 3 || scene === 8)}}"
+    >
       <view class="fee-label">提现手续费（费率0.6%）</view>
       <view class="fee-amount">¥{{NUM.toFixed(handlingFee, 2)}}</view>
     </view>
+    
     <view class="fee-item">
       <view class="fee-label">实际到账</view>
       <view class="fee-amount reality">¥{{NUM.toFixed(pathOptions[curOptionIdx].value !== 3 ? actualAmount : amount, 2)}}</view>
@@ -52,15 +58,23 @@
 
   <view class="withdraw-tips">
     <view>提现说明：</view>
-    <view class="withdraw-tip">提现金额必须大于1元，单笔最高可提现3万</view>
+    <view class="withdraw-tip" wx:if="{{scene === 1 || scene === 2 || scene === 3 || scene === 8}}">提现金额必须大于1元，单笔最高可提现3万</view>
     <view 
       class="withdraw-tip" 
       wx:if="{{pathOptions[curOptionIdx].value !== 3 && (scene === 2 || scene === 3 || scene === 8)}}"
     >
       提现金额为税前收入，每笔提现按照第三方代扣代缴综合税费6%收取
     </view>
-    <view class="withdraw-tip" wx:if="{{pathOptions[curOptionIdx].value !== 3}}">提现手续费每笔按0.6%收取</view>
-    <view class="withdraw-tip" wx:if="{{pathOptions[curOptionIdx].value !== 3}}">
+    <view 
+      class="withdraw-tip" 
+      wx:if="{{pathOptions[curOptionIdx].value !== 3 && (scene === 1 || scene === 2 || scene === 3 || scene === 8)}}"
+    >
+      提现手续费每笔按0.6%收取
+    </view>
+    <view 
+      class="withdraw-tip" 
+      wx:if="{{pathOptions[curOptionIdx].value !== 3 && (scene === 1 || scene === 2 || scene === 3 || scene === 8) }}"
+    >
       <text>实际到账金额 = 提现金额 </text>
       <text wx:if="{{scene === 2 || scene === 3 || scene === 8}}">- 综合税费</text>
       <text>- 手续费。举例：提现1000元，</text>
