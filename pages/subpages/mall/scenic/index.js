@@ -37,7 +37,7 @@ Page({
     checkLogin(() => {
       this.taskTimeout = setTimeout(() => {
         scenicService.finishTask(9);
-      }, 15000);
+      }, 10000);
     }, false);
   },
 
