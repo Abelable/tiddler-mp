@@ -100,7 +100,10 @@
   </view>
 
   <view class="luck-exchange">
-    <image class="luck-exchange-title" src="https://static.tiddler.cn/mp/new_year/exchange_title.webp" mode="widthFix" />
+    <view class="luck-exchange-title-wrap">
+      <image class="luck-exchange-title" src="https://static.tiddler.cn/mp/new_year/exchange_title.webp" mode="widthFix" />
+      <view class="exchange-record">兑换记录</view>
+    </view>
     <view class="goods-list">
       <view 
         class="goods" 
@@ -116,9 +119,17 @@
         </view>
         <view class="goods-info">
           <view class="goods-name">{{item.name}}</view>
+          <view class="goods-need-luck">
+            {{item.luckScore}}福气值
+          </view>
           <view class="goods-exchange">
-            <view class="goods-need-luck">{{item.luckScore}}福气值</view>
-            <view class="goods-exchange-btn">兑换</view>
+            <view class="progress-bar-wrap">
+              <view class="progress-bar">
+                <view class="progress-bar-inner" style="width: {{(100 - 80) / 100 * 100}}%;" />
+              </view>
+              <view class="progress-desc">限100件，还剩80件</view>
+            </view>
+            <view class="goods-exchange-btn">立即兑换</view>
           </view>
         </view>
       </view>

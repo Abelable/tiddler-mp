@@ -311,35 +311,43 @@
   border-top: 1rpx solid #fff;
   border-bottom: 1rpx solid #fff;
 }
+
+.luck-exchange-title-wrap {
+  display: flex;
+  justify-content: space-between;
+}
 .luck-exchange-title {
   width: 160rpx;
   display: block;
 }
-.goods-list {
-  margin-top: 32rpx;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18rpx;
-}
-.goods {
-  width: calc((100% - 18rpx)/2);
-  font-size: 0;
-  background: #fff;
-  border-radius: 32rpx;
-  overflow: hidden;
+.exchange-record {
+  color: #666;
+  font-size: 26rpx;
 }
 
+.goods-list {
+  margin-top: 32rpx;
+}
+.goods {
+  display: flex;
+  align-items: center;
+  margin-top: 18rpx;
+  padding: 12rpx;
+  background: #fff;
+  border-radius: 42rpx;
+  overflow: hidden;
+}
 .goods-cover-wrap {
   position: relative;
-  width: 100%;
-  height: 320rpx;
+  width: 240rpx;
+  height: 240rpx;
   font-size: 0;
   border-radius: 32rpx;
   overflow: hidden;
 }
 .goods-cover {
-  width: 100%;
-  height: 100%;
+  width: 240rpx;
+  height: 240rpx;
   object-fit: cover;
 }
 .goods-cover-decoration {
@@ -349,16 +357,16 @@
   width: 100%;
   height: 100%;
 }
-
 .goods-info {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 18rpx;
-  height: 180rpx;
+  flex: 1;
+  margin-left: 12rpx;
+  padding: 12rpx;
+  height: 240rpx;
 }
 .goods-name {
-  font-size: 26rpx;
+  font-size: 28rpx;
   font-weight: bold;
   color: #333;
   overflow: hidden;
@@ -369,24 +377,46 @@
 .goods-exchange {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
 }
 .goods-need-luck {
-  font-size: 26rpx;
-  font-weight: bold;
-  color: #ff6430;
+  margin-top: 12rpx;
+  flex: 1;
+  font-size: 28rpx;
+  font-weight: bolder;
+  color: #fe3d5e;
+}
+.progress-bar {
+  position: relative;
+  width: 200rpx;
+  height: 16rpx;
+  border-radius: 8rpx;
+  background: #ffd8df;
+}
+.progress-bar-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 16rpx;
+  border-radius: 8rpx;
+  background: #fe3d5e;
+}
+.progress-desc {
+  margin-top: 2rpx;
+  color: #ff3f60;
+  font-size: 22rpx;
 }
 .goods-exchange-btn {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 48rpx;
-  font-size: 22rpx;
+  height: 60rpx;
+  font-size: 24rpx;
   font-weight: bold;
   color: #fff;
-  padding: 0 20rpx;
-  background: linear-gradient(90deg, #ec7e62 0%, #ff483f 100%);
-  border-radius: 24rpx;
+  padding: 0 24rpx;
+  background: linear-gradient(90deg, #ff7852 0%, #ff4b53 50%, #ff4e75 100%);
+  border-radius: 30rpx;
 }
 
 /* 合作伙伴 partters */
