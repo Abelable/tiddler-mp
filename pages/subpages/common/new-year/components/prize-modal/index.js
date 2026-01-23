@@ -73,7 +73,7 @@ Component({
             break;
 
           case 3:
-            // todo 领取奖品
+            this.triggerEvent("receive", { id });
             break;
         }
       }

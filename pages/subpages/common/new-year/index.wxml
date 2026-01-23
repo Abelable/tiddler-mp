@@ -200,6 +200,7 @@
 <prize-modal 
   wx:if="{{prizeModalVisible}}"
   info="{{prizeList[curPrizeIdx]}}"
+  bind:receive="receivePrize"
   bind:hide="hidePrizeModal" 
 />
 <poster-modal 
