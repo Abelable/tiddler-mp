@@ -17,9 +17,12 @@
         <view class="coupon-info">
           <view class="coupon-name omit single">{{item.name}}</view>
           <view class="coupon-goods-info row">
-            <image class="coupon-goods-image" src="{{item.goodsCover}}" />
-            <view class="coupon-goods-name omit single">{{item.goodsName}}</view>
-            <view>可用</view>
+            <block wx:if="{{item.goodsId}}">
+              <image class="coupon-goods-image" src="{{item.goodsCover}}" />
+              <view class="coupon-goods-name omit single">{{item.goodsName}}</view>
+              <view>可用</view>
+            </block>
+            <view wx:if="{{!item.goodsId}}">全场通用</view>
           </view>
           <view class="coupon-countdown" wx:if="{{item.status === 1 && countdown}}">
             仅剩{{TIME.countdown(countdown, 'd天hh时mm分ss秒')}}
