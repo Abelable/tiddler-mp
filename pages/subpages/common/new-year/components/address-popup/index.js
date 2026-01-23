@@ -7,6 +7,7 @@ Component({
   properties: {
     prizeId: Number,
     goodsId: Number,
+    luck: Number,
     show: {
       type: Boolean,
       observer(truthy) {
@@ -51,9 +52,23 @@ Component({
     },
 
     confirm() {
-      const { prizeId, goodsId, addressList, selectedIndex } = this.data;
+      const { prizeId, goodsId, luck, addressList, selectedIndex } = this.data;
       
-      this.triggerEvent("hide", addressList[selectedIndex].id);
+      if (!addressList.length) return;
+
+      const addressId = addressList[selectedIndex].id;
+      if (prizeId) {
+        newYearService.receivePrize(prizeId, addressId, () => {
+          wx.showToast({ title: '领取成功' });
+          this.hide;
+        });
+      }
+      if (goodsId && luck) {
+        newYearService.exchangeGoods(goodsId, addressId, () => {
+          wx.showToast({ title: '兑换成功' });
+          this.hide;
+        });
+      }
     },
 
     hide() {

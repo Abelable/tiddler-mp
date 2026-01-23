@@ -47,6 +47,30 @@ class NewYearService extends BaseService {
       loadingTitle: "正在加载"
     });
   }
+
+  async receivePrize(prizeId, addressId, success) {
+    return await this.post({
+      url: `${this.baseUrl}/activity/new_year/receive_prize`,
+      data: { prizeId, addressId },
+      success
+    });
+  }
+
+  async exchangeGoods(goodsId, addressId, success) {
+    return await this.post({
+      url: `${this.baseUrl}/activity/new_year/exchange_goods`,
+      data: { goodsId, addressId },
+      success
+    });
+  }
+
+  async getUserGoodsList(page, limit = 10) {
+    return await this.get({
+      url: `${this.baseUrl}/activity/new_year/user_goods_list`,
+      data: { page, limit },
+      loadingTitle: "正在加载"
+    });
+  }
 }
 
 export default NewYearService;

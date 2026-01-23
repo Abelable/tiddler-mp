@@ -132,6 +132,7 @@
               class="goods-exchange-btn" 
               catchtap="exchangeGoods"
               data-id="{{item.id}}"
+              data-luck="{{item.luckScore}}"
             >
               立即兑换
             </view>
@@ -185,6 +186,7 @@
   show="{{addressPopupVisible}}" 
   prizeId="{{prizeId}}"
   goodsId="{{goodsId}}"
+  luck="{{luck}}"
   bind:confirm="confirmAddressSelect" 
   bind:hide="hideAddressPopup"
 />

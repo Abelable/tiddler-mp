@@ -24,8 +24,8 @@
       </radio-group>
     </scroll-view>
     <view class="confirm-btn" bindtap="confirm">
-      <view>确认兑换</view>
-      <view style="font-size: 22rpx;">（消耗300福气值）</view>
+      <view>{{goodsId ? '确认兑换' : '确认领取'}}</view>
+      <view style="font-size: 22rpx;" wx:if="{{luck}}">（消耗{{luck}}福气值）</view>
     </view>
   </view>
 </van-popup>

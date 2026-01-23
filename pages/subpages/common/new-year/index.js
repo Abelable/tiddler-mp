@@ -44,6 +44,7 @@ Page({
     rulePopupVisible: false,
     prizeId: 0,
     goodsId: 0,
+    luck: 0,
     addressPopupVisible: false,
     exchangePopupVisible: false
   },
@@ -330,13 +331,25 @@ Page({
 
   exchangeGoods(e) {
     checkLogin(() => {
-      const { id } = e.currentTarget.dataset;
-      this.setData({ goodsId: id, addressPopupVisible: true });
+      const { id, luck } = e.currentTarget.dataset;
+      if (this.data.luckScore < luck) {
+        wx.showToast({
+          title: "福气值不足，去做任务吧",
+          icon: "none"
+        });
+        return;
+      }
+      this.setData({ goodsId: id, luck, addressPopupVisible: true });
     });
   },
 
   hideAddressPopup() {
-    this.setData({ prizeId: 0, goodsId: 0, addressPopupVisible: false });
+    this.setData({
+      prizeId: 0,
+      goodsId: 0,
+      luck: 0,
+      addressPopupVisible: false
+    });
   },
 
   showExchangePopup() {
