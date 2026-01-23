@@ -331,7 +331,10 @@ Page({
 
   exchangeGoods(e) {
     checkLogin(() => {
-      const { id, luck } = e.currentTarget.dataset;
+      const { id, luck, stock } = e.currentTarget.dataset;
+      if (stock === 0) {
+        return;
+      }
       if (this.data.luckScore < luck) {
         wx.showToast({
           title: "福气值不足，去做任务吧",

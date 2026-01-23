@@ -418,6 +418,9 @@
   background: linear-gradient(90deg, #ff7852 0%, #ff4b53 50%, #ff4e75 100%);
   border-radius: 30rpx;
 }
+.goods-exchange-btn.finished {
+  opacity: 0.6;
+}
 
 /* 合作伙伴 partters */
 .split-tips {

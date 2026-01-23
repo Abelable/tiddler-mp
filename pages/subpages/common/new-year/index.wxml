@@ -124,15 +124,18 @@
           <view class="goods-exchange">
             <view class="progress-bar-wrap">
               <view class="progress-bar">
-                <view class="progress-bar-inner" style="width: {{(100 - 80) / 100 * 100}}%;" />
+                <view class="progress-bar-inner" style="width: {{(item.limit - item.stock) / item.limit * 100}}%;" />
               </view>
-              <view class="progress-desc">限100件，还剩80件</view>
+              <view class="progress-desc">
+                {{item.stock === 0 ? '已兑完' : '限' + item.limit + '件，还剩' + item.stock + '件'}}
+              </view>
             </view>
             <view 
-              class="goods-exchange-btn" 
+              class="goods-exchange-btn {{item.stock === 0 ? 'finished' : ''}}" 
               catchtap="exchangeGoods"
               data-id="{{item.id}}"
               data-luck="{{item.luckScore}}"
+              data-stock="{{item.stock}}"
             >
               立即兑换
             </view>
