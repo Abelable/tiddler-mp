@@ -1,4 +1,4 @@
-import { API_BASE_URL, VERSION } from "../../config";
+import { APP_ID, API_BASE_URL, VERSION } from "../../config";
 import Log from "../../utils/log";
 import api from "./api";
 
@@ -27,6 +27,7 @@ class Base {
         method,
         data,
         header: {
+          appId: APP_ID,
           Authorization: token ? `Bearer ${token}` : ""
         }
       })
