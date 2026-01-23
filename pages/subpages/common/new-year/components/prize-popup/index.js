@@ -31,14 +31,18 @@ Component({
       const handleList = list.map(item => {
         const { prizeType, status } = item;
         let btnDesc = "";
+        let btnStatus = 1;
         if (prizeType === 2) {
           btnDesc = status ? "已使用" : "去使用";
+          if (status) btnStatus = 0;
         } else if (prizeType === 3) {
-          btnDesc = ["去领取", "待发货", "查看物流"][status];
+          btnDesc = ["去领取", "待发货", "查看物流", "已签收"][status];
+          if (status === 3) btnStatus = 0;
         }
         return {
           ...item,
-          btnDesc
+          btnDesc,
+          btnStatus
         };
       });
       this.setData({
@@ -47,14 +51,39 @@ Component({
     },
 
     use(e) {
-      const { type, id } = e.currentTarget.dataset;
+      const { id, status, type, goodsId, shipCode, shipSn, mobile } =
+        e.currentTarget.dataset.prize;
+
       if (type === 2) {
-        // 使用优惠券
-        // const url = `/pages/subpages/mall/goods/subpages/goods-detail/index?id=${id}`;
-        // wx.navigateTo({ url });
-      }
-      if (type === 3) {
-        // 兑换奖品
+        if (status) return;
+        if (goodsId) {
+          const url = `/pages/subpages/mall/goods/subpages/goods-detail/index?id=${goodsId}`;
+          wx.navigateTo({ url });
+        } else {
+          wx.navigateTo({
+            url: "/pages/subpages/mall/goods/index"
+          });
+        }
+      } else if (type === 3) {
+        switch (status) {
+          case 0:
+            this.triggerEvent("receive", { id });
+            break;
+
+          case 1:
+            wx.showModal({
+              title: "若长时间未发货，请联系官方客服",
+              showCancel: false,
+              confirmText: "确定",
+              confirmColor: "#3d099a"
+            });
+            break;
+
+          case 2:
+            const url = `/pages/subpages/common/shipping/index?shipCode=${shipCode}&shipSn=${shipSn}&mobile=${mobile}`;
+            wx.navigateTo({ url });
+            break;
+        }
       }
     },
 

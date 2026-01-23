@@ -42,6 +42,8 @@ Page({
     qrCode: "",
     posterModalVisible: false,
     rulePopupVisible: false,
+    prizeId: 0,
+    goodsId: 0,
     addressPopupVisible: false,
     exchangePopupVisible: false
   },
@@ -318,14 +320,23 @@ Page({
     this.setData({ rulePopupVisible: false });
   },
 
+  receivePrize(e) {
+    const { id } = e.detail;
+    this.setData({
+      prizeId: id,
+      addressPopupVisible: true
+    });
+  },
+
   exchangeGoods(e) {
     checkLogin(() => {
-      this.setData({ addressPopupVisible: true });
+      const { id } = e.currentTarget.dataset;
+      this.setData({ goodsId: id, addressPopupVisible: true });
     });
   },
 
   hideAddressPopup() {
-    this.setData({ addressPopupVisible: false });
+    this.setData({ prizeId: 0, goodsId: 0, addressPopupVisible: false });
   },
 
   showExchangePopup() {

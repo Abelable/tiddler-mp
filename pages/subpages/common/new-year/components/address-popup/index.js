@@ -4,12 +4,9 @@ import NewYearService from "../../utils/newYearService";
 const newYearService = new NewYearService();
 
 Component({
-  // options: {
-  //   addGlobalClass: true
-  // },
-
   properties: {
-    addressId: Number,
+    prizeId: Number,
+    goodsId: Number,
     show: {
       type: Boolean,
       observer(truthy) {
@@ -54,7 +51,8 @@ Component({
     },
 
     confirm() {
-      const { addressList, selectedIndex } = this.data;
+      const { prizeId, goodsId, addressList, selectedIndex } = this.data;
+      
       this.triggerEvent("hide", addressList[selectedIndex].id);
     },
 

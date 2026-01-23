@@ -20,11 +20,10 @@
             <view class="prize-time">{{TIME.transform(item.createdAt, 'YYYY-MM-DD hh:mm:ss')}}</view>
           </view>
           <view 
-            class="prize-bth {{item.status === 1 ? 'used' : ''}}" 
+            class="prize-bth {{btnStatus !== 1 ? 'used' : ''}}" 
             wx:if="{{item.prizeType === 2 || item.prizeType === 3}}"
             bindtap="use"
-            data-type="{{item.prizeType}}"
-            data-id="{{item.goodsId}}"
+            data-prize="{{item}}"
           >
             {{item.btnDesc}}
           </view>
