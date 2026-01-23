@@ -48,8 +48,12 @@ Component({
     use() {
       const { status, goodsId } = this.properties.item;
       if (status === 1) {
-        const url = `/pages/subpages/mall/goods/subpages/goods-detail/index?id=${goodsId}`;
-        wx.navigateTo({ url });
+        if (goodsId) {
+          const url = `/pages/subpages/mall/goods/subpages/goods-detail/index?id=${goodsId}`;
+          wx.navigateTo({ url });
+        } else {
+          wx.navigateTo({ url: "/pages/subpages/mall/goods/index" });
+        }
       }
     }
   }
