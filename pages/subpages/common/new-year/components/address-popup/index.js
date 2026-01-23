@@ -60,13 +60,13 @@ Component({
       if (prizeId) {
         newYearService.receivePrize(prizeId, addressId, () => {
           wx.showToast({ title: '领取成功' });
-          this.hide;
+          this.hide();
         });
       }
       if (goodsId && luck) {
         newYearService.exchangeGoods(goodsId, addressId, () => {
           wx.showToast({ title: '兑换成功' });
-          this.hide;
+          this.hide();
         });
       }
     },

@@ -20,6 +20,10 @@ Component({
   },
 
   methods: {
+    refresh() {
+      this.setPrizeList(true);
+    },
+    
     loadMore() {
       this.setPrizeList();
     },
@@ -50,10 +54,10 @@ Component({
     },
 
     use(e) {
-      const { id, status, type, goodsId, shipCode, shipSn, mobile } =
+      const { id, status, prizeType, goodsId, shipCode, shipSn, mobile } =
         e.currentTarget.dataset.prize;
 
-      if (type === 2) {
+      if (prizeType === 2) {
         if (status) return;
         if (goodsId) {
           const url = `/pages/subpages/mall/goods/subpages/goods-detail/index?id=${goodsId}`;
@@ -63,7 +67,7 @@ Component({
             url: "/pages/subpages/mall/goods/index"
           });
         }
-      } else if (type === 3) {
+      } else if (prizeType === 3) {
         switch (status) {
           case 0:
             this.triggerEvent("receive", { id });
@@ -71,7 +75,7 @@ Component({
 
           case 1:
             wx.showModal({
-              title: "若长时间未发货，请联系官方客服",
+              title: "长时间未发货，请联系官方客服",
               showCancel: false,
               confirmText: "确定",
               confirmColor: "#3d099a"

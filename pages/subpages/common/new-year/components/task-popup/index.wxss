@@ -20,7 +20,6 @@
   font-size: 24rpx;
   color: #3d099a;
 }
-
 .refresh-icon {
   width: 24rpx;
   height: 24rpx;

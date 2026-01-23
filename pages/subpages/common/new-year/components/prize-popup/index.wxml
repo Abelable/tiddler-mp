@@ -4,6 +4,10 @@
   <view class="prize-popup-main">
     <view class="title-wrap">
       <image class="prize-popup-title" src="https://static.tiddler.cn/mp/new_year/prize_popup_title.webp" mode="widthFix"/>
+      <view class="refresh-btn" bindtap="refresh">
+        <text>刷新</text>
+        <image class="refresh-icon" src="https://static.tiddler.cn/mp/new_year/refresh.png" />
+      </view>
     </view>
 
     <scroll-view 
