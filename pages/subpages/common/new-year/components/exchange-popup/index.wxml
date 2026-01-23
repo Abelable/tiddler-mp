@@ -14,19 +14,21 @@
     >
       <view class="goods-list">
         <view class="goods" wx:for="{{prizeList}}" wx:key="index">
-          <image class="goods-icon" src="{{item.cover}}" />
-          <view class="goods-info">
-            <text class="goods-title">{{item.name}}</text>
-            <view class="goods-time">{{TIME.transform(item.createdAt, 'YYYY-MM-DD hh:mm:ss')}}</view>
+          <view class="row between">
+            <view class="exchange-time">
+              兑换时间：{{TIME.transform(item.createdAt, 'YYYY-MM-DD hh:mm:ss')}}
+            </view>
+            <view class="goods-status">待发货</view>
           </view>
-          <view 
-            class="goods-bth {{item.status === 1 ? 'used' : ''}}" 
-            wx:if="{{item.goodsType === 2 || item.goodsType === 3}}"
-            bindtap="use"
-            data-type="{{item.goodsType}}"
-            data-id="{{item.goodsId}}"
-          >
-            {{item.btnDesc}}
+          <view class="goods-main">
+            <image class="goods-cover" src="https://static.tiddler.cn/tiddler/20251209/1765264443504FjXAeFyxeKfQxe5izsAg0Fhb8bTd.jpg" mode="aspectFill" />
+            <view class="goods-info">
+              <view class="goods-name">【千岛农品】千岛湖手工日晒面 刀削面/细面</view>
+              <view class="row between">
+                <view class="goods-luck">消耗300福气值</view>
+                <view class="shipping-btn">查看物流</view>
+              </view>
+            </view>
           </view>
         </view>
       </view>

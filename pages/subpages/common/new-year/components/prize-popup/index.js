@@ -34,7 +34,7 @@ Component({
         if (prizeType === 2) {
           btnDesc = status ? "已使用" : "去使用";
         } else if (prizeType === 3) {
-          btnDesc = status ? "已领取" : "去领取";
+          btnDesc = ["去领取", "待发货", "查看物流"][status];
         }
         return {
           ...item,
@@ -49,8 +49,9 @@ Component({
     use(e) {
       const { type, id } = e.currentTarget.dataset;
       if (type === 2) {
-        const url = `/pages/subpages/mall/goods/subpages/goods-detail/index?id=${id}`;
-        wx.navigateTo({ url });
+        // 使用优惠券
+        // const url = `/pages/subpages/mall/goods/subpages/goods-detail/index?id=${id}`;
+        // wx.navigateTo({ url });
       }
       if (type === 3) {
         // 兑换奖品

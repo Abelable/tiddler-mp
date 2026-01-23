@@ -14,7 +14,7 @@
     >
       <view class="prize-list">
         <view class="prize" wx:for="{{prizeList}}" wx:key="index">
-          <image class="prize-icon" src="{{item.cover}}" />
+          <image class="prize-icon" src="{{item.cover}}" mode="aspectFill" />
           <view class="prize-info">
             <text class="prize-title">{{item.name}}</text>
             <view class="prize-time">{{TIME.transform(item.createdAt, 'YYYY-MM-DD hh:mm:ss')}}</view>
