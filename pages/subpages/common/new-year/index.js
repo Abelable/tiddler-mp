@@ -446,7 +446,7 @@ Page({
     const path = id ? `${originalPath}?superiorId=${id}` : originalPath;
     return {
       path,
-      title: "团圆家乡年",
+      title: "团圆家乡年，福气正当时",
       imageUrl: "https://static.tiddler.cn/mp/new_year/share_cover.webp"
     };
   },
@@ -456,7 +456,7 @@ Page({
     const query = id ? `superiorId=${id}` : "";
     return {
       query,
-      title: "团圆家乡年",
+      title: "团圆家乡年，福气正当时",
       imageUrl: "https://static.tiddler.cn/mp/new_year/share_cover.png"
     };
   }
