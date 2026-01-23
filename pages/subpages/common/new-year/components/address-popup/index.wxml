@@ -1,0 +1,31 @@
+<van-popup show="{{show}}" safe-area-inset-bottom="{{false}}" round position="bottom" bind:close="hide">
+  <view class="address-select-popup">
+    <view class="row between">
+      <image class="title" src="https://static.tiddler.cn/mp/new_year/address_popup_title.webp" mode="widthFix" />
+      <view class="add-btn row" bindtap="navToAddressListPage">
+        <van-icon name="plus" color="#3d099a" size="12px" />
+        <view class="add-btn">新增</view>
+      </view>
+    </view>
+    <scroll-view class="address-list" scroll-y>
+      <radio-group bindchange="selectAddress">
+        <view class="address-item row" wx:for="{{addressList}}" wx:key="index">
+          <image class="address-icon" src="https://static.tiddler.cn/mp/order/address_icon.png" />
+          <view class="content">
+            <view class="row">
+              <text class="user-name">{{item.name}}</text>
+              <text>{{item.mobile}}</text>
+              <text class="default-icon" wx:if="{{item.isDefault}}">默认</text>
+            </view>
+            <view class="address-detail">{{item.regionDesc + ' ' + item.addressDetail}}</view>
+          </view>
+          <radio class="radio" value="{{index}}" checked="{{ selectedIndex === index }}" color="#9338ff" />
+        </view>
+      </radio-group>
+    </scroll-view>
+    <view class="confirm-btn" bindtap="confirm">
+      <view>确认兑换</view>
+      <view style="font-size: 22rpx;">（消耗300福气值）</view>
+    </view>
+  </view>
+</van-popup>

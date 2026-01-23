@@ -1,0 +1,35 @@
+<wxs module="TIME" src="/utils/filters/time.wxs" />
+
+<van-popup show="{{show}}" safe-area-inset-bottom="{{false}}" round position="bottom" bind:close="hide">
+  <view class="exchange-popup-main">
+    <view class="title-wrap">
+      <image class="title" src="https://static.tiddler.cn/mp/new_year/exchange_popup_title.webp" mode="widthFix"/>
+    </view>
+
+    <scroll-view 
+      class="goods-list-wrap" 
+      bindscrolltolower="loadMore"
+      scroll-y 
+      scroll-with-animation
+    >
+      <view class="goods-list">
+        <view class="goods" wx:for="{{prizeList}}" wx:key="index">
+          <image class="goods-icon" src="{{item.cover}}" />
+          <view class="goods-info">
+            <text class="goods-title">{{item.name}}</text>
+            <view class="goods-time">{{TIME.transform(item.createdAt, 'YYYY-MM-DD hh:mm:ss')}}</view>
+          </view>
+          <view 
+            class="goods-bth {{item.status === 1 ? 'used' : ''}}" 
+            wx:if="{{item.goodsType === 2 || item.goodsType === 3}}"
+            bindtap="use"
+            data-type="{{item.goodsType}}"
+            data-id="{{item.goodsId}}"
+          >
+            {{item.btnDesc}}
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</van-popup>

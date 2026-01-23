@@ -9,6 +9,8 @@
     "prize-popup": "./components/prize-popup/index",
     "poster-modal": "./components/poster-modal/index",
     "rule-popup": "./components/rule-popup/index",
-    "prize-modal": "./components/prize-modal/index"
+    "prize-modal": "./components/prize-modal/index",
+    "address-popup": "./components/address-popup/index",
+    "exchange-popup": "./components/exchange-popup/index"
   }
 }

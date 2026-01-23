@@ -41,7 +41,9 @@ Page({
     prizePopupVisible: false,
     qrCode: "",
     posterModalVisible: false,
-    rulePopupVisible: false
+    rulePopupVisible: false,
+    addressPopupVisible: false,
+    exchangePopupVisible: false
   },
 
   onLoad(options) {
@@ -301,6 +303,13 @@ Page({
     this.setData({ prizePopupVisible: false });
   },
 
+  hidePrizeModal() {
+    this.setData({
+      curPrizeIdx: -1,
+      prizeModalVisible: false
+    });
+  },
+
   showRulePopup() {
     this.setData({ rulePopupVisible: true });
   },
@@ -309,11 +318,24 @@ Page({
     this.setData({ rulePopupVisible: false });
   },
 
-  hidePrizeModal() {
-    this.setData({ 
-      curPrizeIdx: -1,
-      prizeModalVisible: false 
+  exchangeGoods(e) {
+    checkLogin(() => {
+      this.setData({ addressPopupVisible: true });
     });
+  },
+
+  hideAddressPopup() {
+    this.setData({ addressPopupVisible: false });
+  },
+
+  showExchangePopup() {
+    checkLogin(() => {
+      this.setData({ exchangePopupVisible: true });
+    });
+  },
+
+  hideExchangePopup() {
+    this.setData({ exchangePopupVisible: false });
   },
 
   showPosterModal() {
@@ -356,8 +378,8 @@ Page({
     }
   },
 
-  exchange(e) {
-    const { id, goodsId } = e.currentTarget.dataset;
+  checkGoods(e) {
+    const { goodsId } = e.currentTarget.dataset;
     wx.navigateTo({
       url: `/pages/subpages/mall/goods/subpages/goods-detail/index?id=${goodsId}`
     });

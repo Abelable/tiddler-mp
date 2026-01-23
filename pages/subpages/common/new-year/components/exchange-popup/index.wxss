@@ -1,0 +1,61 @@
+.exchange-popup-main {
+  background: linear-gradient(180deg, #eecaff 0%, #fff 50%, #fff 100%);
+}
+
+.title-wrap {
+  padding: 32rpx;
+  padding-bottom: 24rpx;
+  font-size: 0;
+}
+.title {
+  width: 148rpx;
+}
+
+.goods-list-wrap {
+  height: 988rpx;
+}
+.goods-list {
+  margin: 0 32rpx;
+  padding-bottom: calc(env(safe-area-inset-bottom));
+}
+.goods {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 0;
+}
+
+.goods-icon {
+  margin-right: 16rpx;
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 16rpx;
+}
+
+.goods-info {
+  flex: 1;
+}
+.goods-title {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: bold;
+}
+.goods-time {
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  color: #666;
+  display: flex;
+  align-items: center;
+}
+
+.goods-bth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24rpx;
+  height: 64rpx;
+  font-size: 24rpx;
+  color: #fff;
+  font-weight: bold;
+  background: linear-gradient(90deg, #996cfe 0%, #441aef 100%);
+  border-radius: 32rpx;
+}
