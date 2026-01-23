@@ -37,7 +37,6 @@ Component({
           if (status) btnStatus = 0;
         } else if (prizeType === 3) {
           btnDesc = ["去领取", "待发货", "查看物流", "已签收"][status];
-          if (status === 3) btnStatus = 0;
         }
         return {
           ...item,
@@ -80,6 +79,7 @@ Component({
             break;
 
           case 2:
+          case 3:
             const url = `/pages/subpages/common/shipping/index?shipCode=${shipCode}&shipSn=${shipSn}&mobile=${mobile}`;
             wx.navigateTo({ url });
             break;

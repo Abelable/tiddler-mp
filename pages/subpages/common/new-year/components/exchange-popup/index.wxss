@@ -82,8 +82,7 @@
   color: #9338ff;
 }
 
-
-.shipping-btn {
+.cs-btn, .shipping-btn {
   display: flex;
   align-items: center;
   justify-content: center;

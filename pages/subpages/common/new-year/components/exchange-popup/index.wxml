@@ -13,20 +13,36 @@
       scroll-with-animation
     >
       <view class="goods-list">
-        <view class="goods" wx:for="{{prizeList}}" wx:key="index">
+        <view class="goods" wx:for="{{goodsList}}" wx:key="index">
           <view class="row between">
             <view class="exchange-time">
               兑换时间：{{TIME.transform(item.createdAt, 'YYYY-MM-DD hh:mm:ss')}}
             </view>
-            <view class="goods-status">待发货</view>
+            <view class="goods-status">{{['待发货', '待收货', '已签收'][item.status]}}</view>
           </view>
           <view class="goods-main">
-            <image class="goods-cover" src="https://static.tiddler.cn/tiddler/20251209/1765264443504FjXAeFyxeKfQxe5izsAg0Fhb8bTd.jpg" mode="aspectFill" />
+            <image class="goods-cover" src="{{item.cover}}" mode="aspectFill" />
             <view class="goods-info">
-              <view class="goods-name">【千岛农品】千岛湖手工日晒面 刀削面/细面</view>
+              <view class="goods-name">{{item.name}}</view>
               <view class="row between">
-                <view class="goods-luck">消耗300福气值</view>
-                <view class="shipping-btn">查看物流</view>
+                <view class="goods-luck">消耗{{item.luckScore}}福气值</view>
+                <button 
+                  class="cs-btn"
+                  open-type="contact" 
+                  session-from="sessionFrom" 
+                  hover-class="none"
+                  wx:if="{{!item.status}}"
+                >
+                  联系客服
+                </button>
+                <view 
+                  class="shipping-btn" 
+                  wx:if="{{item.status}}"
+                  bindtap="checkShippingInfo"
+                  data-goods="{{item}}"
+                >
+                  查看物流
+                </view>
               </view>
             </view>
           </view>
