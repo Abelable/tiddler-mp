@@ -81,3 +81,6 @@
   background: linear-gradient(90deg, #996cfe 0%, #441aef 100%);
   border-radius: 30rpx;
 }
+.prize-bth.used {
+  opacity: 0.6;
+}
