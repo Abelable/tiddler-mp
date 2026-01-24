@@ -67,7 +67,7 @@ Component({
               });
             } else {
               wx.navigateTo({
-                url: "/pages/subpages/mall/goods/index.js"
+                url: "/pages/subpages/mall/goods/index"
               });
             }
             break;
