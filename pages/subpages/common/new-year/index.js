@@ -180,9 +180,14 @@ Page({
     this.setData({ press: true });
   },
 
-  async onPressEnd() {
+  onPressEnd() {
     this.setData({ press: false });
+    checkLogin(() => {
+      this.startDraw();
+    });
+  },
 
+  async startDraw() {
     if (this.data.luckScore < 20) {
       wx.showToast({
         title: "福气值不足，去做任务吧",
