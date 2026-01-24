@@ -9,6 +9,7 @@ Page({
   data: {
     statusBarHeight,
     showBg: false,
+    isLogin: false,
     luckScore: 0,
     press: false,
     days: "00",
@@ -80,9 +81,12 @@ Page({
   },
 
   onShow() {
-    checkLogin(() => {
+    if (wx.getStorageSync("token")) {
+      if (!this.data.isLogin) {
+        this.setData({ isLogin: true });
+      }
       this.setLuckScore();
-    }, false);
+    }
   },
 
   updateCountDown() {
