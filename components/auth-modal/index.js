@@ -5,6 +5,7 @@ Component({
     toAuth() {
       const url = `/pages/subpages/common/webview/index?url=${WEBVIEW_BASE_URL}/auth`;
       wx.navigateTo({ url });
+      this.hide();
     },
 
     hide() {

@@ -70,6 +70,7 @@ Page({
 
   onShow() {
     this.setBankCardInfo();
+    withdrawService.getUserInfo();
   },
 
   selectOption(e) {
@@ -175,7 +176,7 @@ Page({
     if (curOptionIdx === 0) {
       this.setData({ amount: 0 });
       wx.showToast({
-        title: "提现成功",
+        title: "已成功提现至我的余额",
         icon: "none"
       });
       setTimeout(() => {
