@@ -86,6 +86,7 @@
   bottom: 68rpx;
   width: 72rpx;
   height: 83rpx;
+  transform: translateZ(1px);
 }
 
 .current-dot-wrap {
