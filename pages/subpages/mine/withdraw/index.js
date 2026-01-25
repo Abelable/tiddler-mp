@@ -38,6 +38,20 @@ Page({
 
     const actualAmount = Math.max(0, amount - taxFee - handlingFee);
 
+    // todo 微信提现
+    // pathOptions: [4, 5, 6, 7].includes(scene)
+    //     ? [{ cn: "银行卡（1~3个工作日到账）", en: "card", value: 2 }]
+    //     : actualAmount >= 500
+    //       ? [
+    //           { cn: "余额（立即到账）", en: "balance", value: 3 },
+    //           { cn: "银行卡（1~3个工作日到账）", en: "card", value: 2 }
+    //         ]
+    //       : [
+    //           { cn: "余额（立即到账）", en: "balance", value: 3 },
+    //           { cn: "微信（1~3个工作日到账）", en: "wx", value: 1 },
+    //           { cn: "银行卡（1~3个工作日到账）", en: "card", value: 2 }
+    //         ]
+
     this.setData({
       scene,
       amount,
@@ -46,16 +60,10 @@ Page({
       actualAmount,
       pathOptions: [4, 5, 6, 7].includes(scene)
         ? [{ cn: "银行卡（1~3个工作日到账）", en: "card", value: 2 }]
-        : actualAmount >= 500
-          ? [
-              { cn: "余额（立即到账）", en: "balance", value: 3 },
-              { cn: "银行卡（1~3个工作日到账）", en: "card", value: 2 }
-            ]
-          : [
-              { cn: "余额（立即到账）", en: "balance", value: 3 },
-              { cn: "微信（1~3个工作日到账）", en: "wx", value: 1 },
-              { cn: "银行卡（1~3个工作日到账）", en: "card", value: 2 }
-            ]
+        : [
+            { cn: "余额（立即到账）", en: "balance", value: 3 },
+            { cn: "银行卡（1~3个工作日到账）", en: "card", value: 2 }
+          ]
     });
 
     if (scene === 8) {
@@ -141,15 +149,31 @@ Page({
   },
 
   withdraw() {
-    const { btnActive, scene, amount, pathOptions, curOptionIdx, remark } =
-      this.data;
+    const {
+      btnActive,
+      scene,
+      amount,
+      pathOptions,
+      curOptionIdx,
+      remark,
+      bancCardInfo
+    } = this.data;
     const path = pathOptions[curOptionIdx].value;
 
     if (!btnActive) {
       return;
     }
+
     if (path !== 3 && !store.userInfo.authInfoId) {
       this.setData({ authModalVisible: true });
+      return;
+    }
+
+    if (path === 2 && !bancCardInfo) {
+      wx.showToast({
+        title: "尚未绑定银行卡账号",
+        icon: "none"
+      });
       return;
     }
 
