@@ -234,6 +234,7 @@
   background: linear-gradient(90deg, #ff48d0 0%, #fd2b81 100%);
   border-bottom-right-radius: 18rpx;
   box-sizing: border-box;
+  transform: translateZ(1px);
 }
 
 /* 抽奖按钮 */
