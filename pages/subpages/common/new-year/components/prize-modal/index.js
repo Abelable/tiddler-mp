@@ -1,7 +1,8 @@
 const goodsMap = [
   { id: 3, cover: "caviar" },
   { id: 5, cover: "stick" },
-  { id: 6, cover: "noodle" }
+  { id: 6, cover: "noodle" },
+  { id: 10, cover: "fish" }
 ];
 
 Component({
