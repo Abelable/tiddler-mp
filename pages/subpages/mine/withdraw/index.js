@@ -165,7 +165,7 @@ Page({
     }
 
     if (
-      path !== 3 &&
+      path === 2 &&
       [1, 2, 3, 8].includes(scene) &&
       !store.userInfo.authInfoId
     ) {
