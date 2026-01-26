@@ -30,7 +30,7 @@ Page({
     const taxFee = [2, 3, 8].includes(scene)
       ? Math.round(amount * 0.06 * 100) / 100
       : 0;
-      
+
     // todo 除了商家收益外，都需要手续费
     const handlingFee = [1, 2, 3, 8].includes(scene)
       ? Math.round(amount * 0.006 * 100) / 100
@@ -164,7 +164,11 @@ Page({
       return;
     }
 
-    if (path !== 3 && !store.userInfo.authInfoId) {
+    if (
+      path !== 3 &&
+      [1, 2, 3, 8].includes(scene) &&
+      !store.userInfo.authInfoId
+    ) {
       this.setData({ authModalVisible: true });
       return;
     }
