@@ -40,13 +40,13 @@ Component({
 
     async createPoster() {
       await this.drawImage(
-        "https://static.tiddler.cn/mp/new_year_gift/poster_bg.png",
+        "https://static.tiddler.cn/mp/new_year_gift/poster_bg.webp",
         0,
         0,
-        320,
-        510
+        300,
+        515
       );
-      await this.roundRect(130, 440, 60, 60, 30, this.properties.qrCode);
+      await this.roundRect(125, 426, 50, 50, 25, this.properties.qrCode);
       wx.canvasToTempFilePath(
         {
           canvas,
