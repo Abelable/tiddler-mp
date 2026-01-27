@@ -62,7 +62,28 @@ Page({
     posterModalVisible: false
   },
 
-  onLoad() {
+  onLoad(options) {
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ["shareAppMessage", "shareTimeline"]
+    });
+
+    const { scene = "" } = options || {};
+    const decodedSceneList = scene ? decodeURIComponent(scene).split("-") : [];
+    this.superiorId = decodedSceneList[0] || "";
+
+    getApp().onLaunched(async () => {
+      if (this.superiorId && !store.superiorInfo) {
+        wx.setStorageSync("superiorId", this.superiorId);
+        const superiorInfo = await baseService.getUserInfoById(
+          this.superiorId
+        );
+        if (superiorInfo.promoterInfo) {
+          store.setSuperiorInfo(superiorInfo);
+        }
+      }
+    });
+
     this.setGoodsInfo();
   },
 
@@ -128,5 +149,26 @@ Page({
         url: `/pages/subpages/mall/goods/subpages/order-check/index?cartGoodsIds=${JSON.stringify([cartGoodsId])}`
       });
     });
+  },
+
+  onShareAppMessage() {
+    const { id } = store.superiorInfo || {};
+    const originalPath = "/pages/subpages/common/new-year-gift/index";
+    const path = id ? `${originalPath}?superiorId=${id}` : originalPath;
+    return {
+      path,
+      title: "千岛礼物新春礼包",
+      imageUrl: "https://static.tiddler.cn/mp/new_year_gift/share_cover.webp"
+    };
+  },
+
+  onShareTimeline() {
+    const { id } = store.superiorInfo || {};
+    const query = id ? `superiorId=${id}` : "";
+    return {
+      query,
+      title: "千岛礼物新春礼包",
+      imageUrl: "https://static.tiddler.cn/mp/new_year_gift/share_cover.png"
+    };
   }
 });
