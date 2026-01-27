@@ -300,7 +300,6 @@
   justify-content: space-between; 
   padding-right: 18rpx;
   flex: 1; 
-  height: 190rpx;
 }
 .goods-name {
   color: #333;
@@ -308,6 +307,7 @@
   font-weight: 500;
 }
 .goods-sku {
+  margin-top: 8rpx;
   padding: 8rpx 12rpx;
   width: fit-content;
   color: #999;
@@ -320,6 +320,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 4rpx;
 }
 .count-wrap {
   font-size: 24rpx;

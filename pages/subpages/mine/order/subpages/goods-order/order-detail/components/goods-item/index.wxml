@@ -1,9 +1,9 @@
 <view class="goods-item">
-  <view class="row" bindtap="navToGoodsDetail">
+  <view class="row top" bindtap="navToGoodsDetail">
     <image class="goods-img" src="{{item.cover}}" mode="aspectFill" lazy-load />
     <view class="goods-content">
       <view class="goods-name omit">{{item.name}}</view>
-      <view class="goods-sku omit single" wx:if="{{item.selectedSkuName}}">规格：{{item.selectedSkuName}}</view>
+      <view class="goods-sku omit" wx:if="{{item.selectedSkuName}}">规格：{{item.selectedSkuName}}</view>
       <view class="goods-price-wrap">
         <price-unit price="{{item.price || 0}}" color="#333" />
         <view class="count-wrap">
