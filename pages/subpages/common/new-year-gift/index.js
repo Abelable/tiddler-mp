@@ -89,7 +89,7 @@ Page({
   showPosterModal() {
     checkLogin(async () => {
       const scene = store.superiorInfo ? `${store.superiorInfo.id}` : "";
-      const page = "pages/subpages/common/new-year/index";
+      const page = "pages/subpages/common/new-year-gift/index";
       const qrCode = await baseService.getQrCode(scene, page);
 
       this.setData({
