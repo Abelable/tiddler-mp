@@ -312,7 +312,7 @@
   width: fit-content;
   color: #999;
   font-size: 24rpx;
-  line-height: 1.8;
+  line-height: 1.6;
   background: #f9f9f9;
   border-radius: 8rpx;
 }

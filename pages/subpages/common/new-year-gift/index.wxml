@@ -1,0 +1,80 @@
+<view class="container">
+  <image class="bg" src="https://static.tiddler.cn/mp/new_year_gift/bg.webp" mode="widthFix" />
+
+  <view class="main">
+    <!-- 第一组 -->
+    <view class="title-wrap">
+      <image class="title" src="https://static.tiddler.cn/mp/new_year_gift/title_1.webp" mode="widthFix" />
+      <view class="desc">(五选一)</view>
+    </view>
+
+    <view class="goods-selections">
+      <view
+        class="goods-selection {{curXgIdx === index ? 'selected' : ''}}"
+        wx:for="{{xgList}}"
+        wx:key="index"
+        data-index="{{index}}"
+        bindtap="onSelectXg"
+      >
+        <image class="goods-cover" src="{{item.cover}}" mode="widthFix" />
+        <view class="goods-name">{{item.name}}</view>
+        <view class="selected-tag" wx:if="{{curXgIdx === index}}">
+          <image class="selected-icon" src="https://static.tiddler.cn/mp/new_year_gift/selected.png" />
+        </view>
+      </view>
+    </view>
+
+    <!-- 第二组 -->
+    <view class="title-wrap">
+      <image class="title" src="https://static.tiddler.cn/mp/new_year_gift/title_2.webp" mode="widthFix" />
+      <view class="desc">(五选一)</view>
+    </view>
+
+    <view class="goods-selections">
+      <view
+        class="goods-selection {{curMrIdx === index ? 'selected' : ''}}"
+        wx:for="{{mrList}}"
+        wx:key="index"
+        data-index="{{index}}"
+        bindtap="onSelectMr"
+      >
+        <image class="goods-cover" src="{{item.cover}}" mode="widthFix" />
+        <view class="goods-name">{{item.name}}</view>
+        <view class="selected-tag" wx:if="{{curMrIdx === index}}">
+          <image class="selected-icon" src="https://static.tiddler.cn/mp/new_year_gift/selected.png" />
+        </view>
+      </view>
+    </view>
+
+    <!-- 红包 -->
+    <view class="title-wrap">
+      <image class="title" style="width:200rpx" src="https://static.tiddler.cn/mp/new_year_gift/title_3.webp" mode="widthFix" />
+      <view class="desc">(二选一)</view>
+    </view>
+
+    <view class="red-bag-selections">
+      <view
+        class="red-bag-selection {{curRbIdx === index ? 'selected' : ''}}"
+        wx:for="{{rbList}}"
+        wx:key="index"
+        data-index="{{index}}"
+        bindtap="onSelectRb"
+      >
+        <image class="red-bag-cover" src="https://static.tiddler.cn/mp/new_year_gift/rb_{{index + 1}}.webp" mode="widthFix" />
+        <view class="selected-tag" wx:if="{{curRbIdx === index}}">
+          <image class="selected-icon" src="https://static.tiddler.cn/mp/new_year_gift/selected.png" />
+        </view>
+      </view>
+    </view>
+
+    <view class="submit-btn" bindtap="submit">点击购买</view>
+  </view>
+</view>
+
+<view class="share-btn" bindtap="showPosterModal">点击分享</view>
+
+<poster-modal 
+  wx:if="{{posterModalVisible}}" 
+  qrCode="{{qrCode}}" 
+  bind:hide="hidePosterModal" 
+/>

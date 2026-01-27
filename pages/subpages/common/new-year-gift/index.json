@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "千岛礼物新春礼包",
+  "usingComponents": {
+    "poster-modal": "./components/poster-modal/index"
+  }
+}
