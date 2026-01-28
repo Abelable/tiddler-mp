@@ -134,18 +134,6 @@
   justify-content: center;
 }
 
-@keyframes notice-me {
-  /* 0% 到 10%：快速抖动阶段 */
-  0% { transform: rotate(0deg); }
-  2% { transform: rotate(2deg); }
-  4% { transform: rotate(-2deg); }
-  6% { transform: rotate(2deg); }
-  8% { transform: rotate(-2deg); }
-  10% { transform: rotate(0deg); }
-
-  100% { transform: rotate(0deg); }
-}
-
 .share-btn {
   position: fixed;
   top: 100rpx;
@@ -161,4 +149,14 @@
   color: #fff;
   font-size: 24rpx;
   z-index: 100;
+}
+
+@keyframes notice-me {
+  0% { transform: rotate(0deg); }
+  2% { transform: rotate(2deg); }
+  4% { transform: rotate(-2deg); }
+  6% { transform: rotate(2deg); }
+  8% { transform: rotate(-2deg); }
+  10% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
 }
