@@ -10,6 +10,24 @@ class WithdrawService extends BaseService {
     });
   }
 
+  async commissionTransferSuccess(
+    { outBillNo, scene, amount, path, remark },
+    success
+  ) {
+    await this.post({
+      url: `${this.baseUrl}/withdraw/commission/transfer_success`,
+      data: cleanObject({ outBillNo, scene, amount, path, remark }),
+      success
+    });
+  }
+
+  async commissionTransferFail(outBillNo, reason) {
+    await this.post({
+      url: `${this.baseUrl}/withdraw/commission/transfer_fail`,
+      data: cleanObject({ outBillNo, reason })
+    });
+  }
+
   async applyIncomeWithdraw({ merchantType, amount, remark }, success) {
     await this.post({
       url: `${this.baseUrl}/withdraw/income/submit`,
@@ -23,6 +41,24 @@ class WithdrawService extends BaseService {
       url: `${this.baseUrl}/withdraw/reward/submit`,
       data: cleanObject({ taskId, amount, path, remark }),
       success
+    });
+  }
+
+  async rewardTransferSuccess(
+    { outBillNo, taskId, amount, path, remark },
+    success
+  ) {
+    await this.post({
+      url: `${this.baseUrl}/withdraw/reward/transfer_success`,
+      data: cleanObject({ outBillNo, taskId, amount, path, remark }),
+      success
+    });
+  }
+
+  async rewardTransferFail(outBillNo, reason) {
+    await this.post({
+      url: `${this.baseUrl}/withdraw/reward/transfer_fail`,
+      data: cleanObject({ outBillNo, reason })
     });
   }
 

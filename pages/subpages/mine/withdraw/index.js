@@ -38,20 +38,6 @@ Page({
 
     const actualAmount = Math.max(0, amount - taxFee - handlingFee);
 
-    // todo 微信提现
-    // pathOptions: [4, 5, 6, 7].includes(scene)
-    //     ? [{ cn: "银行卡（1~3个工作日到账）", en: "card", value: 2 }]
-    //     : actualAmount >= 500
-    //       ? [
-    //           { cn: "余额（立即到账）", en: "balance", value: 3 },
-    //           { cn: "银行卡（1~3个工作日到账）", en: "card", value: 2 }
-    //         ]
-    //       : [
-    //           { cn: "余额（立即到账）", en: "balance", value: 3 },
-    //           { cn: "微信（1~3个工作日到账）", en: "wx", value: 1 },
-    //           { cn: "银行卡（1~3个工作日到账）", en: "card", value: 2 }
-    //         ]
-
     this.setData({
       scene,
       amount,
@@ -60,10 +46,16 @@ Page({
       actualAmount,
       pathOptions: [4, 5, 6, 7].includes(scene)
         ? [{ cn: "银行卡（1~3个工作日到账）", en: "card", value: 2 }]
-        : [
-            { cn: "余额（立即到账）", en: "balance", value: 3 },
-            { cn: "银行卡（1~3个工作日到账）", en: "card", value: 2 }
-          ]
+        : actualAmount >= 500
+          ? [
+              { cn: "余额", en: "balance", value: 3 },
+              { cn: "银行卡（1~3个工作日到账）", en: "card", value: 2 }
+            ]
+          : [
+              { cn: "余额", en: "balance", value: 3 },
+              { cn: "微信", en: "wx", value: 1 },
+              { cn: "银行卡（1~3个工作日到账）", en: "card", value: 2 }
+            ]
     });
 
     if (scene === 8) {
@@ -199,21 +191,81 @@ Page({
     }
   },
 
-  withdrawSuccess() {
-    const { scene, curOptionIdx } = this.data;
-    if (curOptionIdx === 0) {
-      this.setData({ amount: 0 });
-      wx.showToast({
-        title: "已成功提现至我的余额",
-        icon: "none"
-      });
-      setTimeout(() => {
-        wx.navigateBack();
-      }, 2000);
-    } else {
-      wx.navigateTo({
-        url: `./subpages/withdraw-result/index?scene=${scene}`
-      });
+  withdrawSuccess(res) {
+    const { outBillNo, appId, mchId, package: wxPackage } = res.data;
+    const { scene, amount, remark, pathOptions, curOptionIdx } = this.data;
+    const path = pathOptions[curOptionIdx].value;
+
+    switch (path) {
+      case 1:
+        if (wx.canIUse("requestMerchantTransfer")) {
+          wx.requestMerchantTransfer({
+            mchId,
+            appId,
+            package: wxPackage,
+            success() {
+              if (scene === 8) {
+                withdrawService.rewardTransferSuccess(
+                  { outBillNo, taskId: this.taskId, amount, path, remark },
+                  () => {
+                    this.setData({ amount: 0 });
+                    wx.showToast({
+                      title: "已成功提现至微信钱包",
+                      icon: "none"
+                    });
+                    setTimeout(() => {
+                      wx.navigateBack();
+                    }, 2000);
+                  }
+                );
+              } else {
+                withdrawService.commissionTransferSuccess(
+                  { outBillNo, scene, amount, path, remark },
+                  () => {
+                    this.setData({ amount: 0 });
+                    wx.showToast({
+                      title: "已成功提现至微信钱包",
+                      icon: "none"
+                    });
+                    setTimeout(() => {
+                      wx.navigateBack();
+                    }, 2000);
+                  }
+                );
+              }
+            },
+            fail() {
+              if (scene === 8) {
+                withdrawService.rewardTransferFail(outBillNo, "用户取消提现");
+              } else {
+                withdrawService.commissionTransferFail(outBillNo, "用户取消提现");
+              }
+            }
+          });
+        } else {
+          wx.showModal({
+            content: "您的微信版本过低，请更新至最新版本。",
+            showCancel: false
+          });
+        }
+        break;
+
+      case 2:
+        wx.navigateTo({
+          url: `./subpages/withdraw-result/index?scene=${scene}`
+        });
+        break;
+
+      case 3:
+        this.setData({ amount: 0 });
+        wx.showToast({
+          title: "已成功提现至我的余额",
+          icon: "none"
+        });
+        setTimeout(() => {
+          wx.navigateBack();
+        }, 2000);
+        break;
     }
   },
 
