@@ -19,16 +19,7 @@ App({
     }
 
     if (wx.getStorageSync("token")) {
-      const userInfo = await baseService.getUserInfo();
-      if (userInfo.promoterInfo) {
-        store.setSuperiorInfo(userInfo);
-      } else if (userInfo.superiorId) {
-        const superiorInfo = await baseService.getUserInfoById(userInfo.superiorId);
-        if (superiorInfo.promoterInfo) {
-          store.setSuperiorInfo(superiorInfo);
-        }
-      }
-      
+      baseService.getUserInfo();
       this.initTim();
     } else {
       const superiorId = wx.getStorageSync("superiorId");

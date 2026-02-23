@@ -67,7 +67,18 @@ class BaseService extends Base {
 
   async getUserInfo() {
     const userInfo = await this.get({ url: `${this.baseUrl}/user/me` });
+
     store.setUserInfo(userInfo);
+    
+    if (userInfo.promoterInfo) {
+      store.setSuperiorInfo(userInfo);
+    } else if (userInfo.superiorId) {
+      const superiorInfo = await this.getUserInfoById(userInfo.superiorId);
+      if (superiorInfo.promoterInfo) {
+        store.setSuperiorInfo(superiorInfo);
+      }
+    }
+
     return userInfo;
   }
 
