@@ -1,5 +1,6 @@
 import { storeBindingsBehavior } from "mobx-miniprogram-bindings";
 import { store } from "../../../store/index";
+import tim from "../../../utils/tim/index";
 
 const { statusBarHeight } = getApp().globalData.systemInfo;
 
@@ -30,28 +31,23 @@ Component({
     },
 
     deleteConversation(e) {
-      const { id, index } = e.currentTarget.dataset;
-      const { position, instance } = e.detail;
-      if (position === "right") {
-        wx.showModal({
-          title: "提示",
-          content: "确定删除该聊天列表吗？",
-          showCancel: true,
-          success: async res => {
-            if (res.confirm) {
-              addressService.deleteAddress(id, () => {
-                const { contactList } = this.data;
-                contactList.splice(index, 1);
-                this.setData({ contactList });
-                store.tim.deleteConversation(`C2C${id}`);
-                instance.close();
-              });
-            } else {
-              instance.close();
-            }
+      const { id, index } = e.detail;
+      wx.showModal({
+        title: "提示",
+        content: "确定删除该聊天列表吗？",
+        showCancel: true,
+        success: result => {
+          if (result.confirm) {
+            const { contactList } = this.data;
+            contactList.splice(index, 1);
+            this.setData({ contactList });
+            tim.deleteConversation(`C2C${id}`);
           }
-        });
-      }
+        },
+        complete: () => {
+          e.detail.close();
+        }
+      });
     }
   }
 });

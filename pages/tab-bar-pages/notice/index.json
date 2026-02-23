@@ -1,7 +1,7 @@
 {
   "navigationStyle": "custom",
   "usingComponents": {
-    "van-swipe-cell": "/pages/subpages/components/weapp/swipe-cell/index",
+    "swiper-out": "/components/swiper-out/index",
     "empty-illus": "/components/empty-illus/index"
   }
 }

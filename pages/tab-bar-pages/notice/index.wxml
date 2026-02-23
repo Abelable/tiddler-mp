@@ -31,11 +31,7 @@
 
 <view class="content" style="margin-top: {{statusBarHeight + 148}}px">
   <view class="private-chat-part" wx:if="{{contactList.length}}">
-    <van-swipe-cell
-      wx:for="{{contactList}}" wx:key="index"
-      bind:close="deleteConversation" data-id="{{item.friendId}}" data-index="{{index}}"
-      async-close right-width="{{ 65 }}"
-    >
+    <i-swiper-out wx:for="{{contactList}}" wx:key="index" bind:onDelete="deleteConversation" id="{{item.friendId}}" index="{{index}}">
       <view class="news-list" catchtap="chat" data-info="{{item}}">
         <image class="news-list-icon" src="{{item.friendAvatarUrl}}" />
         <view class="news-list-content">
@@ -49,8 +45,7 @@
           </view>
         </view>
       </view>
-      <button class="swipe-cell-delete-btn" slot="right" hover-class="none">删除</button>
-    </van-swipe-cell>
+    </i-swiper-out>
   </view>
 
   <empty-illus desc="暂无消息" wx:if="{{!contactList.length}}" />
